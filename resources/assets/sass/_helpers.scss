@@ -1,0 +1,39 @@
+.wt-btn-principal {
+    background: rgb(243, 76, 96);
+    padding: .75em 1.5em;
+    border-radius: 5px;
+    color: #fff;
+    font-weight: 600;
+    text-decoration: none;
+    &:hover, &:focus {
+        color: #fff;
+        text-decoration: none;
+        background: rgba(243, 76, 96, 0.7);
+    }
+}
+
+.wt-btn-transparent {
+    background: rgba(225, 225, 225, 0.3);
+    padding: .75em 1.5em;
+    border-radius: 5px;
+	color: #fff;
+    font-weight: 600;
+	text-decoration: none;
+	&:hover, &:focus {
+		color: #fff;
+		text-decoration: none;
+    	background: rgba(243, 76, 96, 0.7);
+	}
+}
+
+.wt-center-block {
+	display: flex;
+    justify-content: center;
+}
+
+.wt-custom-select {
+    padding: 10px 40px;
+    color: #000;
+    border-radius: 5px;
+    margin-right: 5px;
+}
