@@ -1,0 +1,17 @@
+// Normalize estilos
+@import "normalize";
+
+// Variables
+@import "variables";
+
+// Clases helppers
+@import "helpers";
+
+// Estilos de la home principal
+@import "home-principal";
+
+// Estilos de la home search
+@import "search";
+
+// Bootstrap
+@import "node_modules/bootstrap-sass/assets/stylesheets/bootstrap";
