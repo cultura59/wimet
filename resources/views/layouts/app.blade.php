@@ -46,7 +46,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-3">
-                        <img class="img-responsive" src="img/wimet_isologotipo_blanco.svg" alt="Wimet">
+                        <img class="img-responsive" src="{{ url('img/wimet_isologotipo_blanco.svg') }}" alt="Wimet">
                         <ul>
                             <li><a href="#">Cómo funciona</a></li>
                             <li><a href="#">Términos y condiciones</a></li>
@@ -85,5 +85,6 @@
                 </div>
             </div>
         </footer>
+        @stack('scripts')
     </body>
 </html>

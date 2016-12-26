@@ -2,6 +2,31 @@
 
 @section('title', 'Buscador')
 
+@push('scripts')
+<script>
+	var map;
+	function initMap() {
+		map = new google.maps.Map(document.getElementById('map'), {
+			center: new google.maps.LatLng(-33.91722, 151.23064),
+			zoom: 12,
+			disableDefaultUI: false,
+			scrollwheel: false,
+		    navigationControl: false,
+		    mapTypeControl: true,
+		    scaleControl: false,
+		    draggable: false,
+		    mapTypeId: google.maps.MapTypeId.ROADMAP
+		});
+		var marker = new google.maps.Marker({
+			position: new google.maps.LatLng(-33.91721, 151.22630),
+			icon: 'http://www.wimet.co/img/favicon.ico',
+			map: map
+		});
+	}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArSoMrIsnDeERvlCOGJ2WVd36zO2SBTMo&callback=initMap" async defer></script>
+@endpush
+
 @section('content')
     <div class="search">
 		<div class="container-fuild">
@@ -27,9 +52,8 @@
 					
 					<div class="search-data">
 						<div class="row">
-
 							<div class="col-sm-6">
-								<a href="#">
+								<a href="{{ url('espacio', 1) }}">
 									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
 									<button class="btn wt-btn-principal search-espacio">$1000 / hora</button>
 									<p>Espacio numero 1</p>
@@ -38,7 +62,7 @@
 							</div>
 
 							<div class="col-sm-6">
-								<a href="#">
+								<a href="{{ url('espacio', 1) }}">
 									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
 									<button class="btn wt-btn-principal search-espacio">$1000 / hora</button>
 									<p>Espacio numero 1</p>
@@ -47,7 +71,7 @@
 							</div>
 
 							<div class="col-sm-6">
-								<a href="#">
+								<a href="{{ url('espacio', 1) }}">
 									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
 									<button class="btn wt-btn-principal search-espacio">$1000 / hora</button>
 									<p>Espacio numero 1</p>
@@ -56,19 +80,18 @@
 							</div>
 
 							<div class="col-sm-6">
-								<a href="#">
+								<a href="{{ url('espacio', 1) }}">
 									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
 									<button class="btn wt-btn-principal search-espacio">$1000 / hora</button>
 									<p>Espacio numero 1</p>
 									<span>hasta 50 personas</span>
 								</a>
 							</div>
-
 						</div>
 					</div>
 				</div>
 				<div class="col-sm-5" style="padding: 10px">
-					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3284.720861430317!2d-58.434494285252306!3d-34.58592898046406!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95bcb58ed9532093%3A0x357a9ecb56bdbfc9!2sAreaTres!5e0!3m2!1ses-419!2sar!4v1482716021229" width="100%" height="700" frameborder="0" style="border:0" allowfullscreen></iframe>
+					<div id="map"></div>
 				</div>
 			</div>
 		</div>

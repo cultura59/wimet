@@ -32,4 +32,10 @@ class HomeController extends Controller
         $espacios = Espacio::paginate(10);
         return view('search', array('espacios' => $espacios));
     }
+
+    public function espacio($id)
+    {
+        $espacio = Espacio::find($id);
+        return view('espacio', array('espacio' => $espacio));
+    }
 }
