@@ -484,6 +484,13 @@ template {
   justify-content: center;
 }
 
+.wt-center-block-left {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+}
+
 .wt-custom-select {
   padding: 10px 40px;
   color: #000;
