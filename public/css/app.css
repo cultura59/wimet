@@ -491,6 +491,26 @@ template {
   margin-right: 5px;
 }
 
+.wt-m-1 {
+  margin: 10px;
+}
+
+.wt-m-2 {
+  margin: 20px;
+}
+
+.wt-m-3 {
+  margin: 30px;
+}
+
+.wt-m-4 {
+  margin: 40px;
+}
+
+.wt-m-5 {
+  margin: 50px;
+}
+
 html, body {
   width: 100%;
   margin: 0px;
@@ -582,6 +602,7 @@ html, body {
   width: 100%;
   position: absolute;
   bottom: 0px;
+  left: 0px;
   padding: 30px 0px;
 }
 
@@ -751,6 +772,55 @@ footer ul li a, footer ul li a:hover {
   color: #333;
   text-decoration: none;
   font-weight: 600;
+}
+
+.search {
+  padding: 20px;
+}
+
+.search .search-form {
+  padding: 10px;
+}
+
+.search .search-result {
+  padding: 10px;
+  font-size: 2rem;
+}
+
+.search .search-data {
+  padding: 10px;
+}
+
+.search .search-data a, .search .search-data a:hover {
+  text-decoration: none;
+  color: #636b6f;
+}
+
+.search .search-data img {
+  box-shadow: 1px 1px 2px 0px #858385;
+  margin-top: 20px;
+}
+
+.search .search-data img:hover, .search .search-data img:focus {
+  box-shadow: 5px 5px 5px 0px #858385;
+}
+
+.search .search-data p {
+  font-size: 2rem;
+  font-weight: 600;
+  margin: 0;
+  padding: 10px 0 0 10px;
+}
+
+.search .search-data span {
+  margin: 0;
+  padding: 10px 0 0 10px;
+}
+
+.search-espacio {
+  position: absolute;
+  top: 12%;
+  left: 0;
 }
 
 /*!

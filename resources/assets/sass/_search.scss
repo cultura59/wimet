@@ -27,3 +27,42 @@
 		}
 	}
 }
+.search {
+	padding: 20px;
+	.search-form {
+		padding: 10px
+	}
+	.search-result {
+		padding: 10px;
+		font-size: 2rem;
+	}
+	.search-data {
+		padding: 10px;
+		a, a:hover {
+			text-decoration: none;
+			color: #636b6f;
+		}
+		img {
+			box-shadow: 1px 1px 2px 0px rgba(133,131,133,1);
+			margin-top: 20px;
+		}
+		img:hover, img:focus {
+		    box-shadow: 5px 5px 5px 0px #858385;
+		}
+		p {
+			font-size: 2rem;
+			font-weight: 600;
+			margin: 0;
+			padding: 10px 0 0 10px;
+		}
+		span {
+			margin: 0;
+			padding: 10px 0 0 10px;
+		}
+	}
+}
+.search-espacio {
+	position: absolute;
+    top: 12%;
+    left: 0;
+}

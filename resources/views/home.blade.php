@@ -25,7 +25,7 @@
         <header class="header-principal">
             <!-- navbar -->
             <nav class="header-navbar container-fluid">
-                <img src="http://www.wimet.co/img/wimet_isologotipo_blanco.svg" alt="Wimet" width="200" />
+                <a href="/"><img src="http://www.wimet.co/img/wimet_isologotipo_blanco.svg" alt="Wimet" width="200" /></a>
                 <div class="actions">
                     <ul>
                         <li><a href="#" class="wt-btn-transparent">Publica tu espacio</a></li>
@@ -44,13 +44,13 @@
             <!-- Footer Header -->
             <section class="header-footer">         
                 <div class="container">
-                    <form action="#" class="wt-center-block">
+                    <form action="{{url('search')}}" class="wt-center-block">
                         
-                        <select name="sources" class="wt-custom-select">
+                        <select name="ubicacion" class="wt-custom-select">
                             <option value="">Ubicación</option>
                         </select>
 
-                        <select name="sources" class="wt-custom-select">
+                        <select name="categories" class="wt-custom-select">
                             <option value="">Tipo de actividad</option>
                         </select>
 

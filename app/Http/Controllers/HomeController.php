@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Espacio;
 
 class HomeController extends Controller
 {
@@ -28,6 +29,7 @@ class HomeController extends Controller
 
     public function search()
     {
-        return view('search');
+        $espacios = Espacio::paginate(10);
+        return view('search', array('espacios' => $espacios));
     }
 }

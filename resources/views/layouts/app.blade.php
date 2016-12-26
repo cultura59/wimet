@@ -25,7 +25,7 @@
         <header class="header-with">
             <div class="container-fuild">
                 <nav class="header-navbar container-fluid">
-                    <img src="http://www.wimet.co/img/wimet_isologotipo.svg" alt="Wimet" width="200" />
+                    <a href="/"><img src="http://www.wimet.co/img/wimet_isologotipo.svg" alt="Wimet" width="200" /></a>
                     <div class="actions">
                         <ul>
                             <li><a href="#" class="wt-btn-principal">Publica tu espacio</a></li>
