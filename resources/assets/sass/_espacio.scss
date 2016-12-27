@@ -1,3 +1,8 @@
+.profile-space {
+  position: relative;
+  min-height: 800px;
+}
+
 .mySlides {display:none}
 
 /* Slideshow container */
@@ -78,6 +83,70 @@
   .prev, .next,.text {font-size: 11px}
 }
 
-.detail-space {
-  
+.box-reserva {
+  width: 100%;
+  background: $wt-white;
+  position: absolute;
+  left: 0;
+  top: -6rem;
+  .box-reserva__header {
+    width: 100%;
+    padding: 5px 10px 0;
+    background: rgba(0, 0, 0, 1);
+    color: $wt-white;
+  }
+  .header__encabezados {
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.2rem;
+  }
+  .header__precio {
+    p {
+      font-size: 2rem;
+      font-weight: 700;
+    }
+    span {
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+  }
+  .box-reserva__body {
+    margin: 0;
+    padding: 10px;
+    box-shadow: 1px 1px 1px 0 rgba(157, 157, 157, 1);
+    a, a:hover {
+      margin-left: 15px;
+      color: rgba(236, 101, 104, 1);
+      text-decoration: none;
+    }
+    .box-reserva__fechas {
+      display: flex;
+      justify-content: space-around;
+      margin: 10px 0;
+      div {
+        display: flex;
+        flex-direction: column;
+        padding: 0 10px
+      }
+    }
+    .box-reserva__totales {
+      padding: 10px 15px;
+      p {
+        font-weight: 600;
+      }
+    }
+  }
+}
+.detail-space__info {
+  background-color: $wt-white;
+  padding: 20px;
+}
+.anfitrion {
+  width: 50%;
+  .anfitrion__title {
+    font-size: 3rem;
+  }
+}
+#map-espacio {
+  height: 50vh;
 }
