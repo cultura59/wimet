@@ -3,6 +3,7 @@
   widows: 100%;
 }
 
+//------------------ Helppers de formularios ------------------//
 .wt-textarea {
     width: 100%;
     border: none;
@@ -16,6 +17,7 @@
     box-shadow: 1px 1px 1px 0 #ddd;
 }
 
+//-------------------- Helppers de botones -------------------//
 .wt-btn-principal {
     background: rgb(243, 76, 96);
     padding: .75em 1.5em;
@@ -89,7 +91,7 @@
     }
 }
 
-// Margenes helppers
+//---------------------- Margenes helppers -----------------------//
 .wt-m-1 {
     margin: 10px;
 }
@@ -140,10 +142,20 @@
     margin-bottom: 50px;
 }
 
+//------------------------------------ Helppers de texto -------------------------------------//
 .text-white {
     color: $wt-white !important;
 }
-/* The Modal (background) */
+
+.text-grey {
+    color: $wt-grey !important;
+}
+
+.text-bold {
+    font-weight: 600;
+}
+
+//--------------------------------- The Modal (background) -----------------------------------//
 .modal {
     display: none; /* Hidden by default */
     position: fixed; /* Stay in place */
