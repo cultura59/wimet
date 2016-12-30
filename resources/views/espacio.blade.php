@@ -127,7 +127,7 @@
 							</div>
 						</div>
 						<div class="box-reserva_compartir wt-center-block">
-							<a href="#" class="wt-btn-principal wt-m-top-2 text-white">Reservar</a>
+							<a href="{{ route('reserva', 1) }}" class="wt-btn-principal wt-m-top-2 text-white">Reservar</a>
 						</div>
 					</div>
 				</div>

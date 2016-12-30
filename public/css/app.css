@@ -453,6 +453,19 @@ template {
   widows: 100%;
 }
 
+.wt-textarea {
+  width: 100%;
+  border: none;
+  box-shadow: 1px 1px 1px 0 #ddd;
+  padding: 10px;
+}
+
+.wt-input {
+  border: none;
+  padding: 5px;
+  box-shadow: 1px 1px 1px 0 #ddd;
+}
+
 .wt-btn-principal {
   background: #f34c60;
   padding: .75em 1.5em;
@@ -488,6 +501,15 @@ template {
   display: flex;
   -webkit-box-pack: center;
   justify-content: center;
+}
+
+.wt-center-center {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
 }
 
 .wt-space-block {
@@ -599,6 +621,54 @@ template {
 
 .text-white {
   color: white !important;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 50%;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 html, body {
@@ -1095,6 +1165,42 @@ footer ul li a, footer ul li a:hover {
 
 #map-espacio {
   height: 50vh;
+}
+
+.reserva .reserva__title {
+  font-weight: 600;
+}
+
+.reserva .box-cantidad-invitados {
+  display: -webkit-box;
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+}
+
+.reserva .resumen {
+  background: white;
+  padding: 10px;
+  border: 1px solid #dddddd;
+  box-shadow: 1px 1px 2px 0 #dddddd;
+}
+
+.sub-header {
+  display: -webkit-box;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px;
+  color: white;
+  background: #1c294e;
+}
+
+.sub-header a, .sub-header a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.dashboar-main {
+  padding: 10px;
 }
 
 /*!

@@ -38,4 +38,10 @@ class HomeController extends Controller
         $espacio = Espacio::find($id);
         return view('espacio', array('espacio' => $espacio));
     }
+
+    public function reserva($id)
+    {
+        $espacio = Espacio::find($id);
+        return view('reserva', array('espacio' => $espacio));
+    }
 }
