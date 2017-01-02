@@ -29,7 +29,13 @@
                 <div class="actions">
                     <ul>
                         <li><a href="#" class="wt-btn-transparent">Publica tu espacio</a></li>
-                        <li><a href="#" id="btn-login">Ingresar</a></li>
+                        @if(!Auth::check())
+                            <li><a href="#" id="btn-login">Ingresar</a></li>
+                        @else
+                            <li>
+                                {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
+                            </li>
+                        @endif
                     </ul>
                 </div>
             </nav>
