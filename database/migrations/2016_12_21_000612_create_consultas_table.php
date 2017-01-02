@@ -22,6 +22,7 @@ class CreateConsultasTable extends Migration
             $table->timestamp('reserva_desde')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->timestamp('reserva_hasta')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->text('consulta');
+            $table->enum('estado', array('consulta', 'pendiente', 'rechazado', 'aprobado'));
             $table->integer('reserva_id')->unsigned();
             $table->foreign('reserva_id')->references('id')->on('reservas');
             $table->timestamps();

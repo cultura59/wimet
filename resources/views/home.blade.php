@@ -29,7 +29,7 @@
                 <div class="actions">
                     <ul>
                         <li><a href="#" class="wt-btn-transparent">Publica tu espacio</a></li>
-                        <li><a href="#">Ingresar</a></li>
+                        <li><a href="#" id="btn-login">Ingresar</a></li>
                     </ul>
                 </div>
             </nav>
@@ -68,6 +68,12 @@
                 <div class="container">
                     <h2 class="text-center">Vivi tu experiencia</h2>
                     <p class="text-center">Wimet te permite alquilar espacios únicos que inspiran</p>
+                    <div>
+                        <a href="#"><img src="http://lorempixel.com/people/800/400/" alt="" class="img-responsive"></a>
+                        <a href="#"><img src="http://lorempixel.com/people/400/800/" alt="" class="img-responsive"></a>
+                        <a href="#"><img src="http://lorempixel.com/people/400/400/" alt="" class="img-responsive"></a>
+                        <a href="#"><img src="http://lorempixel.com/people/400/400/" alt="" class="img-responsive"></a>
+                    </div>
                 </div>
             </section>
 
@@ -208,5 +214,43 @@
                 </div>
             </div>
         </footer>
+
+        <!-- Modal -->
+        <div id="loginModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                @include('auth.login2')
+            </div>
+        </div>
+        <script>
+            // Get the modal
+            var modal = document.getElementById('loginModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("btn-login");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>

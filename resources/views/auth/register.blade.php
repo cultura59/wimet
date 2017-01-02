@@ -1,90 +1,93 @@
 @extends('layouts.app')
 
+@push('scripts')
+    
+    <script>
+        $("#siguiente").click(function(){
+            $(".personal-data").hide();
+            $(".business-data").show();
+            $("#box-siguiente").hide();
+            $("#box-volver").show();
+            $("#box-registrar").show();
+        });
+        $("#volver").click(function(){
+            $(".personal-data").show();
+            $(".business-data").hide();
+            $("#box-siguiente").show();
+            $("#box-volver").hide();
+            $("#box-registrar").hide();
+        });
+    </script>
+
+@endpush
+
 @section('content')
 <div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Register</div>
-                <div class="panel-body">
-                    <form class="form-horizontal" role="form" method="POST" action="{{ url('/register') }}">
-                        {{ csrf_field() }}
+    <div class="center-block wt-m-4">
+        <form class="form" role="form" method="POST" action="{{ url('/register') }}">
+            {{ csrf_field() }}
+            
+            <div class="personal-data">
+                <h2>Perfil</h2>
+                <div class="form-group">
+                    <label for="firstname" class="control-label">Nombre</label>
+                    <input id="firstname" type="text" class="form-control" name="firstname" value="{{ old('firstname') }}" required autofocus>
+                </div>
 
-                        <div class="form-group{{ $errors->has('name') ? ' has-error' : '' }}">
-                            <label for="name" class="col-md-4 control-label">Name</label>
+                <div class="form-group">
+                    <label for="lastname" class="control-label">Apellido</label>
+                    <input id="lastname" type="text" class="form-control" name="lastname" value="{{ old('lastname') }}" required autofocus>
+                </div>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control" name="name" value="{{ old('name') }}" required autofocus>
+                <div class="form-group">
+                    <label for="phone" class="control-label">Teléfono</label>
+                    <input id="phone" type="text" class="form-control" name="phone" value="{{ old('phone') }}">
+                </div>
 
-                                @if ($errors->has('name'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('name') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
+                <div class="form-group">
+                    <label for="email" class="control-label">E-Mail</label>
+                    <input id="email" type="text" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
+                </div>
 
-                        <div class="form-group{{ $errors->has('apellido') ? ' has-error' : '' }}">
-                            <label for="apellido" class="col-md-4 control-label">Apellido</label>
+                <div class="form-group">
+                    <label for="password" class="control-label">Password</label>
+                    <input id="password" type="password" class="form-control" name="password" required>
+                </div>
 
-                            <div class="col-md-6">
-                                <input id="apellido" type="text" class="form-control" name="apellido" value="{{ old('apellido') }}" required autofocus>
-
-                                @if ($errors->has('apellido'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('apellido') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
-                            <label for="email" class="col-md-4 control-label">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required>
-
-                                @if ($errors->has('email'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('email') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' has-error' : '' }}">
-                            <label for="password" class="col-md-4 control-label">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control" name="password" required>
-
-                                @if ($errors->has('password'))
-                                    <span class="help-block">
-                                        <strong>{{ $errors->first('password') }}</strong>
-                                    </span>
-                                @endif
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="password-confirm" class="col-md-4 control-label">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group">
-                            <div class="col-md-6 col-md-offset-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
-                            </div>
-                        </div>
-                    </form>
+                <div class="form-group">
+                    <label for="password-confirm" class="control-label">Confirm Password</label>
+                    <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
                 </div>
             </div>
-        </div>
+
+            <div class="business-data" style="display: none;">
+                <h2>Sobre ti</h2>
+                <div class="form-group">
+                    <label for="businessName" class="control-label">Empresa</label>
+                    <input id="businessName" type="text" class="form-control" name="businessName" value="{{ old('businessName') }}">
+                </div>
+                <div class="form-group">
+                    <label for="industry" class="control-label">Industria</label>
+                    <input id="industry" type="text" class="form-control" name="industry" value="{{ old('industry') }}">
+                </div>
+                <div class="form-group">
+                    <label for="personaldescription" class="control-label">Descripción personal</label>
+                    <textarea name="personaldescription" id="personaldescription" rows="10" class="wt-textarea">{{ old('personaldescription') }}</textarea>
+                </div>
+            </div>
+
+            <div id="box-siguiente" class="form-group pull-right">
+                <button id="siguiente" type="button" class="btn btn-primary">Siguiente</button>
+            </div>
+
+            <div id="box-volver" class="form-group pull-left" style="display: none;">
+                <button id="volver" type="button" class="btn btn-default">Volver</button>
+            </div>
+
+            <div id="box-registrar" class="form-group pull-right" style="display: none;">
+                <button type="submit" class="btn btn-primary">Registrar</button>
+            </div>
+        </form>
     </div>
 </div>
 @endsection
