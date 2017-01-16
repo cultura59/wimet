@@ -12,13 +12,15 @@ class CreateCategoriaServicioPivotTable extends Migration
      */
     public function up()
     {
-        Schema::create('categoria_servicio', function (Blueprint $table) {
-            $table->integer('categoria_id')->unsigned()->index();
-            $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
-            $table->integer('servicio_id')->unsigned()->index();
-            $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
-            $table->primary(['categoria_id', 'servicio_id']);
-        });
+        if (!Schema::hasTable('categoria_servicio')) {
+            Schema::create('categoria_servicio', function (Blueprint $table) {
+                $table->integer('categoria_id')->unsigned()->index();
+                $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+                $table->integer('servicio_id')->unsigned()->index();
+                $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
+                $table->primary(['categoria_id', 'servicio_id']);
+            });
+        }
     }
 
     /**
@@ -28,6 +30,6 @@ class CreateCategoriaServicioPivotTable extends Migration
      */
     public function down()
     {
-        Schema::drop('categoria_servicio');
+        Schema::dropIfExists('categoria_servicio');
     }
 }

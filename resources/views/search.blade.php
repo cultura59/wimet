@@ -33,19 +33,23 @@
 			<div class="row">
 				<div class="col-sm-7">
 					<div class="search-form">
-						<form action="{{url('search')}}" class="wt-center-block-left">
+						{!! Form::open(['url' => 'search', 'method' => 'GET', 'class' => 'wt-center-block-left']) !!}
 	                        
-	                        <select name="ubicacion" class="wt-custom-select">
-	                            <option value="">Ubicación</option>
-	                        </select>
+							{!! Form::select('ubicacion', 
+								['Buenos aires' => 'Buenos aires'], 
+								Request::input('ubicacion'), 
+								['class' => 'wt-custom-select', 'placeholder' => 'Seleccione ubicación']
+							) !!}
 
-	                        <select name="categories" class="wt-custom-select">
-	                            <option value="">Tipo de actividad</option>
-	                        </select>
+							{!! Form::select('categoria', 
+								$categorias, 
+								Request::input('categoria'), 
+								['class' => 'wt-custom-select', 'placeholder' => 'Seleccione actividad']
+							) !!}
 
 	                        <button class="btn btn-danger">Buscar</button>
 
-	                    </form>
+						{!! Form::close() !!}
 					</div>
 					
 					<p class="search-result">Se encontraron {{$espacios->total()}} resultados con los filtros utilizados</p>
@@ -53,7 +57,7 @@
 					<div class="search-data">
 						<div class="row">
 							<div class="col-sm-6">
-								<a href="{{ url('espacio', 1) }}">
+								<a href="{{ route('homespacio', ['categoriaId' => Request::input('categoria'), 'id' => 1]) }}">
 									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
 									<button class="btn wt-btn-principal search-espacio">$1000 / hora</button>
 									<p>Espacio numero 1</p>

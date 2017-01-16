@@ -1,12 +1,10 @@
-
-            $table->integer('espacio_id')->unsigned();
-            $table->foreign('espacio_id')->references('id')->on('espacios')->onDelete('cascade');<?php
+<?php
 
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImagesTable extends Migration
+class CreatePricesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,13 +13,15 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('images')) {
-            Schema::create('images', function (Blueprint $table) {
+        if (!Schema::hasTable('prices')) {
+            Schema::create('prices', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name')->unique();
+                $table->double('price', 15, 8);
                 $table->integer('espacio_id')->unsigned();
                 $table->foreign('espacio_id')->references('id')->on('espacios')->onDelete('cascade');
-                $table->timestamps();
+                $table->integer('categoria_id')->unsigned();
+                $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
+                $table->integer('minhours');
                 $table->softDeletes();
             });
         }
@@ -34,6 +34,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('prices');
     }
 }

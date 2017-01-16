@@ -453,11 +453,17 @@ template {
   widows: 100%;
 }
 
+#btn-login {
+  color: #636b6f;
+  text-decoration: none;
+}
+
 .wt-textarea {
   width: 100%;
   border: none;
   box-shadow: 1px 1px 1px 0 #ddd;
   padding: 10px;
+  border: 1px solid #ddd;
 }
 
 .wt-input {
@@ -1190,6 +1196,119 @@ footer ul li a, footer ul li a:hover {
   padding: 10px;
   border: 1px solid #dddddd;
   box-shadow: 1px 1px 2px 0 #dddddd;
+}
+
+.section-publica .title-tipo-espacio {
+  font-weight: 600;
+  font-size: 1.5rem;
+}
+
+.section-publica .list-tipo-espacio {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  padding-left: 0px;
+}
+
+.section-publica .list-tipo-espacio li {
+  text-decoration: none;
+  padding: 10px;
+  background: white;
+  color: black;
+  width: 10vw;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  border: 1px solid #ddd;
+}
+
+.section-publica .list-tipo-espacio li a, .section-publica .list-tipo-espacio li a:hover {
+  color: black;
+  text-decoration: none;
+}
+
+.section-publica .list-tipo-espacio .selectedCategory {
+  background: #f34c60;
+}
+
+.section-publica .list-tipo-espacio .selectedCategory a, .section-publica .list-tipo-espacio .selectedCategory a:hover {
+  color: white;
+}
+
+.section-publica .capacity-box {
+  display: -webkit-box;
+  display: flex;
+  margin: 30px 0;
+}
+
+.section-publica .capacity-box div {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  margin-right: 2vw;
+}
+
+.section-publica .capacity-box input {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.section-publica .capacity-box-column {
+  display: -webkit-box;
+  display: flex;
+  margin: 30px 0;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+}
+
+.section-publica .capacity-box-column div {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+  margin-right: 2vw;
+}
+
+.section-publica .capacity-box-column input {
+  padding: 10px;
+  border: 1px solid #ddd;
+}
+
+.section-publica .section-publica__aside {
+  margin-top: 30px;
+}
+
+.section-publica .section-publica__aside .active {
+  border-bottom: 1px solid #ddd;
+}
+
+.section-publica .section-publica__aside p {
+  font-weight: 600;
+  font-size: 1.6rem;
+}
+
+.section-publica .section-publica__aside ul {
+  list-style: none;
+  padding: 0;
+}
+
+.section-publica .section-publica__aside ul li {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.section-publica .section-publica__aside ul li:hover {
+  cursor: pointer;
+  border-bottom: 1px solid #ddd;
 }
 
 .sub-header {

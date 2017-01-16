@@ -14,7 +14,7 @@ class EspacioController extends Controller
      */
     public function index()
     {
-        $espacios = Espacio::all();
+        $espacios = Espacio::with('prices', 'categorias', 'servicios')->get();
         return $espacios;
     }
 
@@ -38,7 +38,9 @@ class EspacioController extends Controller
      */
     public function show($id)
     {
-        $espacio = Espacio::find($id);
+        $espacio = Espacio::find($id)
+                    ->with('categorias', 'servicios')
+                    ->get();
         return $espacio;
     }
 

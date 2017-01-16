@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Buscador')
+@section('title', $espacio->name)
 
 @push('scripts')
 	
@@ -33,7 +33,7 @@
 		var map;
 		function initMap() {
 			map = new google.maps.Map(document.getElementById('map-espacio'), {
-				center: new google.maps.LatLng(-33.91722, 151.23064),
+				center: new google.maps.LatLng({{$espacio->long}}, {{$espacio->lat}}),
 				zoom: 12,
 				disableDefaultUI: false,
 				scrollwheel: false,
@@ -44,7 +44,7 @@
 			    mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 			var marker = new google.maps.Marker({
-				position: new google.maps.LatLng(-33.91721, 151.22630),
+				position: new google.maps.LatLng({{$espacio->long}}, {{$espacio->lat}}),
 				icon: 'http://www.wimet.co/img/favicon.ico',
 				map: map
 			});
@@ -56,6 +56,7 @@
 @endpush
 
 @section('content')
+
 <section class="profile-space">
     <!-- Slider -->
 	<div class="slideshow-container">
@@ -79,8 +80,8 @@
 		<div class="row">
 			<div class="col-sm-7">
 				<div class="detalle">
-					<h2>Loft canchero en Soho</h2>
-					<p>Palermo / Buenos Aires</p>
+					<h2>{{$espacio->name}}</h2>
+					<p>{{$espacio->city}} / {{$espacio->state}}</p>
 				</div>
 			</div>
 			<div class="col-sm-5">
@@ -91,7 +92,7 @@
 							<span>I.V.A incluido</span>
 						</div>
 						<div class="header__precio">
-							<p>AR$ 143 <span>por hora (mímino 4 hr)</span></p>
+							<p>AR$ {{$price->price}} <span>por hora (mímino {{$price->minhours}} hr)</span></p>
 						</div>
 					</div>
 					<div class="box-reserva__body">
@@ -113,7 +114,7 @@
 						<div class="box-reserva__totales">
 							<p class="wt-m-top-2">PRECIO</p>
 							<div class="wt-space-block">
-								<span>$143 X 11hs</span>
+								<span>${{$price->price}} X 11hs</span>
 								<span>$1573.-</span>
 							</div>
 							<div class="wt-space-block">
@@ -142,7 +143,7 @@
 					<p>Descripción</p>
 				</div>
 				<div class="wt-content-grid__right">
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Temporibus officiis autem quas maiores voluptatum nihil voluptatem ducimus sit, culpa alias tempora quod necessitatibus provident ipsum corporis esse, a neque sunt.</p>
+					<p>{{$espacio->description}}</p>
 				</div>
 			</div>
 			<!-- Amenities -->
@@ -152,10 +153,11 @@
 				</div>
 				<div class="wt-content-grid__right">
 					<ul>
-						<li>Mesas</li>
-						<li>Sillas</li>
-						<li>Proyector</li>
-						<li>Pantalla</li>
+						@forelse($espacio->servicios as $ameniti)
+						<li>{{$ameniti->nombre}}</li>
+						@empty
+						<li>No posee servicios</li>
+						@endforelse
 					</ul>
 				</div>
 			</div>
@@ -166,8 +168,8 @@
 				</div>
 				<div class="wt-content-grid__right">
 					<p>ARS Moneda</p>
-					<p>$500 Precio por hora</p>
-					<p>5 Mìnimo de horas</p>
+					<p>${{$price->price}} Precio por hora</p>
+					<p>{{$price->minhours}} Mìnimo de horas</p>
 				</div>
 			</div>
 			<!-- Reserva -->
@@ -177,9 +179,9 @@
 				</div>
 				<div class="wt-content-grid__right">
 					<p><b>Reglas</b></p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ipsam mollitia aliquid molestias, iste, necessitatibus ab quam omnis a, atque eius suscipit? Illo voluptate, corporis labore architecto quisquam totam velit sit.</p>
+					<p>{{$espacio->rule}}</p>
 					<p><b>Pilítica de cancelación</b></p>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non asperiores amet veritatis odit dolore recusandae rem. Nesciunt optio tempora quisquam nobis blanditiis excepturi sunt alias rerum, aliquid eaque eum, saepe?</p>
+					<p>{{$espacio->politcancel}}</p>
 				</div>
 			</div>
 			<!-- Anfitrion -->
@@ -191,7 +193,7 @@
 						<img class="img-responsive img-circle" src="http://m.alo.co/sites/default/files/imagecache/Main_Galeria_Vertical_433_570/jason-statham-2012-2.jpg" alt="Anfitrion" width="140" height="140">
 					</div>
 					<div class="col-sm-10">
-						<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eveniet id, mollitia nihil aliquam quia assumenda ea ab nostrum suscipit cupiditate perspiciatis vel iste recusandae facere earum repellat saepe architecto illum!</p>
+						<p>{{ $espacio->user->personaldescription}}</p>
 						<a href="#" class="wt-btn-principal">Contactame</a>
 					</div>
 				</div>

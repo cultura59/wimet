@@ -4,7 +4,7 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -14,7 +14,14 @@
         <link href="/css/app.css" rel="stylesheet">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 
+        <link rel="stylesheet" href="/css/basic.css">
+        <link rel="stylesheet" href="/css/dropzone.css">
+
+        <script src="/js/dropzone.js"></script>
+        
         <!-- Scripts -->
         <script>
             window.Laravel = <?php echo json_encode([
@@ -30,9 +37,9 @@
                     <a href="/"><img src="http://www.wimet.co/img/wimet_isologotipo.svg" alt="Wimet" width="200" /></a>
                     <div class="actions">
                         <ul>
-                            <li><a href="#" class="wt-btn-principal">Publica tu espacio</a></li>
+                            <li><a href="{{ url('/publicar') }}" class="wt-btn-principal">Publica tu espacio</a></li>
                             @if(!Auth::check())
-                                <li><a href="#" id="btn-login">Ingresar</a></li>
+                                <li><a href="#" id="btn-login" class="text-bold">Ingresar</a></li>
                             @else
                                 <li>
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
@@ -48,7 +55,7 @@
         <main>
             @yield('content')
         </main>
-
+    
         <!-- footer -->
         <footer>
             <div class="container">
@@ -95,5 +102,42 @@
         </footer>
         <script src="{{url('/js/app.js')}}"></script>
         @stack('scripts')
+        
+
+        <!-- Modal -->
+        <div id="loginModal" class="modal">
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                @include('auth.login2')
+            </div>
+        </div>
+        <script>
+            // Get the modal
+            var modal = document.getElementById('loginModal');
+
+            // Get the button that opens the modal
+            var btn = document.getElementById("btn-login");
+
+            // Get the <span> element that closes the modal
+            var span = document.getElementsByClassName("close")[0];
+
+            // When the user clicks on the button, open the modal 
+            btn.onclick = function() {
+                modal.style.display = "block";
+            }
+
+            // When the user clicks on <span> (x), close the modal
+            span.onclick = function() {
+                modal.style.display = "none";
+            }
+
+            // When the user clicks anywhere outside of the modal, close it
+            window.onclick = function(event) {
+                if (event.target == modal) {
+                    modal.style.display = "none";
+                }
+            }
+        </script>
     </body>
 </html>

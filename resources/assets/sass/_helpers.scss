@@ -3,12 +3,18 @@
   widows: 100%;
 }
 
+#btn-login {
+    color: rgb(99, 107, 111);
+    text-decoration: none;
+}
+
 //------------------ Helppers de formularios ------------------//
 .wt-textarea {
     width: 100%;
     border: none;
     box-shadow: 1px 1px 1px 0 #ddd;
     padding: 10px;
+    border: 1px solid #ddd;
 }
 
 .wt-input {

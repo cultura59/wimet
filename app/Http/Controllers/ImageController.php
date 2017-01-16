@@ -42,4 +42,17 @@ class ImageController extends Controller
         $image->delete();
         return $id;
     }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function store(Request $request)
+    {
+        $file = $request->file('file');
+        $file->storeAs("images/" . "pepe.jpg");
+    }
+
 }

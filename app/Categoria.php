@@ -15,6 +15,6 @@ class Categoria extends Model
 
 	public function servicios() 
 	{
-		return $this->hasMany('App\Servicio');
+		return $this->belongsToMany('App\Servicio');
 	}
 }

@@ -32,6 +32,15 @@ class Espacio extends Model
      * @fn images()
      * @brief Funcion que retorna todas las imagenes asociadas al espacio
      */
+    public function prices()
+    {
+        return $this->hasMany('App\Price');
+    }
+
+    /**
+     * @fn images()
+     * @brief Funcion que retorna todas las imagenes asociadas al espacio
+     */
     public function images()
     {
         return $this->hasMany('App\Image');

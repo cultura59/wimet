@@ -11,20 +11,28 @@
 |
 */
 
-Route::get('/', function () {
-    return view('home');
-});
+Route::get('/', 'HomeController@index');
 
 Auth::routes();
+Route::get('/logout', function() {
+	Auth::logout();
+	return back();
+});
 
 Route::get('/home', 'HomeController@index');
 Route::get('/search', 'HomeController@search');
-Route::get('/espacio/{id}', 'HomeController@espacio');
+Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio');
 Route::get('/espacio/{id}/reserva', 'HomeController@reserva')->name('reserva');
+Route::get('/publicar', 'HomeController@publicar');
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
 
+Route::post('avatars', function() {
+	$file = request()->file('file');
+	$file->storeAs('avatars', "avatar.jpg");
+	return back();
+});
 
 Route::group(['prefix' => 'admin'], function ()
 {

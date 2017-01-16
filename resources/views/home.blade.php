@@ -19,6 +19,8 @@
                 'csrfToken' => csrf_token(),
             ]); ?>
         </script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </head>
     <body>
         <!-- Header Home -->
@@ -28,9 +30,9 @@
                 <a href="/"><img src="http://www.wimet.co/img/wimet_isologotipo_blanco.svg" alt="Wimet" width="200" /></a>
                 <div class="actions">
                     <ul>
-                        <li><a href="#" class="wt-btn-transparent">Publica tu espacio</a></li>
+                        <li><a href="{{ url('/publicar')}}" class="wt-btn-transparent">Publica tu espacio</a></li>
                         @if(!Auth::check())
-                            <li><a href="#" id="btn-login">Ingresar</a></li>
+                            <li><a href="#" id="btn-login" style="color: #fff">Ingresar</a></li>
                         @else
                             <li>
                                 {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
@@ -50,19 +52,22 @@
             <!-- Footer Header -->
             <section class="header-footer">         
                 <div class="container">
-                    <form action="{{url('search')}}" class="wt-center-block">
+                    {!! Form::open(['url' => 'search', 'method' => 'GET', 'class' => 'wt-center-block']) !!}
                         
                         <select name="ubicacion" class="wt-custom-select">
                             <option value="">Ubicación</option>
                         </select>
 
-                        <select name="categories" class="wt-custom-select">
+                        <select name="categoria" class="wt-custom-select" required>
                             <option value="">Tipo de actividad</option>
+                            @foreach($categorias as $categoria)
+                            <option value="{{$categoria->id}}">{{$categoria->name}}</option>
+                            @endforeach
                         </select>
 
                         <button class="btn btn-danger">Buscar</button>
 
-                    </form>
+                    {!! Form::close() !!}
                 </div> 
             </section>
         </header>
@@ -256,7 +261,5 @@
                 }
             }
         </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     </body>
 </html>

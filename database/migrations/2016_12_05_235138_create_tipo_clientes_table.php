@@ -13,12 +13,14 @@ class CreateTipoClientesTable extends Migration
      */
     public function up()
     {
-        Schema::create('tipo_clientes', function (Blueprint $table) {
-            $table->increments('id');
-            $table->string('nombre')->unique();
-            $table->timestamps();
-            $table->softDeletes();
-        });
+        if (!Schema::hasTable('tipo_clientes')) {
+            Schema::create('tipo_clientes', function (Blueprint $table) {
+                $table->increments('id');
+                $table->string('nombre')->unique();
+                $table->timestamps();
+                $table->softDeletes();
+            });
+        }
     }
 
     /**
