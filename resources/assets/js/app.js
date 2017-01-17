@@ -20,7 +20,6 @@ const app = new Vue({
 });
 
 const appPublica = angular.module("appPublica", []);
-
 appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) {
 	$scope.categorias = {};
 	$scope.step = "primer-paso";
@@ -89,11 +88,12 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 
 
 const appEspacio = angular.module("appEspacio", []);
-
 appEspacio.controller('espacioCtrl', ['$scope', '$http', ($scope, $http) => {
+	sessionStorage.removeItem('espacioreserva');
 	$scope.datesTimes = [];
 	
-	$scope.setPrice = (price) => {
+	$scope.setPrice = (price, id) => {
+		$scope.espacio_id = id;
 		$scope.price = price;
 		$scope.houres = 1;
 		$scope.subTotal = $scope.price * $scope.houres;
@@ -127,5 +127,58 @@ appEspacio.controller('espacioCtrl', ['$scope', '$http', ($scope, $http) => {
 	    if (day.length < 2) day = '0' + day;
 
 	    return [month, day, year].join('/');
+	};
+
+	$scope.reservar = () => {
+		$scope.espacioReserva = {
+			espacioId: $scope.espacio_id,
+			price: $scope.price,
+			houres: $scope.houres,
+			subTotal: $scope.subTotal,
+			fee: $scope.fee,
+			total: $scope.total,
+			datesTimes: $scope.datesTimes
+		};
+		sessionStorage.setItem('espacioreserva', JSON.stringify($scope.espacioReserva));
+		window.location = `/espacio/${$scope.espacio_id}/reserva`;
+	};
+}]);
+
+const appReserva = angular.module("appReserva", []);
+appReserva.controller('reservaCtrl', ['$scope', '$http', ($scope, $http) => {
+	
+	$scope.espacioreserva = JSON.parse(sessionStorage.espacioreserva);
+	$scope.showModal = false;
+
+	$scope.reservaFinal = {
+		datos: JSON.parse(sessionStorage.espacioreserva),
+		quanty: 0,
+		comment: ''
+	};
+
+	$scope.convertDate = (date) => {
+		var d = new Date(date || Date.now()),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+	    if (month.length < 2) month = '0' + month;
+	    if (day.length < 2) day = '0' + day;
+
+	    return [month, day, year].join('/');
+	};
+
+	$scope.sendReserva = () => {
+		document.getElementById("reservaModal").style.display = "block";
+		console.log("entro");
+		/*$http({
+			method: 'POST',
+			url: '/api/categoria',
+			data: $scope.reservaFinal
+		}).then(function successCallback(res) {
+			$scope.categorias = res.data;
+		}, function errorCallback(res) {
+			console.log(res);
+		});*/
 	};
 }]);

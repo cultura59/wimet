@@ -95,7 +95,7 @@
 							<p>AR$ {{$price->price}} <span>por hora (mímino {{$price->minhours}} hr)</span></p>
 						</div>
 					</div>
-					<div class="box-reserva__body" ng-controller="espacioCtrl" data-ng-init="setPrice({{$price->price}})">
+					<div class="box-reserva__body" ng-controller="espacioCtrl" data-ng-init="setPrice({{$price->price}}, {{$espacio->id}})">
 						<div class="box-reserva__fechas">
 							<input type="hidden" ng-model="priceHs" ng-value="{{$price->price}}">
 							<div>
@@ -134,7 +134,7 @@
 							</div>
 						</div>
 						<div class="box-reserva_compartir wt-center-block">
-							<a href="{{ route('reserva', 1) }}" class="wt-btn-principal wt-m-top-2 text-white">Reservar</a>
+							<span ng-click="reservar()" class="wt-btn-principal wt-m-top-2 text-white">Reservar</span>
 						</div>
 					</div>
 				</div>

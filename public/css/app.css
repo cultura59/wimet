@@ -485,6 +485,7 @@ template {
   color: #fff;
   font-weight: 600;
   text-decoration: none;
+  cursor: pointer;
 }
 
 .wt-btn-principal:hover, .wt-btn-principal:focus {
@@ -643,9 +644,7 @@ template {
   font-weight: 600;
 }
 
-.modal {
-  display: none;
-  /* Hidden by default */
+.wt-modal {
   position: fixed;
   /* Stay in place */
   z-index: 1;
