@@ -91,19 +91,41 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 const appEspacio = angular.module("appEspacio", []);
 
 appEspacio.controller('espacioCtrl', ['$scope', '$http', ($scope, $http) => {
-	$scope.espacio = {};
+	$scope.datesTimes = [];
+	
+	$scope.setPrice = (price) => {
+		$scope.price = price;
+		$scope.houres = 1;
+		$scope.subTotal = $scope.price * $scope.houres;
+		$scope.fee = ($scope.subTotal * 5)/100;
+		$scope.total = $scope.subTotal + $scope.fee;
+	};
 
-	getEspacio(1);
+	$scope.addDateTimes = () => {
+		$scope.houres = $scope.houres + ($scope.fin - $scope.inicio);
+		$scope.subTotal = $scope.price * $scope.houres;
+		$scope.fee = ($scope.subTotal * 5)/100;
+		$scope.total = $scope.subTotal + $scope.fee;
 
-	function getEspacio(id) {
-		$http({
-			method: 'GET',
-			url: `/api/espacio/${id}`
-		}).then(function successCallback(res) {
-			$scope.espacio = res.data[0];
-			console.log(res.data[0]);
-		}, function errorCallback(res) {
-			console.log(res);
+		$scope.datesTimes.push({
+			'date': $scope.date,
+			'inicio': $scope.inicio,
+			'fin': $scope.fin
 		});
+		$scope.date		= '';
+		$scope.inicio	= '';
+		$scope.fin		= '';
+	};
+
+	$scope.convertDate = (date) => {
+		var d = new Date(date || Date.now()),
+        month = '' + (d.getMonth() + 1),
+        day = '' + d.getDate(),
+        year = d.getFullYear();
+
+	    if (month.length < 2) month = '0' + month;
+	    if (day.length < 2) day = '0' + day;
+
+	    return [month, day, year].join('/');
 	};
 }]);

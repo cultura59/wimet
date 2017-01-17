@@ -467,8 +467,14 @@ template {
 }
 
 .wt-input {
-  border: none;
-  padding: 5px;
+  border: 1px solid #ddd;
+  padding: 7px;
+  box-shadow: 1px 1px 1px 0 #ddd;
+}
+
+.wt-select {
+  border: 1px solid #ddd;
+  padding: 1rem;
   box-shadow: 1px 1px 1px 0 #ddd;
 }
 
@@ -1133,10 +1139,10 @@ footer ul li a, footer ul li a:hover {
   box-shadow: 1px 1px 1px 0 #9d9d9d;
 }
 
-.box-reserva .box-reserva__body a, .box-reserva .box-reserva__body a:hover {
+.box-reserva .box-reserva__body .body__add-date-time {
   margin-left: 15px;
   color: #ec6568;
-  text-decoration: none;
+  cursor: pointer;
 }
 
 .box-reserva .box-reserva__body .box-reserva__fechas {

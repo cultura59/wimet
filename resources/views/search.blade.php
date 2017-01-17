@@ -7,8 +7,8 @@
 	var map;
 	function initMap() {
 		map = new google.maps.Map(document.getElementById('map'), {
-			center: new google.maps.LatLng(-33.91722, 151.23064),
-			zoom: 12,
+			center: new google.maps.LatLng(-34.5969302, -58.5159385),
+			zoom: 11,
 			disableDefaultUI: false,
 			scrollwheel: false,
 		    navigationControl: false,
@@ -18,7 +18,7 @@
 		    mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
 		var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(-33.91721, 151.22630),
+			position: new google.maps.LatLng(-34.5860955, -58.4341036),
 			icon: 'http://www.wimet.co/img/favicon.ico',
 			map: map
 		});
@@ -48,7 +48,6 @@
 							) !!}
 
 	                        <button class="btn btn-danger">Buscar</button>
-
 						{!! Form::close() !!}
 					</div>
 					
@@ -56,41 +55,16 @@
 					
 					<div class="search-data">
 						<div class="row">
+							@foreach($espacios as $espacio)
 							<div class="col-sm-6">
-								<a href="{{ route('homespacio', ['categoriaId' => Request::input('categoria'), 'id' => 1]) }}">
+								<a href="{{ route('homespacio', ['categoriaId' => Request::input('categoria'), 'id' => $espacio->id]) }}">
 									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
-									<button class="btn wt-btn-principal search-espacio">$1000 / hora</button>
-									<p>Espacio numero 1</p>
-									<span>hasta 50 personas</span>
+									<button class="btn wt-btn-principal search-espacio">${{$espacio->priceByCategory[0]->price}} / hora</button>
+									<p>{{$espacio->name}}</p>
+									<span>hasta {{$espacio->quanty}} personas</span>
 								</a>
 							</div>
-
-							<div class="col-sm-6">
-								<a href="{{ url('espacio', 1) }}">
-									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
-									<button class="btn wt-btn-principal search-espacio">$1000 / hora</button>
-									<p>Espacio numero 1</p>
-									<span>hasta 50 personas</span>
-								</a>
-							</div>
-
-							<div class="col-sm-6">
-								<a href="{{ url('espacio', 1) }}">
-									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
-									<button class="btn wt-btn-principal search-espacio">$1000 / hora</button>
-									<p>Espacio numero 1</p>
-									<span>hasta 50 personas</span>
-								</a>
-							</div>
-
-							<div class="col-sm-6">
-								<a href="{{ url('espacio', 1) }}">
-									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
-									<button class="btn wt-btn-principal search-espacio">$1000 / hora</button>
-									<p>Espacio numero 1</p>
-									<span>hasta 50 personas</span>
-								</a>
-							</div>
+							@endforeach
 						</div>
 					</div>
 				</div>

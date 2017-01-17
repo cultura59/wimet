@@ -18,6 +18,7 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:api');
 
 Route::resource('espacio', 'EspacioController');
+Route::get('/getpricea/{categoriaId}/espacio/{id}', 'EspacioController@getPrice');
 Route::resource('categoria', 'CategoriaController');
 Route::resource('tag', 'TagController');
 Route::resource('servicio', 'ServicioController');

@@ -38,6 +38,15 @@ class Espacio extends Model
     }
 
     /**
+     * @fn priceByCategory()
+     * @brief Funcion que retorna el precio asociadas al espacio por categoria
+     */
+    public function priceByCategory()
+    {
+        return $this->prices()->where('categoria_id', \Request::input('categoria'));
+    }
+
+    /**
      * @fn images()
      * @brief Funcion que retorna todas las imagenes asociadas al espacio
      */

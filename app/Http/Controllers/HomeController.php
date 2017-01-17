@@ -15,7 +15,7 @@ class HomeController extends Controller
     */
     public function __construct()
     {
-        $this->middleware('auth');
+        $this->middleware('auth')->only('reserva');
     }
 
     /**
@@ -33,7 +33,14 @@ class HomeController extends Controller
 
     public function search()
     {
-        $espacios = Espacio::paginate(10);
+        $espacios = Espacio::select('id', 'name', 'quanty')
+                            ->whereHas('categorias', 
+                                function($query) {
+                                $query->where('id', \Request::input('categoria'));
+                            })
+                            ->with('priceByCategory')
+                            ->paginate(10);
+
         $categorias = categoria::orderBy('id')->pluck('name', 'id');
         return view('search', array(
                 'espacios' => $espacios,

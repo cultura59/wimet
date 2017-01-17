@@ -114,10 +114,10 @@
     margin: 0;
     padding: 10px;
     box-shadow: 1px 1px 1px 0 rgba(157, 157, 157, 1);
-    a, a:hover {
+    .body__add-date-time {
       margin-left: 15px;
       color: rgba(236, 101, 104, 1);
-      text-decoration: none;
+      cursor: pointer;
     }
     .box-reserva__fechas {
       display: flex;

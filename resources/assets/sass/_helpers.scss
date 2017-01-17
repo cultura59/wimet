@@ -18,8 +18,14 @@
 }
 
 .wt-input {
-    border: none;
-    padding: 5px;
+    border: 1px solid #ddd;
+    padding: 7px;
+    box-shadow: 1px 1px 1px 0 #ddd;
+}
+
+.wt-select {
+    border: 1px solid #ddd;
+    padding: 1rem;
     box-shadow: 1px 1px 1px 0 #ddd;
 }
 

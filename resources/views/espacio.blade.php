@@ -33,7 +33,7 @@
 		var map;
 		function initMap() {
 			map = new google.maps.Map(document.getElementById('map-espacio'), {
-				center: new google.maps.LatLng({{$espacio->long}}, {{$espacio->lat}}),
+				center: new google.maps.LatLng(-34.5969302, -58.5159385),
 				zoom: 12,
 				disableDefaultUI: false,
 				scrollwheel: false,
@@ -85,7 +85,7 @@
 				</div>
 			</div>
 			<div class="col-sm-5">
-				<div class="box-reserva">
+				<div class="box-reserva" ng-app="appEspacio">
 					<div class="box-reserva__header">
 						<div class="header__encabezados">
 							<span>Desde</span>
@@ -95,36 +95,42 @@
 							<p>AR$ {{$price->price}} <span>por hora (mímino {{$price->minhours}} hr)</span></p>
 						</div>
 					</div>
-					<div class="box-reserva__body">
+					<div class="box-reserva__body" ng-controller="espacioCtrl" data-ng-init="setPrice({{$price->price}})">
 						<div class="box-reserva__fechas">
+							<input type="hidden" ng-model="priceHs" ng-value="{{$price->price}}">
 							<div>
 								<label for="fecha">Fecha reserva</label>
-								<input type="date" name="fecha" >
+								<input type="date" name="fecha" ng-model="date" class="wt-input">
 							</div>
 							<div>
 								<label for="fecha">Inicio reserva</label>
-								<input type="time" name="inicio" >
+								{!! Form::selectRange('inicio', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'inicio', 'placeholder' => 'Ingrese hora']) !!}
 							</div>
 							<div>
 								<label for="fin">Fin reserva</label>
-								<input type="time" name="fin" >
+								{!! Form::selectRange('fin', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'fin', 'placeholder' => 'Ingrese hora']) !!}
 							</div>
 						</div>
-						<a href="#">Agregar otra fecha</a>
+						<span class="body__add-date-time" ng-click="addDateTimes()">Agregar otra fecha</span>
+						<ul>
+							<li ng-repeat="fecha in datesTimes">
+								@{{convertDate(fecha.date)}}, de @{{fecha.inicio}} a @{{fecha.fin}}hs.
+							</li>
+						</ul>
 						<div class="box-reserva__totales">
 							<p class="wt-m-top-2">PRECIO</p>
 							<div class="wt-space-block">
-								<span>${{$price->price}} X 11hs</span>
-								<span>$1573.-</span>
+								<span>${{$price->price}} X @{{houres}}hs</span>
+								<span>$@{{subTotal}}.-</span>
 							</div>
 							<div class="wt-space-block">
 								<span>Fee de administración (5%)</span>
-								<span>$78,65.-</span>
+								<span>$@{{fee}}.-</span>
 							</div>
 							<hr>
 							<div class="wt-space-block">
 								<strong>Total</strong>
-								<strong>$1651,65.-</strong>
+								<strong>$@{{total}}.-</strong>
 							</div>
 						</div>
 						<div class="box-reserva_compartir wt-center-block">
