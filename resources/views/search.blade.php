@@ -30,28 +30,43 @@
 @section('content')
     <div class="search">
 		<div class="container-fuild">
+			<div class="search-form">
+				{!! Form::open(['url' => 'search', 'method' => 'GET', 'class' => 'wt-center-block-left']) !!}
+                    
+					{!! Form::select('ubicacion', 
+						['Buenos aires' => 'Buenos aires'], 
+						Request::input('ubicacion'), 
+						['class' => 'wt-custom-select', 'placeholder' => 'Ubicación']
+					) !!}
+
+					{!! Form::select('categoria', 
+						$categorias, 
+						Request::input('categoria'), 
+						['class' => 'wt-custom-select', 'placeholder' => 'Qué estás planificando?']
+					) !!}
+
+					{!! Form::select('invitados', 
+						$categorias, 
+						Request::input('invitados'), 
+						['class' => 'wt-custom-select', 'placeholder' => 'Invitados']
+					) !!}
+
+					{!! Form::select('precio', 
+						$categorias, 
+						Request::input('precio'), 
+						['class' => 'wt-custom-select', 'placeholder' => 'Precio / hr']
+					) !!}
+					{!! Form::input('search',
+						null,
+						null,
+						['class' => 'wt-custom-input', 'placeholder' => 'Seleccione actividad']
+					)!!}
+
+				{!! Form::close() !!}
+			</div>
 			<div class="row">
 				<div class="col-sm-7">
-					<div class="search-form">
-						{!! Form::open(['url' => 'search', 'method' => 'GET', 'class' => 'wt-center-block-left']) !!}
-	                        
-							{!! Form::select('ubicacion', 
-								['Buenos aires' => 'Buenos aires'], 
-								Request::input('ubicacion'), 
-								['class' => 'wt-custom-select', 'placeholder' => 'Seleccione ubicación']
-							) !!}
-
-							{!! Form::select('categoria', 
-								$categorias, 
-								Request::input('categoria'), 
-								['class' => 'wt-custom-select', 'placeholder' => 'Seleccione actividad']
-							) !!}
-
-	                        <button class="btn btn-danger">Buscar</button>
-						{!! Form::close() !!}
-					</div>
-					
-					<p class="search-result">Se encontraron {{$espacios->total()}} resultados con los filtros utilizados</p>
+					<p class="search-result">{{$espacios->total()}} espacios encontrados</p>
 					
 					<div class="search-data">
 						<div class="row">
@@ -59,9 +74,27 @@
 							<div class="col-sm-6">
 								<a href="{{ route('homespacio', ['categoriaId' => Request::input('categoria'), 'id' => $espacio->id]) }}">
 									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
-									<button class="btn wt-btn-principal search-espacio">${{$espacio->priceByCategory[0]->price}} / hora</button>
+									<div class="search-espacio">
+										$ {{$espacio->priceByCategory[0]->price}} ARS
+									</div>
 									<p>{{$espacio->name}}</p>
-									<span>hasta {{$espacio->quanty}} personas</span>
+									<span>
+										<i class="fa fa-users" aria-hidden="true"></i> {{$espacio->quanty}}
+									</span>
+								</a>
+							</div>
+							@endforeach
+							@foreach($espacios as $espacio)
+							<div class="col-sm-6">
+								<a href="{{ route('homespacio', ['categoriaId' => Request::input('categoria'), 'id' => $espacio->id]) }}">
+									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
+									<div class="search-espacio">
+										$ {{$espacio->priceByCategory[0]->price}} ARS
+									</div>
+									<p>{{$espacio->name}}</p>
+									<span>
+										<i class="fa fa-users" aria-hidden="true"></i> {{$espacio->quanty}}
+									</span>
 								</a>
 							</div>
 							@endforeach

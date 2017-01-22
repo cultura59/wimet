@@ -3,8 +3,16 @@
 @section('title', $espacio->name)
 
 @push('scripts')
-	
+
 	<script>
+		$(window).scroll(function(){
+			if ($(this).scrollTop() > 400) {
+				$('.box-reserva').css('position','fixed').css('top','10%');
+			} else {
+				$('.box-reserva').css('position','absolute').css('top', '-6rem');
+			}
+		});
+
 		// Script Slider
 		var slideIndex = 1;
 		showSlides(slideIndex);
@@ -78,37 +86,36 @@
 	<!-- Detalle espacio -->
 	<div class="detail-space container">
 		<div class="row">
-			<div class="col-sm-7">
+			<div class="col-sm-8">
 				<div class="detalle">
 					<h2>{{$espacio->name}}</h2>
 					<p>{{$espacio->city}} / {{$espacio->state}}</p>
 				</div>
 			</div>
-			<div class="col-sm-5">
+			<div class="col-sm-4">
 				<div class="box-reserva" ng-app="appEspacio">
 					<div class="box-reserva__header">
 						<div class="header__encabezados">
 							<span>Desde</span>
-							<span>I.V.A incluido</span>
 						</div>
 						<div class="header__precio">
-							<p>AR$ {{$price->price}} <span>por hora (mímino {{$price->minhours}} hr)</span></p>
+							<p>$ {{$price->price}}.- ARS <span> por hora (mímino {{$price->minhours}} hr)</span></p>
 						</div>
 					</div>
 					<div class="box-reserva__body" ng-controller="espacioCtrl" data-ng-init="setPrice({{$price->price}}, {{$espacio->id}})">
 						<div class="box-reserva__fechas">
 							<input type="hidden" ng-model="priceHs" ng-value="{{$price->price}}">
 							<div>
-								<label for="fecha">Fecha reserva</label>
+								<label for="fecha">Fecha</label>
 								<input type="date" name="fecha" ng-model="date" class="wt-input">
 							</div>
 							<div>
-								<label for="fecha">Inicio reserva</label>
-								{!! Form::selectRange('inicio', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'inicio', 'placeholder' => 'Ingrese hora']) !!}
+								<label for="fecha">Inicio</label>
+								{!! Form::selectRange('inicio', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'inicio', 'placeholder' => 'Inicio']) !!}
 							</div>
 							<div>
-								<label for="fin">Fin reserva</label>
-								{!! Form::selectRange('fin', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'fin', 'placeholder' => 'Ingrese hora']) !!}
+								<label for="fin">Fin</label>
+								{!! Form::selectRange('fin', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'fin', 'placeholder' => 'Fin']) !!}
 							</div>
 						</div>
 						<span class="body__add-date-time" ng-click="addDateTimes()">Agregar otra fecha</span>

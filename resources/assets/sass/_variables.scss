@@ -1,6 +1,6 @@
 
 // Body
-$body-bg: #f5f8fa;
+$body-bg: #fff;
 
 // Borders
 $laravel-border-color: darken($body-bg, 10%);
@@ -20,14 +20,17 @@ $brand-danger:  #F34C60;
 $wt-white: rgba(255, 255, 255, 1);
 $wt-grey: rgba(28, 41, 78, 1);
 $wt-dark: rgba(0, 0, 0, 1);
+$wt-dark-blue: rgba(37, 64, 80, 1);
 $wt-background-principal: rgba(232, 83, 111, 1);
 $wt-background-secondary: rgba(240, 240, 240, 1);
 $wt-text-principal: rgba(176, 172, 170, 1);
 $wt-text-secondary: rgba(60, 60, 60, 1);
 $wt-text-acent: rgba(234, 150, 165, 1);
+$wt-text-dark: rgba(99, 107, 111, 1);
+$wt-darck-blue: rgba(37, 64, 80, 1);
 
 // Typography
-$font-family-sans-serif: 'Source Sans Pro', sans-serif;
+$font-family-sans-serif: 'Roboto', Noto, sans-serif;
 $font-size-base: 14px;
 $line-height-base: 1.6;
 $text-color: #636b6f;

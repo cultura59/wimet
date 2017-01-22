@@ -37,7 +37,9 @@
                     <a href="/"><img src="http://www.wimet.co/img/wimet_isologotipo.svg" alt="Wimet" width="200" /></a>
                     <div class="actions">
                         <ul>
-                            <li><a href="{{ url('/publicar') }}" class="wt-btn-principal">Publica tu espacio</a></li>
+                            <li>
+                                <a href="{{ url('/publicar') }}" class="wt-btn-principal-search">Publica tu espacio</a>
+                            </li>
                             @if(!Auth::check())
                                 <li><a href="#" id="btn-login" class="text-bold">Ingresar</a></li>
                             @else
@@ -61,41 +63,40 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-3">
-                        <img class="img-responsive" src="{{ url('img/wimet_isologotipo_blanco.svg') }}" alt="Wimet">
+                        <h4>EMPRESA</h4>
                         <ul>
-                            <li><a href="#">Cómo funciona</a></li>
+                            <li><a href="#">Sobre nosotros</a></li>
+                            <li><a href="#">Equipo</a></li>
                             <li><a href="#">Términos y condiciones</a></li>
                             <li><a href="#">Políticas de privacidad</a></li>
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-3">
-                        <h3>EMPRESA</h3>
+                    <div class="col-xs-12 col-sm-2">
+                        <h4>COMUNIDAD</h4>
                         <ul>
-                            <li><a href="#">Sobre nosotros</a></li>
-                            <li><a href="#">Equipo</a></li>
-                            <li><a href="#">Prensa</a></li>
+                            <li><a href="#">Cómo funciona</a></li>
                             <li><a href="#">Blog</a></li>
+                            <li><a href="#">Prensa</a></li>
                             <li><a href="#">Ayuda</a></li>
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-3">
-                        <h3>CATEGORÍAS</h3>
+                    <div class="col-xs-12 col-sm-3 border-redes">
+                        <h4>ACTIVIDADES</h4>
                         <ul>
-                            <li><a href="#">Reuniones de trabajo</a></li>
-                            <li><a href="#">Cocktails</a></li>
+                            <li><a href="#">Reuniones</a></li>
+                            <li><a href="#">Eventos</a></li>
                             <li><a href="#">Producciones</a></li>
                             <li><a href="#">Pop-Ups</a></li>
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-3">
-                        <h3>SEGUINOS</h3>
-                        <ul>
-                            <li><a href="#">Sobre nosotros</a></li>
-                            <li><a href="#">Equipo</a></li>
-                            <li><a href="#">Prensa</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Ayuda</a></li>
-                        </ul>
+                    <div class="col-xs-12 col-sm-4">
+                        <h4>SEGUINOS</h4>
+                        <div class="wt-m-top-3">
+                            <i class="fa fa-instagram fa-lg"></i>
+                            <i class="fa fa-facebook fa-lg"></i>
+                            <i class="fa fa-linkedin fa-lg"></i>
+                        </div>
+                        <img class="img-responsive" src="{{url('/img/wimet_isologotipo_blanco.svg')}}" alt="Wimet">
                     </div>
                 </div>
             </div>

@@ -7,7 +7,7 @@ html, body {
   background-image: url(http://www.wimet.co/img/wimet_inspiring_venue_startup_4.jpg);
   height: 85vh;
   width: 100%;
-  color: #fff;
+  color: $wt-white;
   position: relative;
   padding: 10px;
   .header-navbar {
@@ -23,8 +23,8 @@ html, body {
 				float: left;
 				padding: 1em;
 				text-decoration: none;
-				a {
-					color: #fff;
+				a, a:hover {
+					color: $wt-white;
 					text-decoration: none;
 				}
 			}
@@ -75,7 +75,7 @@ html, body {
 
 .categories {
 	padding: 10px;
-	background-color: #fff;
+	background-color: $wt-white;
 	h2 {
 		font-weight: 700;
 	    font-size: 4.5rem;
@@ -110,7 +110,7 @@ html, body {
 .how-work {
 	padding: 20px;
 	color:#333;
-	background-color: #fff;
+	background-color: $wt-white;
 	h2 {
 	    font-size: 3.5rem;
 	    font-weight: 600;
@@ -141,8 +141,8 @@ html, body {
 
 .newsletter {
 	padding: 30px;
-	color: #fff;
-	background-color: $brand-danger;
+	color: $wt-white;
+	background-color: $wt-background-principal;
 
 	.newsletter-content {
 		display: flex;
@@ -162,19 +162,21 @@ html, body {
 }
 
 footer {
-	background-color: rgb(28, 41, 78);
-	color: rgb(225, 225, 225);
-	padding: 20px;
+	background-color: $wt-dark-blue;
+	color: $wt-white;
+	padding: 40px;
 	ul {
 		margin-top: 2rem;
 		list-style: none;
 		padding: 0;
 		li {
-			margin-top: 2rem;
 			a, a:hover {
-				color: #fff;
+				color: $wt-text-principal;
 				text-decoration: none;
 			}
 		}
+	}
+	.border-redes {
+		border-right: 1px solid $wt-text-principal;
 	}
 }

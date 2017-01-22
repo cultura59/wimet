@@ -4,7 +4,7 @@
 }
 
 #btn-login {
-    color: rgb(99, 107, 111);
+    color: $wt-text-dark;
     text-decoration: none;
 }
 
@@ -27,17 +27,18 @@
     border: 1px solid #ddd;
     padding: 1rem;
     box-shadow: 1px 1px 1px 0 #ddd;
+    color: $wt-text-dark;
 }
 
 //-------------------- Helppers de botones -------------------//
-.wt-btn-principal {
-    background: rgb(243, 76, 96);
-    padding: .75em 1.5em;
-    border-radius: 5px;
-    color: #fff;
+.wt-btn-principal-search {
+    padding: 0.75em 1.5em;
+    border-radius: 2px;
+    color: $wt-text-dark;
     font-weight: 600;
     text-decoration: none;
     cursor: pointer;
+    border: 2px solid $wt-text-dark;
     &:hover, &:focus {
         color: #fff;
         text-decoration: none;
@@ -46,13 +47,10 @@
 }
 
 .wt-btn-transparent {
-    background: rgba(225, 225, 225, 0.3);
-    padding: .75em 1.5em;
-    border-radius: 5px;
-	color: #fff;
-    font-weight: 600;
-	text-decoration: none;
-	&:hover, &:focus {
+    padding: 0.75em 1.5em;
+    border-radius: 2px;
+    border: 0.2em solid $wt-white;
+	a:hover, a:focus {
 		color: #fff;
 		text-decoration: none;
     	background: rgba(243, 76, 96, 0.7);
@@ -81,11 +79,27 @@
 }
 
 .wt-custom-select {
-    padding: 10px 40px;
-    color: #000;
-    border-radius: 5px;
-    margin-right: 5px;
+    padding: 10px;
+    color: $wt-text-dark;
+    font-weight: 500;
+    border: 0px;
+    border: 1px solid $wt-text-principal;
+    width: 18em;
 }
+
+.wt-custom-input {
+    padding: 10px;
+    color: $wt-text-dark;
+    font-weight: 500;
+    border: 0px;
+    border: 1px solid $wt-text-principal;
+    width: 20em;
+}
+.wt-custom-input[placeholder] {
+    font-weight: 500;
+    color: $wt-text-dark;
+}
+
 .wt-content-grid {
     width: 50%;
     display: flex;
@@ -102,6 +116,13 @@
         border-left: 1px solid #333;
         flex-grow: 1;
     }
+}
+
+.wt-btn-primary {
+    padding: 0 20px !important;
+    color: $wt-white;
+    background-color: $wt-background-principal;
+    border-radius: 2px !important;
 }
 
 //---------------------- Margenes helppers -----------------------//
