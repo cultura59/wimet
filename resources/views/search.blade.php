@@ -45,23 +45,25 @@
 						['class' => 'wt-custom-select', 'placeholder' => 'Qué estás planificando?']
 					) !!}
 
-					{!! Form::select('invitados', 
-						$categorias, 
-						Request::input('invitados'), 
-						['class' => 'wt-custom-select', 'placeholder' => 'Invitados']
+					{!! Form::selectRange('quanty', 
+						10,
+						400, 
+						Request::input('quanty'), 
+						['class' => 'wt-custom-select', 'placeholder' => 'Invitados', 'required' => 'required']
 					) !!}
 
-					{!! Form::select('precio', 
-						$categorias, 
-						Request::input('precio'), 
-						['class' => 'wt-custom-select', 'placeholder' => 'Precio / hr']
+					{!! Form::selectRange('price', 
+						100,
+						1000, 
+						Request::input('price'), 
+						['class' => 'wt-custom-select', 'placeholder' => 'Precio / hr', 'required' => 'required']
 					) !!}
 					{!! Form::input('search',
 						null,
 						null,
 						['class' => 'wt-custom-input', 'placeholder' => 'Seleccione actividad']
 					)!!}
-
+					{!! Form::submit('Buscar', ['class' => 'btn wt-btn-primary']) !!}
 				{!! Form::close() !!}
 			</div>
 			<div class="row">
@@ -70,20 +72,6 @@
 					
 					<div class="search-data">
 						<div class="row">
-							@foreach($espacios as $espacio)
-							<div class="col-sm-6">
-								<a href="{{ route('homespacio', ['categoriaId' => Request::input('categoria'), 'id' => $espacio->id]) }}">
-									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
-									<div class="search-espacio">
-										$ {{$espacio->priceByCategory[0]->price}} ARS
-									</div>
-									<p>{{$espacio->name}}</p>
-									<span>
-										<i class="fa fa-users" aria-hidden="true"></i> {{$espacio->quanty}}
-									</span>
-								</a>
-							</div>
-							@endforeach
 							@foreach($espacios as $espacio)
 							<div class="col-sm-6">
 								<a href="{{ route('homespacio', ['categoriaId' => Request::input('categoria'), 'id' => $espacio->id]) }}">

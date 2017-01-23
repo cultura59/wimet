@@ -50,7 +50,7 @@
             <section class="header-footer">         
                 <div class="container">
                     {!! Form::open(['url' => 'search', 'method' => 'GET', 'class' => 'wt-center-block']) !!}
-                        
+
                         <select name="ubicacion" class="wt-custom-select">
                             <option value="">Ubicación</option>
                         </select>

@@ -31,15 +31,38 @@ class HomeController extends Controller
         ));
     }
 
-    public function search()
-    {
-        $espacios = Espacio::select('id', 'name', 'quanty')
-                            ->whereHas('categorias', 
-                                function($query) {
-                                $query->where('id', \Request::input('categoria'));
-                            })
-                            ->with('priceByCategory')
-                            ->paginate(10);
+    /**
+     * @fn search()
+     * @brief Funcion que retorna la vista del resultados
+     * @param Long categoria
+     * @param String ubicacion
+     * @param Long quanty
+     * @param Double price
+     * @return \Illuminate\Http\Response 
+     */
+    public function search(Request $request)
+    {   
+        if($request->has('price') && $request->has('quanty'))
+        {
+            $espacios = Espacio::select('id', 'name', 'quanty')
+                                ->where('quanty', '>=', \Request::input('quanty'))
+                                ->whereHas('categorias', 
+                                    function($query) {
+                                    $query->where('id', \Request::input('categoria'));
+                                })
+                                ->whereHas('priceByCategory', 
+                                    function($query) {
+                                    $query->where('price', '>=', \Request::input('price'));
+                                })
+                                ->paginate(10);
+        }else {
+            $espacios = Espacio::select('id', 'name', 'quanty')
+                                ->whereHas('categorias', 
+                                    function($query) {
+                                    $query->where('id', \Request::input('categoria'));
+                                })
+                                ->paginate(10);
+        }
 
         $categorias = categoria::orderBy('id')->pluck('name', 'id');
         return view('search', array(
