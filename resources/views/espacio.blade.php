@@ -104,7 +104,26 @@
 					</div>
 					<div class="box-reserva__body" ng-controller="espacioCtrl" data-ng-init="setPrice({{$price->price}}, {{$espacio->id}})">
 						<div class="box-reserva__fechas">
-							<input type="hidden" ng-model="priceHs" ng-value="{{$price->price}}">
+							<div>
+								<input type="hidden" ng-model="priceHs" ng-value="{{$price->price}}">
+								<label for="fecha">Tipo de actividad</label>
+								{!! Form::select('categoria', 
+									$categorias, 
+									Request::input('categoria'), 
+									['class' => 'wt-select', 'placeholder' => 'Qué estás planificando?']
+								) !!}
+							</div>
+							<div>
+								<input type="hidden" ng-model="priceHs" ng-value="{{$price->price}}">
+								<label for="fecha">Tipo de actividad</label>
+								{!! Form::select('categoria', 
+									$categorias, 
+									NULL, 
+									['class' => 'wt-select', 'placeholder' => 'Qué estás planificando?']
+								) !!}
+							</div>
+						</div>
+						<div class="box-reserva__fechas">
 							<div>
 								<label for="fecha">Fecha</label>
 								<input type="date" name="fecha" ng-model="date" class="wt-input">
@@ -141,7 +160,7 @@
 							</div>
 						</div>
 						<div class="box-reserva_compartir wt-center-block">
-							<span ng-click="reservar()" class="wt-btn-principal wt-m-top-2 text-white">Reservar</span>
+							<input ng-click="reservar()" class="btn wt-btn-primary" value="Reservar">
 						</div>
 					</div>
 				</div>

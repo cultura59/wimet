@@ -123,6 +123,9 @@
     color: $wt-white;
     background-color: $wt-background-principal;
     border-radius: 2px !important;
+    &:hover {
+        color: $wt-white;
+    }
 }
 
 //---------------------- Margenes helppers -----------------------//

@@ -78,6 +78,8 @@ class HomeController extends Controller
                     ->with('prices', 'categorias', 'servicios', 'user')
                     ->first();
 
+        $categorias = categoria::orderBy('id')->pluck('name', 'id');
+
         $price = DB::table('prices')
                     ->select('id', 'price', 'minhours')
                     ->where('espacio_id', $id)
@@ -86,7 +88,8 @@ class HomeController extends Controller
 
         return view('espacio', array(
                 'espacio' => $espacio,
-                'price' => $price
+                'price' => $price,
+                'categorias' => $categorias
             )
         );
     }

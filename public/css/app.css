@@ -593,6 +593,10 @@ template {
   border-radius: 2px !important;
 }
 
+.wt-btn-primary:hover {
+  color: white;
+}
+
 .wt-m-1 {
   margin: 10px;
 }
@@ -1171,7 +1175,8 @@ footer .border-redes {
 .box-reserva .box-reserva__body .box-reserva__fechas {
   display: -webkit-box;
   display: flex;
-  justify-content: space-around;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
   margin: 10px 0;
 }
 
