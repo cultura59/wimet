@@ -32,25 +32,23 @@
     <body>
         <!-- Header Home -->
         <header class="header-with">
-            <div class="container-fuild">
-                <nav class="header-navbar container-fluid">
-                    <a href="/"><img src="http://www.wimet.co/img/wimet_isologotipo.svg" alt="Wimet" width="200" /></a>
-                    <div class="actions">
-                        <ul>
+            <nav class="header-navbar container-fluid">
+                <a href="/"><img src="{{url('img/wimet_logo_dark.svg')}}" alt="Wimet" width="168" /></a>
+                <div class="actions">
+                    <ul>
+                        <li>
+                            <a href="{{ url('/publicar') }}" class="wt-btn-principal-search">PUBLICA TU ESPACIO</a>
+                        </li>
+                        @if(!Auth::check())
+                            <li><a href="{{url('/login')}}" id="btn-login" class="text-bold">Ingresar</a></li>
+                        @else
                             <li>
-                                <a href="{{ url('/publicar') }}" class="wt-btn-principal-search">Publica tu espacio</a>
+                                {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                             </li>
-                            @if(!Auth::check())
-                                <li><a href="#" id="btn-login" class="text-bold">Ingresar</a></li>
-                            @else
-                                <li>
-                                    {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
-                                </li>
-                            @endif
-                        </ul>
-                    </div>
-                </nav>
-            </div>
+                        @endif
+                    </ul>
+                </div>
+            </nav>
         </header>
 
         <!-- main -->
@@ -58,49 +56,6 @@
             @yield('content')
         </main>
     
-        <!-- footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-3">
-                        <h4>EMPRESA</h4>
-                        <ul>
-                            <li><a href="#">Sobre nosotros</a></li>
-                            <li><a href="#">Equipo</a></li>
-                            <li><a href="#">Términos y condiciones</a></li>
-                            <li><a href="#">Políticas de privacidad</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <h4>COMUNIDAD</h4>
-                        <ul>
-                            <li><a href="#">Cómo funciona</a></li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">Prensa</a></li>
-                            <li><a href="#">Ayuda</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-3 border-redes">
-                        <h4>ACTIVIDADES</h4>
-                        <ul>
-                            <li><a href="#">Reuniones</a></li>
-                            <li><a href="#">Eventos</a></li>
-                            <li><a href="#">Producciones</a></li>
-                            <li><a href="#">Pop-Ups</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <h4>SEGUINOS</h4>
-                        <div class="wt-m-top-3">
-                            <i class="fa fa-instagram fa-lg"></i>
-                            <i class="fa fa-facebook fa-lg"></i>
-                            <i class="fa fa-linkedin fa-lg"></i>
-                        </div>
-                        <img class="img-responsive" src="{{url('/img/wimet_isologotipo_blanco.svg')}}" alt="Wimet">
-                    </div>
-                </div>
-            </div>
-        </footer>
         <script src="{{url('/js/app.js')}}"></script>
         @stack('scripts')
     </body>

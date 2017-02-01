@@ -27,12 +27,12 @@
         <header class="header-principal">
             <!-- navbar -->
             <nav class="header-navbar container-fluid">
-                <a href="/"><img src="http://www.wimet.co/img/wimet_isologotipo_blanco.svg" alt="Wimet" width="200" /></a>
+                <a href="/"><img src="{{url('img/wimet_logo_white.svg')}}" alt="Wimet" width="200" /></a>
                 <div class="actions">
                     <ul>
                         <li><a href="{{ url('/publicar')}}" class="wt-btn-transparent">PUBLICA TU ESPACIO</a></li>
                         @if(!Auth::check())
-                            <li><a href="#" id="btn-login" style="color: #fff">Ingresar</a></li>
+                            <li><a href="{{url('/login')}}" id="btn-login" style="color: #fff">Ingresar</a></li>
                         @else
                             <li>
                                 {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
@@ -62,7 +62,7 @@
                             @endforeach
                         </select>
 
-                        <button class="btn wt-btn-primary">Buscar</button>
+                        <button class="btn wt-btn-primary">BUSCAR</button>
 
                     {!! Form::close() !!}
                 </div> 
@@ -76,84 +76,85 @@
                 <div class="container">
                     <h2 class="text-center">Vivi tu experiencia</h2>
                     <p class="text-center">Wimet te permite alquilar espacios únicos que inspiran</p>
+
+                    <!-- container images primary-->
+                    <div class="row wt-m-top-3">
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="row">
+                                <div class="col-xs-12 wt-m-bot-3">
+                                    <img src="http://lorempixel.com/712/232/" alt="" class="img-responsive img-home-principal">
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <img src="http://lorempixel.com/344/232/city/1/" alt="" class="img-responsive img-home-principal">
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <img src="http://lorempixel.com/344/232/city/1/" alt="" class="img-responsive img-home-principal">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <img src="http://lorempixel.com/344/495/city/1/" alt="" class="img-responsive img-home-principal">
+                        </div>
+                    </div>
+                    <!-- container images second-->
+                    <div class="row wt-m-top-3">
+                        <div class="col-xs-12 col-sm-4">
+                            <img src="http://lorempixel.com/344/495/city/1/" alt="" class="img-responsive img-home-principal">
+                        </div>
+                        <div class="col-xs-12 col-sm-8">
+                            <div class="row">
+                                <div class="col-xs-12 wt-m-bot-3">
+                                    <img src="http://lorempixel.com/712/232/" alt="" class="img-responsive img-home-principal">
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <img src="http://lorempixel.com/344/232/city/1/" alt="" class="img-responsive img-home-principal">
+                                </div>
+                                <div class="col-xs-12 col-sm-6">
+                                    <img src="http://lorempixel.com/344/232/city/1/" alt="" class="img-responsive img-home-principal">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
             <!-- Comunity -->
-            <section class="comunity">
+            <section class="how-work wt-m-top-5 wt-m-bot-5">
                 <div class="container">
-                    <h2 class="text-center">Conoce a nuestra comunidad</h2>
-                    <h3 class="text-center">Mira lo que dice la gente sobre Wimet</h3>
-                    <div class="comunity__container">
-                        <div>
-                            <img class="img-circle img-responsive center-block" src="http://m.alo.co/sites/default/files/imagecache/Main_Galeria_Vertical_433_570/jason-statham-2012-2.jpg" alt="Jason Statham"  width="200" height="200">
-                            <p class="text-center">Jason Statham</p>
-                        </div>
-                        <div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit voluptates unde itaque dignissimos id quis atque quos optio harum a magnam, dolores, vel amet molestiae ipsam numquam rerum perferendis quas.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- how does it work -->
-            <section class="how-work">
-                <div class="container">
-                    <h2 class="text-center">¿Cómo funciona?</h2>
-                    <h3 class="text-center">Planifica tu workshop, reunión de trabajo o cocktail en solo 3 pasos.</h3>
+                    <h2 class="text-center">Conoce nuestra comunidad</h2>
+                    <h3 class="text-center">Wimet te permite alquilar espacios únicos que inspiran</h3>
 
                     <div class="row">
                         <div class="col-sm-4">
-                            <img class="center-block" src="img/wimet_organizador_1.svg" alt="benefits of product" width="140" height="110">
-                            <h4 class="text-center">Busca un espacio único</h4>
-                            <p class="text-center">Descubre en tu ciudad lugares inspiradores, creativos y previamente curados por nuestros scouts.</p>
+                            <img class="center-block" src="img/wimet_organizador_1.svg" alt="benefits of product" width="126" height="126">
+                            <p class="wt-m-top-3">Descubre en tu ciudad lugares inspiradores, creativos y previamente curados por nuestros scouts.</p>
+                            <p class="text-center">Busca un espacio único</p>
                         </div>
                         <div class="col-sm-4">
-                            <img class="center-block" src="img/wimet_organizador_2.svg" alt="benefits of product" width="140" height="110">
-                            <h4 class="text-center">Ponte en contacto</h4>
-                            <p class="text-center">Conversa con el anfitrión y termina de cerrar los detalles en forma segura a través de nuestro sistema.</p>
+                            <img class="center-block" src="img/wimet_organizador_2.svg" alt="benefits of product" width="126" height="126">
+                            <p class="wt-m-top-3">Conversa con el anfitrión y termina de cerrar los detalles en forma segura a través de nuestro sistema.</p>
+                            <p class="text-center">Ponte en contacto</p>
                         </div>
                         <div class="col-sm-4">
-                            <img class="center-block" src="img/wimet_organizador_3.svg" alt="benefits of product" width="140" height="110">
-                            <h4 class="text-center">Confirma tu reserva</h4>
-                            <p class="text-center">Finaliza tu reserva en nuestro sistema y aprovechar al máximo este espacio creativo. Tendrás un evento memorable!</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- how does it work -->
-            <section class="how-work">
-                <div class="container">
-                    <h2 class="text-center">¿Tienes un espacio creativo disponible?</h2>
-                    <h3 class="text-center">Te damos la plataforma donde podrás alquilarlo.</h3>
-
-                    <div class="row">
-                        <div class="col-sm-4">
-                            <img class="center-block" src="img/wimet_anfitrion_1.svg" alt="benefits of product" width="140" height="110">
-                            <h4 class="text-center">Publica tu espacio</h4>
-                            <p class="text-center">Brinda características que definen la unicidad de tu lugar.</p>
-                        </div>
-                        <div class="col-sm-4">
-                            <img class="center-block" src="img/wimet_anfitrion_2.svg" alt="benefits of product" width="140" height="110">
-                            <h4 class="text-center">Promociónalo</h4>
-                            <p class="text-center">Alcanza una gran audiencia interesada en reservar la locación.</p>
-                        </div>
-                        <div class="col-sm-4">
-                            <img class="center-block" src="img/wimet_anfitrion_3.svg" alt="benefits of product" width="140" height="110">
-                            <h4 class="text-center">Aumenta tus ventas</h4>
-                            <p class="text-center">Recibe contactos genuinos de potenciales clientes, desarrolla tu espacio y genera utilidades.</p>
+                            <img class="center-block" src="img/wimet_organizador_3.svg" alt="benefits of product" width="126" height="126">
+                            <p class="wt-m-top-3">Finaliza tu reserva en nuestro sistema y aprovechar al máximo este espacio creativo. Tendrás un evento memorable!</p>
+                            <p class="text-center">Confirma tu reserva</p>
                         </div>
                     </div>
                 </div>
             </section>
 
             <!-- Sponsors -->
-            <section class="sponsors">
-                <img class="img-responsive" src="img/site-1.png" alt="codamotion">
-                <img class="img-responsive" src="img/site-2.png" alt="startup buenos aires">
-                <img class="img-responsive" src="img/site-3.png" alt="shock your cocktail">
-                <img class="img-responsive" src="img/site-4.png" alt="IAE Business school">
+            <section class="container wt-m-bot-4">
+                <div class="row">
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-1.png" alt="codamotion"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-2.png" alt="startup buenos aires"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-3.png" alt="shock your cocktail"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-4.png" alt="IAE Business school"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-4.png" alt="IAE Business school"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-4.png" alt="IAE Business school"></div>
+                </div>
             </section>
 
             <!-- Newsletter -->
@@ -205,51 +206,17 @@
                     </div>
                     <div class="col-xs-12 col-sm-4">
                         <h4>SEGUINOS</h4>
-                        <div class="wt-m-top-3">
-                            <i class="fa fa-instagram fa-lg"></i>
-                            <i class="fa fa-facebook fa-lg"></i>
-                            <i class="fa fa-linkedin fa-lg"></i>
-                        </div>
-                        <img class="img-responsive" src="img/wimet_isologotipo_blanco.svg" alt="Wimet">
+                        <div class="wt-m-top-3 follow">
+                            <img src="{{url('img/wimet_icon_instagram.svg')}}" alt="Wimet" class="img-responsive">
+                            <img src="{{url('img/wimet_icon_facebook.svg')}}" alt="Wimet" class="img-responsive">
+                            <img src="{{url('img/wimet_icon_linkedin.svg')}}" alt="Wimet" class="img-responsive">
+                            <img src="{{url('img/wimet_icon_twitter.svg')}}" alt="Wimet" class="img-responsive">
+                        </div><br>
+                        <img class="img-responsive wt-m-top-3" src="{{url('img/wimet_footer_logo_light.svg')}}" alt="Wimet" width="163">
                     </div>
                 </div>
             </div>
         </footer>
-
-        <!-- Modal -->
-        <div id="loginModal" class="modal">
-            <!-- Modal content -->
-            <div class="modal-content">
-                <span class="close">&times;</span>
-                @include('auth.login2')
-            </div>
-        </div>
-        <script>
-            // Get the modal
-            var modal = document.getElementById('loginModal');
-
-            // Get the button that opens the modal
-            var btn = document.getElementById("btn-login");
-
-            // Get the <span> element that closes the modal
-            var span = document.getElementsByClassName("close")[0];
-
-            // When the user clicks on the button, open the modal 
-            btn.onclick = function() {
-                modal.style.display = "block";
-            }
-
-            // When the user clicks on <span> (x), close the modal
-            span.onclick = function() {
-                modal.style.display = "none";
-            }
-
-            // When the user clicks anywhere outside of the modal, close it
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.display = "none";
-                }
-            }
-        </script>
+        
     </body>
 </html>

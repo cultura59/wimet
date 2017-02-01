@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Espacio;
+use Auth;
 
 class EspacioController extends Controller
 {
@@ -26,7 +27,15 @@ class EspacioController extends Controller
      */
     public function store(Request $request)
     {
-        $espacio = Espacio::create($request->all());
+        //$espacio = Espacio::create($request->all());
+        $espacio = new Espacio();
+        dd(Auth::user()->id);
+        $espacio->user_id = Auth::user()->id;
+        $espacio->name = $request->name;
+        $espacio->description = $request->description;
+        $espacio->quanty = $request->quanty;
+        $espacio->adress = $request->adress;
+        $espacio->save();
         return $espacio;
     }
 

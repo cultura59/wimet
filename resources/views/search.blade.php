@@ -9,12 +9,16 @@
 		map = new google.maps.Map(document.getElementById('map'), {
 			center: new google.maps.LatLng(-34.5969302, -58.5159385),
 			zoom: 11,
+		    zoomControl: true,
+		    zoomControlOptions: {
+		        position: google.maps.ControlPosition.LEFT_TOP
+		    },
 			disableDefaultUI: false,
 			scrollwheel: false,
 		    navigationControl: false,
-		    mapTypeControl: true,
+		    mapTypeControl: false,
 		    scaleControl: false,
-		    draggable: false,
+		    draggable: true,
 		    mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
 		var marker = new google.maps.Marker({
@@ -61,13 +65,14 @@
 					{!! Form::input('search',
 						null,
 						null,
-						['class' => 'wt-custom-input', 'placeholder' => 'Seleccione actividad']
+						['class' => 'wt-custom-input', 'placeholder' => 'Seleccione actividad', 'style' => 'width: 38%']
 					)!!}
-					{!! Form::submit('Buscar', ['class' => 'btn wt-btn-primary']) !!}
+					{!! Form::submit('BUSCAR', ['class' => 'btn wt-btn-primary']) !!}
 				{!! Form::close() !!}
 			</div>
-			<div class="row">
-				<div class="col-sm-7">
+
+			<section class="section-main">
+				<div class="section-main__chield-1">
 					<p class="search-result">{{$espacios->total()}} espacios encontrados</p>
 					
 					<div class="search-data">
@@ -81,7 +86,7 @@
 									</div>
 									<p>{{$espacio->name}}</p>
 									<span>
-										<i class="fa fa-users" aria-hidden="true"></i> {{$espacio->quanty}}
+										<img class="icon-people" src="{{url('img/wimet_ic_group_black_24px.svg')}}" alt=""> {{$espacio->quanty}}
 									</span>
 								</a>
 							</div>
@@ -89,9 +94,11 @@
 						</div>
 					</div>
 				</div>
-				<div class="col-sm-5" style="padding: 10px">
+				<div class="section-main__chield-2">
 					<div id="map"></div>
 				</div>
+			</section>
+
 			</div>
 		</div>
 	</div>

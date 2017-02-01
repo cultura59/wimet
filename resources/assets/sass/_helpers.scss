@@ -19,7 +19,7 @@
 
 .wt-input {
     border: 1px solid #ddd;
-    padding: 7px;
+    padding: 12px 7px;
     box-shadow: 1px 1px 1px 0 #ddd;
 }
 
@@ -35,7 +35,6 @@
     padding: 0.75em 1.5em;
     border-radius: 2px;
     color: $wt-text-dark;
-    font-weight: 600;
     text-decoration: none;
     cursor: pointer;
     border: 2px solid $wt-text-dark;
@@ -62,6 +61,11 @@
     justify-content: center;
 }
 
+.wt-center-column {
+    display: flex;
+    flex-direction: column;
+}
+
 .wt-center-center {
     display: flex;
     justify-content: center;
@@ -79,24 +83,21 @@
 }
 
 .wt-custom-select {
-    padding: 10px;
-    color: $wt-text-dark;
+    padding: 16px;
+    color: rgba(99, 107, 111, 0.5);
     font-weight: 500;
-    border: 0px;
-    border: 1px solid $wt-text-principal;
+    border: 1px solid $wt-grey;
     width: 18em;
+    font-size: 0.825rem;
 }
 
 .wt-custom-input {
     padding: 10px;
     color: $wt-text-dark;
-    font-weight: 500;
-    border: 0px;
-    border: 1px solid $wt-text-principal;
+    border: 1px solid $wt-grey;
     width: 20em;
 }
 .wt-custom-input[placeholder] {
-    font-weight: 500;
     color: $wt-text-dark;
 }
 
@@ -119,7 +120,7 @@
 }
 
 .wt-btn-primary {
-    padding: 0 20px !important;
+    padding: 14px 16px !important;
     color: $wt-white;
     background-color: $wt-background-principal;
     border-radius: 2px !important;

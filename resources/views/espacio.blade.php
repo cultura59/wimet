@@ -7,9 +7,9 @@
 	<script>
 		$(window).scroll(function(){
 			if ($(this).scrollTop() > 400) {
-				$('.box-reserva').css('position','fixed').css('top','10%');
+				$('.box-reserva').css('position','fixed').css('top','10%').css('right', '10%');
 			} else {
-				$('.box-reserva').css('position','absolute').css('top', '-6rem');
+				$('.box-reserva').css('position','absolute').css('top', '-4rem').css('right', '0');
 			}
 		});
 
@@ -103,38 +103,38 @@
 						</div>
 					</div>
 					<div class="box-reserva__body" ng-controller="espacioCtrl" data-ng-init="setPrice({{$price->price}}, {{$espacio->id}})">
-						<div class="box-reserva__fechas">
-							<div>
+						<div class="row">
+							<div class="col-sm-6 wt-center-column">
 								<input type="hidden" ng-model="priceHs" ng-value="{{$price->price}}">
 								<label for="fecha">Tipo de actividad</label>
 								{!! Form::select('categoria', 
 									$categorias, 
 									Request::input('categoria'), 
-									['class' => 'wt-select', 'placeholder' => 'Qué estás planificando?']
+									['class' => 'wt-select', 'placeholder' => 'Selecciona']
 								) !!}
 							</div>
-							<div>
+							<div class="col-sm-6 wt-center-column">
 								<input type="hidden" ng-model="priceHs" ng-value="{{$price->price}}">
 								<label for="fecha">Tipo de actividad</label>
 								{!! Form::select('categoria', 
 									$categorias, 
 									NULL, 
-									['class' => 'wt-select', 'placeholder' => 'Qué estás planificando?']
+									['class' => 'wt-select', 'placeholder' => 'Selecciona']
 								) !!}
 							</div>
 						</div>
-						<div class="box-reserva__fechas">
-							<div>
+						<div class="row wt-m-top-2 wt-m-bot-2">
+							<div class="col-sm-6 wt-center-column">
 								<label for="fecha">Fecha</label>
 								<input type="date" name="fecha" ng-model="date" class="wt-input">
 							</div>
-							<div>
+							<div class="col-sm-3 wt-center-column">
 								<label for="fecha">Inicio</label>
-								{!! Form::selectRange('inicio', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'inicio', 'placeholder' => 'Inicio']) !!}
+								{!! Form::selectRange('inicio', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'inicio', 'placeholder' => 'Hr']) !!}
 							</div>
-							<div>
+							<div class="col-sm-3 wt-center-column">
 								<label for="fin">Fin</label>
-								{!! Form::selectRange('fin', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'fin', 'placeholder' => 'Fin']) !!}
+								{!! Form::selectRange('fin', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'fin', 'placeholder' => 'Hr']) !!}
 							</div>
 						</div>
 						<span class="body__add-date-time" ng-click="addDateTimes()">Agregar otra fecha</span>

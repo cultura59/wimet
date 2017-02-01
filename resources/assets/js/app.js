@@ -24,16 +24,17 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 	$scope.categorias = {};
 	$scope.step = "primer-paso";
 	$scope.espacio = {
+		user_id: null,
+		name: '',
+		description: '',
 		categorias: [],
-		capacidad: '',
-		ubicacion: '',
-		tipo: '',
-		resumen: '',
-		pais: '',
-		provincia: '',
-		ciudad: '',
-		lat: '',
-		long: ''
+		quanty: 0,
+		adress: '',
+		country: '',
+		state: '',
+		city: '',
+		lat: null,
+		long: null
 	};
 
 	$http({
@@ -57,6 +58,16 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 	};
 
 	$scope.setStep = (step) => {
+		if(step === "segundo-paso")
+		{
+			getLongLat($scope.espacio.adress);
+		}
+
+		if(step === "tercer-paso") {
+
+			$scope.saveEspacio();
+		}
+
 		$scope.step = step;
 	};
 
@@ -75,13 +86,49 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 		}
 	};
 
+	$scope.saveEspacio = () => {
+		$http({
+			method: 'POST',
+			url: '/api/espacio',
+			data: $scope.espacio
+		}).then(function successCallback(res) {
+			$scope.espacio = res.data;
+		}, function errorCallback(res) {
+			console.log(res);
+		});
+	};
+
 	//------------------- Helppers ----------------------//
 
 	function getLongLat(street) {
-		$http.get('http://maps.google.com/maps/api/geocode/json?address=' + street + '&sensor=false')
-		.success(function(res) {
-			$scope.espacio.lat = res.results[0].geometry.location.lat;
-			$scope.espacio.long = res.results[0].geometry.location.lng;
+		$http({
+			method: 'GET',
+			url: `http://maps.google.com/maps/api/geocode/json?address=${street}&sensor=false`
+		}).then(function successCallback(res) {
+			
+			$scope.espacio.lat = res.data.results[0].geometry.location.lat;
+			$scope.espacio.long = res.data.results[0].geometry.location.lng;
+
+			let dataState = res.data.results[0].address_components;
+			
+			dataState.forEach( (datos) => {
+
+				if(datos.types[0] === "administrative_area_level_2") {
+					$scope.espacio.cuidad = datos.long_name;
+				}
+
+				if(datos.types[0] === "administrative_area_level_1") {
+					$scope.espacio.provincia = datos.long_name;
+				}
+			
+				if(datos.types[0] === "country") {
+					$scope.espacio.pais = datos.long_name;
+				}
+
+			});
+
+		}, function errorCallback(res) {
+			console.log(res);
 		});
 	};
 }]);

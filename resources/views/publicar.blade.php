@@ -75,15 +75,15 @@
 					<div class="capacity-box">
 						<div>
 							<label for="capacidad">Capacidad Máx.</label>
-							<input type="text" ng-model="espacio.capacidad" placeholder="Ingrese capacidad">
+							<input type="text" ng-model="espacio.quanty" placeholder="Ingrese capacidad">
 						</div>
 
 						<div>
 							<label for="ubicacion">Ubicación</label>
-							<input type="text" ng-model="espacio.ubicacion" placeholder="Ingrese ubicación">
+							<input type="text" ng-model="espacio.adress" placeholder="Ingrese ubicación">
 						</div>
 					</div>
-
+					<input type="hidden" ng-model="espacio.user_id" ng-value="{{ Auth::user()->id }}">
 					<button ng-click="setStep('segundo-paso')" class="btn btn-danger">Siguiente</button>
 				</div>
 
@@ -91,7 +91,7 @@
 					<div class="capacity-box-column">
 						<div>
 							<label for="">Tipo de espacio</label>
-							<input type="text" ng-model="espacio.tipo" placeholder="Define tu lugar. Ej: Rooftop elegante.">
+							<input type="text" ng-model="espacio.name" placeholder="Define tu lugar. Ej: Rooftop elegante.">
 						</div><br><br>
 						<div>
 							<label for="">Resumen</label>
@@ -123,7 +123,7 @@
 
 						<div>
 							<label for="direccion">Dirección</label>
-							<input type="text" ng-model="espacio.ubicacion" placeholder="Ingrese dirección">
+							<input type="text" ng-model="espacio.adress" placeholder="Ingrese dirección">
 						</div>
 					</div>
 

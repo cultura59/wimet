@@ -86,7 +86,9 @@
 .box-reserva {
   background: $wt-white;
   position: absolute;
-  top: -6rem;
+  top: -4rem;
+  right: 0;
+  border: 1px solid $wt-text-dark;
   .box-reserva__header {
     width: 100%;
     padding: 5px 10px 0;
@@ -96,16 +98,16 @@
   .header__encabezados {
     display: flex;
     justify-content: space-between;
-    font-size: 1.2rem;
+    font-size: 1rem;
   }
   .header__precio {
     p {
-      font-size: 2rem;
+      font-size: 1.25rem;
       font-weight: 700;
     }
     span {
-      font-size: 1.2rem;
-      font-weight: 700;
+      font-size: 1rem;
+      font-weight: 500;
     }
   }
   .box-reserva__body {
@@ -113,7 +115,6 @@
     padding: 10px;
     box-shadow: 1px 1px 1px 0 rgba(157, 157, 157, 1);
     .body__add-date-time {
-      margin-left: 15px;
       color: rgba(236, 101, 104, 1);
       cursor: pointer;
     }
