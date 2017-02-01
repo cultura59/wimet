@@ -82,35 +82,35 @@
                         <div class="col-xs-12 col-sm-8">
                             <div class="row">
                                 <div class="col-xs-12 wt-m-bot-3">
-                                    <img src="http://lorempixel.com/712/232/" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/2_col_ht.jpg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
-                                    <img src="http://lorempixel.com/344/232/city/1/" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/1_col.jpg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
-                                    <img src="http://lorempixel.com/344/232/city/1/" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/1_col.jpg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-4">
-                            <img src="http://lorempixel.com/344/495/city/1/" alt="" class="img-responsive img-home-principal">
+                            <img src="{{url('img/2_col_vt.jpg')}}" alt="" class="img-responsive img-home-principal">
                         </div>
                     </div>
                     <!-- container images second-->
                     <div class="row wt-m-top-3">
                         <div class="col-xs-12 col-sm-4">
-                            <img src="http://lorempixel.com/344/495/city/1/" alt="" class="img-responsive img-home-principal">
+                            <img src="{{url('img/2_col_vt.jpg')}}" alt="" class="img-responsive img-home-principal">
                         </div>
                         <div class="col-xs-12 col-sm-8">
                             <div class="row">
                                 <div class="col-xs-12 wt-m-bot-3">
-                                    <img src="http://lorempixel.com/712/232/" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/2_col_ht.jpg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
-                                    <img src="http://lorempixel.com/344/232/city/1/" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/1_col.jpg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                                 <div class="col-xs-12 col-sm-6">
-                                    <img src="http://lorempixel.com/344/232/city/1/" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/1_col.jpg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                             </div>
                         </div>
