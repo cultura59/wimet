@@ -28,6 +28,7 @@
     padding: 1rem;
     box-shadow: 1px 1px 1px 0 #ddd;
     color: $wt-text-dark;
+    -webkit-appearance:none; /* remove the strong OSX influence from Webkit */
 }
 
 //-------------------- Helppers de botones -------------------//
@@ -89,6 +90,7 @@
     border: 1px solid $wt-grey;
     width: 18em;
     font-size: 0.825rem;
+    -webkit-appearance:none; /* remove the strong OSX influence from Webkit */
 }
 
 .wt-custom-input {

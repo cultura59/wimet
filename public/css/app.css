@@ -477,6 +477,8 @@ template {
   padding: 1rem;
   box-shadow: 1px 1px 1px 0 #ddd;
   color: #636b6f;
+  -webkit-appearance: none;
+  /* remove the strong OSX influence from Webkit */
 }
 
 .wt-btn-principal-search {
@@ -551,6 +553,8 @@ template {
   border: 1px solid #dadada;
   width: 18em;
   font-size: 0.825rem;
+  -webkit-appearance: none;
+  /* remove the strong OSX influence from Webkit */
 }
 
 .wt-custom-input {
