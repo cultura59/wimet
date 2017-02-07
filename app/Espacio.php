@@ -8,22 +8,30 @@ class Espacio extends Model
 {
 	protected $fillable = [
                             'user_id',
-							'name',
-							'description',
-							'rule',
-							'politcancel',
-							'quanty',
-							'adress',
-							'city',
-							'state',
-							'country',
-							'long',
-							'lat'
+                            'name',
+                            'description',
+                            'rule',
+                            'politcancel',
+                            'quantyrooms',
+                            'quantybathrooms',
+                            'floor',
+                            'surface',
+                            'quanty',
+                            'foot',
+                            'seated',
+                            'adress',
+                            'city',
+                            'state',
+                            'country',
+                            'long',
+                            'lat',
+                            'securitydeposit',
+                            'cancellationflexibility'
 						];
 	/**
-	* @fn user()
-	* @brief funcion que retorna el usuario asociado al espacio
-	*/
+	 * @fn user()
+	 * @brief funcion que retorna el usuario asociado al espacio
+	 */
 	public function user()
     {
         return $this->belongsTo('App\User');
@@ -57,27 +65,27 @@ class Espacio extends Model
     }
 
     /**
-    * @fn categorias()
-    * @brief Funcion que retorna las categorias asociadas al espacio
-    */
+     * @fn categorias()
+     * @brief Funcion que retorna las categorias asociadas al espacio
+     */
     public function categorias()
     {
     	return $this->belongsToMany('App\categoria');
     }
 
     /**
-    * @fn servicios()
-    * @brief Funcion que retorna los servicios asociados al espacio
-    */
+     * @fn servicios()
+     * @brief Funcion que retorna los servicios asociados al espacio
+     */
     public function servicios()
     {
     	return $this->belongsToMany('App\Servicio');
     }
 
     /**
-    * @fn tags()
-    * @brief Funcion que retorna los tags asociados al espacio
-    */
+     * @fn tags()
+     * @brief Funcion que retorna los tags asociados al espacio
+     */
     public function tags()
     {
         return $this->belongsToMany('App\Tag');
@@ -90,5 +98,50 @@ class Espacio extends Model
     public function consultas()
     {
         return $this->hasMany('App\Consulta');
+    }
+
+    /**
+    * @fn tiposEspacio()
+    * @brief Funcion que retorna los tipos asociados al espacio
+    */
+    public function estilosEspacio()
+    {
+        return $this->belongsToMany('App\EstiloEspacio');
+    }
+
+    /*
+     * @fn rules()
+     * @brief Funcion que retorna las reglas asociadas al espacio
+     */
+    public function rules()
+    {
+        return $this->belongsToMany('App\Rules');
+    }
+
+    /*
+     * @fn characteristics()
+     * @brief Funcion que retorna las Caracteristics asociadas al espacio
+     */
+    public function characteristics()
+    {
+        return $this->belongsToMany('App\Characteristics');
+    }
+
+    /*
+     * @fn accessibilities()
+     * @brief Funcion que retorna las accessibilities asociadas al espacio
+     */
+    public function accessibilities()
+    {
+        return $this->belongsToMany('App\Accessibilities');
+    }
+
+    /*
+     * @fn access()
+     * @brief Funcion que retorna las access asociadas al espacio
+     */
+    public function access()
+    {
+        return $this->belongsToMany('App\Access');
     }
 }

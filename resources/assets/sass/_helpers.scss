@@ -103,19 +103,19 @@
 }
 
 .wt-content-grid {
-    width: 50%;
+    width: 70%;
     display: flex;
     justify-content: space-around;
-    margin: 30px 0;
     .wt-content-grid__left {
-        padding: 0 10px;
-        font-weight: 600;
         flex-grow: 0;
-        p {min-width: 6vw;}
+        p {
+            min-width: 12vw;
+            font-size: 1.15rem;
+        }
     }
     .wt-content-grid__right {
-        padding: 0 10px;
-        border-left: 1px solid #333;
+        padding: 0 2em;
+        border-left: 2px solid #dadada;
         flex-grow: 1;
     }
 }

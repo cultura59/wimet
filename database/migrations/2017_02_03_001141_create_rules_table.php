@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateImagesTable extends Migration
+class CreateRulesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,12 @@ class CreateImagesTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('images')) {
-            Schema::create('images', function (Blueprint $table) {
+        if (!Schema::hasTable('rules')) {
+            Schema::create('rules', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name')->unique();
-                $table->integer('espacio_id')->unsigned();
-                $table->foreign('espacio_id')->references('id')->on('espacios')->onDelete('cascade');
-                $table->timestamps();
+                $table->string('nombre')->unique();
+                $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
+                $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
                 $table->softDeletes();
             });
         }
@@ -32,6 +31,6 @@ class CreateImagesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('images');
+        Schema::dropIfExists('rules');
     }
 }

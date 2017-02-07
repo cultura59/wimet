@@ -170,71 +170,61 @@
 	<div class="detail-space__info">
 		<div class="container">
 			<!-- Descripcion -->
-			<div class="wt-content-grid">
+			<div class="wt-content-grid wt-m-bot-5">
 				<div class="wt-content-grid__left">
-					<p>Descripción</p>
+					<p>Espacio</p>
 				</div>
 				<div class="wt-content-grid__right">
 					<p>{{$espacio->description}}</p>
 				</div>
 			</div>
-			<!-- Amenities -->
-			<div class="wt-content-grid">
+			<!-- Anfitrion -->
+			<div class="wt-content-grid wt-m-bot-5">
 				<div class="wt-content-grid__left">
-					<p>Amenities</p>
+					<p>Anfitrión</p>
 				</div>
 				<div class="wt-content-grid__right">
-					<ul>
-						@forelse($espacio->servicios as $ameniti)
-						<li>{{$ameniti->nombre}}</li>
-						@empty
-						<li>No posee servicios</li>
-						@endforelse
-					</ul>
+					<p>{{$espacio->user->personaldescription}}</p>
 				</div>
 			</div>
 			<!-- Precio -->
-			<div class="wt-content-grid">
+			<div class="wt-content-grid wt-m-bot-5">
 				<div class="wt-content-grid__left">
 					<p>Precio</p>
 				</div>
 				<div class="wt-content-grid__right">
-					<p>ARS Moneda</p>
-					<p>${{$price->price}} Precio por hora</p>
-					<p>{{$price->minhours}} Mìnimo de horas</p>
+					<img src="{{url('img/ic_query_builder_black_18dp_1x.png')}}">  ${{$price->price}}
+					<p>mínimo {{$price->minhours}} horas</p>
 				</div>
+			</div>
+			<!-- Amenities -->
+			<div class="wt-m-bot-5">
+				<p>Amenities</p>
+				<div class="col-md-8">
+					<div class="row">
+						@foreach($espacio->servicios as $servicio)
+							<div class="col-md-4">
+								<img src="{{url('img/ic_done_black_16dp_1x.png')}}"> {{$servicio->nombre}}
+							</div>
+						@endforeach
+					</div>
+				</div>
+			</div><br>
+			<!-- Mapa -->
+			<div class="anfitrion wt-m-bot-5">
+				<div id="map-espacio"></div>
 			</div>
 			<!-- Reserva -->
-			<div class="wt-content-grid">
+			<div class="wt-content-grid wt-m-bot-5">
 				<div class="wt-content-grid__left">
-					<p>Reserva</p>
+					<p>Cancelación y depósito de garantía</p>
 				</div>
 				<div class="wt-content-grid__right">
-					<p><b>Reglas</b></p>
+					<p>Depósito de garantía: {{$espacio->cancellationflexibility}}</p>
 					<p>{{$espacio->rule}}</p>
-					<p><b>Pilítica de cancelación</b></p>
+					<p>Pilítica de cancelación: ${{$espacio->securitydeposit}}.-</p>
 					<p>{{$espacio->politcancel}}</p>
 				</div>
-			</div>
-			<!-- Anfitrion -->
-			<div class="anfitrion">
-				<p class="anfitrion__title">Anfitrión</p>
-				<hr>
-				<div class="row">
-					<div class="col-sm-2">
-						<img class="img-responsive img-circle" src="http://m.alo.co/sites/default/files/imagecache/Main_Galeria_Vertical_433_570/jason-statham-2012-2.jpg" alt="Anfitrion" width="140" height="140">
-					</div>
-					<div class="col-sm-10">
-						<p>{{ $espacio->user->personaldescription}}</p>
-						<a href="#" class="wt-btn-principal">Contactame</a>
-					</div>
-				</div>
-			</div>
-			<!-- Mapa -->
-			<div class="anfitrion">
-				<p class="anfitrion__title wt-m-top-2">Ubicación</p>
-				<hr>
-				<div id="map-espacio"></div>
 			</div>
 		</div>
 	</div>

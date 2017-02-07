@@ -15,7 +15,16 @@ class EspacioController extends Controller
      */
     public function index()
     {
-        $espacios = Espacio::with('prices', 'categorias', 'servicios')->get();
+        $espacios = Espacio::with(
+                'prices', 
+                'categorias', 
+                'servicios',
+                'estilosEspacio',
+                'rules',
+                'characteristics',
+                'accessibilities',
+                'access'
+            )->get();
         return $espacios;
     }
 
