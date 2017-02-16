@@ -4,10 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Espacio;
-use Auth;
 
 class EspacioController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -37,12 +37,22 @@ class EspacioController extends Controller
     {
         //$espacio = Espacio::create($request->all());
         $espacio = new Espacio();
-        dd(Auth::user()->id);
-        $espacio->user_id = Auth::user()->id;
+        $espacio->user_id = $request->user_id;
         $espacio->name = $request->name;
         $espacio->description = $request->description;
+        $espacio->quantyrooms = $request->quantyrooms;
+        $espacio->quantybathrooms = $request->quantybathrooms;
+        $espacio->floor = $request->floor;
+        $espacio->surface = $request->surface;
+        $espacio->seated = $request->seated;
         $espacio->quanty = $request->quanty;
         $espacio->adress = $request->adress;
+        $espacio->type = $request->type;
+        $espacio->city = $request->city;
+        $espacio->state = $request->state;
+        $espacio->country = $request->country;
+        $espacio->long = $request->long;
+        $espacio->lat = $request->lat;
         $espacio->save();
         return $espacio;
     }

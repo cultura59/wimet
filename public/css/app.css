@@ -453,6 +453,11 @@ template {
   widows: 100%;
 }
 
+#map-publica {
+  height: 500px;
+  widows: 100%;
+}
+
 #btn-login {
   color: #636b6f;
   text-decoration: none;

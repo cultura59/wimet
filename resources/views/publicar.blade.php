@@ -172,10 +172,24 @@
 				</div>
 
 				<!-- Sexto paso -->
-				<div class="sexto-paso" ng-if="(step === 'sexto-paso')">
+				<div class="sexto-paso" ng-show="(step === 'sexto-paso')">
 					<h2>¿Cual es la dirección exacta?</h2>
-					<input class="wt-custom-input wt-m-top-3" type="text" ng-model="espacio.adress" placeholder="Direccion, localidad, provincia">
-
+					<div class="row">
+						<div class="col-md-6">
+							<input class="wt-custom-input" id="address" type="text" ng-model="espacio.adress" placeholder="Dirección" ng-change="getLongLat(espacio.adress)">
+						</div>
+						<div class="col-md-6">
+							<input class="wt-custom-input" id="city" type="text" ng-model="espacio.city" placeholder="Localidad">
+						</div>
+					</div>
+					<div class="row wt-m-top-2">
+						<div class="col-md-6">
+							<input class="wt-custom-input" id="state" type="text" ng-model="espacio.state" placeholder="Provincia">
+						</div>
+						<div class="col-md-6">
+							<input class="wt-custom-input" id="country" type="text" ng-model="espacio.country" placeholder="País">
+						</div>
+					</div>
 					<div class="box-publica">
 						<div class="box-publica__container">
 							<input class="box-publica__container__input" type="text" value="0">
@@ -184,10 +198,6 @@
 						<div class="box-publica__description">
 							<span class="description-text">(Si corresponde)</span>
 						</div>
-					</div>
-					
-					<div id="mapa">
-						
 					</div>
 				</div>
 
@@ -221,9 +231,6 @@
 					</div>
 				</div>
 			</div>
-			<pre>
-			@{{espacio}}
-			</pre>
 		</div>
 	</div>
 	<div class="container-right">

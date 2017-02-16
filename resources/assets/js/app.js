@@ -31,7 +31,7 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 						"noveno-paso",
 					];
 	$scope.espacio = {
-		user_id: null,
+		user_id: 1,
 		name: '',
 		description: '',
 		categorias: [],
@@ -173,6 +173,7 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 	};
 
 	$scope.saveEspacio = () => {
+		getLongLat($scope.espacio.adress);
 		$http({
 			method: 'POST',
 			url: '/api/espacio',
@@ -186,7 +187,7 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 
 	//------------------- Helppers ----------------------//
 
-	function getLongLat(street) {
+	$scope.getLongLat = (street) => {
 		$http({
 			method: 'GET',
 			url: `http://maps.google.com/maps/api/geocode/json?address=${street}&sensor=false`
@@ -200,18 +201,32 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 			dataState.forEach( (datos) => {
 
 				if(datos.types[0] === "administrative_area_level_2") {
-					$scope.espacio.cuidad = datos.long_name;
+					$scope.espacio.city = datos.long_name;
 				}
 
 				if(datos.types[0] === "administrative_area_level_1") {
-					$scope.espacio.provincia = datos.long_name;
+					$scope.espacio.state = datos.long_name;
 				}
 			
 				if(datos.types[0] === "country") {
-					$scope.espacio.pais = datos.long_name;
+					$scope.espacio.country = datos.long_name;
 				}
 
 			});
+
+		}, function errorCallback(res) {
+			console.log(res);
+		});
+	};
+
+	$scope.getLongLatManual = () => {
+		$http({
+			method: 'GET',
+			url: `http://maps.google.com/maps/api/geocode/json?address=${$scope.espacio.adress},${$scope.espacio.city},${$scope.espacio.state},${$scope.espacio.country}&sensor=false`
+		}).then(function successCallback(res) {
+			
+			$scope.espacio.lat = res.data.results[0].geometry.location.lat;
+			$scope.espacio.long = res.data.results[0].geometry.location.lng;
 
 		}, function errorCallback(res) {
 			console.log(res);
@@ -295,7 +310,6 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 		});
 	};
 }]);
-
 
 const appEspacio = angular.module("appEspacio", []);
 appEspacio.controller('espacioCtrl', ['$scope', '$http', ($scope, $http) => {
