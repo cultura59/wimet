@@ -2,144 +2,229 @@
 
 @section('title', 'Publicar')
 
-@push('scripts')
-<script>
-    Dropzone.options.myDropzone = {
-        autoProcessQueue: false,
-        uploadMultiple: true,
-        maxFilezise: 10,
-        maxFiles: 2,
-        
-        init: function() {
-            var submitBtn = document.querySelector("#submitImages");
-            myDropzone = this;
-            
-            submitBtn.addEventListener("click", function(e){
-                e.preventDefault();
-                e.stopPropagation();
-                myDropzone.processQueue();
-            });
-            this.on("addedfile", function(file) {
-                alert("file uploaded");
-            });
-            
-            this.on("complete", function(file) {
-                myDropzone.removeFile(file);
-            });
-
-            this.on("success", 
-                myDropzone.processQueue.bind(myDropzone)
-            );
-        }
-    };
-</script>
-@endpush
-
 @section('content')
-@include('admin.header')
-<section class="section-publica" ng-app="appPublica">
-	<div class="container" ng-controller="publicaCtrl">
-		<div class="row">
-			<div class="col-sm-2">
-				<div class="section-publica__aside">
-					<p>Datos básicos</p>
-					<ul>
-						<li ng-class="isActiveMenu('primer-paso')" ng-click="setStep('primer-paso')">Primer paso</li>
-						<li ng-class="isActiveMenu('segundo-paso')" ng-click="setStep('segundo-paso')">Descripción</li>
-						<li ng-class="isActiveMenu('tercer-paso')" ng-click="setStep('tercer-paso')">Ubicación</li>
-						<li ng-class="isActiveMenu('cuarto-paso')" ng-click="setStep('cuarto-paso')">Fotos</li>
-					</ul>
-					<p>Tu espacio</p>
-					<ul>
-						<li>Ficha general</li>
-						<li>Reserva</li>
-						<li>Disponibilidad</li>
-					</ul>
+<section class="section-publica">
+	<div class="container-left" ng-app="appPublica">
+		<div ng-controller="publicaCtrl">
+			<div class="progress">
+				<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+				aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
 				</div>
 			</div>
-			
-			<div class="col-sm-10">
-				<h2>Publica tu espacio</h2><hr>
-				<p>Wimet te permite ganar dinero alquilando tu espacio disponible. Completa los siguientes datos y recuerda que la publicación esta sujeta a aprobación.</p>
+			<div class="buttons">
+				<button class="btn" ng-click="previewStep()">ATRAS</button>
+				<button class="btn wt-btn-primary" ng-click="nextStep()">CONTINUAR</button>
+			</div>
+			<div class="container-center">
+				<!-- primer paso -->
+				<div class="primer-paso" ng-if="(step === 'primer-paso')">
+					<h2>¡Hola Adrián! Estas a pasos de</h2>
+					<h2>ser anfitrión de tu espacio ;)</h2>
 
-				<div class="primer-paso wt-m-bot-3" ng-if="(step == 'primer-paso')">
-					<p class="title-tipo-espacio wt-m-top-3">Tipo de espacio</p>
-					<ul class="list-tipo-espacio wt-m-bot-3">
-
-						<li ng-repeat="categoria in categorias" ng-class="isCategorySelected(categoria)">
-							<a href="#" ng-click="setCategoria(categoria)">@{{ categoria.name }}</a>
-						</li>
-
-					</ul>
-
-					<div class="capacity-box">
-						<div>
-							<label for="capacidad">Capacidad Máx.</label>
-							<input type="text" ng-model="espacio.quanty" placeholder="Ingrese capacidad">
-						</div>
-
-						<div>
-							<label for="ubicacion">Ubicación</label>
-							<input type="text" ng-model="espacio.adress" placeholder="Ingrese ubicación">
-						</div>
+					<div class="wt-m-top-3 wt-m-bot-3">
+						<span class="title-paso">PASO 1: DATOS BÁSICOS (descripción del lugar)</span>
 					</div>
-					<input type="hidden" ng-model="espacio.user_id" ng-value="{{ Auth::user()->id }}">
-					<button ng-click="setStep('segundo-paso')" class="btn btn-danger">Siguiente</button>
+					<div class="wt-m-top-3 wt-m-bot-3">
+						<h3>¿Qué estilo de espacio tienes?</h3>
+						<select 
+							name="estilos" 
+							class="select-publica" 
+							ng-model="espacio.estilos_espacio"
+							ng-options="estilo as estilo.nombre for estilo in estiloespacio track by estiloespacio.id" 
+							placeholder="Seleccionar">
+						</select>
+					</div>
+
+					<div class="wt-m-top-3 wt-m-bot-3">
+						<h4>¿Qué tipo de espacio es?</h4>
+						<ul class="tipo-espacio">
+							<li>
+								<span ng-click="">Comercial</span>
+							</li>
+							<li>
+								<span ng-click="">Privado</span>
+							</li>
+						</ul>
+					</div>
 				</div>
 
-				<div class="segundo-paso wt-m-bot-3" ng-if="(step == 'segundo-paso')">
-					<div class="capacity-box-column">
-						<div>
-							<label for="">Tipo de espacio</label>
-							<input type="text" ng-model="espacio.name" placeholder="Define tu lugar. Ej: Rooftop elegante.">
-						</div><br><br>
-						<div>
-							<label for="">Resumen</label>
-							<textarea name="resumen" class="wt-textarea" cols="30" rows="10" ng-model="espacio.resumen" placeholder="Describe lo mejor que puedas como es el lugar, los servicios que incluye y la zona donde se encuentra."></textarea>
-						</div>
+				<!-- Segundo paso -->
+				<div class="segundo-paso" ng-if="(step === 'segundo-paso')">
+					<h2>¡Cuéntale al mundo acerca de tu espacio!</h2>
+					<div class="wt-m-top-4">
+						<p class="text-bold">Título de tu espacio</p>
+						<input type="text" class="wt-custom-input" ng-model="espacio.name">
+						<p>50 caracteres</p>
 					</div>
-
-					<button ng-click="setStep('primer-paso')" class="btn btn-default">Volver</button>
-					<button ng-click="setStep('tercer-paso')" class="btn btn-danger">Siguiente</button>
+					<div class="wt-m-top-4">
+						<p class="text-bold">Descripción</p>
+						<textarea name="description" ng-model="espacio.description" rows="10" class="wt-textarea"></textarea>
+					</div>
 				</div>
 
-				<div class="tercer-paso wt-m-bot-3" ng-if="(step == 'tercer-paso')">
-					<div class="capacity-box">
-						<div>
-							<label for="pais">País</label>
-							<input type="text" ng-model="espacio.pais" placeholder="Ingrese su país">
-						</div>
-
-						<div>
-							<label for="provincia">Provincia</label>
-							<input type="text" ng-model="espacio.provincia" placeholder="Ingrese su provincia">
-						</div>
-					</div>
-					<div class="capacity-box">
-						<div>
-							<label for="ciudad">Ciudad</label>
-							<input type="text" ng-model="espacio.cuidad" placeholder="Ingrese su ciudad">
-						</div>
-
-						<div>
-							<label for="direccion">Dirección</label>
-							<input type="text" ng-model="espacio.adress" placeholder="Ingrese dirección">
+				<!-- Tercer paso -->
+				<div class="tercer-paso" ng-if="(step === 'tercer-paso')">
+					<h2>¿Qué tipo de actividad se puede a cabo en tu espacio?</h2>
+					<div class="container-center__list">
+						<!-- Item -->
+						<div class="container-center__list__item" ng-repeat="categoria in categorias">
+							<div>
+								<input type="checkbox">
+							</div>
+							<div class="left__item">
+								<span>@{{categoria.name}}</span>
+								<span class="item-description">(@{{categoria.sub_category[0].name}}, Off-site, Lanzamiento, etc)</span>
+							</div>
 						</div>
 					</div>
-
-					<button ng-click="setStep('segundo-paso')" class="btn btn-default">Volver</button>
-					<button ng-click="setStep('cuarto-paso')" class="btn btn-danger">Siguiente</button>
 				</div>
 
-				<div class="cuarto-paso wt-m-bot-3" ng-show="(step == 'cuarto-paso')">
-			        <form action="{{url('/avatars')}}" method="post" class="dropzone" id="my-awesome-dropzone" enctype="multipart/form-data">
-			        {{csrf_field()}}
-			            <input type="file" name="file" multiple />
-			        </form>
-					<button type="submit" id="submitImages" class="btn btn-danger">Publicar</button>
+				<!-- Cuarto paso -->
+				<div class="cuarto-paso" ng-if="(step === 'cuarto-paso')">
+					<div class="detalles-espacios">
+						<h2>Detalles del espacio y accesibilidad</h2>
+						<div class="box-publica">
+							<div class="box-publica__container">
+								<input class="box-publica__container__input" type="text" value="0">
+								<span class="box-publica__container__pointer">+</span>
+								<span class="box-publica__container__pointer">-</span>
+								<span class="box-publica__container__name">Ambientes</span>
+							</div>
+							<div class="box-publica__description">
+								<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
+							</div>
+						</div>
+						<div class="box-publica">
+							<div class="box-publica__container">
+								<input class="box-publica__container__input" type="text" value="0">
+								<span class="box-publica__container__pointer">+</span>
+								<span class="box-publica__container__pointer">-</span>
+								<span class="box-publica__container__name">Baños</span>
+							</div>
+							<div class="box-publica__description">
+								<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
+							</div>
+						</div>
+						<div class="box-publica">
+							<div class="box-publica__container">
+								<input class="box-publica__container__input" type="text" value="0">
+								<span class="box-publica__container__pointer">+</span>
+								<span class="box-publica__container__pointer">-</span>
+								<span class="box-publica__container__name">Piso</span>
+							</div>
+							<div class="box-publica__description">
+								<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
+							</div>
+						</div>
+						<div class="box-publica">
+							<div class="box-publica__container">
+								<input class="box-publica__container__input" type="text" value="0">
+								<span class="box-publica__container__pointer">+</span>
+								<span class="box-publica__container__pointer">-</span>
+								<span class="box-publica__container__name">Superficie</span>
+							</div>
+							<div class="box-publica__description">
+								<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
+							</div>
+						</div>
+					</div>
+					<div class="detalles-accesos">
+						<h2>¿Cómo se accede al lugar?</h2>
+						<div class="row wt-m-top-3">
+							<div class="col-xs-6" ng-repeat="acces in access"><input type="checkbox"> @{{acces.nombre}}.</div>
+						</div>
+					</div>
+				</div>
+
+				<!-- Quinto paso -->
+				<div class="quinto-paso" ng-if="(step === 'quinto-paso')">
+					<h2>¿Qué capacidad de asistentes / invitados tiene tu espacio?</h2>
+
+					<div class="box-publica">
+						<div class="box-publica__container">
+							<input class="box-publica__container__input" type="text" value="0">
+							<span class="box-publica__container__name">Máximo de asistentes</span>
+						</div>
+						<div class="box-publica__description">
+							<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
+						</div>
+					</div>
+
+					<div class="box-publica">
+						<div class="box-publica__container">
+							<input class="box-publica__container__input" type="text" value="0">
+							<span class="box-publica__container__name">De pie (Opcional)</span>
+						</div>
+						<div class="box-publica__description">
+							<span class="description-text">(Actividad informal tipo cocktail, etc)</span>
+						</div>
+					</div>
+
+					<div class="box-publica">
+						<div class="box-publica__container">
+							<input class="box-publica__container__input" type="text" value="0">
+							<span class="box-publica__container__name">Sentados</span>
+						</div>
+						<div class="box-publica__description">
+							<span class="description-text">(Actividad formal con mesas y/o sillas, etc)</span>
+						</div>
+					</div>
+				</div>
+
+				<!-- Sexto paso -->
+				<div class="sexto-paso" ng-if="(step === 'sexto-paso')">
+					<h2>¿Cual es la dirección exacta?</h2>
+					<input class="wt-custom-input wt-m-top-3" type="text" placeholder="Direccion, localidad, provincia">
+
+					<div class="box-publica">
+						<div class="box-publica__container">
+							<input class="box-publica__container__input" type="text" value="0">
+							<span class="box-publica__container__name">Piso y número (Opcional)</span>
+						</div>
+						<div class="box-publica__description">
+							<span class="description-text">(Si corresponde)</span>
+						</div>
+					</div>
+					
+					<div id="mapa">
+						
+					</div>
+				</div>
+
+				<!-- Septimo paso -->
+				<div class="septimo-paso" ng-if="(step === 'septimo-paso')">
+					<h2>¿Con qué amenities cuenta tu espacio?</h2>
+					<div class="row wt-m-top-4">
+						<div class="col-xs-6" ng-repeat="amenity in amenities">
+							<input type="checkbox"> @{{amenity.nombre}}
+						</div>
+					</div>
+				</div>
+
+				<!-- Octavo paso -->
+				<div class="octavo-paso" ng-if="(step === 'octavo-paso')">
+					<h2>¿Qué características especiales tiene tu espacio?</h2>
+					<div class="row wt-m-top-4">
+						<div class="col-xs-6" ng-repeat="characteristic in characteristics">
+							<input type="checkbox"> @{{characteristic.nombre}}
+						</div>
+					</div>
+				</div>
+
+				<!-- Noveno paso -->
+				<div class="noveno-paso" ng-if="(step === 'noveno-paso')">
+					<h2>Establece reglas sobre el espacio</h2>
+					<div class="row wt-m-top-4">
+						<div class="col-xs-6" ng-repeat="rule in rules">
+							<input type="checkbox"> @{{rule.nombre}}
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="container-right">
+		<img class="img-responsive" src="http://lorempixel.com/people/400/500/" alt="">
 	</div>
 </section>
 @endsection

@@ -128,15 +128,6 @@ class Espacio extends Model
     }
 
     /*
-     * @fn accessibilities()
-     * @brief Funcion que retorna las accessibilities asociadas al espacio
-     */
-    public function accessibilities()
-    {
-        return $this->belongsToMany('App\Accessibilities');
-    }
-
-    /*
      * @fn access()
      * @brief Funcion que retorna las access asociadas al espacio
      */

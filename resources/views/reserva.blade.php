@@ -59,7 +59,7 @@
 							</div>
 						</div>
 						<textarea name="consulta" cols="30" rows="10" ng-model="reservaFinal.comment" placeholder="Cuentale lo mejor que puedas, sobre el evento que quieres realizar al dueño del espacio." class="wt-m-bot-3 wt-textarea"></textarea>
-						<span href="#" ng-click="sendReserva()" class="wt-btn-principal">Solicitar la reserva</span>
+						<button ng-click="sendReserva()" class="btn wt-btn-primary">Solicitar la reserva</button>
 					</div>
 				</div>
 				<div class="col-sm-4">

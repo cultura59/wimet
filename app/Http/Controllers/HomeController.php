@@ -75,7 +75,15 @@ class HomeController extends Controller
     public function espacio($categoriaId, $id)
     {
         $espacio = Espacio::where('id', $id)
-                    ->with('prices', 'categorias', 'servicios', 'user')
+                    ->with(
+                        'prices', 
+                        'categorias', 
+                        'servicios',
+                        'estilosEspacio',
+                        'rules',
+                        'characteristics',
+                        'access'
+                    )
                     ->first();
 
         $categorias = categoria::orderBy('id')->pluck('name', 'id');

@@ -24,6 +24,7 @@ class EspacioTableSeeder extends Seeder
         $espacio->quantyrooms = 250;
         $espacio->quantybathrooms = 250;
         $espacio->floor = 250;
+        $espacio->environments = 50;
         $espacio->surface = 250;
         $espacio->quanty = 250;
         $espacio->foot = 250;

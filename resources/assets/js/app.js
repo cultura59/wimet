@@ -7,22 +7,29 @@
 
 require('./bootstrap');
 
-/**
- * Next, we will create a fresh Vue application instance and attach it to
- * the body of the page. From here, you may begin adding components to
- * the application, or feel free to tweak this setup for your needs.
- */
-
-Vue.component('example', require('./components/Example.vue'));
-
-const app = new Vue({
-    el: '#app'
-});
 
 const appPublica = angular.module("appPublica", []);
 appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) {
-	$scope.categorias = {};
+	getAccess();
+	getAccessibilities();
+	getCategorias();
+	getEstilos();
+	getAmenities();
+	getCharacteristics();
+	getRules();
+
 	$scope.step = "primer-paso";
+	const vistas = [
+						"primer-paso", 
+						"segundo-paso", 
+						"tercer-paso", 
+						"cuarto-paso", 
+						"quinto-paso", 
+						"sexto-paso", 
+						"septimo-paso",
+						"octavo-paso",
+						"noveno-paso",
+					];
 	$scope.espacio = {
 		user_id: null,
 		name: '',
@@ -36,15 +43,8 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 		lat: null,
 		long: null
 	};
-
-	$http({
-		method: 'GET',
-		url: '/api/categoria'
-	}).then(function successCallback(res) {
-		$scope.categorias = res.data;
-	}, function errorCallback(res) {
-		console.log(res);
-	});
+	$scope.progress = 0;
+	$scope.progressbar = '';
 
 	//--------------- Funciones del front -------------//
 	$scope.setCategoria = function(categoria) {
@@ -57,18 +57,18 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 		}
 	};
 
-	$scope.setStep = (step) => {
-		if(step === "segundo-paso")
-		{
-			getLongLat($scope.espacio.adress);
-		}
+	$scope.previewStep = () => {
+		let aux = vistas.indexOf($scope.step);
+		$scope.step = vistas[aux - 1];
+		$scope.progress = $scope.progress - 10;
+		$scope.progressbar = `width: ${$scope.progress}%`;
+	};
 
-		if(step === "tercer-paso") {
-
-			$scope.saveEspacio();
-		}
-
-		$scope.step = step;
+	$scope.nextStep = () => {
+		let aux = vistas.indexOf($scope.step);
+		$scope.step = vistas[aux + 1];
+		$scope.progress = $scope.progress + 10;
+		$scope.progressbar = `width: ${$scope.progress}%`;
 	};
 
 	$scope.isActiveMenu = (step) => {
@@ -127,6 +127,83 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 
 			});
 
+		}, function errorCallback(res) {
+			console.log(res);
+		});
+	};
+
+	function getCategorias() {
+		$http({
+			method: 'GET',
+			url: '/api/categoria'
+		}).then(function successCallback(res) {
+			$scope.categorias = res.data;
+		}, function errorCallback(res) {
+			console.log(res);
+		});
+	};
+
+	function getEstilos() {
+		$http({
+			method: 'GET',
+			url: '/api/estiloespacio'
+		}).then(function successCallback(res) {
+			$scope.estiloespacio = res.data;
+		}, function errorCallback(res) {
+			console.log(res);
+		});
+	};
+
+	function getAccessibilities() {
+		$http({
+			method: 'GET',
+			url: '/api/accessibilities'
+		}).then(function successCallback(res) {
+			$scope.accessibilities = res.data;
+		}, function errorCallback(res) {
+			console.log(res);
+		});
+	};
+
+	function getAccess() {
+		$http({
+			method: 'GET',
+			url: '/api/access'
+		}).then(function successCallback(res) {
+			$scope.access = res.data;
+		}, function errorCallback(res) {
+			console.log(res);
+		});
+	};
+
+	function getAmenities() {
+		$http({
+			method: 'GET',
+			url: '/api/servicio'
+		}).then(function successCallback(res) {
+			$scope.amenities = res.data;
+		}, function errorCallback(res) {
+			console.log(res);
+		});
+	};
+
+	function getCharacteristics() {
+		$http({
+			method: 'GET',
+			url: '/api/characteristics'
+		}).then(function successCallback(res) {
+			$scope.characteristics = res.data;
+		}, function errorCallback(res) {
+			console.log(res);
+		});
+	};
+
+	function getRules() {
+		$http({
+			method: 'GET',
+			url: '/api/rules'
+		}).then(function successCallback(res) {
+			$scope.rules = res.data;
 		}, function errorCallback(res) {
 			console.log(res);
 		});

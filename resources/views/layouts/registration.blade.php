@@ -13,12 +13,12 @@
         <!-- Styles -->
         <link href="/css/app.css" rel="stylesheet">
 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+        
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 
         <link rel="stylesheet" href="/css/basic.css">
         <link rel="stylesheet" href="/css/dropzone.css">
-        
-        <link rel="stylesheet" href="{{url('swipebox/src/css/swipebox.css')}}">
 
         <script src="/js/dropzone.js"></script>
         
@@ -33,9 +33,7 @@
         <!-- Header Home -->
         <header class="header-with">
             <nav class="header-navbar container-fluid">
-                <a href="/">
-                    <img class="img-responsive" src="{{url('img/wimet_logo_dark.svg')}}" alt="Wimet" width="168" />
-                </a>
+                <a href="/"><img src="{{url('img/wimet_logo_dark.svg')}}" alt="Wimet" width="168" /></a>
                 <div class="actions">
                     <ul>
                         <li>
@@ -57,15 +55,7 @@
         <main>
             @yield('content')
         </main>
-        <script src="{{url('swipebox/lib/jquery-2.1.0.min.js')}}"></script>
-        <script src="{{url('swipebox/src/js/jquery.swipebox.js')}}"></script>
-        <script type="text/javascript">
-            var jq210 = jQuery.noConflict();
-            jq210(document).ready(function() {
-                jq210( '.swipebox' ).swipebox();
-
-            });
-        </script>
+    
         <script src="{{url('/js/app.js')}}"></script>
         @stack('scripts')
     </body>

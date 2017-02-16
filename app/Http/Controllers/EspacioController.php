@@ -22,7 +22,6 @@ class EspacioController extends Controller
                 'estilosEspacio',
                 'rules',
                 'characteristics',
-                'accessibilities',
                 'access'
             )->get();
         return $espacios;
@@ -57,7 +56,15 @@ class EspacioController extends Controller
     public function show($id)
     {
         $espacio = Espacio::find($id)
-                    ->with('categorias', 'servicios')
+                    ->with(
+                        'prices', 
+                        'categorias', 
+                        'servicios',
+                        'estilosEspacio',
+                        'rules',
+                        'characteristics',
+                        'access'
+                    )
                     ->get();
         return $espacio;
     }

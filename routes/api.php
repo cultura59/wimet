@@ -25,3 +25,9 @@ Route::resource('servicio', 'ServicioController');
 Route::resource('tipocliente', 'TipoClienteController');
 Route::resource('consulta', 'ConsultaController');
 Route::resource('image', 'ImageController');
+
+Route::get('access', 'ApiHelpperController@access');
+Route::get('accessibilities', 'ApiHelpperController@accessibilities');
+Route::get('characteristics', 'ApiHelpperController@characteristics');
+Route::get('estiloespacio', 'ApiHelpperController@estiloespacio');
+Route::get('rules', 'ApiHelpperController@rules');

@@ -11,30 +11,7 @@
 			} else {
 				$('.box-reserva').css('position','absolute').css('top', '-4rem').css('right', '0');
 			}
-		});
-
-		// Script Slider
-		var slideIndex = 1;
-		showSlides(slideIndex);
-
-		function plusSlides(n) {
-		  showSlides(slideIndex += n);
-		}
-
-		function showSlides(n) {
-	  		var i;
-			var slides = document.getElementsByClassName("mySlides");
-			
-			if (n > slides.length) {slideIndex = 1} 
-			
-			if (n < 1) {slideIndex = slides.length}
-			
-			for (i = 0; i < slides.length; i++) {
-				slides[i].style.display = "none"; 
-			}
-			
-			slides[slideIndex-1].style.display = "block"; 
-		}
+		});	
 	</script>
 
 	<script>
@@ -69,20 +46,26 @@
     <!-- Slider -->
 	<div class="slideshow-container">
 		<div class="mySlides slide-fade">
-			<img src="http://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
+			<a rel="gallery-1" href="http://www.w3schools.com/howto/img_nature_wide.jpg" class="swipebox" tilte="{{$espacio->name}}">
+				<img id="single_image" src="http://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
+			</a>
+			<div style="display: none;">
+				<a rel="gallery-1" href="http://www.w3schools.com/howto/img_nature_wide.jpg" class="swipebox" tilte="{{$espacio->name}}">
+					<img id="single_image" src="http://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
+				</a>
+				<a rel="gallery-1" href="http://www.w3schools.com/howto/img_nature_wide.jpg" class="swipebox" tilte="{{$espacio->name}}">
+					<img id="single_image" src="http://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
+				</a>
+				<a rel="gallery-1" href="http://www.w3schools.com/howto/img_nature_wide.jpg" class="swipebox" tilte="{{$espacio->name}}">
+					<img id="single_image" src="http://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
+				</a>
+			</div>
 		</div>
 
-		<div class="mySlides slide-fade">
-			<img src="http://www.w3schools.com/howto/img_fjords_wide.jpg" style="width:100%">
-		</div>
-
-		<div class="mySlides slide-fade">
-			<img src="http://www.w3schools.com/howto/img_mountains_wide.jpg" style="width:100%">
-		</div>
-
-		<a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-		<a class="next" onclick="plusSlides(1)">&#10095;</a>
+		<a class="prev">&#10094;</a>
+		<a class="next">&#10095;</a>
 	</div>
+
 	<!-- Detalle espacio -->
 	<div class="detail-space container">
 		<div class="row">
@@ -175,6 +158,20 @@
 					<p>Espacio</p>
 				</div>
 				<div class="wt-content-grid__right">
+					<div class="row">
+						<div class="col-md-3">
+							<p><span class="text-bold">Ambientes:</span> {{$espacio->quantyrooms}}</p>
+						</div>
+						<div class="col-md-3">
+							<p><span class="text-bold">Baños:</span> {{$espacio->quantybathrooms}}</p>
+						</div>
+						<div class="col-md-3">
+							<p><span class="text-bold">Pisos:</span> {{$espacio->floor}}</p>
+						</div>
+						<div class="col-md-3">
+							<p><span class="text-bold">Superficie:</span> {{$espacio->surface}}m2</p>
+						</div>
+					</div>
 					<p>{{$espacio->description}}</p>
 				</div>
 			</div>
@@ -199,7 +196,7 @@
 			</div>
 			<!-- Amenities -->
 			<div class="wt-m-bot-5">
-				<p>Amenities</p>
+				<p class="amenities__tilte">Amenities</p>
 				<div class="col-md-8">
 					<div class="row">
 						@foreach($espacio->servicios as $servicio)
@@ -210,6 +207,32 @@
 					</div>
 				</div>
 			</div><br>
+			<!-- Accesos -->
+			<div class="wt-m-bot-5">
+				<p class="amenities__tilte">Acceso</p>
+				<div class="col-md-8">
+					<div class="row">
+						@foreach($espacio->access as $access)
+							<div class="col-md-4">
+								<img src="{{url('img/ic_done_black_16dp_1x.png')}}"> {{$access->nombre}}
+							</div>
+						@endforeach
+					</div>
+				</div>
+			</div><br><br>
+			<!-- Accesos -->
+			<div class="wt-m-bot-5">
+				<p class="amenities__tilte">Normas de espacio</p>
+				<div class="col-md-8">
+					<div class="row">
+						@foreach($espacio->rules as $rule)
+							<div class="col-md-4">
+								<img src="{{url('img/ic_not_interested_black_18dp_1x.png')}}"> {{$rule->nombre}}
+							</div>
+						@endforeach
+					</div>
+				</div>
+			</div><br><br><br>
 			<!-- Mapa -->
 			<div class="anfitrion wt-m-bot-5">
 				<div id="map-espacio"></div>
@@ -228,5 +251,6 @@
 			</div>
 		</div>
 	</div>
+
 </section>
 @endsection
