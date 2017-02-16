@@ -19,6 +19,7 @@ class CreateCharacteristicEspacioPivotTable extends Migration
                 $table->integer('espacio_id')->unsigned()->index();
                 $table->foreign('espacio_id')->references('id')->on('espacios')->onDelete('cascade');
                 $table->primary(['characteristics_id', 'espacio_id']);
+                $table->timestamps();
             });
         }
     }

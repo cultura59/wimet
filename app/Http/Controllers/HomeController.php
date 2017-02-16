@@ -77,6 +77,7 @@ class HomeController extends Controller
         $espacio = Espacio::where('id', $id)
                     ->with(
                         'prices', 
+                        'images', 
                         'categorias', 
                         'servicios',
                         'estilosEspacio',

@@ -24,7 +24,6 @@ class EspacioTableSeeder extends Seeder
         $espacio->quantyrooms = 250;
         $espacio->quantybathrooms = 250;
         $espacio->floor = 250;
-        $espacio->environments = 50;
         $espacio->surface = 250;
         $espacio->quanty = 250;
         $espacio->foot = 250;
@@ -36,6 +35,7 @@ class EspacioTableSeeder extends Seeder
         $espacio->long = "-34.5860955";
         $espacio->lat = "58.4341036";
         $espacio->securitydeposit = 1200;
+        $espacio->type = "comercial";
         $espacio->save();
 
         //En esta parte se asocian las primeras 3 categorias, servicios y tipo de espacio al espacio
@@ -44,7 +44,6 @@ class EspacioTableSeeder extends Seeder
         $espacio->estilosEspacio()->sync([1, 2, 3, 4, 5]);
         $espacio->rules()->sync([1, 2, 3, 4, 5]);
         $espacio->characteristics()->sync([1, 2, 3, 4, 5]);
-        $espacio->accessibilities()->sync([1, 2, 3]);
     	$espacio->access()->sync([1, 2, 3, 4, 5]);
         $espacio->save();
 

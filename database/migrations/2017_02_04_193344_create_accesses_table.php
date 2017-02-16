@@ -17,8 +17,7 @@ class CreateAccessesTable extends Migration
             Schema::create('accesses', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('nombre')->unique();
-                $table->timestamp('created_at')->default(\DB::raw('CURRENT_TIMESTAMP'));
-                $table->timestamp('updated_at')->default(\DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+                $table->timestamps();
                 $table->softDeletes();
             });
         };

@@ -18,6 +18,7 @@ class CreateEspacioEstiloEspacioPivotTable extends Migration
             $table->integer('estilo_espacio_id')->unsigned()->index();
             $table->foreign('estilo_espacio_id')->references('id')->on('estilo_espacios')->onDelete('cascade');
             $table->primary(['espacio_id', 'estilo_espacio_id']);
+            $table->timestamps();
         });
     }
 

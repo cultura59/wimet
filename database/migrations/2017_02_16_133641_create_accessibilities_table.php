@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCharacteristicsTable extends Migration
+class CreateAccessibilitiesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,14 @@ class CreateCharacteristicsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('characteristics')) {
-            Schema::create('characteristics', function (Blueprint $table) {
+        if (!Schema::hasTable('accessibilities')) {
+            Schema::create('accessibilities', function (Blueprint $table) {
                 $table->increments('id');
                 $table->string('nombre')->unique();
                 $table->timestamps();
                 $table->softDeletes();
             });
-        }       
+        };
     }
 
     /**
@@ -30,6 +30,6 @@ class CreateCharacteristicsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('characteristics');
+        Schema::dropIfExists('accessibilities');
     }
 }

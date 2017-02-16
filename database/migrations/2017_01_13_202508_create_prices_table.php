@@ -22,6 +22,7 @@ class CreatePricesTable extends Migration
                 $table->integer('categoria_id')->unsigned();
                 $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
                 $table->integer('minhours');
+                $table->timestamps();
                 $table->softDeletes();
             });
         }

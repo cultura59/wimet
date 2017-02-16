@@ -20,8 +20,8 @@ class CreateConsultasTable extends Migration
                 $table->foreign('user_id')->references('id')->on('users');
                 $table->integer('espacio_id')->unsigned();
                 $table->foreign('espacio_id')->references('id')->on('espacios');
-                $table->timestamp('reserva_desde')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
-                $table->timestamp('reserva_hasta')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
+                $table->timestamp('reserva_desde')->default(\Carbon\Carbon::now()->toDateTimeString());
+                $table->timestamp('reserva_hasta')->default(\Carbon\Carbon::now()->toDateTimeString());
                 $table->text('consulta');
                 $table->enum('estado', array('consulta', 'pendiente', 'rechazado', 'aprobado'));
                 $table->integer('reserva_id')->unsigned();

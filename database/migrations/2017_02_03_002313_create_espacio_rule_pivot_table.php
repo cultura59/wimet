@@ -19,6 +19,7 @@ class CreateEspacioRulePivotTable extends Migration
                 $table->integer('rules_id')->unsigned()->index();
                 $table->foreign('rules_id')->references('id')->on('rules')->onDelete('cascade');
                 $table->primary(['espacio_id', 'rules_id']);
+                $table->timestamps();
             });
         }
     }
