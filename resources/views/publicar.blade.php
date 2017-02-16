@@ -39,10 +39,10 @@
 						<h4>¿Qué tipo de espacio es?</h4>
 						<ul class="tipo-espacio">
 							<li>
-								<span ng-click="">Comercial</span>
+								<span ng-click="setType('comercial')">Comercial</span>
 							</li>
 							<li>
-								<span ng-click="">Privado</span>
+								<span ng-click="setType('privado')">Privado</span>
 							</li>
 						</ul>
 					</div>
@@ -69,7 +69,7 @@
 						<!-- Item -->
 						<div class="container-center__list__item" ng-repeat="categoria in categorias">
 							<div>
-								<input type="checkbox">
+								<input type="checkbox" ng-click="setCategoria(categoria)">
 							</div>
 							<div class="left__item">
 								<span>@{{categoria.name}}</span>
@@ -85,9 +85,9 @@
 						<h2>Detalles del espacio y accesibilidad</h2>
 						<div class="box-publica">
 							<div class="box-publica__container">
-								<input class="box-publica__container__input" type="text" value="0">
-								<span class="box-publica__container__pointer">+</span>
-								<span class="box-publica__container__pointer">-</span>
+								<input class="box-publica__container__input" type="text" ng-model="espacio.quantyrooms">
+								<span class="box-publica__container__pointer" ng-click="incrementQuantyrooms()">+</span>
+								<span class="box-publica__container__pointer" ng-click="decrementQuantyrooms()">-</span>
 								<span class="box-publica__container__name">Ambientes</span>
 							</div>
 							<div class="box-publica__description">
@@ -96,9 +96,9 @@
 						</div>
 						<div class="box-publica">
 							<div class="box-publica__container">
-								<input class="box-publica__container__input" type="text" value="0">
-								<span class="box-publica__container__pointer">+</span>
-								<span class="box-publica__container__pointer">-</span>
+								<input class="box-publica__container__input" type="text" ng-model="espacio.quantybathrooms">
+								<span class="box-publica__container__pointer" ng-click="incrementQuantybathrooms()">+</span>
+								<span class="box-publica__container__pointer" ng-click="decrementQuantybathrooms()">-</span>
 								<span class="box-publica__container__name">Baños</span>
 							</div>
 							<div class="box-publica__description">
@@ -107,9 +107,9 @@
 						</div>
 						<div class="box-publica">
 							<div class="box-publica__container">
-								<input class="box-publica__container__input" type="text" value="0">
-								<span class="box-publica__container__pointer">+</span>
-								<span class="box-publica__container__pointer">-</span>
+								<input class="box-publica__container__input" type="text" ng-model="espacio.floor">
+								<span class="box-publica__container__pointer" ng-click="incrementFloor()">+</span>
+								<span class="box-publica__container__pointer" ng-click="decrementFloor()">-</span>
 								<span class="box-publica__container__name">Piso</span>
 							</div>
 							<div class="box-publica__description">
@@ -118,9 +118,9 @@
 						</div>
 						<div class="box-publica">
 							<div class="box-publica__container">
-								<input class="box-publica__container__input" type="text" value="0">
-								<span class="box-publica__container__pointer">+</span>
-								<span class="box-publica__container__pointer">-</span>
+								<input class="box-publica__container__input" type="text" ng-model="espacio.surface">
+								<span class="box-publica__container__pointer" ng-click="incrementSurface()">+</span>
+								<span class="box-publica__container__pointer" ng-click="decrementSurface()">-</span>
 								<span class="box-publica__container__name">Superficie</span>
 							</div>
 							<div class="box-publica__description">
@@ -131,7 +131,7 @@
 					<div class="detalles-accesos">
 						<h2>¿Cómo se accede al lugar?</h2>
 						<div class="row wt-m-top-3">
-							<div class="col-xs-6" ng-repeat="acces in access"><input type="checkbox"> @{{acces.nombre}}.</div>
+							<div class="col-xs-6" ng-repeat="acces in access"><input type="checkbox" ng-click="setAccess(acces)"> @{{acces.nombre}}.</div>
 						</div>
 					</div>
 				</div>
@@ -142,7 +142,7 @@
 
 					<div class="box-publica">
 						<div class="box-publica__container">
-							<input class="box-publica__container__input" type="text" value="0">
+							<input class="box-publica__container__input" type="text" ng-model="espacio.quanty">
 							<span class="box-publica__container__name">Máximo de asistentes</span>
 						</div>
 						<div class="box-publica__description">
@@ -152,7 +152,7 @@
 
 					<div class="box-publica">
 						<div class="box-publica__container">
-							<input class="box-publica__container__input" type="text" value="0">
+							<input class="box-publica__container__input" type="text" ng-model="espacio.foot">
 							<span class="box-publica__container__name">De pie (Opcional)</span>
 						</div>
 						<div class="box-publica__description">
@@ -162,7 +162,7 @@
 
 					<div class="box-publica">
 						<div class="box-publica__container">
-							<input class="box-publica__container__input" type="text" value="0">
+							<input class="box-publica__container__input" type="text" ng-model="espacio.seated">
 							<span class="box-publica__container__name">Sentados</span>
 						</div>
 						<div class="box-publica__description">
@@ -174,7 +174,7 @@
 				<!-- Sexto paso -->
 				<div class="sexto-paso" ng-if="(step === 'sexto-paso')">
 					<h2>¿Cual es la dirección exacta?</h2>
-					<input class="wt-custom-input wt-m-top-3" type="text" placeholder="Direccion, localidad, provincia">
+					<input class="wt-custom-input wt-m-top-3" type="text" ng-model="espacio.adress" placeholder="Direccion, localidad, provincia">
 
 					<div class="box-publica">
 						<div class="box-publica__container">
@@ -196,7 +196,7 @@
 					<h2>¿Con qué amenities cuenta tu espacio?</h2>
 					<div class="row wt-m-top-4">
 						<div class="col-xs-6" ng-repeat="amenity in amenities">
-							<input type="checkbox"> @{{amenity.nombre}}
+							<input type="checkbox" ng-click="setServicios(amenity)"> @{{amenity.nombre}}
 						</div>
 					</div>
 				</div>
@@ -206,7 +206,7 @@
 					<h2>¿Qué características especiales tiene tu espacio?</h2>
 					<div class="row wt-m-top-4">
 						<div class="col-xs-6" ng-repeat="characteristic in characteristics">
-							<input type="checkbox"> @{{characteristic.nombre}}
+							<input type="checkbox" ng-click="setCharacteristics(characteristic)"> @{{characteristic.nombre}}
 						</div>
 					</div>
 				</div>
@@ -216,11 +216,14 @@
 					<h2>Establece reglas sobre el espacio</h2>
 					<div class="row wt-m-top-4">
 						<div class="col-xs-6" ng-repeat="rule in rules">
-							<input type="checkbox"> @{{rule.nombre}}
+							<input type="checkbox" ng-click="setRules(rule)"> @{{rule.nombre}}
 						</div>
 					</div>
 				</div>
 			</div>
+			<pre>
+			@{{espacio}}
+			</pre>
 		</div>
 	</div>
 	<div class="container-right">

@@ -35,7 +35,17 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 		name: '',
 		description: '',
 		categorias: [],
+		servicios: [],
+		characteristics: [],
+		rules: [],
+		access: [],
 		quanty: 0,
+		foot: 0,
+		seated: 0,
+		quantyrooms: 0,
+		quantybathrooms: 0,
+		floor: 0,
+		surface: 0,
 		adress: '',
 		country: '',
 		state: '',
@@ -47,13 +57,89 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 	$scope.progressbar = '';
 
 	//--------------- Funciones del front -------------//
-	$scope.setCategoria = function(categoria) {
+	$scope.setType = (type) => {
+		$scope.espacio.type = type;
+	};
+
+	$scope.incrementQuantyrooms = () => {
+		$scope.espacio.quantyrooms = $scope.espacio.quantyrooms + 1;
+	};
+
+	$scope.decrementQuantyrooms = () => {
+		$scope.espacio.quantyrooms = $scope.espacio.quantyrooms - 1;
+	};
+
+	$scope.incrementQuantybathrooms = () => {
+		$scope.espacio.quantybathrooms = $scope.espacio.quantybathrooms + 1;
+	};
+
+	$scope.decrementQuantybathrooms = () => {
+		$scope.espacio.quantybathrooms = $scope.espacio.quantybathrooms - 1;
+	};
+
+	$scope.incrementFloor = () => {
+		$scope.espacio.floor = $scope.espacio.floor + 1;
+	};
+
+	$scope.decrementFloor = () => {
+		$scope.espacio.floor = $scope.espacio.floor - 1;
+	};
+
+	$scope.incrementSurface = () => {
+		$scope.espacio.surface = $scope.espacio.surface + 1;
+	};
+
+	$scope.decrementSurface = () => {
+		$scope.espacio.surface = $scope.espacio.surface - 1;
+	};
+
+	$scope.setCategoria = (categoria) =>{
 		var exist = $scope.espacio.categorias.indexOf(categoria);
 		
 		if(exist > -1) {
 			$scope.espacio.categorias.splice(exist, 1);
 		}else {
 			$scope.espacio.categorias.push(categoria);
+		}
+	};
+
+	$scope.setAccess = (acces) =>{
+		var exist = $scope.espacio.access.indexOf(acces);
+		
+		if(exist > -1) {
+			$scope.espacio.access.splice(exist, 1);
+		}else {
+			$scope.espacio.access.push(acces);
+		}
+	};
+
+	$scope.setServicios = (servicio) =>{
+		var exist = $scope.espacio.servicios.indexOf(servicio);
+		
+		if(exist > -1) {
+			$scope.espacio.servicios.splice(exist, 1);
+		}else {
+			$scope.espacio.servicios.push(servicio);
+		}
+	};
+
+	$scope.setRules = (rule) =>{
+		var exist = $scope.espacio.rules.indexOf(rule);
+		
+		if(exist > -1) {
+			$scope.espacio.rules.splice(exist, 1);
+		}else {
+			$scope.espacio.rules.push(rule);
+		}
+	};
+
+	$scope.setCharacteristics = (characteristic) =>{
+		var exist = $scope.espacio.characteristics.indexOf(characteristic);
+		
+		if(exist > -1) {
+			$scope.espacio.characteristics.splice(exist, 1);
+		}else {
+			$scope.espacio.characteristics.push(characteristic);
 		}
 	};
 
