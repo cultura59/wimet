@@ -22,7 +22,7 @@ class Espacio extends Model
                             'adress',
                             'city',
                             'state',
-                            'country',F
+                            'country',
                             'long',
                             'lat',
                             'securitydeposit',
