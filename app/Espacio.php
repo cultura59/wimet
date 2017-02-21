@@ -22,7 +22,7 @@ class Espacio extends Model
                             'adress',
                             'city',
                             'state',
-                            'country',
+                            'country',F
                             'long',
                             'lat',
                             'securitydeposit',
@@ -70,7 +70,7 @@ class Espacio extends Model
      */
     public function categorias()
     {
-    	return $this->belongsToMany('App\categoria');
+    	return $this->belongsToMany('App\Categoria');
     }
 
     /**
