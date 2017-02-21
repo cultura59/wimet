@@ -64,7 +64,7 @@ class HomeController extends Controller
                                 ->paginate(10);
         }
 
-        $categorias = categoria::orderBy('id')->pluck('name', 'id');
+        $categorias = Categoria::orderBy('id')->pluck('name', 'id');
         return view('search', array(
                 'espacios' => $espacios,
                 'categorias' => $categorias
