@@ -1340,6 +1340,15 @@ footer .follow img {
   padding: 1rem 3rem;
   border: 1px solid #dadada;
   cursor: pointer;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
 }
 
 .section-publica .container-left .container-center__list {

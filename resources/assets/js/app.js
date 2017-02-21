@@ -164,11 +164,11 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 		}
 	};
 
-	$scope.isCategorySelected = (categoria) => {
-		var exist = $scope.espacio.categorias.indexOf(categoria);
-		
-		if(exist > -1) {
-			return "selectedCategory";
+	$scope.isTypeSelected = (type) => {
+		if(type == $scope.espacio.type){
+			return true;
+		}else{
+			return false;
 		}
 	};
 

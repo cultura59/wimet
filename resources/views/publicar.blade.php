@@ -38,11 +38,13 @@
 					<div class="wt-m-top-3 wt-m-bot-3">
 						<h4>¿Qué tipo de espacio es?</h4>
 						<ul class="tipo-espacio">
-							<li>
-								<span ng-click="setType('comercial')">Comercial</span>
+							<li ng-click="setType('comercial')">
+								<span>Comercial</span>
+								<img ng-show="isTypeSelected('comercial')" src="{{url('img/ic_done_black_16dp_1x.png')}}">
 							</li>
-							<li>
-								<span ng-click="setType('privado')">Privado</span>
+							<li ng-click="setType('privado')">
+								<span>Privado</span>
+								<img ng-show="isTypeSelected('privado')" src="{{url('img/ic_done_black_16dp_1x.png')}}">
 							</li>
 						</ul>
 					</div>
@@ -131,7 +133,10 @@
 					<div class="detalles-accesos">
 						<h2>¿Cómo se accede al lugar?</h2>
 						<div class="row wt-m-top-3">
-							<div class="col-xs-6" ng-repeat="acces in access"><input type="checkbox" ng-click="setAccess(acces)"> @{{acces.nombre}}.</div>
+							<div class="col-xs-6" ng-repeat="acces in access">
+								<input id="id-access-@{{acces.id}}" type="checkbox" ng-click="setAccess(acces)">
+								<label for="id-access-@{{acces.id}}">@{{acces.nombre}}.</label>
+							</div>
 						</div>
 					</div>
 				</div>

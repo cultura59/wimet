@@ -62,8 +62,8 @@
 			</div>
 		</div>
 
-		<a class="prev">&#10094;</a>
-		<a class="next">&#10095;</a>
+		<a rel="gallery-1" class="prev">&#10094;</a>
+		<a rel="gallery-1" class="next">&#10095;</a>
 	</div>
 
 	<!-- Detalle espacio -->
@@ -98,7 +98,7 @@
 							</div>
 							<div class="col-sm-6 wt-center-column">
 								<input type="hidden" ng-model="priceHs" ng-value="{{$price->price}}">
-								<label for="fecha">Tipo de actividad</label>
+								<label for="fecha">Cantidad de invitados</label>
 								{!! Form::select('categoria', 
 									$categorias, 
 									NULL, 
@@ -120,7 +120,7 @@
 								{!! Form::selectRange('fin', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'fin', 'placeholder' => 'Hr']) !!}
 							</div>
 						</div>
-						<span class="body__add-date-time" ng-click="addDateTimes()">Agregar otra fecha</span>
+						<span class="body__add-date-time" ng-click="addDateTimes()">Agregar fecha</span>
 						<ul>
 							<li ng-repeat="fecha in datesTimes">
 								@{{convertDate(fecha.date)}}, de @{{fecha.inicio}} a @{{fecha.fin}}hs.
