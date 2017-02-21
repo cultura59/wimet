@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Espacio;
-use App\categoria;
+use App\Categoria;
 class HomeController extends Controller
 {
     /**
