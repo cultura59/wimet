@@ -1307,7 +1307,9 @@ footer .follow img {
 }
 
 .section-publica .container-left .buttons {
-  position: relative;
+  width: 100%;
+  position: absolute;
+  bottom: 0;
   border: 1px solid #dadada;
   display: -webkit-box;
   display: flex;
