@@ -6,9 +6,9 @@
 <section class="section-publica">
 	<div class="container-left" ng-app="appPublica">
 		<div ng-controller="publicaCtrl">
-			<div class="progress">
+			<div class="wt-progress">
 				<div class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
-				aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" style="width: 10%">
+				aria-valuenow="70" aria-valuemin="0" aria-valuemax="100" ng-style="{width: cols + '%'}">
 				</div>
 			</div>
 			<div class="buttons">
@@ -55,12 +55,13 @@
 					<h2>¡Cuéntale al mundo acerca de tu espacio!</h2>
 					<div class="wt-m-top-4">
 						<p class="text-bold">Título de tu espacio</p>
-						<input type="text" class="wt-custom-input" ng-model="espacio.name">
+						<input type="text" class="wt-custom-input" ng-model="espacio.name" placeholder="Ingrese el titulo de su espacio">
 						<p>50 caracteres</p>
 					</div>
 					<div class="wt-m-top-4">
-						<p class="text-bold">Descripción</p>
-						<textarea name="description" ng-model="espacio.description" rows="10" class="wt-textarea"></textarea>
+						<label class="text-bold">Descripción</label>
+						<textarea name="description" ng-model="espacio.description" rows="10" class="wt-textarea" placeholder="Escriba una breve descripción de su espacio, que lo caracteriza y cuales son sus mejores aspectos.">
+						</textarea>
 					</div>
 				</div>
 
@@ -130,7 +131,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="detalles-accesos">
+					<div class="detalles-accesos wt-m-bot-5">
 						<h2>¿Cómo se accede al lugar?</h2>
 						<div class="row wt-m-top-3">
 							<div class="col-xs-6" ng-repeat="acces in access">
@@ -211,7 +212,8 @@
 					<h2>¿Con qué amenities cuenta tu espacio?</h2>
 					<div class="row wt-m-top-4">
 						<div class="col-xs-6" ng-repeat="amenity in amenities">
-							<input type="checkbox" ng-click="setServicios(amenity)"> @{{amenity.nombre}}
+							<input id="amenity-@{{amenity.id}}" type="checkbox" ng-click="setServicios(amenity)">
+							<label for="amenity-@{{amenity.id}}">@{{amenity.nombre}}</label>
 						</div>
 					</div>
 				</div>
@@ -221,7 +223,8 @@
 					<h2>¿Qué características especiales tiene tu espacio?</h2>
 					<div class="row wt-m-top-4">
 						<div class="col-xs-6" ng-repeat="characteristic in characteristics">
-							<input type="checkbox" ng-click="setCharacteristics(characteristic)"> @{{characteristic.nombre}}
+							<input id="characteristic-@{{characteristic.id}}" type="checkbox" ng-click="setCharacteristics(characteristic)">
+							<label for="characteristic-@{{characteristic.id}}">@{{characteristic.nombre}}</label>
 						</div>
 					</div>
 				</div>
@@ -231,9 +234,17 @@
 					<h2>Establece reglas sobre el espacio</h2>
 					<div class="row wt-m-top-4">
 						<div class="col-xs-6" ng-repeat="rule in rules">
-							<input type="checkbox" ng-click="setRules(rule)"> @{{rule.nombre}}
+							<input id="rule-@{{rule.id}}" type="checkbox" ng-click="setRules(rule)"> 
+							<label for="rule-@{{rule.id}}">@{{rule.nombre}}</label>
 						</div>
 					</div>
+				</div>
+
+				<!-- Decimo paso -->
+				<div class="decimo-paso" ng-if="(step === 'decimo-paso')">
+					<h2>Ingrese sus imagenes</h2>
+					<label for="imagenes">Inserte todas sus imagenes</label>
+					<input type="file" id="imagenes">
 				</div>
 			</div>
 		</div>

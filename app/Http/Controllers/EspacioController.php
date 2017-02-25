@@ -35,7 +35,6 @@ class EspacioController extends Controller
      */
     public function store(Request $request)
     {
-        //$espacio = Espacio::create($request->all());
         $espacio = new Espacio();
         $espacio->user_id = $request->user_id;
         $espacio->name = $request->name;
@@ -102,5 +101,27 @@ class EspacioController extends Controller
         $espacio = Espacio::find($id);
         $espacio->delete();
         return $id;
+    }
+
+
+    public function saveCategory(Request $request) {
+        $espacio = Espacio::find($request->id);
+
+        //dd($request->categorias);
+        $espacio->categorias()->sync($request->categorias);
+        $espacio->save();
+        return \Redirect::route('publica-detalles', array('id' => $request->id));
+    }
+
+
+    public function saveAccess(Request $request) {
+        $espacio = Espacio::find($request->id);
+        $espacio->quantyrooms = $request->quantyrooms;
+        $espacio->quantybathrooms = $request->quantybathrooms;
+        $espacio->floor = $request->floor;
+        $espacio->surface = $request->surface;
+        $espacio->access()->sync($request->access);
+        $espacio->save();
+        return \Redirect::route('publica-invidatos', array('id' => $request->id));
     }
 }

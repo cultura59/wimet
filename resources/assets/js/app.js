@@ -7,6 +7,10 @@
 
 require('./bootstrap');
 
+//Funcion callback Url
+function goBack() {
+    window.history.back();
+}
 
 const appPublica = angular.module("appPublica", []);
 appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) {
@@ -17,6 +21,8 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 	getAmenities();
 	getCharacteristics();
 	getRules();
+
+	$scope.cols = 0;
 
 	$scope.step = "primer-paso";
 	const vistas = [
@@ -29,6 +35,7 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 						"septimo-paso",
 						"octavo-paso",
 						"noveno-paso",
+						"decimo-paso"
 					];
 	$scope.espacio = {
 		user_id: 1,
@@ -145,16 +152,23 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 
 	$scope.previewStep = () => {
 		let aux = vistas.indexOf($scope.step);
-		$scope.step = vistas[aux - 1];
-		$scope.progress = $scope.progress - 10;
-		$scope.progressbar = `width: ${$scope.progress}%`;
+		if(aux > 0) {
+			$scope.step = vistas[aux - 1];
+			$scope.cols = $scope.cols - 10;
+		}
 	};
 
 	$scope.nextStep = () => {
 		let aux = vistas.indexOf($scope.step);
-		$scope.step = vistas[aux + 1];
-		$scope.progress = $scope.progress + 10;
-		$scope.progressbar = `width: ${$scope.progress}%`;
+		if(aux + 1 <= vistas.length)
+		{
+			$scope.step = vistas[aux + 1];
+			$scope.cols = $scope.cols + 10;
+		}
+		if($scope.step == 'decimo-paso')
+		{
+			$scope.saveEspacio();
+		}
 	};
 
 	$scope.isActiveMenu = (step) => {
@@ -173,7 +187,7 @@ appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) 
 	};
 
 	$scope.saveEspacio = () => {
-		getLongLat($scope.espacio.adress);
+		$scope.getLongLat($scope.espacio.adress);
 		$http({
 			method: 'POST',
 			url: '/api/espacio',

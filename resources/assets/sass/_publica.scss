@@ -1,5 +1,8 @@
 .section-publica 
 {
+	label {
+		font-weight: 400;
+	}
 	.container-left {
 	    width: 60%;
 	    float: left;
@@ -13,12 +16,13 @@
 			width: 100%;
 		}
 		.buttons {
-			width: 100%;
-		    position: absolute;
+			width: 58.8%;
+		    position: fixed;
 		    bottom: 0;
 		    border: 1px solid #dadada;
 		    display: flex;
 		    justify-content: space-between;
+		    background: $wt-white;
 		}
 		.container-center {
 			padding: 1rem 2rem;
@@ -36,9 +40,8 @@
 			    list-style: none;
 			    width: 27.5%;
 			    li {
-				    padding: 1rem 3rem;
+				    padding: 1rem 2rem;
 				    border: 1px solid #dadada;
-				    cursor: pointer;
 			        display: flex;
 				    flex-direction: row;
 				    justify-content: space-between;
@@ -105,4 +108,41 @@
 			display: none;
     	}
 	}
+}
+
+.wt-publica-input {
+    padding: 10px;
+    color: $wt-text-dark;
+    border: 1px solid $wt-grey;
+    width: 100%;
+}
+
+.wt-publica-label {
+	padding-left: 2.3em;
+	position: relative;
+	cursor: pointer;
+	&:before {
+		content: ' ';
+		border: 1px solid #dadada;
+		border-radius: 4px;
+		width: 1.5em;
+		height: 1.5em;
+		position: absolute;
+		left: 0px;
+		top: 0px;
+		transition: all 0.2s;
+		transform: rotate(0deg);
+	}
+}
+input[type="radio"]:checked+label:before {
+	color: $wt-background-principal;
+	content: '\f00c';
+	font-family: FontAwesome;
+	transform: rotate(360deg);
+}
+input[type="checkbox"]:checked+label:before {
+	color: $wt-background-principal;
+	content: '\f00c';
+	font-family: FontAwesome;
+	transform: rotate(360deg);
 }

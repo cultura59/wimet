@@ -24,6 +24,24 @@ Route::get('/search', 'HomeController@search');
 Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio');
 Route::get('/espacio/{id}/reserva', 'HomeController@reserva')->name('reserva');
 Route::get('/publicar', 'HomeController@publicar');
+Route::get('/publicar/primer-paso', 'PublicaController@index');
+
+Route::get('/publicar/primer-paso/espacio/{id}/categorias', 
+			'PublicaController@primerPasoCategoria')
+			->name('publica-categoria');
+Route::get('/publicar/primer-paso/espacio/{id}/detalles', 
+			'PublicaController@primerPasoDetalles')
+			->name('publica-detalles');
+Route::get('/publicar/primer-paso/espacio/{id}/invitados', 
+			'PublicaController@primerPasoInvitados')
+			->name('publica-invidatos');
+Route::get('/publicar/primer-paso/espacio/{id}/maps', 
+			'PublicaController@primerPasoMaps')
+			->name('publica-maps');
+
+// Apis publica fron views
+Route::post('savecategories', 'EspacioController@saveCategory');
+Route::post('saveaccess', 'EspacioController@saveAccess');
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
