@@ -581,6 +581,32 @@ template {
   color: #636b6f;
 }
 
+.wt-custom-input-file {
+  margin: 3rem 0;
+  padding: 8rem 2rem;
+  outline: 2px dashed #dadada;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  align-items: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  flex-direction: column;
+}
+
+.wt-custom-input-file input[type="file"] {
+  display: none;
+}
+
+.wt-custom-input-file label {
+  font-weight: 600;
+  font-size: 1.5em;
+  color: rgba(0, 0, 0, 0.5);
+  cursor: pointer;
+}
+
 .wt-content-grid {
   width: 70%;
   display: -webkit-box;

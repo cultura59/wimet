@@ -28,7 +28,7 @@
 	
 <section class="section-publica">
 	<div class="container-left">
-		{!! Form::open(array('url' => 'api/espacio', 'method' => 'POST')) !!}
+		{!! Form::open(array('url' => 'saveespacio', 'method' => 'POST')) !!}
 		<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 		<div class="wt-progress">
 			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
@@ -76,7 +76,7 @@
 		</div>
 
 		<div class="buttons" id="first-buttons">
-			<button class="btn">ATRÁS</button>
+			<a href="{{ url()->previous() }}" class="btn">ATRÁS</a>
 			<button class="btn wt-btn-primary" onclick="showNextStep(1)">CONTINUAR</button>
 		</div>
 

@@ -37,7 +37,7 @@
 		</div>
 
 		<div class="buttons" id="second-buttons">
-			<button class="btn" onclick="goBack()">ATRÁS</button>
+			<a href="{{ url()->previous() }}" class="btn">ATRÁS</a>
 			<input class="btn wt-btn-primary" type="submit" value="CONTINUAR"/>
 		</div>
 		{!! Form::close() !!}

@@ -37,6 +37,7 @@
 					document.getElementById(addressType).value = val;
 				}
 			}
+			getLatAndLong(document.getElementById('direccion').value);
 		}
 
 		function geolocate() {
@@ -51,9 +52,22 @@
 						radius: position.coords.accuracy
 					});
 					autocomplete.setBounds(circle.getBounds());
-					console.log(geolocation);
 				});
 			}
+		}
+
+		function getLatAndLong(adress) {
+			var URL = "http://maps.google.com/maps/api/geocode/json?address=$" + adress + "&sensor=false";
+			var xhr = new XMLHttpRequest();
+			xhr.onload = function() {
+				var res = JSON.parse(xhr.responseText);
+				var lat = res.results[0].geometry.location.lat;
+				var lng = res.results[0].geometry.location.lng;
+				document.getElementById("lat").value = lat;
+				document.getElementById("long").value = lng;
+			};
+			xhr.open('GET', URL);
+			xhr.send();
 		}
 	</script>
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArSoMrIsnDeERvlCOGJ2WVd36zO2SBTMo&libraries=places&callback=initAutocomplete"
@@ -64,8 +78,10 @@
 	
 <section class="section-publica">
 	<div class="container-left">
-		{!! Form::open(array('url' => 'api/espacio', 'method' => 'POST')) !!}
-		<input type="hidden" name="id" value="{$id}}">
+		{!! Form::open(array('url' => 'saveadress', 'method' => 'POST')) !!}
+		<input type="hidden" name="id" value="{{$id}}">
+		<input type="hidden" id="lat" name="lat" value="">
+		<input type="hidden" id="long" name="long" value="">
 		<div class="wt-progress">
 			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
 			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
@@ -109,13 +125,11 @@
 						<input type="text" id="postal_code" name="postal_code" class="wt-publica-input" placeholder="Ingrese código postal">
 					</div>
 				</div>
-				<input type="hidden" id="lat" name="lat" value="">
-				<input type="hidden" id="long" name="lat" value="">
 			</div>
 		</div>
 
 		<div class="buttons" id="second-buttons">
-			<button class="btn">ATRÁS</button>
+			<a href="{{ url()->previous() }}" class="btn">ATRÁS</a>
 			<input class="btn wt-btn-primary" type="submit" value="CONTINUAR"/>
 		</div>
 		{!! Form::close() !!}

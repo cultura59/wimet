@@ -108,6 +108,25 @@
     color: $wt-text-dark;
 }
 
+.wt-custom-input-file {
+    margin: 3rem 0;
+    padding: 8rem 2rem;
+    outline: 2px dashed $wt-grey;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    input[type="file"] {
+        display: none;
+    }
+    label {
+        font-weight: 600;
+        font-size: 1.5em;
+        color: rgba(0, 0, 0, 0.5);
+        cursor: pointer;
+    }
+}
+
 .wt-content-grid {
     width: 70%;
     display: flex;

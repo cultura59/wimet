@@ -76,4 +76,15 @@ class PublicaController extends Controller
     		array('id' => $id)
 		);
     }
+
+    /**
+    * @fn segundoPasoImages
+    * @brief Funcion que retorna la vista donde se agregan las imagenes del espacio
+    * @return render image page
+    */
+    public function segundoPasoImages($id) {
+        return view('publicar.images', 
+            array('id' => $id)
+        );
+    }
 }

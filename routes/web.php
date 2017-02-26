@@ -38,10 +38,16 @@ Route::get('/publicar/primer-paso/espacio/{id}/invitados',
 Route::get('/publicar/primer-paso/espacio/{id}/maps', 
 			'PublicaController@primerPasoMaps')
 			->name('publica-maps');
+Route::get('/publicar/segundo-paso/espacio/{id}/images', 
+			'PublicaController@segundoPasoImages')
+			->name('publica-images');
 
 // Apis publica fron views
+Route::post('saveespacio', 'EspacioController@saveEspacio');
 Route::post('savecategories', 'EspacioController@saveCategory');
 Route::post('saveaccess', 'EspacioController@saveAccess');
+Route::post('saveinvitados', 'EspacioController@saveInvitados');
+Route::post('saveadress', 'EspacioController@saveAdress');
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');

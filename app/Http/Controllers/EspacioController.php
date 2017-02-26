@@ -96,13 +96,17 @@ class EspacioController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
-    {
+    public function destroy($id){
         $espacio = Espacio::find($id);
         $espacio->delete();
         return $id;
     }
 
+    public function saveEspacio(Request $request) {
+        $espacio = new Espacio($request->all());
+        $espacio->save();
+        return \Redirect::route('publica-categoria', array('id' => $espacio->id));
+    }
 
     public function saveCategory(Request $request) {
         $espacio = Espacio::find($request->id);
@@ -123,5 +127,26 @@ class EspacioController extends Controller
         $espacio->access()->sync($request->access);
         $espacio->save();
         return \Redirect::route('publica-invidatos', array('id' => $request->id));
+    }
+
+    public function saveInvitados(Request $request) {
+        $espacio = Espacio::find($request->id);
+        $espacio->quanty = $request->quanty;
+        $espacio->foot = $request->foot;
+        $espacio->seated = $request->seated;
+        $espacio->save();
+        return \Redirect::route('publica-maps', array('id' => $espacio->id));
+    }
+
+    public function saveAdress(Request $request) {
+        $espacio = Espacio::find($request->id);
+        $espacio->adress = $request->route . " " . $request->street_number;
+        $espacio->state = $request->locality;
+        $espacio->city = $request->administrative_area_level_1;
+        $espacio->country = $request->country;
+        $espacio->lat = $request->lat;
+        $espacio->long = $request->long;
+        $espacio->save();
+        return \Redirect::route('publica-maps', array('id' => $espacio->id));
     }
 }

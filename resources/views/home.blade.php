@@ -30,7 +30,7 @@
                 <a href="/"><img src="{{url('img/wimet_logo_white.svg')}}" alt="Wimet" width="200" /></a>
                 <div class="actions">
                     <ul>
-                        <li><a href="{{ url('/publicar')}}" class="wt-btn-transparent">PUBLICA TU ESPACIO</a></li>
+                        <li><a href="{{ url('/publicar/primer-paso')}}" class="wt-btn-transparent">PUBLICA TU ESPACIO</a></li>
                         @if(!Auth::check())
                             <li><a href="{{url('/login')}}" id="btn-login" style="color: #fff">Ingresar</a></li>
                         @else

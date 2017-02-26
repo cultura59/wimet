@@ -39,7 +39,7 @@
                 <div class="actions">
                     <ul>
                         <li>
-                            <a href="{{ url('/publicar') }}" class="wt-btn-principal-search">PUBLICA TU ESPACIO</a>
+                            <a href="{{ url('/publicar/primer-paso') }}" class="wt-btn-principal-search">PUBLICA TU ESPACIO</a>
                         </li>
                         @if(!Auth::check())
                             <li><a href="{{url('/login')}}" id="btn-login" class="text-bold">Ingresar</a></li>
