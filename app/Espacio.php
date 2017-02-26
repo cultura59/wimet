@@ -38,8 +38,8 @@ class Espacio extends Model
     }
 
     /**
-     * @fn images()
-     * @brief Funcion que retorna todas las imagenes asociadas al espacio
+     * @fn prices()
+     * @brief Funcion que retorna todas las precios asociadas al espacio
      */
     public function prices()
     {

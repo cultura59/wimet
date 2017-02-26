@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Espacio;
+use App\Image;
 
 class EspacioController extends Controller
 {
@@ -21,6 +22,7 @@ class EspacioController extends Controller
                 'servicios',
                 'estilosEspacio',
                 'rules',
+                'images',
                 'characteristics',
                 'access'
             )->get();
@@ -64,17 +66,18 @@ class EspacioController extends Controller
      */
     public function show($id)
     {
-        $espacio = Espacio::find($id)
+        $espacio = Espacio::where('id', $id)
                     ->with(
                         'prices', 
                         'categorias', 
                         'servicios',
                         'estilosEspacio',
                         'rules',
+                        'images',
                         'characteristics',
                         'access'
                     )
-                    ->get();
+                    ->first();
         return $espacio;
     }
 
@@ -147,6 +150,37 @@ class EspacioController extends Controller
         $espacio->lat = $request->lat;
         $espacio->long = $request->long;
         $espacio->save();
-        return \Redirect::route('publica-maps', array('id' => $espacio->id));
+        return \Redirect::route('publica-images', array('id' => $espacio->id));
+    }
+
+    public function saveImages(Request $request) {
+        // upload the image //
+        $imagesEspacio = $request->file('imagenes');
+        $destination_fotoprincipales = 'fotosespacios/';
+
+        foreach ($imagesEspacio as $key => $img) 
+        {
+            $filename_imagesEspacio = str_random(8).'_'.$img->getClientOriginalName();
+            $img->move($destination_fotoprincipales, $filename_imagesEspacio);
+            $image = new Image;
+            $image->name = $destination_fotoprincipales . $filename_imagesEspacio;
+            $image->espacio_id = $request->espacio_id;
+            $image->save();
+        }
+        return \Redirect::route('publica-amenities', array('id' => $request->espacio_id));
+    }
+
+    public function saveAmenities(Request $request) {
+        $espacio = Espacio::find($request->id);
+        $espacio->servicios()->sync($request->servicios);
+        $espacio->save();
+        return \Redirect::route('publica-caracteristicas', array('id' => $request->id));
+    }
+
+    public function saveCaracteristicas(Request $request) {
+        $espacio = Espacio::find($request->id);
+        $espacio->characteristics()->sync($request->characteristics);
+        $espacio->save();
+        return \Redirect::route('publica-caracteristicas', array('id' => $request->id));
     }
 }

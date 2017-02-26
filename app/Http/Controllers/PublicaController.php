@@ -7,6 +7,8 @@ use App\EstiloEspacio;
 use App\Categoria;
 use App\Espacio;
 use App\Access;
+use App\Servicio;
+use App\Characteristics;
 
 class PublicaController extends Controller
 {
@@ -85,6 +87,26 @@ class PublicaController extends Controller
     public function segundoPasoImages($id) {
         return view('publicar.images', 
             array('id' => $id)
+        );
+    }
+
+    public function segundoPasoAmenities($id) {
+        $amenities = Servicio::all();
+        return View('publicar.amenities',
+            array(
+                'id' => $id,
+                'amenities' => $amenities
+            )
+        );
+    }
+
+    public function segundoPasoCaracteristicas($id) {
+        $characteristics = Characteristics::all();
+        return View('publicar.caracteristicas',
+            array(
+                'id' => $id,
+                'characteristics' => $characteristics
+            )
         );
     }
 }

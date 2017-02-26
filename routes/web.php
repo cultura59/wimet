@@ -41,6 +41,12 @@ Route::get('/publicar/primer-paso/espacio/{id}/maps',
 Route::get('/publicar/segundo-paso/espacio/{id}/images', 
 			'PublicaController@segundoPasoImages')
 			->name('publica-images');
+Route::get('/publicar/segundo-paso/espacio/{id}/amenities', 
+			'PublicaController@segundoPasoAmenities')
+			->name('publica-amenities');
+Route::get('/publicar/segundo-paso/espacio/{id}/caracteristicas', 
+			'PublicaController@segundoPasoCaracteristicas')
+			->name('publica-caracteristicas');
 
 // Apis publica fron views
 Route::post('saveespacio', 'EspacioController@saveEspacio');
@@ -48,15 +54,13 @@ Route::post('savecategories', 'EspacioController@saveCategory');
 Route::post('saveaccess', 'EspacioController@saveAccess');
 Route::post('saveinvitados', 'EspacioController@saveInvitados');
 Route::post('saveadress', 'EspacioController@saveAdress');
+Route::post('saveimages', 'EspacioController@saveImages');
+Route::post('saveamenities', 'EspacioController@saveAmenities');
+Route::post('savecaracteristicas', 'EspacioController@saveCaracteristicas');
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
 
-Route::post('avatars', function() {
-	$file = request()->file('file');
-	$file->storeAs('avatars', "avatar.jpg");
-	return back();
-});
 
 Route::group(['prefix' => 'admin'], function ()
 {

@@ -2,28 +2,23 @@
 
 @section('title', 'Agregar imagenes')
 
-@push('scripts')
-	<script>
-
-	</script>
-@endpush
-
 @section('content')
 	
 <section class="section-publica">
 	<div class="container-left">
 		<div class="wt-progress">
 			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
-			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
 			</div>
 		</div>
 
 		<div class="container-center">
 			<h2>Ingrese sus imagenes</h2>
-			{!! Form::open(array('url' => 'savecategories', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'class' => 'wt-custom-input-file')) !!}
-				<input type="hidden" name="id" value="{{$id}}">
+			{!! Form::open(array('url' => 'saveimages', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'class' => 'wt-custom-input-file')) !!}
+				<input type="hidden" name="espacio_id" value="{{$id}}">
 				<label for="imagenes">Inserte todas sus imagenes</label>
-				<input type="file" id="imagenes" multiple>
+				<input type="file" id="imagenes" name="imagenes[]" multiple required>
+				<input type="submit" value="Guardar" class="btn wt-btn-primary"/>
 			{!! Form::close() !!}
 		</div>
 

@@ -26,7 +26,7 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-        $image = Image::find($id);
+        $image = Image::where('espacio_id', $id)->get();
         return $image;
     }
 
@@ -51,8 +51,19 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        $file = $request->file('file');
-        $file->storeAs("images/" . "pepe.jpg");
+        // upload the image //
+        $imagesEspacio = $request->file('imagenes');
+        $destination_fotoprincipales = 'fotosespacios/';
+
+        foreach ($imagesEspacio as $key => $img) 
+        {
+            $filename_imagesEspacio = str_random(8).'_'.$img->getClientOriginalName();
+            $img->move($destination_fotoprincipales, $filename_imagesEspacio);
+            $image = new Image;
+            $image->name = $destination_fotoprincipales . $filename_imagesEspacio;
+            $image->espacio_id = $request->espacio_id;
+            $image->save();
+        }
     }
 
 }
