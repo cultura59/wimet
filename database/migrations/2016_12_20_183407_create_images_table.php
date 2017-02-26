@@ -16,7 +16,7 @@ class CreateImagesTable extends Migration
         if (!Schema::hasTable('images')) {
             Schema::create('images', function (Blueprint $table) {
                 $table->increments('id');
-                $table->string('name')->unique();
+                $table->string('name');
                 $table->integer('espacio_id')->unsigned();
                 $table->foreign('espacio_id')->references('id')->on('espacios')->onDelete('cascade');
                 $table->timestamps();

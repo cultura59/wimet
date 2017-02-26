@@ -54,6 +54,7 @@ class HomeController extends Controller
                                     function($query) {
                                     $query->where('price', '>=', \Request::input('price'));
                                 })
+                                ->with('images')
                                 ->paginate(10);
         }else {
             $espacios = Espacio::select('id', 'name', 'quanty')
@@ -61,9 +62,9 @@ class HomeController extends Controller
                                     function($query) {
                                     $query->where('id', \Request::input('categoria'));
                                 })
+                                ->with('images')
                                 ->paginate(10);
         }
-
         $categorias = Categoria::orderBy('id')->pluck('name', 'id');
         return view('search', array(
                 'espacios' => $espacios,

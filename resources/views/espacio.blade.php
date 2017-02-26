@@ -29,7 +29,7 @@
 			    mapTypeId: google.maps.MapTypeId.ROADMAP
 			});
 			var marker = new google.maps.Marker({
-				position: new google.maps.LatLng({{$espacio->long}}, {{$espacio->lat}}),
+				position: new google.maps.LatLng({{$espacio->lat}}, {{$espacio->long}}),
 				icon: 'http://www.wimet.co/img/favicon.ico',
 				map: map
 			});
@@ -46,19 +46,17 @@
     <!-- Slider -->
 	<div class="slideshow-container">
 		<div class="mySlides slide-fade">
-			<a rel="gallery-1" href="http://www.w3schools.com/howto/img_nature_wide.jpg" class="swipebox" tilte="{{$espacio->name}}">
-				<img id="single_image" src="http://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
+			<a rel="gallery-1" href="{{url($espacio->images[0]->name)}}" class="swipebox" tilte="{{$espacio->name}}">
+				<img id="single_image" src="{{url($espacio->images[0]->name)}}" style="width:100%;max-height: 30rem;">
 			</a>
 			<div style="display: none;">
-				<a rel="gallery-1" href="http://www.w3schools.com/howto/img_nature_wide.jpg" class="swipebox" tilte="{{$espacio->name}}">
-					<img id="single_image" src="http://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
-				</a>
-				<a rel="gallery-1" href="http://www.w3schools.com/howto/img_nature_wide.jpg" class="swipebox" tilte="{{$espacio->name}}">
-					<img id="single_image" src="http://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
-				</a>
-				<a rel="gallery-1" href="http://www.w3schools.com/howto/img_nature_wide.jpg" class="swipebox" tilte="{{$espacio->name}}">
-					<img id="single_image" src="http://www.w3schools.com/howto/img_nature_wide.jpg" style="width:100%">
-				</a>
+				@foreach($espacio->images as $key => $image)
+					@if($key != 0)
+					<a rel="gallery-1" href="{{url($image->name)}}" class="swipebox" tilte="{{$espacio->name}}">
+						<img id="single_image" src="{{url($image->name)}}" style="width:100%">
+					</a>
+					@endif
+				@endforeach
 			</div>
 		</div>
 

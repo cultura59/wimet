@@ -34,8 +34,8 @@ class EspacioTableSeeder extends Seeder
             $espacio->city = "CABA";
             $espacio->state = "Buenos Aires";
             $espacio->country = "Argentina";
-            $espacio->long = "-34.5860955";
-            $espacio->lat = "58.4341036";
+            $espacio->long = "58.4341036";
+            $espacio->lat = "-34.5860955";
             $espacio->securitydeposit = 1200;
             $espacio->type = "comercial";
             $espacio->save();
@@ -46,7 +46,7 @@ class EspacioTableSeeder extends Seeder
             $espacio->estilosEspacio()->sync([1, 2, 3, 4, 5]);
             $espacio->rules()->sync([1, 2, 3, 4, 5]);
             $espacio->characteristics()->sync([1, 2, 3, 4, 5]);
-        	$espacio->access()->sync([1, 2, 3, 4, 5]);
+        	$espacio->access()->sync([1, 2, 3, 4, 5, 6, 7, 8]);
             $espacio->save();
 
             //Se asocia un nuevo precio para cada categoria
@@ -55,6 +55,11 @@ class EspacioTableSeeder extends Seeder
             	['price' => 180 + $var, 'espacio_id' => $espacio->id, 'categoria_id' => 2, 'minhours' => 5 + $var],
             	['price' => 460 + $var, 'espacio_id' => $espacio->id, 'categoria_id' => 3, 'minhours' => 6 + $var]
         	]);
+
+            //Se crean imagenes para los espacios de prueba
+            DB::table('images')->insert([
+                ['name' => 'fotosespacios/m9aR2piW_wimet_inspiring_venue_startup.jpg', 'espacio_id' => $espacio->id]
+            ]);
         }
     }
 }

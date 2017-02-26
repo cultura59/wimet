@@ -80,7 +80,7 @@
 							@foreach($espacios as $espacio)
 							<div class="col-sm-6">
 								<a href="{{ route('homespacio', ['categoriaId' => Request::input('categoria'), 'id' => $espacio->id]) }}">
-									<img src="http://www.wimet.co/img/feature-2.jpg" alt="espacio 1" class="img-responsive">
+									<img src="{{url($espacio->images[0]->name)}}" tile="{{$espacio->name}}" class="img-responsive">
 									<div class="search-espacio">
 										$ {{$espacio->priceByCategory[0]->price}} ARS
 									</div>
