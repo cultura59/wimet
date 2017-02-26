@@ -472,6 +472,10 @@ template {
   text-decoration: none;
 }
 
+.clear-all {
+  clear: both;
+}
+
 .wt-textarea {
   width: 100%;
   border: none;
@@ -1518,6 +1522,34 @@ input[type="checkbox"]:checked + label:before {
   font-family: FontAwesome;
   -webkit-transform: rotate(360deg);
   transform: rotate(360deg);
+}
+
+button.accordion {
+  background-color: #eee;
+  color: #444;
+  cursor: pointer;
+  padding: 18px;
+  width: 100%;
+  text-align: left;
+  border: none;
+  outline: none;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+/* Add a background color to the button if it is clicked on (add the .active class with JS), and when you move the mouse over it (hover) */
+button.accordion.active, button.accordion:hover {
+  background-color: #ddd;
+}
+
+/* Style the accordion panel. Note: hidden by default */
+div.panel {
+  padding: 0 18px;
+  background-color: white;
+  max-height: 0;
+  overflow: hidden;
+  -webkit-transition: max-height 0.2s ease-out;
+  transition: max-height 0.2s ease-out;
 }
 
 .sub-header {

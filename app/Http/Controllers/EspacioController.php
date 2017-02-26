@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Espacio;
 use App\Image;
+use App\Price;
 
 class EspacioController extends Controller
 {
@@ -105,12 +106,25 @@ class EspacioController extends Controller
         return $id;
     }
 
+    /**
+    * @fn saveEspacio()
+    * @brief Funcion que guarda un espacio desde la vista registracion espacio
+    * @param Object $request
+    * @return redirect to public-categoria
+    */
     public function saveEspacio(Request $request) {
         $espacio = new Espacio($request->all());
         $espacio->save();
+        $espacio->estilosEspacio()->sync($request->estilos);
         return \Redirect::route('publica-categoria', array('id' => $espacio->id));
     }
 
+    /**
+    * @fn saveCategory()
+    * @brief Funcion que asocia categorias a un espacio
+    * @param Object $request
+    * @return redirect to public-detalles
+    */
     public function saveCategory(Request $request) {
         $espacio = Espacio::find($request->id);
 
@@ -120,7 +134,12 @@ class EspacioController extends Controller
         return \Redirect::route('publica-detalles', array('id' => $request->id));
     }
 
-
+    /**
+    * @fn saveAccess()
+    * @brief Funcion que asocia accesos a un espacio
+    * @param Object $request
+    * @return redirect to public-invidatos
+    */
     public function saveAccess(Request $request) {
         $espacio = Espacio::find($request->id);
         $espacio->quantyrooms = $request->quantyrooms;
@@ -132,6 +151,12 @@ class EspacioController extends Controller
         return \Redirect::route('publica-invidatos', array('id' => $request->id));
     }
 
+    /**
+    * @fn saveInvitados()
+    * @brief Funcion que asocia cantidad invitados a un espacio
+    * @param Object $request
+    * @return redirect to public-maps
+    */
     public function saveInvitados(Request $request) {
         $espacio = Espacio::find($request->id);
         $espacio->quanty = $request->quanty;
@@ -141,6 +166,12 @@ class EspacioController extends Controller
         return \Redirect::route('publica-maps', array('id' => $espacio->id));
     }
 
+    /**
+    * @fn saveAdress()
+    * @brief Funcion que asocia direccion a un espacio
+    * @param Object $request
+    * @return redirect to public-images
+    */
     public function saveAdress(Request $request) {
         $espacio = Espacio::find($request->id);
         $espacio->adress = $request->route . " " . $request->street_number;
@@ -153,6 +184,12 @@ class EspacioController extends Controller
         return \Redirect::route('publica-images', array('id' => $espacio->id));
     }
 
+    /**
+    * @fn saveImages()
+    * @brief Funcion que asocia imagenes a un espacio
+    * @param Object $request
+    * @return redirect to public-amenities
+    */
     public function saveImages(Request $request) {
         // upload the image //
         $imagesEspacio = $request->file('imagenes');
@@ -170,6 +207,12 @@ class EspacioController extends Controller
         return \Redirect::route('publica-amenities', array('id' => $request->espacio_id));
     }
 
+    /**
+    * @fn saveAmenities()
+    * @brief Funcion que asocia amenities a un espacio
+    * @param Object $request
+    * @return redirect to public-caracteristicas
+    */
     public function saveAmenities(Request $request) {
         $espacio = Espacio::find($request->id);
         $espacio->servicios()->sync($request->servicios);
@@ -177,10 +220,45 @@ class EspacioController extends Controller
         return \Redirect::route('publica-caracteristicas', array('id' => $request->id));
     }
 
+    /**
+    * @fn saveImages()
+    * @brief Funcion que asocia imagenes a un espacio
+    * @param Object $request
+    * @return redirect to public-caracteristicas
+    */
     public function saveCaracteristicas(Request $request) {
         $espacio = Espacio::find($request->id);
         $espacio->characteristics()->sync($request->characteristics);
         $espacio->save();
-        return \Redirect::route('publica-caracteristicas', array('id' => $request->id));
+        return \Redirect::route('publica-prices', array('id' => $request->id));
+    }
+
+    /**
+    * @fn savePrice()
+    * @brief Funcion que asocia precios a un espacio
+    * @param Object $request
+    * @return redirect to public-caracteristicas
+    */
+    public function savePrice(Request $request) {
+        $price = new Price;
+        $price->espacio_id = $request->espacio_id;
+        $price->categoria_id = $request->categoria_id;
+        $price->price = $request->price;
+        $price->minhours = $request->minhours;
+        $price->save();
+        return \Redirect::back();
+    }
+
+    /**
+    * @fn saveImages()
+    * @brief Funcion que asocia imagenes a un espacio
+    * @param Object $request
+    * @return redirect to public-caracteristicas
+    */
+    public function saveRules(Request $request) {
+        $espacio = Espacio::find($request->id);
+        $espacio->rules()->sync($request->rules);
+        $espacio->save();
+        return \Redirect::route('/');
     }
 }

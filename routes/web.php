@@ -47,6 +47,12 @@ Route::get('/publicar/segundo-paso/espacio/{id}/amenities',
 Route::get('/publicar/segundo-paso/espacio/{id}/caracteristicas', 
 			'PublicaController@segundoPasoCaracteristicas')
 			->name('publica-caracteristicas');
+Route::get('/publicar/segundo-paso/espacio/{id}/prices', 
+			'PublicaController@segundoPasoPrice')
+			->name('publica-prices');
+Route::get('/publicar/segundo-paso/espacio/{id}/reglas', 
+			'PublicaController@segundoPasoReglas')
+			->name('publica-rules');
 
 // Apis publica fron views
 Route::post('saveespacio', 'EspacioController@saveEspacio');
@@ -57,6 +63,8 @@ Route::post('saveadress', 'EspacioController@saveAdress');
 Route::post('saveimages', 'EspacioController@saveImages');
 Route::post('saveamenities', 'EspacioController@saveAmenities');
 Route::post('savecaracteristicas', 'EspacioController@saveCaracteristicas');
+Route::post('saveprice', 'EspacioController@savePrice');
+Route::post('savereglas', 'EspacioController@saveRules');
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');

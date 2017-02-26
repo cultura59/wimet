@@ -206,7 +206,7 @@
 						@endforeach
 					</div>
 				</div>
-			</div><br>
+			</div><br><br><br><br><br><br>
 			<!-- Accesos -->
 			<div class="wt-m-bot-5">
 				<p class="amenities__tilte">Acceso</p>
@@ -232,7 +232,7 @@
 						@endforeach
 					</div>
 				</div>
-			</div><br><br><br>
+			</div><br><br>
 			<!-- Mapa -->
 			<div class="anfitrion wt-m-bot-5">
 				<div id="map-espacio"></div>

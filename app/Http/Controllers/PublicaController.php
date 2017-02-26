@@ -9,6 +9,7 @@ use App\Espacio;
 use App\Access;
 use App\Servicio;
 use App\Characteristics;
+use App\Rules;
 
 class PublicaController extends Controller
 {
@@ -90,6 +91,11 @@ class PublicaController extends Controller
         );
     }
 
+    /**
+    * @fn segundoPasoAmenities
+    * @brief Funcion que retorna la vista donde se agregan los amenities del espacio
+    * @return render image amenities
+    */
     public function segundoPasoAmenities($id) {
         $amenities = Servicio::all();
         return View('publicar.amenities',
@@ -100,12 +106,49 @@ class PublicaController extends Controller
         );
     }
 
+    /**
+    * @fn segundoPasoCaracteristicas
+    * @brief Funcion que retorna la vista donde se agregan los caracteristicas del espacio
+    * @return render image caracteristicas
+    */
     public function segundoPasoCaracteristicas($id) {
         $characteristics = Characteristics::all();
         return View('publicar.caracteristicas',
             array(
                 'id' => $id,
                 'characteristics' => $characteristics
+            )
+        );
+    }
+
+    /**
+    * @fn segundoPasoCaracteristicas
+    * @brief Funcion que retorna la vista donde se agregan los caracteristicas del espacio
+    * @return render image caracteristicas
+    */
+    public function segundoPasoPrice($id) {
+        $espacio = Espacio::with('prices')
+                    ->where('id', $id)
+                    ->first();
+
+        return View('publicar.prices',
+            array(
+                'espacio' => $espacio
+            )
+        );
+    }
+
+    /**
+    * @fn segundoPasoReglas()
+    * @brief Funcion que retorna la vista donde se agregan las relgas del espacio
+    * @return render image reglas
+    */
+    public function segundoPasoReglas($id) {
+        $rules = Rules::all();
+        return view('publicar.reglas', 
+            array(
+                'id' => $id,
+                'reglas' => $rules
             )
         );
     }

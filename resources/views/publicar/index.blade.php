@@ -46,7 +46,7 @@
 
 				<div class="wt-m-top-3 wt-m-bot-3">
 					<h3>¿Qué estilo de espacio tienes?</h3>
-					{!! Form::select('estilos', $estilos, null, array('class' => 'select-publica', 'placeholder' => 'Seleccionar', 'required'=> 'required')) !!}
+					{!! Form::select('estilos[]', $estilos, null, array('class' => 'select-publica', 'placeholder' => 'Seleccionar', 'required'=> 'required')) !!}
 				</div>
 				<h4>¿Qué tipo de espacio es?</h4>
 				<ul class="tipo-espacio">
