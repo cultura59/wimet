@@ -170,7 +170,7 @@
 							<p><span class="text-bold">Superficie:</span> {{$espacio->surface}}m2</p>
 						</div>
 					</div>
-					<p>{{$espacio->description}}</p>
+					<p>{!! $espacio->description !!}</p>
 				</div>
 			</div>
 			<!-- Anfitrion -->
