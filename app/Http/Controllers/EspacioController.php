@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use App\Espacio;
 use App\Image;
 use App\Price;
@@ -259,6 +260,6 @@ class EspacioController extends Controller
         $espacio = Espacio::find($request->id);
         $espacio->rules()->sync($request->rules);
         $espacio->save();
-        return \Redirect::route('/');
+        return redirect('/');
     }
 }

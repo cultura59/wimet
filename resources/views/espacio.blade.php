@@ -47,7 +47,7 @@
 	<div class="slideshow-container">
 		<div class="mySlides slide-fade">
 			<a rel="gallery-1" href="{{url($espacio->images[0]->name)}}" class="swipebox" tilte="{{$espacio->name}}">
-				<img id="single_image" src="{{url($espacio->images[0]->name)}}" style="width:100%;max-height: 30rem;">
+				<img id="single_image" src="{{url($espacio->images[0]->name)}}" style="width:100%;max-height: 34rem;">
 			</a>
 			<div style="display: none;">
 				@foreach($espacio->images as $key => $image)

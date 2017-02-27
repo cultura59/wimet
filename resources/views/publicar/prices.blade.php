@@ -36,7 +36,7 @@
 			@foreach($espacio->categorias as $cat)
 				<div class="wt-m-top-4">
 					<button class="accordion">{{$cat->name}}</button>
-					<div class="panel">
+					<div class="wt-panel">
 						{!! Form::open(array('url' => 'saveprice', 'method' => 'POST', 'class' => 'wt-m-top-2 wt-m-bot-2')) !!}
 							<input type="hidden" name="espacio_id" value="{{$espacio->id}}">
 							<input type="hidden" name="categoria_id" value="{{$cat->id}}">
