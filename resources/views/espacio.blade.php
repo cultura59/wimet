@@ -5,13 +5,15 @@
 @push('scripts')
 
 	<script>
-		$(window).scroll(function(){
-			if ($(this).scrollTop() > 400) {
-				$('.box-reserva').css('position','fixed').css('top','10%').css('right', '10%');
-			} else {
-				$('.box-reserva').css('position','absolute').css('top', '-4rem').css('right', '0');
-			}
-		});	
+		(function(){
+			$(window).scroll(function(){
+				if ($(this).scrollTop() > 400) {
+					$('.box-reserva').css('position','fixed').css('top','10%').css('right', '10%');
+				} else {
+					$('.box-reserva').css('position','absolute').css('top', '-4rem').css('right', '0');
+				}
+			});	
+		})();
 	</script>
 
 	<script>

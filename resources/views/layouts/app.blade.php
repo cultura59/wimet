@@ -16,12 +16,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.1/angular.min.js"></script>
 
         <link rel="stylesheet" href="/css/basic.css">
-        <link rel="stylesheet" href="/css/dropzone.css">
-        
-        <link rel="stylesheet" href="{{url('swipebox/src/css/swipebox.css')}}">
-
-        <script src="/js/dropzone.js"></script>
-        
+                
         <!-- Scripts -->
         <script>
             window.Laravel = <?php echo json_encode([
@@ -58,14 +53,6 @@
             @yield('content')
         </main>
         <script src="{{url('swipebox/lib/jquery-2.1.0.min.js')}}"></script>
-        <script src="{{url('swipebox/src/js/jquery.swipebox.js')}}"></script>
-        <script type="text/javascript">
-            var jq210 = jQuery.noConflict();
-            jq210(document).ready(function() {
-                jq210( '.swipebox' ).swipebox();
-
-            });
-        </script>
         <script src="{{url('/js/app.js')}}"></script>
         @stack('scripts')
     </body>

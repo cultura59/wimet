@@ -7,11 +7,6 @@
 
 require('./bootstrap');
 
-//Funcion callback Url
-function goBack() {
-    window.history.back();
-}
-
 const appPublica = angular.module("appPublica", []);
 appPublica.controller('publicaCtrl', ['$scope','$http', function($scope, $http) {
 	getAccess();

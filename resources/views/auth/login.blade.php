@@ -4,7 +4,48 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
+            <div class="wt-m-top-5">
+                <h1 class="text-center">Bienvenido!</h1>
+                <h3 class="text-center">Inicia sesión / registrate con</h3>
+                <div class="row wt-m-top-4">
+                    <div class="col-xs-12 col-md-6">
+                        <a href="redirect" class="btn wt-btn-primary center-block">Iniciar con Facebook</a>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <a href="redirect" class="btn wt-btn-primary center-block">Iniciar con LinkedIn</a>
+                    </div>
+                </div>
+                <div class="row margin-top">
+                    <div class="col-xs-12 col-md-6">
+                        <h3>Crea tu cuenta</h3>
+                        <div class="wt-m-top-5 wt-m-bot-5">
+                            <p>Estas a un paso de ser parte de la comunidad donde puedes reservar y proponer espacios creativos y acceder a beneficios únicos para tu próxima actividad</p>
+                        </div>
+                        <a href="{{url('/register')}}" class="btn wt-btn-primary wt-m-top-5" style="width:100%">
+                            Registrar
+                        </a>
+                    </div>
+                    <div class="col-xs-12 col-md-6">
+                        <h3>Si ya tienes tu usuario</h3>
+                        <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
+                            {{ csrf_field() }}
+                            <div class="wt-center-column wt-m-top-3">
+                                <label for="email">E-mail</label>
+                                <input type="text" id="email" name="email" class="wt-input" placeholder="Ingrese email">
+                            </div>
+                            <div class="wt-center-column wt-m-top-1 wt-m-bot-3">
+                                <label for="password">Contraseña</label>
+                                <input type="password" id="password" name="password" class="wt-input" placeholder="Ingrese contraseña">
+                            </div>
+                            <input type="submit" value="Ingresar" class="btn wt-btn-primary center-block" style="width: 100%" />
+                        </form>
+                        <a class="btn btn-link text-center" href="{{ url('/password/reset') }}">
+                            Olvidaste tu contraseña?
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="panel panel-default" style="display: none;">
                 <div class="panel-heading">Login</div>
                 <div class="panel-body">
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">

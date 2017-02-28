@@ -24,10 +24,13 @@ class SocialAccountService
             $user = User::whereEmail($providerUser->getEmail())->first();
 
             if (!$user) {
-
+                $name = explode(" ", $providerUser->getName());
                 $user = User::create([
                     'email' => $providerUser->getEmail(),
-                    'name' => $providerUser->getName(),
+                    'firstname' => $name[0],
+                    'lastname' => $name[1],
+                    'imagesource' => $providerUser->getAvatar(),
+                    'password' => bcrypt($providerUser->getId())
                 ]);
             }
 
