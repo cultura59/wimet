@@ -14,7 +14,14 @@ class ConsultaController extends Controller
      */
     public function index()
     {
-        $consultas = Consulta::all();
+        $mensaje = "Línea 1\r\nLínea 2\r\nLínea 3";
+        $mensaje = wordwrap($mensaje, 70, "\r\n");
+
+        $headers =  'MIME-Version: 1.0' . "\r\n"; 
+        $headers .= 'From: Your name <info@address.com>' . "\r\n";
+        $headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
+        // Enviarlo
+        mail('caffeinated@example.com', 'Mi título', $mensaje, $headers);
     }
 
     /**
