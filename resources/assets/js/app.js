@@ -384,9 +384,10 @@ appReserva.controller('reservaCtrl', ['$scope', '$http', ($scope, $http) => {
 	$scope.showModal = false;
 
 	$scope.reservaFinal = {
-		datos: JSON.parse(sessionStorage.espacioreserva),
+		datos: $scope.espacioreserva,
 		quanty: 0,
-		comment: ''
+		comment: '',
+		clientId: ''
 	};
 
 	$scope.convertDate = (date) => {
@@ -402,16 +403,16 @@ appReserva.controller('reservaCtrl', ['$scope', '$http', ($scope, $http) => {
 	};
 
 	$scope.sendReserva = () => {
-		document.getElementById("reservaModal").style.display = "block";
-		console.log("entro");
-		/*$http({
+		$scope.reservaFinal.clientId = document.getElementById("clientId").value;
+		$http({
 			method: 'POST',
-			url: '/api/categoria',
+			url: '/api/consulta',
 			data: $scope.reservaFinal
 		}).then(function successCallback(res) {
-			$scope.categorias = res.data;
-		}, function errorCallback(res) {
 			console.log(res);
-		});*/
+			document.getElementById("reservaModal").style.display = "block";
+		}, function errorCallback(err) {
+			console.log(err);
+		});
 	};
 }]);

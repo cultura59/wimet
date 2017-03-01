@@ -24,12 +24,14 @@
     box-shadow: 1px 1px 1px 0 #ddd;
     padding: 10px;
     border: 1px solid #ddd;
+    background: $wt-white;
 }
 
 .wt-input {
     border: 1px solid #ddd;
     padding: 12px 7px;
     box-shadow: 1px 1px 1px 0 #ddd;
+    background: $wt-white;
 }
 
 .wt-select {
@@ -38,6 +40,7 @@
     box-shadow: 1px 1px 1px 0 #ddd;
     color: $wt-text-dark;
     -webkit-appearance:none; /* remove the strong OSX influence from Webkit */
+    background: $wt-white;
 }
 
 //-------------------- Helppers de botones -------------------//
@@ -107,6 +110,7 @@
     color: $wt-text-dark;
     border: 1px solid $wt-grey;
     width: 20em;
+    background: $wt-white;
 }
 .wt-custom-input[placeholder] {
     color: $wt-text-dark;
@@ -120,6 +124,7 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    background: $wt-white;
     input[type="file"] {
         display: none;
     }

@@ -482,12 +482,14 @@ template {
   box-shadow: 1px 1px 1px 0 #ddd;
   padding: 10px;
   border: 1px solid #ddd;
+  background: white;
 }
 
 .wt-input {
   border: 1px solid #ddd;
   padding: 12px 7px;
   box-shadow: 1px 1px 1px 0 #ddd;
+  background: white;
 }
 
 .wt-select {
@@ -497,6 +499,7 @@ template {
   color: #636b6f;
   -webkit-appearance: none;
   /* remove the strong OSX influence from Webkit */
+  background: white;
 }
 
 .wt-btn-principal-search {
@@ -579,6 +582,7 @@ template {
   color: #636b6f;
   border: 1px solid #dadada;
   width: 20em;
+  background: white;
 }
 
 .wt-custom-input[placeholder] {
@@ -598,6 +602,7 @@ template {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
   flex-direction: column;
+  background: white;
 }
 
 .wt-custom-input-file input[type="file"] {
