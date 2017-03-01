@@ -117,10 +117,10 @@
 							</div>
 							<div class="col-sm-3 wt-center-column">
 								<label for="fin">Fin</label>
-								{!! Form::selectRange('fin', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'fin', 'placeholder' => 'Hr']) !!}
+								{!! Form::selectRange('fin', 1, 24, null, ['class' => 'wt-select', 'ng-model' => 'fin', 'placeholder' => 'Hr', 'ng-change' => 'addDateTimes()']) !!}
 							</div>
 						</div>
-						<span class="body__add-date-time" ng-click="addDateTimes()">Agregar fecha</span>
+						<span class="body__add-date-time">Agregar fecha</span>
 						<ul>
 							<li ng-repeat="fecha in datesTimes">
 								@{{convertDate(fecha.date)}}, de @{{fecha.inicio}} a @{{fecha.fin}}hs.
