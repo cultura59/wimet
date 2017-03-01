@@ -38,6 +38,6 @@ return [
         'client_id' => '682382431936855',
         'client_secret' => '117acd91aee3fb629cb7929ebe0adc63',
         //'redirect' => 'http://localhost:8000/callback',
-        'redirect' => 'http://ec2-54-202-8-18.us-west-2.compute.amazonaws.com:8080/callback',
+        'redirect' => 'http://54.202.8.18:8080/callback',
     ],
 ];
