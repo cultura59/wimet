@@ -21,10 +21,10 @@
 				<!-- Item -->
 				<div class="container-center__list__item">
 					<div>
-						<input type="checkbox" name="categorias[]" value="{{$categoria->id}}">
+						<input id="categoria_{{$categoria->id}}" type="checkbox" name="categorias[]" value="{{$categoria->id}}">
 					</div>
 					<div class="left__item">
-						<span>{{$categoria->name}}</span>
+						<span><label for="categoria_{{$categoria->id}}">{{$categoria->name}}</label></span>
 						<span class="item-description">(
 							@foreach($categoria->subCategory as $cat)
 							{{$cat->name}},

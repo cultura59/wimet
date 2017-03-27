@@ -42,7 +42,9 @@
                             <li><a href="{{url('/login')}}" id="btn-login" class="text-bold">Ingresar</a></li>
                         @else
                             <li>
-                                {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
+                                <a href="{{url('/dashboard/user/1')}}">
+                                    {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
+                                </a>
                             </li>
                         @endif
                     </ul>

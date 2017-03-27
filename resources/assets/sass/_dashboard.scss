@@ -1,0 +1,59 @@
+aside {
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    .list-sub-menu {
+        display: flex;
+        justify-content: space-around;
+        list-style-type: none;
+        &_item {
+            padding: 0.75em;
+            a, a:hover {
+                color: $wt-white;
+                text-decoration: none;
+            }
+            &--active {
+                padding: 0.75em;
+                border-bottom: 3px solid $wt-background-principal;
+                a, a:hover {
+                    color: $wt-white;
+                    text-decoration: none;
+                }
+            }
+            &:hover {
+                border-bottom: 3px solid $wt-background-principal;
+            }
+        }
+
+    }
+}
+
+.box-chat {
+    width: 100%;
+    min-height: 34em;
+    background: #eee;
+    border-radius: 4px;
+    box-shadow: 2px 2px 2px 0 #dadada;
+    position: relative;
+    .box-chat-body {
+        width: 100%;
+        padding: 1em;
+        overflow-y: scroll;
+        height: 30em;
+    }
+    .box-chat-footer {
+        width: 100%;
+        position: absolute;
+        bottom: 0;
+        padding: 0.5em;
+        label {
+            cursor: pointer;
+            margin: 0 0.4rem;
+        }
+        input {
+            width: 95%;
+            padding: 0.5em;
+            border: 1px solid #dadada;
+            background: $wt-white;
+        }
+    }
+}

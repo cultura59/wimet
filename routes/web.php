@@ -69,6 +69,16 @@ Route::post('savereglas', 'EspacioController@saveRules');
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
 
+Route::group(['prefix' => 'dashboard'], function() {
+	Route::get('/user/{id}', 'DashboardController@index');	
+	Route::get('/user/{id}/consultas', 'DashboardController@consultas');
+	Route::get('/user/{id}/consulta/{consultaId}', 'DashboardController@consulta');
+	Route::get('/user/{id}/reservas', 'DashboardController@reservas');	
+	Route::get('/user/{id}/reserva/{reservaId}', 'DashboardController@reserva');	
+	Route::get('/user/{id}/solicitudes', 'DashboardController@solicitudes');
+	Route::get('/user/{id}/solicitud/{solicitudId}', 'DashboardController@solicitud');
+	Route::get('/user/{id}/favoritos', 'DashboardController@favoritos');
+});
 
 Route::group(['prefix' => 'admin'], function ()
 {

@@ -835,6 +835,79 @@ template {
   clear: both;
 }
 
+.small-box {
+  border-radius: 2px;
+  position: relative;
+  display: block;
+  margin-bottom: 2em;
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.small-box .inner {
+  padding: 1em;
+}
+
+.small-box h3, .small-box p {
+  z-index: 5;
+}
+
+.small-box h3 {
+  font-size: 38px;
+  font-weight: bold;
+  margin: 0 0 10px 0;
+  white-space: nowrap;
+  padding: 0;
+}
+
+.small-box p {
+  font-size: 15px;
+}
+
+.small-box .icon {
+  -webkit-transition: all .3s linear;
+  transition: all .3s linear;
+  position: absolute;
+  top: -10px;
+  right: 2rem;
+  z-index: 0;
+  font-size: 90px;
+  color: rgba(0, 0, 0, 0.15);
+}
+
+.small-box .small-box-footer {
+  text-align: center;
+  padding: 3px 0;
+  color: white;
+  color: rgba(255, 255, 255, 0.8);
+  background: rgba(0, 0, 0, 0.1);
+  text-decoration: none;
+  display: -webkit-box;
+  display: flex;
+  justify-content: space-around;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.bg-principal {
+  background: #e8536f;
+  color: white;
+}
+
+.bg-aqua {
+  background: #00c0ef;
+  color: white;
+}
+
+.bg-green {
+  background: #00a65a;
+  color: white;
+}
+
+.bg-yellow {
+  background: #f39c12;
+  color: white;
+}
+
 :root {
   font-size: 16px;
 }
@@ -1119,6 +1192,12 @@ footer .follow img {
   color: #333;
   text-decoration: none;
   font-weight: 600;
+}
+
+.header-with .header-navbar .actions a, .header-with .header-navbar .actions a:hover {
+  color: #333;
+  text-decoration: none;
+  font-weight: 400;
 }
 
 .search .section-main {
@@ -1562,22 +1641,74 @@ div.wt-panel {
   transition: max-height 0.2s ease-out;
 }
 
-.sub-header {
+aside {
+  width: 100%;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+aside .list-sub-menu {
   display: -webkit-box;
   display: flex;
   justify-content: space-around;
-  padding: 20px;
-  color: white;
-  background: #1c294e;
+  list-style-type: none;
 }
 
-.sub-header a, .sub-header a:hover {
+aside .list-sub-menu_item {
+  padding: 0.75em;
+}
+
+aside .list-sub-menu_item a, aside .list-sub-menu_item a:hover {
+  color: white;
   text-decoration: none;
-  color: white;
 }
 
-.dashboar-main {
-  padding: 10px;
+aside .list-sub-menu_item--active {
+  padding: 0.75em;
+  border-bottom: 3px solid #e8536f;
+}
+
+aside .list-sub-menu_item--active a, aside .list-sub-menu_item--active a:hover {
+  color: white;
+  text-decoration: none;
+}
+
+aside .list-sub-menu_item:hover {
+  border-bottom: 3px solid #e8536f;
+}
+
+.box-chat {
+  width: 100%;
+  min-height: 34em;
+  background: #eee;
+  border-radius: 4px;
+  box-shadow: 2px 2px 2px 0 #dadada;
+  position: relative;
+}
+
+.box-chat .box-chat-body {
+  width: 100%;
+  padding: 1em;
+  overflow-y: scroll;
+  height: 30em;
+}
+
+.box-chat .box-chat-footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  padding: 0.5em;
+}
+
+.box-chat .box-chat-footer label {
+  cursor: pointer;
+  margin: 0 0.4rem;
+}
+
+.box-chat .box-chat-footer input {
+  width: 95%;
+  padding: 0.5em;
+  border: 1px solid #dadada;
+  background: white;
 }
 
 .mensajes-main a, .mensajes-main a:hover {
@@ -6745,7 +6876,7 @@ tbody.collapse.in {
 
 .navbar-default {
   background-color: #fff;
-  border-color: #e6e6e6;
+  border-color: #eeeeee;
 }
 
 .navbar-default .navbar-brand {
@@ -6794,7 +6925,7 @@ tbody.collapse.in {
 
 .navbar-default .navbar-collapse,
 .navbar-default .navbar-form {
-  border-color: #e6e6e6;
+  border-color: #eeeeee;
 }
 
 .navbar-default .navbar-nav > .open > a, .navbar-default .navbar-nav > .open > a:hover, .navbar-default .navbar-nav > .open > a:focus {
@@ -7598,7 +7729,7 @@ a.thumbnail.active {
   padding: 10px 15px;
   margin-bottom: -1px;
   background-color: #fff;
-  border: 1px solid #e6e6e6;
+  border: 1px solid #ddd;
 }
 
 .list-group-item:first-child {
@@ -7854,7 +7985,7 @@ button.list-group-item-danger.active:focus {
 .panel-footer {
   padding: 10px 15px;
   background-color: #f5f5f5;
-  border-top: 1px solid #e6e6e6;
+  border-top: 1px solid #ddd;
   border-bottom-right-radius: 3px;
   border-bottom-left-radius: 3px;
 }
@@ -8075,7 +8206,7 @@ button.list-group-item-danger.active:focus {
 
 .panel-group .panel-heading + .panel-collapse > .panel-body,
 .panel-group .panel-heading + .panel-collapse > .list-group {
-  border-top: 1px solid #e6e6e6;
+  border-top: 1px solid #ddd;
 }
 
 .panel-group .panel-footer {
@@ -8083,21 +8214,21 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-group .panel-footer + .panel-collapse .panel-body {
-  border-bottom: 1px solid #e6e6e6;
+  border-bottom: 1px solid #ddd;
 }
 
 .panel-default {
-  border-color: #e6e6e6;
+  border-color: #ddd;
 }
 
 .panel-default > .panel-heading {
   color: #333333;
   background-color: #fff;
-  border-color: #e6e6e6;
+  border-color: #ddd;
 }
 
 .panel-default > .panel-heading + .panel-collapse > .panel-body {
-  border-top-color: #e6e6e6;
+  border-top-color: #ddd;
 }
 
 .panel-default > .panel-heading .badge {
@@ -8106,7 +8237,7 @@ button.list-group-item-danger.active:focus {
 }
 
 .panel-default > .panel-footer + .panel-collapse > .panel-body {
-  border-bottom-color: #e6e6e6;
+  border-bottom-color: #ddd;
 }
 
 .panel-primary {

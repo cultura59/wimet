@@ -329,3 +329,62 @@
     float: left;
     clear: both;
 }
+.small-box {
+    border-radius: 2px;
+    position: relative;
+    display: block;
+    margin-bottom: 2em;
+    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+    .inner {
+        padding: 1em;
+    }
+    h3, p {
+        z-index: 5;
+    }
+    h3 {
+        font-size: 38px;
+        font-weight: bold;
+        margin: 0 0 10px 0;
+        white-space: nowrap;
+        padding: 0;
+    }
+    p {
+        font-size: 15px;
+    }
+    .icon {
+        transition: all .3s linear;
+        position: absolute;
+        top: -10px;
+        right: 2rem;
+        z-index: 0;
+        font-size: 90px;
+        color: rgba(0,0,0,0.15);
+    }
+    .small-box-footer {
+        text-align: center;
+        padding: 3px 0;
+        color: $wt-white;
+        color: rgba(255,255,255,0.8);
+        background: rgba(0,0,0,0.1);
+        text-decoration: none;
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+}
+.bg-principal {
+    background: $wt-background-principal;
+    color: $wt-white;
+}
+.bg-aqua {
+    background: $wt-aqua;
+    color: $wt-white;
+}
+.bg-green {
+    background: $wt-green;
+    color: $wt-white;
+}
+.bg-yellow {
+    background: $wt-yellow;
+    color: $wt-white;
+}

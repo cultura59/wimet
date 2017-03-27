@@ -23,6 +23,7 @@
 @endpush
 
 @section('content')
+<input type="hidden" id="clientId" value="{{Auth::user()->id}}">
 <section class="reserva wt-m-3" ng-app="appReserva">
 	<div ng-controller="reservaCtrl">
 		<div class="container">
