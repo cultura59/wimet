@@ -15,6 +15,7 @@
 		</div>
 
 		<div class="container-center">
+			@include('errors/error-notification')
 			<h2>¿Qué tipo de actividad se puede a cabo en tu espacio?</h2>
 			<div class="container-center__list">
 				@foreach($categorias as $categoria)

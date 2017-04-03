@@ -21,7 +21,8 @@ class CreatePricesTable extends Migration
                 $table->foreign('espacio_id')->references('id')->on('espacios')->onDelete('cascade');
                 $table->integer('categoria_id')->unsigned();
                 $table->foreign('categoria_id')->references('id')->on('categorias')->onDelete('cascade');
-                $table->integer('minhours');
+                $table->integer('minhours')->default(false);
+                $table->boolean('status');
                 $table->timestamps();
                 $table->softDeletes();
             });

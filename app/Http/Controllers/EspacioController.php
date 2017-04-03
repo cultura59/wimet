@@ -108,16 +108,34 @@ class EspacioController extends Controller
     }
 
     /**
+    * @fn saveEspacioWithoutData()
+    * @brief Funcion que guarda un espacio desde la vista registracion espacio
+    * @param Object $request
+    * @return redirect to public-categoria
+    */
+    public function saveEspacioWithoutData(Request $request) {
+        $espacio = new Espacio($request->all());
+        $espacio->save();
+        $espacio->estilosEspacio()->sync($request->estilos);
+        return \Redirect::route('publica-categoria', array('id' => $espacio->id));
+    }
+
+    /**
     * @fn saveEspacio()
     * @brief Funcion que guarda un espacio desde la vista registracion espacio
     * @param Object $request
     * @return redirect to public-categoria
     */
     public function saveEspacio(Request $request) {
-        $espacio = new Espacio($request->all());
+        $espacio = Espacio::find($request->id);
+        $espacio->name = $request->name;
+        $espacio->description = $request->description;
         $espacio->save();
-        $espacio->estilosEspacio()->sync($request->estilos);
-        return \Redirect::route('publica-categoria', array('id' => $espacio->id));
+        return \Redirect::route('publica-steps', array(
+                "espacioId" => $espacio->id,
+                "step" => 3
+            )
+        );
     }
 
     /**
@@ -128,10 +146,21 @@ class EspacioController extends Controller
     */
     public function saveCategory(Request $request) {
         $espacio = Espacio::find($request->id);
-
-        //dd($request->categorias);
+        if(!$request->categorias){
+            $request->session()->flash('alert-danger', 'Debe seleccionar alguna actividad');
+            return \Redirect::route('publica-categoria', array('id' => $espacio->id));
+        }
         $espacio->categorias()->sync($request->categorias);
         $espacio->save();
+        foreach ($request->categorias as $key => $categoria) {
+            $price = new Price;
+            $price->espacio_id = $espacio->id;
+            $price->categoria_id = $categoria;
+            $price->price = 0;
+            $price->minhours = 0;
+            $price->status = true;
+            $price->save();
+        }
         return \Redirect::route('publica-detalles', array('id' => $request->id));
     }
 
@@ -143,11 +172,21 @@ class EspacioController extends Controller
     */
     public function saveAccess(Request $request) {
         $espacio = Espacio::find($request->id);
-        $espacio->quantyrooms = $request->quantyrooms;
-        $espacio->quantybathrooms = $request->quantybathrooms;
-        $espacio->floor = $request->floor;
-        $espacio->surface = $request->surface;
-        $espacio->access()->sync($request->access);
+        if($request->quantyrooms) {
+            $espacio->quantyrooms = $request->quantyrooms;
+        }
+        if($request->quantybathrooms) {
+            $espacio->quantybathrooms = $request->quantybathrooms;
+        }
+        if($request->floor) {
+            $espacio->floor = $request->floor;
+        }
+        if($request->surface) {
+            $espacio->surface = $request->surface;
+        }
+        if($request->access) {
+            $espacio->access()->sync($request->access);
+        }
         $espacio->save();
         return \Redirect::route('publica-invidatos', array('id' => $request->id));
     }
@@ -160,9 +199,15 @@ class EspacioController extends Controller
     */
     public function saveInvitados(Request $request) {
         $espacio = Espacio::find($request->id);
-        $espacio->quanty = $request->quanty;
-        $espacio->foot = $request->foot;
-        $espacio->seated = $request->seated;
+        if($request->quanty) {
+            $espacio->quanty = $request->quanty;
+        }
+        if($request->foot) {
+            $espacio->foot = $request->foot;
+        }
+        if($request->seated) {
+            $espacio->seated = $request->seated;
+        }
         $espacio->save();
         return \Redirect::route('publica-maps', array('id' => $espacio->id));
     }
@@ -175,14 +220,30 @@ class EspacioController extends Controller
     */
     public function saveAdress(Request $request) {
         $espacio = Espacio::find($request->id);
-        $espacio->adress = $request->route . " " . $request->street_number;
-        $espacio->state = $request->locality;
-        $espacio->city = $request->administrative_area_level_1;
-        $espacio->country = $request->country;
-        $espacio->lat = $request->lat;
-        $espacio->long = $request->long;
+        if($request->route && $request->street_number) {
+            $espacio->adress = $request->route . " " . $request->street_number;
+        }
+        if($request->locality) {
+            $espacio->state = $request->locality;
+        }
+        if($request->administrative_area_level_1) {
+            $espacio->city = $request->administrative_area_level_1;
+        }
+        if($request->country) {
+            $espacio->country = $request->country;
+        }
+        if($request->lat) {
+            $espacio->lat = $request->lat;
+        }
+        if($request->long) {
+            $espacio->long = $request->long;
+        }
         $espacio->save();
-        return \Redirect::route('publica-images', array('id' => $espacio->id));
+        return \Redirect::route('publica-steps', array(
+                "espacioId" => $espacio->id,
+                "step" => 2
+            )
+        );
     }
 
     /**
@@ -192,20 +253,22 @@ class EspacioController extends Controller
     * @return redirect to public-amenities
     */
     public function saveImages(Request $request) {
-        // upload the image //
-        $imagesEspacio = $request->file('imagenes');
-        $destination_fotoprincipales = 'fotosespacios/';
+        if($request->hasFile('imagenes')) {
+            // upload the image //
+            $imagesEspacio = $request->file('imagenes');
+            $destination_fotoprincipales = 'fotosespacios/';
 
-        foreach ($imagesEspacio as $key => $img) 
-        {
-            $filename_imagesEspacio = str_random(8).'_'.$img->getClientOriginalName();
-            $img->move($destination_fotoprincipales, $filename_imagesEspacio);
-            $image = new Image;
-            $image->name = $destination_fotoprincipales . $filename_imagesEspacio;
-            $image->espacio_id = $request->espacio_id;
-            $image->save();
+            foreach ($imagesEspacio as $key => $img) 
+            {
+                $filename_imagesEspacio = str_random(8).'_'.$img->getClientOriginalName();
+                $img->move($destination_fotoprincipales, $filename_imagesEspacio);
+                $image = new Image;
+                $image->name = $destination_fotoprincipales . $filename_imagesEspacio;
+                $image->espacio_id = $request->espacio_id;
+                $image->save();
+            }
         }
-        return \Redirect::route('publica-amenities', array('id' => $request->espacio_id));
+        return \Redirect::route('publica-caracteristicas', array('id' => $request->espacio_id));
     }
 
     /**
@@ -215,10 +278,12 @@ class EspacioController extends Controller
     * @return redirect to public-caracteristicas
     */
     public function saveAmenities(Request $request) {
-        $espacio = Espacio::find($request->id);
-        $espacio->servicios()->sync($request->servicios);
-        $espacio->save();
-        return \Redirect::route('publica-caracteristicas', array('id' => $request->id));
+        if($request->servicios) {
+            $espacio = Espacio::find($request->id);
+            $espacio->servicios()->sync($request->servicios);
+            $espacio->save();
+        }
+        return \Redirect::route('publica-titulo', array('id' => $request->id));
     }
 
     /**
@@ -228,9 +293,26 @@ class EspacioController extends Controller
     * @return redirect to public-caracteristicas
     */
     public function saveCaracteristicas(Request $request) {
-        $espacio = Espacio::find($request->id);
-        $espacio->characteristics()->sync($request->characteristics);
-        $espacio->save();
+        if($request->characteristics) {
+            $espacio = Espacio::find($request->id);
+            $espacio->characteristics()->sync($request->characteristics);
+            $espacio->save();
+        }
+        return \Redirect::route('publica-amenities', array('id' => $request->id));
+    }
+
+    /**
+    * @fn saveRules()
+    * @brief Funcion que asocia las reglas a un espacio
+    * @param Object $request
+    * @return redirect to public-caracteristicas
+    */
+    public function saveRules(Request $request) {
+        if($request->rules) {
+            $espacio = Espacio::find($request->id);
+            $espacio->rules()->sync($request->rules);
+            $espacio->save();
+        }
         return \Redirect::route('publica-prices', array('id' => $request->id));
     }
 
@@ -241,25 +323,22 @@ class EspacioController extends Controller
     * @return redirect to public-caracteristicas
     */
     public function savePrice(Request $request) {
-        $price = new Price;
-        $price->espacio_id = $request->espacio_id;
-        $price->categoria_id = $request->categoria_id;
-        $price->price = $request->price;
-        $price->minhours = $request->minhours;
+        $price = Price::find($request->priceId);
+        if($request->espacio_id) {
+            $price->espacio_id = $request->espacio_id;
+        }
+        if($request->categoria_id) {
+            $price->categoria_id = $request->categoria_id;
+        }
+        if($request->price) {
+            $price->price = $request->price;
+        }
+        if($request->minhours) {
+            $price->minhours = $request->minhours;
+        }
+        $price->status = $request->status;
         $price->save();
+        $request->session()->flash('alert-success', 'El precio fue guardado :)');
         return \Redirect::back();
-    }
-
-    /**
-    * @fn saveImages()
-    * @brief Funcion que asocia imagenes a un espacio
-    * @param Object $request
-    * @return redirect to public-caracteristicas
-    */
-    public function saveRules(Request $request) {
-        $espacio = Espacio::find($request->id);
-        $espacio->rules()->sync($request->rules);
-        $espacio->save();
-        return redirect('/');
     }
 }

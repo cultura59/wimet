@@ -38,6 +38,7 @@ class EspacioTableSeeder extends Seeder
             $espacio->lat = "-34.5860955";
             $espacio->securitydeposit = 1200;
             $espacio->type = "comercial";
+            $espacio->step = 3;
             $espacio->save();
 
             //En esta parte se asocian las primeras 3 categorias, servicios y tipo de espacio al espacio
@@ -51,9 +52,9 @@ class EspacioTableSeeder extends Seeder
 
             //Se asocia un nuevo precio para cada categoria
             DB::table('prices')->insert([
-            	['price' => 250 + $var, 'espacio_id' => $espacio->id, 'categoria_id' => 1, 'minhours' => 4 + $var],
-            	['price' => 180 + $var, 'espacio_id' => $espacio->id, 'categoria_id' => 2, 'minhours' => 5 + $var],
-            	['price' => 460 + $var, 'espacio_id' => $espacio->id, 'categoria_id' => 3, 'minhours' => 6 + $var]
+            	['price' => 250 + $var, 'espacio_id' => $espacio->id, 'categoria_id' => 1, 'minhours' => 4 + $var, 'status' => 1],
+            	['price' => 180 + $var, 'espacio_id' => $espacio->id, 'categoria_id' => 2, 'minhours' => 5 + $var, 'status' => 1],
+            	['price' => 460 + $var, 'espacio_id' => $espacio->id, 'categoria_id' => 3, 'minhours' => 6 + $var, 'status' => 1]
         	]);
 
             //Se crean imagenes para los espacios de prueba

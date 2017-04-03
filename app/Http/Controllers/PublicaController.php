@@ -7,6 +7,7 @@ use App\EstiloEspacio;
 use App\Categoria;
 use App\Espacio;
 use App\Access;
+use App\Price;
 use App\Servicio;
 use App\Characteristics;
 use App\Rules;
@@ -92,21 +93,6 @@ class PublicaController extends Controller
     }
 
     /**
-    * @fn segundoPasoAmenities
-    * @brief Funcion que retorna la vista donde se agregan los amenities del espacio
-    * @return render image amenities
-    */
-    public function segundoPasoAmenities($id) {
-        $amenities = Servicio::all();
-        return View('publicar.amenities',
-            array(
-                'id' => $id,
-                'amenities' => $amenities
-            )
-        );
-    }
-
-    /**
     * @fn segundoPasoCaracteristicas
     * @brief Funcion que retorna la vista donde se agregan los caracteristicas del espacio
     * @return render image caracteristicas
@@ -122,28 +108,58 @@ class PublicaController extends Controller
     }
 
     /**
-    * @fn segundoPasoCaracteristicas
-    * @brief Funcion que retorna la vista donde se agregan los caracteristicas del espacio
-    * @return render image caracteristicas
+    * @fn segundoPasoAmenities
+    * @brief Funcion que retorna la vista donde se agregan los amenities del espacio
+    * @return render image amenities
     */
-    public function segundoPasoPrice($id) {
-        $espacio = Espacio::with('prices')
-                    ->where('id', $id)
-                    ->first();
-
-        return View('publicar.prices',
+    public function segundoPasoAmenities($id) {
+        $amenities = Servicio::all();
+        return View('publicar.amenities',
             array(
-                'espacio' => $espacio
+                'id' => $id,
+                'amenities' => $amenities
             )
         );
     }
 
     /**
-    * @fn segundoPasoReglas()
+    * @fn segundoPasoAmenities
+    * @brief Funcion que retorna la vista donde se agregan los amenities del espacio
+    * @return render image amenities
+    */
+    public function segundoPasoTitulo($id) {
+        $espacio = Espacio::find($id);
+        return View('publicar.title', array('espacio' => $espacio));
+    }
+
+    /**
+    * @fn tercerPasoPrice
+    * @brief Funcion que retorna la vista donde se agregan los caracteristicas del espacio
+    * @return render image caracteristicas
+    */
+    public function tercerPasoPrice($id) {
+        $espacio = Espacio::with('prices')
+                    ->where('id', $id)
+                    ->first();
+        $prices = Price::select('prices.*', 'categorias.name')
+                    ->join('categorias', 'categorias.id', '=', 'prices.categoria_id')
+                    ->where('prices.espacio_id', $id)
+                    ->get();
+
+        return View('publicar.prices',
+            array(
+                'espacio' => $espacio,
+                'prices' => $prices
+            )
+        );
+    }
+
+    /**
+    * @fn tercerPasoReglas()
     * @brief Funcion que retorna la vista donde se agregan las relgas del espacio
     * @return render image reglas
     */
-    public function segundoPasoReglas($id) {
+    public function tercerPasoReglas($id) {
         $rules = Rules::all();
         return view('publicar.reglas', 
             array(

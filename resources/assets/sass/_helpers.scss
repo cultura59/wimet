@@ -69,6 +69,20 @@
 	}
 }
 
+.wt-btn-aqua {
+    min-width: 103px;
+    min-height: 40px;
+    padding: 1em;
+    border-radius: 2px;
+    background-color: #00c6e0;
+    border: 1px solid #00c6e0;
+    color: $wt-white !important;
+    &:hover, &:focus {
+        color: $wt-white !important;
+        text-decoration: none !important;
+    }
+}
+
 .wt-center-block {
 	display: flex;
     justify-content: center;

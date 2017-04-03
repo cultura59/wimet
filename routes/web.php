@@ -23,7 +23,8 @@ Route::get('/home', 'HomeController@index');
 Route::get('/search', 'HomeController@search');
 Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio');
 Route::get('/espacio/{id}/reserva', 'HomeController@reserva')->name('reserva');
-Route::get('/publicar', 'HomeController@publicar')->middleware('auth');
+Route::get('/publicar/{id}/espacio/{espacioId}', 'HomeController@publicar')
+			->name('publica-steps')->middleware('auth');
 Route::get('/publicar/primer-paso', 'PublicaController@index')->middleware('auth');
 
 Route::get('/publicar/primer-paso/espacio/{id}/categorias', 
@@ -38,23 +39,29 @@ Route::get('/publicar/primer-paso/espacio/{id}/invitados',
 Route::get('/publicar/primer-paso/espacio/{id}/maps', 
 			'PublicaController@primerPasoMaps')
 			->name('publica-maps')->middleware('auth');
+
 Route::get('/publicar/segundo-paso/espacio/{id}/images', 
 			'PublicaController@segundoPasoImages')
 			->name('publica-images')->middleware('auth');
-Route::get('/publicar/segundo-paso/espacio/{id}/amenities', 
-			'PublicaController@segundoPasoAmenities')
-			->name('publica-amenities')->middleware('auth');
 Route::get('/publicar/segundo-paso/espacio/{id}/caracteristicas', 
 			'PublicaController@segundoPasoCaracteristicas')
 			->name('publica-caracteristicas')->middleware('auth');
-Route::get('/publicar/segundo-paso/espacio/{id}/prices', 
-			'PublicaController@segundoPasoPrice')
-			->name('publica-prices')->middleware('auth');
-Route::get('/publicar/segundo-paso/espacio/{id}/reglas', 
-			'PublicaController@segundoPasoReglas')
+Route::get('/publicar/segundo-paso/espacio/{id}/amenities', 
+			'PublicaController@segundoPasoAmenities')
+			->name('publica-amenities')->middleware('auth');
+Route::get('/publicar/segundo-paso/espacio/{id}/titulo', 
+			'PublicaController@segundoPasoTitulo')
+			->name('publica-titulo')->middleware('auth');
+
+Route::get('/publicar/tercer-paso/espacio/{id}/reglas', 
+			'PublicaController@tercerPasoReglas')
 			->name('publica-rules')->middleware('auth');
+Route::get('/publicar/tercer-paso/espacio/{id}/prices', 
+			'PublicaController@tercerPasoPrice')
+			->name('publica-prices')->middleware('auth');
 
 // Apis publica fron views
+Route::post('saveEspaciowithoutdata', 'EspacioController@saveEspacioWithoutData');
 Route::post('saveespacio', 'EspacioController@saveEspacio');
 Route::post('savecategories', 'EspacioController@saveCategory');
 Route::post('saveaccess', 'EspacioController@saveAccess');

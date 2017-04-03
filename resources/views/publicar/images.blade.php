@@ -2,6 +2,21 @@
 
 @section('title', 'Agregar imagenes')
 
+@push('scripts')
+<script>
+	document.getElementById('imagenes').onchange = function () {
+		var files = document.getElementById("imagenes").files;
+		var ul = document.getElementById("list-files");
+		for (var i = 0; i < files.length; i++)
+		{
+			var li = document.createElement("li");
+			li.appendChild(document.createTextNode(files[i].name));
+		 	ul.appendChild(li);
+		}
+	};
+</script>
+@endpush
+
 @section('content')
 	
 <section class="section-publica">
@@ -14,12 +29,13 @@
 
 		<div class="container-center">
 			<h2>Ingrese sus imagenes</h2>
-			{!! Form::open(array('url' => 'saveimages', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'class' => 'wt-custom-input-file')) !!}
+			{!! Form::open(array('url' => 'saveimages', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'class' => 'wt-custom-input-file', 'novalidate' => 'novalidate')) !!}
 				<input type="hidden" name="espacio_id" value="{{$id}}">
 				<label for="imagenes">Inserte todas sus imagenes</label>
 				<input type="file" id="imagenes" name="imagenes[]" multiple required>
 				<input type="submit" value="Guardar" class="btn wt-btn-primary"/>
 			{!! Form::close() !!}
+			<ul id="list-files" class="list-inline"></ul>
 		</div>
 
 		<div class="buttons" id="second-buttons">

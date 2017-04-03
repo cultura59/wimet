@@ -38,6 +38,7 @@ class CreateEspaciosTable extends Migration
                 $table->double('securitydeposit', 15, 2)->default(0)->nullable();
                 $table->enum('cancellationflexibility', array('flexible', 'moderado', 'estricto'))->nullable();
                 $table->enum('type', array('comercial', 'privado'))->nullable();
+                $table->integer('step')->default(1)->nullable();
                 $table->timestamps();
                 $table->softDeletes();
                 $table->boolean('status')->default(false);

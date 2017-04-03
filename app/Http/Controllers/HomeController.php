@@ -110,8 +110,12 @@ class HomeController extends Controller
         return view('reserva', array('espacio' => $espacio));
     }
 
-    public function publicar()
+    public function publicar($id, $espacioId)
     {
-        return view('publicar');
+        return view('publicar', array(
+                "espacioId" => $espacioId,
+                "step" => $id
+            )
+        );
     }
 }
