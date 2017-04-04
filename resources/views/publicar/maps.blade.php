@@ -79,9 +79,9 @@
 <section class="section-publica">
 	<div class="container-left">
 		{!! Form::open(array('url' => 'saveadress', 'method' => 'POST')) !!}
-		<input type="hidden" name="id" value="{{$id}}">
-		<input type="hidden" id="lat" name="lat" value="">
-		<input type="hidden" id="long" name="long" value="">
+		<input type="hidden" name="id" value="{{$espacio->id}}">
+		<input type="hidden" id="lat" name="lat" value="{{$espacio->lat}}">
+		<input type="hidden" id="long" name="long" value="{{$espacio->long}}">
 		<div class="wt-progress">
 			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
 			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
@@ -103,23 +103,23 @@
 				</div>
 				<div class="row wt-m-top-2">
 					<div class="col-md-6">
-						<input type="text" id="street_number" name="street_number" class="wt-publica-input" placeholder="Ingrese número">
+						<input type="text" id="street_number" name="street_number" class="wt-publica-input" placeholder="Ingrese número" value="{{$street_number}}">
 					</div>
 					<div class="col-md-6">
-						<input type="text" id="route" name="route" class="wt-publica-input" placeholder="Ingrese calle">
-					</div>
-				</div>
-				<div class="row wt-m-top-2">
-					<div class="col-md-6">
-						<input type="text" id="locality" name="locality" class="wt-publica-input" placeholder="Ingrese localidad">
-					</div>
-					<div class="col-md-6">
-						<input type="text" id="administrative_area_level_1" name="administrative_area_level_1" class="wt-publica-input" placeholder="Ingrese provincia/estado">
+						<input type="text" id="route" name="route" class="wt-publica-input" placeholder="Ingrese calle" value="{{$route}}">
 					</div>
 				</div>
 				<div class="row wt-m-top-2">
 					<div class="col-md-6">
-						<input type="text" id="country" name="country" class="wt-publica-input" placeholder="Ingrese país">
+						<input type="text" id="locality" name="locality" class="wt-publica-input" placeholder="Ingrese localidad" value="{{$espacio->state}}">
+					</div>
+					<div class="col-md-6">
+						<input type="text" id="administrative_area_level_1" name="administrative_area_level_1" class="wt-publica-input" placeholder="Ingrese provincia/estado" value="{{$espacio->city}}">
+					</div>
+				</div>
+				<div class="row wt-m-top-2">
+					<div class="col-md-6">
+						<input type="text" id="country" name="country" class="wt-publica-input" placeholder="Ingrese país" value="{{$espacio->country}}">
 					</div>
 					<div class="col-md-6">
 						<input type="text" id="postal_code" name="postal_code" class="wt-publica-input" placeholder="Ingrese código postal">

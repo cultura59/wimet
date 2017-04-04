@@ -16,15 +16,15 @@
 		<div class="container-center">
 			<h2>Establece reglas sobre el espacio</h2>
 			<div class="row wt-m-top-4">
-				<input type="hidden" name="id" value="{{$id}}">
+				<input type="hidden" name="id" value="{{$espacio->id}}">
 				@foreach($reglas as $regla)
 				<div class="col-xs-6">
-					<input 
-						type="checkbox" 
-						id="regla-{{$regla->id}}" 
-						name="rules[]"
-						value="{{$regla->id}}"
-						style="display: none;">
+					{{ Form::checkbox(
+						'rules[]', 
+						$regla->id, 
+						$espacio->rules->contains('id', $regla->id), 
+						array('id' => 'regla-' . $regla->id, 'style' => 'display: none;')) 
+					}}
 					<label for="regla-{{$regla->id}}" class="wt-publica-label">{{$regla->nombre}}</label>
 				</div>
 				@endforeach

@@ -16,15 +16,15 @@
 		<div class="container-center">
 			<h2>¿Con qué amenities cuenta tu espacio?</h2>
 			<div class="row wt-m-top-4">
-				<input type="hidden" name="id" value="{{$id}}">
+				<input type="hidden" name="id" value="{{$espacio->id}}">
 				@foreach($amenities as $amenity)
 				<div class="col-xs-6">
-					<input 
-						type="checkbox" 
-						id="amenity-{{$amenity->id}}" 
-						name="servicios[]"
-						value="{{$amenity->id}}"
-						style="display: none;">
+					{{ Form::checkbox(
+						'servicios[]', 
+						$amenity->id, 
+						$espacio->servicios->contains('id', $amenity->id), 
+						array('id' => 'amenity-' . $amenity->id, 'style' => 'display: none;')) 
+					}}
 					<label for="amenity-{{$amenity->id}}" class="wt-publica-label">{{$amenity->nombre}}</label>
 				</div>
 				@endforeach

@@ -7,7 +7,7 @@
 <section class="section-publica">
 	<div class="container-left">
 		{!! Form::open(array('url' => 'saveinvitados', 'method' => 'POST')) !!}
-		<input type="hidden" name="id" value="{{$id}}">
+		<input type="hidden" name="id" value="{{$espacio->id}}">
 		<div class="wt-progress">
 			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
 			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
@@ -19,7 +19,7 @@
 				<h2>¿Qué capacidad de asistentes / invitados tiene tu espacio?</h2>
 				<div class="box-publica">
 					<div class="box-publica__container">
-						<input class="box-publica__container__input" type="text" name="quanty" value="0">
+						<input class="box-publica__container__input" type="text" name="quanty" value="{{$espacio->quanty}}">
 						<span class="box-publica__container__name">Máximo de asistentes</span>
 					</div>
 					<div class="box-publica__description">
@@ -29,7 +29,7 @@
 
 				<div class="box-publica">
 					<div class="box-publica__container">
-						<input class="box-publica__container__input" type="text" name="foot" value="0">
+						<input class="box-publica__container__input" type="text" name="foot" value="{{$espacio->foot}}">
 						<span class="box-publica__container__name">De pie (Opcional)</span>
 					</div>
 					<div class="box-publica__description">
@@ -39,7 +39,7 @@
 
 				<div class="box-publica">
 					<div class="box-publica__container">
-						<input class="box-publica__container__input" type="text" name="seated" value="0">
+						<input class="box-publica__container__input" type="text" name="seated" value="{{$espacio->seated}}">
 						<span class="box-publica__container__name">Sentados</span>
 					</div>
 					<div class="box-publica__description">

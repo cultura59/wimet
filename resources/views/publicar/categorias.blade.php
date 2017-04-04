@@ -22,7 +22,12 @@
 				<!-- Item -->
 				<div class="container-center__list__item">
 					<div>
-						<input id="categoria_{{$categoria->id}}" type="checkbox" name="categorias[]" value="{{$categoria->id}}">
+						{{ Form::checkbox(
+							'categorias[]', 
+							$categoria->id, 
+							$espacio->categorias->contains('id', $categoria->id), 
+							array('id' => 'categoria_' . $categoria->id)) 
+						}}
 					</div>
 					<div class="left__item">
 						<span><label for="categoria_{{$categoria->id}}">{{$categoria->name}}</label></span>

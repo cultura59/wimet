@@ -50,10 +50,11 @@ class PublicaController extends Controller
 	* @return render detalles page
 	*/
     public function primerPasoDetalles($id) {
+        $espacio = Espacio::with('access')->find($id);
     	$access = Access::all();
     	return view('publicar.accesos', 
     		array(
-    			'id' => $id,
+    			'espacio' => $espacio,
     			'access' => $access
     		)
 		);
@@ -65,8 +66,9 @@ class PublicaController extends Controller
 	* @return render invitados page
 	*/
     public function primerPasoInvitados($id) {
+        $espacio = Espacio::find($id);
     	return view('publicar.invitados', 
-    		array('id' => $id)
+    		array('espacio' => $espacio)
 		);
     }
 
@@ -76,9 +78,25 @@ class PublicaController extends Controller
 	* @return render maps page
 	*/
     public function primerPasoMaps($id) {
-    	return view('publicar.maps', 
-    		array('id' => $id)
-		);
+    	$espacio = Espacio::find($id);
+        if($espacio->adress != null) {
+            $street = explode(" ", $espacio->adress);
+            $number = array_pop($street);
+            $street = implode(" ", $street);
+            return view('publicar.maps', 
+        		array(
+                    'street_number' => $street,
+                    'route' => $number,
+                    'espacio' => $espacio
+                )
+    		);
+        }else {
+            return view('publicar.maps', 
+                array(
+                    'espacio' => $espacio
+                )
+            );
+        }
     }
 
     /**
@@ -98,10 +116,11 @@ class PublicaController extends Controller
     * @return render image caracteristicas
     */
     public function segundoPasoCaracteristicas($id) {
+        $espacio = Espacio::with('characteristics')->find($id);
         $characteristics = Characteristics::all();
         return View('publicar.caracteristicas',
             array(
-                'id' => $id,
+                'espacio' => $espacio,
                 'characteristics' => $characteristics
             )
         );
@@ -113,10 +132,11 @@ class PublicaController extends Controller
     * @return render image amenities
     */
     public function segundoPasoAmenities($id) {
+        $espacio = Espacio::with('servicios')->find($id);
         $amenities = Servicio::all();
         return View('publicar.amenities',
             array(
-                'id' => $id,
+                'espacio' => $espacio,
                 'amenities' => $amenities
             )
         );
@@ -160,10 +180,11 @@ class PublicaController extends Controller
     * @return render image reglas
     */
     public function tercerPasoReglas($id) {
+        $espacio = Espacio::with('rules')->find($id);
         $rules = Rules::all();
         return view('publicar.reglas', 
             array(
-                'id' => $id,
+                'espacio' => $espacio,
                 'reglas' => $rules
             )
         );
