@@ -1,30 +1,55 @@
 aside {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    .list-sub-menu {
-        display: flex;
-        justify-content: space-around;
+    width: 15%;
+    height: 850px;
+    background-color: #254152;
+    color: #ffffff;
+    float: left;
+    font-size: 14px;
+    ul {
         list-style-type: none;
-        &_item {
-            padding: 0.75em;
-            a, a:hover {
-                color: $wt-white;
-                text-decoration: none;
-            }
-            &--active {
-                padding: 0.75em;
-                border-bottom: 3px solid $wt-background-principal;
-                a, a:hover {
-                    color: $wt-white;
+        padding: 0;
+        .title {
+            opacity: 0.87;
+            font-family: Roboto;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: -0.1px;
+            text-align: justify;
+            color: #ffffff;
+            margin: 1em 0;
+        }
+        li {
+            opacity: 0.87;
+            font-family: Roboto;
+            font-size: 14px;
+            letter-spacing: -0.1px;
+            text-align: justify;
+            padding: .4em 2em;
+            a{
+                color: #ffffff;
+                &:hover {
+                    color: #ffffff;
                     text-decoration: none;
                 }
             }
             &:hover {
-                border-bottom: 3px solid $wt-background-principal;
+                border-left: 3px solid #ea516d;
             }
         }
-
+        .active {
+            border-left: 3px solid #ea516d;
+            background: #406073;
+        }
     }
+}
+.dashboard-container {
+    width: 85%;
+    min-height: 850px;
+    float: right;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #efefef;
 }
 
 .box-chat {
