@@ -24,7 +24,7 @@
 <section class="section-publica">
 	<div class="container-left">
 		{!! Form::open(array('url' => 'saveaccess', 'method' => 'POST')) !!}
-		<input type="hidden" name="id" value="{{$id}}">
+		<input type="hidden" name="id" value="{{$espacio->id}}">
 		<div class="wt-progress">
 			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
 			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
@@ -36,7 +36,7 @@
 				<h2>Detalles del espacio y accesibilidad</h2>
 				<div class="box-publica">
 					<div class="box-publica__container">
-						<input class="box-publica__container__input" type="text" id="quantyrooms" name="quantyrooms" value="0">
+						<input class="box-publica__container__input" type="text" id="quantyrooms" name="quantyrooms" value="{{$espacio->quantyrooms}}">
 						<span class="box-publica__container__pointer" onclick="incrementInput('quantyrooms')">+</span>
 						<span class="box-publica__container__pointer" onclick="decrencrementInput('quantyrooms')">-</span>
 						<span class="box-publica__container__name">Ambientes</span>
@@ -47,7 +47,7 @@
 				</div>
 				<div class="box-publica">
 					<div class="box-publica__container">
-						<input class="box-publica__container__input" type="text" id="quantybathrooms" name="quantybathrooms" value="0">
+						<input class="box-publica__container__input" type="text" id="quantybathrooms" name="quantybathrooms" value="{{$espacio->quantybathrooms}}">
 						<span class="box-publica__container__pointer" onclick="incrementInput('quantybathrooms')">+</span>
 						<span class="box-publica__container__pointer" onclick="decrencrementInput('quantybathrooms')">-</span>
 						<span class="box-publica__container__name">Baños</span>
@@ -58,7 +58,7 @@
 				</div>
 				<div class="box-publica">
 					<div class="box-publica__container">
-						<input class="box-publica__container__input" type="text" id="floor" name="floor" value="0">
+						<input class="box-publica__container__input" type="text" id="floor" name="floor" value="{{$espacio->floor}}">
 						<span class="box-publica__container__pointer" onclick="incrementInput('floor')">+</span>
 						<span class="box-publica__container__pointer" onclick="decrencrementInput('floor')">-</span>
 						<span class="box-publica__container__name">Piso</span>
@@ -69,7 +69,7 @@
 				</div>
 				<div class="box-publica">
 					<div class="box-publica__container">
-						<input class="box-publica__container__input" type="text" id="surface" name="surface" value="0">
+						<input class="box-publica__container__input" type="text" id="surface" name="surface" value="{{$espacio->surface}}">
 						<span class="box-publica__container__pointer" onclick="incrementInput('surface')">+</span>
 						<span class="box-publica__container__pointer" onclick="decrencrementInput('surface')">-</span>
 						<span class="box-publica__container__name">Superficie</span>
@@ -84,12 +84,12 @@
 				<div class="row wt-m-top-3">
 					@foreach($access as $as)
 					<div class="col-xs-6">
-						<input 
-							type="checkbox" 
-							id="id-access-{{$as->id}}" 
-							name="access[]" 
-							value="{{$as->id}}" 
-							style="display: none;">
+						{{ Form::checkbox(
+							'access[]', 
+							$as->id, 
+							$espacio->access->contains('id', $as->id), 
+							array('id' => 'id-access-' . $as->id, 'style' => 'display: none;')) 
+						}}
 						<label for="id-access-{{$as->id}}" class="wt-publica-label">{{$as->nombre}}.</label>
 					</div>
 					@endforeach

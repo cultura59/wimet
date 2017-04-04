@@ -16,15 +16,15 @@
 		<div class="container-center">
 			<h2>¿Qué características especiales tiene tu espacio?</h2>
 			<div class="row wt-m-top-4">
-				<input type="hidden" name="id" value="{{$id}}">
+				<input type="hidden" name="id" value="{{$espacio->id}}">
 				@foreach($characteristics as $characteristic)
 				<div class="col-xs-6">
-					<input 
-						type="checkbox" 
-						id="characteristic-{{$characteristic->id}}" 
-						name="characteristics[]"
-						value="{{$characteristic->id}}"
-						style="display: none;">
+					{{ Form::checkbox(
+						'characteristics[]', 
+						$characteristic->id, 
+						$espacio->characteristics->contains('id', $characteristic->id), 
+						array('id' => 'characteristic-' . $characteristic->id, 'style' => 'display: none;')) 
+					}}
 					<label for="characteristic-{{$characteristic->id}}" class="wt-publica-label">{{$characteristic->nombre}}</label>
 				</div>
 				@endforeach

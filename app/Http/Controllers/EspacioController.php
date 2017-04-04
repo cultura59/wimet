@@ -152,6 +152,8 @@ class EspacioController extends Controller
         }
         $espacio->categorias()->sync($request->categorias);
         $espacio->save();
+        $espacio->prices()->delete();
+        $espacio->save();
         foreach ($request->categorias as $key => $categoria) {
             $price = new Price;
             $price->espacio_id = $espacio->id;
