@@ -103,10 +103,10 @@
 				</div>
 				<div class="row wt-m-top-2">
 					<div class="col-md-6">
-						<input type="text" id="street_number" name="street_number" class="wt-publica-input" placeholder="Ingrese número" value="{{isset($street_number)?$street_number: ''}}">
+						<input type="text" id="street_number" name="street_number" class="wt-publica-input" placeholder="Ingrese número" value="{{$street_number}}">
 					</div>
 					<div class="col-md-6">
-						<input type="text" id="route" name="route" class="wt-publica-input" placeholder="Ingrese calle" value="{{isset($route)?$route: ''}}">
+						<input type="text" id="route" name="route" class="wt-publica-input" placeholder="Ingrese calle" value="{{$route}}">
 					</div>
 				</div>
 				<div class="row wt-m-top-2">
