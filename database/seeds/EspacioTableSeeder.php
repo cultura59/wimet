@@ -39,6 +39,7 @@ class EspacioTableSeeder extends Seeder
             $espacio->securitydeposit = 1200;
             $espacio->type = "comercial";
             $espacio->step = 3;
+            $espacio->status = true;
             $espacio->save();
 
             //En esta parte se asocian las primeras 3 categorias, servicios y tipo de espacio al espacio

@@ -1,29 +1,97 @@
 aside {
-    width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    .list-sub-menu {
-        display: flex;
-        justify-content: space-around;
+    width: 15%;
+    height: 850px;
+    background-color: #254152;
+    color: #ffffff;
+    float: left;
+    font-size: 14px;
+    ul {
         list-style-type: none;
-        &_item {
-            padding: 0.75em;
-            a, a:hover {
-                color: $wt-white;
-                text-decoration: none;
-            }
-            &--active {
-                padding: 0.75em;
-                border-bottom: 3px solid $wt-background-principal;
-                a, a:hover {
-                    color: $wt-white;
+        padding: 0;
+        .title {
+            opacity: 0.87;
+            font-family: Roboto;
+            font-size: 1rem;
+            font-weight: 500;
+            letter-spacing: -0.1px;
+            text-align: justify;
+            color: #ffffff;
+            margin: 1em 0;
+        }
+        li {
+            opacity: 0.87;
+            font-family: Roboto;
+            font-size: 14px;
+            letter-spacing: -0.1px;
+            text-align: justify;
+            padding: .4em 2em;
+            a{
+                color: #ffffff;
+                &:hover {
+                    color: #ffffff;
                     text-decoration: none;
                 }
             }
             &:hover {
-                border-bottom: 3px solid $wt-background-principal;
+                border-left: 3px solid #ea516d;
             }
         }
-
+        .active {
+            border-left: 3px solid #ea516d;
+            background: #406073;
+        }
+    }
+}
+.dashboard-container {
+    width: 85%;
+    min-height: 850px;
+    float: right;
+    margin-left: auto;
+    padding-left: 15px;
+    padding-right: 15px;
+    background: #efefef;
+    .main-container {
+        width: 800px;
+        margin: 0 auto;
+        padding: 2em 0;
+    }
+    .container-espacios {
+        margin: 0 auto;
+        .box-expacio {
+            width: 100%;
+            height: auto;
+            background-color: #ffffff;
+            margin: 0 auto;
+            padding: 1em;
+            display: flex;
+            border-bottom: 1px solid #efefef;
+            .image-espacio {
+                width: 204.2px;
+            }
+            .detalle-espacio {
+                padding: 0 1em;
+                width: 60%;
+                &__title {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    h3 {
+                        margin: 0;
+                    }
+                    a {
+                        margin: 0 1em;
+                    }
+                    i {
+                        color: #212121;
+                        opacity: 0.17;
+                    }
+                }
+                ul {
+                    color: rgba(226, 56, 90, 0.87);
+                    margin-top: 1em;
+                }
+            }
+        }
     }
 }
 
