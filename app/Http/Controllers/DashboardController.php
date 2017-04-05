@@ -111,28 +111,4 @@ class DashboardController extends Controller
             'categorias' => $categorias
         ));
     }
-
-    /**
-     * Show the application mis espacios.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function misespacios($id)
-    {
-        $espacios = Espacio::where('user_id', $id)
-                    ->where('status', true)
-                    ->with('categorias')
-                    ->with('images')
-                    ->get();
-
-        $borradores = Espacio::where('user_id', $id)
-                    ->where('status', false)
-                    ->with('categorias')
-                    ->with('images')
-                    ->get();
-        return view('dashboard.espacios', array(
-            'espacios' => $espacios,
-            'borradores' => $borradores
-        ));
-    }
 }

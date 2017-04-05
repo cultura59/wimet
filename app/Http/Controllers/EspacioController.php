@@ -115,7 +115,6 @@ class EspacioController extends Controller
     */
     public function saveEspacioWithoutData(Request $request) {
         $espacio = new Espacio($request->all());
-        $espacio->status = false;
         $espacio->save();
         $espacio->estilosEspacio()->sync($request->estilos);
         return \Redirect::route('publica-categoria', array('id' => $espacio->id));

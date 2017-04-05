@@ -6,7 +6,7 @@
 
 	@include('dashboard.menue')
 
-	<section class="dashboard-container">
+	<section class="container">
 		<h1 class="wt-m-bot-4"><b>Dashboard</b> panel de control</h1>
 		<div class="row">
 			<div class="col-xs-12 col-md-4">
