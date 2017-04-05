@@ -58,7 +58,7 @@
 							</div>
 						</div>
 						<ul class="list-inline">
-						@foreach($espacio->categorias as $cat)
+						@foreach($borrador->categorias as $cat)
 							<li>{{$cat->name}}</li>
 						@endforeach
 						</ul>
