@@ -1845,6 +1845,63 @@ aside ul .active {
   background: #efefef;
 }
 
+.dashboard-container .main-container {
+  width: 800px;
+  margin: 0 auto;
+  padding: 2em 0;
+}
+
+.dashboard-container .container-espacios {
+  margin: 0 auto;
+}
+
+.dashboard-container .container-espacios .box-expacio {
+  width: 100%;
+  height: auto;
+  background-color: #ffffff;
+  margin: 0 auto;
+  padding: 1em;
+  display: -webkit-box;
+  display: flex;
+  border-bottom: 1px solid #efefef;
+}
+
+.dashboard-container .container-espacios .box-expacio .image-espacio {
+  width: 204.2px;
+}
+
+.dashboard-container .container-espacios .box-expacio .detalle-espacio {
+  padding: 0 1em;
+  width: 60%;
+}
+
+.dashboard-container .container-espacios .box-expacio .detalle-espacio__title {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.dashboard-container .container-espacios .box-expacio .detalle-espacio__title h3 {
+  margin: 0;
+}
+
+.dashboard-container .container-espacios .box-expacio .detalle-espacio__title a {
+  margin: 0 1em;
+}
+
+.dashboard-container .container-espacios .box-expacio .detalle-espacio__title i {
+  color: #212121;
+  opacity: 0.17;
+}
+
+.dashboard-container .container-espacios .box-expacio .detalle-espacio ul {
+  color: rgba(226, 56, 90, 0.87);
+  margin-top: 1em;
+}
+
 .box-chat {
   width: 100%;
   min-height: 34em;

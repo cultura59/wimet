@@ -50,6 +50,49 @@ aside {
     padding-left: 15px;
     padding-right: 15px;
     background: #efefef;
+    .main-container {
+        width: 800px;
+        margin: 0 auto;
+        padding: 2em 0;
+    }
+    .container-espacios {
+        margin: 0 auto;
+        .box-expacio {
+            width: 100%;
+            height: auto;
+            background-color: #ffffff;
+            margin: 0 auto;
+            padding: 1em;
+            display: flex;
+            border-bottom: 1px solid #efefef;
+            .image-espacio {
+                width: 204.2px;
+            }
+            .detalle-espacio {
+                padding: 0 1em;
+                width: 60%;
+                &__title {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    h3 {
+                        margin: 0;
+                    }
+                    a {
+                        margin: 0 1em;
+                    }
+                    i {
+                        color: #212121;
+                        opacity: 0.17;
+                    }
+                }
+                ul {
+                    color: rgba(226, 56, 90, 0.87);
+                    margin-top: 1em;
+                }
+            }
+        }
+    }
 }
 
 .box-chat {
