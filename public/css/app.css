@@ -1274,6 +1274,12 @@ footer .follow img {
   color: rgba(33, 33, 33, 0.54);
 }
 
+.search .search-data .img-responsive {
+  display: block;
+  max-width: 100%;
+  height: 268px;
+}
+
 .search .icon-people {
   width: 1.5rem;
   box-shadow: none !important;

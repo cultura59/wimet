@@ -83,6 +83,11 @@
 			padding: 10px 0 0 10px;
 			color: rgba(33, 33, 33, 0.54);
 		}
+		.img-responsive {
+		    display: block;
+		    max-width: 100%;
+		    height: 268px;
+		}
 	}
 	.icon-people {
 		width: 1.5rem;
