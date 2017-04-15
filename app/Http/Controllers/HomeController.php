@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Mail;
 use DB;
+use App\User;
 use App\Espacio;
 use App\Categoria;
 class HomeController extends Controller
@@ -40,8 +42,7 @@ class HomeController extends Controller
      * @param Double price
      * @return \Illuminate\Http\Response 
      */
-    public function search(Request $request)
-    {   
+    public function search(Request $request) {   
         if($request->has('price') && $request->has('quanty'))
         {
             $espacios = Espacio::select('id', 'name', 'quanty')
@@ -78,7 +79,6 @@ class HomeController extends Controller
         $espacio = Espacio::where('id', $id)
                     ->with(
                         'prices', 
-                        'images', 
                         'categorias', 
                         'servicios',
                         'estilosEspacio',
@@ -99,7 +99,8 @@ class HomeController extends Controller
         return view('espacio', array(
                 'espacio' => $espacio,
                 'price' => $price,
-                'categorias' => $categorias
+                'categorias' => $categorias,
+                'categoryId' => $categoriaId
             )
         );
     }
@@ -117,5 +118,23 @@ class HomeController extends Controller
                 "step" => $id
             )
         );
+    }
+
+    public function send_reserva(Request $request) {
+        $cliente = User::find($request->clientId);
+        //dd($cliente->firstname);
+        $espacio = Espacio::find($request->espacioId);
+        $data = [
+            "usuario" => $cliente,
+            "espacio" => $espacio,
+            "reserva" => $request
+        ];
+        
+        Mail::send(["text"=>"email"], $data, function($message){
+            $message->to("rojasadrian.e@gmail.com", "Adrian Rojas")
+                    ->subject("Tienes una nueva consulta por tu espacio");
+
+            $message->from("adrian@wimet.co", "Consultas Wimet");
+        });
     }
 }

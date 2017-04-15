@@ -502,6 +502,34 @@ template {
   background: white;
 }
 
+.wt-dropdown {
+  width: 144px;
+  height: 40px;
+  background-color: #ffffff;
+  border: solid 1px #979797;
+  border-radius: 0;
+  opacity: 0.87;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #212121;
+}
+
+.wt-dropdown-min {
+  width: 73px;
+  height: 40px;
+  background-color: #ffffff;
+  border: solid 1px #979797;
+  border-radius: 0;
+  opacity: 0.87;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #212121;
+}
+
 .wt-btn-principal-search {
   padding: 0.75em 1.5em;
   border-radius: 2px;
@@ -530,6 +558,7 @@ template {
 }
 
 .wt-btn-aqua {
+  width: 100%;
   min-width: 103px;
   min-height: 40px;
   padding: 1em;
@@ -1172,11 +1201,12 @@ footer .follow img {
 }
 
 .header-with {
-  background-color: white;
   width: 100%;
+  height: 60px;
+  background-color: white;
   color: #333;
   position: relative;
-  box-shadow: 0 4px 2px -2px rgba(218, 218, 218, 0.5);
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
 }
 
 .header-with .header-navbar {
@@ -1228,7 +1258,7 @@ footer .follow img {
   position: fixed;
   left: 0;
   bottom: 0;
-  top: 16%;
+  top: 18%;
 }
 
 .search .section-main__chield-2 {
@@ -1236,7 +1266,7 @@ footer .follow img {
   position: fixed;
   right: 0;
   bottom: 0;
-  top: 16%;
+  top: 18%;
 }
 
 .search .search-result {
@@ -1295,129 +1325,264 @@ footer .follow img {
   padding: 5px 10px;
 }
 
-/* Slideshow container */
-.slideshow-container {
+#home-espacio {
   position: relative;
-  margin: auto;
-}
-
-/* Next & previous buttons */
-.prev, .next {
-  cursor: pointer;
-  position: absolute;
-  top: 50%;
-  width: auto;
-  margin-top: -22px;
-  padding: 16px;
-  color: white;
-  font-weight: bold;
-  font-size: 18px;
-  -webkit-transition: 0.6s ease;
-  transition: 0.6s ease;
-  border-radius: 0 3px 3px 0;
-}
-
-/* Position the "next button" to the right */
-.next {
-  right: 0;
-  border-radius: 3px 0 0 3px;
-}
-
-/* On hover, add a black background color with a little bit see-through */
-.prev:hover, .next:hover {
-  background-color: rgba(0, 0, 0, 0.5);
-  color: #fff;
-  text-decoration: none;
-}
-
-.box-reserva {
-  background: white;
-  position: absolute;
-  top: -4rem;
-  right: 0;
-  border: 1px solid #636b6f;
-}
-
-.box-reserva .box-reserva__header {
-  width: 100%;
-  padding: 5px 10px 0;
-  background: black;
-  color: white;
-}
-
-.box-reserva .header__encabezados {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  font-size: 1rem;
-}
-
-.box-reserva .header__precio p {
-  font-size: 1.25rem;
-  font-weight: 700;
-}
-
-.box-reserva .header__precio span {
-  font-size: 1rem;
-  font-weight: 500;
-}
-
-.box-reserva .box-reserva__body {
-  margin: 0;
-  padding: 10px;
-  box-shadow: 1px 1px 1px 0 #9d9d9d;
-}
-
-.box-reserva .box-reserva__body .body__add-date-time {
-  color: #ec6568;
-  cursor: pointer;
-}
-
-.box-reserva .box-reserva__body .box-reserva__fechas {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-pack: justify;
-  justify-content: space-between;
-  margin: 10px 0;
-}
-
-.box-reserva .box-reserva__body .box-reserva__fechas div {
-  display: -webkit-box;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  flex-direction: column;
-  padding: 0 10px;
-}
-
-.box-reserva .box-reserva__body .box-reserva__totales {
-  padding: 10px 15px;
-}
-
-.box-reserva .box-reserva__body .box-reserva__totales p {
-  font-weight: 600;
-}
-
-.amenities__tilte {
-  font-size: 1.15rem;
-}
-
-.detail-space__info {
-  background-color: white;
-  padding: 20px;
-}
-
-.anfitrion {
-  width: 65%;
-}
-
-.anfitrion .anfitrion__title {
-  font-size: 3rem;
 }
 
 #map-espacio {
-  height: 50vh;
+  width: 620px;
+  height: 300px;
+}
+
+.home-espacio-header {
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: 500px;
+  padding: 1em;
+}
+
+.home-espacio-header__boton {
+  width: 99px;
+  height: 36px;
+  opacity: 0.87;
+  border-radius: 2px;
+  background-color: #ffffff;
+  border: 1px solid #dadada;
+  font-size: 13px;
+  font-weight: 500;
+  color: #212121;
+  margin: 400px 0 0 100px;
+}
+
+.home-espacio-header__boton:hover {
+  background-color: #212121;
+  border: 1px solid #212121;
+  color: #ffffff;
+}
+
+.box-reserva {
+  width: 338px;
+  height: auto;
+  background-color: #efefef;
+  border: solid 1px #979797;
+  position: absolute;
+  right: 148px;
+  top: 450px;
+}
+
+.box-reserva__header {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(32, 32, 32, 0.87);
+  padding: 3px 16px;
+}
+
+.box-reserva__header input[type=date] {
+  padding: 1em;
+}
+
+.box-reserva__header__desde {
+  margin: 0;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #ffffff;
+}
+
+.box-reserva__header__price {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: baseline;
+  align-items: baseline;
+}
+
+.box-reserva__header__price .price {
+  margin: 0;
+  font-size: 16px;
+  font-style: italic;
+  letter-spacing: -0.1px;
+  text-align: right;
+  color: #ffffff;
+}
+
+.box-reserva__header__price .minhours {
+  margin: 0 0 0 16px;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #ffffff;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.box-reserva__body {
+  padding: 16px;
+  opacity: 0.87;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #212121;
+}
+
+.box-reserva__body label {
+  opacity: 0.87;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #212121;
+}
+
+.box-reserva__body .agregar-fecha {
+  width: 75px;
+  height: 14px;
+  opacity: 0.87;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #ea516d;
+  cursor: pointer;
+}
+
+.box-reserva__body .list-dates {
+  padding: 0;
+  border: none;
+}
+
+.box-reserva__body .messageError {
+  margin: 16px 0;
+  padding: 1em;
+  background: red;
+  color: #fff;
+  text-align: center;
+  border-radius: 2px;
+}
+
+.box-reserva__body .messageError p {
+  margin: 0;
+}
+
+.home-espacio-body {
+  width: 960px;
+  margin: 0 auto;
+}
+
+.home-espacio-body .center-title {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.home-espacio-body .center-title .title {
+  opacity: 0.87;
+  font-family: NotoSerif;
+  font-style: italic;
+  letter-spacing: -0.2px;
+  text-align: justify;
+  color: #212121;
+}
+
+.home-espacio-body .center-title .verified {
+  margin-left: 16px;
+  color: #ea516d;
+  width: 18px;
+  height: 22px;
+}
+
+.home-espacio-body .center-title .noverified {
+  margin-left: 16px;
+  color: #dadada;
+  width: 18px;
+  height: 22px;
+}
+
+.home-espacio-body .box-descripcion {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  flex-direction: row;
+  -webkit-box-pack: start;
+  justify-content: flex-start;
+  margin: 4em 0;
+}
+
+.home-espacio-body .box-descripcion__titulo {
+  width: 136px;
+  height: auto;
+  opacity: 0.87;
+  font-family: NotoSerif;
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #212121;
+  border-right: 1px solid #dadada;
+}
+
+.home-espacio-body .box-descripcion__contenido {
+  width: 436px;
+  height: auto;
+  opacity: 0.54;
+  font-family: Roboto;
+  font-size: 14px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #212121;
+  margin-left: 23px;
+}
+
+.home-espacio-body .box-amenities {
+  width: 572px;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #212121;
+}
+
+.home-espacio-body .box-amenities__title {
+  opacity: 0.87;
+  font-family: NotoSerif;
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: -0.1px;
+  text-align: justify;
+}
+
+.home-espacio-body .box-amenities i {
+  color: #ea516d;
+}
+
+.home-espacio-body .box-amenities span {
+  opacity: 0.54;
+}
+
+.home-espacio-body .box-access {
+  width: 572px;
+  margin-bottom: 40px;
+  color: #212121;
+}
+
+.home-espacio-body .box-access__title {
+  opacity: 0.87;
+  font-family: NotoSerif;
+  font-size: 14px;
+  font-style: italic;
+  letter-spacing: -0.1px;
+  text-align: justify;
+}
+
+.home-espacio-body .box-access i {
+  color: #ea516d;
+}
+
+.home-espacio-body .box-access span {
+  opacity: 0.54;
 }
 
 .reserva .reserva__title {

@@ -43,6 +43,34 @@
     background: $wt-white;
 }
 
+.wt-dropdown {
+    width: 144px;
+    height: 40px;
+    background-color: #ffffff;
+    border: solid 1px #979797;
+    border-radius: 0;
+    opacity: 0.87;
+    font-family: Roboto;
+    font-size: 12px;
+    letter-spacing: -0.1px;
+    text-align: justify;
+    color: #212121;
+}
+
+.wt-dropdown-min {
+    width: 73px;
+    height: 40px;
+    background-color: #ffffff;
+    border: solid 1px #979797;
+    border-radius: 0;
+    opacity: 0.87;
+    font-family: Roboto;
+    font-size: 12px;
+    letter-spacing: -0.1px;
+    text-align: justify;
+    color: #212121;
+}
+
 //-------------------- Helppers de botones -------------------//
 .wt-btn-principal-search {
     padding: 0.75em 1.5em;
@@ -70,6 +98,7 @@
 }
 
 .wt-btn-aqua {
+    width: 100%;
     min-width: 103px;
     min-height: 40px;
     padding: 1em;

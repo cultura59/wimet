@@ -93,3 +93,5 @@ Route::group(['prefix' => 'admin'], function ()
 	Route::get('/dashboard', 'AdminController@dashboard');
 	Route::get('/mensajes', 'AdminController@mensajes');
 });
+
+Route::get('/basicemail', 'MailController@basic_email');

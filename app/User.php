@@ -61,4 +61,9 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Consulta');
     }
+
+    public function wishlist()
+    {
+        return $this->hasMany('App\wishlist');
+    }
 }

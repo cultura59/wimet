@@ -17,22 +17,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::get('/sendmensaje', function() {
-
-	$headers =  'MIME-Version: 1.0' . "\r\n"; 
-	$headers .= 'From: Adrian Rojas <rojasadrian.e@gmail.com>' . "\r\n";
-	$headers .= 'Content-type: text/html; charset=iso-8859-1' . "\r\n"; 
-
-	// the message
-	$msg = "First line of text\nSecond line of text";
-
-	// use wordwrap() if lines are longer than 70 characters
-	$msg = wordwrap($msg,70);
-
-	// send email
-	mail("rojasadrian.e@gmail.com","My subject", $msg, $headers);
-});
-
 Route::get('images/{filename}', function ($filename)
 {
     $path = storage_path() . '/' . $filename;
@@ -62,3 +46,5 @@ Route::get('accessibilities', 'ApiHelpperController@accessibilities');
 Route::get('characteristics', 'ApiHelpperController@characteristics');
 Route::get('estiloespacio', 'ApiHelpperController@estiloespacio');
 Route::get('rules', 'ApiHelpperController@rules');
+
+Route::post('sendreserva', 'HomeController@send_reserva');
