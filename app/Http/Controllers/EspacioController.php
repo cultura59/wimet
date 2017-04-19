@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Espacio;
 use App\Image;
 use App\Price;
+use App\User;
 
 class EspacioController extends Controller
 {
@@ -343,5 +344,20 @@ class EspacioController extends Controller
         $price->save();
         $request->session()->flash('alert-success', 'El precio fue guardado :)');
         return \Redirect::back();
+    }
+
+    /**
+    * @fn saveWishlist()
+    * @brief Funcion que asocia un espacio a un usuaio
+    * @param Object $request
+    * @return true o false
+    */
+    public function saveWishlist(Request $request) {
+        $user = User::find($request->clientId);
+        if($user->id == null){
+            return false;
+        }
+        $user->wishlist()->sync($request->espacio_id);
+        return true;
     }
 }

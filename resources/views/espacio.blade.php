@@ -3,6 +3,7 @@
 @section('title', $espacio->name)
 
 @push('scripts')
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 	<script>
 		var map;
 		function initMap() {
@@ -23,6 +24,18 @@
 				map: map
 			});
 		}
+		
+		(function(){
+			$(window).scroll(function(){
+				if ($(this).scrollTop() > 560) {
+					$('#aside-reserva').removeClass('box-reserva');
+					$('#aside-reserva').addClass('box-reserva--active');
+				} else {
+					$('#aside-reserva').removeClass('box-reserva--active');
+					$('#aside-reserva').addClass('box-reserva');
+				}
+			});	
+		})();
 	</script>
 
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArSoMrIsnDeERvlCOGJ2WVd36zO2SBTMo&callback=initMap" async defer></script>
@@ -33,6 +46,7 @@
 	<div id="home-espacio">
 		<aside-reserva 
 			espacio-id="{{$espacio->id}}"
+			client-id="{{Auth::user()->id}}"
 			price="{{$price->price}}"
 			minhours="{{$price->minhours}}"
 			category-id="{{$categoryId}}">

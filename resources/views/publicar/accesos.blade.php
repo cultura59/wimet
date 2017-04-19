@@ -56,9 +56,9 @@
 						<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
 					</div>
 				</div>
-				<div class="box-publica">
+				<div class="box-publica" style="display: none;">
 					<div class="box-publica__container">
-						<input class="box-publica__container__input" type="text" id="floor" name="floor" value="{{$espacio->floor}}">
+						<input class="box-publica__container__input" type="text" id="floor" name="floor" value="0">
 						<span class="box-publica__container__pointer" onclick="incrementInput('floor')">+</span>
 						<span class="box-publica__container__pointer" onclick="decrencrementInput('floor')">-</span>
 						<span class="box-publica__container__name">Piso</span>

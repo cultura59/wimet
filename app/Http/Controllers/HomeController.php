@@ -122,7 +122,6 @@ class HomeController extends Controller
 
     public function send_reserva(Request $request) {
         $cliente = User::find($request->clientId);
-        //dd($cliente->firstname);
         $espacio = Espacio::find($request->espacioId);
         $data = [
             "usuario" => $cliente,

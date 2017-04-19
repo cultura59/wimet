@@ -108,11 +108,106 @@
     }
     .messageError {
       margin: 16px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
       padding: 1em;
-      background: red;
+      background: rgba(234, 81, 109, 0.87);
       color: #fff;
-      text-align: center;
       border-radius: 2px;
+      border: 1px solid #ea516d;
+      p {
+        margin: 0;
+      }
+    }
+  }
+}
+.box-reserva--active {
+  width: 338px;
+  height: auto;
+  background-color: #efefef;
+  border: solid 1px #979797;
+  position: fixed;
+  right: 148px;
+  &__header {
+    width: 100%;
+    height: 50px;
+    background-color: rgba(32, 32, 32, 0.87);
+    padding: 3px 16px;
+    input[type=date] {
+      padding: 1em;
+    }
+    &__desde {
+      margin: 0;
+      font-family: Roboto;
+      font-size: 12px;
+      letter-spacing: -0.1px;
+      text-align: justify;
+      color: #ffffff;
+    }
+    &__price {
+      display: flex;
+      align-items: baseline;
+      .price {
+        margin: 0;
+        font-size: 16px;
+        font-style: italic;
+        letter-spacing: -0.1px;
+        text-align: right;
+        color: #ffffff;
+      }
+      .minhours {
+        margin: 0 0 0 16px;
+        font-family: Roboto;
+        font-size: 12px;
+        letter-spacing: -0.1px;
+        text-align: justify;
+        color: #ffffff;
+        align-items: center;
+      }
+    }
+  }
+  &__body {
+    padding: 16px;
+    opacity: 0.87;
+    font-family: Roboto;
+    font-size: 12px;
+    letter-spacing: -0.1px;
+    text-align: justify;
+    color: #212121;
+    label {
+      opacity: 0.87;
+      font-family: Roboto;
+      font-size: 12px;
+      letter-spacing: -0.1px;
+      text-align: justify;
+      color: #212121;
+    }
+    .agregar-fecha {
+      width: 75px;
+      height: 14px;
+      opacity: 0.87;
+      font-family: Roboto;
+      font-size: 12px;
+      letter-spacing: -0.1px;
+      text-align: justify;
+      color: #ea516d;
+      cursor: pointer;
+    }
+    .list-dates {
+      padding: 0;
+      border: none;
+    }
+    .messageError {
+      margin: 16px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1em;
+      background: rgba(234, 81, 109, 0.87);
+      color: #fff;
+      border-radius: 2px;
+      border: 1px solid #ea516d;
       p {
         margin: 0;
       }

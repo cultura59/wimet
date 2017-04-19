@@ -952,6 +952,10 @@ template {
   color: white;
 }
 
+.cursor-pointer {
+  cursor: pointer;
+}
+
 :root {
   font-size: 16px;
 }
@@ -1456,14 +1460,131 @@ footer .follow img {
 
 .box-reserva__body .messageError {
   margin: 16px 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: baseline;
+  align-items: baseline;
   padding: 1em;
-  background: red;
+  background: rgba(234, 81, 109, 0.87);
   color: #fff;
-  text-align: center;
   border-radius: 2px;
+  border: 1px solid #ea516d;
 }
 
 .box-reserva__body .messageError p {
+  margin: 0;
+}
+
+.box-reserva--active {
+  width: 338px;
+  height: auto;
+  background-color: #efefef;
+  border: solid 1px #979797;
+  position: fixed;
+  right: 148px;
+}
+
+.box-reserva--active__header {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(32, 32, 32, 0.87);
+  padding: 3px 16px;
+}
+
+.box-reserva--active__header input[type=date] {
+  padding: 1em;
+}
+
+.box-reserva--active__header__desde {
+  margin: 0;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #ffffff;
+}
+
+.box-reserva--active__header__price {
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-align: baseline;
+  align-items: baseline;
+}
+
+.box-reserva--active__header__price .price {
+  margin: 0;
+  font-size: 16px;
+  font-style: italic;
+  letter-spacing: -0.1px;
+  text-align: right;
+  color: #ffffff;
+}
+
+.box-reserva--active__header__price .minhours {
+  margin: 0 0 0 16px;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #ffffff;
+  -webkit-box-align: center;
+  align-items: center;
+}
+
+.box-reserva--active__body {
+  padding: 16px;
+  opacity: 0.87;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #212121;
+}
+
+.box-reserva--active__body label {
+  opacity: 0.87;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #212121;
+}
+
+.box-reserva--active__body .agregar-fecha {
+  width: 75px;
+  height: 14px;
+  opacity: 0.87;
+  font-family: Roboto;
+  font-size: 12px;
+  letter-spacing: -0.1px;
+  text-align: justify;
+  color: #ea516d;
+  cursor: pointer;
+}
+
+.box-reserva--active__body .list-dates {
+  padding: 0;
+  border: none;
+}
+
+.box-reserva--active__body .messageError {
+  margin: 16px 0;
+  display: -webkit-box;
+  display: flex;
+  -webkit-box-pack: justify;
+  justify-content: space-between;
+  -webkit-box-align: baseline;
+  align-items: baseline;
+  padding: 1em;
+  background: rgba(234, 81, 109, 0.87);
+  color: #fff;
+  border-radius: 2px;
+  border: 1px solid #ea516d;
+}
+
+.box-reserva--active__body .messageError p {
   margin: 0;
 }
 

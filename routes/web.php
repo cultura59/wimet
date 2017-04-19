@@ -72,6 +72,7 @@ Route::post('saveamenities', 'EspacioController@saveAmenities');
 Route::post('savecaracteristicas', 'EspacioController@saveCaracteristicas');
 Route::post('saveprice', 'EspacioController@savePrice');
 Route::post('savereglas', 'EspacioController@saveRules');
+Route::post('wishlist', 'EspacioController@saveWishlist');
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
