@@ -21,8 +21,8 @@ Route::get('/logout', function() {
 
 Route::get('/home', 'HomeController@index');
 Route::get('/search', 'HomeController@search');
-Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio');
-Route::get('/espacio/{id}/reserva', 'HomeController@reserva')->name('reserva')->middleware('auth');;
+Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio')->middleware('auth');
+Route::get('/espacio/{id}/reserva', 'HomeController@reserva')->name('reserva');
 Route::get('/publicar/{id}/espacio/{espacioId}', 'HomeController@publicar')
 			->name('publica-steps')->middleware('auth');
 Route::get('/publicar/primer-paso', 'PublicaController@index')->middleware('auth');
