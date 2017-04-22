@@ -23,12 +23,16 @@
 				<p class="sub-title-info">
 					Tu espacio será publicado en Wimet.co una vez aprobado por nuestro equipo. Este proceso puede demorar hasta 48 hs.
 				</p>
-				<a href="{{url('/dashboard/user/'.Auth::user()->id.'/misespacios')}}">
-					<button class="wt-btn-aqua">ENVIAR PARA APROBACIÓN</button>
-				</a>
+				@if($enviarValidacion)
+					<a href="{{url('/dashboard/user/'.Auth::user()->id.'/misespacios')}}">
+						<button class="wt-btn-aqua">ENVIAR PARA APROBACIÓN</button>
+					</a>
+				@else
+					<p class="sub-title-info">Para que el espacio sea revisado debe completar Superficie, Accesos, Asistentes de pie, Asistentes sentados, reglas y precio.</p>
+				@endif
 			@endif
 			
-			<div class="box-step wt-m-top-3">
+			<div class="box-step">
 				@if($step >= 1)<i class="fa fa-check fa-4x pull-right" aria-hidden="true"></i>@endif
 				<h2 class="Sub-title">Paso 1: Lo escencial</h2>
 				<p class="sub-title-info">Tipo de espacio, dirección, etc.</p>
