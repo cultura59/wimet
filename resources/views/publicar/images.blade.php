@@ -21,13 +21,12 @@
 @section('content')
 	
 <section class="section-publica">
-	<div class="container-left">
-		<div class="wt-progress">
-			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
-			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-			</div>
+	<div class="wt-progress">
+		<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+		aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
 		</div>
-
+	</div>
+	<div class="container-left">
 		{!! Form::open(array('url' => 'saveimages', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'novalidate' => 'novalidate')) !!}
 		<div class="container-center">
 			<h2>Ingrese sus imagenes</h2>

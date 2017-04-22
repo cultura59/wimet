@@ -24,12 +24,12 @@
 @section('content')
 	
 <section class="section-publica">
-	<div class="container-left">
-		<div class="wt-progress">
-			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
-			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
-			</div>
+	<div class="wt-progress">
+		<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+		aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 66%">
 		</div>
+	</div>
+	<div class="container-left">
 
 		<div class="container-center">
 			@include('errors/error-notification')
@@ -69,7 +69,7 @@
 
 		<div class="buttons" id="second-buttons">
 			<a href="{{ url()->previous() }}" class="btn">ATRÁS</a>
-			<a class="btn wt-btn-primary" href="{{route('publica-steps', array('espacioId' => $espacio->id, 'step' => 4))}}">CONTINUAR</a>
+			<a class="btn wt-btn-primary" href="{{route('publica-cancelacion', array('id' => $espacio->id))}}">CONTINUAR</a>
 		</div>
 	</div>
 	<div class="container-right">

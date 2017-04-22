@@ -189,4 +189,18 @@ class PublicaController extends Controller
             )
         );
     }
+
+    /**
+    * @fn tercerPasoCancelaciones()
+    * @brief Funcion que retorna la vista donde se agregan las politicas de cancelacion del espacio
+    * @return render image reglas
+    */
+    public function tercerPasoCancelaciones($id) {
+        $espacio = Espacio::with('rules')->find($id);
+        return view('publicar.cancelacion', 
+            array(
+                'espacio' => $espacio
+            )
+        );
+    }
 }

@@ -5,15 +5,15 @@
 @section('content')
 	
 <section class="section-publica">
+	<div class="wt-progress">
+		<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+		aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
+		</div>
+	</div>
 	<div class="container-left">
 		{!! Form::open(array('url' => 'saveespacio', 'method' => 'POST')) !!}
 		<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 		<input type="hidden" name="id" value="{{$espacio->id}}">
-		<div class="wt-progress">
-			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
-			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 80%">
-			</div>
-		</div>
 
 		<div class="container-center">
 			<div>

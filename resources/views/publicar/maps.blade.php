@@ -96,16 +96,16 @@
 @section('content')
 	
 <section class="section-publica">
+	<div class="wt-progress">
+		<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+		aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+		</div>
+	</div>
 	<div class="container-left">
 		{!! Form::open(array('url' => 'saveadress', 'method' => 'POST')) !!}
 		<input type="hidden" name="id" value="{{$espacio->id}}">
 		<input type="hidden" id="lat" name="lat" value="{{$espacio->lat}}">
 		<input type="hidden" id="long" name="long" value="{{$espacio->long}}">
-		<div class="wt-progress">
-			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
-			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-			</div>
-		</div>
 
 		<div class="container-center">
 			<div class="detalles-espacios">
@@ -146,7 +146,7 @@
 						</div>
 					</div>
 				</div>
-				<div id="map-canvas" style="height: 400px; width: 100%" class="wt-m-top-2"></div>
+				<div id="map-canvas" style="height: 350px; width: 100%; background: #dadada" class="wt-m-top-2"></div>
 			</div>
 		</div>
 
