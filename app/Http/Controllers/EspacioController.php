@@ -57,6 +57,7 @@ class EspacioController extends Controller
         $espacio->country = $request->country;
         $espacio->long = $request->long;
         $espacio->lat = $request->lat;
+        $espacio->status = false;
         $espacio->save();
         return $espacio;
     }

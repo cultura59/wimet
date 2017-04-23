@@ -6,6 +6,8 @@ use App\User;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Input;
 
 class RegisterController extends Controller
 {
@@ -63,6 +65,7 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $this->registerHubspot($data);
         return User::create([
             'firstname' => $data['firstname'],
             'lastname' => $data['lastname'],
@@ -71,7 +74,58 @@ class RegisterController extends Controller
             'businessName' => $data['businessName'],
             'industry' => $data['industry'],
             'personaldescription' => $data['personaldescription'],
+            'imagesource' => "/avatars/default.png",
             'password' => bcrypt($data['password']),
         ]);
+    }
+
+    /**
+     * Create a new user instance after a valid registration. into huspot
+     *
+     * @param  array  $data
+     * @return User
+     */
+    protected function registerHubspot($data) {
+        $arr = array(
+            'properties' => array(
+                array(
+                    'property' => 'email',
+                    'value' => $data['email']
+                ),
+                array(
+                    'property' => 'firstname',
+                    'value' => $data['firstname']
+                ),
+                array(
+                    'property' => 'lastname',
+                    'value' => $data['lastname']
+                ),
+                array(
+                    'property' => 'phone',
+                    'value' => $data['phone']
+                ),
+                array(
+                    'property' => 'company',
+                    'value' => $data['businessName']
+                )
+            )
+        );
+        $post_json = json_encode($arr);
+        $keyHuspot = "153f6544-3085-41e5-98d0-80a3d435d496";
+        
+        $endpoint = 'https://api.hubapi.com/contacts/v1/contact?hapikey=' . $keyHuspot;
+        $ch = @curl_init();
+        @curl_setopt($ch, CURLOPT_POST, true);
+        @curl_setopt($ch, CURLOPT_POSTFIELDS, $post_json);
+        @curl_setopt($ch, CURLOPT_URL, $endpoint);
+        @curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        @curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = @curl_exec($ch);
+        $status_code = @curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curl_errors = curl_error($ch);
+        @curl_close($ch);
+        echo "curl Errors: " . $curl_errors;
+        echo "\nStatus code: " . $status_code;
+        echo "\nResponse: " . $response;
     }
 }

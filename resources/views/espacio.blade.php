@@ -47,6 +47,7 @@
 		<aside-reserva 
 			espacio-id="{{$espacio->id}}"
 			client-id="{{Auth::user()->id}}"
+			avatar-url="{{$espacio->user->imagesource}}"
 			price="{{$price->price}}"
 			minhours="{{$price->minhours}}"
 			category-id="{{$categoryId}}">
@@ -80,7 +81,7 @@
 					<span>Anfitrión</span>
 				</div>
 				<div class="box-descripcion__contenido">
-					<p>{{$espacio->description}}</p>
+					<p>{{$espacio->user->personaldescription}}</p>
 				</div>
 			</div>
 			<div class="box-descripcion">

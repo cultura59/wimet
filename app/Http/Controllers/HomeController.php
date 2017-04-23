@@ -56,6 +56,7 @@ class HomeController extends Controller
                                     $query->where('price', '>=', \Request::input('price'));
                                 })
                                 ->with('images')
+                                ->where('status', true)
                                 ->paginate(10);
         }else {
             $espacios = Espacio::select('id', 'name', 'quanty')
@@ -64,6 +65,7 @@ class HomeController extends Controller
                                     $query->where('id', \Request::input('categoria'));
                                 })
                                 ->with('images')
+                                ->where('status', true)
                                 ->paginate(10);
         }
         $categorias = Categoria::orderBy('id')->pluck('name', 'id');
@@ -78,6 +80,7 @@ class HomeController extends Controller
     {
         $espacio = Espacio::where('id', $id)
                     ->with(
+                        'user', 
                         'prices', 
                         'categorias', 
                         'servicios',
@@ -87,7 +90,6 @@ class HomeController extends Controller
                         'access'
                     )
                     ->first();
-
         $categorias = categoria::orderBy('id')->pluck('name', 'id');
 
         $price = DB::table('prices')

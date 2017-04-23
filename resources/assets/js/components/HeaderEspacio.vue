@@ -5,7 +5,7 @@
         </header>
 
         <div id="myModal" class="modal">
-            <span class="close cursor" v-on:click="closeModal()">&times;</span>
+            <span class="close-header cursor" v-on:click="closeModal()">&times;</span>
             <div class="modal-content">
                 <div class="mySlides" v-for="img in images">
                     <img v-bind:src="'/' + img.name" style="width:100%; height: 420px">
@@ -84,7 +84,7 @@
       width: 100%;
       height: 100%;
       overflow: auto;
-      background-color: black;
+      background-color: rgba(0, 0, 0, 0.87);
     }
     .modal-content {
       position: relative;
@@ -94,15 +94,15 @@
       width: 90%;
       max-width: 1200px;
     }
-    .close {
-      color: white;
+    .close-header {
+      color: #fff;
       position: absolute;
       top: 10px;
       right: 25px;
       font-size: 35px;
       font-weight: bold;
     }
-    .close:hover, .close:focus {
+    .close-header:hover, .close-header:focus {
       color: #999;
       text-decoration: none;
       cursor: pointer;
@@ -130,7 +130,7 @@
       border-radius: 3px 0 0 3px;
     }
     .prev:hover, .next:hover {
-      background-color: rgba(0, 0, 0, 0.8);
+      text-decoration: none;
     }
     .caption-container {
       text-align: center;
