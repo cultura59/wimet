@@ -27,18 +27,26 @@
         <header class="header-principal">
             <!-- navbar -->
             <nav class="header-navbar container-fluid">
-                <a href="/"><img src="{{url('img/wimet_logo_white.svg')}}" alt="Wimet" width="200" /></a>
+                <a href="/"><img src="{{url('img/wimet_logo_white.svg')}}" alt="Wimet" width="158"/></a>
                 <div class="actions">
                     <ul>
-                        <li><a href="{{ url('/publicar/primer-paso')}}" class="wt-btn-transparent">PUBLICA TU ESPACIO</a></li>
+                        <li>
+                            <a href="{{ url('/publicar/primer-paso')}}" class="wt-btn-transparent btn-hov">
+                                PUBLICA TU ESPACIO
+                                <svg class="white">
+                                    <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+                                </svg>
+                            </a>
+                        </li>
                         @if(!Auth::check())
-                            <li><a href="{{url('/login')}}" id="btn-login" style="color: #fff">Ingresar</a></li>
+                           
+                        <li>
+                            <a href="{{url('/login')}}" id="btn-login" class="link-hov">Ingresar</a>
+                        </li>
                         @else
-                            <li>
-                                <a href="{{url('/dashboard/user/'.Auth::user()->id)}}">
-                                    {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
-                                </a>
-                            </li>
+                        <li>
+                            {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
+                        </li>
                         @endif
                     </ul>
                 </div>
@@ -76,42 +84,43 @@
             <!-- Categories -->
             <section class="categories">
                 <div class="container">
-                    <h2 class="text-center">Vivi tu experiencia</h2>
-                    <p class="text-center">Wimet te permite alquilar espacios únicos que inspiran</p>
-
+                    <div class="content-wt">
+                        <h2 class="text-center">¿Qué tipo de actividad vas a organizar?</h2>
+                        <p class="text-center">Wimet te permite alquilar espacios únicos que inspiran reuniones, eventos, producciones y pop-ups.</p>
+                    </div>
                     <!-- container images primary-->
-                    <div class="row wt-m-top-3">
+                    <div class="row">
                         <div class="col-xs-12 col-sm-8">
                             <div class="row">
-                                <div class="col-xs-12 wt-m-bot-3">
+                                <div class="col-xs-12 wt-m-bot-3 img-hov">
                                     <img src="{{url('img/5_col.svg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-6 img-hov">
                                     <img src="{{url('img/2_col.svg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-6 img-hov">
                                     <img src="{{url('img/1_col.svg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-4">
+                        <div class="col-xs-12 col-sm-4 img-hov">
                             <img src="{{url('img/7_col.svg')}}" alt="" class="img-responsive img-home-principal">
                         </div>
                     </div>
                     <!-- container images second-->
                     <div class="row wt-m-top-3">
-                        <div class="col-xs-12 col-sm-4">
+                        <div class="col-xs-12 col-sm-4 img-hov">
                             <img src="{{url('img/8_col.svg')}}" alt="" class="img-responsive img-home-principal">
                         </div>
                         <div class="col-xs-12 col-sm-8">
                             <div class="row">
-                                <div class="col-xs-12 wt-m-bot-3">
+                                <div class="col-xs-12 wt-m-bot-3 img-hov">
                                     <img src="{{url('img/6_col.svg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-6 img-hov">
                                     <img src="{{url('img/3_col.svg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-6 img-hov">
                                     <img src="{{url('img/4_col.svg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                             </div>
@@ -124,24 +133,30 @@
             <!-- Comunity -->
             <section class="how-work wt-m-top-5 wt-m-bot-5">
                 <div class="container">
-                    <h2 class="text-center">Conoce nuestra comunidad</h2>
-                    <h3 class="text-center">Wimet te permite alquilar espacios únicos que inspiran</h3>
+                    <h2 class="text-center dark-grey">Conoce nuestra comunidad</h2>
+                    <h3 class="text-center dark-grey">Wimet te permite alquilar espacios únicos que inspiran</h3>
 
                     <div class="row">
-                        <div class="col-sm-4">
-                            <img class="center-block" src="img/wimet_organizador_1.svg" alt="benefits of product" width="126" height="126">
-                            <p class="wt-m-top-3">Descubre en tu ciudad lugares inspiradores, creativos y previamente curados por nuestros scouts.</p>
-                            <p class="text-center">Busca un espacio único</p>
+                        <div class="col-sm-4 padder-comments">
+                            <img class="center-block brd-round" src="http://lorempixel.com/400/400/people" alt="benefits of product" width="126" height="126">
+                            <p class="wt-m-top-3">
+                                Es una solución para cualquier productora que se encuentra con el desafio de localizar el lugar perfecto para una filmación. 
+                            </p>
+                            <p>Juan Perez - Cuatro Cabezas</p>
                         </div>
-                        <div class="col-sm-4">
-                            <img class="center-block" src="img/wimet_organizador_2.svg" alt="benefits of product" width="126" height="126">
-                            <p class="wt-m-top-3">Conversa con el anfitrión y termina de cerrar los detalles en forma segura a través de nuestro sistema.</p>
-                            <p class="text-center">Ponte en contacto</p>
+                        <div class="col-sm-4 padder-comments">
+                            <img class="center-block brd-round" src="http://lorempixel.com/400/400/people" alt="benefits of product" width="126" height="126">
+                            <p class="wt-m-top-3">
+                                Es una solución para cualquier productora que se encuentra con el desafio de localizar el lugar perfecto para una filmación. 
+                            </p>
+                            <p>Juan Perez - Cuatro Cabezas</p>
                         </div>
-                        <div class="col-sm-4">
-                            <img class="center-block" src="img/wimet_organizador_3.svg" alt="benefits of product" width="126" height="126">
-                            <p class="wt-m-top-3">Finaliza tu reserva en nuestro sistema y aprovechar al máximo este espacio creativo. Tendrás un evento memorable!</p>
-                            <p class="text-center">Confirma tu reserva</p>
+                        <div class="col-sm-4 padder-comments">
+                            <img class="center-block brd-round" src="http://lorempixel.com/400/400/people" alt="benefits of product" width="126" height="126">
+                            <p class="wt-m-top-3">
+                                Es una solución para cualquier productora que se encuentra con el desafio de localizar el lugar perfecto para una filmación. 
+                            </p>
+                            <p>Juan Perez - Cuatro Cabezas</p>
                         </div>
                     </div>
                 </div>
@@ -150,29 +165,15 @@
             <!-- Sponsors -->
             <section class="container wt-m-bot-4">
                 <div class="row">
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-1.png" alt="codamotion"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-3.png" alt="shock your cocktail"></div>
                     <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-2.png" alt="startup buenos aires"></div>
                     <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-3.png" alt="shock your cocktail"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-4.png" alt="IAE Business school"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-4.png" alt="IAE Business school"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-4.png" alt="IAE Business school"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-2.png" alt="startup buenos aires"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-3.png" alt="shock your cocktail"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-2.png" alt="startup buenos aires"></div>
                 </div>
             </section>
 
-            <!-- Newsletter -->
-            <section class="newsletter">
-                <div class="container">
-                    <div class="newsletter-content">
-                        <div class="newsletter-content__title">
-                            <h2>¿Querés recibir novedades y descuentos especiales?</h2>
-                            <p>Suscribite a Wimet News</p>
-                        </div>
-                        <div class="newsletter-content__email">
-                            <input type="text" class="form-control" placeholder="Ingresá tu email...">
-                        </div>
-                    </div>
-                </div>
-            </section>
         </main>
 
         <!-- footer -->
@@ -180,7 +181,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-3">
-                        <h4>EMPRESA</h4>
+                        <p>EMPRESA</p>
                         <ul>
                             <li><a href="#">Sobre nosotros</a></li>
                             <li><a href="#">Equipo</a></li>
@@ -189,7 +190,7 @@
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-2">
-                        <h4>COMUNIDAD</h4>
+                        <p>COMUNIDAD</p>
                         <ul>
                             <li><a href="#">Cómo funciona</a></li>
                             <li><a href="#">Blog</a></li>
@@ -197,8 +198,8 @@
                             <li><a href="#">Ayuda</a></li>
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-3 border-redes">
-                        <h4>ACTIVIDADES</h4>
+                    <div class="col-xs-12 col-sm-2 border-redes">
+                        <p>ACTIVIDADES</p>
                         <ul>
                             <li><a href="#">Reuniones</a></li>
                             <li><a href="#">Eventos</a></li>
@@ -206,8 +207,8 @@
                             <li><a href="#">Pop-Ups</a></li>
                         </ul>
                     </div>
-                    <div class="col-xs-12 col-sm-4">
-                        <h4>SEGUINOS</h4>
+                    <div class="col-xs-12 col-sm-5">
+                        <p>SEGUINOS</p>
                         <div class="wt-m-top-3 follow">
                             <img src="{{url('img/wimet_icon_instagram.svg')}}" alt="Wimet" class="img-responsive">
                             <img src="{{url('img/wimet_icon_facebook.svg')}}" alt="Wimet" class="img-responsive">

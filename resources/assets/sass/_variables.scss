@@ -2,6 +2,13 @@
 // Body
 $body-bg: #fff;
 
+// Borders
+$laravel-border-color: darken($body-bg, 10%);
+$list-group-border: $laravel-border-color;
+$navbar-default-border: $laravel-border-color;
+$panel-default-border: $laravel-border-color;
+$panel-inner-border: $laravel-border-color;
+
 // Brands
 $brand-primary: #3097D1;
 $brand-info: #8eb4cb;
@@ -12,14 +19,13 @@ $brand-danger:  #F34C60;
 // Colores Wimet
 $wt-white: rgba(255, 255, 255, 1);
 $wt-grey: rgba(218, 218, 218, 1);
-$wt-aqua: rgba(0, 192, 239, 1);
-$wt-green: rgba(0, 166, 90, 1);
-$wt-yellow: rgba(243, 156, 18, 1);
+$wt-dark-grey:rgb(94, 94, 94);
 $wt-dark: rgba(0, 0, 0, 1);
 $wt-dark-blue: rgba(37, 64, 80, 1);
 $wt-background-principal: rgba(232, 83, 111, 1);
 $wt-background-secondary: rgba(240, 240, 240, 1);
 $wt-background-claro: rgba(239, 239, 239, 0.5);
+$wt-background-grey: rgba(218, 218, 218, 0.5);
 $wt-text-principal: rgba(176, 172, 170, 1);
 $wt-text-secondary: rgba(60, 60, 60, 1);
 $wt-text-acent: rgba(234, 150, 165, 1);
@@ -50,6 +56,7 @@ $panel-default-heading-bg: #fff;
 $mobile-width: 600px;
 $tablet-width: 768px;
 $desktop-width: 1024px;
+$netbook-width: 1104px;
 
 .wt-progress {
     overflow: hidden;
