@@ -7,6 +7,7 @@ use Illuminate\Http\RedirectResponse;
 use App\Espacio;
 use App\Image;
 use App\Price;
+use App\User;
 
 class EspacioController extends Controller
 {
@@ -343,5 +344,42 @@ class EspacioController extends Controller
         $price->save();
         $request->session()->flash('alert-success', 'El precio fue guardado :)');
         return \Redirect::back();
+    }
+
+    /**
+    * @fn saveCancelacion()
+    * @brief Funcion que asocia cantidad invitados a un espacio
+    * @param Object $request
+    * @return redirect to public-maps
+    */
+    public function saveCancelacion(Request $request) {
+        $espacio = Espacio::find($request->id);
+        if($request->securitydeposit) {
+            $espacio->securitydeposit = $request->securitydeposit;
+        }
+        if($request->cancellationflexibility) {
+            $espacio->cancellationflexibility = $request->cancellationflexibility;
+        }
+        $espacio->save();
+        return \Redirect::route('publica-steps', array(
+                "espacioId" => $espacio->id,
+                "step" => 4
+            )
+        );
+    }
+
+    /**
+    * @fn saveWishlist()
+    * @brief Funcion que asocia un espacio a un usuaio
+    * @param Object $request
+    * @return true o false
+    */
+    public function saveWishlist(Request $request) {
+        $user = User::find($request->clientId);
+        if($user->id == null){
+            return false;
+        }
+        $user->wishlist()->sync($request->espacio_id);
+        return true;
     }
 }

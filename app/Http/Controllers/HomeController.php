@@ -113,16 +113,21 @@ class HomeController extends Controller
 
     public function publicar($id, $espacioId)
     {
+        $espacio = Espacio::with('access')
+                    ->with('rules')
+                    ->with('prices')
+                    ->find($espacioId);
+
         return view('publicar', array(
                 "espacioId" => $espacioId,
-                "step" => $id
+                "step" => $id,
+                "enviarValidacion" => $this->checkEnvioRevicion($espacio)
             )
         );
     }
 
     public function send_reserva(Request $request) {
         $cliente = User::find($request->clientId);
-        //dd($cliente->firstname);
         $espacio = Espacio::find($request->espacioId);
         $data = [
             "usuario" => $cliente,
@@ -136,5 +141,32 @@ class HomeController extends Controller
 
             $message->from("adrian@wimet.co", "Consultas Wimet");
         });
+    }
+
+    public function checkEnvioRevicion($espacio) {
+        if($espacio->surface < 1) {
+            return false;
+        }
+
+        if($espacio->foot < 1) {
+            return false;
+        }
+
+        if($espacio->seated < 1) {
+            return false;
+        }
+
+        if($espacio->access()->count() < 1) {
+            return false;
+        }
+
+        if($espacio->rules()->count() < 1) {
+            return false;
+        }
+        
+        if($espacio->prices()->count() < 1) {
+            return false;
+        }
+        return true;
     }
 }

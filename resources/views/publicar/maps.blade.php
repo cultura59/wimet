@@ -52,6 +52,7 @@
 						radius: position.coords.accuracy
 					});
 					autocomplete.setBounds(circle.getBounds());
+					console.log("hola mundo1");
 				});
 			}
 		}
@@ -65,6 +66,24 @@
 				var lng = res.results[0].geometry.location.lng;
 				document.getElementById("lat").value = lat;
 				document.getElementById("long").value = lng;
+				
+				var mapOptions = {
+					center: new google.maps.LatLng(lat, lng),
+					zoom: 14,
+					disableDefaultUI: true,
+					scrollwheel: false,
+				    navigationControl: false,
+				    mapTypeControl: true,
+				    scaleControl: false,
+				    draggable: false,
+				    mapTypeId: google.maps.MapTypeId.ROADMAP
+				};
+				var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
+				var marker = new google.maps.Marker({
+					position: new google.maps.LatLng(lat, lng),
+					icon: 'http://www.wimet.co/img/favicon.ico',
+					map: map
+				});
 			};
 			xhr.open('GET', URL);
 			xhr.send();
@@ -77,16 +96,16 @@
 @section('content')
 	
 <section class="section-publica">
+	<div class="wt-progress">
+		<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+		aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
+		</div>
+	</div>
 	<div class="container-left">
 		{!! Form::open(array('url' => 'saveadress', 'method' => 'POST')) !!}
 		<input type="hidden" name="id" value="{{$espacio->id}}">
 		<input type="hidden" id="lat" name="lat" value="{{$espacio->lat}}">
 		<input type="hidden" id="long" name="long" value="{{$espacio->long}}">
-		<div class="wt-progress">
-			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
-			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 100%">
-			</div>
-		</div>
 
 		<div class="container-center">
 			<div class="detalles-espacios">
@@ -101,30 +120,33 @@
 							onFocus="geolocate()" />
 					</div>
 				</div>
-				<div class="row wt-m-top-2">
-					<div class="col-md-6">
-						<input type="text" id="street_number" name="street_number" class="wt-publica-input" placeholder="Ingrese número" value="{{isset($street_number)?$street_number: ''}}">
+				<div style="display: none;">
+					<div class="row wt-m-top-2">
+						<div class="col-md-6">
+							<input type="text" id="street_number" name="street_number" class="wt-publica-input" placeholder="Ingrese número" value="{{isset($street_number)?$street_number: ''}}">
+						</div>
+						<div class="col-md-6">
+							<input type="text" id="route" name="route" class="wt-publica-input" placeholder="Ingrese calle" value="{{isset($route)?$route: ''}}">
+						</div>
 					</div>
-					<div class="col-md-6">
-						<input type="text" id="route" name="route" class="wt-publica-input" placeholder="Ingrese calle" value="{{isset($route)?$route: ''}}">
+					<div class="row wt-m-top-2">
+						<div class="col-md-6">
+							<input type="text" id="locality" name="locality" class="wt-publica-input" placeholder="Ingrese localidad" value="{{$espacio->state}}">
+						</div>
+						<div class="col-md-6">
+							<input type="text" id="administrative_area_level_1" name="administrative_area_level_1" class="wt-publica-input" placeholder="Ingrese provincia/estado" value="{{$espacio->city}}">
+						</div>
+					</div>
+					<div class="row wt-m-top-2">
+						<div class="col-md-6">
+							<input type="text" id="country" name="country" class="wt-publica-input" placeholder="Ingrese país" value="{{$espacio->country}}">
+						</div>
+						<div class="col-md-6">
+							<input type="text" id="postal_code" name="postal_code" class="wt-publica-input" placeholder="Ingrese código postal">
+						</div>
 					</div>
 				</div>
-				<div class="row wt-m-top-2">
-					<div class="col-md-6">
-						<input type="text" id="locality" name="locality" class="wt-publica-input" placeholder="Ingrese localidad" value="{{$espacio->state}}">
-					</div>
-					<div class="col-md-6">
-						<input type="text" id="administrative_area_level_1" name="administrative_area_level_1" class="wt-publica-input" placeholder="Ingrese provincia/estado" value="{{$espacio->city}}">
-					</div>
-				</div>
-				<div class="row wt-m-top-2">
-					<div class="col-md-6">
-						<input type="text" id="country" name="country" class="wt-publica-input" placeholder="Ingrese país" value="{{$espacio->country}}">
-					</div>
-					<div class="col-md-6">
-						<input type="text" id="postal_code" name="postal_code" class="wt-publica-input" placeholder="Ingrese código postal">
-					</div>
-				</div>
+				<div id="map-canvas" style="height: 350px; width: 100%; background: #dadada" class="wt-m-top-2"></div>
 			</div>
 		</div>
 

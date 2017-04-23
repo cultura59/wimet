@@ -5,14 +5,13 @@
 @section('content')
 	
 <section class="section-publica">
+	<div class="wt-progress">
+		<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+		aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+		</div>
+	</div>
 	<div class="container-left">
 		{!! Form::open(array('url' => 'savereglas', 'method' => 'POST')) !!}
-		<div class="wt-progress">
-			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
-			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
-			</div>
-		</div>
-
 		<div class="container-center">
 			<h2>Establece reglas sobre el espacio</h2>
 			<div class="row wt-m-top-4">

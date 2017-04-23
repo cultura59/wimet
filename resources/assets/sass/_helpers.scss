@@ -413,5 +413,11 @@ svg.white{
 .img-hov:hover   {
     opacity: .8;
     transition: visibility 0s linear 0.4s,opacity 0.4s linear;
+}
+.bg-yellow {
+    background: $wt-yellow;
+    color: $wt-white;
+}
+.cursor-pointer {
     cursor: pointer;
 }

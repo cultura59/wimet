@@ -22,14 +22,14 @@
 @section('content')
 	
 <section class="section-publica">
+	<div class="wt-progress">
+		<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
+		aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
+		</div>
+	</div>
 	<div class="container-left">
 		{!! Form::open(array('url' => 'saveaccess', 'method' => 'POST')) !!}
 		<input type="hidden" name="id" value="{{$espacio->id}}">
-		<div class="wt-progress">
-			<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
-			aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 60%">
-			</div>
-		</div>
 
 		<div class="container-center">
 			<div class="detalles-espacios">
@@ -56,9 +56,9 @@
 						<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
 					</div>
 				</div>
-				<div class="box-publica">
+				<div class="box-publica" style="display: none;">
 					<div class="box-publica__container">
-						<input class="box-publica__container__input" type="text" id="floor" name="floor" value="{{$espacio->floor}}">
+						<input class="box-publica__container__input" type="text" id="floor" name="floor" value="0">
 						<span class="box-publica__container__pointer" onclick="incrementInput('floor')">+</span>
 						<span class="box-publica__container__pointer" onclick="decrencrementInput('floor')">-</span>
 						<span class="box-publica__container__name">Piso</span>

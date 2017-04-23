@@ -21,7 +21,7 @@ Route::get('/logout', function() {
 
 Route::get('/home', 'HomeController@index');
 Route::get('/search', 'HomeController@search');
-Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio');
+Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio')->middleware('auth');
 Route::get('/espacio/{id}/reserva', 'HomeController@reserva')->name('reserva');
 Route::get('/publicar/{id}/espacio/{espacioId}', 'HomeController@publicar')
 			->name('publica-steps')->middleware('auth');
@@ -59,6 +59,9 @@ Route::get('/publicar/tercer-paso/espacio/{id}/reglas',
 Route::get('/publicar/tercer-paso/espacio/{id}/prices', 
 			'PublicaController@tercerPasoPrice')
 			->name('publica-prices')->middleware('auth');
+Route::get('/publicar/tercer-paso/espacio/{id}/cancelacion', 
+			'PublicaController@tercerPasoCancelaciones')
+			->name('publica-cancelacion')->middleware('auth');
 
 // Apis publica fron views
 Route::post('saveEspaciowithoutdata', 'EspacioController@saveEspacioWithoutData');
@@ -72,6 +75,8 @@ Route::post('saveamenities', 'EspacioController@saveAmenities');
 Route::post('savecaracteristicas', 'EspacioController@saveCaracteristicas');
 Route::post('saveprice', 'EspacioController@savePrice');
 Route::post('savereglas', 'EspacioController@saveRules');
+Route::post('wishlist', 'EspacioController@saveWishlist');
+Route::post('savecancelacion', 'EspacioController@saveCancelacion');
 
 Route::get('/redirect', 'SocialAuthController@redirect');
 Route::get('/callback', 'SocialAuthController@callback');
