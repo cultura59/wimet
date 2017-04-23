@@ -10,6 +10,7 @@
 
 #btn-login {
     color: $wt-text-dark;
+    font-size: 13px !important;
     text-decoration: none;
 }
 
@@ -43,34 +44,6 @@
     background: $wt-white;
 }
 
-.wt-dropdown {
-    width: 144px;
-    height: 40px;
-    background-color: #ffffff;
-    border: solid 1px #979797;
-    border-radius: 0;
-    opacity: 0.87;
-    font-family: Roboto;
-    font-size: 12px;
-    letter-spacing: -0.1px;
-    text-align: justify;
-    color: #212121;
-}
-
-.wt-dropdown-min {
-    width: 73px;
-    height: 40px;
-    background-color: #ffffff;
-    border: solid 1px #979797;
-    border-radius: 0;
-    opacity: 0.87;
-    font-family: Roboto;
-    font-size: 12px;
-    letter-spacing: -0.1px;
-    text-align: justify;
-    color: #212121;
-}
-
 //-------------------- Helppers de botones -------------------//
 .wt-btn-principal-search {
     padding: 0.75em 1.5em;
@@ -87,33 +60,18 @@
 }
 
 .wt-btn-transparent {
-    padding: 0.75em 1.5em;
+    padding: 10px 16px;
     border-radius: 2px;
-    border: 0.2em solid $wt-white;
-	a:hover, a:focus {
-		color: #fff;
-		text-decoration: none;
-    	background: rgba(243, 76, 96, 0.7);
-	}
-}
-
-.wt-btn-aqua {
-    width: 100%;
-    min-width: 103px;
-    min-height: 40px;
-    padding: 1em;
-    border-radius: 2px;
-    background-color: #00c6e0;
-    border: 1px solid #00c6e0;
-    color: $wt-white !important;
-    &:hover, &:focus {
-        color: $wt-white !important;
-        text-decoration: none !important;
+    a:hover, a:focus {
+        color: #fff;
+        text-decoration: none;
+        background: rgba(243, 76, 96, 0.7);
     }
 }
 
 .wt-center-block {
-	display: flex;
+    display: flex;
+    height: 50px;
     justify-content: center;
 }
 
@@ -123,13 +81,13 @@
 }
 
 .wt-center-center {
-    display: flex;
+    display: flex; 
     justify-content: center;
     align-items: center;
 }
 
 .wt-space-block {
-    display: flex;
+    display: flex;    
     justify-content: space-between;
 }
 
@@ -139,18 +97,27 @@
 }
 
 .wt-custom-select {
+    width: 25%;
+    /*width: 250px;*/
     padding: 16px;
-    color: rgba(99, 107, 111, 0.5);
-    font-weight: 500;
+    color: #7A7A7A;
     border: 1px solid $wt-grey;
-    width: 18em;
     font-size: 0.825rem;
     background: $wt-white;
+
+    &:first-child  {
+        border-top-left-radius: 2px;
+        border-bottom-left-radius: 2px;
+    }
+    &:nth-child(3), &:nth-child(4)  {
+        /*width: 120px;*/
+    }
+   
 }
 
 .wt-custom-input {
     padding: 10px;
-    color: $wt-text-dark;
+    color: rgba(32, 32, 32, 0.5);
     border: 1px solid $wt-grey;
     width: 20em;
     background: $wt-white;
@@ -198,19 +165,30 @@
 }
 
 .wt-btn-primary {
-    padding: 14px 16px !important;
+    width: 100px;
+    font-size: 12px !important;
     color: $wt-white;
     background-color: $wt-background-principal;
-    border-radius: 2px !important;
+    border-radius: 0 !important;
+    border-top-right-radius: 2px !important;
+    border-bottom-right-radius: 2px !important;
     &:hover, &:focus {
         color: $wt-white !important;
-        background: rgba(232, 83, 111, 0.5);
+        background: #c44258;
     }
 }
 
 .margin-top {
     margin-top: 2em;
     border-top: 1px solid #dadada;
+}
+
+.btn-hov    {
+    font-size: 13px;
+    vertical-align: sub;
+    font-weight: 500;
+    letter-spacing: -0.1px;
+    opacity: 0.87;
 }
 
 //---------------------- Margenes helppers -----------------------//
@@ -262,6 +240,13 @@
 }
 .wt-m-bot-5 {
     margin-bottom: 50px;
+}
+
+//---------------------- Border helppers -----------------------//
+
+.brd-round  {
+    border-radius: 50%;
+    border: 1px solid #979797;
 }
 
 //------------------------------------ Helppers de texto -------------------------------------//
@@ -371,61 +356,63 @@
 .wt-clear {
     float: left;
     clear: both;
+
 }
-.small-box {
-    border-radius: 2px;
-    position: relative;
-    display: block;
-    margin-bottom: 2em;
-    box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-    .inner {
-        padding: 1em;
-    }
-    h3, p {
-        z-index: 5;
-    }
-    h3 {
-        font-size: 38px;
-        font-weight: bold;
-        margin: 0 0 10px 0;
-        white-space: nowrap;
-        padding: 0;
-    }
-    p {
-        font-size: 15px;
-    }
-    .icon {
-        transition: all .3s linear;
-        position: absolute;
-        top: -10px;
-        right: 2rem;
-        z-index: 0;
-        font-size: 90px;
-        color: rgba(0,0,0,0.15);
-    }
-    .small-box-footer {
-        text-align: center;
-        padding: 3px 0;
-        color: $wt-white;
-        color: rgba(255,255,255,0.8);
-        background: rgba(0,0,0,0.1);
-        text-decoration: none;
-        display: flex;
-        justify-content: space-around;
-        align-items: center;
+
+//---Hover Effects---//
+* {
+  box-sizing: inherit;
+  transition-property: all;
+  transition-duration: 1s;
+  transition-timing-function: ease;
+}
+
+.btn-hov:hover {
+  background: transparent;
+  
+  rect {
+    stroke-width: 4;
+    stroke-dasharray: 15, 310;
+    stroke-dashoffset: 48;
+    transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
+  }
+}
+
+svg.dark{
+    position: absolute;
+    width: 158px;
+    height: 38px;
+    top: 1em; 
+ 
+  rect {
+    fill: none;
+    stroke: #636b6f;
+    stroke-width: 4;
+    stroke-dasharray: 422, 0;
+  } 
+}
+
+svg.white{
+    position: absolute;
+    width: 158px;
+    height: 38px;
+    top: 1.9em; 
+  
+    rect {
+        fill: none;
+        stroke: #fff;
+        stroke-width: 4;
+        stroke-dasharray: 422, 0;
     }
 }
-.bg-principal {
-    background: $wt-background-principal;
-    color: $wt-white;
+
+.link-hov {
+    color: $wt-white !important;
 }
-.bg-aqua {
-    background: $wt-aqua;
-    color: $wt-white;
-}
-.bg-green {
-    background: $wt-green;
-    color: $wt-white;
+
+.img-hov:hover   {
+    opacity: .8;
+    transition: visibility 0s linear 0.4s,opacity 0.4s linear;
 }
 .bg-yellow {
     background: $wt-yellow;

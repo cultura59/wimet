@@ -15,3 +15,9 @@
     @content;
   }
 }
+
+@mixin netbook {
+  @media (max-width: #{$netbook-width}) {
+    @content;
+  }
+}

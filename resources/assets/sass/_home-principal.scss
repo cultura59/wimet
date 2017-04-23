@@ -27,15 +27,23 @@ html, body {
 		margin-top: 0.5em;
 		ul {
 			list-style: none;
+
 			li {
 				float: left;
 				padding: 1em;
 				text-decoration: none;
+				
+				@include mobile	{
+					&:first-child {
+			    		display: none;
+			    	}	
+				}				
 				a, a:hover {
 					color: $wt-white;
 					text-decoration: none;
 				}
 			}
+
 		}
     }
   }
@@ -81,15 +89,25 @@ html, body {
   }
 }
 
+
 .categories {
 	padding: 10px;
 	background-color: $wt-white;
-	h2 {
-		font-weight: 700;
-	    font-size: 2.25rem;
-	}
-	p {
-	    font-size: 1.1875rem;
+
+	.content-wt	{
+		height: 150px;
+		h2 {
+			font-weight: 500;
+		    font-size: 2.25rem;
+		    padding-top: 30px;
+		    color: #212121;
+		    opacity: 0.87;
+		}
+		p {
+		    font-size: 1.1875rem;
+		    color: #212121;
+		    opacity: 0.87;
+		}
 	}
 }
 

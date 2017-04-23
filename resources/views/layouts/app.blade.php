@@ -27,17 +27,21 @@
         <header class="header-with">
             <nav class="header-navbar container-fluid">
                 <a href="/">
-                    <img class="img-responsive" src="{{url('img/wimet_logo_dark.svg')}}" alt="Wimet" width="168" />
+                    <img class="img-responsive" src="{{url('img/wimet_logo_dark.svg')}}" alt="Wimet" width="158" />
                 </a>
                 <div class="actions">
                     <ul>
                         <li>
-                            <a href="{{ url('/publicar/primer-paso') }}" class="wt-btn-principal-search">PUBLICA TU ESPACIO</a>
+                            <a href="{{ url('/publicar/primer-paso') }}" class="wt-btn-transparent btn-hov">PUBLICA TU ESPACIO
+                                <svg class="dark">
+                                    <rect x="0" y="0" fill="none" width="100%" height="100%"/>
+                                </svg>
+                            </a>
                         </li>
                         @if(!Auth::check())
                             <li><a href="{{url('/login')}}" id="btn-login" class="text-bold">Ingresar</a></li>
                         @else
-                            <li>
+                            <li style="padding-top: 0 !important;">
                                 <a href="{{url('/dashboard/user/'.Auth::user()->id)}}">
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                                 </a>

@@ -35,40 +35,36 @@
     <div class="search">
 		<div class="container-fuild">
 			<div class="search-form">
-				{!! Form::open(['url' => 'search', 'method' => 'GET', 'class' => 'wt-center-block-left']) !!}
-                    
-					{!! Form::select('ubicacion', 
-						['Buenos aires' => 'Buenos aires'], 
-						Request::input('ubicacion'), 
-						['class' => 'wt-custom-select', 'placeholder' => 'Ubicación']
-					) !!}
+					{!! Form::open(['url' => 'search', 'method' => 'GET', 'class' => 'wt-center-block-left']) !!}
+	                    
+						{!! Form::select('ubicacion', 
+							['Buenos aires' => 'Buenos aires'], 
+							Request::input('ubicacion'), 
+							['class' => 'wt-custom-select', 'placeholder' => 'Ubicación']
+						) !!}
 
-					{!! Form::select('categoria', 
-						$categorias, 
-						Request::input('categoria'), 
-						['class' => 'wt-custom-select', 'placeholder' => 'Qué estás planificando?']
-					) !!}
+						{!! Form::select('categoria', 
+							$categorias, 
+							Request::input('categoria'), 
+							['class' => 'wt-custom-select', 'placeholder' => 'Qué estás planificando?']
+						) !!}
 
-					{!! Form::selectRange('quanty', 
-						10,
-						400, 
-						Request::input('quanty'), 
-						['class' => 'wt-custom-select', 'placeholder' => 'Invitados', 'required' => 'required']
-					) !!}
+						{!! Form::selectRange('quanty', 
+							10,
+							400, 
+							Request::input('quanty'), 
+							['class' => 'wt-custom-select', 'placeholder' => 'Invitados', 'required' => 'required']
+						) !!}
 
-					{!! Form::selectRange('price', 
-						100,
-						1000, 
-						Request::input('price'), 
-						['class' => 'wt-custom-select', 'placeholder' => 'Precio / hr', 'required' => 'required']
-					) !!}
-					{!! Form::input('search',
-						null,
-						null,
-						['class' => 'wt-custom-input', 'placeholder' => 'Seleccione actividad', 'style' => 'width: 38%']
-					)!!}
-					{!! Form::submit('BUSCAR', ['class' => 'btn wt-btn-primary']) !!}
-				{!! Form::close() !!}
+						{!! Form::selectRange('price', 
+							100,
+							1000, 
+							Request::input('price'), 
+							['class' => 'wt-custom-select', 'placeholder' => 'Precio / hr', 'required' => 'required']
+						) !!}
+			
+						{!! Form::submit('BUSCAR', ['class' => 'btn wt-btn-primary']) !!}
+					{!! Form::close() !!}
 			</div>
 
 			<section class="section-main">
@@ -78,16 +74,30 @@
 					<div class="search-data">
 						<div class="row">
 							@foreach($espacios as $espacio)
-							<div class="col-sm-6">
+							<div class="col-xs-12 col-sm-6">
 								<a href="{{ route('homespacio', ['categoriaId' => Request::input('categoria'), 'id' => $espacio->id]) }}">
 									<img src="{{url($espacio->images[0]->name)}}" tile="{{$espacio->name}}" class="img-responsive">
 									<div class="search-espacio">
 										$ {{$espacio->priceByCategory[0]->price}} ARS
 									</div>
-									<p>{{$espacio->name}}</p>
-									<span>
-										<img class="icon-people" src="{{url('img/wimet_ic_group_black_24px.svg')}}" alt=""> {{$espacio->quanty}}
-									</span>
+									<div class="card-footer-search">
+										<div class="">
+											<p>{{$espacio->name}}</p>
+											<span>
+												<img class="icon-people" src="{{url('img/wimet_ic_group_black_24px.svg')}}" alt=""> {{$espacio->quanty}}
+											</span>
+										</div>
+										<div>
+											<span class="card-avatar-search"></span>
+											<div class="star-row">
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+												<i class="fa fa-star" aria-hidden="true"></i>
+											</div>										
+										</div>
+									</div>
 								</a>
 							</div>
 							@endforeach
