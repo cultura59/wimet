@@ -45,7 +45,7 @@ class HomeController extends Controller
     public function search(Request $request) {   
         if($request->has('price') && $request->has('quanty'))
         {
-            $espacios = Espacio::select('id', 'name', 'quanty')
+            $espacios = Espacio::select('id')
                                 ->where('quanty', '>=', \Request::input('quanty'))
                                 ->whereHas('categorias', 
                                     function($query) {
@@ -59,7 +59,7 @@ class HomeController extends Controller
                                 ->where('status', true)
                                 ->paginate(10);
         }else {
-            $espacios = Espacio::select('id', 'name', 'quanty')
+            $espacios = Espacio::select('id')
                                 ->whereHas('categorias', 
                                     function($query) {
                                     $query->where('id', \Request::input('categoria'));

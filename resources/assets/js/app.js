@@ -10,6 +10,7 @@ require('./bootstrap');
 Vue.component('header-espacio', require('./components/HeaderEspacio.vue'));
 Vue.component('aside-reserva', require('./components/AsideReserva.vue'));
 Vue.component('confirm-reserva', require('./components/ConfirmReserva.vue'));
+Vue.component('espacio-search', require('./components/EspacioSearch.vue'));
 
 const app = new Vue({
     el: '#home-espacio'

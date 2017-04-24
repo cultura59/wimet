@@ -1,18 +1,18 @@
 <template>
-	<a href="#">
-		<img src="" tile="" class="img-responsive">
+	<a :href="url">
+		<img :src="espacio.image" :tile="espacio.name" class="img-responsive img-espacio">
 		<div class="search-espacio">
-			$ precio ARS
+			$ {{espacio.price}} ARS
 		</div>
 		<div class="card-footer-search">
 			<div>
-				<p>nombre</p>
+				<p>{{espacio.name}}</p>
 				<span>
-					<img class="icon-people" src="/img/wimet_ic_group_black_24px.svg" alt=""> quanty
+					<img class="icon-people" src="/img/wimet_ic_group_black_24px.svg" alt=""> {{espacio.quanty}}
 				</span>
 			</div>
 			<div>
-				<span class="card-avatar-search"></span>
+				<img :src="espacio.imagesource" class="card-avatar-search"/>
 				<div class="star-row">
 					<i class="fa fa-star" aria-hidden="true"></i>
 					<i class="fa fa-star" aria-hidden="true"></i>
@@ -29,6 +29,25 @@
 		props: [
 			'espacioId',
 			'categoryId'
-		]
+		],
+		data() {
+			return {
+				espacio: {},
+				url: `/categoria/${this.categoryId}/espacio/${this.espacioId}`
+			}
+		},
+		mounted() {
+			this.getEspacio();
+		},
+		methods: {
+			getEspacio() {
+				this.$http.get(`/api/getespacio/categoria/${this.categoryId}/espacio/${this.espacioId}`)
+	            .then(res => {
+	            	this.espacio = res.body[0];
+	            }, err => {
+	                console.log(err);
+	            });
+	        }
+		}
 	}
 </script>

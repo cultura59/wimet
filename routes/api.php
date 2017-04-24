@@ -33,7 +33,7 @@ Route::get('images/{filename}', function ($filename)
 });
 
 Route::resource('espacio', 'EspacioController');
-Route::get('/getpricea/{categoriaId}/espacio/{id}', 'EspacioController@getPrice');
+Route::get('/getespacio/categoria/{categoriaId}/espacio/{id}', 'EspacioController@getEspacio');
 Route::resource('categoria', 'CategoriaController');
 Route::resource('tag', 'TagController');
 Route::resource('servicio', 'ServicioController');
