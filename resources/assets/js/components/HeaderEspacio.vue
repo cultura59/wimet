@@ -101,6 +101,7 @@
       right: 25px;
       font-size: 35px;
       font-weight: bold;
+      top: 10%;
     }
     .close-header:hover, .close-header:focus {
       color: #999;

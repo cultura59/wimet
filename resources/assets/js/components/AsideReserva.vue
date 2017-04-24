@@ -104,7 +104,7 @@
                 <div class="modal-reserva__right">
                     <div>
                         <h2>Contactar</h2>
-                        <span class="close" @click="closeModal()">&times;</span>
+                        <span class="close-reserva" @click="closeModal()">&times;</span>
                         <div v-if="messageError" class="messageErrorModal">
                             <p>El mínimo de horas es {{minhours}}</p>
                             <i class="fa fa-times cursor-pointer" aria-hidden="true" @click="closeMsg()"></i>
@@ -363,7 +363,7 @@
         z-index: 1;
         padding-top: 50px;
         left: 0;
-        top: 0;
+        top: 5%;
         width: 100%;
         height: 100%;
         overflow: auto;
@@ -484,7 +484,7 @@
         to {bottom:0; opacity:1}
     }
 
-    .close {
+    .close-reserva {
         color: #000;
         position: absolute;
         float: right;
@@ -492,11 +492,10 @@
         right: 25px;
         font-size: 28px;
         font-weight: bold;
-        top: 10%;
     }
 
-    .close:hover,
-    .close:focus {
+    .close-reserva:hover,
+    .close-reserva:focus {
         text-decoration: none;
         cursor: pointer;
     }
