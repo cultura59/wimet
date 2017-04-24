@@ -88,7 +88,7 @@
 											</span>
 										</div>
 										<div>
-											<span class="card-avatar-search"></span>
+											<img src="/avatars/default.png" class="card-avatar-search" title="wimet" />
 											<div class="star-row">
 												<i class="fa fa-star" aria-hidden="true"></i>
 												<i class="fa fa-star" aria-hidden="true"></i>

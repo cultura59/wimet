@@ -172,3 +172,45 @@
     border-radius: 0px;
     padding: 5px 10px;
 }
+
+//------------------------------ layout notfifix ---------------------------------//
+.header-with-not-fix {
+	width: 100%;
+	height: 60px;
+	background-color: $wt-white;
+	color: #333;
+	box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.5);
+	.header-navbar {
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		.actions {
+			padding: 5px;
+			margin-left: auto;
+			ul {
+				list-style: none;
+				li {
+					float: left;
+					padding: 1em;
+					text-decoration: none;
+					
+					@include mobile	{
+						&:first-child {
+				    		display: none;
+				    	}	
+					}	
+					.actions__options, &:hover, &:focus {
+						color: #333;
+						text-decoration: none;
+						font-weight: 600;
+					}
+				}
+			}
+			a, a:hover {
+				color: #333;
+				text-decoration: none;
+				font-weight: 400;
+			}
+		}
+	}
+}

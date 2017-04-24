@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.notfix')
 
 @section('title', 'Agregar precios')
 

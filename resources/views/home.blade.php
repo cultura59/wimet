@@ -138,21 +138,21 @@
 
                     <div class="row">
                         <div class="col-sm-4 padder-comments">
-                            <img class="center-block brd-round" src="http://lorempixel.com/400/400/people" alt="benefits of product" width="126" height="126">
+                            <img class="center-block brd-round" src="/avatars/default.png" alt="benefits of product" width="126" height="126">
                             <p class="wt-m-top-3">
                                 Es una solución para cualquier productora que se encuentra con el desafio de localizar el lugar perfecto para una filmación. 
                             </p>
                             <p>Juan Perez - Cuatro Cabezas</p>
                         </div>
                         <div class="col-sm-4 padder-comments">
-                            <img class="center-block brd-round" src="http://lorempixel.com/400/400/people" alt="benefits of product" width="126" height="126">
+                            <img class="center-block brd-round" src="/avatars/default.png" alt="benefits of product" width="126" height="126">
                             <p class="wt-m-top-3">
                                 Es una solución para cualquier productora que se encuentra con el desafio de localizar el lugar perfecto para una filmación. 
                             </p>
                             <p>Juan Perez - Cuatro Cabezas</p>
                         </div>
                         <div class="col-sm-4 padder-comments">
-                            <img class="center-block brd-round" src="http://lorempixel.com/400/400/people" alt="benefits of product" width="126" height="126">
+                            <img class="center-block brd-round" src="/avatars/default.png" alt="benefits of product" width="126" height="126">
                             <p class="wt-m-top-3">
                                 Es una solución para cualquier productora que se encuentra con el desafio de localizar el lugar perfecto para una filmación. 
                             </p>
@@ -165,12 +165,10 @@
             <!-- Sponsors -->
             <section class="container wt-m-bot-4">
                 <div class="row">
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-3.png" alt="shock your cocktail"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-2.png" alt="startup buenos aires"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-3.png" alt="shock your cocktail"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-2.png" alt="startup buenos aires"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-3.png" alt="shock your cocktail"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/site-2.png" alt="startup buenos aires"></div>
+                    <div class="col-sm-3"><img class="img-responsive center-block" src="img/site-2.png" alt="startup buenos aires"></div>
+                    <div class="col-sm-3"><img class="img-responsive center-block" src="img/site-3.png" alt="shock your cocktail"></div>
+                    <div class="col-sm-3"><img class="img-responsive center-block" src="img/site-4.png" alt="shock your cocktail"></div>
+                    <div class="col-sm-3"><img class="img-responsive center-block" src="img/site-5.png" alt="startup buenos aires"></div>
                 </div>
             </section>
 
