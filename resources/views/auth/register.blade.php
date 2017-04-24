@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="center-block wt-m-4">
+    <div class="center-block">
         <form class="form" role="form" method="POST" action="{{ url('/register') }}">
             {{ csrf_field() }}
             <div class="row">

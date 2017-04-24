@@ -9,10 +9,10 @@
                 <h3 class="text-center">Inicia sesión / registrate con</h3>
                 <div class="row wt-m-top-4">
                     <div class="col-xs-12 col-md-6">
-                        <a href="redirect" class="btn wt-btn-primary center-block">Iniciar con Facebook</a>
+                        <a href="redirect" class="btn wt-btn-primary center-block" style="width: 100%;">Iniciar con Facebook</a>
                     </div>
                     <div class="col-xs-12 col-md-6">
-                        <a href="redirect" class="btn wt-btn-primary center-block">Iniciar con LinkedIn</a>
+                        <a href="redirect" class="btn wt-btn-primary center-block" style="width: 100%;">Iniciar con LinkedIn</a>
                     </div>
                 </div>
                 <div class="row margin-top">
