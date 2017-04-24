@@ -492,6 +492,7 @@
         right: 25px;
         font-size: 28px;
         font-weight: bold;
+        top: 10%;
     }
 
     .close:hover,

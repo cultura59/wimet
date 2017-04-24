@@ -44,6 +44,34 @@
     background: $wt-white;
 }
 
+.wt-dropdown {
+    width: 144px;
+    height: 40px;
+    background-color: #ffffff;
+    border: solid 1px #979797;
+    border-radius: 0;
+    opacity: 0.87;
+    font-family: Roboto;
+    font-size: 12px;
+    letter-spacing: -0.1px;
+    text-align: justify;
+    color: #212121;
+}
+
+.wt-dropdown-min {
+    width: 73px;
+    height: 40px;
+    background-color: #ffffff;
+    border: solid 1px #979797;
+    border-radius: 0;
+    opacity: 0.87;
+    font-family: Roboto;
+    font-size: 12px;
+    letter-spacing: -0.1px;
+    text-align: justify;
+    color: #212121;
+}
+
 //-------------------- Helppers de botones -------------------//
 .wt-btn-principal-search {
     padding: 0.75em 1.5em;
@@ -66,6 +94,21 @@
         color: #fff;
         text-decoration: none;
         background: rgba(243, 76, 96, 0.7);
+    }
+}
+
+.wt-btn-aqua {
+    width: 100%;
+    min-width: 103px;
+    min-height: 40px;
+    padding: 1em;
+    border-radius: 2px;
+    background-color: #00c6e0;
+    border: 1px solid #00c6e0;
+    color: $wt-white !important;
+    &:hover, &:focus {
+        color: $wt-white !important;
+        text-decoration: none !important;
     }
 }
 
