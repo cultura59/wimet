@@ -391,7 +391,6 @@ svg.dark{
     stroke-dasharray: 422, 0;
   } 
 }
-
 svg.white{
     position: absolute;
     width: 158px;
@@ -413,6 +412,7 @@ svg.white{
 .img-hov:hover   {
     opacity: .8;
     transition: visibility 0s linear 0.4s,opacity 0.4s linear;
+    cursor: pointer;
 }
 .bg-yellow {
     background: $wt-yellow;
