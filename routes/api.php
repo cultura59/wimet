@@ -40,6 +40,7 @@ Route::resource('servicio', 'ServicioController');
 Route::resource('tipocliente', 'TipoClienteController');
 Route::resource('consulta', 'ConsultaController');
 Route::resource('image', 'ImageController');
+Route::resource('user', 'UserController');
 
 Route::get('access', 'ApiHelpperController@access');
 Route::get('accessibilities', 'ApiHelpperController@accessibilities');
