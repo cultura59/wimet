@@ -7,8 +7,8 @@
 	var map;
 	function initMap() {
 		map = new google.maps.Map(document.getElementById('map'), {
-			center: new google.maps.LatLng(-34.5969302, -58.5159385),
-			zoom: 11,
+			center: new google.maps.LatLng(-34.6112745,-58.4930695),
+			zoom: 12,
 		    zoomControl: true,
 		    zoomControlOptions: {
 		        position: google.maps.ControlPosition.LEFT_TOP
@@ -21,11 +21,14 @@
 		    draggable: true,
 		    mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
-		var marker = new google.maps.Marker({
-			position: new google.maps.LatLng(-34.5860955, -58.4341036),
-			icon: 'http://www.wimet.co/img/favicon.ico',
-			map: map
-		});
+		var marker;
+		@foreach($espacios as $espacio)
+			marker = new google.maps.Marker({
+				position: new google.maps.LatLng({{$espacio->lat}}, {{$espacio->long}}),
+				icon: 'http://www.wimet.co/img/favicon.ico',
+				map: map
+			});
+		@endforeach
 	}
 </script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArSoMrIsnDeERvlCOGJ2WVd36zO2SBTMo&callback=initMap" async defer></script>
