@@ -91,6 +91,7 @@ Route::group(['prefix' => 'dashboard'], function() {
 	Route::get('/user/{id}/solicitud/{solicitudId}', 'DashboardController@solicitud');
 	Route::get('/user/{id}/favoritos', 'DashboardController@favoritos');
 	Route::get('/user/{id}/misespacios', 'DashboardController@misespacios');
+	Route::get('/user/{id}/datos', 'DashboardController@datos');
 });
 
 Route::group(['prefix' => 'admin'], function ()

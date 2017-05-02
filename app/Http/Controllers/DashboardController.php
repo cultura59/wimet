@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\User;
 use App\Espacio;
 use App\Categoria;
 class DashboardController extends Controller
@@ -134,5 +135,10 @@ class DashboardController extends Controller
             'espacios' => $espacios,
             'borradores' => $borradores
         ));
+    }
+
+    public function datos($id) {
+        $user = User::find($id);
+        return view('dashboard.datos', array('user' => $user));
     }
 }

@@ -20,6 +20,16 @@
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
             ]); ?>
+            
+            function showMenu(e) {
+                e.preventDefault();
+                var x = document.getElementById('listado-opciones');
+                if (x.style.display === 'none') {
+                    x.style.display = 'block';
+                } else {
+                    x.style.display = 'none';
+                }
+            }
         </script>
     </head>
     <body>
@@ -42,9 +52,15 @@
                             <li><a href="{{url('/login')}}" id="btn-login" class="text-bold">Ingresar</a></li>
                         @else
                             <li>
-                                <a href="{{url('/dashboard/user/'.Auth::user()->id)}}">
+                                <a href="#" id="listado-opciones" onClick="showMenu()">
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                                 </a>
+                                <ul class="menue-list">
+                                    <li class="menue-list__item">Editar perfil</li>
+                                    <li class="menue-list__item">Mi cuenta</li>
+                                    <li class="menue-list__item active">PUBLICAR TU ESPACIO</li>
+                                    <li>Salir</li>
+                                </ul>
                             </li>
                         @endif
                     </ul>

@@ -49,16 +49,21 @@
 						['class' => 'wt-custom-select', 'placeholder' => 'Qué estás planificando?']
 					) !!}
 
-					{!! Form::selectRange('quanty', 
-						10,
-						400, 
+					{!! Form::select('quanty', 
+						['5' => '5+', '10' => '10+', '25' => '25+', '50' => '50+', '100' => '100+', '200' => '200+'], 
 						Request::input('quanty'), 
 						['class' => 'wt-custom-select', 'placeholder' => 'Invitados', 'required' => 'required']
 					) !!}
 
-					{!! Form::selectRange('price', 
-						100,
-						1000, 
+					{!! Form::select('price', 
+						[
+							'0-500' => '$0 - $500', 
+							'500-1000' => '$500 - $1000', 
+							'1000-1500' => '$1000 - $1500', 
+							'1500-2500' => '$1500 - $2500', 
+							'2500-3500' => '$2500 - $3500',
+							'3500' => '> $3500'
+						], 
 						Request::input('price'), 
 						['class' => 'wt-custom-select', 'placeholder' => 'Precio / hr', 'required' => 'required']
 					) !!}

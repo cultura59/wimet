@@ -1,10 +1,10 @@
-@extends('layouts.app')
+@extends('layouts.notfix')
 
 @section('title', 'Mis espacios')
 
 @section('content')
 
-	@include('dashboard.menue')
+	@include('dashboard.menue', array("id" => Auth::user()->id, "selected" => "misespacios"))
 
 	<section class="dashboard-container">
 		<div class="main-container">

@@ -1,13 +1,27 @@
 <aside>
 	<ul>
 		<li class="title">RESERVAS</li>
-		<li class="active"><a href="{{url('/dashboard/user/1/consultas')}}">Mensajes</a></a></li>
-		<li><a href="{{url('/dashboard/user/1/reservas')}}">Reservas</a></li>
-		<li><a href="{{url('/dashboard/user/1/consultas')}}">Evaluaciones</a></li>
-		<li><a href="{{url('/dashboard/user/1/favoritos')}}">Favoritos</a></li>
-		<li><a href="{{url('/dashboard/user/1/misespacios')}}">Mis espacios</a></li>
+		<li @if($selected == "consultas") class="active" @endif>
+			<a href="{{url('/dashboard/user/'. $id .'/consultas')}}">Mensajes</a></a>
+		</li>
+		<li @if($selected == "reservas") class="active" @endif>
+			<a href="{{url('/dashboard/user/'. $id .'/consultas')}}">Reservas</a>
+		</li>
+		<li @if($selected == "evaluaciones") class="active" @endif>
+			<a href="{{url('/dashboard/user/'. $id .'/consultas')}}">Evaluaciones</a>
+		</li>
+		<li @if($selected == "favoritos") class="active" @endif>
+			<a href="{{url('/dashboard/user/'. $id .'/consultas')}}">Favoritos</a>
+		</li>
+		<li @if($selected == "misespacios") class="active" @endif>
+			<a href="{{url('/dashboard/user/'. $id .'/misespacios')}}">Mis espacios</a>
+		</li>
 		<li class="title">DATOS PERSONALES</li>
-		<li><a href="{{url('/dashboard/user/1/consultas')}}">Mi perfil</a></li>
-		<li><a href="{{url('/dashboard/user/1/consultas')}}">Cuenta</a></li>
+		<li @if($selected == "datos") class="active" @endif>
+			<a href="{{url('/dashboard/user/'. $id .'/datos')}}">Mi perfil</a>
+		</li>
+		<li>
+			<a href="{{url('/dashboard/user/'. $id .'/consultas')}}">Cuenta</a>
+		</li>
 	</ul>
 </aside>

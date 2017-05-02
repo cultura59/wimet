@@ -53,20 +53,24 @@ class HomeController extends Controller
                                 })
                                 ->whereHas('priceByCategory', 
                                     function($query) {
-                                    $query->where('price', '>=', \Request::input('price'));
-                                })
-                                ->with('images')
+                                        $precios = explode("-", \Request::input('price'));
+                                        if(sizeof($precios) > 1) {
+                                            $query->whereBetween('price', [$precios[0], $precios[1]]);
+                                        }else {
+                                            $query->where('price', '>=', $precios[0]);
+                                        }
+                                    }
+                                )
                                 ->where('status', true)
-                                ->paginate(10);
+                                ->paginate(20);
         }else {
             $espacios = Espacio::select('id')
                                 ->whereHas('categorias', 
                                     function($query) {
                                     $query->where('id', \Request::input('categoria'));
                                 })
-                                ->with('images')
                                 ->where('status', true)
-                                ->paginate(10);
+                                ->paginate(20);
         }
         $categorias = Categoria::orderBy('id')->pluck('name', 'id');
         return view('search', array(

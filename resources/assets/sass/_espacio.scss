@@ -104,7 +104,8 @@
     }
     .list-dates {
       padding: 0;
-      border: none;
+      border: none;display: flex;
+      justify-content: space-between;
     }
     .messageError {
       margin: 16px 0;

@@ -24,17 +24,12 @@
     					<label for="people">Invitados</label>
     					<select name="people" id="people" class="wt-dropdown" v-model="people">
     						<option value="">Seleccionar</option>
-    						<option value="0-10">0 - 10</option>
-    						<option value="11-20">11 - 20</option>
-    						<option value="21-30">21 - 30</option>
-    						<option value="31-40">31 - 40</option>
-    						<option value="41-50">41 - 50</option>
-    						<option value="51-60">51 - 60</option>
-    						<option value="61-70">61 - 70</option>
-    						<option value="71-80">71 - 80</option>
-    						<option value="81-90">81 - 90</option>
-    						<option value="91-100">91 - 100</option>
-    						<option value="100+">100 +</option>
+    						<option value="5">5+</option>
+    						<option value="10">10+</option>
+    						<option value="25">25+</option>
+    						<option value="50">50+</option>
+                            <option value="100+">100 +</option>
+    						<option value="200+">200 +</option>
     					</select>
     				</div>
     			</div>
@@ -63,23 +58,26 @@
     				<ul>
     					<li class="list-dates" v-for="item in totalFechas">
     						<span>{{item.fecha}} desde {{item.inicio}}hs hasta {{item.fin}}hs</span>
+                            <span class="cursor-pointer" @click="removeDate(item)">X</span>
     					</li>
     				</ul>
     			</div>
     			<div class="wt-m-top-2">
     				<strong>PRECIO</strong>
-    				<div class="wt-space-block wt-m-top-1">
-    					<span>Espacio (por {{totalHoras}}hs)</span>
-    					<span>$ {{subTotal}}</span>
-    				</div>
-    				<div class="wt-space-block wt-m-top-1">
-    					<span>Fee de procesamiento</span>
-    					<span>$ {{fee}}</span>
-    				</div>
-    				<div class="wt-space-block wt-m-top-1">
-    					<span>Precio estimado</span>
-    					<span>$ {{total}}</span>
-    				</div>
+                    <div v-if="showDatos">
+        				<div class="wt-space-block wt-m-top-1">
+        					<span>Espacio (por {{totalHoras}}hs)</span>
+        					<span>$ {{subTotal}}</span>
+        				</div>
+        				<div class="wt-space-block wt-m-top-1">
+        					<span>Fee de procesamiento</span>
+        					<span>$ {{fee}}</span>
+        				</div>
+        				<div class="wt-space-block wt-m-top-1">
+        					<span>Precio estimado</span>
+        					<span>$ {{total}}</span>
+        				</div>
+                    </div>
     			</div>
                 <button class="wt-btn-aqua wt-m-top-2" @click="openModal(`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, aliquid perferendis possimus eum accusamus earum odio qui a iure quis vero ut nesciunt distinctio et facilis dolorem ducimus laborum natus.`)">SOLICITUD DE RESERVA</button>
     			<button class="wt-btn-aqua wt-m-top-1" @click="openModal('')">SOLICITUD DE VISITA</button>
@@ -183,11 +181,12 @@
     		'avatarUrl',
             'price',
             'minhours',
-            'categoryId'
+            'categoryId',
         ],
         data() {
         	return {
         		messageError: false,
+                showDatos: false,
         		people: '',
         		category: this.categoryId,
         		categories: [],
@@ -283,6 +282,7 @@
         		this.subTotal = (this.totalHoras * this.price);
         		this.calFee();
         		this.total = this.subTotal + this.fee;
+                this.showDatos = true;
         	},
             timeFormat(time) {
                 let timeformat = time.toString().split('.');
@@ -353,6 +353,10 @@
                 }, err => {
                     console.log(err);
                 });
+            },
+            removeDate(date) {
+                let aux = this.totalFechas.indexOf(date);
+                this.totalFechas.splice(aux, 1);
             }
         }
     }
