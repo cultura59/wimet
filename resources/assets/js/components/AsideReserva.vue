@@ -58,7 +58,9 @@
     				<ul>
     					<li class="list-dates" v-for="item in totalFechas">
     						<span>{{item.fecha}} desde {{item.inicio}}hs hasta {{item.fin}}hs</span>
-                            <span class="cursor-pointer" @click="removeDate(item)">X</span>
+                            <span class="cursor-pointer text-danger" @click="removeDate(item)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </span>
     					</li>
     				</ul>
     			</div>
@@ -79,8 +81,14 @@
         				</div>
                     </div>
     			</div>
-                <button class="wt-btn-aqua wt-m-top-2" @click="openModal(`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, aliquid perferendis possimus eum accusamus earum odio qui a iure quis vero ut nesciunt distinctio et facilis dolorem ducimus laborum natus.`)">SOLICITUD DE RESERVA</button>
-    			<button class="wt-btn-aqua wt-m-top-1" @click="openModal('')">SOLICITUD DE VISITA</button>
+                <div v-if="clientId != ''">
+                    <button class="wt-btn-aqua wt-m-top-2" @click="openModal(`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, aliquid perferendis possimus eum accusamus earum odio qui a iure quis vero ut nesciunt distinctio et facilis dolorem ducimus laborum natus.`)">SOLICITUD DE RESERVA</button>
+        			<button class="wt-btn-aqua wt-m-top-1" @click="openModal('')">SOLICITUD DE VISITA</button>
+                </div>
+                <div v-if="clientId == ''">
+                    <button class="wt-btn-aqua wt-m-top-2"><a href="/login">SOLICITUD DE RESERVA</a></button>
+                    <button class="wt-btn-aqua wt-m-top-1"><a href="/login">SOLICITUD DE VISITA</a></button>
+                </div>
     		</section>
     	</aside>
 
@@ -306,7 +314,7 @@
             },
             addWishlist() {
                 let body = {
-                    'clientId': 1,
+                    'clientId': this.clientId,
                     'espacio_id': this.espacioId
                 }
                 this.$http.post(`/wishlist`, body)
@@ -357,6 +365,10 @@
             removeDate(date) {
                 let aux = this.totalFechas.indexOf(date);
                 this.totalFechas.splice(aux, 1);
+                
+                if(this.totalFechas.length == 0) {
+                    this.showDatos = false;
+                }
             }
         }
     }

@@ -58,23 +58,8 @@
             </section>
             <!-- Footer Header -->
             <section class="header-footer">         
-                <div class="container">
-                    {!! Form::open(['url' => 'search', 'method' => 'GET', 'class' => 'wt-center-block']) !!}
-
-                        <select name="ubicacion" class="wt-custom-select">
-                            <option value="">Ubicación</option>
-                        </select>
-
-                        <select name="categoria" class="wt-custom-select" required>
-                            <option value="">Qué estás planificando?</option>
-                            @foreach($categorias as $categoria)
-                            <option value="{{$categoria->id}}">{{$categoria->name}}</option>
-                            @endforeach
-                        </select>
-
-                        <button class="btn wt-btn-primary">BUSCAR</button>
-
-                    {!! Form::close() !!}
+                <div class="container" id="home-espacio">
+                    <search-home></search-home>
                 </div> 
             </section>
         </header>
@@ -218,6 +203,7 @@
                 </div>
             </div>
         </footer>
-        
+
+        <script src="{{url('/js/app.js')}}"></script>
     </body>
 </html>

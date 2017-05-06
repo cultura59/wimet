@@ -41,7 +41,7 @@
                         @if(!Auth::check())
                             <li><a href="{{url('/login')}}" id="btn-login" class="text-bold">Ingresar</a></li>
                         @else
-                            <li>
+                            <li class="">
                                 <a href="{{url('/dashboard/user/'.Auth::user()->id)}}">
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                                 </a>

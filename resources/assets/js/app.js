@@ -7,6 +7,7 @@
 
 require('./bootstrap');
 
+Vue.component('search-home', require('./components/SearchHome.vue'));
 Vue.component('header-espacio', require('./components/HeaderEspacio.vue'));
 Vue.component('aside-reserva', require('./components/AsideReserva.vue'));
 Vue.component('confirm-reserva', require('./components/ConfirmReserva.vue'));
