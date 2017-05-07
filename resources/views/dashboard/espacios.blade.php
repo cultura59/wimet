@@ -22,9 +22,11 @@
 							<h3>{{$espacio->name}}</h3>
 							<div>
 								<a href="{{route('publica-steps', array('espacioId' => $espacio->id, 'step' => 4))}}">
-									<i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
+									<i class="fa fa-pencil fa-2x" aria-hidden="true" title="Editar"></i>
 								</a>
-								<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+								<a href="{{url('/categoria/'. $espacio->categorias[0]->id .'/espacio/'. $espacio->id)}}" target="_blank">
+									<i class="fa fa-eye fa-2x" aria-hidden="true"></i>
+								</a>
 							</div>
 						</div>
 						<ul class="list-inline">
@@ -54,7 +56,9 @@
 								<a href="{{route('publica-steps', array('espacioId' => $borrador->id, 'step' => 4))}}">
 									<i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
 								</a>
-								<i class="fa fa-trash-o fa-2x" aria-hidden="true"></i>
+								<a href="{{url('/categoria/'. $espacio->categorias[0]->id .'/espacio/'. $espacio->id)}}" target="_blank">
+									<i class="fa fa-eye fa-2x" aria-hidden="true"></i>
+								</a>
 							</div>
 						</div>
 						<ul class="list-inline">

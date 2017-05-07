@@ -13,7 +13,6 @@
 			li.appendChild(document.createTextNode(files[i].name));
 		 	ul.appendChild(li);
 		}
-		document.getElementById('files').style.display = "none";
 	};
 </script>
 @endpush
@@ -31,7 +30,7 @@
 		<div class="container-center">
 			<h2>Ingrese sus imagenes</h2>
 			<div id="files" class="wt-custom-input-file">
-				<input type="hidden" name="espacio_id" value="{{$id}}">
+				<input type="hidden" name="espacio_id" value="{{$espacio->id}}">
 				<label for="imagenes">Inserte todas sus imagenes</label>
 				<input type="file" id="imagenes" name="imagenes[]" multiple required>
 			</div>

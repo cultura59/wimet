@@ -13,7 +13,7 @@
 	<div class="container-left">
 		{!! Form::open(array('url' => 'saveEspaciowithoutdata', 'method' => 'POST')) !!}
 		<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
-		<input type="hidden" name="name" value="{{Auth::user()->id}}_{{date('d-m-y')}}">
+		<input type="hidden" name="name" value="{{Auth::user()->id}}_{{date('d-m-y hh:mm:ss')}}">
 		<input type="hidden" name="description" value="">
 
 		<div class="container-center">

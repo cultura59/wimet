@@ -20,6 +20,15 @@
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
             ]); ?>
+            
+            function showMenu() {
+                var x = document.getElementById('listado-opciones');
+                if (x.style.display === 'none') {
+                    x.style.display = 'flex';
+                } else {
+                    x.style.display = 'none';
+                }
+            }
         </script>
     </head>
     <body>
@@ -41,10 +50,24 @@
                         @if(!Auth::check())
                             <li><a href="{{url('/login')}}" id="btn-login" class="text-bold">Ingresar</a></li>
                         @else
-                            <li class="">
-                                <a href="{{url('/dashboard/user/'.Auth::user()->id)}}">
+                            <li>
+                                <a href="#" onclick="showMenu()">
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                                 </a>
+                                <ul id="listado-opciones" class="menue-list" style="display: none;">
+                                    <li class="menue-list__item">
+                                        <a href="{{url('/dashboard/user/'.Auth::user()->id.'/datos')}}">Editar perfil</a>
+                                    </li>
+                                    <li class="menue-list__item">
+                                        <a href="{{url('/dashboard/user/'.Auth::user()->id.'/misespacios')}}">Mi cuenta</a>
+                                    </li>
+                                    <li class="menue-list__item active">
+                                        <a href="{{url('/publicar/primer-paso')}}">PUBLICAR TU ESPACIO</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/logout')}}">Salir</a>
+                                    </li>
+                                </ul>
                             </li>
                         @endif
                     </ul>

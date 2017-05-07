@@ -18,6 +18,15 @@
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
             ]); ?>
+            
+            function showMenu() {
+                var x = document.getElementById('listado-opciones');
+                if (x.style.display === 'none') {
+                    x.style.display = 'flex';
+                } else {
+                    x.style.display = 'none';
+                }
+            }
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -44,9 +53,25 @@
                             <a href="{{url('/login')}}" id="btn-login" class="link-hov">Ingresar</a>
                         </li>
                         @else
-                        <li>
-                            {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
-                        </li>
+                            <li>
+                                <a href="#" onclick="showMenu()">
+                                    {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
+                                </a>
+                                <ul id="listado-opciones" class="menue-list" style="display: none;">
+                                    <li class="menue-list__item">
+                                        <a href="{{url('/dashboard/user/'.Auth::user()->id.'/datos')}}" style="color: #333;">Editar perfil</a>
+                                    </li>
+                                    <li class="menue-list__item">
+                                        <a href="{{url('/dashboard/user/'.Auth::user()->id.'/misespacios')}}" style="color: #333;">Mi cuenta</a>
+                                    </li>
+                                    <li class="menue-list__item active">
+                                        <a href="{{url('/publicar/primer-paso')}}" style="color: #333;">PUBLICAR TU ESPACIO</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/logout')}}" style="color: #333;">Salir</a>
+                                    </li>
+                                </ul>
+                            </li>
                         @endif
                     </ul>
                 </div>

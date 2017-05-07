@@ -21,11 +21,10 @@
                 'csrfToken' => csrf_token(),
             ]); ?>
             
-            function showMenu(e) {
-                e.preventDefault();
+            function showMenu() {
                 var x = document.getElementById('listado-opciones');
                 if (x.style.display === 'none') {
-                    x.style.display = 'block';
+                    x.style.display = 'flex';
                 } else {
                     x.style.display = 'none';
                 }
@@ -52,14 +51,22 @@
                             <li><a href="{{url('/login')}}" id="btn-login" class="text-bold">Ingresar</a></li>
                         @else
                             <li>
-                                <a href="#" id="listado-opciones" onClick="showMenu()">
+                                <a href="#" onclick="showMenu()">
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                                 </a>
-                                <ul class="menue-list">
-                                    <li class="menue-list__item">Editar perfil</li>
-                                    <li class="menue-list__item">Mi cuenta</li>
-                                    <li class="menue-list__item active">PUBLICAR TU ESPACIO</li>
-                                    <li>Salir</li>
+                                <ul id="listado-opciones" class="menue-list" style="display: none;">
+                                    <li class="menue-list__item">
+                                        <a href="{{url('/dashboard/user/'.Auth::user()->id.'/datos')}}">Editar perfil</a>
+                                    </li>
+                                    <li class="menue-list__item">
+                                        <a href="{{url('/dashboard/user/'.Auth::user()->id.'/misespacios')}}">Mi cuenta</a>
+                                    </li>
+                                    <li class="menue-list__item active">
+                                        <a href="{{url('/publicar/primer-paso')}}">PUBLICAR TU ESPACIO</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{url('/logout')}}">Salir</a>
+                                    </li>
                                 </ul>
                             </li>
                         @endif

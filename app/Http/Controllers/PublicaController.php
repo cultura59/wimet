@@ -105,8 +105,11 @@ class PublicaController extends Controller
     * @return render image page
     */
     public function segundoPasoImages($id) {
+        $espacio = Espacio::with('images')->find($id);
         return view('publicar.images', 
-            array('id' => $id)
+            array(
+                'espacio' => $espacio
+            )
         );
     }
 

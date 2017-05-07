@@ -91,7 +91,6 @@
       background-color: #fefefe;
       margin: auto;
       padding: 0;
-      width: 90%;
       max-width: 1200px;
     }
     .close-header {
