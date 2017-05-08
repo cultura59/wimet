@@ -93,7 +93,10 @@ class UserController extends Controller
         $user->personaldescription  = $request->personaldescription;
         $user->save();
 
-        return $user;
+        $user = User::find($id);
+        return view('users.edit', array(
+            'user' => $user
+        ));
     }
 
     /**
