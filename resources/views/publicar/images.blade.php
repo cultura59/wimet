@@ -35,6 +35,10 @@
 				<input type="file" id="imagenes" name="imagenes[]" multiple required>
 			</div>
 			<ul id="list-files" class="list wt-m-top-2"></ul>
+
+			<div id="home-espacio">
+				<list-images espacio-id="{{$espacio->id}}"></list-images>
+			</div>
 		</div>
 
 		<div class="buttons" id="second-buttons">

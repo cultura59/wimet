@@ -39,7 +39,10 @@ class ImageController extends Controller
     public function destroy($id)
     {
         $image = Image::find($id);
-        $image->delete();
+        $res = unlink($image->name);
+        if($res) {
+            $image->delete();
+        }
         return $id;
     }
 
