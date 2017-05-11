@@ -1,11 +1,9 @@
 <template>
-	<div>
-		<ul class="list-images">
-			<li v-for="img in images">
-				<span> {{img.name}} </span>
-				<span class="cursor-pointer" @click="deleteImage(img)">X</span>
-			</li>
-		</ul>
+	<div class="gallery">
+		<div class="gallery__item" v-for="img in images">
+			<img v-bind:src="'/' + img.name" class="img-responsive" @click="deleteImage(img)">
+			<i class="fa fa-trash-o" aria-hidden="true"></i>
+		</div>
 	</div>
 </template>
 <script>
@@ -42,3 +40,16 @@
         }
 	}
 </script>
+<style lang="sass">
+	.gallery {
+	    display: flex;
+	    justify-content: space-around;
+	    &__item {
+		    position: relative;
+		    &:hover {
+		    	opacity: 0.5;
+		    	cursor: pointer;
+		    }
+		}
+	}
+</style>
