@@ -99,11 +99,13 @@
 			</div>
 			<div class="box-amenities wt-m-top-2 wt-m-bot-2">
 				<p class="box-amenities__title">Amenities</p>
-				<div class="wt-space-block">
+				<div class="row">
 					@foreach($espacio->servicios as $servicio)
-						<div>
-							<i class="fa fa-check" aria-hidden="true"></i>
-							<span>{{$servicio->nombre}}</span>
+						<div class="col-md-4">
+							<div class="pull-left">
+								<i class="fa fa-check" aria-hidden="true"></i>
+								<span>{{$servicio->nombre}}</span>
+							</div>
 						</div>
 					@endforeach
 				</div>
