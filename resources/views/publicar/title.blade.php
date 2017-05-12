@@ -26,7 +26,7 @@
 				</div>
 				<div class="wt-m-top-4">
 					<label class="text-bold">Descripción</label>
-					<textarea name="description" name="description" rows="10" class="wt-textarea" value="{{$espacio->description}}" placeholder="Escriba una breve descripción de su espacio, que lo caracteriza y cuales son sus mejores aspectos."></textarea>
+					<textarea name="description" name="description" rows="10" class="wt-textarea" value="{{$espacio->description}}" placeholder="Escriba una breve descripción de su espacio, que lo caracteriza y cuales son sus mejores aspectos." value="{{$espacio->description}}"></textarea>
 					<p>500 caracteres</p>
 				</div>
 			</div>

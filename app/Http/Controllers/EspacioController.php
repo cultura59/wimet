@@ -150,13 +150,13 @@ class EspacioController extends Controller
             $request->session()->flash('alert-danger', 'El título debe tener entre 10 y 40 caracteres.');
             return \Redirect::route('publica-titulo', array('id' => $request->id));
         }
-        if(strlen($request->description) < 100 || strlen($request->description) > 500) {
+        if(strlen($request->description) < 100) {
             $request->session()->flash('alert-danger', 'La descripción debe tener entre 100 y 400 caracteres.');
             return \Redirect::route('publica-titulo', array('id' => $request->id));
         }
         $espacio = Espacio::find($request->id);
         $espacio->name = $request->name;
-        $espacio->description = $request->description;
+        $espacio->description = nl2br($request->description);
         $espacio->save();
         return \Redirect::route('publica-steps', array(
                 "espacioId" => $espacio->id,

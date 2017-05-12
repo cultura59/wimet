@@ -73,7 +73,7 @@
 					<span>Espacio</span>
 				</div>
 				<div class="box-descripcion__contenido">
-					<p>{{$espacio->description}}</p>
+					<p>{!! $espacio->description !!}</p>
 				</div>
 			</div>
 			@if($espacio->user->personaldescription != "")
