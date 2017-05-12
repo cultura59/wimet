@@ -94,10 +94,6 @@ Route::group(['prefix' => 'dashboard'], function() {
 	Route::get('/user/{id}/datos', 'DashboardController@datos');
 });
 
-Route::group(['prefix' => 'admin'], function ()
-{
-	Route::get('/dashboard', 'AdminController@dashboard');
-	Route::get('/mensajes', 'AdminController@mensajes');
-});
-
-Route::get('/basicemail', 'MailController@basic_email');
+Route::get('/nosotros', 'HomeController@nosotros');
+Route::get('/equipo', 'HomeController@equipo');
+Route::get('/prensa', 'HomeController@prensa');

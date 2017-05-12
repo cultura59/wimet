@@ -52,4 +52,5 @@
 		<img class="img-responsive" src="http://lorempixel.com/people/400/500/" alt="">
 	</div>
 </section>
+
 @endsection

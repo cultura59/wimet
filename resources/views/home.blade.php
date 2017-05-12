@@ -191,10 +191,10 @@
                     <div class="col-xs-12 col-sm-3">
                         <p>EMPRESA</p>
                         <ul>
-                            <li><a href="#">Sobre nosotros</a></li>
-                            <li><a href="#">Equipo</a></li>
-                            <li><a href="#">Términos y condiciones</a></li>
-                            <li><a href="#">Políticas de privacidad</a></li>
+                            <li><a href="{{url('/nosotros')}}">Sobre nosotros</a></li>
+                            <li><a href="{{url('/equipo')}}">Equipo</a></li>
+                            <li><a href="{{url('/nosotros')}}">Términos y condiciones</a></li>
+                            <li><a href="{{url('/nosotros')}}">Políticas de privacidad</a></li>
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-2">
@@ -202,7 +202,7 @@
                         <ul>
                             <li><a href="#">Cómo funciona</a></li>
                             <li><a href="#">Blog</a></li>
-                            <li><a href="#">Prensa</a></li>
+                            <li><a href="{{url('/prensa')}}">Prensa</a></li>
                             <li><a href="#">Ayuda</a></li>
                         </ul>
                     </div>

@@ -175,4 +175,21 @@ class HomeController extends Controller
         }
         return true;
     }
+
+
+
+    public function nosotros()
+    {
+        return view('staticwebs.nosotros');
+    }
+    public function equipo()
+    {
+        return view('staticwebs.equipo');
+    }
+    public function prensa()
+    {
+        return view('staticwebs.prensa');
+    }
+
 }
+
