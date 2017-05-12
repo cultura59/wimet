@@ -17,15 +17,17 @@
 
 		<div class="container-center">
 			<div>
+				@include('errors/error-notification')
 				<h2>¡Cuéntale al mundo acerca de tu espacio!</h2>
 				<div class="wt-m-top-4">
 					<p class="text-bold">Título de tu espacio</p>
-					<input type="text" class="wt-custom-input" name="name" value="{{$espacio->name}}" placeholder="Ingrese el titulo de su espacio" required>
-					<p>50 caracteres</p>
+					<input type="text" class="wt-custom-input" name="name" placeholder="Ingrese el titulo de su espacio" required>
+					<p>40 caracteres</p>
 				</div>
 				<div class="wt-m-top-4">
 					<label class="text-bold">Descripción</label>
 					<textarea name="description" name="description" rows="10" class="wt-textarea" value="{{$espacio->description}}" placeholder="Escriba una breve descripción de su espacio, que lo caracteriza y cuales son sus mejores aspectos."></textarea>
+					<p>500 caracteres</p>
 				</div>
 			</div>
 		</div>

@@ -13,11 +13,11 @@
         </div>
         <div class="dropdown">
             <button class="dropbtn" @click="showSelectCategoria()">
-                <span>{{(categoria == '') ? 'Qué estás planificando?' : categoria.label}}</span>
+                <span>{{(categoria == '') ? 'Qué estás planificando?' : categoria.name}}</span>
                 <i class="fa fa-sort-desc" aria-hidden="true"></i>
             </button>
             <div v-if="stCategoria" class="dropdown__content">
-            	<div v-for="cat in categorias"><span @click="selectCategoria(cat)">{{cat.label}}</span></div>
+            	<div v-for="cat in categories"><span @click="selectCategoria(cat)">{{cat.name}}</span></div>
             </div>
         </div>
         <button class="btn wt-btn-primary" @click="searchEspacios()">BUSCAR</button>
@@ -31,13 +31,11 @@
               categoria: '',
               stUbicacion: false,
               stCategoria: false,
-              categorias: [
-              	{velue: 1, label: 'Reuniones'},
-              	{velue: 2, label: 'Eventos'},
-              	{velue: 3, label: 'Producciones'},
-              	{velue: 4, label: 'Pop-ups'}
-              ]
+              categories: []
             }
+        },
+        mounted() {
+            this.getCategories();
         },
         methods: {
         	selectUbucacion(ubi) {
@@ -61,9 +59,17 @@
             	}
             },
         	searchEspacios () {
-        		let url = `/search?ubicacion=${this.ubicacion}&categoria=${this.categoria.velue}`;
+        		let url = `/search?ubicacion=${this.ubicacion}&categoria=${this.categoria.id}`;
         		window.location.href = url;
-            }
+            },
+            getCategories() {
+                this.$http.get(`/api/categoria`)
+                .then(res => {
+                    this.categories = res.body;
+                }, err => {
+                    console.log(err);
+                });
+            },
         }
 	}
 </script>

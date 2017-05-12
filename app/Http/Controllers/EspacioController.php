@@ -9,6 +9,7 @@ use App\Image;
 use App\Price;
 use App\User;
 use DB;
+use Validator;
 
 class EspacioController extends Controller
 {
@@ -145,6 +146,14 @@ class EspacioController extends Controller
     * @return redirect to public-categoria
     */
     public function saveEspacio(Request $request) {
+        if(strlen($request->name) < 10 || strlen($request->name) > 40) {
+            $request->session()->flash('alert-danger', 'El título debe tener entre 10 y 40 caracteres.');
+            return \Redirect::route('publica-titulo', array('id' => $request->id));
+        }
+        if(strlen($request->description) < 100 || strlen($request->description) > 500) {
+            $request->session()->flash('alert-danger', 'La descripción debe tener entre 100 y 400 caracteres.');
+            return \Redirect::route('publica-titulo', array('id' => $request->id));
+        }
         $espacio = Espacio::find($request->id);
         $espacio->name = $request->name;
         $espacio->description = $request->description;

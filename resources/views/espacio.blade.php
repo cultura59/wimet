@@ -9,7 +9,7 @@
 		function initMap() {
 			map = new google.maps.Map(document.getElementById('map-espacio'), {
 				center: new google.maps.LatLng({{$espacio->lat}}, {{$espacio->long}}),
-				zoom: 12,
+				zoom: 14,
 				disableDefaultUI: false,
 				scrollwheel: false,
 			    navigationControl: false,
@@ -20,7 +20,7 @@
 			});
 			var marker = new google.maps.Marker({
 				position: new google.maps.LatLng({{$espacio->lat}}, {{$espacio->long}}),
-				icon: 'http://www.wimet.co/img/favicon.ico',
+				icon: "{{url('/wimet-ic-espacio-marker.png')}}",
 				map: map
 			});
 		}
@@ -76,6 +76,7 @@
 					<p>{{$espacio->description}}</p>
 				</div>
 			</div>
+			@if($espacio->user->personaldescription != "")
 			<div class="box-descripcion">
 				<div class="box-descripcion__titulo">
 					<span>Anfitrión</span>
@@ -84,6 +85,7 @@
 					<p>{{$espacio->user->personaldescription}}</p>
 				</div>
 			</div>
+			@endif
 			<div class="box-descripcion">
 				<div class="box-descripcion__titulo">
 					<span>Precio</span>
@@ -97,9 +99,9 @@
 			</div>
 			<div class="box-amenities wt-m-top-2 wt-m-bot-2">
 				<p class="box-amenities__title">Amenities</p>
-				<div class="row">
+				<div class="wt-space-block">
 					@foreach($espacio->servicios as $servicio)
-						<div class="col-md-4">
+						<div>
 							<i class="fa fa-check" aria-hidden="true"></i>
 							<span>{{$servicio->nombre}}</span>
 						</div>

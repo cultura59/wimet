@@ -116,7 +116,7 @@
 							type="text" 
 							id="direccion" 
 							class="wt-publica-input"
-							placeholder="Ingrese la dirección" 
+							placeholder="Ej.: El Salvador 5218, Palermo" 
 							onFocus="geolocate()" />
 					</div>
 				</div>

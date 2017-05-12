@@ -4,16 +4,32 @@
 
 @push('scripts')
 <script>
-	document.getElementById('imagenes').onchange = function () {
-		var files = document.getElementById("imagenes").files;
-		var ul = document.getElementById("list-files");
-		for (var i = 0; i < files.length; i++)
-		{
-			var li = document.createElement("li");
-			li.appendChild(document.createTextNode(files[i].name));
-		 	ul.appendChild(li);
-		}
-	};
+	$(function() {
+	    // Multiple images preview in browser
+	    var imagesPreview = function(input, placeToInsertImagePreview) {
+
+	        if (input.files) {
+	            var filesAmount = input.files.length;
+
+	            for (i = 0; i < filesAmount; i++) {
+	                var reader = new FileReader();
+
+	                reader.onload = function(event) {
+	                    $($.parseHTML('<img>'))
+	                    .attr('src', event.target.result)
+	                    .attr('style', 'width: 25%;height: 150px;')
+	                    .appendTo(placeToInsertImagePreview);
+	                }
+
+	                reader.readAsDataURL(input.files[i]);
+	            }
+	        }
+	    };
+
+	    $('#imagenes').on('change', function() {
+	        imagesPreview(this, '#list-files');
+	    });
+	});
 </script>
 @endpush
 
@@ -34,7 +50,7 @@
 				<label for="imagenes">Inserte todas sus imagenes</label>
 				<input type="file" id="imagenes" name="imagenes[]" multiple required>
 			</div>
-			<ul id="list-files" class="list wt-m-top-2"></ul>
+			<ul id="list-files" class="gallery"></ul>
 
 			<div id="home-espacio">
 				<list-images espacio-id="{{$espacio->id}}"></list-images>
