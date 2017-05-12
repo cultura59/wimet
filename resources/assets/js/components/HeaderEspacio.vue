@@ -1,7 +1,7 @@
 <template>
     <div>
-        <header class="home-espacio-header" id="imagen-principal">
-            <button class="home-espacio-header__boton" v-on:click="openModal();currentSlide(1)" >VER FOTOS</button>
+        <header class="home-espacio-header cursor-pointer" id="imagen-principal" v-on:click="openModal();currentSlide(1)">
+            <button class="home-espacio-header__boton" v-on:click="openModal();currentSlide(1)">VER FOTOS</button>
         </header>
 
         <div id="myModal" class="modal">

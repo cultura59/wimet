@@ -8,7 +8,7 @@
 		var map;
 		function initMap() {
 			map = new google.maps.Map(document.getElementById('map-espacio'), {
-				center: new google.maps.LatLng(-34.5969302, -58.5159385),
+				center: new google.maps.LatLng({{$espacio->lat}}, {{$espacio->long}}),
 				zoom: 12,
 				disableDefaultUI: false,
 				scrollwheel: false,
