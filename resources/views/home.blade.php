@@ -18,15 +18,6 @@
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
             ]); ?>
-            
-            function showMenu() {
-                var x = document.getElementById('listado-opciones');
-                if (x.style.display === 'none') {
-                    x.style.display = 'flex';
-                } else {
-                    x.style.display = 'none';
-                }
-            }
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
@@ -54,10 +45,10 @@
                         </li>
                         @else
                             <li>
-                                <a href="#" onclick="showMenu()">
+                                <a href="#" id="menu-user">
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                                 </a>
-                                <ul id="listado-opciones" class="menue-list" style="display: none;">
+                                <ul class="menue-list">
                                     <li class="menue-list__item">
                                         <a href="{{url('/dashboard/user/'.Auth::user()->id.'/datos')}}" style="color: #333;">Editar perfil</a>
                                     </li>

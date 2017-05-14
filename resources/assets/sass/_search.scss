@@ -214,12 +214,11 @@
 	}
 }
 .menue-list {
-	display: flex;
+	display: none;
 	flex-direction: column;
 	background: #fff;
 	padding: 1em;
 	border: solid 1px #dadada;
-	margin-top: 1%;
 	right: 1%;
 	position: absolute;
 	cursor: pointer;
@@ -230,11 +229,25 @@
 	color: #212121;
 	z-index: 1;
 	&__item {
-		padding: 1em;
 		border-bottom: solid 1px #dadada;
 		color: #ea516d !important;
+		a{
+			padding: 1em;
+		}
 		.active {
 			color: #ea516d;
 		}
+		&:hover {
+			font-weight: 700;
+		}
 	}
+	&:hover {
+		display: flex;
+	}
+}
+#menu-user {
+	padding: 1em 0;
+}
+#menu-user:hover + .menue-list{
+	display: flex;
 }

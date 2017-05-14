@@ -20,15 +20,6 @@
             window.Laravel = <?php echo json_encode([
                 'csrfToken' => csrf_token(),
             ]); ?>
-            
-            function showMenu() {
-                var x = document.getElementById('listado-opciones');
-                if (x.style.display === 'none') {
-                    x.style.display = 'flex';
-                } else {
-                    x.style.display = 'none';
-                }
-            }
         </script>
     </head>
     <body>
@@ -51,10 +42,10 @@
                             <li><a href="{{url('/login')}}" id="btn-login" class="text-bold">Ingresar</a></li>
                         @else
                             <li>
-                                <a href="#" onclick="showMenu()">
+                                <a href="#" id="menu-user">
                                     {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
                                 </a>
-                                <ul id="listado-opciones" class="menue-list" style="display: none;">
+                                <ul class="menue-list">
                                     <li class="menue-list__item">
                                         <a href="{{url('/dashboard/user/'.Auth::user()->id.'/datos')}}">Editar perfil</a>
                                     </li>
