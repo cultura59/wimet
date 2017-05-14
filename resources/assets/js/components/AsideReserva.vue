@@ -52,33 +52,33 @@
     						<option v-for="item in horas" v-bind:value="item.value">{{item.label}}</option>
     					</select>
     				</div>
-    			</div>
-    			<div class="wt-m-top-2">
-    				<span class="agregar-fecha">Agregar fecha</span>
-    				<ul>
-    					<li class="list-dates" v-for="item in totalFechas">
-    						<span>{{item.fecha}} desde {{item.inicio}}hs hasta {{item.fin}}hs</span>
-                            <span class="cursor-pointer text-danger" @click="removeDate(item)">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </span>
-    					</li>
-    				</ul>
-    			</div>
-    			<div class="wt-m-top-2">
-    				<strong>PRECIO</strong>
-                    <div v-if="showDatos">
-        				<div class="wt-space-block wt-m-top-1">
-        					<span>Espacio (por {{totalHoras}}hs)</span>
-        					<span>$ {{subTotal}}</span>
-        				</div>
-        				<div class="wt-space-block wt-m-top-1">
-        					<span>Fee de procesamiento</span>
-        					<span>$ {{fee}}</span>
-        				</div>
-        				<div class="wt-space-block wt-m-top-1">
-        					<span>Precio estimado</span>
-        					<span>$ {{total}}</span>
-        				</div>
+                </div>
+                <div v-if="showDatos">
+                    <div class="wt-m-top-2">
+                        <span class="agregar-fecha" @click="openModalFechas()">Agregar fecha</span>
+                        <ul>
+                            <li class="list-dates" v-for="item in totalFechas">
+                                <span>{{item.fecha}} desde {{item.inicio}}hs hasta {{item.fin}}hs</span>
+                                <span class="cursor-pointer text-danger" @click="removeDate(item)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="wt-m-top-2">
+                        <strong>PRECIO</strong>
+            				<div class="wt-space-block wt-m-top-1">
+            					<span>Espacio (por {{totalHoras}}hs)</span>
+            					<span>$ {{subTotal}}</span>
+            				</div>
+            				<div class="wt-space-block wt-m-top-1">
+            					<span>Fee de procesamiento</span>
+            					<span>$ {{fee}}</span>
+            				</div>
+            				<div class="wt-space-block wt-m-top-1">
+            					<span>Precio estimado</span>
+            					<span>$ {{total}}</span>
+            				</div>
                     </div>
     			</div>
                 <div v-if="clientId != ''">
@@ -127,42 +127,28 @@
                             </select>
                         </div>
                         <div class="form-contact__select">
-                            <label for="">Invitados</label>
-                            <select class="select-lg" v-model="people">
+                            <label for="people">Invitados</label>
+                            <select name="people" id="people" class="select-lg" v-model="people">
                                 <option value="">Seleccionar</option>
-                                <option value="0-10">0 - 10</option>
-                                <option value="11-20">11 - 20</option>
-                                <option value="21-30">21 - 30</option>
-                                <option value="31-40">31 - 40</option>
-                                <option value="41-50">41 - 50</option>
-                                <option value="51-60">51 - 60</option>
-                                <option value="61-70">61 - 70</option>
-                                <option value="71-80">71 - 80</option>
-                                <option value="81-90">81 - 90</option>
-                                <option value="91-100">91 - 100</option>
+                                <option value="5">5+</option>
+                                <option value="10">10+</option>
+                                <option value="25">25+</option>
+                                <option value="50">50+</option>
                                 <option value="100+">100 +</option>
+                                <option value="200+">200 +</option>
                             </select>
                         </div>
                     </div>
-                    <div class="form-contact">
-                        <div class="form-contact__select">
-                            <label for="fecha">Fecha</label>
-                            <input type="date" id="fecha" v-model="fecha" class="select-lg"/>
-                        </div>
-                        <div class="form-contact__select">
-                            <label for="inicio">Inicio</label>
-                            <select id="inicio" v-model="inicio" class="select-sm">
-                                <option value="">Seleccionar</option>
-                                <option v-for="item in horas" v-bind:value="item.value">{{item.label}}</option>
-                            </select>
-                        </div>
-                        <div class="form-contact__select">
-                            <label for="fin">Fin</label>
-                            <select id="fin" v-model="fin" class="select-sm" @change="addDate()">
-                                <option value="">Seleccionar</option>
-                                <option v-for="item in horas" v-bind:value="item.value">{{item.label}}</option>
-                            </select>
-                        </div>
+                    <div>
+                        <label for="fechas">Fechas</label>
+                        <ul>
+                            <li class="form-contact" v-for="item in totalFechas">
+                                <span>{{item.fecha}} desde {{item.inicio}}hs hasta {{item.fin}}hs</span>
+                                <span class="cursor-pointer text-danger" @click="removeDate(item)">
+                                    <i class="fa fa-trash" aria-hidden="true"></i>
+                                </span>
+                            </li>
+                        </ul>
                     </div>
                     <div class="form-contact">
                         <div class="form-contact__textarea">
@@ -179,6 +165,44 @@
                 </div>                
             </div>
         </div>
+
+        <div v-if="modalFechas" class="modal-reserva">
+            <div class="modal-reserva__content-fechas">
+                <div class="wt-m-top-1 wt-m-bot-1">
+                    <div class="wt-space-block">
+                        <h3>Lista de fechas</h3>
+                        <span class="close-reserva" @click="closeModalFechas()">&times;</span>
+                    </div>
+                    <div class="wt-center-column wt-m-top-1">
+                        <label for="fecha">Fecha</label>
+                        <input type="date" id="fecha" v-model="fecha" class="wt-dropdown-fechas"/>
+                    </div>
+                    <div class="wt-center-column wt-m-top-1">
+                        <label for="inicio">Inicio</label>
+                        <select id="inicio" v-model="inicio" class="wt-dropdown-fechas">
+                            <option value="">Seleccionar</option>
+                            <option v-for="item in horas" v-bind:value="item.value">{{item.label}}</option>
+                        </select>
+                    </div>
+                    <div class="wt-center-column wt-m-top-1">
+                        <label for="fin">Fin</label>
+                        <select id="fin" v-model="fin" class="wt-dropdown-fechas" @change="addDate()">
+                            <option value="">Seleccionar</option>
+                            <option v-for="item in horas" v-bind:value="item.value">{{item.label}}</option>
+                        </select>
+                    </div>
+                    <ul class="wt-m-top-1 list-group">
+                        <li class="list-group-item justify-content-between" v-for="item in totalFechas">
+                            <span>{{item.fecha}} desde {{item.inicio}}hs hasta {{item.fin}}hs</span>
+                            <span class="cursor-pointer text-danger" @click="removeDate(item)">
+                                <i class="fa fa-trash" aria-hidden="true"></i>
+                            </span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
     </div>
 </template>
 <script>
@@ -257,6 +281,7 @@
         		subTotal: this.price,
         		total: '-',
                 modalReserva: false,
+                modalFechas: false,
                 mensaje: '',
                 btnSend: true
         	}
@@ -281,11 +306,14 @@
         		this.fee = (this.subTotal * 5)/100;
         	},
         	addDate() {
-        		this.totalFechas = [{
+        		this.totalFechas.push({
         			'fecha': this.fecha,
         			'inicio': this.timeFormat(this.inicio),
         			'fin': this.timeFormat(this.fin)
-        		}];
+        		});
+                this.fecha = '';
+                this.inicio = '';
+                this.fin = '';
         		this.totalHoras = this.isPar((this.fin - this.inicio));
         		this.subTotal = (this.totalHoras * this.price);
         		this.calFee();
@@ -325,12 +353,22 @@
                 });
             },
             openModal(Mensaje) {
+                if(this.totalFechas < 1) {
+                    this.messageError = true;
+                    return;
+                }
                 this.modalReserva = true;
                 this.mensaje = Mensaje;
 
             },
+            openModalFechas() {
+                this.modalFechas = true;
+            },
             closeModal() {
                 this.modalReserva = false;
+            },
+            closeModalFechas() {
+                this.modalFechas = false;
             },
             sendReserva() {
                 if(this.totalFechas < 1) {
@@ -384,6 +422,9 @@
         height: 100%;
         overflow: auto;
         background-color: rgba(0,0,0,0.4);
+        ul {
+            padding: 0;
+        }
         &__left {
             width: 30%;
             padding: 2em;
@@ -488,6 +529,35 @@
         -webkit-animation-duration: 0.4s;
         animation-name: animatetop;
         animation-duration: 0.4s
+    }
+
+    .modal-reserva__content-fechas {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        background-color: #fefefe;
+        margin: 0 auto;
+        border: 1px solid #888;
+        width: 25%;
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        -webkit-animation-name: animatetop;
+        -webkit-animation-duration: 0.4s;
+        animation-name: animatetop;
+        animation-duration: 0.4s;
+        .wt-dropdown-fechas {
+            width: 100%;
+            height: 40px;
+            background-color: #ffffff;
+            border: solid 1px #979797;
+            border-radius: 0;
+            opacity: 0.87;
+            font-family: Roboto;
+            font-size: 12px;
+            letter-spacing: -0.1px;
+            text-align: justify;
+            color: #212121;
+        }
     }
 
     @-webkit-keyframes animatetop {
