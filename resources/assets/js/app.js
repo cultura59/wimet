@@ -15,6 +15,11 @@ Vue.component('confirm-reserva', require('./components/ConfirmReserva.vue'));
 Vue.component('espacio-search', require('./components/EspacioSearch.vue'));
 Vue.component('list-images', require('./components/ListImages.vue'));
 
+// Funciones passport
+Vue.component('passport-clients', require('./components/passport/Clients.vue'));
+Vue.component('passport-authorized-clients', equire('./components/passport/AuthorizedClients.vue'));
+Vue.component('passport-personal-access-tokens', require('./components/passport/PersonalAccessTokens.vue'));
+
 const app = new Vue({
     el: '#home-espacio'
 });
