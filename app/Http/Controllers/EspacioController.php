@@ -132,6 +132,12 @@ class EspacioController extends Controller
     * @return redirect to public-categoria
     */
     public function saveEspacioWithoutData(Request $request) {
+        $user = User::find($request->user_id);
+        $espaciosUser = $user->espacios()->where('status', false)->get();
+        if($espaciosUser->count() >= 1) {
+            $request->session()->flash('alert-danger', 'Ya posee espacios en borrador, debe finalizar los mismos.');
+            return \Redirect::route('misespacios', array('id' => $request->user_id));
+        }
         $espacio = new Espacio($request->all());
         $espacio->status = false;
         $espacio->save();

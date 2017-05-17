@@ -11,6 +11,7 @@ use App\Price;
 use App\Servicio;
 use App\Characteristics;
 use App\Rules;
+use App\User;
 
 class PublicaController extends Controller
 {

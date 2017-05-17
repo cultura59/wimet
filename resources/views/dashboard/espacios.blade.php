@@ -9,6 +9,7 @@
 	<section class="dashboard-container">
 		<div class="main-container">
 			<h3>PUBLICADOS</h3>
+			@include('errors/error-notification')
 			<div class="container-espacios">
 			@foreach($espacios as $espacio)
 				<div class="box-expacio">

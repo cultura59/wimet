@@ -65,7 +65,7 @@ Route::get('/publicar/tercer-paso/espacio/{id}/cancelacion',
 
 // Apis publica fron views
 Route::post('saveEspaciowithoutdata', 'EspacioController@saveEspacioWithoutData');
-Route::post('saveespacio', 'EspacioController@saveEspacio');
+Route::post('saveespacio/{userId}', 'EspacioController@saveEspacio');
 Route::post('savecategories', 'EspacioController@saveCategory');
 Route::post('saveaccess', 'EspacioController@saveAccess');
 Route::post('saveinvitados', 'EspacioController@saveInvitados');
@@ -90,7 +90,7 @@ Route::group(['prefix' => 'dashboard'], function() {
 	Route::get('/user/{id}/solicitudes', 'DashboardController@solicitudes');
 	Route::get('/user/{id}/solicitud/{solicitudId}', 'DashboardController@solicitud');
 	Route::get('/user/{id}/favoritos', 'DashboardController@favoritos');
-	Route::get('/user/{id}/misespacios', 'DashboardController@misespacios');
+	Route::get('/user/{id}/misespacios', 'DashboardController@misespacios')->name('misespacios');
 	Route::get('/user/{id}/datos', 'DashboardController@datos');
 });
 
