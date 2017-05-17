@@ -59,9 +59,9 @@
 			<div class="center-title">
 				<h2 class="title">{{$espacio->name}}</h2>
 				@if($espacio->status == 1)
-					<i class="fa fa-check-circle fa-2x verified" aria-hidden="true" title="Espacio verificado"></i>
+					<img src="{{url('/img/wimet_ic_verified_user_black_24px.svg')}}" alt="Espacio verificado" class="verified">
 				@else
-					<i class="fa fa-check-circle fa-2x noverified" aria-hidden="true" title="Espacio no verificado"></i>
+					<img src="{{url('/img/wimet_ic_verified_user_black_24px.svg')}}" alt="Espacio verificado" class="verified">
 				@endif
 			</div>
 			<div class="direccion">
@@ -139,8 +139,21 @@
 				</div>
 				<div class="box-descripcion__contenido">
 					<div class="wt-center-column">
-						<span>Cancelación: {{$espacio->cancellationflexibility}}</span>
-						<span>Depósito de garantia: ${{$espacio->securitydeposit}}.-</span>
+						<span>Cancelación: {{$espacio->cancellationflexibility}}.</span>
+						@if($espacio->cancellationflexibility == 'flexible')
+						<span>
+							Reembolso completo hasta 15 días antes del evento, excepto los gastos de procesamiento.
+						</span>
+						@elseif ($espacio->cancellationflexibility == 'moderado')
+						<span>
+							Reembolso completo hasta 30 días antes del evento, excepto los gastos de procesamiento.
+						</span>
+						@else
+						<span>
+							50% de reembolso hasta 30 días antes del evento, excepto gastos de procesamiento.
+						</span>
+						@endif<br>
+						<span>Depósito de garantia: ${{$espacio->securitydeposit}}.</span>
 					</div>
 				</div>
 			</div>

@@ -222,7 +222,7 @@
   margin: 0 auto;
   .center-title {
     display: flex;
-    align-items: center;
+    align-items: baseline;
     .title {
       opacity: 0.87;
       font-family: NotoSerif;
@@ -250,14 +250,13 @@
     justify-content: flex-start;
     margin: 4em 0;
     &__titulo {
-      width: 136px;
+      width: 140px;
       height: auto;
       opacity: 0.87;
       font-family: NotoSerif;
       font-size: 14px;
       font-style: italic;
       letter-spacing: -0.1px;
-      text-align: justify;
       color: #212121;
       border-right: 1px solid #dadada;
     }
