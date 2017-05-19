@@ -65,7 +65,7 @@ Route::get('/publicar/tercer-paso/espacio/{id}/cancelacion',
 
 // Apis publica fron views
 Route::post('saveEspaciowithoutdata', 'EspacioController@saveEspacioWithoutData');
-Route::post('saveespacio/{userId}', 'EspacioController@saveEspacio');
+Route::post('saveespacio', 'EspacioController@saveEspacio');
 Route::post('savecategories', 'EspacioController@saveCategory');
 Route::post('saveaccess', 'EspacioController@saveAccess');
 Route::post('saveinvitados', 'EspacioController@saveInvitados');
