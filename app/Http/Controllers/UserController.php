@@ -35,7 +35,19 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        try {
+            $user = new User;
+            $user->firstname = $request->firstname;
+            $user->lastname = $request->lastname;
+            $user->email = $request->email;
+            $user->password =  bcrypt($request->password);
+            $user->tipo_clientes_id = 1;
+            $user->isAdmin = 0;
+            $user->save();
+            return $user;
+        }catch(\Exception $e){
+            return response('Los campos no son correctos', 400);
+        }
     }
 
     /**

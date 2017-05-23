@@ -10,6 +10,8 @@ use App\Price;
 use App\User;
 use DB;
 use Validator;
+use Symfony\Component\HttpFoundation\Response;
+use Auth;
 
 class EspacioController extends Controller
 {
@@ -42,26 +44,34 @@ class EspacioController extends Controller
      */
     public function store(Request $request)
     {
-        $espacio = new Espacio();
-        $espacio->user_id = $request->user_id;
-        $espacio->name = $request->name;
-        $espacio->description = $request->description;
-        $espacio->quantyrooms = $request->quantyrooms;
-        $espacio->quantybathrooms = $request->quantybathrooms;
-        $espacio->floor = $request->floor;
-        $espacio->surface = $request->surface;
-        $espacio->seated = $request->seated;
-        $espacio->quanty = $request->quanty;
-        $espacio->adress = $request->adress;
-        $espacio->type = $request->type;
-        $espacio->city = $request->city;
-        $espacio->state = $request->state;
-        $espacio->country = $request->country;
-        $espacio->long = $request->long;
-        $espacio->lat = $request->lat;
-        $espacio->status = false;
-        $espacio->save();
-        return $espacio;
+        try {
+            $espacio = new Espacio();
+            $espacio->user_id = $request->user_id;
+            $espacio->name = $request->name;
+            $espacio->description = $request->description;
+            $espacio->quantyrooms = ($request->quantyrooms) ? $request->quantyrooms : null;
+            $espacio->quantybathrooms = ($request->quantyrooms) ? $request->quantyrooms : null;
+            $espacio->floor = ($request->floor) ? $request->floor : null;
+            $espacio->surface = ($request->surface) ? $request->surface : null;
+            $espacio->seated = ($request->seated) ? $request->seated : null;
+            $espacio->quanty = ($request->quanty) ? $request->quanty : null;
+            $espacio->adress = ($request->adress) ? $request->adress : null;
+            $espacio->type = ($request->type) ? $request->type : null;
+            $espacio->city = ($request->city) ? $request->city : null;
+            $espacio->state = ($request->state) ? $request->state : null;
+            $espacio->country = ($request->country) ? $request->country : null;
+            $espacio->long = ($request->long) ? $request->long : null;
+            $espacio->lat = ($request->lat) ? $request->lat : null;
+            $espacio->step = ($request->step) ? $request->step : null;
+            $espacio->status = false;
+            $espacio->save();
+            if($request->estilos) {
+                $espacio->estilosEspacio()->sync($request->estilos);
+            }
+            return $espacio;
+        }catch(\Exception $e){
+            return response('Los campos no son correctos', 400);
+        }
     }
 
     /**
@@ -132,17 +142,17 @@ class EspacioController extends Controller
     * @return redirect to public-categoria
     */
     public function saveEspacioWithoutData(Request $request) {
-        $user = User::find($request->user_id);
-        $espaciosUser = $user->espacios()->where('status', false)->get();
-        if($espaciosUser->count() >= 1) {
-            $request->session()->flash('alert-danger', 'Ya posee espacios en borrador, debe finalizar los mismos.');
-            return \Redirect::route('misespacios', array('id' => $request->user_id));
+        try {
+            $user = User::find($request->user_id);
+            $espaciosUser = $user->espacios()->where('status', false)->get();
+            $espacio = new Espacio($request->all());
+            $espacio->status = false;
+            $espacio->save();
+            $espacio->estilosEspacio()->sync($request->estilos);
+            return $espacio;
+        }catch(\Exception $e){
+            return response('Los campos no son correctos', 400);
         }
-        $espacio = new Espacio($request->all());
-        $espacio->status = false;
-        $espacio->save();
-        $espacio->estilosEspacio()->sync($request->estilos);
-        return \Redirect::route('publica-categoria', array('id' => $espacio->id));
     }
 
     /**
@@ -152,23 +162,16 @@ class EspacioController extends Controller
     * @return redirect to public-categoria
     */
     public function saveEspacio(Request $request) {
-        if(strlen($request->name) < 10 || strlen($request->name) > 40) {
-            $request->session()->flash('alert-danger', 'El título debe tener entre 10 y 40 caracteres.');
-            return \Redirect::route('publica-titulo', array('id' => $request->id));
+        try {
+            $espacio = Espacio::find($request->id);
+            $espacio->name = $request->name;
+            $espacio->description = nl2br($request->description);
+            $espacio->step = $request->step;
+            $espacio->save();
+            return $espacio;
+        }catch(\Exception $e){
+            return response('Los campos no son correctos')->status(400);
         }
-        if(strlen($request->description) < 100) {
-            $request->session()->flash('alert-danger', 'La descripción debe tener entre 100 y 400 caracteres.');
-            return \Redirect::route('publica-titulo', array('id' => $request->id));
-        }
-        $espacio = Espacio::find($request->id);
-        $espacio->name = $request->name;
-        $espacio->description = nl2br($request->description);
-        $espacio->save();
-        return \Redirect::route('publica-steps', array(
-                "espacioId" => $espacio->id,
-                "step" => 3
-            )
-        );
     }
 
     /**
@@ -273,10 +276,10 @@ class EspacioController extends Controller
         if($request->long) {
             $espacio->long = $request->long;
         }
+        $espacio->step = 2;
         $espacio->save();
         return \Redirect::route('publica-steps', array(
-                "espacioId" => $espacio->id,
-                "step" => 2
+                "espacioId" => $espacio->id
             )
         );
     }
@@ -391,10 +394,10 @@ class EspacioController extends Controller
         if($request->cancellationflexibility) {
             $espacio->cancellationflexibility = $request->cancellationflexibility;
         }
+        $espacio->step = 4;
         $espacio->save();
         return \Redirect::route('publica-steps', array(
-                "espacioId" => $espacio->id,
-                "step" => 4
+                "espacioId" => $espacio->id
             )
         );
     }

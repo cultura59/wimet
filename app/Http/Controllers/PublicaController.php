@@ -12,6 +12,7 @@ use App\Servicio;
 use App\Characteristics;
 use App\Rules;
 use App\User;
+use Auth;
 
 class PublicaController extends Controller
 {
@@ -20,7 +21,13 @@ class PublicaController extends Controller
 	* @brief Funcion que retorna la vista principal de publicar espacio
 	* @return render index page
 	*/
-    public function index() {
+    public function index(Request $request, $id) {
+        $user = User::find($id);
+        $espaciosUser = $user->espacios()->where('status', false)->get();
+        if($espaciosUser->count() >= 1) {
+            $request->session()->flash('alert-danger', 'Ya posee espacios en borrador, debe finalizar los mismos.');
+            return \Redirect::route('misespacios', array('id' => $id));
+        }
     	$estilos = EstiloEspacio::pluck('nombre', 'id');
     	return view('publicar.index', 
     		array(
@@ -152,8 +159,7 @@ class PublicaController extends Controller
     * @return render image amenities
     */
     public function segundoPasoTitulo($id) {
-        $espacio = Espacio::find($id);
-        return View('publicar.title', array('espacio' => $espacio));
+        return View('publicar.title', array('espacioId' => $id));
     }
 
     /**

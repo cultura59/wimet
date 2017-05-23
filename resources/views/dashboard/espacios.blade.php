@@ -4,7 +4,7 @@
 
 @section('content')
 
-	@include('dashboard.menue', array("id" => Auth::user()->id, "selected" => "misespacios"))
+	<aside-dashboard selected="misespacios"></aside-dashboard>
 
 	<section class="dashboard-container">
 		<div class="main-container">
@@ -22,7 +22,7 @@
 						<div class="detalle-espacio__title">
 							<h3>{{$espacio->name}}</h3>
 							<div>
-								<a href="{{route('publica-steps', array('espacioId' => $espacio->id, 'step' => 4))}}">
+								<a href="{{route('publica-steps', array('espacioId' => $espacio->id))}}">
 									<i class="fa fa-pencil fa-2x" aria-hidden="true" title="Editar"></i>
 								</a>
 								<a href="{{url('/categoria/'. $espacio->categorias[0]->id .'/espacio/'. $espacio->id)}}" target="_blank">
@@ -54,7 +54,7 @@
 						<div class="detalle-espacio__title">
 							<h3>{{$borrador->name}}</h3>
 							<div>
-								<a href="{{route('publica-steps', array('espacioId' => $borrador->id, 'step' => 4))}}">
+								<a href="{{route('publica-steps', array('espacioId' => $borrador->id))}}">
 									<i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
 								</a>
 								<a href="{{url('/categoria/'. $borrador->categorias[0]->id .'/espacio/'. $borrador->id)}}" target="_blank">

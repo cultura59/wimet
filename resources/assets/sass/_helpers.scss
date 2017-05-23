@@ -8,10 +8,12 @@
   widows: 100%;
 }
 
-#btn-login {
+.btn-login {
     color: $wt-text-dark;
     font-size: 13px !important;
     text-decoration: none;
+    background-color: transparent;
+    border: none;
 }
 
 .clear-all {
@@ -452,9 +454,17 @@ svg.white{
 }
 
 .link-hov {
-    color: $wt-white !important;
+    color: $wt-white;
+    background: transparent;
+    border: none;
 }
-
+.btn-login {
+    color: $wt-text-dark;
+    font-size: 13px !important;
+    text-decoration: none;
+    background-color: transparent;
+    border: none;
+}
 .img-hov:hover   {
     opacity: .8;
     transition: visibility 0s linear 0.4s,opacity 0.4s linear;

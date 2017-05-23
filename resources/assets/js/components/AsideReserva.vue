@@ -9,8 +9,8 @@
     			</div>
     		</header>
     		<section class="box-reserva__body">
-                <div v-if="messageError" class="messageError">
-                    <p>El mínimo de horas es {{minhours}}</p>
+                <div v-if="(messageError != '')" class="messageError">
+                    <p>{{messageError}}</p>
                     <i class="fa fa-times cursor-pointer" aria-hidden="true" @click="closeMsg()"></i>
                 </div>
     			<div class="wt-space-block">
@@ -111,8 +111,8 @@
                     <div>
                         <h2>Contactar</h2>
                         <span class="close-reserva" @click="closeModal()">&times;</span>
-                        <div v-if="messageError" class="messageErrorModal">
-                            <p>El mínimo de horas es {{minhours}}</p>
+                        <div v-if="(messageError != '')" class="messageError">
+                            <p>{{messageError}}</p>
                             <i class="fa fa-times cursor-pointer" aria-hidden="true" @click="closeMsg()"></i>
                         </div>
                     </div>
@@ -206,18 +206,20 @@
     </div>
 </template>
 <script>
+    import swal from 'sweetalert';
     export default {
     	props: [
             'espacioId',
-            'clientId',
-    		'avatarUrl',
+            'avatarUrl',
             'price',
             'minhours',
             'categoryId',
         ],
         data() {
-        	return {
-        		messageError: false,
+            return {
+                authenticated: this.$auth.isAuthenticated(),
+                clientId: null,
+        		messageError: '',
                 showDatos: false,
         		people: '',
         		category: this.categoryId,
@@ -311,14 +313,14 @@
         			'inicio': this.timeFormat(this.inicio),
         			'fin': this.timeFormat(this.fin)
         		});
-                this.fecha = '';
-                this.inicio = '';
-                this.fin = '';
         		this.totalHoras = this.isPar((this.fin - this.inicio));
         		this.subTotal = (this.totalHoras * this.price);
         		this.calFee();
         		this.total = this.subTotal + this.fee;
                 this.showDatos = true;
+                this.fecha = '';
+                this.inicio = '';
+                this.fin = '';
         	},
             timeFormat(time) {
                 let timeformat = time.toString().split('.');
@@ -338,7 +340,7 @@
                 }
             },
             closeMsg() {
-                this.messageError = false;
+                this.messageError = '';
             },
             addWishlist() {
                 let body = {
@@ -353,13 +355,22 @@
                 });
             },
             openModal(Mensaje) {
+                if(!this.authenticated) {
+                    swal({
+                      title: 'No estas loguedo',
+                      text: "Debes iniciar sesión para hacer una pregunta o reserva.",
+                      imageUrl: "/avatars/default.png"
+                    });
+                    return;
+                }else {
+                    this.getUserAuthenticated();
+                }
                 if(this.totalFechas < 1) {
-                    this.messageError = true;
+                    swal(`El mínimo de horas es ${this.minhours}`, 'Debes agregar más horas.');
                     return;
                 }
                 this.modalReserva = true;
                 this.mensaje = Mensaje;
-
             },
             openModalFechas() {
                 this.modalFechas = true;
@@ -372,11 +383,11 @@
             },
             sendReserva() {
                 if(this.totalFechas < 1) {
-                    this.messageError = true;
+                    this.messageError = `El mínimo de horas es ${this.minhours}`;
                     return;
                 }
                 if(this.totalHoras < this.minhours) {
-                    this.messageError = true;
+                    this.messageError = `El mínimo de horas es ${this.minhours}`;
                     return;
                 }
                 this.btnSend = false;
@@ -392,12 +403,14 @@
                     'total': this.total
 
                 }
-                this.$http.post(`/api/sendreserva`, body)
+                this.$http.post(`api/sendreserva`, body)
                 .then(res => {
                     this.btnSend = true;
                     this.modalReserva = false;
+                    swal("Consulta enviada!", "En las próximas 48 horas el dueño se pondrá en contacto contigo!", "success");
                 }, err => {
                     console.log(err);
+                    swal(err.message);
                 });
             },
             removeDate(date) {
@@ -406,6 +419,14 @@
                 
                 if(this.totalFechas.length == 0) {
                     this.showDatos = false;
+                }
+            },
+            getUserAuthenticated() {
+                if(this.$auth.isAuthenticated()) {
+                    this.$http.get('api/usersession')
+                    .then(res => {
+                        this.clientId = res.body.id;
+                    });
                 }
             }
         }

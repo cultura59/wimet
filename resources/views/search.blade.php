@@ -80,7 +80,7 @@
 					<p class="search-result">{{$espacios->total()}} espacios encontrados</p>
 					
 					<div class="search-data">
-						<div class="row" id="home-espacio">
+						<div class="row">
 							@foreach($espacios as $espacio)
 							<div class="col-xs-12 col-sm-6">
 								<espacio-search 

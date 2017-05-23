@@ -12,7 +12,6 @@
 	</div>
 	<div class="container-left">
 		{!! Form::open(array('url' => 'savecancelacion', 'method' => 'POST')) !!}
-		<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 		<input type="hidden" name="id" value="{{$espacio->id}}">
 		<div class="container-center">
 			<div id="first-step">

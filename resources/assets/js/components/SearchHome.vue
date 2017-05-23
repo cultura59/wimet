@@ -1,5 +1,6 @@
 <template>
 	<div class="wt-center-block">
+
 		<div class="dropdown">
             <button class="dropbtn" @click="showSelectUbicacion()">
                 <span>{{ubicacion}}</span>

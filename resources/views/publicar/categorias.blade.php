@@ -13,7 +13,6 @@
 	<div class="container-left">
 		{!! Form::open(array('url' => 'savecategories', 'method' => 'POST')) !!}
 		<input type="hidden" name="id" value="{{$espacio->id}}">
-		<input type="hidden" name="user_id" value="{{Auth::user()->id}}">
 		<div class="container-center">
 			@include('errors/error-notification')
 			<h2>¿Qué tipo de actividad se puede a cabo en tu espacio?</h2>
