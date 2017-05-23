@@ -32,6 +32,7 @@
 		</ul>
 		<div v-if="showModalLogin" class="login-modal">
 			<div class="login-modal__content">
+				<span class="close-modal" @click="closeModals()">×</span>
 				<div class="container-social">
 					<button class="container-social__btn btn-facebook">Iniciar sesión con Facebook</button>
 					<button class="container-social__btn btn-linkedin">Iniciar sesión con LinkedIn</button>
@@ -98,6 +99,10 @@
 			openModalRegistro() {
 				this.showModalLogin = false;
 				this.showModalRegistro = true;
+			},
+			closeModals() {
+				this.showModalLogin = false;
+				this.showModalRegistro = false;
 			},
 			registrar() {
 				let data = {
@@ -181,12 +186,18 @@
 	    background-color: rgba(0, 0, 0, 0.4);
 	    &__content {
 		    width: 450px;
-		    padding: 20px;
+		    padding: 5px 20px 20px 20px;
 		    margin: 2.5% auto;
 		    border-radius: 2px;
 		    border: 1px solid #888;
 			background-color: #fefefe;
 		    font-weight: 400;
+		    .close-modal {
+			    color: #000;
+			    font-size: 28px;
+			    font-weight: bold;
+			    cursor: pointer;
+			}
 			.container-social {
 			    padding-bottom: 1em;
 			    border-bottom: solid 1px #979797;
