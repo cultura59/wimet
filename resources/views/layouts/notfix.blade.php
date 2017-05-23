@@ -14,6 +14,8 @@
         <link href="/css/app.css" rel="stylesheet">
 
         <link rel="stylesheet" href="/css/basic.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
                 
         <!-- Scripts -->
         <script>
@@ -23,53 +25,22 @@
         </script>
     </head>
     <body>
-        <!-- Header Home -->
-        <header class="header-with-not-fix">
-            <nav class="header-navbar container-fluid">
-                <a href="/">
-                    <img class="img-responsive" src="{{url('img/wimet_logo_dark.svg')}}" alt="Wimet" width="158" />
-                </a>
-                <div class="actions">
-                    <ul>
-                        <li>
-                            <a href="{{ url('/publicar/primer-paso') }}" class="wt-btn-transparent btn-hov">PUBLICA TU ESPACIO
-                                <svg class="dark">
-                                    <rect x="0" y="0" fill="none" width="100%" height="100%"/>
-                                </svg>
-                            </a>
-                        </li>
-                        @if(!Auth::check())
-                            <li><a href="{{url('/login')}}" id="btn-login" class="text-bold">Ingresar</a></li>
-                        @else
-                            <li>
-                                <a href="#" id="menu-user">
-                                    {{ Auth::user()->firstname }} {{ Auth::user()->lastname }}
-                                </a>
-                                <ul class="menue-list">
-                                    <li class="menue-list__item">
-                                        <a href="{{url('/dashboard/user/'.Auth::user()->id.'/datos')}}">Editar perfil</a>
-                                    </li>
-                                    <li class="menue-list__item">
-                                        <a href="{{url('/dashboard/user/'.Auth::user()->id.'/misespacios')}}">Mi cuenta</a>
-                                    </li>
-                                    <li class="menue-list__item active">
-                                        <a href="{{url('/publicar/primer-paso')}}">PUBLICAR TU ESPACIO</a>
-                                    </li>
-                                    <li>
-                                        <a href="{{url('/logout')}}">Salir</a>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endif
-                    </ul>
-                </div>
-            </nav>
-        </header>
+        <div id="home-espacio">
+            <!-- Header Home -->
+            <header class="header-with-not-fix">
+                <nav class="header-navbar container-fluid">
+                    <a href="/">
+                        <img class="img-responsive" src="{{url('img/wimet_logo_dark.svg')}}" alt="Wimet" width="158" />
+                    </a>
+                    <wimet-login type-login="btn-login link-hov" type-svg="dark"></wimet-login>
+                </nav>
+            </header>
 
-        <!-- main -->
-        <main>
-            @yield('content')
-        </main>
+            <!-- main -->
+            <main>
+                @yield('content')
+            </main>
+        </div>
         <script src="{{url('/js/app.js')}}"></script>
         @stack('scripts')
     </body>

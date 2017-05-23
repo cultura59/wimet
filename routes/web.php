@@ -21,47 +21,50 @@ Route::get('/logout', function() {
 
 Route::get('/home', 'HomeController@index');
 Route::get('/search', 'HomeController@search');
-Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio')->middleware('auth');
+Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio');
 Route::get('/espacio/{id}/reserva', 'HomeController@reserva')->name('reserva');
-Route::get('/publicar/{id}/espacio/{espacioId}', 'HomeController@publicar')
-			->name('publica-steps')->middleware('auth');
-Route::get('/publicar/primer-paso', 'PublicaController@index')->middleware('auth');
 
-Route::get('/publicar/primer-paso/espacio/{id}/categorias', 
-			'PublicaController@primerPasoCategoria')
-			->name('publica-categoria')->middleware('auth');
-Route::get('/publicar/primer-paso/espacio/{id}/detalles', 
-			'PublicaController@primerPasoDetalles')
-			->name('publica-detalles')->middleware('auth');
-Route::get('/publicar/primer-paso/espacio/{id}/invitados', 
-			'PublicaController@primerPasoInvitados')
-			->name('publica-invidatos')->middleware('auth');
-Route::get('/publicar/primer-paso/espacio/{id}/maps', 
-			'PublicaController@primerPasoMaps')
-			->name('publica-maps')->middleware('auth');
-
-Route::get('/publicar/segundo-paso/espacio/{id}/images', 
-			'PublicaController@segundoPasoImages')
-			->name('publica-images')->middleware('auth');
-Route::get('/publicar/segundo-paso/espacio/{id}/caracteristicas', 
-			'PublicaController@segundoPasoCaracteristicas')
-			->name('publica-caracteristicas')->middleware('auth');
-Route::get('/publicar/segundo-paso/espacio/{id}/amenities', 
-			'PublicaController@segundoPasoAmenities')
-			->name('publica-amenities')->middleware('auth');
-Route::get('/publicar/segundo-paso/espacio/{id}/titulo', 
-			'PublicaController@segundoPasoTitulo')
-			->name('publica-titulo')->middleware('auth');
-
-Route::get('/publicar/tercer-paso/espacio/{id}/reglas', 
-			'PublicaController@tercerPasoReglas')
-			->name('publica-rules')->middleware('auth');
-Route::get('/publicar/tercer-paso/espacio/{id}/prices', 
-			'PublicaController@tercerPasoPrice')
-			->name('publica-prices')->middleware('auth');
-Route::get('/publicar/tercer-paso/espacio/{id}/cancelacion', 
-			'PublicaController@tercerPasoCancelaciones')
-			->name('publica-cancelacion')->middleware('auth');
+Route::get('/publicar/espacio/{espacioId}', 
+				'HomeController@publicar')->name('publica-steps');
+Route::group(['prefix' => 'publicar'], function() {
+	Route::get('/user/{id}/primer-paso', 
+				'PublicaController@index');
+	Route::group(['prefix' => 'primer-paso'], function() {
+		Route::get('/espacio/{id}/categorias', 
+					'PublicaController@primerPasoCategoria')
+					->name('publica-categoria');
+		Route::get('/espacio/{id}/detalles', 
+					'PublicaController@primerPasoDetalles')
+					->name('publica-detalles');
+		Route::get('/espacio/{id}/invitados', 
+					'PublicaController@primerPasoInvitados')
+					->name('publica-invidatos');
+		Route::get('/espacio/{id}/maps', 
+					'PublicaController@primerPasoMaps')
+					->name('publica-maps');
+	});
+	Route::get('/segundo-paso/espacio/{id}/images', 
+				'PublicaController@segundoPasoImages')
+				->name('publica-images');
+	Route::get('/segundo-paso/espacio/{id}/caracteristicas', 
+				'PublicaController@segundoPasoCaracteristicas')
+				->name('publica-caracteristicas');
+	Route::get('/segundo-paso/espacio/{id}/amenities', 
+				'PublicaController@segundoPasoAmenities')
+				->name('publica-amenities');
+	Route::get('/segundo-paso/espacio/{id}/titulo', 
+				'PublicaController@segundoPasoTitulo')
+				->name('publica-titulo');
+	Route::get('/tercer-paso/espacio/{id}/reglas', 
+				'PublicaController@tercerPasoReglas')
+				->name('publica-rules');
+	Route::get('/tercer-paso/espacio/{id}/prices', 
+				'PublicaController@tercerPasoPrice')
+				->name('publica-prices');
+	Route::get('/tercer-paso/espacio/{id}/cancelacion', 
+				'PublicaController@tercerPasoCancelaciones')
+				->name('publica-cancelacion');
+});
 
 // Apis publica fron views
 Route::post('saveEspaciowithoutdata', 'EspacioController@saveEspacioWithoutData');

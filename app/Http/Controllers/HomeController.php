@@ -117,7 +117,7 @@ class HomeController extends Controller
         return view('reserva', array('espacio' => $espacio));
     }
 
-    public function publicar($id, $espacioId)
+    public function publicar($espacioId)
     {
         $espacio = Espacio::with('access')
                     ->with('rules')
@@ -126,7 +126,7 @@ class HomeController extends Controller
 
         return view('publicar', array(
                 "espacioId" => $espacioId,
-                "step" => $id,
+                "step" => $espacio->step,
                 "enviarValidacion" => $this->checkEnvioRevicion($espacio)
             )
         );

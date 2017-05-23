@@ -4,7 +4,7 @@
 
 @section('content')
 
-	@include('dashboard.menue', array("id" => Auth::user()->id, "selected" => "consultas"))
+	<aside-dashboard selected="consultas"></aside-dashboard>
 
 	<section class="dashboard-container">
 		<div class="main-container">

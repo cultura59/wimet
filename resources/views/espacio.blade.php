@@ -46,7 +46,6 @@
 	<div id="home-espacio">
 		<aside-reserva 
 			espacio-id="{{$espacio->id}}"
-			client-id="{{Auth::user()->id}}"
 			avatar-url="{{$espacio->user->imagesource}}"
 			price="{{$price->price}}"
 			minhours="{{$price->minhours}}"
