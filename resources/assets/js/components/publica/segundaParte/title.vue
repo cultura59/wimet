@@ -31,7 +31,7 @@
 		data(){
 			return {
 				espacio: {},
-				countName: 40,
+				countName: 50,
 				countDescription: 500
 			}
 		},

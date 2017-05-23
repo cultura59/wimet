@@ -1,5 +1,5 @@
 <template>
-	<a :href="url">
+	<a :href="url" target="_blank">
 		<img :src="espacio.image" :tile="espacio.name" class="img-responsive img-espacio">
 		<div class="search-espacio">
 			$ {{espacio.price}} ARS

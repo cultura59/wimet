@@ -15,13 +15,13 @@
 					<a href="#" id="menu-user">{{ user.firstname }}</a>
 				    <ul class="menue-list">
 				        <li class="menue-list__item">
-				            <a href="#" @click="reloadPage(`dashboard/user/${user.id}/datos`, $event)" style="color: #333;">Editar perfil</a>
+				            <a href="#" @click="reloadPage(`/dashboard/user/${user.id}/datos`, $event)" style="color: #333;">Editar perfil</a>
 				        </li>
 				        <li class="menue-list__item">
-				            <a href="#" @click="reloadPage(`dashboard/user/${user.id}/misespacios`, $event)" style="color: #333;">Mi cuenta</a>
+				            <a href="#" @click="reloadPage(`/dashboard/user/${user.id}/misespacios`, $event)" style="color: #333;">Mi cuenta</a>
 				        </li>
 				        <li class="menue-list__item active">
-				            <a href="#" @click="reloadPage(`publicar/primer-paso`, $event)" style="color: #333;">PUBLICAR TU ESPACIO</a>
+				            <a href="#" @click="reloadPage(`/publicar/primer-paso`, $event)" style="color: #333;">PUBLICAR TU ESPACIO</a>
 				        </li>
 				        <li>
 				            <a href="#" @click="logout($event)" style="color: #333;">Salir</a>
@@ -135,7 +135,6 @@
 				this.$http.post('oauth/token', data)
 				.then(res => {
 					if(res.status == 200) {
-						swal('Bienvenido!!!', 'Gracias por volver a nuestra familia', 'success');
 						this.$auth.setToken(res.body.access_token, res.body.expires_in + Date.now());
 						setTimeout(() => {
 							location.reload(); 
@@ -150,7 +149,7 @@
 			logout(event) {
 				event.preventDefault();
 				this.$auth.destroyToken();
-				this.authenticated = this.$auth.isAuthenticated();
+				location.href = '/';
 			},
 			getUserAuthenticated() {
 				let vm = this;

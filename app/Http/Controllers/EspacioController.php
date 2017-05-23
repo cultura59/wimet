@@ -94,6 +94,7 @@ class EspacioController extends Controller
                         'access'
                     )
                     ->first();
+        $espacio->description = strip_tags($espacio->description);
         return $espacio;
     }
 
