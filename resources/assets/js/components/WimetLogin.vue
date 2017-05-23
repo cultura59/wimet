@@ -51,6 +51,7 @@
 		</div>
 		<div v-if="showModalRegistro" class="login-modal">
 			<div class="login-modal__content">
+				<span class="close-modal" @click="closeModals()">×</span>
 				<div class="container-social">
 					<button class="container-social__btn btn-facebook">Iniciar sesión con Facebook</button>
 					<button class="container-social__btn btn-linkedin">Iniciar sesión con LinkedIn</button>
