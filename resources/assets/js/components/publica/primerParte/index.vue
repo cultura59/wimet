@@ -73,7 +73,7 @@
 				}
 			},
 			getCharacteristics() {
-				this.$http.get('api/characteristics')
+				this.$http.get('api/estiloespacio')
 				.then(res => {
 					this.characteristics = res.body;
 				});
