@@ -56,7 +56,11 @@
 		{!! Form::close() !!}
 	</div>
 	<div class="container-right">
-		<img class="img-responsive" src="http://lorempixel.com/people/400/500/" alt="">
+		<div class="container-right__dialog-box">
+			<div>
+				<p>La capacidad de carga que incluyas determinará la cantidad de invitados que pueden alojarse cómodamente en tu espacio.</p>
+			</div>
+		</div>
 	</div>
 </section>
 @endsection

@@ -48,7 +48,11 @@
 		{!! Form::close() !!}
 	</div>
 	<div class="container-right">
-		<img class="img-responsive" src="http://lorempixel.com/people/400/500/" alt="">
+		<div class="container-right__dialog-box">
+			<div>
+				<p>Las actividades definen las posibilidades de experiencias que permite tu espacio. Cada público tiene necesidades distintas. Ten tu espacio listo para cada potencial encuentro.</p>
+			</div>
+		</div>
 	</div>
 </section>
 @endsection

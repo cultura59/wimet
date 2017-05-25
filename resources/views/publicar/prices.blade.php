@@ -73,7 +73,13 @@
 		</div>
 	</div>
 	<div class="container-right">
-		<img class="img-responsive" src="http://lorempixel.com/people/400/500/" alt="">
+		<div class="container-right__dialog-box">
+			<div>
+				<p>El precio es fundamental para poder filtrar a los potenciales organizadores. Por favor, incluye el valor estimado que consideres para alquilar tu espacio. Toma en cuenta que el espacio se mide por hora y con un mínimo de horas que representen la rentabilidad que esperas recibir.
+Sólo números, sin comas ni puntos.
+Ahh si! guarda uno por vez ;)</p>
+			</div>
+		</div>
 	</div>
 </section>
 @endsection

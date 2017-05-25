@@ -14,7 +14,19 @@
 		<publica-index></publica-index>
 	</div>
 	<div class="container-right">
-		<img class="img-responsive" src="http://lorempixel.com/people/400/500/" alt="">
+		<div class="container-right__dialog-box">
+			<div>
+				<ul>
+					<li>Ingresos adicionales</li>
+					<li>Gratis</li>
+					<li>Espacios curados</li>
+					<li>Libertad</li>
+					<li>Transparencia</li>
+					<li>Seguridad</li>
+				</ul>
+				<span>Suma tu espacio, comparte la experiencia</span>
+			</div>
+		</div>
 	</div>
 </section>
 

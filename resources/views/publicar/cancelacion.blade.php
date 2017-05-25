@@ -46,7 +46,16 @@
 		{!! Form::close() !!}
 	</div>
 	<div class="container-right">
-		<img class="img-responsive" src="http://lorempixel.com/people/400/500/" alt="">
+		<div class="container-right__dialog-box">
+			<div>
+				<p>Para tu tranquilidad, es importante que definas que tipo de política de pagos recibirás y si quieres un depósito de garantía.</p>
+				<ul>
+					<li>Flexible: Reembolso completo hasta 5 días antes del evento, excepto los gastos de procesamiento.</li>
+					<li>Moderada: Reembolso completo hasta 10 días antes del evento, excepto los gastos de procesamiento.</li>
+					<li>Estricta: 50% de reembolso hasta 10 días antes del evento, excepto gastos de procesamiento.</li>
+				</ul>
+			</div>
+		</div>
 	</div>
 </section>
 @endsection

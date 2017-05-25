@@ -14,7 +14,7 @@ class TipoClienteController extends Controller
      */
     public function index()
     {
-        $tipoClientes = TipoCliente::all();
+        $tipoClientes = TipoCliente::all()->orderBy('orderestilo', 'asc');
         return $tipoClientes;
     }
 

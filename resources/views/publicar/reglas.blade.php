@@ -37,7 +37,11 @@
 		{!! Form::close() !!}
 	</div>
 	<div class="container-right">
-		<img class="img-responsive" src="http://lorempixel.com/people/400/500/" alt="">
+		<div class="container-right__dialog-box">
+			<div>
+				<p>Las reglas delimitan lo que se puede hacer o no en tu espacio. Tomate un momento para dejar bien en claro lo que se puede hacer y lo que no.</p>
+			</div>
+		</div>
 	</div>
 </section>
 @endsection
