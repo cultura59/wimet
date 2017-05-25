@@ -106,7 +106,7 @@
 	<div class="container-right">
 		<div class="container-right__dialog-box">
 			<div>
-				<p>Cada organizador debe saber con que cuenta para poder ir imaginado su evento. Estos recursos ayudan a comprender como está organizado tu espacio. El ingreso es el comienzo de la experiencia y fundamental para comenzarla con el pie derecho.</p>
+				<p>Cada organizador debe saber con que cuenta para poder ir imaginando su evento. Estos recursos ayudan a comprender como está organizado tu espacio. El ingreso es el comienzo de la experiencia y fundamental para comenzarla con el pie derecho.</p>
 			</div>
 		</div>
 	</div>
