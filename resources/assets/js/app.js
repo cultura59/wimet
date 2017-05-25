@@ -23,6 +23,23 @@ Vue.component('publica-title', require('./components/publica/segundaParte/title.
 import Auth from './packages/auth/Auth.js';
 Vue.use(Auth);
 
+window.fbAsyncInit = () => {
+	FB.init({
+		appId      : '1961270997426068',
+		xfbml      : true,
+		version    : 'v2.9'
+	});
+	FB.AppEvents.logPageView();
+};
+
+(function(d, s, id){
+	let js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {return;}
+	js = d.createElement(s); js.id = id;
+	js.src = "//connect.facebook.net/es_LA/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
 const ip = location.host;
 Vue.http.options.root = `http://${ip}`;
 
