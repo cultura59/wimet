@@ -25,7 +25,7 @@ Vue.use(Auth);
 
 window.fbAsyncInit = () => {
 	FB.init({
-		appId      : '1961270997426068',
+		appId      : '1951432991743202',
 		xfbml      : true,
 		version    : 'v2.9'
 	});
