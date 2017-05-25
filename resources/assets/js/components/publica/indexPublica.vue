@@ -61,6 +61,7 @@
 		<div class="container-right">
 			<div class="container-right__dialog-box">
 			<div>
+				<p v-if="step == 1">Un pequeño paso para ti, un gran paso para la comunidad.</p>
 				<p v-if="step == 2">Un pequeño paso para ti, un gran paso para la comunidad.</p>
 				<p v-if="step == 3">¡A un paso de ser parte de la comunidad!</p>
 				<p v-if="step == 4">¡Wow, lo lograste! Muy pronto tu espacio estará online para que puedas compartirlo a nuestra comunidad.</p>
