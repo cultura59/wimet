@@ -40,6 +40,7 @@ class UserController extends Controller
             $user->firstname = $request->firstname;
             $user->lastname = $request->lastname;
             $user->email = $request->email;
+            $user->imagesource = ($request->imagesource) ? $request->imagesource : null;
             $user->password =  bcrypt($request->password);
             $user->tipo_clientes_id = 1;
             $user->isAdmin = 0;
@@ -58,7 +59,17 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+        try {
+            $user = User::where('email', $id)->first();
+            if($user == null) {
+                return response('No se encontro el usuario', 400);
+            }else {
+                return $user;
+            }
+            return $user;
+        }catch(\Exception $e){
+            return response('Los campos no son correctos', 500);
+        }
     }
 
     /**

@@ -34,8 +34,7 @@
 			<div class="login-modal__content">
 				<span class="close-modal" @click="closeModals()">×</span>
 				<div class="container-social">
-					<button class="container-social__btn btn-facebook">Iniciar sesión con Facebook</button>
-					<button class="container-social__btn btn-linkedin">Iniciar sesión con LinkedIn</button>
+					<login-facebook></login-facebook>
 					<button class="container-social__btn btn-google">Iniciar sesión con Google</button>
 				</div>
 				<div class="container-login">
@@ -53,8 +52,7 @@
 			<div class="login-modal__content">
 				<span class="close-modal" @click="closeModals()">×</span>
 				<div class="container-social">
-					<button class="container-social__btn btn-facebook">Iniciar sesión con Facebook</button>
-					<button class="container-social__btn btn-linkedin">Iniciar sesión con LinkedIn</button>
+					<login-facebook></login-facebook>
 					<button class="container-social__btn btn-google">Iniciar sesión con Google</button>
 				</div>
 				<div class="container-login">
@@ -73,16 +71,22 @@
 	</div>
 </template>
 <script>
+	import loginFacebook from './loginFacebook.vue';
 	import swal from 'sweetalert';
+
 	export default {
 		props: [
 			'typeLogin',
 			'typeSvg'
 		],
+		components: {
+			'login-facebook': loginFacebook
+		},
 		data() {
 			return {
 				email: '',
 				password: '',
+				imagesource: '',
 				showModalLogin: false,
 				showModalRegistro: false,
 				authenticated: this.$auth.isAuthenticated(),
@@ -110,14 +114,14 @@
 					firstname: this.firstname,
 					lastname: this.lastname,
 					email: this.email,
-					password: this.password
+					password: this.password,
+					imagesource: this.imagesource
 				}
 				this.$http.post('api/user', data)
 				.then(res => {
 					if(res.status == 200) {
 						this.login();
 						this.showModalRegistro = false;
-						swal('Buen trabajo!', 'te registraste con exito', 'success');
 					}else {
 						swal('Ups, algo salio mal', res.message, 'error');
 					}
@@ -149,6 +153,10 @@
 			logout(event) {
 				event.preventDefault();
 				this.$auth.destroyToken();
+				FB.getLoginStatus((resStatusFb) => {
+					resStatusFb.status === 'connected';
+					FB.logout();
+				});
 				location.href = '/';
 			},
 			getUserAuthenticated() {
@@ -208,13 +216,6 @@
 				    border-radius: 2px;
 				    margin-top: 5px;
 				}
-			    .btn-facebook {
-			    	background-color: #3b5998;
-			    	color: #fff;
-			    	&:hover {
-			    		background-color: rgba(59, 89, 152, 0.80);
-			    	}
-			    }
 			    .btn-linkedin {
 			    	background-color: #007ab6;
 			    	color: #fff;
