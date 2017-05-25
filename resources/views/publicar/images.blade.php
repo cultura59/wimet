@@ -66,7 +66,7 @@
 	<div class="container-right">
 		<div class="container-right__dialog-box">
 			<div>
-				<p>Muchos anfitriones cuentan con al menos 5 fotos. Puedes empezar con una y añadir más en otro momento. Incluir fotos de todos los ambientes a los que tendrán acceso los invitados les ayudará a hacerse una idea de cómo podría ser su evento. Las imágenes deben tener una calidad superior en dimensiones a 1400 x 1050px.</p>
+				<p>Muchos anfitriones cuentan con al menos 5 fotos. Puedes empezar con una y añadir más en otro momento. Incluir fotos de todos los ambientes a los que tendrán acceso los invitados les ayudará a hacerse una idea de cómo podría ser su evento. Las imágenes deben tener una calidad superior en dimensiones a 1920 x 1080px.</p>
 				<p>Importante: Por carga puedes subir 2MB por imagen y hasta 20 MB en total.</p>
 				<p>Tips: Asegúrate de que haya bastante luz en el espacio. A veces, hacer fotos desde una esquina puede darte una mejor perspectiva que hacerlas desde un ángulo frontal.</p>
 			</div>
