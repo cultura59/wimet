@@ -31,7 +31,7 @@
 			<i v-if="step >= 1" class="fa fa-check fa-4x pull-right" aria-hidden="true"></i>
 			<h2 class="Sub-title">Paso 1: Lo escencial</h2>
 			<p class="sub-title-info">Tipo de espacio, dirección, etc.</p>
-			<a :href="`/publicar/primer-paso/espacio/${espacioId}/detalles`" class="link">EDITAR</a>
+			<a :href="`/publicar/primer-paso/espacio/${espacioId}/categorias`" class="link">EDITAR</a>
 		</div>
 		
 		<div class="box-step">

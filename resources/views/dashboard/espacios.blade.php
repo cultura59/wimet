@@ -22,7 +22,7 @@
 						<div class="detalle-espacio__title">
 							<h3>{{$espacio->name}}</h3>
 							<div>
-								<a href="{{route('publica-categoria', array('espacioId' => $espacio->id))}}">
+								<a href="{{route('publica-steps', array('espacioId' => $espacio->id))}}">
 									<i class="fa fa-pencil fa-2x" aria-hidden="true" title="Editar"></i>
 								</a>
 								@if(!$espacio->categorias->isEmpty())
@@ -56,7 +56,7 @@
 						<div class="detalle-espacio__title">
 							<h3>{{$borrador->name}}</h3>
 							<div>
-								<a href="{{route('publica-categoria', array('espacioId' => $borrador->id))}}">
+								<a href="{{route('publica-steps', array('espacioId' => $borrador->id))}}">
 									<i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
 								</a>
 								<a href="{{url('/categoria/'. $borrador->categorias[0]->id .'/espacio/'. $borrador->id)}}" target="_blank">
