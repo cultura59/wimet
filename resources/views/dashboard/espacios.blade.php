@@ -59,9 +59,11 @@
 								<a href="{{route('publica-steps', array('espacioId' => $borrador->id))}}">
 									<i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
 								</a>
+								@if(!$borrador->categorias->isEmpty())
 								<a href="{{url('/categoria/'. $borrador->categorias[0]->id .'/espacio/'. $borrador->id)}}" target="_blank">
 									<i class="fa fa-eye fa-2x" aria-hidden="true"></i>
 								</a>
+								@endif
 							</div>
 						</div>
 						<ul class="list-inline">
