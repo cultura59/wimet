@@ -42,24 +42,16 @@
 		</div>
 	</div>
 	<div class="container-left">
-		{!! Form::open(array('url' => 'saveimages', 'method' => 'POST', 'enctype' => 'multipart/form-data', 'novalidate' => 'novalidate')) !!}
 		<div class="container-center">
-			<h2>Ingrese sus imagenes</h2>
-			<div id="files" class="wt-custom-input-file">
-				<input type="hidden" name="espacio_id" value="{{$espacio->id}}">
-				<label for="imagenes">Inserte todas sus imagenes</label>
-				<input type="file" id="imagenes" name="imagenes[]" multiple required>
-			</div>
-			<ul id="list-files" class="gallery"></ul>
-
-			<div id="home-espacio">
-				<list-images espacio-id="{{$espacio->id}}"></list-images>
-			</div>
+			<publica-image espacio-id="{{$espacio->id}}"></publica-image>
+			<list-images espacio-id="{{$espacio->id}}"></list-images>
 		</div>
 
 		<div class="buttons" id="second-buttons">
 			<a href="{{ url()->previous() }}" class="btn">ATRÁS</a>
-			<input class="btn wt-btn-primary" type="submit" value="CONTINUAR"/>
+			<a href="{{route('publica-caracteristicas', array('id' => $espacio->id))}}">
+				<button class="btn wt-btn-primary">CONTINUAR</button>
+			</a>
 		</div>
 		{!! Form::close() !!}
 	</div>

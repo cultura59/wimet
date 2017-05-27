@@ -1,10 +1,13 @@
 <template>
-	<div class="gallery">
-		<div class="gallery__item" v-for="img in images">
-			<img v-bind:src="'/' + img.name" class="img-responsive" @click="deleteImage(img)">
-			<i class="fa fa-trash-o" aria-hidden="true"></i>
-		</div>
-	</div>
+    <div class="wt-m-top-1">
+        <h3>Imagenes cargadas</h3>
+    	<div class="row wt-m-bot-4">
+    		<div class="col-md-3" v-for="img in images">
+    			<i class="fa fa-trash-o fa-2x remove-img" aria-hidden="true"></i>
+                <img v-bind:src="'/' + img.name" class="img-responsive img-rounded" @click="deleteImage(img)">
+    		</div>
+    	</div>
+    </div>
 </template>
 <script>
 	export default {
@@ -41,15 +44,13 @@
 	}
 </script>
 <style lang="sass">
-	.gallery {
-	    display: flex;
-	    justify-content: space-around;
-	    &__item {
-		    position: relative;
-		    &:hover {
-		    	opacity: 0.5;
-		    	cursor: pointer;
-		    }
-		}
-	}
+	.remove-img {
+        position: absolute;
+        top: 0;
+        color: #fff;
+    }
+    .img-rounded:hover {
+        opacity: 0.5;
+        cursor: pointer;
+    }
 </style>

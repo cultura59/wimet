@@ -18,6 +18,7 @@ Vue.component('aside-dashboard', require('./components/AsideDashboard.vue'));
 
 Vue.component('index-publica', require('./components/publica/indexPublica.vue'));
 Vue.component('publica-index', require('./components/publica/primerParte/index.vue'));
+Vue.component('publica-image', require('./components/publica/segundaParte/image.vue'));
 Vue.component('publica-title', require('./components/publica/segundaParte/title.vue'));
 
 import Auth from './packages/auth/Auth.js';

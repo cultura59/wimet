@@ -291,23 +291,21 @@ class EspacioController extends Controller
     * @param Object $request
     * @return redirect to public-amenities
     */
-    public function saveImages(Request $request) {
-        if($request->hasFile('imagenes')) {
-            // upload the image //
-            $imagesEspacio = $request->file('imagenes');
-            $destination_fotoprincipales = 'fotosespacios/';
+    public function saveImages(Request $request, $id) {
 
-            foreach ($imagesEspacio as $key => $img) 
-            {
-                $filename_imagesEspacio = str_random(8).'_'.$img->getClientOriginalName();
-                $img->move($destination_fotoprincipales, $filename_imagesEspacio);
-                $image = new Image;
-                $image->name = $destination_fotoprincipales . $filename_imagesEspacio;
-                $image->espacio_id = $request->espacio_id;
-                $image->save();
-            }
+        if($request->hasFile('file')) {
+            // upload the image //
+            $imagesEspacio = $request->file('file');
+            $destination_fotoprincipales = 'fotosespacios/';
+            $filename_imagesEspacio = str_random(8).'_'.$imagesEspacio->getClientOriginalName();
+
+            $imagesEspacio->move($destination_fotoprincipales, $filename_imagesEspacio);
+            $image = new Image;
+            $image->name = $destination_fotoprincipales . $filename_imagesEspacio;
+            $image->espacio_id = $id;
+            $image->save();
+            return $image;
         }
-        return \Redirect::route('publica-caracteristicas', array('id' => $request->espacio_id));
     }
 
     /**
