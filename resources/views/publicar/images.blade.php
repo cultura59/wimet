@@ -57,6 +57,9 @@
 	</div>
 	<div class="container-right">
 		<div class="container-right__dialog-box">
+			<div class="wt-m-bot-4">
+				<i class="fa fa-cloud-upload fa-3x" aria-hidden="true"></i>
+			</div>
 			<div>
 				<p>Muchos anfitriones cuentan con al menos 5 fotos. Puedes empezar con una y añadir más en otro momento. Incluir fotos de todos los ambientes a los que tendrán acceso los invitados les ayudará a hacerse una idea de cómo podría ser su evento. Las imágenes deben tener una calidad superior en dimensiones a 1920 x 1080px.</p>
 				<p>Importante: Por carga puedes subir 2MB por imagen y hasta 20 MB en total.</p>
