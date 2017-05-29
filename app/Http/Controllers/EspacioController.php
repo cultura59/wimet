@@ -360,23 +360,24 @@ class EspacioController extends Controller
     * @return redirect to public-caracteristicas
     */
     public function savePrice(Request $request) {
-        $price = Price::find($request->priceId);
-        if($request->espacio_id) {
-            $price->espacio_id = $request->espacio_id;
+        foreach ($request->categories as $key => $cat) {
+            $price = Price::find($cat['id']);
+            if($cat['espacio_id']) {
+                $price->espacio_id = $cat['espacio_id'];
+            }
+            if($cat['categoria_id']) {
+                $price->categoria_id = $cat['categoria_id'];
+            }
+            if($cat['price']) {
+                $price->price = $cat['price'];
+            }
+            if($cat['minhours']) {
+                $price->minhours = $cat['minhours'];
+            }
+            $price->status = $cat['status'];
+            $price->save();
         }
-        if($request->categoria_id) {
-            $price->categoria_id = $request->categoria_id;
-        }
-        if($request->price) {
-            $price->price = $request->price;
-        }
-        if($request->minhours) {
-            $price->minhours = $request->minhours;
-        }
-        $price->status = $request->status;
-        $price->save();
-        $request->session()->flash('alert-success', 'El precio fue guardado :)');
-        return \Redirect::back();
+        return response('Los precios fueron modificados', 200);
     }
 
     /**
