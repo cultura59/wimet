@@ -31,49 +31,14 @@
 	</div>
 	<div class="container-left">
 
-		<div class="container-center">
-			@include('errors/error-notification')
-			<h2>¿Qué precio tiene tu espacio por hora?</h2>
-			<div class="row wt-m-top-4">
-				@foreach($prices as $price)
-				<div class="col-md-3">
-					<div class="card-category">
-						<div class="card-category-header">
-							<i class="fa fa-users fa-4x" aria-hidden="true"></i>
-							<h3>{{$price->name}}</h3>
-						</div>
-						<div class="card-category-body">
-							{!! Form::open(array('url' => 'saveprice', 'method' => 'POST')) !!}
-								<input type="hidden" name="priceId" value="{{$price->id}}">
-								<input type="hidden" name="espacio_id" value="{{$price->espacio_id}}">
-								<input type="hidden" name="categoria_id" value="{{$price->categoria_id}}">
-								<input type="hidden" name="status" value="1">
-								@if($price->price > 0)
-								<input type="text" name="price" value="{{ $price->price }}" placeholder="Precio por hora" />
-								@else
-								<input type="text" name="price" placeholder="Precio por hora" />
-								@endif
-								@if($price->price > 0)
-								<input type="text" name="minhours" value="{{ $price->minhours }}" placeholder="Mínimo de horas" />
-								@else
-								<input type="text" name="minhours" placeholder="Mínimo de horas" />
-								@endif
-								<input type="submit" value="Guardar" />
-							{!! Form::close() !!}
-						</div>
-					</div>
-				</div>
-				@endforeach
-			</div>
-		</div>
+		<publica-price espacio-id="{{$espacio->id}}" prices="{{$prices}}"></publica-price>
 
-		<div class="buttons" id="second-buttons">
-			<a href="{{ url()->previous() }}" class="btn">ATRÁS</a>
-			<a class="btn wt-btn-primary" href="{{route('publica-cancelacion', array('id' => $espacio->id))}}">CONTINUAR</a>
-		</div>
 	</div>
 	<div class="container-right">
 		<div class="container-right__dialog-box">
+			<div class="wt-m-bot-4">
+				<i class="fa fa-usd fa-3x" aria-hidden="true"></i>
+			</div>
 			<div>
 				<p>El precio es fundamental para poder filtrar a los potenciales organizadores. Por favor, incluye el valor estimado que consideres para alquilar tu espacio. Toma en cuenta que el espacio se mide por hora y con un mínimo de horas que representen la rentabilidad que esperas recibir.
 Sólo números, sin comas ni puntos.

@@ -20,6 +20,7 @@ Vue.component('index-publica', require('./components/publica/indexPublica.vue'))
 Vue.component('publica-index', require('./components/publica/primerParte/index.vue'));
 Vue.component('publica-image', require('./components/publica/segundaParte/image.vue'));
 Vue.component('publica-title', require('./components/publica/segundaParte/title.vue'));
+Vue.component('publica-price', require('./components/publica/segundaParte/price.vue'));
 
 import Auth from './packages/auth/Auth.js';
 Vue.use(Auth);
