@@ -22,7 +22,7 @@ Route::get('/logout', function() {
 Route::get('/home', 'HomeController@index');
 Route::get('/search', 'HomeController@search');
 Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio');
-Route::get('/espacio/{id}/reserva', 'HomeController@reserva')->name('reserva');
+Route::get('/espacio/{id}/evento', 'HomeController@evento')->name('evento');
 
 Route::get('/publicar/espacio/{espacioId}', 
 				'HomeController@publicar')->name('publica-steps');
@@ -88,10 +88,10 @@ Route::group(['prefix' => 'dashboard'], function() {
 	Route::get('/user/{id}', 'DashboardController@index');	
 	Route::get('/user/{id}/consultas', 'DashboardController@consultas');
 	Route::get('/user/{id}/consulta/{consultaId}', 'DashboardController@consulta');
-	Route::get('/user/{id}/reservas', 'DashboardController@reservas');	
-	Route::get('/user/{id}/reserva/{reservaId}', 'DashboardController@reserva');	
-	Route::get('/user/{id}/solicitudes', 'DashboardController@solicitudes');
-	Route::get('/user/{id}/solicitud/{solicitudId}', 'DashboardController@solicitud');
+	Route::get('/user/{id}/eventos', 'DashboardController@eventos');	
+	Route::get('/user/{id}/evento/{eventoId}', 'DashboardController@evento');	
+	Route::get('/user/{id}/evento/{eventoId}/mensajes', 'DashboardController@mensajes');	
+	Route::get('/user/{id}/evento/{eventoId}/nuevapropuesta', 'DashboardController@nuevapropuesta');	
 	Route::get('/user/{id}/favoritos', 'DashboardController@favoritos');
 	Route::get('/user/{id}/misespacios', 'DashboardController@misespacios')->name('misespacios');
 	Route::get('/user/{id}/datos', 'DashboardController@datos');

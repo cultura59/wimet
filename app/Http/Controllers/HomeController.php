@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Mail;
 use DB;
 use App\User;
+use App\Evento;
 use App\Espacio;
 use App\Categoria;
 class HomeController extends Controller
@@ -134,7 +135,7 @@ class HomeController extends Controller
 
     public function send_reserva(Request $request) {
         $cliente = User::find($request->clientId);
-        $espacio = Espacio::find($request->espacioId);
+        $espacio = Espacio::find($request->espacioId)->with('user')->first();
         $data = [
             "usuario" => $cliente,
             "espacio" => $espacio,
@@ -147,6 +148,22 @@ class HomeController extends Controller
 
             $message->from("adrian@wimet.co", "Consultas Wimet");
         });
+
+        $evento = new Evento();
+        $evento->titulo_cliente = $request->title;
+        $evento->estilo_espacios_id = $request->category;
+        $evento->invitados = $request->invitados;
+        $evento->cliente_id = $request->clientId;
+        $evento->user_id = $espacio->user()->first()->id;
+        $evento->reserva_desde = $request->reserva_desde;
+        $evento->reserva_hasta = $request->reserva_hasta;
+        $evento->espacio_id = $request->espacioId;
+        $evento->sub_total = $request->subTotal;
+        $evento->total_horas = $request->totalHoras;
+        $evento->descripcion_consulta = $request->mensaje;
+        $evento->estado = 'consulta';
+        $evento->save();
+        return $evento;
     }
 
     public function checkEnvioRevicion($espacio) {

@@ -6,6 +6,7 @@
  */
 
 require('./bootstrap');
+
 Vue.component('wimet-login', require('./components/WimetLogin.vue'));
 Vue.component('search-home', require('./components/SearchHome.vue'));
 Vue.component('search-filter', require('./components/SearchFilter.vue'));
@@ -21,6 +22,12 @@ Vue.component('publica-index', require('./components/publica/primerParte/index.v
 Vue.component('publica-image', require('./components/publica/segundaParte/image.vue'));
 Vue.component('publica-title', require('./components/publica/segundaParte/title.vue'));
 Vue.component('publica-price', require('./components/publica/segundaParte/price.vue'));
+
+Vue.component('dasboard-eventos', require('./components/dashboard/Eventos.vue'));
+Vue.component('dasboard-evento', require('./components/dashboard/Evento.vue'));
+Vue.component('dasboard-chats', require('./components/dashboard/Chat.vue'));
+Vue.component('dasboard-nueva-propuesta', require('./components/dashboard/NuevaPropuesta.vue'));
+
 
 import Auth from './packages/auth/Auth.js';
 Vue.use(Auth);

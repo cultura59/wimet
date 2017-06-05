@@ -41,6 +41,9 @@ Route::resource('tipocliente', 'TipoClienteController');
 Route::resource('consulta', 'ConsultaController');
 Route::resource('image', 'ImageController');
 Route::resource('user', 'UserController');
+Route::resource('evento', 'EventoController');
+Route::resource('mensaje', 'MensajeController');
+Route::resource('propuesta', 'PropuestaController');
 
 Route::get('access', 'ApiHelpperController@access');
 Route::get('accessibilities', 'ApiHelpperController@accessibilities');
@@ -49,3 +52,4 @@ Route::get('estiloespacio', 'ApiHelpperController@estiloespacio');
 Route::get('rules', 'ApiHelpperController@rules');
 
 Route::post('sendreserva', 'HomeController@send_reserva');
+Route::get('geteventos/{id}', 'UserController@getEventos');
