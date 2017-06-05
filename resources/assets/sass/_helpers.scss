@@ -89,6 +89,13 @@
     }
 }
 
+.header-principal   {
+    .wt-btn-transparent:hover {
+        background-color: #e8536f;
+        border: 2px solid #e8536f !important;
+    }
+}
+
 .wt-btn-transparent {
     padding: 10px 16px;
     border-radius: 2px;
@@ -455,6 +462,9 @@ svg.white{
 
 .link-hov {
     color: $wt-white;
+    font-family: Poppins;
+    font-size: 13px;
+    letter-spacing: 0.5px;
     background: transparent;
     border: none;
 }
