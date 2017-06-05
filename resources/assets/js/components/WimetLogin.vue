@@ -9,7 +9,7 @@
 	        <li>
 				<button v-if="!authenticated" :class="typeLogin" @click="openModalLogin()">Ingresar</button>
 				<div v-if="authenticated">
-					<a href="#" id="menu-user">{{ user.firstname }}</a>
+					<a href="#" id="menu-user" :class="userloged">{{ user.firstname }}</a>
 				    <ul class="menue-list">
 				        <li class="menue-list__item">
 				            <a href="#" @click="reloadPage(`/dashboard/user/${user.id}/datos`, $event)" style="color: #333;">Editar perfil</a>
@@ -20,7 +20,7 @@
 				        <li class="menue-list__item active">
 				            <a href="#" @click="reloadPage(`/publicar/primer-paso`, $event)" style="color: #333;">PUBLICAR TU ESPACIO</a>
 				        </li>
-				        <li>
+				        <li class="menue-list__last-item">
 				            <a href="#" @click="logout($event)" style="color: #333;">Salir</a>
 				        </li>
 				    </ul>
@@ -74,7 +74,8 @@
 	export default {
 		props: [
 			'typeLogin',
-			'typeSvg'
+			'typeSvg',
+			'userloged'
 		],
 		components: {
 			'login-facebook': loginFacebook

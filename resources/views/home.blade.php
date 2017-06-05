@@ -14,8 +14,6 @@
         <link href="/css/app.css" rel="stylesheet">
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
-        <link href="http://allfont.es/allfont.css?fonts=roboto-light" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
 
         <!-- Scripts -->
         <script>
@@ -32,7 +30,7 @@
             <!-- navbar -->
             <nav class="header-navbar container-fluid">
                 <a href="/"><img src="{{url('img/wimet_logo_white.svg')}}" alt="Wimet" width="158"/></a>
-                <wimet-login type-login="link-hov" type-svg="white"></wimet-login>
+                <wimet-login type-login="link-hov" type-svg="white" userloged="link-user-white"></wimet-login>
             </nav>
             <!-- Title Header -->
             <section class="texto-header container">
