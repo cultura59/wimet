@@ -91,8 +91,8 @@
 				</div>
 				<div class="box-descripcion__contenido">
 					<div class="wt-center-column">
-						<span><b><i class="fa fa-clock-o" aria-hidden="true"></i></b> ${{$price->price}}.-</span>
-						<span>mínimo {{$price->minhours}} horas</span>
+						<span class="price"><b><i class="fa fa-clock-o" aria-hidden="true"></i></b> ${{$price->price}}.-</span>
+						<span class="min-hours">mínimo {{$price->minhours}} horas</span>
 					</div>
 				</div>
 			</div>

@@ -8,6 +8,7 @@
 .home-espacio-header {
   background-position: center;
   background-repeat: no-repeat;
+  font-family: Poppins;
   background-size: cover;
   width: 100%;
   height: 500px;
@@ -31,10 +32,11 @@
   }
 }
 .box-reserva {
+  font-family: Poppins;
   width: 338px;
   height: auto;
-  background-color: #efefef;
-  border: solid 1px #979797;
+  background-color: #f8f8f8;
+  border: solid 1px #545454;
   position: absolute;
   right: 148px;
   top: 450px;
@@ -125,6 +127,7 @@
   }
 }
 .box-reserva--active {
+  font-family: Poppins;
   width: 338px;
   height: auto;
   background-color: #efefef;
@@ -218,6 +221,7 @@
   }
 }
 .home-espacio-body {
+  font-family: Poppins;
   width: 960px;
   margin: 0 auto;
   .center-title {
@@ -244,6 +248,12 @@
       height: 22px;
     }
   }
+  .direccion {
+    opacity: 0.54;
+    font-family: Roboto;
+    font-size: 12px;
+    color: #212121;
+  }
   .box-descripcion {
     display: flex;
     flex-direction: row;
@@ -268,9 +278,17 @@
       font-size: 14px;
       letter-spacing: -0.1px;
       text-align: justify;
-      color: #212121;
+      color: #888b8d;
       margin-left: 23px;
       word-wrap: break-word;
+      .price {
+        color: #212121;
+        font-size: 19px;
+      }
+      .min-hours {
+        color: #191919;
+        font-size: 11px;
+      }
     }
   }
   .box-amenities {
@@ -311,5 +329,36 @@
     span {
       opacity: 0.54;
     }
+  }
+}
+.btn-reserva {
+  font-family: Poppins;
+  width: 100%;
+  min-width: 103px;
+  min-height: 40px;
+  padding: 1em;
+  border-radius: 2px;
+  background-color: #ea516d;
+  border: 1px solid #ea516d;
+  color: $wt-white;
+  font-size: 14px;
+  &:hover {
+    background-color: rgba(234, 81, 109, 0.87);
+  }
+}
+.btn-reserva-transparent {
+  font-family: Poppins;
+  width: 100%;
+  min-width: 103px;
+  min-height: 40px;
+  padding: 1em;
+  border-radius: 2px;
+  color: #545454;
+  font-size: 14px;
+  border: solid 1px #545454;
+  background-color: transparent;
+  &:hover {
+    background-color: rgba(84, 84, 84, 0.87);
+    color: $wt-white;
   }
 }

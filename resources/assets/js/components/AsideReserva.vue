@@ -82,12 +82,12 @@
                     </div>
     			</div>
                 <div v-if="clientId != ''">
-                    <button class="wt-btn-aqua wt-m-top-2" @click="openModal(`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, aliquid perferendis possimus eum accusamus earum odio qui a iure quis vero ut nesciunt distinctio et facilis dolorem ducimus laborum natus.`)">SOLICITUD DE RESERVA</button>
-        			<button class="wt-btn-aqua wt-m-top-1" @click="openModal('')">SOLICITUD DE VISITA</button>
+                    <button class="btn-reserva wt-m-top-2" @click="openModal(`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, aliquid perferendis possimus eum accusamus earum odio qui a iure quis vero ut nesciunt distinctio et facilis dolorem ducimus laborum natus.`)">SOLICITUD DE RESERVA</button>
+        			<button class="btn-reserva-transparent wt-m-top-1" @click="openModal('')">SOLICITUD DE VISITA</button>
                 </div>
                 <div v-if="clientId == ''">
-                    <button class="wt-btn-aqua wt-m-top-2"><a href="/login">SOLICITUD DE RESERVA</a></button>
-                    <button class="wt-btn-aqua wt-m-top-1"><a href="/login">SOLICITUD DE VISITA</a></button>
+                    <button class="btn-reserva wt-m-top-2"><a href="/login">SOLICITUD DE RESERVA</a></button>
+                    <button class="btn-reserva-transparent wt-m-top-1"><a href="/login">SOLICITUD DE VISITA</a></button>
                 </div>
     		</section>
     	</aside>
