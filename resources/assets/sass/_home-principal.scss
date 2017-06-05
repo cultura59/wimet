@@ -37,9 +37,19 @@ html, body {
 				    		display: none;
 				    	}	
 					}				
-					a, a:hover {
-						color: $wt-white;
+					a 	{
+						color: #F1F1F1;
 						text-decoration: none;
+						padding: 10px 15px 5px;
+						border-radius: 2px;
+					    border: 2px solid #F1F1F1;
+					    font-family: Poppins;
+					    font-size: 13px;
+					    letter-spacing: 0.5px;
+						
+						:hover {
+							
+						}
 					}
 				}
 			}
@@ -59,17 +69,22 @@ html, body {
 		margin-top: 18vh;
 		.text-header__title {
 			text-align: center;
-			font-size: 3rem;
 			font-weight: 600;
 			margin: 20px;
 			padding: 0px;
+			font-family: 'Poppins', sans-serif;
+		    font-size: 50px;
+		    text-shadow: 1px 0px;
+		    letter-spacing: 3px;
 		}
 		.text-header__sub-title {
 			text-align: center;
-			font-size: 1.1785rem;
 			font-weight: 400;
 			margin: 0px;
 			padding: 0px;
+		    font-family: 'Poppins', sans-serif;
+		    font-size: 15px;
+		    letter-spacing: 0.5px;
 		}
 		.texto-header__container-btn {
 			margin: 30px;
@@ -84,17 +99,23 @@ html, body {
 		bottom: 0px;
 		left: 0px;
 		padding: 16px 0px;
+
+		:first-child	{
+		    	border-right: none !important;
+			    border-top-left-radius: 2px;
+			    border-bottom-left-radius: 2px;
+
+		}
 		.dropbtn {
 			width: 250px;
 			height: 50px;
 		    display: flex;
 		    justify-content: space-between;
 		    align-items: center;
-		    color: #7A7A7A;
+		    color: $wt-grey-grey;
 			cursor: pointer;
 		    text-align: left;
 		    padding: 6px 12px;
-			border-radius: 2px;
 		    font-size: 0.825rem;
 			background-color: $wt-white;
 			border: solid 1px #dadada;
@@ -129,18 +150,24 @@ html, body {
 	background-color: $wt-white;
 
 	.content-wt	{
-		height: 150px;
+		height: 180px;
+    	padding-top: 45px;
 		h2 {
-			font-weight: 500;
-		    font-size: 2.25rem;
-		    padding-top: 30px;
-		    color: #212121;
-		    opacity: 0.87;
+			font-size: 24px;
+		    font-weight: 600;
+		    color: #3E3E3E;
+		    font-family: 'Poppins', sans-serif;
+		    letter-spacing: 0.7px;
+	        margin-bottom: 20px;
+	        text-shadow: 0px 0px;
 		}
 		p {
-		    font-size: 1.1875rem;
-		    color: #212121;
-		    opacity: 0.87;
+		    
+		    font-size: 18px;
+		    color: #3E3E3E;
+		    font-family: 'Poppins', sans-serif;
+		    letter-spacing: 0.3px;
+    		font-weight: 600;
 		}
 	}
 }
@@ -168,16 +195,22 @@ html, body {
 }
 
 .how-work {
-	padding: 20px;
+	padding: 45px 20px;
 	color:#333;
 	background-color: $wt-background-claro;
 	h2 {
-	    font-size: 2.25rem;
+	    font-size: 24px;
 	    font-weight: 600;
+	    color: #606060;
+	    font-family: 'Poppins', sans-serif;
+	    letter-spacing: 0.7px;
 	}
 	h3 {
-	    font-size: 1.1875rem;
 	    margin-bottom: 30px;
+	    font-size: 18px;
+	    color: #606060;
+	    font-family: 'Poppins', sans-serif;
+	    text-shadow: 0px 0px;
 	}
 	h4 {
 		font-weight: 600;
@@ -186,9 +219,19 @@ html, body {
     	margin: 12px 0;
 	}
 	p {
-	    color: #8A8A8A;
-		font-weight: 400;
-	    font-size: 17px;
+        font-family: 'Roboto Light', arial;
+	    color: #96999B;
+	    font-size: 14px;
+	    text-shadow: 0px 0px;
+	    padding: 0 30px;
+	    text-align: justify;
+	    line-height: 18px;
+	    &.signature	{
+	    	font-family: NotoSerif;
+		    font-style: italic;
+		    color: #747474;
+		    font-size: 16px;
+	    }
 	}
 }
 
@@ -228,21 +271,38 @@ footer {
 	background-color: $wt-dark-blue;
 	color: $wt-white;
 	padding: 40px;
+	.main-footer	{
+		font-family: 'Roboto Light', arial;
+		color: #CDD4D8;
+		font-size: 14px; 
+		margin-top: 2rem;
+	}
 	h4 {
 		font-size: 1.1875rem !important;
 		font-weight: 400;
+	}
+	p.col-footer	{
+		font-family: 'Poppins', sans-serif;
+		text-transform: uppercase;
+		font-size: 16px;
+		color: $wt-white;
 	}
 	ul {
 		margin-top: 2rem;
 		list-style: none;
 		padding: 0;
 		li {
+			padding-bottom: 5px;
 			a, a:hover {
-				color: $wt-text-principal;
 				text-decoration: none;
+				font-family: 'Roboto Light', arial;
+			    color: #CBD2D6;
+			    font-size: 14px;
 			}
 		}
 	}
+	
+	
 	.border-redes {
 		border-right: 1px solid $wt-text-principal;
 	}

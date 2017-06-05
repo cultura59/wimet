@@ -2,11 +2,8 @@
 	<div class="actions">
 		<ul>
 			<li>
-	            <a href="#" @click="publicaUrl($event)" class="wt-btn-transparent btn-hov">
+	            <a href="#" @click="publicaUrl($event)" class="wt-btn-transparent">
 	                PUBLICA TU ESPACIO
-	                <svg :class="typeSvg">
-	                    <rect x="0" y="0" fill="none" width="100%" height="100%"/>
-	                </svg>
 	            </a>
 	        </li>
 	        <li>
