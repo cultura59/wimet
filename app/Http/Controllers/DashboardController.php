@@ -64,7 +64,7 @@ class DashboardController extends Controller
      * @param $eventoId
      * @return \Illuminate\Http\Response
      */
-    public function evento($eventoId)
+    public function evento($userId, $eventoId)
     {
         return view('dashboard.evento', array(
             'eventoId' => $eventoId
