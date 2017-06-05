@@ -118,12 +118,13 @@
 <style lang="sass">
 	.content-categories {
 	    display: flex;
-	    justify-content: space-between;
+	    justify-content: flex-start;
 	    margin: 2em 0;
 	}
 	.btn-price-defualt {
 	    background: transparent;
 	    border: none;
+	    padding: 0.5em 2em;
 	    &:hover {
 	    	color: #e8536f;
 	    	transition: none;

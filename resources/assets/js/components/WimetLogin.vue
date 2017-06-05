@@ -145,9 +145,11 @@
 						}, 2000);
 					}else {
 						swal('Ups, algo salio mal', 'Intenta ingresar nuevamente', 'error');
+						window.location.href = "/";
 					}
 				}, err => {
 					swal('Ups, algo salio mal', 'Intenta ingresar nuevamente', 'error');
+					window.location.href = "/";
                 });
 			},
 			logout(event) {

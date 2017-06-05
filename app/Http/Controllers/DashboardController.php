@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\User;
+use App\Evento;
 use App\Espacio;
 use App\Categoria;
 class DashboardController extends Controller
@@ -49,54 +50,52 @@ class DashboardController extends Controller
     }
 
 	/**
-     * Show the application reservas.
+     * Show the application eventos.
      *
      * @return \Illuminate\Http\Response
      */
-    public function reservas()
+    public function eventos()
     {
-        $categorias = categoria::all();
-        return view('dashboard.reservas', array(
-            'categorias' => $categorias
+        return view('dashboard.eventos');
+    }
+
+	/**
+     * Show the application evento.
+     * @param $eventoId
+     * @return \Illuminate\Http\Response
+     */
+    public function evento($eventoId)
+    {
+        return view('dashboard.evento', array(
+            'eventoId' => $eventoId
+        ));
+    }
+
+    /**
+     * Show the application mensajes.
+     * @param $eventoId
+     * @return \Illuminate\Http\Response
+     */
+    public function mensajes($eventoId)
+    {
+        return view('dashboard.mensajes', array(
+            'eventoId' => $eventoId
         ));
     }
 
 	/**
-     * Show the application reserva.
-     * @param $reservaId
-     * @return \Illuminate\Http\Response
-     */
-    public function reserva($reservaId)
-    {
-        $categorias = categoria::all();
-        return view('dashboard.reserva', array(
-            'categorias' => $categorias
-        ));
-    }
-
-	/**
-     * Show the application solicitudes.
+     * Show the application nuevapropuesta.
      *
      * @return \Illuminate\Http\Response
      */
-    public function solicitudes()
+    public function nuevapropuesta($eventoId)
     {
-        $categorias = categoria::all();
-        return view('dashboard.solicitudes', array(
-            'categorias' => $categorias
-        ));
-    }
-
-	/**
-     * Show the application solicitud.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function solicitud($solicitudId)
-    {
-        $categorias = categoria::all();
-        return view('dashboard.solicitud', array(
-            'categorias' => $categorias
+        $evento = Evento::find($eventoId);
+        $espacio = Espacio::find($evento->espacio_id);
+        return view('dashboard.newpropuesta', array(
+            'eventoId' => $eventoId,
+            'securitydeposit' => $espacio->securitydeposit,
+            'cancellationflexibility' => $espacio->cancellationflexibility
         ));
     }
 

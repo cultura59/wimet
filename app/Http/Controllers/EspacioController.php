@@ -189,15 +189,35 @@ class EspacioController extends Controller
         }
         $espacio->categorias()->sync($request->categorias);
         $espacio->save();
+        $oldPrices = $espacio->prices();
         $espacio->prices()->delete();
         $espacio->save();
-        foreach ($request->categorias as $key => $categoria) {
+        foreach ($request->categorias as $key => $categoria)
+        {
+            $encontro = false;
+            $objEncontrado = null;
+
+            foreach ($oldPrices->get() as $key => $oldPrice) {
+                var_dump((int)$categoria . " " . $oldPrice->categoria_id);
+                if((int)$categoria == $oldPrice->categoria_id) {
+                    $objEncontrado = $oldPrice;
+                }
+            }
+            dd("entro");
             $price = new Price;
-            $price->espacio_id = $espacio->id;
-            $price->categoria_id = $categoria;
-            $price->price = 0;
-            $price->minhours = 0;
-            $price->status = true;
+            if($encontro){
+                $price->espacio_id      = $objEncontrado->espacio_id;
+                $price->categoria_id    = $objEncontrado->categoria_id;
+                $price->price           = $objEncontrado->price;
+                $price->minhours        = $objEncontrado->minhours;
+                $price->status          = $objEncontrado->status;
+            }else {
+                $price->espacio_id      = $espacio->id;
+                $price->categoria_id    = $categoria;
+                $price->price           = 0;
+                $price->minhours        = 0;
+                $price->status          = true;
+            }
             $price->save();
         }
         return \Redirect::route('publica-detalles', array('id' => $request->id));

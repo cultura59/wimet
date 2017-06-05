@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use DB;
 
 class UserController extends Controller
 {
@@ -131,5 +132,33 @@ class UserController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Show the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getEventos($id) {
+        try {
+            $eventos = DB::table('eventos')
+                            ->join('users', 'eventos.cliente_id', '=', 'users.id')
+                            ->select(
+                                'eventos.id',
+                                'eventos.created_at',
+                                'eventos.reserva_desde',
+                                'users.firstname',
+                                'eventos.nombre_evento',
+                                'eventos.lead',
+                                'eventos.estado'
+                            )
+                            ->where('eventos.user_id', $id)
+                            ->get();
+
+            return $eventos;
+        }catch(\Exception $e){
+            return response('Los campos no son correctos, error: ' . $e->getMessage(), 400);
+        }
     }
 }

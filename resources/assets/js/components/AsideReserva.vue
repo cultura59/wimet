@@ -152,6 +152,12 @@
                     </div>
                     <div class="form-contact">
                         <div class="form-contact__textarea">
+                            <label for="title">Título</label>
+                            <input v-model="title" id="title" class="textarea-lg"/>
+                        </div>
+                    </div>
+                    <div class="form-contact">
+                        <div class="form-contact__textarea">
                             <label for="mensaje">Mensaje</label>
                             <textarea v-model="mensaje" id="mensaje" class="textarea-lg" rows="5" placeholder="Cuentale lo mejor que puedas, sobre el evento que quieres realizar al dueño del espacio."></textarea>
                         </div>
@@ -284,8 +290,11 @@
         		total: '-',
                 modalReserva: false,
                 modalFechas: false,
+                title: '',
                 mensaje: '',
-                btnSend: true
+                btnSend: true,
+                dateStart: '',
+                dateEnd: ''
         	}
         },
         mounted() {
@@ -313,6 +322,10 @@
         			'inicio': this.timeFormat(this.inicio),
         			'fin': this.timeFormat(this.fin)
         		});
+                if(this.dateStart == '') {
+                    this.dateStart = this.fecha;
+                }
+                this.dateEnd = this.fecha;
         		this.totalHoras = this.isPar((this.fin - this.inicio));
         		this.subTotal = (this.totalHoras * this.price);
         		this.calFee();
@@ -372,11 +385,11 @@
                 this.modalReserva = true;
                 this.mensaje = Mensaje;
             },
-            openModalFechas() {
-                this.modalFechas = true;
-            },
             closeModal() {
                 this.modalReserva = false;
+            },
+            openModalFechas() {
+                this.modalFechas = true;
             },
             closeModalFechas() {
                 this.modalFechas = false;
@@ -392,13 +405,18 @@
                 }
                 this.btnSend = false;
                 let body = {
+                    'title': this.title,
                     'clientId': this.clientId,
                     'espacioId': this.espacioId,
+                    'category': this.category,
+                    'invitados': this.people,
                     'price': this.price,
                     'totalFechas': this.totalFechas,
                     'totalHoras': this.totalHoras,
                     'mensaje': this.mensaje,
                     'fee': this.fee,
+                    'reserva_desde': this.dateStart,
+                    'reserva_hasta': this.dateEnd,
                     'subTotal': this.subTotal,
                     'total': this.total
 
@@ -436,7 +454,7 @@
     .modal-reserva {
         position: fixed;
         z-index: 1;
-        padding-top: 50px;
+        padding-top: 30px;
         left: 0;
         top: 5%;
         width: 100%;

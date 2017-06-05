@@ -3,10 +3,10 @@
 		<ul>
 			<li class="title">RESERVAS</li>
 			<li :class="{active: (selected == 'consultas')}">
-				<a :href="`/dashboard/user/${user.id}/consultas`">Mensajes</a></a>
+				<a :href="`/dashboard/user/${user.id}/consultas`">Mensajes</a>
 			</li>
-			<li :class="{active: (selected == 'reservas')}">
-				<a :href="`/dashboard/user/${user.id}/consultas`">Reservas</a>
+			<li :class="{active: (selected == 'eventos')}">
+				<a :href="`/dashboard/user/${user.id}/eventos`">Reservas</a>
 			</li>
 			<li :class="{active: (selected == 'evaluaciones')}">
 				<a :href="`/dashboard/user/${user.id}/consultas`">Evaluaciones</a>
