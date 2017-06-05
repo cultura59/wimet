@@ -3,6 +3,10 @@
 @section('title', 'Buscador')
 
 @push('scripts')
+<link href="http://allfont.es/allfont.css?fonts=roboto-light" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
+
+
 <script>
 	var map;
 	function initMap() {
