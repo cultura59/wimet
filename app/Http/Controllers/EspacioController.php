@@ -203,7 +203,6 @@ class EspacioController extends Controller
                     $objEncontrado = $oldPrice;
                 }
             }
-            dd("entro");
             $price = new Price;
             if($encontro){
                 $price->espacio_id      = $objEncontrado->espacio_id;
