@@ -250,12 +250,21 @@
 	&__item {
 		border-bottom: solid 1px #dadada;
 		color: #ea516d !important;
+		transition: none;
 		a{
 			padding: 1em;
+			border: none !important;
 		}
 		.active {
 			color: #ea516d;
 		}
+		&:hover {
+			font-weight: 700;
+		}
+	}
+	&__last-item a {
+		padding: 1em;
+		border: none !important;
 		&:hover {
 			font-weight: 700;
 		}
@@ -266,7 +275,14 @@
 }
 #menu-user {
 	padding: 1em 0;
+	border: none;
 }
 #menu-user:hover + .menue-list{
 	display: flex;
+}
+.link-user-dark {
+	color: #333;
+}
+.link-user-white {
+	color: $wt-white;
 }

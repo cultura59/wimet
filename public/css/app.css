@@ -9,6 +9,8 @@
 /* Document
    ========================================================================== */
 @import "https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css";
+@import "https://fonts.googleapis.com/css?family=Poppins";
+@import "https://fonts.googleapis.com/css?family=Roboto";
 html {
   font-family: sans-serif;
   /* 1 */
@@ -547,6 +549,11 @@ template {
   background: rgba(243, 76, 96, 0.7);
 }
 
+.header-principal .wt-btn-transparent:hover {
+  background-color: #e8536f;
+  border: 2px solid #e8536f !important;
+}
+
 .wt-btn-transparent {
   padding: 10px 16px;
   border-radius: 2px;
@@ -958,6 +965,9 @@ svg.white rect {
 
 .link-hov {
   color: white;
+  font-family: Poppins;
+  font-size: 13px;
+  letter-spacing: 0.5px;
   background: transparent;
   border: none;
 }
@@ -1039,9 +1049,15 @@ html, body {
   }
 }
 
-.header-principal .header-navbar .actions ul li a, .header-principal .header-navbar .actions ul li a:hover {
-  color: white;
+.header-principal .header-navbar .actions ul li a {
+  color: #F1F1F1;
   text-decoration: none;
+  padding: 10px 15px 5px;
+  border-radius: 2px;
+  border: 2px solid #F1F1F1;
+  font-family: Poppins;
+  font-size: 13px;
+  letter-spacing: 0.5px;
 }
 
 .header-principal .header-navbar__actions {
@@ -1064,18 +1080,23 @@ html, body {
 
 .header-principal .texto-header .text-header__title {
   text-align: center;
-  font-size: 3rem;
   font-weight: 600;
   margin: 20px;
   padding: 0px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 50px;
+  text-shadow: 1px 0px;
+  letter-spacing: 3px;
 }
 
 .header-principal .texto-header .text-header__sub-title {
   text-align: center;
-  font-size: 1.1785rem;
   font-weight: 400;
   margin: 0px;
   padding: 0px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 15px;
+  letter-spacing: 0.5px;
 }
 
 .header-principal .texto-header .texto-header__container-btn {
@@ -1095,6 +1116,12 @@ html, body {
   padding: 16px 0px;
 }
 
+.header-principal .header-footer :first-child {
+  border-right: none !important;
+  border-top-left-radius: 2px;
+  border-bottom-left-radius: 2px;
+}
+
 .header-principal .header-footer .dropbtn {
   width: 250px;
   height: 50px;
@@ -1104,11 +1131,10 @@ html, body {
   justify-content: space-between;
   -webkit-box-align: center;
   align-items: center;
-  color: #7A7A7A;
+  color: #606060;
   cursor: pointer;
   text-align: left;
   padding: 6px 12px;
-  border-radius: 2px;
   font-size: 0.825rem;
   background-color: white;
   border: solid 1px #dadada;
@@ -1146,21 +1172,26 @@ html, body {
 }
 
 .categories .content-wt {
-  height: 150px;
+  height: 180px;
+  padding-top: 45px;
 }
 
 .categories .content-wt h2 {
-  font-weight: 500;
-  font-size: 2.25rem;
-  padding-top: 30px;
-  color: #212121;
-  opacity: 0.87;
+  font-size: 24px;
+  font-weight: 600;
+  color: #3E3E3E;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.7px;
+  margin-bottom: 20px;
+  text-shadow: 0px 0px;
 }
 
 .categories .content-wt p {
-  font-size: 1.1875rem;
-  color: #212121;
-  opacity: 0.87;
+  font-size: 18px;
+  color: #3E3E3E;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.3px;
+  font-weight: 600;
 }
 
 .comunity {
@@ -1193,19 +1224,25 @@ html, body {
 }
 
 .how-work {
-  padding: 20px;
+  padding: 45px 20px;
   color: #333;
   background-color: rgba(239, 239, 239, 0.5);
 }
 
 .how-work h2 {
-  font-size: 2.25rem;
+  font-size: 24px;
   font-weight: 600;
+  color: #606060;
+  font-family: 'Poppins', sans-serif;
+  letter-spacing: 0.7px;
 }
 
 .how-work h3 {
-  font-size: 1.1875rem;
   margin-bottom: 30px;
+  font-size: 18px;
+  color: #606060;
+  font-family: 'Poppins', sans-serif;
+  text-shadow: 0px 0px;
 }
 
 .how-work h4 {
@@ -1216,9 +1253,20 @@ html, body {
 }
 
 .how-work p {
-  color: #8A8A8A;
-  font-weight: 400;
-  font-size: 17px;
+  font-family: 'Roboto Light', arial;
+  color: #96999B;
+  font-size: 14px;
+  text-shadow: 0px 0px;
+  padding: 0 30px;
+  text-align: justify;
+  line-height: 18px;
+}
+
+.how-work p.signature {
+  font-family: NotoSerif;
+  font-style: italic;
+  color: #747474;
+  font-size: 16px;
 }
 
 .sponsors {
@@ -1267,9 +1315,23 @@ footer {
   padding: 40px;
 }
 
+footer .main-footer {
+  font-family: 'Roboto Light', arial;
+  color: #CDD4D8;
+  font-size: 14px;
+  margin-top: 2rem;
+}
+
 footer h4 {
   font-size: 1.1875rem !important;
   font-weight: 400;
+}
+
+footer p.col-footer {
+  font-family: 'Poppins', sans-serif;
+  text-transform: uppercase;
+  font-size: 16px;
+  color: white;
 }
 
 footer ul {
@@ -1278,9 +1340,15 @@ footer ul {
   padding: 0;
 }
 
+footer ul li {
+  padding-bottom: 5px;
+}
+
 footer ul li a, footer ul li a:hover {
-  color: #b0acaa;
   text-decoration: none;
+  font-family: 'Roboto Light', arial;
+  color: #CBD2D6;
+  font-size: 14px;
 }
 
 footer .border-redes {
@@ -1343,7 +1411,25 @@ footer .follow img {
   font-weight: 600;
 }
 
-.header-with .header-navbar .actions a, .header-with .header-navbar .actions a:hover {
+.header-with .header-navbar .actions a.wt-btn-transparent {
+  color: #3E3E3E;
+  text-decoration: none;
+  padding: 10px 15px 5px;
+  border-radius: 2px;
+  border: 2px solid #3E3E3E;
+  font-family: Poppins;
+  font-size: 13px;
+  letter-spacing: 0.5px;
+  text-shadow: 0px 0px;
+}
+
+.header-with .header-navbar .actions a.wt-btn-transparent:hover {
+  color: white;
+  background-color: #e8536f;
+  border: 2px solid #e8536f !important;
+}
+
+.header-with .header-navbar .actions a:hover {
   color: #333;
   text-decoration: none;
   font-weight: 400;
@@ -1387,11 +1473,10 @@ footer .follow img {
 .search .section-main__chield-2 {
   width: 40%;
   position: fixed;
-  margin-top: 63px;
+  margin-top: 60px;
   top: 0;
   right: 0;
   bottom: 0;
-  box-shadow: -6px 0px 13px -5px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 1104px) {
@@ -1578,10 +1663,12 @@ footer .follow img {
 .menue-list__item {
   border-bottom: solid 1px #dadada;
   color: #ea516d !important;
+  transition: none;
 }
 
 .menue-list__item a {
   padding: 1em;
+  border: none !important;
 }
 
 .menue-list__item .active {
@@ -1592,6 +1679,15 @@ footer .follow img {
   font-weight: 700;
 }
 
+.menue-list__last-item a {
+  padding: 1em;
+  border: none !important;
+}
+
+.menue-list__last-item a:hover {
+  font-weight: 700;
+}
+
 .menue-list:hover {
   display: -webkit-box;
   display: flex;
@@ -1599,11 +1695,20 @@ footer .follow img {
 
 #menu-user {
   padding: 1em 0;
+  border: none;
 }
 
 #menu-user:hover + .menue-list {
   display: -webkit-box;
   display: flex;
+}
+
+.link-user-dark {
+  color: #333;
+}
+
+.link-user-white {
+  color: white;
 }
 
 #home-espacio {
