@@ -143,7 +143,8 @@
 		    }
 		}
 		.mensajes {
-		    height: 600px;
+			height: auto;
+		    max-height: 600px;
 		    overflow-y: scroll;
 		    padding: 0 1em;
 		    border: 1px solid #f0f0f0;
