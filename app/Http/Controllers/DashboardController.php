@@ -76,7 +76,7 @@ class DashboardController extends Controller
      * @param $eventoId
      * @return \Illuminate\Http\Response
      */
-    public function mensajes($eventoId)
+    public function mensajes($userId, $eventoId)
     {
         return view('dashboard.mensajes', array(
             'eventoId' => $eventoId
@@ -88,7 +88,7 @@ class DashboardController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function nuevapropuesta($eventoId)
+    public function nuevapropuesta($userId, $eventoId)
     {
         $evento = Evento::find($eventoId);
         $espacio = Espacio::find($evento->espacio_id);

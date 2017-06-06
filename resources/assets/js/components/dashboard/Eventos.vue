@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<table class="table">
-			<tr>
+		<table class="table table-eventos">
+			<tr class="table-eventos__header">
 				<th>Creación</th>
 				<th>Evento</th>
 				<th>Nombre</th>
@@ -10,19 +10,23 @@
 				<th>Estado</th>
 				<th colspan="2"></th>
 			</tr>
-			<tr v-for="evento in eventos">
+			<tr class="table-eventos__item"v-for="evento in eventos">
 				<td>{{evento.created_at}}</td>
 				<td>{{evento.reserva_desde}}</td>
 				<td>{{evento.firstname}}</td>
-				<td>{{evento.nombre_evento}}</td>
+				<td>{{(evento.nombre_evento)?evento.nombre_evento:'-'}}</td>
 				<td>{{evento.lead}}</td>
 				<td>
 					<select v-model="evento.estado">
 						<option v-for="est in estados" :value="est.key">{{est.value}}</option>
 					</select>
 				</td>
-				<td><a href="#" @click="redirectEvento($event, evento.id)">ver</a></td>
-				<td><a href="#">borrar</a></td>
+				<td class="table-eventos__item__icons">
+					<a href="#" @click="redirectEvento($event, evento.id)">
+						<i class="fa fa-calendar fa-lg" aria-hidden="true"></i>
+					</a>
+					<a href="#"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
+				</td>
 			</tr>
 		</table>
 	</div>
@@ -77,3 +81,36 @@
 		}
 	}
 </script>
+<style lang="sass">
+	.table-eventos {
+	    background-color: #f8f8f8;
+	    &__header {
+	    	background-color: #fff;
+	    	th {
+    			padding: 1em;
+	    		font-size: 16px;
+				font-weight: 500;
+	    		text-align: center;
+				letter-spacing: -0.1px;
+			    color: rgba(25, 25, 25, 0.87);
+	    	}
+	    }
+	    &__item {
+	    	td {
+	    		padding: 2em;
+				opacity: 0.87;
+				color: #212121;
+				font-size: 12px;
+	    		text-align: center;
+				letter-spacing: -0.1px;
+	    	}
+	    	&__icons {
+	    		display: flex;
+    			justify-content: space-between;
+    			a:hover {
+    				color: #e2385a;
+    			}
+	    	}
+	    }
+	}
+</style>

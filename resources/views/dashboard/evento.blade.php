@@ -10,7 +10,9 @@
 		<div class="dashboard-header">
 			<h2>Evento</h2>
 		</div>
-		<dasboard-evento evento-id="{{$eventoId}}"></dasboard-evento>
+		<div class="dashboard-body">
+			<dasboard-evento evento-id="{{$eventoId}}"></dasboard-evento>
+		</div>
 	</section>
 
 @endsection

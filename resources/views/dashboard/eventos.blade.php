@@ -10,7 +10,9 @@
 		<div class="dashboard-header">
 			<h2>PIPELINE</h2>
 		</div>
-		<dasboard-eventos></dasboard-eventos>
+		<div class="dashboard-body">
+			<dasboard-eventos></dasboard-eventos>
+		</div>
 	</section>
 
 @endsection

@@ -10,7 +10,9 @@
 		<div class="dashboard-header">
 			<h2>Mensajes</h2>
 		</div>
-		<dasboard-chats evento-id="{{$eventoId}}"></dasboard-chats>
+		<div class="dashboard-body">
+			<dasboard-chats evento-id="{{$eventoId}}"></dasboard-chats>
+		</div>
 	</section>
 
 @endsection
