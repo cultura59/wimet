@@ -8,6 +8,7 @@ use DB;
 use App\User;
 use App\Evento;
 use App\Espacio;
+use App\Mensaje;
 use App\Categoria;
 class HomeController extends Controller
 {
@@ -142,28 +143,36 @@ class HomeController extends Controller
             "reserva" => $request
         ];
         
-        Mail::send(["text"=>"email"], $data, function($message){
+        /*Mail::send(["text"=>"email"], $data, function($message){
             $message->to("rojasadrian.e@gmail.com", "Adrian Rojas")
                     ->subject("Tienes una nueva consulta por tu espacio");
 
             $message->from("adrian@wimet.co", "Consultas Wimet");
-        });
+        });*/
+        //try {
+            $evento = new Evento();
+            $evento->titulo_cliente = $request->title;
+            $evento->estilo_espacios_id = $request->category;
+            $evento->invitados = $request->invitados;
+            $evento->cliente_id = $request->clientId;
+            $evento->user_id = $espacio->user->id;
+            $evento->reserva_desde = $request->reserva_desde;
+            $evento->reserva_hasta = $request->reserva_hasta;
+            $evento->espacio_id = $request->espacioId;
+            $evento->sub_total = $request->subTotal;
+            $evento->total_horas = $request->totalHoras;
+            $evento->descripcion_consulta = $request->mensaje;
+            $evento->estado = 'consulta';
+            $evento->save();
 
-        $evento = new Evento();
-        $evento->titulo_cliente = $request->title;
-        $evento->estilo_espacios_id = $request->category;
-        $evento->invitados = $request->invitados;
-        $evento->cliente_id = $request->clientId;
-        $evento->user_id = $espacio->user()->first()->id;
-        $evento->reserva_desde = $request->reserva_desde;
-        $evento->reserva_hasta = $request->reserva_hasta;
-        $evento->espacio_id = $request->espacioId;
-        $evento->sub_total = $request->subTotal;
-        $evento->total_horas = $request->totalHoras;
-        $evento->descripcion_consulta = $request->mensaje;
-        $evento->estado = 'consulta';
-        $evento->save();
-        return $evento;
+            DB::table('mensajes')->insert([
+                ["evento_id" => $evento->id, "user_id" => $request->clientId, "mensaje" => $request->mensaje]
+            ]);
+
+            return $evento;
+        /*}catch(\Exception $e){
+            return response('Los campos no son correctos' . $e->getMessage(), 400);
+        }*/
     }
 
     public function checkEnvioRevicion($espacio) {
