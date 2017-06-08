@@ -7,6 +7,9 @@
         <div id="myModal" class="modal">
             <span class="close-header cursor" v-on:click="closeModal()">&times;</span>
             <div class="modal-content">
+                <div v-if="(image360 !== null)" class="mySlides">
+                  <iframe :src="image360" frameborder="0" width="100%" height="410"></iframe>
+                </div>
                 <div class="mySlides" v-for="img in images">
                     <img v-bind:src="'/' + img.name" style="width:100%; height: 420px">
                 </div>
@@ -26,7 +29,8 @@
         data() {
             return {
               slideIndex: 1,
-              images: []
+              images: [],
+              image360: null
             }
         },
         mounted() {
@@ -39,6 +43,7 @@
             getImagenesEspacio() {
                 this.$http.get(`/api/espacio/${this.espacioId}`)
                 .then(res => {
+                    this.image360 = res.body.image360;
                     this.images = res.body.images;
                     document.getElementById('imagen-principal').style.backgroundImage = `url(/${this.images[0].name})`;
                 }, err => {
