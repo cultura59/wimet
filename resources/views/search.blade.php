@@ -94,6 +94,9 @@
 							</div>
 							@endforeach
 						</div>
+						<div>
+							{{ $espacios->links() }}
+						</div>
 					</div>
 				</div>
 				<div class="section-main__chield-2">

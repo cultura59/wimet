@@ -1,24 +1,47 @@
 <template>
 	<div class="container-evento">
-		<button v-if="user.id" @click="redirectUrl($event, 'mensajes')" class="btn-mensajes">Detalles evento</button>
+		<button v-if="(user.id && user.tipo_clientes_id == 2)" @click="redirectUrl($event, 'mensajes')" class="btn-mensajes">Detalles evento</button>
 		<div class="box-chat">
 			<textarea rows="3" v-model="mensajeEnviar"></textarea>
 			<div class="box-chat__actions">
-				<button class="btn-presupuesto" @click="enviarPropuesta()">Enviar presupuesto</button>
+				<button 
+					v-if="user.id != evento.cliente_id" 
+					class="btn-presupuesto" 
+					@click="enviarPropuesta()">Enviar presupuesto
+				</button>
+				<button 
+					v-if="user.id == evento.cliente_id" 
+					class="btn-presupuesto" 
+					@click="enviarPropuesta()">Solicitar presupuesto
+				</button>
 				<button class="btn-enviar-chat" @click="sendMensaje()">Enviar</button>
 			</div>
 		</div>
 		<div class="mensajes">
-			<div v-for="mensaje in mensajes" :class="mensaje.nombre">
-				<div :class="`${mensaje.nombre}__left`">
-					<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
-				</div>
-				<div :class="`${mensaje.nombre}__right`">
-					<div class="mensaje-cliente__header">
-						<span>{{mensaje.firstname}}</span>
-						<span>{{mensaje.created_at}}</span>
+			<div v-for="mensaje in mensajes">
+				<div v-if="user.id == evento.cliente_id" class="particular">
+					<div class="particular__left">
+						<div class="mensaje-cliente__header">
+							<span>{{mensaje.firstname}}</span>
+							<span>{{mensaje.created_at}}</span>
+						</div>
+						<p>{{mensaje.mensaje}}</p>
 					</div>
-					<p>{{mensaje.mensaje}}</p>
+					<div class="particular__right">
+						<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
+					</div>
+				</div>
+				<div v-if="user.id != evento.cliente_id" class="usuario">
+					<div class="usuario__left">
+						<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
+					</div>
+					<div class="usuario__right">
+						<div class="mensaje-cliente__header">
+							<span>{{mensaje.firstname}}</span>
+							<span>{{mensaje.created_at}}</span>
+						</div>
+						<p>{{mensaje.mensaje}}</p>
+					</div>
 				</div>
 			</div>
 		</div>
@@ -33,12 +56,14 @@
 			return {
 				user: {},
 				mensajeEnviar: '',
-				mensajes: ''
+				mensajes: '',
+				evento: ''
 			}
 		},
 		mounted() {
             this.getUserAuthenticated();
             this.getMensajes();
+            this.getEvento();
         },
 		methods: {
 			getUserAuthenticated() {
@@ -55,6 +80,12 @@
 						this.user = res.body;
 					});
 				}
+			},
+			getEvento() {
+				this.$http.get(`api/evento/${this.eventoId}`)
+				.then(res => {
+					this.evento = res.body;
+				});
 			},
 			getMensajes() {
 				this.$http.get(`api/mensaje/${this.eventoId}`)
@@ -76,7 +107,6 @@
 					if(res.status == 204) {
 						this.getMensajes();
 						this.mensajeEnviar = '';
-						swal("Mensaje enviado!", "Ya falta poco, felicitaciones!", "success");
 					}else {
 						swal("Mensaje no enviado!", "Revisa los datos envíados", "error");
 					}
@@ -90,7 +120,6 @@
 </script>
 <style lang="sass">
 	.container-evento {
-		width: 45%;
 		height: 88px;
 		.box-chat {
 			padding: 0.5em;
@@ -136,7 +165,7 @@
 		    background-color: #ea516d;
 		    border: none;
 		    color: #fff;
-		    width: 200px;
+		    width: 240px;
 		    height: 40px;
 		    &:hover {
 		    	opacity: 0.87;
@@ -179,15 +208,15 @@
 			    border: solid 1px #bbbbbb;
 			    margin: 1em 0;
 			    &__left {
-					width: 10%;
-			    }
-			    &__right {
 					width: 90%;
     				padding: 0 1em;
     				.mensaje-cliente__header {
 						display: flex;
     					justify-content: space-between;
     				}
+			    }
+			    &__right {
+					width: 10%;
 			    }
 			}
 		}

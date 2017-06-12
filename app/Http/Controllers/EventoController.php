@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Evento;
+use App\Espacio;
+use DB;
 
 class EventoController extends Controller
 {
@@ -71,5 +73,47 @@ class EventoController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getMensajes($id) {
+        $mensajes = DB::table('eventos')
+            ->select(
+                'eventos.id',
+                'eventos.created_at',
+                'eventos.descripcion_consulta',
+                'users.firstname',
+                'users.imagesource'
+            )
+            ->join('users', 'eventos.user_id', '=', 'users.id')
+            ->where('eventos.cliente_id', $id)
+            ->orderBy('eventos.updated_at', 'desc')
+            ->get();
+        return $mensajes;
+    }
+
+    /**
+     * Display the specified getResumen.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getResumen($id) {
+        $evento = Evento::find($id);
+        $espacio = Espacio::where('id', $evento->espacio_id)
+                            ->with('user')
+                            ->with('estilosEspacio')
+                            ->with('images')
+                            ->first();
+        $datos = [
+            'evento' => $evento,
+            'espacio' => $espacio
+        ];
+        return $datos;
     }
 }

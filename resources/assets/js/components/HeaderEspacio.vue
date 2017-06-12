@@ -8,10 +8,10 @@
             <span class="close-header cursor" v-on:click="closeModal()">&times;</span>
             <div class="modal-content">
                 <div v-if="(image360 !== null)" class="mySlides">
-                  <iframe :src="image360" frameborder="0" width="100%" height="410"></iframe>
+                  <iframe :src="image360" frameborder="0" width="100%" height="500"></iframe>
                 </div>
                 <div class="mySlides" v-for="img in images">
-                    <img v-bind:src="'/' + img.name" style="width:100%; height: 420px">
+                    <img v-bind:src="'/' + img.name" style="width:100%; height: 500px">
                 </div>
 
                 <a class="prev" v-on:click="plusSlides(-1)">&#10094;</a>

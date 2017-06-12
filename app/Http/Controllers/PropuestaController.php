@@ -48,10 +48,10 @@ class PropuestaController extends Controller
     public function show($id)
     {
         try {
-            $propuesta = Mensaje::find($id);
-            return $propuesta;
+            $propuestas = Propuesta::where('evento_id', $id)->get();
+            return $propuestas;
         }catch(\Exception $e){
-            return response('No se encontro ninguna propuesta con el id: ' . $id, 400);
+            return response('No se encontran propuestas asociadas al evento id: ' . $id, 400);
         }
     }
 

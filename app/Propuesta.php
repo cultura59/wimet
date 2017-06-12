@@ -21,6 +21,12 @@ class Propuesta extends Model
 							'vencimiento_propuesta',
 							'deposito',
 							'cancellationflexibility',
-							'codigo'
+							'codigo',
+							'monto_iva',
+							'monto_con_iva',
+							'fee',
+							'total',
+							'condiciones',
+							'iva'
 						];
 }

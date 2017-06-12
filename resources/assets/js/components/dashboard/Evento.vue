@@ -1,7 +1,7 @@
 <template>
 	<div class="container-evento">
 		<h4>Detalles del evento</h4>
-		<button v-if="user.id" @click="redirectUrl($event, 'mensajes')" class="btn-mensajes">Mensajes</button>
+		<button v-if="user.id" @click="redirectUrl($event, 'chats')" class="btn-mensajes">Mensajes</button>
 		<div>
 			<div class="container-evento__box">
 				<div class="container-evento__box__item">
@@ -71,6 +71,21 @@
 					v-model="evento.notas">
 				</textarea>
 			</div>
+			<h3 class="wt-m-top-4">Propuestas enviadas</h3>
+			<table class="table text-center">
+				<tr>
+					<th class="text-center">Número</th>
+					<th class="text-center">Creación</th>
+					<th class="text-center">Enviada</th>
+					<th class="text-center">Importe</th>
+				</tr>
+				<tr v-for="propuesta in propuestas" @click="redirectPropuesta($event, propuesta.id)" class="cursor-pointer">
+					<td>{{propuesta.id}}</td>
+					<td>{{propuesta.reserva_desde}}</td>
+					<td>{{propuesta.created_at}}</td>
+					<td>${{propuesta.sub_total}}</td>
+				</tr>
+			</table>
 		</div>
 	</div>
 </template>
@@ -82,7 +97,8 @@
 		data() {
 			return {
 				user: {},
-				evento: {}
+				evento: {},
+				propuestas: ''
 			}
 		},
 		mounted() {
@@ -109,18 +125,28 @@
 				this.$http.get(`api/evento/${this.eventoId}`)
 				.then(res => {
 					this.evento = res.body;
+					this.getPropuestas();
+				});
+			},
+			getPropuestas() {
+				this.$http.get(`api/propuesta/${this.eventoId}`)
+				.then(res => {
+					this.propuestas = res.body;
 				});
 			},
 			redirectUrl(e, url) {
 				e.preventDefault();
 				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.eventoId}/${url}`;
+			},
+			redirectPropuesta(e, id) {
+				e.preventDefault();
+				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.eventoId}/propuesta/${id}`;
 			}
 		}
 	}
 </script>
 <style lang="sass">
 	.container-evento {
-		width: 45%;
 		&__box {
 			display: flex;
 		    justify-content: space-between;
@@ -133,7 +159,7 @@
     			}
     			&__campo {
 				    padding: 0.5em;
-				    width: 200px;
+				    width: 240px;
 				    height: 40px;
 				    background-color: #ffffff;
 				    border: solid 1px #979797;
@@ -161,7 +187,7 @@
 		    background-color: #ea516d;
 		    border: none;
 		    color: #fff;
-		    width: 200px;
+		    width: 240px;
 		    height: 40px;
 		    &:hover {
 		    	opacity: 0.87;

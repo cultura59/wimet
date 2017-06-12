@@ -3,9 +3,9 @@
 		<ul>
 			<li class="title">RESERVAS</li>
 			<li :class="{active: (selected == 'consultas')}">
-				<a :href="`/dashboard/user/${user.id}/consultas`">Mensajes</a>
+				<a :href="`/dashboard/user/${user.id}/mensajes`">Mensajes</a>
 			</li>
-			<li :class="{active: (selected == 'eventos')}">
+			<li v-if="user.tipo_clientes_id == 2" :class="{active: (selected == 'eventos')}">
 				<a :href="`/dashboard/user/${user.id}/eventos`">Reservas</a>
 			</li>
 			<li :class="{active: (selected == 'evaluaciones')}">

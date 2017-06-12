@@ -49,7 +49,7 @@ aside {
     margin-left: auto;
     background-color: $wt-white;
     .dashboard-header {
-        padding: 2em 5em;
+        padding: 1em 5em;
         background-color: #efefef;
         h2 {
             color: #191919;
@@ -59,6 +59,68 @@ aside {
     .dashboard-body {
         padding: 1em 5em;
         height: 930px;
+        width: 60%;
+        float: left;
+    }
+    .dashboard-body-fluid {
+        padding: 1em 5em;
+        height: 930px;
+        width: 100%;
+        float: left;
+        .table-dashboard-eventos {
+            border: solid 1px #979797;
+            margin: 2em 0;
+            width: 100%;
+            max-width: 100%;
+            .th-1 {
+                background-color: #d8d8d8;
+                padding: 5px 10px;
+            }
+            .th-2 {
+                background-color: #ea516d;
+                padding: 5px 10px;
+                color: #fff;
+            }
+            .th-3 {
+                background-color: #c34e68;
+                padding: 5px 10px;
+                color: #fff;
+            }
+            .th-4 {
+                background-color: #9b4b62;
+                padding: 5px 10px;
+                color: #fff;
+            }
+            .th-5 {
+                background-color: #74475d;
+                padding: 5px 10px;
+                color: #fff;
+            }
+            .th-6 {
+                background-color: #4c4457;
+                padding: 5px 10px;
+                color: #fff;
+            }
+            .th-7 {
+                background-color: #254152;
+                padding: 5px 10px;
+                color: #fff;
+            }
+            .th-8 {
+                background-color: #545454;
+                padding: 5px 10px;
+                color: #fff;
+            }
+            &__td {
+                border: solid 1px #979797;
+                padding: 5px 10px;
+                text-align: center;
+            }
+        }
+    }
+    .aside-propuesta {
+        width: 40%;
+        float: right;
     }
     .main-container {
         width: 800px;
@@ -102,5 +164,33 @@ aside {
                 }
             }
         }
+    }
+}
+.propuesta-datos {
+    padding: 1em 2em;
+    &__total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-style: italic;
+    }
+}
+.dashboard-btn-primary {
+    width: 120px;
+    height: 40px;
+    border-radius: 2px;
+    background-color: #ea516d;
+    border: none;
+    color: #fff;
+    &:hover {
+        background-color: rgba(234, 81, 109, 0.87);
+    }
+}
+.dashboard-btn-transparent {
+    background: #fff;
+    border: none;
+    padding: 1em;
+    &:hover {
+        color: #ea516d;
     }
 }

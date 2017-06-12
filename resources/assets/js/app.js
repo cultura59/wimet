@@ -25,6 +25,7 @@ Vue.component('publica-price', require('./components/publica/segundaParte/price.
 
 Vue.component('dasboard-eventos', require('./components/dashboard/Eventos.vue'));
 Vue.component('dasboard-evento', require('./components/dashboard/Evento.vue'));
+Vue.component('dasboard-mensajes', require('./components/dashboard/Mensajes.vue'));
 Vue.component('dasboard-chats', require('./components/dashboard/Chat.vue'));
 Vue.component('dasboard-nueva-propuesta', require('./components/dashboard/NuevaPropuesta.vue'));
 

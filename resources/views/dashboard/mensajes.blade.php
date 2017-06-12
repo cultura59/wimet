@@ -8,11 +8,9 @@
 
 	<section class="dashboard-container">
 		<div class="dashboard-header">
-			<h2>Mensajes</h2>
+			<h4>MENSAJES</h4>
 		</div>
-		<div class="dashboard-body">
-			<dasboard-chats evento-id="{{$eventoId}}"></dasboard-chats>
-		</div>
+		<dasboard-mensajes></dasboard-mensajes>
 	</section>
 
 @endsection

@@ -136,26 +136,19 @@ class HomeController extends Controller
 
     public function send_reserva(Request $request) {
         $cliente = User::find($request->clientId);
-        $espacio = Espacio::find($request->espacioId)->with('user')->first();
+        $espacio = Espacio::find($request->espacioId);
         $data = [
             "usuario" => $cliente,
             "espacio" => $espacio,
             "reserva" => $request
         ];
-        
-        /*Mail::send(["text"=>"email"], $data, function($message){
-            $message->to("rojasadrian.e@gmail.com", "Adrian Rojas")
-                    ->subject("Tienes una nueva consulta por tu espacio");
-
-            $message->from("adrian@wimet.co", "Consultas Wimet");
-        });*/
-        //try {
+        try {
             $evento = new Evento();
             $evento->titulo_cliente = $request->title;
             $evento->estilo_espacios_id = $request->category;
             $evento->invitados = $request->invitados;
             $evento->cliente_id = $request->clientId;
-            $evento->user_id = $espacio->user->id;
+            $evento->user_id = $espacio->user_id;
             $evento->reserva_desde = $request->reserva_desde;
             $evento->reserva_hasta = $request->reserva_hasta;
             $evento->espacio_id = $request->espacioId;
@@ -169,10 +162,17 @@ class HomeController extends Controller
                 ["evento_id" => $evento->id, "user_id" => $request->clientId, "mensaje" => $request->mensaje]
             ]);
 
+            Mail::send(["text"=>"email"], $data, function($message){
+                $message->to("rojasadrian.e@gmail.com", "Adrian Rojas")
+                        ->subject("Tienes una nueva consulta por tu espacio");
+
+                $message->from("adrian@wimet.co", "Consultas Wimet");
+            });
+
             return $evento;
-        /*}catch(\Exception $e){
+        }catch(\Exception $e){
             return response('Los campos no son correctos' . $e->getMessage(), 400);
-        }*/
+        }
     }
 
     public function checkEnvioRevicion($espacio) {

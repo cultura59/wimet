@@ -1,6 +1,6 @@
 @extends('layouts.notfix')
 
-@section('title', 'Nueva propuesta')
+@section('title', 'Mensajes')
 
 @section('content')
 
@@ -8,14 +8,10 @@
 
 	<section class="dashboard-container">
 		<div class="dashboard-header">
-			<h4>PROPUESTA</h4>
+			<h4>MENSAJES</h4>
 		</div>
 		<div class="dashboard-body">
-			<dasboard-nueva-propuesta 
-				evento-id="{{$evento->id}}"
-				securitydeposit="{{$espacio->securitydeposit}}"
-				cancellationflexibility="{{$espacio->cancellationflexibility}}">
-			</dasboard-nueva-propuesta>
+			<dasboard-chats evento-id="{{$evento->id}}"></dasboard-chats>
 		</div>
 		<div class="aside-propuesta">
 			<div>

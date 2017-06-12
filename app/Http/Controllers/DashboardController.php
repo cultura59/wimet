@@ -8,6 +8,7 @@ use App\User;
 use App\Evento;
 use App\Espacio;
 use App\Categoria;
+use App\Propuesta;
 class DashboardController extends Controller
 {
 	/**
@@ -49,14 +50,95 @@ class DashboardController extends Controller
         ));
     }
 
-	/**
-     * Show the application eventos.
-     *
+    /**
+     * Show the application mensajes.
+     * @param $userId
      * @return \Illuminate\Http\Response
      */
-    public function eventos()
+    public function mensajes()
     {
-        return view('dashboard.eventos');
+        return view('dashboard.mensajes');
+    }
+
+	/**
+     * Show the application eventos.
+     * @param $userId
+     * @return \Illuminate\Http\Response
+     */
+    public function eventos($userId)
+    {
+        $countTotal = Evento::where('user_id', $userId)
+                            ->count('id');
+        $sumTotal = Evento::where('user_id', $userId)
+                            ->sum('sub_total');
+        
+        $countConsultas = Evento::where('user_id', $userId)
+                                    ->where('estado', 'consulta')
+                                    ->count('id');
+        $sumConsultas = Evento::where('user_id', $userId)
+                                    ->where('estado', 'consulta')
+                                    ->sum('sub_total');
+        
+        $countSeguimiento = Evento::where('user_id', $userId)
+                                    ->where('estado', 'seguimiento')
+                                    ->count('id');
+        $sumSeguimiento = Evento::where('user_id', $userId)
+                                    ->where('estado', 'seguimiento')
+                                    ->sum('sub_total');
+
+        $countVisita = Evento::where('user_id', $userId)
+                                    ->where('estado', 'visita')
+                                    ->count('id');
+        $sumVisita = Evento::where('user_id', $userId)
+                                    ->where('estado', 'visita')
+                                    ->sum('sub_total');
+
+        $countPresupuesto = Evento::where('user_id', $userId)
+                                    ->where('estado', 'presupuesto')
+                                    ->count('id');
+        $sumPresupuesto = Evento::where('user_id', $userId)
+                                    ->where('estado', 'presupuesto')
+                                    ->sum('sub_total');
+
+        $countReservado = Evento::where('user_id', $userId)
+                                    ->where('estado', 'reservado')
+                                    ->count('id');
+        $sumReservado = Evento::where('user_id', $userId)
+                                    ->where('estado', 'reservado')
+                                    ->sum('sub_total');
+
+        $countRealizado = Evento::where('user_id', $userId)
+                                    ->where('estado', 'realizado')
+                                    ->count('id');
+        $sumRealizado = Evento::where('user_id', $userId)
+                                    ->where('estado', 'realizado')
+                                    ->sum('sub_total');
+
+        $countPerdido = Evento::where('user_id', $userId)
+                                    ->where('estado', 'perdido')
+                                    ->count('id');
+        $sumPerdido = Evento::where('user_id', $userId)
+                                    ->where('estado', 'perdido')
+                                    ->sum('sub_total');
+
+        return view('dashboard.eventos', array(
+            "countTotal" => $countTotal,
+            "sumTotal" => $sumTotal,
+            "countConsultas" => $countConsultas,
+            "sumConsultas" => $sumConsultas,
+            "countSeguimiento" => $countSeguimiento,
+            "sumSeguimiento" => $sumSeguimiento,
+            "countVisita" => $countVisita,
+            "sumVisita" => $sumVisita,
+            "countPresupuesto" => $countPresupuesto,
+            "sumPresupuesto" => $sumPresupuesto,
+            "countReservado" => $countReservado,
+            "sumReservado" => $sumReservado,
+            "countRealizado" => $countRealizado,
+            "sumRealizado" => $sumRealizado,
+            "countPerdido" => $countPerdido,
+            "sumPerdido" => $sumPerdido
+        ));
     }
 
 	/**
@@ -66,20 +148,34 @@ class DashboardController extends Controller
      */
     public function evento($userId, $eventoId)
     {
+        $evento = Evento::find($eventoId);
+        $espacio = Espacio::where('id', $evento->espacio_id)
+                            ->with('user')
+                            ->with('estilosEspacio')
+                            ->with('images')
+                            ->first();
         return view('dashboard.evento', array(
-            'eventoId' => $eventoId
+            'evento' => $evento,
+            'espacio' => $espacio
         ));
     }
 
     /**
-     * Show the application mensajes.
+     * Show the application chats.
      * @param $eventoId
      * @return \Illuminate\Http\Response
      */
-    public function mensajes($userId, $eventoId)
+    public function chats($userId, $eventoId)
     {
-        return view('dashboard.mensajes', array(
-            'eventoId' => $eventoId
+        $evento = Evento::find($eventoId);
+        $espacio = Espacio::where('id', $evento->espacio_id)
+                            ->with('user')
+                            ->with('estilosEspacio')
+                            ->with('images')
+                            ->first();
+        return view('dashboard.chats', array(
+            'evento' => $evento,
+            'espacio' => $espacio
         ));
     }
 
@@ -93,9 +189,29 @@ class DashboardController extends Controller
         $evento = Evento::find($eventoId);
         $espacio = Espacio::find($evento->espacio_id);
         return view('dashboard.newpropuesta', array(
-            'eventoId' => $eventoId,
-            'securitydeposit' => $espacio->securitydeposit,
-            'cancellationflexibility' => $espacio->cancellationflexibility
+            'evento' => $evento,
+            'espacio' => $espacio
+        ));
+    }
+
+    public function propuesta($userId, $eventoId, $propuestaId)
+    {
+        $evento = Evento::find($eventoId);
+        $espacio = Espacio::where('id', $evento->espacio_id)
+                            ->with('user')
+                            ->with('estilosEspacio')
+                            ->with('images')
+                            ->first();
+        $propuesta = DB::table('propuestas')
+                            ->select('propuestas.*', 'categorias.name as catname')
+                            ->join('categorias', 'propuestas.estilo_espacios_id', '=', 'categorias.id')
+                            ->where('propuestas.id', $propuestaId)
+                            ->first();
+        return view('dashboard.propuesta', array(
+            'evento' => $evento,
+            'espacio' => $espacio,
+            'propuesta' => $propuesta,
+            'userId' => $userId
         ));
     }
 
