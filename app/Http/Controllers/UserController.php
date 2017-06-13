@@ -118,7 +118,7 @@ class UserController extends Controller
         $user->save();
 
         $user = User::find($id);
-        return view('users.edit', array(
+        return view('dashboard.datos', array(
             'user' => $user
         ));
     }

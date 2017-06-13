@@ -11,7 +11,7 @@
 			<h4>CONFIRMACIÓN RESERVA</h4>
 		</div>
 		<div class="dashboard-body">
-			<a href="">PAGAR</a>
+			<h3>1. Datos de contacto</h3>
 		</div>
 	</section>
 

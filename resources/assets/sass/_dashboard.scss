@@ -258,3 +258,31 @@ aside {
         color: #ea516d;
     }
 }
+
+.avatar {
+    padding: 5em;
+    display: flex;
+    flex-direction: column;
+    img {
+        width: 120px;
+    }
+    label {
+        border-radius: 2px;
+        border: solid 1px #ea516d;
+        opacity: 0.87;
+        font-family: Poppins;
+        font-size: 12px;
+        font-weight: 500;
+        letter-spacing: -0.1px;
+        color: #ea516d;
+        padding: 1em;
+        cursor: pointer;
+        width: 110px;
+        text-align: center;
+        margin-top: 1em;
+        &:hover {
+            background-color: #ea516d;
+            color: #fff;
+        }
+    }
+}
