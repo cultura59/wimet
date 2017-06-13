@@ -1,4 +1,4 @@
-@extends('layouts.notfix')
+@extends('layouts.dashboard')
 
 @section('title', 'Mensajes')
 
@@ -30,6 +30,28 @@
 						<h3>${{number_format($evento->sub_total, 2, '.', ',')}}.-</h3>
 					</div>
 				</div>
+				<h4>Propuestas recibidas</h4>
+				<table class="table">
+					<tr>
+						<th>Número</th>
+						<th>Creación</th>
+						<th>Enviada</th>
+						<th colspan="2">Importe</th>
+					</tr>
+					@foreach($propuestas as $propuesta)
+					<tr>
+						<td>{{$propuesta->id}}</td>
+						<td>{{$propuesta->reserva_desde}}</td>
+						<td>{{$propuesta->created_at}}</td>
+						<td>${{$propuesta->sub_total}}</td>
+						<td>
+							<a href="{{url('/dashboard/user/'.$userId.'/evento/'.$evento->id.'/propuesta/'.$propuesta->id.'')}}">
+								<i class="fa fa-check-square-o" aria-hidden="true"></i>
+							</a>
+						</td>
+					</tr>
+					@endforeach
+				</table>
 			</div>
 		</div>
 	</section>

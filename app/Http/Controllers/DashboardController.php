@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use MP;
 use App\User;
 use App\Evento;
 use App\Espacio;
@@ -168,6 +169,7 @@ class DashboardController extends Controller
     public function chats($userId, $eventoId)
     {
         $evento = Evento::find($eventoId);
+        $propuestas = Propuesta::where('evento_id', $eventoId)->get();
         $espacio = Espacio::where('id', $evento->espacio_id)
                             ->with('user')
                             ->with('estilosEspacio')
@@ -175,7 +177,9 @@ class DashboardController extends Controller
                             ->first();
         return view('dashboard.chats', array(
             'evento' => $evento,
-            'espacio' => $espacio
+            'propuestas' => $propuestas,
+            'espacio' => $espacio,
+            'userId' => $userId
         ));
     }
 
@@ -212,6 +216,50 @@ class DashboardController extends Controller
             'espacio' => $espacio,
             'propuesta' => $propuesta,
             'userId' => $userId
+        ));
+    }
+
+    /**
+     * Show the application confirm.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function confirm($id, $propuestaId) 
+    {
+        $preference_data = array (
+            "items" => array (
+                array (
+                    "title" => "Multicolor kite",
+                    "quantity" => 1,
+                    "currency_id" => "ARS", // Available currencies at: https://api.mercadopago.com/currencies
+                    "unit_price" => 10.00
+                )
+            )
+        );
+
+        try {
+            $preference = \MP::create_preference($preference_data);
+            return redirect()->to($preference['response']['init_point']);
+        } catch (Exception $e){
+            dd($e->getMessage());
+        }
+
+        $propuesta = DB::table('propuestas')
+                            ->select('propuestas.*', 'categorias.name as catname')
+                            ->join('categorias', 'propuestas.estilo_espacios_id', '=', 'categorias.id')
+                            ->where('propuestas.id', $propuestaId)
+                            ->first();
+        $evento = Evento::find($propuesta->evento_id);
+        $espacio = Espacio::where('id', $evento->espacio_id)
+                            ->with('user')
+                            ->with('estilosEspacio')
+                            ->with('images')
+                            ->first();
+
+        return view('dashboard.confirm', array(
+            'evento' => $evento,
+            'espacio' => $espacio,
+            'propuesta' => $propuesta
         ));
     }
 

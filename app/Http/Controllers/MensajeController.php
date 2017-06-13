@@ -65,6 +65,7 @@ class MensajeController extends Controller
                                 'users.imagesource',
                                 'mensajes.mensaje',
                                 'mensajes.created_at',
+                                'mensajes.user_id',
                                 'tipo_clientes.nombre'
                             )
                             ->join('users', 'mensajes.user_id', '=', 'users.id')

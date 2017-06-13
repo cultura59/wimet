@@ -1,4 +1,4 @@
-@extends('layouts.notfix')
+@extends('layouts.dashboard')
 
 @section('title', 'Reservas')
 

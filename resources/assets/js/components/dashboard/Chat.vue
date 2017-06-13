@@ -1,6 +1,7 @@
 <template>
 	<div class="container-evento">
 		<button v-if="(user.id && user.tipo_clientes_id == 2)" @click="redirectUrl($event, 'mensajes')" class="btn-mensajes">Detalles evento</button>
+		<label v-if="(user.id && user.tipo_clientes_id == 1)" class="cursor-pointer" @click="redirectMensajes()">< Ver mensajes</label>
 		<div class="box-chat">
 			<textarea rows="3" v-model="mensajeEnviar"></textarea>
 			<div class="box-chat__actions">
@@ -12,30 +13,30 @@
 				<button 
 					v-if="user.id == evento.cliente_id" 
 					class="btn-presupuesto" 
-					@click="enviarPropuesta()">Solicitar presupuesto
+					@click="solicitarPropuesta()">Solicitar presupuesto
 				</button>
 				<button class="btn-enviar-chat" @click="sendMensaje()">Enviar</button>
 			</div>
 		</div>
 		<div class="mensajes">
 			<div v-for="mensaje in mensajes">
-				<div v-if="user.id == evento.cliente_id" class="particular">
-					<div class="particular__left">
+				<div v-if="mensaje.user_id == user.id" class="emisor">
+					<div class="emisor__left">
 						<div class="mensaje-cliente__header">
-							<span>{{mensaje.firstname}}</span>
 							<span>{{mensaje.created_at}}</span>
+							<span>{{mensaje.firstname}}</span>
 						</div>
 						<p>{{mensaje.mensaje}}</p>
 					</div>
-					<div class="particular__right">
+					<div class="emisor__right">
 						<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
 					</div>
 				</div>
-				<div v-if="user.id != evento.cliente_id" class="usuario">
-					<div class="usuario__left">
+				<div v-if="mensaje.user_id != user.id" class="receptor">
+					<div class="receptor__left">
 						<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
 					</div>
-					<div class="usuario__right">
+					<div class="receptor__right">
 						<div class="mensaje-cliente__header">
 							<span>{{mensaje.firstname}}</span>
 							<span>{{mensaje.created_at}}</span>
@@ -62,8 +63,8 @@
 		},
 		mounted() {
             this.getUserAuthenticated();
-            this.getMensajes();
             this.getEvento();
+            this.getMensajes();
         },
 		methods: {
 			getUserAuthenticated() {
@@ -96,6 +97,27 @@
 			enviarPropuesta() {
 				window.location.href=`/dashboard/user/${this.user.id}/evento/${this.eventoId}/nuevapropuesta`;
 			},
+			solicitarPropuesta() {
+				let data = {
+					evento_id: this.eventoId,
+					user_id: 1,
+					mensaje: `El usuario ${this.user.firstname} a solicitado que le envies un presupuesto.`
+				}
+				this.$http.post('api/mensaje', data)
+				.then(res => {
+					if(res.status == 204) {
+						this.getMensajes();
+						this.mensajeEnviar = '';
+						swal(
+								"Presupuesto solicitado!", 
+								"Dentro de las próximas 48hs el dueño se pondrá en contacto", 
+								"success"
+							);
+					}else {
+						swal("Mensaje no enviado!", "Revisa los datos envíados", "error");
+					}
+				});
+			},
 			sendMensaje(){
 				let data = {
 					evento_id: this.eventoId,
@@ -114,12 +136,16 @@
 			},
 			redirectUrl() {
 				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.eventoId}`;
+			},
+			redirectMensajes() {
+				window.location.href = `/dashboard/user/${this.user.id}/mensajes`;
 			}
 		}
 	}
 </script>
 <style lang="sass">
 	.container-evento {
+
 		height: 88px;
 		.box-chat {
 			padding: 0.5em;
@@ -172,44 +198,46 @@
 		    }
 		}
 		.mensajes {
+			transition: none;
 			height: auto;
 		    max-height: 600px;
-		    overflow-y: scroll;
 		    padding: 0 1em;
-		    border: 1px solid #f0f0f0;
-			.usuario {
+		    overflow-y: auto;
+			.receptor {
 				display: flex;
 			    justify-content: space-between;
 			    width: 100%;
 			    height: auto;
 			    padding: 1em;
-			    background-color: #f8f8f8;
-			    border: solid 1px #bbbbbb;
 			    margin: 1em 0;
 			    &__left {
 					width: 10%;
 			    }
 			    &__right {
 					width: 90%;
-    				padding: 0 1em;
+    				padding: 1em;
+				    background-color: #f8f8f8;
+				    border: solid 1px #bbbbbb;
+				    margin-left: 1em;
     				.mensaje-cliente__header {
 						display: flex;
     					justify-content: space-between;
     				}
 			    }
 			}
-			.particular {
+			.emisor {
 				display: flex;
 			    justify-content: space-between;
 			    width: 100%;
 			    height: auto;
 			    padding: 1em;
-			    background-color: #f8f8f8;
-			    border: solid 1px #bbbbbb;
 			    margin: 1em 0;
 			    &__left {
 					width: 90%;
-    				padding: 0 1em;
+    				padding: 1em;
+				    background-color: #fff;
+				    border: solid 1px #bbbbbb;
+				    margin-right: 1em;
     				.mensaje-cliente__header {
 						display: flex;
     					justify-content: space-between;

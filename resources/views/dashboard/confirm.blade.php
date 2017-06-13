@@ -1,6 +1,6 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Mensajes')
+@section('title', 'Confirmación')
 
 @section('content')
 
@@ -8,9 +8,11 @@
 
 	<section class="dashboard-container">
 		<div class="dashboard-header">
-			<h4>MENSAJES</h4>
+			<h4>CONFIRMACIÓN RESERVA</h4>
 		</div>
-		<dasboard-mensajes></dasboard-mensajes>
+		<div class="dashboard-body">
+			<a href="{{ $preference['response']['init_point'] }}">PAGAR</a>
+		</div>
 	</section>
 
 @endsection

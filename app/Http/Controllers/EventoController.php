@@ -81,8 +81,22 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getMensajes($id) {
-        $mensajes = DB::table('eventos')
+    public function getMensajes($id, $type) {
+        if($type == 1) {
+            $mensajes = DB::table('eventos')
+                ->select(
+                    'eventos.id',
+                    'eventos.created_at',
+                    'eventos.descripcion_consulta',
+                    'users.firstname',
+                    'users.imagesource'
+                )
+                ->join('users', 'eventos.user_id', '=', 'users.id')
+                ->where('eventos.user_id', $id)
+                ->orderBy('eventos.updated_at', 'desc')
+                ->get();
+        } else {
+            $mensajes = DB::table('eventos')
             ->select(
                 'eventos.id',
                 'eventos.created_at',
@@ -94,6 +108,7 @@ class EventoController extends Controller
             ->where('eventos.cliente_id', $id)
             ->orderBy('eventos.updated_at', 'desc')
             ->get();
+        }
         return $mensajes;
     }
 

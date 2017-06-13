@@ -4,6 +4,38 @@
 	    height: 930px;
 	    width: 60%;
 	    float: left;
+	    &__links{
+		    padding: 1em 0 2em 0;
+		    width: 55%;
+		    display: flex;
+		    justify-content: space-between;
+		    &--default {
+			    opacity: 0.87;
+			    font-family: Poppins;
+			    font-size: 16px;
+			    font-weight: 500;
+			    letter-spacing: -0.1px;
+			    text-align: justify;
+			    color: #191919;
+			    &:hover, &:focus {
+			    	color: #191919;
+		    	    text-decoration: none;
+			    }
+			}
+			&--active {
+			    opacity: 0.87;
+			    font-family: Poppins;
+			    font-size: 16px;
+			    font-weight: 500;
+			    letter-spacing: -0.1px;
+			    text-align: justify;
+			    color: #e2385a;
+			    &:hover, &:focus {
+		    	    text-decoration: none;
+			    	color: #e2385a;
+			    }
+			}
+		}
 	    .mensajes {
 			width: 100%;
 			height: 600px;
@@ -45,10 +77,30 @@
 			}
 	    }
 	}
+    .btn-mensajes {
+    	border: none;
+	    padding: 1em;
+	    color: #fff;
+	    background-color: #e2385a;
+	    border-radius: 2px;
+	    &:hover {
+	    	opacity: 87;
+	    }
+    }
 </style>
 <template>
 	<div>
 		<div class="mensajes-main">
+			<div class="mensajes-main__links">
+				<a href="#" 
+					:class="(showMensajesType == 2) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
+					@click="changeType($event, 2)">Como anfitrión
+				</a>
+				<a href="#" 
+					:class="(showMensajesType == 1) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
+					@click="changeType($event, 1)">Como organizador
+				</a>
+			</div>
 			<div class="mensajes">
 				<div 
 					v-if="(eventoselect !== '')"
@@ -84,8 +136,7 @@
 						<label>Total</label>
 						<h3>${{evento.sub_total}}.-</h3>
 					</div>
-					<button@click="redirectMensajes(evento.id)">Mensajes</button>
-					<button@click="redirectMensajes(evento.id)">Propuesta recibida</button>
+					<button class="btn-mensajes" @click="redirectMensajes(evento.id)">Mensajes</button>
 				</div>
 			</div>
 		</div>
@@ -99,7 +150,8 @@
 				mensajes: '',
 				evento: '',
 				espacio: '',
-				eventoselect: ''
+				eventoselect: '',
+				showMensajesType: 2
 			}
 		},
 		mounted() {
@@ -123,7 +175,7 @@
 				}
 			},
 			getMensajes() {
-				this.$http.get(`api/mensajes/${this.user.id}`)
+				this.$http.get(`api/mensajes/${this.user.id}/type/${this.showMensajesType}`)
 				.then(res => {
 					this.mensajes = res.body;
 					this.eventoselect = this.mensajes[0];
@@ -143,6 +195,11 @@
 			},
 			redirectMensajes(eventoId){
 				window.location.href = `/dashboard/user/${this.user.id}/evento/${eventoId}/chats`;
+			},
+			changeType(e, type) {
+				e.preventDefault();
+				this.showMensajesType = type;
+				this.getMensajes();
 			}
 		}
 	}

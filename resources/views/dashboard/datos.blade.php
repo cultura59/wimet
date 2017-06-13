@@ -1,4 +1,4 @@
-@extends('layouts.notfix')
+@extends('layouts.dashboard')
 
 @section('title', 'Mis espacios')
 
@@ -7,7 +7,10 @@
 	<aside-dashboard selected="datos"></aside-dashboard>
 
 	<section class="dashboard-container">
-		<div class="center-block">
+		<div class="dashboard-header">
+			<h4>MI PERFIL</h4>
+		</div>
+		<div class="dashboard-body">
 	        {!!Form::model($user, array('route' => array('user.update', $user->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data'))!!}
 	            <div class="row">
 	                <div class="personal-data col-xs-12 col-md-6">

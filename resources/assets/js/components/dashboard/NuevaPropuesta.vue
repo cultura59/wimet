@@ -135,7 +135,7 @@
             	return this.evento.iva;
         	},
         	setSubTotal() {
-        		return parseInt(this.evento.sub_total) + this.evento.iva;
+        		return parseInt(this.evento.sub_total + this.evento.iva);
         	},
         	setComision() {
         		let res;
