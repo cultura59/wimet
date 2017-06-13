@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
-use MP;
 use App\User;
 use App\Evento;
 use App\Espacio;
@@ -226,24 +225,6 @@ class DashboardController extends Controller
      */
     public function confirm($id, $propuestaId) 
     {
-        $preference_data = array (
-            "items" => array (
-                array (
-                    "title" => "Multicolor kite",
-                    "quantity" => 1,
-                    "currency_id" => "ARS", // Available currencies at: https://api.mercadopago.com/currencies
-                    "unit_price" => 10.00
-                )
-            )
-        );
-
-        try {
-            $preference = \MP::create_preference($preference_data);
-            return redirect()->to($preference['response']['init_point']);
-        } catch (Exception $e){
-            dd($e->getMessage());
-        }
-
         $propuesta = DB::table('propuestas')
                             ->select('propuestas.*', 'categorias.name as catname')
                             ->join('categorias', 'propuestas.estilo_espacios_id', '=', 'categorias.id')

@@ -11,7 +11,7 @@
 			<h4>CONFIRMACIÓN RESERVA</h4>
 		</div>
 		<div class="dashboard-body">
-			<a href="{{ $preference['response']['init_point'] }}">PAGAR</a>
+			<a href="">PAGAR</a>
 		</div>
 	</section>
 
