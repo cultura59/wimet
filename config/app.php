@@ -162,7 +162,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        'LivePixel\MercadoPago\Providers\MercadoPagoServiceProvider',
 
         /*
          * Package Service Providers...
@@ -230,7 +229,6 @@ return [
         'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         'Form' => Collective\Html\FormFacade::class,
         'Html' => Collective\Html\HtmlFacade::class,
-        'MP' => 'LivePixel\MercadoPago\Facades\MP',
     ],
 
 ];
