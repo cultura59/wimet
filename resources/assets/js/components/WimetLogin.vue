@@ -29,10 +29,14 @@
 		</ul>
 		<div v-if="showModalLogin" class="login-modal">
 			<div class="login-modal__content">
+				<h3>¡Te estábamos esperando!</h3>
 				<span class="close-modal" @click="closeModals()">×</span>
 				<div class="container-social">
 					<login-facebook></login-facebook>
 					<button class="container-social__btn btn-google">Iniciar sesión con Google</button>
+				</div>
+				<div class="login-modal-title">
+					<span class="text-center">Inicia sesión con tu email</span>
 				</div>
 				<div class="container-login">
 					<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
@@ -41,16 +45,20 @@
 				</div>
 				<div class="container-footer">
 					<span class="container-footer__pregunta">¿No tienes cuenta?</span>
-					<button class="registrar" @click="openModalRegistro()">Registrarte</button>
+					<span class="container-footer__registro" @click="openModalRegistro()">Registrate</span>
 				</div>
 			</div>
 		</div>
 		<div v-if="showModalRegistro" class="login-modal">
 			<div class="login-modal__content">
+				<h3>¡Crea tu cuenta y comienza a explorar!</h3>
 				<span class="close-modal" @click="closeModals()">×</span>
 				<div class="container-social">
 					<login-facebook></login-facebook>
 					<button class="container-social__btn btn-google">Iniciar sesión con Google</button>
+				</div>
+				<div class="login-modal-title">
+					<span class="text-center">Regístrate con tu email</span>
 				</div>
 				<div class="container-login">
 					<input type="text" class="container-login__email" placeholder="Nombre" v-model="firstname" />
@@ -61,7 +69,7 @@
 				</div>
 				<div class="container-footer">
 					<span class="container-footer__pregunta">¿Ya tienes cuenta?</span>
-					<button class="registrar" @click="openModalLogin()">Inicia sesión</button>
+					<span class="container-footer__registro" @click="openModalLogin()">Inicia sesión</span>
 				</div>
 			</div>
 		</div>
@@ -200,15 +208,39 @@
 		    border: 1px solid #888;
 			background-color: #fefefe;
 		    font-weight: 400;
+		    position: relative;
+		    h3 {
+				opacity: 0.87;
+				font-family: Poppins;
+				font-size: 18px;
+				font-weight: 500;
+				letter-spacing: -0.1px;
+				text-align: center;
+				color: #4a4a4a;
+		    }
+		    .login-modal-title {
+		    	display: flex;
+		    	justify-content: center;
+		    	align-items: center;
+		    	padding: 1em;
+		    	font-family: Roboto;
+				font-size: 13px;
+				font-weight: 500;
+				letter-spacing: -0.2px;
+				text-align: center;
+				color: #888b8d;
+		    }
 		    .close-modal {
-			    color: #000;
-			    font-size: 28px;
-			    font-weight: bold;
-			    cursor: pointer;
+				color: #888b8d;
+				font-size: 28px;
+				font-weight: bold;
+				cursor: pointer;
+				position: absolute;
+				top: 0;
+				right: .5em;
 			}
 			.container-social {
 			    padding-bottom: 1em;
-			    border-bottom: solid 1px #979797;
 			    &__btn {
 				    border: none;
 				    width: 100%;
@@ -259,23 +291,20 @@
 			}
 			.container-footer {
 			    display: flex;
-			    justify-content: space-between;
-			    align-items: baseline;
-			    border-top: solid 1px #979797;
-			    padding-top: 1em;
+			    justify-content: center;
+			    align-items: center;
+			    padding: 1em 0;
 			    &__pregunta {
-				    font-size: 12px;
-				    font-weight: 500;
-				    letter-spacing: -0.2px;
-				    color: #1c3240;
+				    font-family: Roboto;
+					font-size: 14px;
+					font-weight: 500;
+					letter-spacing: -0.2px;
+					color: #424242;
 				}
-				.registrar {
-				    background: #fff;
-				    border-radius: 2px;
-				    border: solid 1px #ea516d;
-				    color: #ea516d;
-				    font-size: 12px;
-				    padding: 1em;
+				&__registro {
+					color: #e2385a;
+					margin-left: 1em;
+					cursor: pointer;
 				}
 			}
 	    }

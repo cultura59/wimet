@@ -82,7 +82,6 @@
 <style lang="sass">
 	.container-social {
 	    padding-bottom: 1em;
-	    border-bottom: solid 1px #979797;
 	    &__btn {
 		    border: none;
 		    width: 100%;
