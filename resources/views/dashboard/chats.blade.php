@@ -30,6 +30,7 @@
 						<h3>${{number_format($evento->sub_total, 2, '.', ',')}}.-</h3>
 					</div>
 				</div>
+				@if($userId == $evento->cliente_id)
 				<h4>Propuestas recibidas</h4>
 				<table class="table">
 					<tr>
@@ -52,6 +53,7 @@
 					</tr>
 					@endforeach
 				</table>
+				@endif
 			</div>
 		</div>
 	</section>

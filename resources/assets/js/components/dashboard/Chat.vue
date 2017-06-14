@@ -1,7 +1,7 @@
 <template>
 	<div class="container-evento">
-		<button v-if="(user.id && user.tipo_clientes_id == 2)" @click="redirectUrl($event, 'mensajes')" class="btn-mensajes">Detalles evento</button>
-		<label v-if="(user.id && user.tipo_clientes_id == 1)" class="cursor-pointer" @click="redirectMensajes()">< Ver mensajes</label>
+		<button v-if="(user.id && user.id == evento.user_id)" @click="redirectUrl($event, 'mensajes')" class="btn-mensajes">Detalles evento</button>
+		<label v-if="(user.id && user.id == evento.cliente_id)" class="cursor-pointer" @click="redirectMensajes()">< Ver mensajes</label>
 		<div class="box-chat">
 			<textarea rows="3" v-model="mensajeEnviar"></textarea>
 			<div class="box-chat__actions">

@@ -77,7 +77,7 @@
 			}
 	    }
 	}
-    .btn-mensajes {
+    .btn-mensajes-chat {
     	border: none;
 	    padding: 1em;
 	    color: #fff;
@@ -136,7 +136,7 @@
 						<label>Total</label>
 						<h3>${{evento.sub_total}}.-</h3>
 					</div>
-					<button class="btn-mensajes" @click="redirectMensajes(evento.id)">Mensajes</button>
+					<button class="btn-mensajes-chat" @click="redirectMensajes(evento.id)">Mensajes</button>
 				</div>
 			</div>
 		</div>

@@ -1,10 +1,10 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Reservas')
+@section('title', 'Embudo de ventas')
 
 @section('content')
 
-	<aside-dashboard selected="reservas"></aside-dashboard>
+	<aside-dashboard selected="eventos"></aside-dashboard>
 
 	<section class="dashboard-container">
 		<div class="dashboard-header">

@@ -12,13 +12,17 @@
 		</div>
 		<ul>
 			<li class="title">RESERVAS</li>
+			<li v-if="user.tipo_clientes_id == 2" :class="{active: (selected == 'eventos')}">
+				<span><i class="fa fa-filter" aria-hidden="true"></i></span>
+				<a :href="`/dashboard/user/${user.id}/eventos`">Embudo de ventas</a>
+			</li>
 			<li :class="{active: (selected == 'consultas')}">
 				<span><i class="fa fa-comments" aria-hidden="true"></i></span>
 				<a :href="`/dashboard/user/${user.id}/mensajes`">Mensajes</a>
 			</li>
-			<li v-if="user.tipo_clientes_id == 2" :class="{active: (selected == 'eventos')}">
-				<span><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span>
-				<a :href="`/dashboard/user/${user.id}/eventos`">Reservas</a>
+			<li :class="{active: (selected == 'reservas')}">
+				<span><i class="fa fa-comments" aria-hidden="true"></i></span>
+				<a :href="`/dashboard/user/${user.id}/reservas`">Reservas</a>
 			</li>
 			<li :class="{active: (selected == 'evaluaciones')}">
 				<span><i class="fa fa-star" aria-hidden="true"></i></span>

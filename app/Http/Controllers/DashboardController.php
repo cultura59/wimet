@@ -141,6 +141,16 @@ class DashboardController extends Controller
         ));
     }
 
+    /**
+     * Show the application eventos.
+     * @param $userId
+     * @return \Illuminate\Http\Response
+     */
+    public function reservas($userId)
+    {
+        return view('dashboard.reservas');
+    }
+
 	/**
      * Show the application evento.
      * @param $eventoId
