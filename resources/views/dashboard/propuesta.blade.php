@@ -53,7 +53,9 @@
 			@endif
 			@if($userId == $propuesta->cliente_id)
 			<div class="wt-m-top-3">
-				<button class="dashboard-btn-primary">ALQUILAR</button>
+				<a href="{{url('/dashboard/user/'. $userId . '/confirmar/'.$propuesta->id)}}">
+					<button class="dashboard-btn-primary">ALQUILAR</button>
+				</a>
 				<button class="dashboard-btn-transparent">Rechazar propuesta</button>
 			</div>
 			@endif

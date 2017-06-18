@@ -33,6 +33,7 @@ class PropuestaController extends Controller
     {
         try {
             $propuesta = new Propuesta($request->all());
+            $propuesta->estado = 'enviada';
             $propuesta->save();
             $mensaje = new Mensaje();
             $mensaje->user_id = 1; 

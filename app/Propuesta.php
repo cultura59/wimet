@@ -26,6 +26,7 @@ class Propuesta extends Model
 							'monto_con_iva',
 							'fee',
 							'total',
+							'estado',
 							'condiciones',
 							'iva'
 						];

@@ -28,6 +28,7 @@ Vue.component('dasboard-evento', require('./components/dashboard/Evento.vue'));
 Vue.component('dasboard-mensajes', require('./components/dashboard/Mensajes.vue'));
 Vue.component('dasboard-chats', require('./components/dashboard/Chat.vue'));
 Vue.component('dasboard-nueva-propuesta', require('./components/dashboard/NuevaPropuesta.vue'));
+Vue.component('dasboard-confirmar', require('./components/dashboard/Confirmar.vue'));
 
 
 import Auth from './packages/auth/Auth.js';

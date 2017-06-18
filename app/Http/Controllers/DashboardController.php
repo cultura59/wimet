@@ -235,6 +235,8 @@ class DashboardController extends Controller
      */
     public function confirm($id, $propuestaId) 
     {
+        $user = User::find($id);
+
         $mp = new \MP ("6273864499490098", "dY1pQifWvkXMCSd1bPgYwK2o8QB3E70o");
         
         $propuesta = DB::table('propuestas')
@@ -251,15 +253,23 @@ class DashboardController extends Controller
                             ->with('images')
                             ->first();
 
+        $image = $espacio->images()->first();
+
         $preference_data = array(
             "items" => array(
                 array(
                     "id" => $espacio->id,
                     "title" => $espacio->name,
+                    "picture_url" => \URL::to('/') . '/' .$image->name,
                     "quantity" => 1,
-                    "currency_id" => "ARS", // Available currencies at: https://api.mercadopago.com/currencies
+                    "currency_id" => "ARS",
                     "unit_price" => $propuesta->total
                 )
+            ),
+            "back_urls" => array(
+                "success"=>  \URL::to('/') . "/dashboard/user/" . $propuesta->cliente_id . "/respuesta/" . $propuesta->id . "?estado=ok",
+                "pending"=>  \URL::to('/') . "/dashboard/user/" . $propuesta->cliente_id . "/respuesta/" . $propuesta->id . "?estado=pendiente",
+                "failure"=>  \URL::to('/') . "/dashboard/user/" . $propuesta->cliente_id . "/respuesta/" . $propuesta->id . "?estado=error"
             ),
             "id" => $propuesta->id
         );
@@ -267,11 +277,26 @@ class DashboardController extends Controller
         $preference = $mp->create_preference($preference_data);
 
         return view('dashboard.confirm', array(
+            'user' => $user,
             'evento' => $evento,
             'espacio' => $espacio,
             'propuesta' => $propuesta,
             'preference' => $preference
         ));
+    }
+    
+    /**
+     * Show the application success.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function propuestaSuccess($id, $propuestaId, Request $request) {
+        return view('dashboard.success', 
+            array(
+                    'id' => $propuestaId,
+                    'estado' => $request->estado
+                )
+            );
     }
 
 	/**
