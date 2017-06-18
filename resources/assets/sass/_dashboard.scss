@@ -40,8 +40,7 @@
         }
     }
 }
-
-aside {
+.aside-dashboard {
     width: 15%;
     height: 1050px;
     background-color: #254152;
@@ -192,25 +191,24 @@ aside {
         padding: 2em 0;
     }
     .container-espacios {
-        margin: 0 auto;
+        margin: 2em 0 auto;
         .box-expacio {
             width: 100%;
             height: auto;
-            background-color: #ffffff;
+            background-color: #f8f8f8;
             margin: 0 auto;
-            padding: 1em;
+            padding: 5px;
             display: flex;
-            border-bottom: 1px solid #efefef;
             .image-espacio {
-                width: 204.2px;
+                width: 23%;
             }
             .detalle-espacio {
-                padding: 0 1em;
-                width: 60%;
+                padding: 2em;
+                width: 77%;
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
                 &__title {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
                     h3 {
                         margin: 0;
                     }
@@ -258,7 +256,6 @@ aside {
         color: #ea516d;
     }
 }
-
 .avatar {
     padding: 5em;
     display: flex;

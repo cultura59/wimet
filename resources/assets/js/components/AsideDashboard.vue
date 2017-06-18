@@ -1,5 +1,5 @@
 <template>
-	<aside>
+	<aside class="aside-dashboard">
 		<div class="header-aside">
 			<span>MENU</span>
 			<span class="cursor-pointer"><i class="fa fa-bars" aria-hidden="true"></i></span>
@@ -22,7 +22,7 @@
 			</li>
 			<li :class="{active: (selected == 'reservas')}">
 				<span><i class="fa fa-comments" aria-hidden="true"></i></span>
-				<a :href="`/dashboard/user/${user.id}/reservas`">Reservas</a>
+				<a :href="`/dashboard/user/${user.id}/reservas`">Propuestas</a>
 			</li>
 			<li :class="{active: (selected == 'evaluaciones')}">
 				<span><i class="fa fa-star" aria-hidden="true"></i></span>

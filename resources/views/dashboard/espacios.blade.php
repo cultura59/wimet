@@ -10,8 +10,8 @@
 		<div class="dashboard-header">
 			<h4>ESPACIOS</h4>
 		</div>
-		<div class="dashboard-body">
-			<div class="main-container">
+		<div class="dashboard-body-fluid">
+			<div>
 				<h4>PUBLICADOS</h4>
 				@include('errors/error-notification')
 				<div class="container-espacios">
@@ -25,28 +25,28 @@
 						<div class="detalle-espacio">
 							<div class="detalle-espacio__title">
 								<h3>{{$espacio->name}}</h3>
-								<div>
-									<a href="{{route('publica-steps', array('espacioId' => $espacio->id))}}">
-										<i class="fa fa-pencil fa-2x" aria-hidden="true" title="Editar"></i>
-									</a>
-									@if(!$espacio->categorias->isEmpty())
-									<a href="{{url('/categoria/'. $espacio->categorias[0]->id .'/espacio/'. $espacio->id)}}" target="_blank">
-										<i class="fa fa-eye fa-2x" aria-hidden="true"></i>
-									</a>
-									@endif
-								</div>
+								<ul class="list-inline">
+								@foreach($espacio->categorias as $cat)
+									<li>{{$cat->name}}</li>
+								@endforeach
+								</ul>
 							</div>
-							<ul class="list-inline">
-							@foreach($espacio->categorias as $cat)
-								<li>{{$cat->name}}</li>
-							@endforeach
-							</ul>
+							<div class="wt-center-column">
+								<a href="{{route('publica-steps', array('espacioId' => $espacio->id))}}">
+									<button class="btn-primary-pig">MODIFICAR</button>
+								</a>
+								@if(!$espacio->categorias->isEmpty())
+								<a href="{{url('/categoria/'. $espacio->categorias[0]->id .'/espacio/'. $espacio->id)}}" target="_blank" class="wt-m-top-1">
+									<button class="btn-primary-transparent">VER ESPACIO</button>
+								</a>
+								@endif
+							</div>
 						</div>
 					</div>
 				@endforeach
 				</div>
 			</div>
-			<div class="main-container">
+			<div class="wt-m-top-4">
 				<h4>BORRADOR</h4>
 				<div class="container-espacios">
 				@foreach($borradores as $borrador)
@@ -59,22 +59,22 @@
 						<div class="detalle-espacio">
 							<div class="detalle-espacio__title">
 								<h3>{{$borrador->name}}</h3>
-								<div>
-									<a href="{{route('publica-steps', array('espacioId' => $borrador->id))}}">
-										<i class="fa fa-pencil fa-2x" aria-hidden="true"></i>
-									</a>
-									@if(!$borrador->categorias->isEmpty())
-									<a href="{{url('/categoria/'. $borrador->categorias[0]->id .'/espacio/'. $borrador->id)}}" target="_blank">
-										<i class="fa fa-eye fa-2x" aria-hidden="true"></i>
-									</a>
-									@endif
-								</div>
+								<ul class="list-inline">
+								@foreach($borrador->categorias as $cat)
+									<li>{{$cat->name}}</li>
+								@endforeach
+								</ul>
 							</div>
-							<ul class="list-inline">
-							@foreach($borrador->categorias as $cat)
-								<li>{{$cat->name}}</li>
-							@endforeach
-							</ul>
+							<div class="wt-center-column">
+								<a href="{{route('publica-steps', array('espacioId' => $borrador->id))}}">
+									<button class="btn-primary-pig">FINALIZAR</button>
+								</a>
+								@if(!$borrador->categorias->isEmpty())
+								<a href="{{url('/categoria/'. $borrador->categorias[0]->id .'/espacio/'. $borrador->id)}}" target="_blank" class="wt-m-top-1">
+									<button class="btn-primary-transparent">VISTA PREVIA</button>
+								</a>
+								@endif
+							</div>
 						</div>
 					</div>
 				@endforeach

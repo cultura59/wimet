@@ -235,22 +235,42 @@ class DashboardController extends Controller
      */
     public function confirm($id, $propuestaId) 
     {
+        $mp = new \MP ("6273864499490098", "dY1pQifWvkXMCSd1bPgYwK2o8QB3E70o");
+        
         $propuesta = DB::table('propuestas')
                             ->select('propuestas.*', 'categorias.name as catname')
                             ->join('categorias', 'propuestas.estilo_espacios_id', '=', 'categorias.id')
                             ->where('propuestas.id', $propuestaId)
                             ->first();
+
         $evento = Evento::find($propuesta->evento_id);
+
         $espacio = Espacio::where('id', $evento->espacio_id)
                             ->with('user')
                             ->with('estilosEspacio')
                             ->with('images')
                             ->first();
 
+        $preference_data = array(
+            "items" => array(
+                array(
+                    "id" => $espacio->id,
+                    "title" => $espacio->name,
+                    "quantity" => 1,
+                    "currency_id" => "ARS", // Available currencies at: https://api.mercadopago.com/currencies
+                    "unit_price" => $propuesta->total
+                )
+            ),
+            "id" => $propuesta->id
+        );
+
+        $preference = $mp->create_preference($preference_data);
+
         return view('dashboard.confirm', array(
             'evento' => $evento,
             'espacio' => $espacio,
-            'propuesta' => $propuesta
+            'propuesta' => $propuesta,
+            'preference' => $preference
         ));
     }
 

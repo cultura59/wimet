@@ -30,6 +30,7 @@
 		<div v-if="showModalLogin" class="login-modal">
 			<div class="login-modal__content">
 				<h3>¡Te estábamos esperando!</h3>
+				<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
 				<span class="close-modal" @click="closeModals()">×</span>
 				<div class="container-social">
 					<login-facebook></login-facebook>
@@ -96,7 +97,8 @@
 				showModalLogin: false,
 				showModalRegistro: false,
 				authenticated: this.$auth.isAuthenticated(),
-				user: {}
+				user: {},
+				msgError: ''
 			}
 		},
 		mounted() {
@@ -141,22 +143,22 @@
 					username: this.email,
 					password: this.password
 				}
-				this.showModalLogin = false;
+				//this.showModalLogin = false;
 				this.$http.post('oauth/token', data)
 				.then(res => {
 					if(res.status == 200) {
 						this.$auth.setToken(res.body.access_token, res.body.expires_in + Date.now());
+						this.showModalLogin = false;
 						setTimeout(() => {
 							location.reload(); 
-						}, 2000);
-					}else {
-						swal('Ups, algo salio mal', 'Intenta ingresar nuevamente', 'error');
-						window.location.href = "/";
+						}, 1000);
 					}
 				}, err => {
-					swal('Ups, algo salio mal', 'Intenta ingresar nuevamente', 'error');
-					window.location.href = "/";
-                });
+					this.msgError = `El email ${this.email} no existe, registralo :)`;
+					setInterval(() => {
+						this.msgError = '';
+					}, 3000);
+				});
 			},
 			logout(event) {
 				event.preventDefault();

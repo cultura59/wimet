@@ -4,14 +4,14 @@
             <button class="home-espacio-header__boton" v-on:click="openModal();currentSlide(1)">VER FOTOS</button>
         </header>
 
-        <div id="myModal" class="modal">
+        <div id="imagesModal" class="imagesModal">
             <span class="close-header cursor" v-on:click="closeModal()">&times;</span>
-            <div class="modal-content">
-                <div v-if="(image360 !== null)" class="mySlides">
-                  <iframe :src="image360" frameborder="0" width="100%" height="500"></iframe>
+            <div class="imagesModal__content">
+                <div v-if="(image360 !== null)" class="imagesModal__content__mySlides">
+                  <iframe :src="image360" frameborder="0" width="100%" height="550"></iframe>
                 </div>
-                <div class="mySlides" v-for="img in images">
-                    <img v-bind:src="'/' + img.name" style="width:100%; height: 500px">
+                <div class="imagesModal__content__mySlides" v-for="img in images">
+                    <img v-bind:src="'/' + img.name" style="width: auto; height: 550px">
                 </div>
 
                 <a class="prev" v-on:click="plusSlides(-1)">&#10094;</a>
@@ -51,14 +51,14 @@
                 });
             },
             openModal() {
-                document.getElementById('myModal').style.display = "block";
+                document.getElementById('imagesModal').style.display = "block";
             },
             closeModal() {
-                document.getElementById('myModal').style.display = "none";
+                document.getElementById('imagesModal').style.display = "none";
             },
             showSlides(n) {
                 let i;
-                let slides = document.getElementsByClassName("mySlides");
+                let slides = document.getElementsByClassName("imagesModal__content__mySlides");
                 
                 if (n > slides.length) {this.slideIndex = 1}
                 if (n < 1) {this.slideIndex = slides.length}
@@ -78,25 +78,30 @@
     }
 </script>
 
-<style>
-    .modal {
+<style lang="sass">
+    .imagesModal {
       display: none;
       position: fixed;
       z-index: 1;
-      padding-top: 100px;
+      padding-top: 75px;
       left: 0;
       top: 0;
       width: 100%;
       height: 100%;
       overflow: auto;
       background-color: rgba(0, 0, 0, 0.87);
-    }
-    .modal-content {
-      position: relative;
-      background-color: #fefefe;
-      margin: auto;
-      padding: 0;
-      max-width: 1200px;
+      &__content {
+        position: relative;
+        margin: 0 auto;
+        padding: 0;
+        max-width: 1200px;
+        box-shadow: none;
+        border: none;
+        &__mySlides {
+          display: none;
+          text-align: center;
+        }
+      }
     }
     .close-header {
       color: #fff;
@@ -111,9 +116,6 @@
       color: #999;
       text-decoration: none;
       cursor: pointer;
-    }
-    .mySlides {
-      display: none;
     }
     .prev, .next {
       cursor: pointer;

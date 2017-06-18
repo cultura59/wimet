@@ -101,7 +101,7 @@
 		}
 	}
 </script>
-<style lang="sass" scoped>
+<style lang="sass">
 	.drop-characteristic {
 		position: relative;
     	display: inline-block;

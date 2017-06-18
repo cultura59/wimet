@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Propuesta;
+use App\Mensaje;
 
 class PropuestaController extends Controller
 {
@@ -33,6 +34,11 @@ class PropuestaController extends Controller
         try {
             $propuesta = new Propuesta($request->all());
             $propuesta->save();
+            $mensaje = new Mensaje();
+            $mensaje->user_id = 1; 
+            $mensaje->evento_id = $propuesta->evento_id; 
+            $mensaje->mensaje = "El dueño del espacio envio una propuesta para el evento.";
+            $mensaje->save();
             return response($propuesta, 204); 
         }catch(\Exception $e){
             return response('Los campos no son correctos, '.$e->getMessage(), 400);

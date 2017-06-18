@@ -82,12 +82,12 @@
                     </div>
     			</div>
                 <div v-if="clientId != ''">
-                    <button class="btn-reserva wt-m-top-2" @click="openModal(`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, aliquid perferendis possimus eum accusamus earum odio qui a iure quis vero ut nesciunt distinctio et facilis dolorem ducimus laborum natus.`)">SOLICITUD DE RESERVA</button>
-        			<button class="btn-reserva-transparent wt-m-top-1" @click="openModal('')">SOLICITUD DE VISITA</button>
+                    <button class="btn-reserva wt-m-top-2" @click="openModal(`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, aliquid perferendis possimus eum accusamus earum odio qui a iure quis vero ut nesciunt distinctio et facilis dolorem ducimus laborum natus.`)">CONTACTAR AL ANFITRIÓN</button>
+        			<button class="btn-reserva-transparent wt-m-top-1" @click="openModal('')">QUIERO VISITAR EL ESPACIO</button>
                 </div>
                 <div v-if="clientId == ''">
-                    <button class="btn-reserva wt-m-top-2"><a href="/login">SOLICITUD DE RESERVA</a></button>
-                    <button class="btn-reserva-transparent wt-m-top-1"><a href="/login">SOLICITUD DE VISITA</a></button>
+                    <button class="btn-reserva wt-m-top-2"><a href="/login">CONTACTAR AL ANFITRIÓN</a></button>
+                    <button class="btn-reserva-transparent wt-m-top-1"><a href="/login">QUIERO VISITAR EL ESPACIO</a></button>
                 </div>
     		</section>
     	</aside>
@@ -298,6 +298,7 @@
         	}
         },
         mounted() {
+            this.getUserAuthenticated();
             this.getCategories();
             this.calFee();
         },
@@ -376,14 +377,13 @@
                     });
                     return;
                 }else {
-                    this.getUserAuthenticated();
+                    if(this.totalHoras < this.minhours) {
+                        this.messageError = `El mínimo de horas es ${this.minhours}`;
+                        return;
+                    }
+                    this.modalReserva = true;
+                    this.mensaje = Mensaje;
                 }
-                if(this.totalFechas < 1) {
-                    swal(`El mínimo de horas es ${this.minhours}`, 'Debes agregar más horas.');
-                    return;
-                }
-                this.modalReserva = true;
-                this.mensaje = Mensaje;
             },
             closeModal() {
                 this.modalReserva = false;

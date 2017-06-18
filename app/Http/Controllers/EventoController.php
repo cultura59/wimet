@@ -92,7 +92,7 @@ class EventoController extends Controller
                     'users.imagesource'
                 )
                 ->join('users', 'eventos.user_id', '=', 'users.id')
-                ->where('eventos.user_id', $id)
+                ->where('eventos.cliente_id', $id)
                 ->orderBy('eventos.updated_at', 'desc')
                 ->get();
         } else {
@@ -105,7 +105,7 @@ class EventoController extends Controller
                 'users.imagesource'
             )
             ->join('users', 'eventos.user_id', '=', 'users.id')
-            ->where('eventos.cliente_id', $id)
+            ->where('eventos.user_id', $id)
             ->orderBy('eventos.updated_at', 'desc')
             ->get();
         }

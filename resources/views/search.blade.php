@@ -3,10 +3,6 @@
 @section('title', 'Buscador')
 
 @push('scripts')
-<link href="http://allfont.es/allfont.css?fonts=roboto-light" rel="stylesheet" type="text/css" />
-        <link href="https://fonts.googleapis.com/css?family=Poppins" rel="stylesheet">
-
-
 <script>
 	var map;
 	function initMap() {
@@ -29,7 +25,7 @@
 		@foreach($espacios as $espacio)
 			marker = new google.maps.Marker({
 				position: new google.maps.LatLng({{$espacio->lat}}, {{$espacio->long}}),
-				icon: 'http://www.wimet.co/img/favicon.ico',
+				icon: 'http://localhost:8000/img/wimet_ic_place_red_24px.ico',
 				map: map
 			});
 		@endforeach

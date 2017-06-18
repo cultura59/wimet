@@ -44,6 +44,7 @@ class UserController extends Controller
             $user->imagesource = ($request->imagesource) ? $request->imagesource : null;
             $user->password =  bcrypt($request->password);
             $user->tipo_clientes_id = 1;
+            $user->imagesource = "/avatars/default.png";
             $user->isAdmin = 0;
             $user->save();
             return $user;
