@@ -38,6 +38,7 @@ class CreatePropuestasTable extends Migration
                 $table->double('monto_con_iva', 15, 2);
                 $table->double('fee', 15, 2);
                 $table->double('total', 15, 2);
+                $table->enum('estado', array('enviada','aprobada','rechazada','cancelada'))->default('enviada');
                 $table->timestamp('vencimiento_propuesta')->default(\Carbon\Carbon::now()->toDateTimeString());
                 $table->double('deposito', 15, 2);
                 $table->enum('cancellationflexibility', array('flexible', 'moderado', 'estricto'))->nullable();

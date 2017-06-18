@@ -146,9 +146,9 @@ class DashboardController extends Controller
      * @param $userId
      * @return \Illuminate\Http\Response
      */
-    public function reservas($userId)
+    public function propuestas($userId)
     {
-        return view('dashboard.reservas');
+        return view('dashboard.propuestas');
     }
 
 	/**

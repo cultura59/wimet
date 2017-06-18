@@ -20,9 +20,9 @@
 				<span><i class="fa fa-comments" aria-hidden="true"></i></span>
 				<a :href="`/dashboard/user/${user.id}/mensajes`">Mensajes</a>
 			</li>
-			<li :class="{active: (selected == 'reservas')}">
+			<li :class="{active: (selected == 'propuestas')}">
 				<span><i class="fa fa-comments" aria-hidden="true"></i></span>
-				<a :href="`/dashboard/user/${user.id}/reservas`">Propuestas</a>
+				<a :href="`/dashboard/user/${user.id}/propuestas`">Propuestas</a>
 			</li>
 			<li :class="{active: (selected == 'evaluaciones')}">
 				<span><i class="fa fa-star" aria-hidden="true"></i></span>

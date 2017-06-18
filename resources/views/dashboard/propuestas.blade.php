@@ -1,17 +1,17 @@
 @extends('layouts.dashboard')
 
-@section('title', 'Reservas')
+@section('title', 'Propuestas')
 
 @section('content')
 
-	<aside-dashboard selected="reservas"></aside-dashboard>
+	<aside-dashboard selected="propuestas"></aside-dashboard>
 
 	<section class="dashboard-container">
 		<div class="dashboard-header">
-			<h4>RESERVAS</h4>
+			<h4>PROPUESTAS</h4>
 		</div>
 		<div class="dashboard-body-fluid">
-			<dasboard-eventos></dasboard-eventos>
+			<dasboard-propuestas></dasboard-propuestas>
 		</div>
 	</section>
 

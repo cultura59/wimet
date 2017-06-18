@@ -90,4 +90,30 @@ class PropuestaController extends Controller
             return response('Los campos no son correctos', 400);
         }
     }
+
+    /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function getPropuestas($id) {
+        try {
+            $propuestas = Propuesta::select(
+                                                'propuestas.id', 
+                                                'propuestas.created_at', 
+                                                'propuestas.reserva_desde',
+                                                'espacios.name',
+                                                'propuestas.total',
+                                                'propuestas.estado'
+                                            )
+                            ->join('espacios', 'propuestas.espacio_id', '=', 'espacios.id')
+                            ->where('cliente_id', $id)->get();
+            return $propuestas;
+        }catch(\Exception $e){
+            return response('No se encontran propuestas asociadas al usuario id: ' . $id, 400);
+        }
+    }
+
+
 }
