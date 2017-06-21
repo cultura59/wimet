@@ -11,7 +11,7 @@
                   <iframe :src="image360" frameborder="0" width="100%" height="620"></iframe>
                 </div>
                 <div class="imagesModal__content__mySlides" v-for="img in images">
-                    <img v-bind:src="'/' + img.name" style="width: auto; height: 550px">
+                    <img v-bind:src="'/' + img.name" style="width: auto; height: 620px">
                 </div>
 
                 <a class="prev" v-on:click="plusSlides(-1)">&#10094;</a>
