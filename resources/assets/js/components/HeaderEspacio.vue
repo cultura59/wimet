@@ -8,7 +8,7 @@
             <span class="close-header cursor" v-on:click="closeModal()">&times;</span>
             <div class="imagesModal__content">
                 <div v-if="(image360 !== null)" class="imagesModal__content__mySlides">
-                  <iframe :src="image360" frameborder="0" width="100%" height="550"></iframe>
+                  <iframe :src="image360" frameborder="0" width="100%" height="620"></iframe>
                 </div>
                 <div class="imagesModal__content__mySlides" v-for="img in images">
                     <img v-bind:src="'/' + img.name" style="width: auto; height: 550px">
@@ -82,8 +82,8 @@
     .imagesModal {
       display: none;
       position: fixed;
-      z-index: 1;
-      padding-top: 75px;
+      z-index: 10000;
+      padding-top: 10px;
       left: 0;
       top: 0;
       width: 100%;
@@ -106,11 +106,10 @@
     .close-header {
       color: #fff;
       position: absolute;
-      top: 10px;
-      right: 25px;
-      font-size: 35px;
+      top: 0;
+      right: 10px;
+      font-size: 30px;
       font-weight: bold;
-      top: 10%;
     }
     .close-header:hover, .close-header:focus {
       color: #999;
