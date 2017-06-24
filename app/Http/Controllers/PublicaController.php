@@ -185,6 +185,21 @@ class PublicaController extends Controller
     }
 
     /**
+    * @fn tercerPasoDisponibilidad
+    * @brief Funcion que retorna la vista donde se agregan los caracteristicas del espacio
+    * @return render image caracteristicas
+    */
+    public function tercerPasoDisponibilidad($id) {
+        $espacio = Espacio::find($id);
+
+        return View('publicar.disponibilidad',
+            array(
+                'espacio' => $espacio
+            )
+        );
+    }
+
+    /**
     * @fn tercerPasoReglas()
     * @brief Funcion que retorna la vista donde se agregan las relgas del espacio
     * @return render image reglas

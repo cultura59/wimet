@@ -136,4 +136,13 @@ class Espacio extends Model
     {
         return $this->belongsToMany('App\Access');
     }
+
+    /*
+     * @fn disponibilidad()
+     * @brief Funcion que retorna las disponibilidades asociadas al espacio
+     */
+    public function disponibilidad()
+    {
+        return $this->hasMany('App\Disponibilidad');
+    }
 }

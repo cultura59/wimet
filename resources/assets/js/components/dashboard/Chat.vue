@@ -20,30 +20,34 @@
 		</div>
 		<div class="mensajes">
 			<div v-for="mensaje in mensajes">
-				<div v-if="mensaje.user_id == user.id" class="emisor">
-					<div class="emisor__left">
-						<div class="mensaje-cliente__header">
-							<span>{{mensaje.created_at}}</span>
-							<span>{{mensaje.firstname}}</span>
+				<template v-if="mensaje.user_id == user.id">
+					<div class="emisor">
+						<div class="emisor__left">
+							<div class="mensaje-cliente__header">
+								<span>{{mensaje.created_at}}</span>
+								<span>{{mensaje.firstname}}</span>
+							</div>
+							<p>{{mensaje.mensaje}}</p>
 						</div>
-						<p>{{mensaje.mensaje}}</p>
-					</div>
-					<div class="emisor__right">
-						<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
-					</div>
-				</div>
-				<div v-if="mensaje.user_id != user.id" class="receptor">
-					<div class="receptor__left">
-						<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
-					</div>
-					<div class="receptor__right">
-						<div class="mensaje-cliente__header">
-							<span>{{mensaje.firstname}}</span>
-							<span>{{mensaje.created_at}}</span>
+						<div class="emisor__right">
+							<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
 						</div>
-						<p>{{mensaje.mensaje}}</p>
 					</div>
-				</div>
+				</template>
+				<template v-if="mensaje.user_id != user.id">
+					<div class="receptor">
+						<div class="receptor__left">
+							<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
+						</div>
+						<div class="receptor__right">
+							<div class="mensaje-cliente__header">
+								<span>{{mensaje.firstname}}</span>
+								<span>{{mensaje.created_at}}</span>
+							</div>
+							<p>{{mensaje.mensaje}}</p>
+						</div>
+					</div>
+				</template>
 			</div>
 		</div>
 	</div>

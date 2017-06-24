@@ -22,6 +22,7 @@ Vue.component('publica-index', require('./components/publica/primerParte/index.v
 Vue.component('publica-image', require('./components/publica/segundaParte/image.vue'));
 Vue.component('publica-title', require('./components/publica/segundaParte/title.vue'));
 Vue.component('publica-price', require('./components/publica/segundaParte/price.vue'));
+Vue.component('publica-disponibilidad', require('./components/publica/terceraParte/Disponibilidad.vue'));
 
 Vue.component('dasboard-eventos', require('./components/dashboard/Eventos.vue'));
 Vue.component('dasboard-propuestas', require('./components/dashboard/Propuestas.vue'));

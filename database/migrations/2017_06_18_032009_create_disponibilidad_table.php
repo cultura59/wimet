@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateDisponibilidadsTable extends Migration
+class CreateDisponibilidadTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateDisponibilidadsTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('disponibilidads')) {
-            Schema::create('disponibilidads', function (Blueprint $table) {
+        if (!Schema::hasTable('disponibilidad')) {
+            Schema::create('disponibilidad', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('espacio_id')->unsigned();
                 $table->foreign('espacio_id')->references('id')->on('espacios');

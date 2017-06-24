@@ -237,7 +237,7 @@ class DashboardController extends Controller
     {
         $user = User::find($id);
 
-        $mp = new \MP ("6273864499490098", "dY1pQifWvkXMCSd1bPgYwK2o8QB3E70o");
+        $mp = new \MP ("7203319356870", "uCq14GCoBFgD6ebOrzMHVtmi2Ce4P4lB");
         
         $propuesta = DB::table('propuestas')
                             ->select('propuestas.*', 'categorias.name as catname')

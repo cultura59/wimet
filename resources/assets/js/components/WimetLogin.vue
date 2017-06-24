@@ -8,7 +8,7 @@
 	        </li>
 	        <li>
 				<button v-if="!authenticated" :class="typeLogin" @click="openModalLogin()">Ingresar</button>
-				<div v-if="authenticated">
+				<template v-if="authenticated">
 					<a href="#" id="menu-user" :class="userloged">{{ user.firstname }}</a>
 				    <ul class="menue-list">
 				        <li class="menue-list__item">
@@ -24,7 +24,7 @@
 				            <a href="#" @click="logout($event)" style="color: #333;">Salir</a>
 				        </li>
 				    </ul>
-			    </div>
+			    </template>
 			</li>
 		</ul>
 		<div v-if="showModalLogin" class="login-modal">
@@ -41,7 +41,7 @@
 				</div>
 				<div class="container-login">
 					<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
-					<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" />
+					<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" @keyup.enter="login()"/>
 					<button class="container-login__login" @click="login()">Iniciar sesión</button>
 				</div>
 				<div class="container-footer">

@@ -29,6 +29,7 @@ Route::get('/publicar/espacio/{espacioId}',
 Route::group(['prefix' => 'publicar'], function() {
 	Route::get('/user/{id}/primer-paso', 
 				'PublicaController@index');
+	//Primer paso con sus acciones
 	Route::group(['prefix' => 'primer-paso'], function() {
 		Route::get('/espacio/{id}/categorias', 
 					'PublicaController@primerPasoCategoria')
@@ -43,27 +44,36 @@ Route::group(['prefix' => 'publicar'], function() {
 					'PublicaController@primerPasoMaps')
 					->name('publica-maps');
 	});
-	Route::get('/segundo-paso/espacio/{id}/images', 
-				'PublicaController@segundoPasoImages')
-				->name('publica-images');
-	Route::get('/segundo-paso/espacio/{id}/caracteristicas', 
-				'PublicaController@segundoPasoCaracteristicas')
-				->name('publica-caracteristicas');
-	Route::get('/segundo-paso/espacio/{id}/amenities', 
-				'PublicaController@segundoPasoAmenities')
-				->name('publica-amenities');
-	Route::get('/segundo-paso/espacio/{id}/titulo', 
-				'PublicaController@segundoPasoTitulo')
-				->name('publica-titulo');
-	Route::get('/tercer-paso/espacio/{id}/reglas', 
-				'PublicaController@tercerPasoReglas')
-				->name('publica-rules');
-	Route::get('/tercer-paso/espacio/{id}/prices', 
-				'PublicaController@tercerPasoPrice')
-				->name('publica-prices');
-	Route::get('/tercer-paso/espacio/{id}/cancelacion', 
-				'PublicaController@tercerPasoCancelaciones')
-				->name('publica-cancelacion');
+	//Segundo paso con sus acciones
+	Route::group(['prefix' => 'segundo-paso'], function () {
+		Route::get('/espacio/{id}/images', 
+					'PublicaController@segundoPasoImages')
+					->name('publica-images');
+		Route::get('/espacio/{id}/caracteristicas', 
+					'PublicaController@segundoPasoCaracteristicas')
+					->name('publica-caracteristicas');
+		Route::get('/espacio/{id}/amenities', 
+					'PublicaController@segundoPasoAmenities')
+					->name('publica-amenities');
+		Route::get('/espacio/{id}/titulo', 
+					'PublicaController@segundoPasoTitulo')
+					->name('publica-titulo');
+	});
+	//Tercer paso con sus acciones
+	Route::group(['prefix' => 'tercer-paso'], function () {
+		Route::get('/espacio/{id}/reglas', 
+					'PublicaController@tercerPasoReglas')
+					->name('publica-rules');
+		Route::get('/espacio/{id}/prices', 
+					'PublicaController@tercerPasoPrice')
+					->name('publica-prices');
+		Route::get('/espacio/{id}/disponibilidad', 
+					'PublicaController@tercerPasoDisponibilidad')
+					->name('publica-disponibilidad');
+		Route::get('/espacio/{id}/cancelacion', 
+					'PublicaController@tercerPasoCancelaciones')
+					->name('publica-cancelacion');
+	});
 });
 
 // Apis publica fron views

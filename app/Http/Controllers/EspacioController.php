@@ -167,7 +167,7 @@ class EspacioController extends Controller
             $espacio = Espacio::find($request->id);
             $espacio->name = $request->name;
             $espacio->description = nl2br($request->description);
-            $espacio->step = $request->step;
+            $espacio->step = ($espacio->step == 4) ? $espacio->step : $request->step;
             $espacio->save();
             return $espacio;
         }catch(\Exception $e){
@@ -296,7 +296,7 @@ class EspacioController extends Controller
         if($request->long) {
             $espacio->long = $request->long;
         }
-        $espacio->step = 2;
+        $espacio->step = ($espacio->step == 4) ? $espacio->step : 2;
         $espacio->save();
         return \Redirect::route('publica-steps', array(
                 "espacioId" => $espacio->id
