@@ -25,7 +25,7 @@
 		@foreach($espacios as $espacio)
 			marker = new google.maps.Marker({
 				position: new google.maps.LatLng({{$espacio->lat}}, {{$espacio->long}}),
-				icon: 'http://localhost:8000/img/wimet_ic_place_red_24px.ico',
+				icon: 'http://unionhaus.co/img/wimet_ic_place_red_24px.ico',
 				map: map
 			});
 		@endforeach
