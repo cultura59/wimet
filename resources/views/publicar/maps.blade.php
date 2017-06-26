@@ -52,7 +52,6 @@
 						radius: position.coords.accuracy
 					});
 					autocomplete.setBounds(circle.getBounds());
-					console.log("hola mundo1");
 				});
 			}
 		}
@@ -102,6 +101,7 @@
 		</div>
 	</div>
 	<div class="container-left">
+		<navbar-primero espacio-id="{{$espacio->id}}" url="maps"></navbar-primero>
 		{!! Form::open(array('url' => 'saveadress', 'method' => 'POST')) !!}
 		<input type="hidden" name="id" value="{{$espacio->id}}">
 		<input type="hidden" id="lat" name="lat" value="{{$espacio->lat}}">
@@ -109,13 +109,14 @@
 
 		<div class="container-center">
 			<div class="detalles-espacios">
-				<h2>¿Cuál es la dirección exacta?</h2>
+				<h3>¿Cuál es la dirección exacta?</h3>
 				<div class="row wt-m-top-2">
 					<div class="col-md-12">
 						<input 
 							type="text" 
 							id="direccion" 
 							class="wt-publica-input"
+							value="{{$espacio->adress}}, {{$espacio->city}}, {{$espacio->state}}" 
 							placeholder="Ej.: El Salvador 5218, Palermo" 
 							onFocus="geolocate()" />
 					</div>
@@ -151,8 +152,11 @@
 		</div>
 
 		<div class="buttons" id="second-buttons">
-			<a href="{{ url()->previous() }}" class="btn">ATRÁS</a>
-			<input class="btn wt-btn-primary" type="submit" value="CONTINUAR"/>
+			<a href="{{ url()->previous() }}" class="btn-volver">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				<span>ATRÁS</span>
+			</a>
+			<input class="btn-primary-pig" type="submit" value="CONTINUAR"/>
 		</div>
 		{!! Form::close() !!}
 	</div>

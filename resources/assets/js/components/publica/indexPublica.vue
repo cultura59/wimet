@@ -22,7 +22,7 @@
 					</p>
 					<div v-if="enviarValidacion">
 						<a :href="`/dashboard/user/${user.id}/misespacios`">
-							<button class="wt-btn-aqua">ENVIAR PARA APROBACIÓN</button>
+							<button class="btn-primary-pig-lg">ENVIAR PARA APROBACIÓN</button>
 						</a>
 					</div>
 					<div v-if="!enviarValidacion">
@@ -31,28 +31,34 @@
 				</div>
 				
 				<div class="box-step">
-					<i v-if="step >= 1" class="fa fa-check fa-4x pull-right" aria-hidden="true"></i>
-					<h2 class="Sub-title">Paso 1: Lo escencial</h2>
+					<div>
+						<img v-if="step >= 1" src="/img/wimet_ic_check_24px_accent.svg" style="width: 30px" alt="Primer paso" class="pull-right">
+						<h2 class="Sub-title">Paso 1: Lo escencial</h2>
+					</div>
 					<p class="sub-title-info">Tipo de espacio, capacidad, dirección.</p>
 					<a :href="`/publicar/primer-paso/espacio/${espacioId}/categorias`" class="link">EDITAR</a>
 				</div>
 				
 				<div class="box-step">
-					<i v-if="step > 2" class="fa fa-check fa-4x pull-right" aria-hidden="true"></i>
-					<h2 class="Sub-title">Paso 2: Exhibe tu lugar</h2>
+					<div>
+						<img v-if="step > 2" src="/img/wimet_ic_check_24px_accent.svg" style="width: 30px" alt="Primer paso" class="pull-right">
+						<h2 class="Sub-title">Paso 2: Exhibe tu lugar</h2>
+					</div>
 					<p class="sub-title-info">Fotos, descripción, título.</p>
 					<a v-if="step == 2" :href="`/publicar/segundo-paso/espacio/${espacioId}/images`">
-						<button class="wt-btn-aqua">CONTINUAR</button>
+						<button class="btn-primary-pig">CONTINUAR</button>
 					</a>
 					<a v-if="step > 2" :href="`/publicar/segundo-paso/espacio/${espacioId}/images`" class="link">EDITAR</a>
 				</div>
 				
 				<div class="box-step">
-					<i v-if="step == 4" class="fa fa-check fa-4x pull-right" aria-hidden="true"></i>
-					<h2 class="Sub-title">Paso 3: Prepárate para alquilar</h2>
+					<div>
+						<img v-if="step == 4" src="/img/wimet_ic_check_24px_accent.svg" style="width: 30px" alt="Primer paso" class="pull-right">
+						<h2 class="Sub-title">Paso 3: Prepárate para alquilar</h2>
+					</div>
 					<p class="sub-title-info">Reglas, precio y políticas del espacio.</p>
 					<a v-if="step == 3" :href="`/publicar/tercer-paso/espacio/${espacioId}/reglas`">
-						<button class="wt-btn-aqua">CONTINUAR</button>
+						<button class="btn-primary-pig">CONTINUAR</button>
 					</a>
 					<a v-if="step == 4" :href="`/publicar/tercer-paso/espacio/${espacioId}/reglas`" class="link">EDITAR</a>
 				</div>

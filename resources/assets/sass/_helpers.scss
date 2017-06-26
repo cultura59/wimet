@@ -122,6 +122,22 @@
     }
 }
 
+.btn-primary-pig-lg {
+    width: 200px;
+    height: 40px;
+    background: $wt-primary-pig;
+    font-weight: 500;
+    letter-spacing: -0.1px;
+    color: $wt-white;
+    border: 1px solid $wt-primary-pig;
+    border-radius: 2px;
+    &:hover {
+        color: $wt-white !important;
+        background-color: $wt-primary-pig;
+        opacity: 87;
+    }
+}
+
 .btn-primary-transparent  {
     width: 108px;
     height: 40px;
@@ -351,6 +367,7 @@
 .brd-round  {
     border-radius: 50%;
     border: 1px solid #979797;
+    filter: grayscale(100%);
 }
 
 //------------------------------------ Helppers de texto -------------------------------------//

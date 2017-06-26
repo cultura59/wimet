@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="container-center">
-			<h2>Disponibilidad</h2>
+			<h3>Disponibilidad</h3>
 			<h4 class="wt-m-top-2">Elige los días que tu espacio podría estar disponible.</h4>
 			<div class="container-disponibilidad-btn-default">
 				<button 
@@ -80,7 +80,10 @@
 			</div>
 		</div>
 		<div class="buttons" id="second-buttons">
-			<a href="#" class="btn" @click="backPage($event)">ATRÁS</a>
+			<a href="#" @click="backPage($event)" class="btn-volver">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				<span>ATRÁS</span>
+			</a>
 			<a class="btn wt-btn-primary" href="#" @click="saveDisponibilidad($event)">CONTINUAR</a>
 		</div>
 	</div>
@@ -223,13 +226,13 @@
             	.then(res => {
             		console.log(res);
             		if(res.status == 200) {
-            			window.location.href = `/publicar/espacio/${this.espacioId}`
+            			window.location.href = `/publicar/tercer-paso/espacio/${this.espacioId}/cancelacion`
             		}
             	});
             },
             backPage(e) {
             	e.preventDefault();
-            	window.location.href = `/publicar/tercer-paso/espacio/${this.espacioId}/reglas`;
+            	window.location.href = `/publicar/tercer-paso/espacio/${this.espacioId}/prices`;
             }
         }
     }

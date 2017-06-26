@@ -4,13 +4,15 @@
 
 @push('scripts')
 	<script>
-		function incrementInput(nameInput) {
+		function incrementInput(nameInput, e) {
+			event.preventDefault();
 		    var value = parseInt(document.getElementById(nameInput).value, 10);
 		    value = isNaN(value) ? 0 : value;
 		    value++;
 		    document.getElementById(nameInput).value = value;
 		}
-		function decrencrementInput(nameInput) {
+		function decrencrementInput(nameInput, e) {
+			event.preventDefault();
 			var value = parseInt(document.getElementById(nameInput).value, 10);
 		    value = isNaN(value) ? 0 : value;
 		    value--;
@@ -28,59 +30,60 @@
 		</div>
 	</div>
 	<div class="container-left">
+		<navbar-primero espacio-id="{{$espacio->id}}" url="detalles"></navbar-primero>
 		{!! Form::open(array('url' => 'saveaccess', 'method' => 'POST')) !!}
 		<input type="hidden" name="id" value="{{$espacio->id}}">
 
 		<div class="container-center">
 			<div class="detalles-espacios">
-				<h2>Detalles del espacio y accesibilidad</h2>
+				<h3>Detalles del espacio y accesibilidad</h3>
 				<div class="box-publica">
 					<div class="box-publica__container">
 						<input class="box-publica__container__input" type="text" id="quantyrooms" name="quantyrooms" value="{{$espacio->quantyrooms}}">
-						<span class="box-publica__container__pointer" onclick="incrementInput('quantyrooms')">+</span>
-						<span class="box-publica__container__pointer" onclick="decrencrementInput('quantyrooms')">-</span>
+						<button class="box-publica__container__pointer-center" onclick="incrementInput('quantyrooms')">+</button>
+						<button class="box-publica__container__pointer" onclick="decrencrementInput('quantyrooms')">-</button>
 						<span class="box-publica__container__name">Ambientes</span>
 					</div>
 					<div class="box-publica__description">
-						<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
+						<span class="description-text">(sólo los disponibles para el uso de invitados).</span>
 					</div>
 				</div>
 				<div class="box-publica">
 					<div class="box-publica__container">
 						<input class="box-publica__container__input" type="text" id="quantybathrooms" name="quantybathrooms" value="{{$espacio->quantybathrooms}}">
-						<span class="box-publica__container__pointer" onclick="incrementInput('quantybathrooms')">+</span>
-						<span class="box-publica__container__pointer" onclick="decrencrementInput('quantybathrooms')">-</span>
+						<button class="box-publica__container__pointer-center" onclick="incrementInput('quantybathrooms')">+</button>
+						<button class="box-publica__container__pointer" onclick="decrencrementInput('quantybathrooms')">-</button>
 						<span class="box-publica__container__name">Baños</span>
 					</div>
 					<div class="box-publica__description">
-						<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
+						<span class="description-text">(sólo los disponibles para el uso de invitados).</span>
 					</div>
 				</div>
 				<div class="box-publica" style="display: none;">
 					<div class="box-publica__container">
 						<input class="box-publica__container__input" type="text" id="floor" name="floor" value="0">
-						<span class="box-publica__container__pointer" onclick="incrementInput('floor')">+</span>
-						<span class="box-publica__container__pointer" onclick="decrencrementInput('floor')">-</span>
+						<button class="box-publica__container__pointer-center" onclick="incrementInput('floor')">+</button>
+						<button class="box-publica__container__pointer" onclick="decrencrementInput('floor')">-</button>
 						<span class="box-publica__container__name">Piso</span>
 					</div>
 					<div class="box-publica__description">
-						<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
+						<span class="description-text">(sólo los disponibles para el uso de invitados).</span>
 					</div>
 				</div>
 				<div class="box-publica">
 					<div class="box-publica__container">
 						<input class="box-publica__container__input" type="text" id="surface" name="surface" value="{{$espacio->surface}}">
-						<span class="box-publica__container__pointer" onclick="incrementInput('surface')">+</span>
-						<span class="box-publica__container__pointer" onclick="decrencrementInput('surface')">-</span>
+						<button class="box-publica__container__pointer-center" onclick="incrementInput('surface')">+</button>
+						<button class="box-publica__container__pointer" onclick="decrencrementInput('surface')">-</button>
 						<span class="box-publica__container__name">Superficie</span>
 					</div>
 					<div class="box-publica__description">
-						<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
+						<span class="description-text">(sólo los disponibles para el uso de invitados).</span>
 					</div>
 				</div>
 			</div>
 			<div class="detalles-accesos wt-m-bot-5">
-				<h2>¿Cómo se accede al lugar?</h2>
+				<h3>¿Cómo se accede al lugar?</h3>
 				<div class="row wt-m-top-3">
 					@foreach($access as $as)
 					<div class="col-xs-6">
@@ -98,8 +101,11 @@
 		</div>
 
 		<div class="buttons" id="second-buttons">
-			<a href="{{ url()->previous() }}" class="btn">ATRÁS</a>
-			<input class="btn wt-btn-primary" type="submit" value="CONTINUAR"/>
+			<a href="{{ url('/publicar/primer-paso/espacio/'.$espacio->id.'/categorias') }}" class="btn-volver">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				<span>ATRÁS</span>
+			</a>
+			<input class="btn-primary-pig" type="submit" value="CONTINUAR"/>
 		</div>
 		{!! Form::close() !!}
 	</div>

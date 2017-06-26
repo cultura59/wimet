@@ -11,25 +11,26 @@
 		</div>
 	</div>
 	<div class="container-left">
+		<navbar-primero espacio-id="{{$espacio->id}}" url="categorias"></navbar-primero>
 		{!! Form::open(array('url' => 'savecategories', 'method' => 'POST')) !!}
 		<input type="hidden" name="id" value="{{$espacio->id}}">
 		<div class="container-center">
 			@include('errors/error-notification')
-			<h2>¿Qué tipo de actividad se puede a cabo en tu espacio?</h2>
+			<h3>¿Qué tipo de actividad se puede a cabo en tu espacio?</h3>
 			<div class="container-center__list">
 				@foreach($categorias as $categoria)
 				<!-- Item -->
 				<div class="container-center__list__item">
-					<div>
-						{{ Form::checkbox(
-							'categorias[]', 
-							$categoria->id, 
-							$espacio->categorias->contains('id', $categoria->id), 
-							array('id' => 'categoria_' . $categoria->id)) 
-						}}
-					</div>
 					<div class="left__item">
-						<span><label for="categoria_{{$categoria->id}}">{{$categoria->name}}</label></span>
+						<span>
+							{{ Form::checkbox(
+								'categorias[]', 
+								$categoria->id, 
+								$espacio->categorias->contains('id', $categoria->id), 
+								array('id' => 'categoria_' . $categoria->id, 'style' => 'display:none')) 
+							}}
+							<label for="categoria_{{$categoria->id}}" class="wt-publica-label">{{$categoria->name}}</label>
+						</span>
 						<span class="item-description">(
 							@foreach($categoria->subCategory as $cat)
 							{{$cat->name}},
@@ -42,8 +43,11 @@
 		</div>
 
 		<div class="buttons" id="second-buttons">
-			<a href="{{ url()->previous() }}" class="btn">ATRÁS</a>
-			<input class="btn wt-btn-primary" type="submit" value="CONTINUAR"/>
+			<a href="{{ url('/publicar/espacio/'.$espacio->id) }}" class="btn-volver">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				<span>ATRÁS</span>
+			</a>
+			<input class="btn-primary-pig" type="submit" value="CONTINUAR"/>
 		</div>
 		{!! Form::close() !!}
 	</div>

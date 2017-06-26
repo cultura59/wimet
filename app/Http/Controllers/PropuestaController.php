@@ -83,7 +83,7 @@ class PropuestaController extends Controller
     public function destroy($id)
     {
         try {
-            $propuesta = Mensaje::find($id);
+            $propuesta = Propuesta::find($id);
             $propuesta->delete();
             return response('La propuesta fue borrada', 200);
         }catch(\Exception $e){
@@ -104,6 +104,7 @@ class PropuestaController extends Controller
                                                 'propuestas.created_at', 
                                                 'propuestas.reserva_desde',
                                                 'espacios.name',
+                                                'propuestas.evento_id',
                                                 'propuestas.total',
                                                 'propuestas.estado'
                                             )
@@ -115,5 +116,20 @@ class PropuestaController extends Controller
         }
     }
 
-
+    /**
+     * Rechazar propuesta.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function rechazar($id)
+    {
+        try {
+            $propuesta = Propuesta::find($id);
+            $propuesta->estado = 'rechazada';
+            return response('La propuesta fue borrada', 200);
+        }catch(\Exception $e){
+            return response('Los campos no son correctos', 400);
+        }
+    }
 }

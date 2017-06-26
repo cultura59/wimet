@@ -1,7 +1,13 @@
 <template>
 	<div class="container-evento">
-		<h4>Detalles del evento</h4>
-		<button v-if="user.id" @click="redirectUrl($event, 'chats')" class="btn-mensajes">Mensajes</button>
+		<div>
+			<h4 class="text-center dashboard-title">{{evento.titulo_cliente}}</h4>
+			<div class="navbar-chat">
+				<a href="#"@click="redirectUrl($event, '')" >RESUMEN</a>
+				<a href="#"@click="redirectUrl($event, '/chats')" >MENSAJES</a>
+			</div>
+		</div>
+		<h4 class="dashboard-title">Detalles del evento</h4>
 		<div>
 			<div class="container-evento__box">
 				<div class="container-evento__box__item">
@@ -136,7 +142,7 @@
 			},
 			redirectUrl(e, url) {
 				e.preventDefault();
-				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.eventoId}/${url}`;
+				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.eventoId}${url}`;
 			},
 			redirectPropuesta(e, id) {
 				e.preventDefault();

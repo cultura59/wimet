@@ -56,7 +56,9 @@
 				<a href="{{url('/dashboard/user/'. $userId . '/confirmar/'.$propuesta->id)}}">
 					<button class="dashboard-btn-primary">ALQUILAR</button>
 				</a>
-				<button class="dashboard-btn-transparent">Rechazar propuesta</button>
+				<a href="{{url('/api/propuesta/'. $propuesta->id . '/rechazada')}}">
+					<button class="dashboard-btn-transparent">Rechazar propuesta</button>
+				</a>
 			</div>
 			@endif
 		</div>

@@ -100,7 +100,7 @@ Route::group(['prefix' => 'dashboard'], function() {
 	Route::get('/user/{id}/consultas', 'DashboardController@consultas');
 	Route::get('/user/{id}/consulta/{consultaId}', 'DashboardController@consulta');
 	Route::get('/user/{id}/eventos', 'DashboardController@eventos');
-	Route::get('/user/{id}/propuestas', 'DashboardController@propuestas');
+	Route::get('/user/{id}/propuestas', 'DashboardController@propuestas')->name('propuestas');
 	Route::get('/user/{id}/evento/{eventoId}', 'DashboardController@evento');	
 	Route::get('/user/{id}/evento/{eventoId}/chats', 'DashboardController@chats');	
 	Route::get('/user/{id}/evento/{eventoId}/nuevapropuesta', 'DashboardController@nuevapropuesta');	
@@ -115,3 +115,4 @@ Route::group(['prefix' => 'dashboard'], function() {
 Route::get('/nosotros', 'HomeController@nosotros');
 Route::get('/equipo', 'HomeController@equipo');
 Route::get('/prensa', 'HomeController@prensa');
+Route::get('/publica', 'HomeController@publica');

@@ -27,7 +27,8 @@ class Espacio extends Model
                             'lat',
                             'securitydeposit',
                             'image360',
-                            'cancellationflexibility'
+                            'cancellationflexibility',
+                            'status'
 						];
 	/**
 	 * @fn user()

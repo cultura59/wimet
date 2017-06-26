@@ -20,9 +20,9 @@
     <div id="post-wrap" class="content-section fullpage-wrap">
         <div class="row margin-leftright-null white-background">
             <div class="col-md-12 text-center">
-                <a class="btn-alt2 wimet margin-null" href="nosotros.html" data-mode="drawer_left">NOSOTROS</a>
-                <a class="btn-alt2 wimet margin-null" href="equipo.html" data-mode="drawer_left">EQUIPO</a>      
-                <a class="btn-alt2 wimet margin-null" href="prensa.html" data-mode="drawer_left">PRENSA</a>
+                <a class="btn-alt2 wimet margin-null" href="/nosotros" data-mode="drawer_left">NOSOTROS</a>
+                <a class="btn-alt2 wimet margin-null" href="/equipo" data-mode="drawer_left">EQUIPO</a>      
+                <a class="btn-alt2 wimet margin-null" href="/prensa" data-mode="drawer_left">PRENSA</a>
             </div>
         </div>                  
         <!-- Section same Height. Child get the parent Height. Set the same id -->

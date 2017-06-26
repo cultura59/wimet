@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="container-center">
-			<h2>¿Cual es el precio de tu espacio?</h2>
+			<h3>¿Cual es el precio de tu espacio?</h3>
 			<div class="content-categories">
 				<button 
 					v-for="cat in categories" 
@@ -36,7 +36,7 @@
 						</div>
 						<label for="por-hora">Mínimo de horas</label>
 					</div>
-					<span>(puedes establecer una cantidad mínima de horas a contratar)</span>
+					<span>(puedes establecer una cantidad mínima de horas a contratar).</span>
 				</div>
 				<div class="check-all">
 					<input type="checkbox" id="all-categories" v-model="allCategories" @change="changeAllCategories()">
@@ -45,7 +45,10 @@
 			</div>
 		</div>
 		<div class="buttons" id="second-buttons">
-			<a href="#" class="btn" @click="backPage($event)">ATRÁS</a>
+			<a href="#" @click="backPage($event)" class="btn-volver">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				<span>ATRÁS</span>
+			</a>
 			<a class="btn wt-btn-primary" href="#" @click="savePrice($event)">CONTINUAR</a>
 		</div>
 	</div>
@@ -103,7 +106,7 @@
             	this.$http.post('saveprice', data)
             	.then((res) =>{
             		if(res.status == 200) {
-            			window.location.href = `/publicar/tercer-paso/espacio/${this.espacioId}/cancelacion`;
+            			window.location.href = `/publicar/tercer-paso/espacio/${this.espacioId}/disponibilidad`;
             		}
             	});
             },

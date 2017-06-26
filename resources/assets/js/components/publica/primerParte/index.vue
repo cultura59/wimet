@@ -34,10 +34,12 @@
 				</ul>
 			</div>
 		</div>
-
 		<div class="buttons">
-			<button class="btn" onclick="showNextStep(0)">ATRÁS</button>
-			<input class="btn wt-btn-primary" type="button" value="CONTINUAR" @click="saveCharacteristic()"/>
+			<a href="/publica" class="btn-volver" onclick="showNextStep(0)">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				<span>ATRÁS</span>
+			</a>
+			<input class="btn-primary-pig" type="submit" value="CONTINUAR" @click="saveCharacteristic()"/>
 		</div>
 	</div>
 </template>

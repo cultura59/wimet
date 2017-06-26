@@ -26,13 +26,12 @@
 <section class="section-publica">
 	<div class="wt-progress">
 		<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
-		aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 66%">
+		aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 50%">
 		</div>
 	</div>
 	<div class="container-left">
-
+		<navbar-tercero espacio-id="{{$espacio->id}}" url="prices"></navbar-tercero>
 		<publica-price espacio-id="{{$espacio->id}}" prices="{{$prices}}"></publica-price>
-
 	</div>
 	<div class="container-right">
 		<div class="container-right__dialog-box">

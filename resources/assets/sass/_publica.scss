@@ -4,7 +4,11 @@
 		padding: 2em;
 	}
 	label {
-		font-weight: 400;
+		font-family: Poppins;
+	    font-size: 16px;
+	    font-weight: 500;
+	    letter-spacing: -0.1px;
+	    color: #545454;
 	}
 	.link {
 		color: #e2385a;
@@ -20,6 +24,48 @@
 		position: relative;
 		overflow-y: scroll;
 		background-color: $wt-white;
+		.navbar-pasos {
+			width: 100%;
+    		display: flex;
+    		&__btn-first {
+			    width: 25%;
+			    height: 40px;
+			    border: none;
+			    border-left: solid 1px $wt-primary-pig;
+			    border-bottom: solid 1px $wt-primary-pig;
+			    border-top: solid 1px $wt-primary-pig;
+			    background: $wt-white;
+			    color: $wt-primary-pig;
+			    margin: 0;
+			}
+    		&__btn {
+			    width: 25%;
+			    height: 40px;
+			    border: solid 1px $wt-primary-pig;
+			    background: $wt-white;
+			    color: $wt-primary-pig;
+			    margin: 0;
+			}
+    		&__btn-last {
+			    width: 25%;
+			    height: 40px;
+			    border: none;
+			    border-right: solid 1px $wt-primary-pig;
+			    border-bottom: solid 1px $wt-primary-pig;
+			    border-top: solid 1px $wt-primary-pig;
+			    background: $wt-white;
+			    color: $wt-primary-pig;
+			    margin: 0;
+			}
+			&__btm--active {
+				width: 25%;
+			    height: 40px;
+			    border: solid 1px $wt-primary-pig;
+			    background: $wt-primary-pig;
+			    color: $wt-white;
+			    margin: 0;
+			}
+		}
 		h2 {
 			margin: 0.5rem 0;
 		}
@@ -34,6 +80,21 @@
 		    display: flex;
 		    justify-content: space-between;
 		    background: $wt-white;
+		    .btn-volver {
+			    font-family: Poppins;
+			    font-size: 14px;
+			    font-weight: 500;
+			    letter-spacing: -0.1px;
+			    color: #75787a;
+			    display: flex;
+			    justify-content: space-between;
+			    align-items: center;
+			    width: 108px;
+			    padding: 0 1em;
+			    &:hover {
+			    	text-decoration: none;
+			    }
+		    }
 		}
 		.container-center {
 			padding: 1rem 2rem;
@@ -71,42 +132,59 @@
 				    display: flex;
 				    margin: 1rem 0;
 				    .left__item {
-					    margin-left: 1rem;
 					    display: flex;
 					    flex-direction: column;
 					    .item-description {
-						    color: rgba(0, 0, 0, 0.38);
-						    font-size: 1em;
-						    font-weight: 600;
+						    font-family: Roboto;
+						    font-size: 14px;
+						    letter-spacing: -0.1px;
+						    text-align: justify;
+						    color: #888b8d
 						}
 					}
 				}
 			}
 			.box-publica {
-		    	margin: 2rem 0;
+		    	margin: 1rem 0;
 		    	&__container {
 		    		display: flex;
+		    		align-items: baseline;
 		    		&__input {
 					    padding: 0.5rem;
-					    border: 1px solid #dadada;
+					    width: 80px;
+					    height: 40px;
+					    background-color: $wt-white;
+					    border: solid 1px #979797;
 					}
 					&__pointer {
-					    padding: 1rem 1.5rem;
-					    border: 1px solid #dadada;
-					    margin-left: 1px;
-					    cursor: pointer;
+						width: 40px;
+						height: 40px;
+						background-color: $wt-white;
+						border: solid 1px #979797;
+					}
+					&__pointer-center {
+						width: 40px;
+						height: 40px;
+						background-color: $wt-white;
+					    border: none;
+					    border-bottom: 1px solid #979797;
+					    border-top: solid 1px #979797;
 					}
 					&__name {
 					    padding: 1rem;
-					    font-weight: 600;
+					    font-weight: 500;
+					    color: #545454;
+					    font-size: 16px;
+					    font-family: Poppins;
 					}
 		    	}
 		    	&__description {
 				    padding: 0.4rem 0;
 				    .description-text {
 				    	margin-top: 1rem;
-					    color: rgba(0, 0, 0, 0.35);
-					    font-weight: 600;
+					    color: #888b8d;
+					    font-family: Roboto;
+					    font-size: 14px;
 				    }
 				}
 			}
@@ -273,7 +351,7 @@ div.wt-panel {
 	    justify-content: center;
 	    align-items: center;
 	    padding: 1em;
-	    color: #fff;
+	    color: $wt-white;
 	}
 	.card-category-body {
 	    padding: 1em;
@@ -287,9 +365,9 @@ div.wt-panel {
 		    width: 100%;
 		    background: #00c6e0;
 		    margin-top: 1em;
-		    border: 1px solid #fff;
+		    border: 1px solid $wt-white;
 		    border-radius: .4em;
-		    color: #fff;
+		    color: $wt-white;
 		}
 	}
 }

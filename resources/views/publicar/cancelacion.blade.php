@@ -2,6 +2,25 @@
 
 @section('title', 'Publicar')
 
+@push('scripts')
+	<script>
+		function incrementInput(nameInput, e) {
+			event.preventDefault();
+		    var value = parseInt(document.getElementById(nameInput).value, 10);
+		    value = isNaN(value) ? 0 : value;
+		    value++;
+		    document.getElementById(nameInput).value = value;
+		}
+		function decrencrementInput(nameInput, e) {
+			event.preventDefault();
+			var value = parseInt(document.getElementById(nameInput).value, 10);
+		    value = isNaN(value) ? 0 : value;
+		    value--;
+		    document.getElementById(nameInput).value = value;
+		}
+	</script>
+@endpush
+
 @section('content')
 	
 <section class="section-publica">
@@ -11,37 +30,66 @@
 		</div>
 	</div>
 	<div class="container-left">
+		<navbar-tercero espacio-id="{{$espacio->id}}" url="cancelacion"></navbar-tercero>
 		{!! Form::open(array('url' => 'savecancelacion', 'method' => 'POST')) !!}
 		<input type="hidden" name="id" value="{{$espacio->id}}">
 		<div class="container-center">
 			<div id="first-step">
 				<div class="wt-m-top-3 wt-m-bot-3">
-					<h2>¿Cuál es el depósito de garantía?</h2>
-					<input type="text" name="securitydeposit" class="input-publica" placeholder="Ingrese un valor de depósito" value="{{$espacio->securitydeposit}}">
+					<h3>Política de cancelación</h3>
+					<div class="container-center__list">
+						<!-- Item -->
+						<div class="container-center__list__item">
+							<div class="left__item">
+								<span>
+									<input type="radio" id="flexible" name="cancellationflexibility" value="flexible" required style="display: none;" @if($espacio->cancellationflexibility== 'flexible') checked @endif>
+									<label for="flexible" class="wt-publica-label">Flexible</label>
+								</span>
+								<span class="item-description">(Reembolso completo hasta 15 días antes del evento, excepto los gastos de procesamiento).</span>
+							</div>
+						</div>
+						<!-- Item -->
+						<div class="container-center__list__item">
+							<div class="left__item">
+								<span>
+									<input type="radio" id="moderado" name="cancellationflexibility" value="moderado" required style="display: none;" @if($espacio->cancellationflexibility== 'moderado') checked @endif>
+									<label for="moderado" class="wt-publica-label">Moderado</label>
+								</span>
+								<span class="item-description">(Reembolso completo hasta 30 días antes del evento, excepto los gastos de procesamiento).</span>
+							</div>
+						</div>
+						<!-- Item -->
+						<div class="container-center__list__item">
+							<div class="left__item">
+								<span>
+									<input type="radio" id="estricto" name="cancellationflexibility" value="estricto" required style="display: none;" @if($espacio->cancellationflexibility== 'estricto') checked @endif>
+									<label for="estricto" class="wt-publica-label">Estricto</label>
+								</span>
+								<span class="item-description">(50% de reembolso hasta 30 días antes del evento, excepto gastos de procesamiento).</span>
+							</div>
+						</div>
+					</div>
 				</div>
 				<div class="wt-m-top-3 wt-m-bot-3">
-					<h3>¿Qué tipo de política de cancelación tienes?</h3>
-					<ul class="tipo-espacio">
-						<li class="typespace">
-							<input type="radio" id="flexible" name="cancellationflexibility" value="flexible" required style="display: none;" @if($espacio->cancellationflexibility== 'flexible') checked @endif>
-							<label for="flexible" class="wt-publica-first-label">Flexible</label>
-						</li>
-						<li class="typespace">
-							<input type="radio" id="moderado" name="cancellationflexibility" value="moderado" required style="display: none;" @if($espacio->cancellationflexibility== 'moderado') checked @endif>
-							<label for="moderado" class="wt-publica-first-label">Moderado</label>
-						</li>
-						<li class="typespace">
-							<input type="radio" id="estricto" name="cancellationflexibility" value="estricto" required style="display: none;" @if($espacio->cancellationflexibility== 'estricto') checked @endif>
-							<label for="estricto" class="wt-publica-first-label">Estricto</label>
-						</li>
-					</ul>
+					<h4>Deposito de garantía</h4>
+					<div class="box-publica">
+						<div class="box-publica__container">
+							<input class="box-publica__container__input" type="text" id="securitydeposit" name="securitydeposit" value="{{$espacio->securitydeposit}}" placeholder="$0.-">
+							<button class="box-publica__container__pointer-center" onclick="incrementInput('securitydeposit')">+</button>
+							<button class="box-publica__container__pointer" onclick="decrencrementInput('securitydeposit')">-</button>
+							<span class="box-publica__container__name">Ambientes</span>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>
 
 		<div class="buttons">
-			<button class="btn" onclick="showNextStep(0)">ATRÁS</button>
-			<input class="btn wt-btn-primary" type="submit" value="CONTINUAR"/>
+			<a href="{{ url()->previous() }}" class="btn-volver">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				<span>ATRÁS</span>
+			</a>
+			<input class="btn-primary-pig" type="submit" value="CONTINUAR"/>
 		</div>
 		{!! Form::close() !!}
 	</div>

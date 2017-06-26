@@ -40,7 +40,7 @@
             </header>
 
             <!-- main -->
-            <main>
+            <main class="main-dashboard">
                 @yield('content')
             </main>
         </div>

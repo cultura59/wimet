@@ -1,7 +1,18 @@
 <template>
 	<div class="container-evento">
-		<button v-if="(user.id && user.id == evento.user_id)" @click="redirectUrl($event, 'mensajes')" class="btn-mensajes">Detalles evento</button>
-		<label v-if="(user.id && user.id == evento.cliente_id)" class="cursor-pointer" @click="redirectMensajes()">< Ver mensajes</label>
+
+		<template v-if="(user.id && user.id == evento.user_id)">
+			<h4 class="text-center dashboard-title">{{evento.titulo_cliente}}</h4>
+			<div class="navbar-chat">
+				<a href="#"@click="redirectUrl($event, '')" >RESUMEN</a>
+				<a href="#"@click="redirectUrl($event, '/chats')" >MENSAJES</a>
+			</div>
+		</template>
+
+		<template v-if="(user.id && user.id == evento.cliente_id)">
+			<label class="cursor-pointer" @click="redirectMensajes()">< Ver mensajes</label>
+		</template>
+
 		<div class="box-chat">
 			<textarea rows="3" v-model="mensajeEnviar"></textarea>
 			<div class="box-chat__actions">
@@ -138,8 +149,9 @@
 					}
 				});
 			},
-			redirectUrl() {
-				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.eventoId}`;
+			redirectUrl(e, url) {
+				e.preventDefault();
+				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.eventoId}${(url !== '')?url:''}`;
 			},
 			redirectMensajes() {
 				window.location.href = `/dashboard/user/${this.user.id}/mensajes`;
@@ -149,8 +161,24 @@
 </script>
 <style lang="sass">
 	.container-evento {
-
 		height: 88px;
+		.navbar-chat {
+			font-family: Roboto;
+			font-size: 12px;
+			font-weight: 500;
+			letter-spacing: -0.1px;
+			text-align: center;
+			margin: 2em 0;
+			a {
+				opacity: 0.87;
+				color: #191919;
+				margin: 0 1em;
+				transition: none;
+				&:hover {
+					color: #ea516d;
+				}
+			}
+		}
 		.box-chat {
 			padding: 0.5em;
 		    background: #f0f0f0;
@@ -205,17 +233,17 @@
 			transition: none;
 			height: auto;
 		    max-height: 600px;
-		    padding: 0 1em;
 		    overflow-y: auto;
 			.receptor {
 				display: flex;
 			    justify-content: space-between;
 			    width: 100%;
 			    height: auto;
-			    padding: 1em;
+			    padding: 1em 0;
 			    margin: 1em 0;
 			    &__left {
 					width: 10%;
+					transition: none;
 			    }
 			    &__right {
 					width: 90%;
@@ -223,6 +251,7 @@
 				    background-color: #f8f8f8;
 				    border: solid 1px #bbbbbb;
 				    margin-left: 1em;
+				    transition: none;
     				.mensaje-cliente__header {
 						display: flex;
     					justify-content: space-between;
@@ -242,6 +271,7 @@
 				    background-color: #fff;
 				    border: solid 1px #bbbbbb;
 				    margin-right: 1em;
+				    transition: none;
     				.mensaje-cliente__header {
 						display: flex;
     					justify-content: space-between;
@@ -249,6 +279,7 @@
 			    }
 			    &__right {
 					width: 10%;
+					transition: none;
 			    }
 			}
 		}

@@ -7,13 +7,14 @@
 <section class="section-publica">
 	<div class="wt-progress">
 		<div id="progress" class="progress-bar progress-bar-danger progress-bar-striped" role="progressbar"
-		aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+		aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 25%%">
 		</div>
 	</div>
 	<div class="container-left">
+		<navbar-tercero espacio-id="{{$espacio->id}}" url="reglas"></navbar-tercero>
 		{!! Form::open(array('url' => 'savereglas', 'method' => 'POST')) !!}
 		<div class="container-center">
-			<h2>Establece reglas sobre el espacio</h2>
+			<h3>Establece reglas sobre el espacio</h3>
 			<div class="row wt-m-top-4">
 				<input type="hidden" name="id" value="{{$espacio->id}}">
 				@foreach($reglas as $regla)
@@ -31,8 +32,11 @@
 		</div>
 
 		<div class="buttons" id="second-buttons">
-			<a href="{{ url()->previous() }}" class="btn">ATRÁS</a>
-			<input class="btn wt-btn-primary" type="submit" value="CONTINUAR"/>
+			<a href="{{ url('/publicar/espacio/'.$espacio->id) }}" class="btn-volver">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				<span>ATRÁS</span>
+			</a>
+			<input class="btn-primary-pig" type="submit" value="CONTINUAR"/>
 		</div>
 		{!! Form::close() !!}
 	</div>

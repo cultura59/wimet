@@ -1,7 +1,8 @@
 <template>
 	<div>
 		<button class="container-social__btn btn-facebook" @click="myFacebookLogin()">
-			Iniciar sesión con Facebook
+		<img src="img/facebook_logo.png" class="icon-facebook" alt="Login Google">
+			<span>Iniciar sesión con Facebook</span>
 		</button>
 	</div>
 </template>
@@ -94,6 +95,10 @@
 	    	color: #fff;
 	    	&:hover {
 	    		background-color: rgba(59, 89, 152, 0.80);
+	    	}
+	    	.icon-facebook {
+				color: #fff;
+				margin-right: 1em;
 	    	}
 	    }
 	}

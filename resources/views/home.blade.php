@@ -59,35 +59,35 @@
                         <div class="col-xs-12 col-sm-8">
                             <div class="row">
                                 <div class="col-xs-12 wt-m-bot-3 img-hov">
-                                    <img src="{{url('img/5_col.svg')}}" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-1.jpg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                                 <div class="col-xs-12 col-sm-6 img-hov">
-                                    <img src="{{url('img/2_col.svg')}}" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-3.jpg')}}" alt="Workshops" class="img-responsive img-home-principal">
                                 </div>
                                 <div class="col-xs-12 col-sm-6 img-hov">
-                                    <img src="{{url('img/1_col.svg')}}" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-4.jpg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                             </div>
                         </div>
                         <div class="col-xs-12 col-sm-4 img-hov">
-                            <img src="{{url('img/7_col.svg')}}" alt="" class="img-responsive img-home-principal">
+                            <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-2.jpg')}}" alt="" class="img-responsive img-home-principal">
                         </div>
                     </div>
                     <!-- container images second-->
                     <div class="row wt-m-top-3">
                         <div class="col-xs-12 col-sm-4 img-hov">
-                            <img src="{{url('img/8_col.svg')}}" alt="" class="img-responsive img-home-principal">
+                            <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-5.jpg')}}" alt="" class="img-responsive img-home-principal">
                         </div>
                         <div class="col-xs-12 col-sm-8">
                             <div class="row">
                                 <div class="col-xs-12 wt-m-bot-3 img-hov">
-                                    <img src="{{url('img/6_col.svg')}}" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-6.jpg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                                 <div class="col-xs-12 col-sm-6 img-hov">
-                                    <img src="{{url('img/3_col.svg')}}" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-7.jpg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                                 <div class="col-xs-12 col-sm-6 img-hov">
-                                    <img src="{{url('img/4_col.svg')}}" alt="" class="img-responsive img-home-principal">
+                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-8.jpg')}}" alt="" class="img-responsive img-home-principal">
                                 </div>
                             </div>
                         </div>
@@ -104,23 +104,23 @@
 
                     <div class="row">
                         <div class="col-sm-4 padder-comments">
-                            <img class="center-block brd-round" src="img/testi1.jpg" alt="benefits of product" width="126" height="126">
+                            <img class="center-block brd-round" src="img/testi-1.jpg" alt="benefits of product" width="126" height="126">
                             <p class="wt-m-top-3">
-                                Fue un placer trabajar con el equipo de Wimet. Tuvimos una muy buena experiencia, pudimos organizar nuestra fiesta de fin de año en un lugar diferente y de manera muy rápida. El evento estuvo genial y recibimos felicitaciones de nuestros invitados, especialmente por el lugar.
+                                "Fue un placer trabajar con el equipo de Wimet. Tuvimos una muy buena experiencia, pudimos organizar nuestra fiesta de fin de año en un lugar diferente y de manera muy rápida. El evento estuvo genial y recibimos felicitaciones de nuestros invitados, especialmente por el lugar."
                             </p>
-                            <p class="signature">Michelle Faerman | CMO - Increase</p>
+                            <p class="signature">Matias Doublier | COO - Increase</p>
                         </div>
                         <div class="col-sm-4 padder-comments">
                             <img class="center-block brd-round" src="img/testi2.jpg" alt="benefits of product" width="126" height="126">
                             <p class="wt-m-top-3">
-                                We were early adopters and first clients of Wimet's platform. From the moment we learned about their model, we knew they had great potential to scale the business and create a sustainable company. Moving forward, we will continue to use Wimet's platform for any future events we host.
+                                "We were early adopters and first clients of Wimet's platform. From the moment we learned about their model, we knew they had great potential to scale the business and create a sustainable company. Moving forward, we will continue to use Wimet's platform for any future events we host."
                             </p>
                             <p class="signature">Lisa Besserman | CEO - Startup Buenos Aires</p>
                         </div>
                         <div class="col-sm-4 padder-comments">
-                            <img class="center-block brd-round" src="/avatars/default.png" alt="benefits of product" width="126" height="126">
+                            <img class="center-block brd-round" src="img/testi1.jpg" alt="benefits of product" width="126" height="126">
                             <p class="wt-m-top-3">
-                                Es una solución para cualquier productora que se encuentra con el desafio de localizar el lugar perfecto para una filmación.
+                                "Recurrimos a Wimet porque estábamos a 3 días de una capacitación y nos habíamos quedado sin lugar. Los contactamos, recibimos distintas propuestas acordes a la necesidad y al budget, elegimos y cerramos el evento en menos de 24hs. Fue un plus enorme terminar haciendo el evento en una muy linda galería de arte. No tengo dudas de que va a ser nuestra primera opción para organizar los eventos que vengan."
                             </p>
                             <p class="signature">Juan Perez - Cuatro Cabezas</p>
                         </div>

@@ -8,6 +8,7 @@
 require('./bootstrap');
 
 Vue.component('wimet-login', require('./components/WimetLogin.vue'));
+Vue.component('button-publica', require('./components/home/buttonPublica.vue'));
 Vue.component('search-home', require('./components/SearchHome.vue'));
 Vue.component('search-filter', require('./components/SearchFilter.vue'));
 Vue.component('header-espacio', require('./components/HeaderEspacio.vue'));
@@ -18,6 +19,9 @@ Vue.component('aside-reserva', require('./components/AsideReserva.vue'));
 Vue.component('aside-dashboard', require('./components/AsideDashboard.vue'));
 
 Vue.component('index-publica', require('./components/publica/indexPublica.vue'));
+Vue.component('navbar-primero', require('./components/publica/primerParte/navbarPrimera.vue'));
+Vue.component('navbar-segundo', require('./components/publica/segundaParte/navbarSegunda.vue'));
+Vue.component('navbar-tercero', require('./components/publica/terceraParte/navbarTercera.vue'));
 Vue.component('publica-index', require('./components/publica/primerParte/index.vue'));
 Vue.component('publica-image', require('./components/publica/segundaParte/image.vue'));
 Vue.component('publica-title', require('./components/publica/segundaParte/title.vue'));

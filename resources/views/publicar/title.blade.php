@@ -11,8 +11,8 @@
 		</div>
 	</div>
 	<div class="container-left">
-		<publica-title 
-			espacio-id="{{$espacioId}}"></publica-title>
+		<navbar-segundo espacio-id="{{$espacioId}}" url="titulo"></navbar-segundo>
+		<publica-title espacio-id="{{$espacioId}}"></publica-title>
 	</div>
 	<div class="container-right">
 		<div class="container-right__dialog-box">

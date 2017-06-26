@@ -42,7 +42,7 @@
 }
 .aside-dashboard {
     width: 15%;
-    height: 1050px;
+    height: 114%;
     background-color: #254152;
     color: #ffffff;
     float: left;
@@ -105,9 +105,12 @@
         }
     }
 }
+.main-dashboard {
+    height: 1050px;
+}
 .dashboard-container {
     width: 85%;
-    min-height: 850px;
+    height: 108%;
     float: right;
     margin-left: auto;
     background-color: $wt-white;
@@ -121,7 +124,7 @@
     }
     .dashboard-body {
         padding: 1em 5em;
-        height: 930px;
+        height: 900px;
         width: 60%;
         float: left;
     }
@@ -282,4 +285,11 @@
             color: #fff;
         }
     }
+}
+.dashboard-title {
+    opacity: 0.87;
+    font-family: Poppins;
+    font-size: 18px;
+    font-weight: 500;
+    color: #191919;
 }

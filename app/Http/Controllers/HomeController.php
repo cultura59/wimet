@@ -216,6 +216,9 @@ class HomeController extends Controller
     {
         return view('staticwebs.prensa');
     }
-
+    public function publica()
+    {
+        return view('staticwebs.publica');
+    }
 }
 

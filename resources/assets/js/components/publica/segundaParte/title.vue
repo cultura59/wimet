@@ -2,23 +2,26 @@
 	<div>
 		<div class="container-center">
 			<div>
-				<h2>¡Cuéntale al mundo acerca de tu espacio!</h2>
+				<h3>¡Cuéntale al mundo acerca de tu espacio!</h3>
 				<div class="wt-m-top-4">
-					<p class="text-bold">Título de tu espacio</p>
+					<p>Título de tu espacio</p>
 					<input v-model="espacio.name" type="text" class="wt-custom-input" placeholder="Ingrese el titulo de su espacio">
 					<p>{{fntCountName}} caracteres</p>
 				</div>
 				<div class="wt-m-top-4">
 					<label class="text-bold">Descripción</label>
-					<textarea v-model="espacio.description" class="wt-textarea" rows="10" placeholder="Escriba una breve descripción de su espacio, que lo caracteriza y cuales son sus mejores aspectos."></textarea>
+					<textarea v-model="espacio.description" class="wt-textarea" rows="7" placeholder="Escriba una breve descripción de su espacio, que lo caracteriza y cuales son sus mejores aspectos."></textarea>
 					<p>{{fntCountDescription}} caracteres</p>
 				</div>
 			</div>
 		</div>
 
 		<div class="buttons">
-			<a :href="`/publicar/segundo-paso/espacio/${this.espacioId}/amenities`" class="btn">ATRÁS</a>
-			<button class="btn wt-btn-primary" @click="saveEspacio()">CONTINUAR</button>
+			<a :href="`/publicar/segundo-paso/espacio/${this.espacioId}/amenities`" class="btn-volver">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				<span>ATRÁS</span>
+			</a>
+			<button class="btn-primary-pig" @click="saveEspacio()">CONTINUAR</button>
 		</div>
 	</div>
 </template>

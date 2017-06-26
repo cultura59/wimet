@@ -42,15 +42,19 @@
 		</div>
 	</div>
 	<div class="container-left">
+		<navbar-segundo espacio-id="{{$espacio->id}}" url="images"></navbar-segundo>
 		<div class="container-center">
 			<publica-image espacio-id="{{$espacio->id}}"></publica-image>
 			<list-images espacio-id="{{$espacio->id}}"></list-images>
 		</div>
 
 		<div class="buttons" id="second-buttons">
-			<a href="{{ url()->previous() }}" class="btn">ATRÁS</a>
+			<a href="{{ url('/publicar/espacio/'.$espacio->id) }}" class="btn-volver">
+				<i class="fa fa-arrow-left" aria-hidden="true"></i>
+				<span>ATRÁS</span>
+			</a>
 			<a href="{{route('publica-caracteristicas', array('id' => $espacio->id))}}">
-				<button class="btn wt-btn-primary">CONTINUAR</button>
+				<input class="btn-primary-pig" type="submit" value="CONTINUAR"/>
 			</a>
 		</div>
 		{!! Form::close() !!}

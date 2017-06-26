@@ -22,7 +22,7 @@
 					</select>
 				</td>
 				<td class="table-eventos__item__icons">
-					<a href="#" @click="redirectEvento($event, propuesta.id)">
+					<a href="#" @click="redirectEvento($event, propuesta)">
 						<i class="fa fa-calendar fa-lg" aria-hidden="true"></i>
 					</a>
 					<a href="#"><i class="fa fa-trash fa-lg" aria-hidden="true"></i></a>
@@ -71,9 +71,9 @@
 					this.propuestas = res.body;
 				});
 			},
-			redirectEvento(e, propuestaId) {
+			redirectEvento(e, propuesta) {
 				e.preventDefault();
-				window.location.href = `/dashboard/user/${this.user.id}/confirmar/${propuestaId}`;
+				window.location.href = `/dashboard/user/${this.user.id}/evento/${propuesta.evento_id}/propuesta/${propuesta.id}`;
 			}
 		}
 	}

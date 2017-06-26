@@ -1,32 +1,6 @@
 <template>
-	<div class="actions">
-		<ul>
-			<li>
-	            <a href="#" @click="publicaUrl($event)" class="wt-btn-transparent">
-	                PUBLICA TU ESPACIO
-	            </a>
-	        </li>
-	        <li>
-				<button v-if="!authenticated" :class="typeLogin" @click="openModalLogin()">Ingresar</button>
-				<template v-if="authenticated">
-					<a href="#" id="menu-user" :class="userloged">{{ user.firstname }}</a>
-				    <ul class="menue-list">
-				        <li class="menue-list__item">
-				            <a href="#" @click="reloadPage(`/dashboard/user/${user.id}/datos`, $event)" style="color: #333;">Editar perfil</a>
-				        </li>
-				        <li class="menue-list__item">
-				            <a href="#" @click="reloadPage(`/dashboard/user/${user.id}/misespacios`, $event)" style="color: #333;">Mi cuenta</a>
-				        </li>
-				        <li class="menue-list__item active">
-				            <a href="#" @click="reloadPage(`/publicar/primer-paso`, $event)" style="color: #333;">PUBLICAR TU ESPACIO</a>
-				        </li>
-				        <li class="menue-list__last-item">
-				            <a href="#" @click="logout($event)" style="color: #333;">Salir</a>
-				        </li>
-				    </ul>
-			    </template>
-			</li>
-		</ul>
+	<div>
+		<button class="btn-primary-pig-lg" @click="publicaUrl()">¡COMIENZA AHORA!</button>
 		<div v-if="showModalLogin" class="login-modal">
 			<div class="login-modal__content">
 				<h3>¡Te estábamos esperando!</h3>
@@ -83,15 +57,10 @@
 	</div>
 </template>
 <script>
-	import loginFacebook from './loginFacebook.vue';
+	import loginFacebook from '../loginFacebook.vue';
 	import swal from 'sweetalert';
 
 	export default {
-		props: [
-			'typeLogin',
-			'typeSvg',
-			'userloged'
-		],
 		components: {
 			'login-facebook': loginFacebook
 		},
@@ -188,9 +157,12 @@
 				event.preventDefault();
 				location.href = url;
 			},
-			publicaUrl(e) {
-				e.preventDefault();
-				location.href = `/publica`;
+			publicaUrl() {
+				if(this.$auth.isAuthenticated()) {
+					location.href = `/publicar/user/${this.user.id}/primer-paso`;
+				}else {
+					this.openModalLogin();
+				}
 			}
 		}
 	}
