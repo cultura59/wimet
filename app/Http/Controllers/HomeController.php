@@ -45,6 +45,8 @@ class HomeController extends Controller
      * @return \Illuminate\Http\Response 
      */
     public function search(Request $request) {   
+        $querystringArray = \Request::only(['ubicacion','categoria','price','quanty']);
+
         if($request->has('price') && $request->has('quanty'))
         {
             $espacios = Espacio::select('id', 'long', 'lat')
@@ -64,7 +66,7 @@ class HomeController extends Controller
                                     }
                                 )
                                 ->where('status', true)
-                                ->paginate(20);
+                                ->paginate(10);
         }else {
             $espacios = Espacio::select('id', 'long', 'lat')
                                 ->whereHas('categorias', 
@@ -72,11 +74,11 @@ class HomeController extends Controller
                                     $query->where('id', \Request::input('categoria'));
                                 })
                                 ->where('status', true)
-                                ->paginate(20);
+                                ->paginate(10);
         }
         $categorias = Categoria::orderBy('id')->pluck('name', 'id');
         return view('search', array(
-                'espacios' => $espacios,
+                'espacios' => $espacios->appends($querystringArray),
                 'categorias' => $categorias
             )
         );

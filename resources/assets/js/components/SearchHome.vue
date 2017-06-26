@@ -61,7 +61,18 @@
             	}
             },
         	searchEspacios () {
-        		let url = `/search?ubicacion=${this.ubicacion}&categoria=${this.categoria.id}`;
+        		let url = `/search`;
+
+                if(this.ubicacion !== 'Ubicación') {
+                    url += `?ubicacion=${this.ubicacion}`;
+                }else{
+                    url += `?ubicacion=`;
+                }
+                
+                if(this.categoria.id !== undefined) {
+                    url += `&categoria=${this.categoria.id}`;
+                }
+
         		window.location.href = url;
             },
             getCategories() {
