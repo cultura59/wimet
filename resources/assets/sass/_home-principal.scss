@@ -106,19 +106,34 @@ html, body {
 			    border-bottom-left-radius: 2px;
 
 		}
-		.dropbtn {
+		.dropbtn-left {
 			width: 250px;
 			height: 50px;
 		    display: flex;
 		    justify-content: space-between;
 		    align-items: center;
-		    color: $wt-grey-grey;
+		    color: #545454;
 			cursor: pointer;
 		    text-align: left;
 		    padding: 6px 12px;
 		    font-size: 0.825rem;
 			background-color: $wt-white;
 			border: solid 1px #dadada;
+		}
+		.dropbtn-right {
+			width: 250px;
+			height: 50px;
+		    display: flex;
+		    justify-content: space-between;
+		    align-items: center;
+		    color: #545454;
+			cursor: pointer;
+		    text-align: left;
+		    padding: 6px 12px;
+		    font-size: 0.825rem;
+			background-color: $wt-white;
+			border: solid 1px #dadada;
+			border-radius: 0px;
 		}
 		.dropdown {
 			position: relative;
@@ -181,10 +196,12 @@ html, body {
 						    font-family: Poppins;
 						    font-size: 13px;
 						    letter-spacing: 0.5px;
-							
-							:hover {
-								
-							}
+							&:hover, &:focus {
+						        color: #fff;
+						        text-decoration: none;
+						        background: $wt-primary-pig;
+						        border: 2px solid $wt-primary-pig;
+						    }
 						}
 					}
 				}
@@ -200,7 +217,10 @@ html, body {
 		}
 		&__main {
 			margin-top: 200px;
-			margin-left: 100px;
+			margin-left: 50px;
+			h2 {
+				font-size: 38px;
+			}
 		}
 	}
 	.section-sponsors {
@@ -294,7 +314,7 @@ html, body {
 		h2 {
 			font-size: 24px;
 		    font-weight: 600;
-		    color: #3E3E3E;
+	        color: rgba(33, 33, 33, 0.87);
 		    font-family: 'Poppins', sans-serif;
 		    letter-spacing: 0.7px;
 	        margin-bottom: 20px;
@@ -303,7 +323,7 @@ html, body {
 		p {
 		    
 		    font-size: 18px;
-		    color: #3E3E3E;
+		    color: #545454;
 		    font-family: 'Poppins', sans-serif;
 		    letter-spacing: 0.3px;
     		font-weight: 600;
@@ -340,36 +360,35 @@ html, body {
 	h2 {
 	    font-size: 24px;
 	    font-weight: 600;
-	    color: #606060;
+	    color: rgba(33, 33, 33, 0.87);
 	    font-family: 'Poppins', sans-serif;
 	    letter-spacing: 0.7px;
 	}
 	h3 {
 	    margin-bottom: 30px;
 	    font-size: 18px;
-	    color: #606060;
+	    color: #545454;
 	    font-family: 'Poppins', sans-serif;
 	    text-shadow: 0px 0px;
 	}
 	h4 {
 		font-weight: 600;
-    	color: #4c4c4c;
+    	color: #545454;
     	font-size: 20px;
     	margin: 12px 0;
 	}
 	p {
         font-family: 'Roboto Light', arial;
-	    color: #96999B;
+	    color: #888B8D;
 	    font-size: 14px;
 	    text-shadow: 0px 0px;
 	    padding: 0 30px;
 	    text-align: justify;
 	    line-height: 18px;
 	    &.signature	{
-	    	font-family: NotoSerif;
-		    font-style: italic;
-		    color: #747474;
-		    font-size: 16px;
+			font-family: NotoSerif;
+			color: #545454;
+			font-size: 16px;
 	    }
 	}
 }
@@ -411,8 +430,8 @@ footer {
 	color: $wt-white;
 	padding: 40px;
 	.main-footer	{
-		font-family: 'Roboto Light', arial;
-		color: #CDD4D8;
+		font-family: 'Roboto Regular', arial;
+		color: $wt-white;
 		font-size: 14px; 
 		margin-top: 2rem;
 	}
@@ -435,7 +454,7 @@ footer {
 			a, a:hover {
 				text-decoration: none;
 				font-family: 'Roboto Light', arial;
-			    color: #CBD2D6;
+			    color: $wt-white;
 			    font-size: 14px;
 			}
 		}

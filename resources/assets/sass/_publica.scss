@@ -293,6 +293,7 @@ input[type="checkbox"]:checked+label:before {
 	content: '\f00c';
 	font-family: FontAwesome;
 	transform: rotate(360deg);
+	margin-right: .5em;
 }
 .typespace {
 	input[type="radio"]:checked+label:before {

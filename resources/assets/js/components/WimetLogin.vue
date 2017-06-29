@@ -27,59 +27,68 @@
 			    </template>
 			</li>
 		</ul>
-		<div v-if="showModalLogin" class="login-modal">
-			<div class="login-modal__content">
-				<h3>¡Te estábamos esperando!</h3>
-				<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
-				<span class="close-modal" @click="closeModals()">×</span>
-				<div class="container-social">
-					<login-facebook></login-facebook>
-					<button class="container-social__btn btn-google">
-						<img src="img/google_logo.png" class="icon-social" alt="Login Google">
-						<span>Iniciar sesión con Google</span>
-					</button>
-				</div>
-				<div class="login-modal-title">
-					<span class="text-center">Inicia sesión con tu email</span>
-				</div>
-				<div class="container-login">
-					<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
-					<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" @keyup.enter="login()"/>
-					<button class="container-login__login" @click="login()">Iniciar sesión</button>
-				</div>
-				<div class="container-footer">
-					<span class="container-footer__pregunta">¿No tienes cuenta?</span>
-					<span class="container-footer__registro" @click="openModalRegistro()">Registrate</span>
-				</div>
-			</div>
-		</div>
-		<div v-if="showModalRegistro" class="login-modal">
-			<div class="login-modal__content">
-				<h3>¡Crea tu cuenta y comienza a explorar!</h3>
-				<span class="close-modal" @click="closeModals()">×</span>
-				<div class="container-social">
-					<login-facebook></login-facebook>
-					<button class="container-social__btn btn-google">
-						<img src="img/google_logo.png" class="icon-social" alt="Registrar Google">
-						<span>Iniciar sesión con Google</span>
-					</button>
-				</div>
-				<div class="login-modal-title">
-					<span class="text-center">Regístrate con tu email</span>
-				</div>
-				<div class="container-login">
-					<input type="text" class="container-login__email" placeholder="Nombre" v-model="firstname" />
-					<input type="text" class="container-login__email" placeholder="Apellido" v-model="lastname" />
-					<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
-					<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" />
-					<button class="container-login__login" @click="registrar()">Regístrate</button>
-				</div>
-				<div class="container-footer">
-					<span class="container-footer__pregunta">¿Ya tienes cuenta?</span>
-					<span class="container-footer__registro" @click="openModalLogin()">Inicia sesión</span>
+		<template v-if="showModalLogin">
+			<div class="login-modal" @click="closeModalEvent($event)">
+				<div class="login-modal__content">
+					<h3>¡Te estábamos esperando!</h3>
+					<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
+					<span class="close-modal" @click="closeModals()">×</span>
+					<div class="container-social">
+						<login-facebook></login-facebook>
+						<button class="container-social__btn btn-google">
+							<img src="img/google_logo.svg" class="icon-social" alt="Login Google">
+							<span>Iniciar sesión con Google</span>
+						</button>
+					</div>
+					<div class="login-modal-title">
+						<span class="text-center">Inicia sesión con tu email</span>
+					</div>
+					<div class="container-login">
+						<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
+						<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" @keyup.enter="login()"/>
+						<button class="container-login__login" @click="login()">Iniciar sesión</button>
+					</div>
+					<div class="container-footer">
+						<span class="container-footer__pregunta">¿No tienes cuenta?</span>
+						<span class="container-footer__registro" @click="openModalRegistro()">Registrate</span>
+					</div>
 				</div>
 			</div>
-		</div>
+		</template>
+		<template v-if="showModalRegistro">
+			<div class="login-modal" @click="closeModalEvent($event)">
+				<div class="login-modal__content">
+					<h3>¡Crea tu cuenta y comienza a explorar!</h3>
+					<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
+					<span class="close-modal" @click="closeModals()">×</span>
+					<div class="container-social">
+						<login-facebook></login-facebook>
+						<button class="container-social__btn btn-google">
+							<img src="img/google_logo.svg" class="icon-social" alt="Registrar Google">
+							<span>Iniciar sesión con Google</span>
+						</button>
+					</div>
+					<div class="login-modal-title">
+						<span class="text-center">Regístrate con tu email</span>
+					</div>
+					<div class="container-login">
+						<input type="text" class="container-login__email" placeholder="Nombre" v-model="firstname" />
+						<input type="text" class="container-login__email" placeholder="Apellido" v-model="lastname" />
+						<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
+						<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" />
+						<button class="container-login__login" @click="registrar()">Regístrate</button>
+						<div class="container-terminos">
+							<input type="checkbox" id="terminos" v-model="terminos" style="display:none">
+							<label for="terminos" class="container-terminos__texto">Acepto los términos y condiciones.</label>
+						</div>
+					</div>
+					<div class="container-footer">
+						<span class="container-footer__pregunta">¿Ya tienes cuenta?</span>
+						<span class="container-footer__registro" @click="openModalLogin()">Inicia sesión</span>
+					</div>
+				</div>
+			</div>
+		</template>
 	</div>
 </template>
 <script>
@@ -104,7 +113,8 @@
 				showModalRegistro: false,
 				authenticated: this.$auth.isAuthenticated(),
 				user: {},
-				msgError: ''
+				msgError: '',
+				terminos: true
 			}
 		},
 		mounted() {
@@ -123,7 +133,23 @@
 				this.showModalLogin = false;
 				this.showModalRegistro = false;
 			},
+			closeModalEvent(event) {
+				var specifiedElement = document.querySelector(".login-modal__content");
+				var isClickInside = specifiedElement.contains(event.target);
+				
+				if (!isClickInside) {
+					this.showModalLogin = false;
+					this.showModalRegistro = false;
+				}
+			},
 			registrar() {
+				if(!this.terminos) {
+					this.msgError = 'Debe aceptar los terminos y condiciones';
+					setInterval(() => {
+						this.msgError = '';
+					}, 3000);
+					return;
+				}
 				let data = {
 					firstname: this.firstname,
 					lastname: this.lastname,
@@ -206,7 +232,7 @@
 	    background-color: rgba(0, 0, 0, 0.4);
 	    &__content {
 		    width: 450px;
-		    padding: 5px 20px 20px 20px;
+		    padding: 5px 20px 10px 20px;
 		    margin: 2.5% auto;
 		    border-radius: 2px;
 		    border: 1px solid #888;
@@ -270,12 +296,12 @@
 		    	.icon-social {
 					color: #fff;
 					margin-right: 1.5em;
+					width: 15px;
 		    	}
 			}
 			.container-login {
 			    display: flex;
 			    flex-direction: column;
-			    padding: 1em 0;
 			    input {
 			    	border-radius: 2px;
 				    border: solid 1px #979797;
@@ -295,6 +321,20 @@
 				    &:hover {
 				    	background-color: rgba(234, 81, 109, 0.80);
 				    }
+				}
+				.container-terminos {
+				    display: flex;
+				    justify-content: center;
+				    margin-top: 1em;
+				    &__texto {
+					    font-family: Roboto;
+					    font-size: 13px;
+					    font-weight: 500;
+					    letter-spacing: -0.2px;
+					    text-align: center;
+					    color: #888b8d;
+					    cursor: pointer;
+					}
 				}
 			}
 			.container-footer {

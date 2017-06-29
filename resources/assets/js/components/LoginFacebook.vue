@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<button class="container-social__btn btn-facebook" @click="myFacebookLogin()">
-		<img src="img/facebook_logo.png" class="icon-facebook" alt="Login Google">
+		<img src="img/facebook_logo.svg" class="icon-facebook" alt="Login Google">
 			<span>Iniciar sesión con Facebook</span>
 		</button>
 	</div>
@@ -99,6 +99,7 @@
 	    	.icon-facebook {
 				color: #fff;
 				margin-right: 1em;
+				width: 8px;
 	    	}
 	    }
 	}

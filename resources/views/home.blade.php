@@ -97,7 +97,7 @@
             </section>
 
             <!-- Comunity -->
-            <section class="how-work wt-m-top-5 wt-m-bot-5">
+            <section class="how-work wt-m-top-5 wt-m-bot-2">
                 <div class="container">
                     <h2 class="text-center dark-grey">Conoce nuestra comunidad</h2>
                     <h3 class="text-center dark-grey">Wimet te permite alquilar espacios únicos que inspiran</h3>
@@ -129,7 +129,7 @@
             </section>
 
             <!-- Sponsors -->
-            <section class="container wt-m-bot-4">
+            <section class="container wt-m-bot-2">
                 <div class="row">
                     <div class="col-sm-2"><img class="img-responsive center-block" src="img/w1.png" alt="Increase"></div>
                     <div class="col-sm-2"><img class="img-responsive center-block" src="img/w2.png" alt="startup buenos aires"></div>

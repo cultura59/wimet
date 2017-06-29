@@ -2,7 +2,7 @@
 	<div class="wt-center-block">
 
 		<div class="dropdown">
-            <button class="dropbtn" @click="showSelectUbicacion()">
+            <button class="dropbtn-left" @click="showSelectUbicacion()">
                 <span>{{ubicacion}}</span>
                 <i class="fa fa-sort-desc" aria-hidden="true"></i>
             </button>
@@ -14,7 +14,7 @@
             </div>
         </div>
         <div class="dropdown">
-            <button class="dropbtn" @click="showSelectCategoria()">
+            <button class="dropbtn-right" @click="showSelectCategoria()">
                 <span>{{(categoria == '') ? 'Qué estás planificando?' : categoria.name}}</span>
                 <i class="fa fa-sort-desc" aria-hidden="true"></i>
             </button>
@@ -22,7 +22,7 @@
             	<div v-for="cat in categories"><span @click="selectCategoria(cat)">{{cat.name}}</span></div>
             </div>
         </div>
-        <button class="btn wt-btn-primary" @click="searchEspacios()">BUSCAR</button>
+        <button class="wt-btn-primary" @click="searchEspacios()">BUSCAR</button>
 	</div>
 </template>
 <script>

@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<button class="btn-primary-pig-lg" @click="publicaUrl()">¡COMIENZA AHORA!</button>
-		<div v-if="showModalLogin" class="login-modal">
+		<button :class="typeBtn" @click="publicaUrl()">¡COMIENZA AHORA!</button>
+		<div v-if="showModalLogin" class="login-modal" @click="closeModalEvent($event)">
 			<div class="login-modal__content">
 				<h3>¡Te estábamos esperando!</h3>
 				<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
@@ -9,7 +9,7 @@
 				<div class="container-social">
 					<login-facebook></login-facebook>
 					<button class="container-social__btn btn-google">
-						<img src="img/google_logo.png" class="icon-social" alt="Login Google">
+						<img src="img/google_logo.svg" class="icon-social" alt="Login Google">
 						<span>Iniciar sesión con Google</span>
 					</button>
 				</div>
@@ -27,14 +27,15 @@
 				</div>
 			</div>
 		</div>
-		<div v-if="showModalRegistro" class="login-modal">
+		<div v-if="showModalRegistro" class="login-modal" @click="closeModalEvent($event)">
 			<div class="login-modal__content">
 				<h3>¡Crea tu cuenta y comienza a explorar!</h3>
+				<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
 				<span class="close-modal" @click="closeModals()">×</span>
 				<div class="container-social">
 					<login-facebook></login-facebook>
 					<button class="container-social__btn btn-google">
-						<img src="img/google_logo.png" class="icon-social" alt="Registrar Google">
+						<img src="img/google_logo.svg" class="icon-social" alt="Registrar Google">
 						<span>Iniciar sesión con Google</span>
 					</button>
 				</div>
@@ -47,6 +48,10 @@
 					<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
 					<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" />
 					<button class="container-login__login" @click="registrar()">Regístrate</button>
+					<div class="container-terminos">
+						<input type="checkbox" id="teminos" v-model="teminos" style="display:none">
+						<label for="teminos" class="container-terminos__texto">Acepto los términos y condiciones.</label>
+					</div>
 				</div>
 				<div class="container-footer">
 					<span class="container-footer__pregunta">¿Ya tienes cuenta?</span>
@@ -61,6 +66,9 @@
 	import swal from 'sweetalert';
 
 	export default {
+		props: [
+			'typeBtn'
+		],
 		components: {
 			'login-facebook': loginFacebook
 		},
@@ -73,7 +81,8 @@
 				showModalRegistro: false,
 				authenticated: this.$auth.isAuthenticated(),
 				user: {},
-				msgError: ''
+				msgError: '',
+				teminos: true
 			}
 		},
 		mounted() {
@@ -92,7 +101,23 @@
 				this.showModalLogin = false;
 				this.showModalRegistro = false;
 			},
+			closeModalEvent(event) {
+				var specifiedElement = document.querySelector(".login-modal__content");
+				var isClickInside = specifiedElement.contains(event.target);
+				
+				if (!isClickInside) {
+					this.showModalLogin = false;
+					this.showModalRegistro = false;
+				}
+			},
 			registrar() {
+				if(!this.teminos) {
+					this.msgError = 'Debe aceptar los terminos y condiciones';
+					setInterval(() => {
+						this.msgError = '';
+					}, 3000);
+					return;
+				}
 				let data = {
 					firstname: this.firstname,
 					lastname: this.lastname,
@@ -178,7 +203,7 @@
 	    background-color: rgba(0, 0, 0, 0.4);
 	    &__content {
 		    width: 450px;
-		    padding: 5px 20px 20px 20px;
+		    padding: 5px 20px 10px 20px;
 		    margin: 2.5% auto;
 		    border-radius: 2px;
 		    border: 1px solid #888;
@@ -242,12 +267,12 @@
 		    	.icon-social {
 					color: #fff;
 					margin-right: 1.5em;
+					width: 15px;
 		    	}
 			}
 			.container-login {
 			    display: flex;
 			    flex-direction: column;
-			    padding: 1em 0;
 			    input {
 			    	border-radius: 2px;
 				    border: solid 1px #979797;
@@ -267,6 +292,23 @@
 				    &:hover {
 				    	background-color: rgba(234, 81, 109, 0.80);
 				    }
+				}
+				.container-terminos {
+				    display: flex;
+				    justify-content: center;
+				    margin-top: 1em;
+				    &__texto {
+					    font-family: Roboto;
+					    font-size: 13px;
+					    font-weight: 500;
+					    letter-spacing: -0.2px;
+					    text-align: center;
+					    color: #888b8d;
+					    cursor: pointer;
+					    :before {
+					    	margin-right: 1em;
+					    }
+					}
 				}
 			}
 			.container-footer {
