@@ -31,7 +31,6 @@
                 <!-- navbar -->
                 <nav class="header-navbar container-fluid">
                     <a href="/"><img src="{{url('img/wimet_logo_white.svg')}}" alt="Wimet" width="158"/></a>
-                    <wimet-login type-login="link-hov" type-svg="white" userloged="link-user-white"></wimet-login>
                 </nav>
                 <div class="header-publica__main">
                 	<h2>Publica tu espacio</h2>
@@ -58,21 +57,21 @@
                 </section>
                 <!-- Seccion de pasos -->
                 <section class="container wt-m-top-5 wt-m-bot-5">
-                	<h2 class="text-center">¿Tienes un espacio disponible?</h2>
+                	<h2 class="text-center publica-titles">¿Tienes un espacio disponible?</h2>
                 	<div class="row">
     					<div class="col-sm-4"> 
     						<img src="img/wimet_anfitrion_1.svg" alt="benefits of product" width="140" height="110" class="center-block">
-    						<h4 class="text-center">Publica tu espacio</h4>
+    						<h4 class="text-center publica-titles">Publica tu espacio</h4>
     						<p class="text-center">Cuéntale al mundo que tienes un espacio creativo para el tipo de actividad que elijas.</p>
     					</div>
     					<div class="col-sm-4"> 
     						<img src="img/wimet_anfitrion_2.svg" alt="benefits of product" width="140" height="110" class="center-block">
-    						<h4 class="text-center">Logra visibilidad</h4>
+    						<h4 class="text-center publica-titles">Logra visibilidad</h4>
     						<p class="text-center">Alcanza una gran audiencia interesada en reservar un espacio como el tuyo.</p>
     					</div>
     					<div class="col-sm-4"> 
     						<img src="img/wimet_anfitrion_3.svg" alt="benefits of product" width="140" height="110" class="center-block">
-    						<h4 class="text-center">Aumenta tus ventas</h4>
+    						<h4 class="text-center publica-titles">Aumenta tus ventas</h4>
     						<p class="text-center">Recibe contactos calificados de clientes potenciales, y genera ingresos extras.</p>
     					</div>
                 	</div>
@@ -81,7 +80,7 @@
                 <!-- Descripciones -->
                 <section class="section-espacios-1">
                 	<div class="section-espacios-1__descripcion">
-                		<h4 class="wt-m-bot-3">ESPACIOS COMERCIALES</h4>
+                		<h4 class="wt-m-bot-3 publica-titles">ESPACIOS COMERCIALES</h4>
                 		<h5 class="wt-m-bot-3">Amplía las posibilidades de tu negocio y forma parte de nuestros espacios curados. Gestiona tus clientes potenciales desde nuestra plataforma.</h5>
                 		<ul>
     						<li>Bares / Cafés / Restaurants</li>
@@ -98,7 +97,7 @@
                 <section class="section-espacios-2">
                 	<div class="section-espacios-2__banner"></div>
                 	<div class="section-espacios-2__descripcion">
-                		<h4 class="wt-m-bot-3">ESPACIOS PRIVADOS</h4>
+                		<h4 class="wt-m-bot-3 publica-titles">ESPACIOS PRIVADOS</h4>
                 		<h5 class="wt-m-bot-3">Utiliza el espacio disponible que tienes para generar ingresos extra, y forma parte de una comunidad creativa. La interacción define nuestras vidas y los espacios potencian esas relaciones.</h5>
                 		<ul>
     						<li>Casas / Lofts / Departamentos</li>

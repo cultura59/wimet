@@ -297,7 +297,7 @@ html, body {
 		    border-radius: 2px;
 		    background-color: #ffffff;
 		    border: none;
-		    color: #e2385a;
+		    color: $wt-primary-pig;
 		}
 		.preguntas-freguentes {
 			color: #1c3240;
@@ -385,11 +385,12 @@ html, body {
 	    padding: 0 30px;
 	    text-align: justify;
 	    line-height: 18px;
-	    &.signature	{
-			font-family: NotoSerif;
-			color: #545454;
-			font-size: 16px;
-	    }
+	    &.signature {
+		    font-family: NotoSerif;
+		    font-style: italic;
+		    color: #545454;
+		    font-size: 14px;
+		}
 	}
 }
 
@@ -427,11 +428,11 @@ html, body {
 
 footer {
 	background-color: $wt-dark-blue;
-	color: $wt-white;
+	color: #dadada;
 	padding: 40px;
 	.main-footer	{
 		font-family: 'Roboto Regular', arial;
-		color: $wt-white;
+		color: #dadada;
 		font-size: 14px; 
 		margin-top: 2rem;
 	}
@@ -454,7 +455,7 @@ footer {
 			a, a:hover {
 				text-decoration: none;
 				font-family: 'Roboto Light', arial;
-			    color: $wt-white;
+			    color: #dadada;
 			    font-size: 14px;
 			}
 		}
