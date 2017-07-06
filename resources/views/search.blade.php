@@ -23,8 +23,8 @@
 		    mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
 		var marker;
-		var infoWindow = new google.maps.InfoWindow();
 		@foreach($espacios as $espacio)
+			var infoWindow = new google.maps.InfoWindow();
 			var contentInfo = '<div id="content">'+
             '<div id="siteNotice">'+
             '</div>'+
@@ -35,9 +35,6 @@
             '</a> '+
             '</div>'+
             '</div>';
-			var infowindow = new google.maps.InfoWindow({
-	          content: contentInfo
-	        });
 			marker = new google.maps.Marker({
 				position: new google.maps.LatLng({{$espacio->lat}}, {{$espacio->long}}),
 				icon: 'http://unionhaus.co/img/wimet_ic_place_red_24px.ico',
