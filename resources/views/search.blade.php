@@ -29,7 +29,7 @@
             '</div>'+
             '<h5 id="firstHeading" class="firstHeading">{{$espacio->name}}</h5>'+
             '<div id="bodyContent">'+
-            '<a href="/categoria/1/espacio/{{$espacio->id}}" target="_blank">'+
+            '<a href="/categoria/'+{{Request::input("categoria")}}+'/espacio/{{$espacio->id}}" target="_blank">'+
             '<img class="img-responsive" src="/{{$espacio->images[0]->name}}"/>'+
             '</a> '+
             '</div>'+
