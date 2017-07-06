@@ -44,7 +44,7 @@
 				title: '{{$espacio->name}}'
 			});
 	        google.maps.event.addListener(marker, 'click', function () {
-				infowindow.open(map, maker);
+				infowindow.open(map, marker);
 			});
 		@endforeach
 	}
