@@ -9,6 +9,7 @@
 		map = new google.maps.Map(document.getElementById('map'), {
 			center: new google.maps.LatLng(-34.6112745,-58.4930695),
 			zoom: 12,
+			maxZoom: 14,
 		    zoomControl: true,
 		    zoomControlOptions: {
 		        position: google.maps.ControlPosition.LEFT_TOP
@@ -23,15 +24,32 @@
 		});
 		var marker;
 		@foreach($espacios as $espacio)
+			var contentInfo = '<div id="content">'+
+            '<div id="siteNotice">'+
+            '</div>'+
+            '<h5 id="firstHeading" class="firstHeading">{{$espacio->name}}</h5>'+
+            '<div id="bodyContent">'+
+            '<a href="/categoria/1/espacio/{{$espacio->id}}" target="_blank">'+
+            '<img class="img-responsive" src="/{{$espacio->images[0]->name}}"/>'+
+            '</a> '+
+            '</div>'+
+            '</div>';
+			var infowindow = new google.maps.InfoWindow({
+	          content: contentInfo
+	        });
 			marker = new google.maps.Marker({
 				position: new google.maps.LatLng({{$espacio->lat}}, {{$espacio->long}}),
 				icon: 'http://unionhaus.co/img/wimet_ic_place_red_24px.ico',
-				map: map
+				map: map,
+				title: '{{$espacio->name}}'
 			});
+			marker.addListener('click', function() {
+	          infowindow.open(map, marker);
+	        });
 		@endforeach
 	}
 </script>
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArSoMrIsnDeERvlCOGJ2WVd36zO2SBTMo&callback=initMap" async defer></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZUp-A4EcLNbPonxHhbySVWpP9kzZQQUw&callback=initMap" async defer></script>
 @endpush
 
 @section('content')

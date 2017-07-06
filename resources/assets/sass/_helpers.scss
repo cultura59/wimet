@@ -1,6 +1,9 @@
 #map {
   height: 700px;
   widows: 100%;
+  * {
+        transition: width 0s;
+    }
 }
 
 #map-publica {
