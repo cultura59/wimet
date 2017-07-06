@@ -23,6 +23,7 @@
 		    mapTypeId: google.maps.MapTypeId.ROADMAP
 		});
 		var marker;
+		var infoWindow = new google.maps.InfoWindow();
 		@foreach($espacios as $espacio)
 			var contentInfo = '<div id="content">'+
             '<div id="siteNotice">'+
@@ -43,9 +44,17 @@
 				map: map,
 				title: '{{$espacio->name}}'
 			});
-	        google.maps.event.addListener(marker, 'click', function () {
-				infowindow.open(map, marker);
-			});
+			marker.addListener('click', function() {
+	          infowindow.open(map, marker);
+	        });
+	        //Attach click event to the marker.
+            (function (marker, contentInfo) {
+                google.maps.event.addListener(marker, "click", function (e) {
+                    //Wrap the content inside an HTML DIV in order to set height and width of InfoWindow.
+                    infoWindow.setContent(contentInfo);
+                    infoWindow.open(map, marker);
+                });
+            })(marker, contentInfo);
 		@endforeach
 	}
 </script>
