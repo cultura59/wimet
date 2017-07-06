@@ -122,7 +122,7 @@
                             <p class="wt-m-top-3">
                                 "Recurrimos a Wimet porque estábamos a 3 días de una capacitación y nos habíamos quedado sin lugar. Los contactamos, recibimos distintas propuestas acordes a la necesidad y al budget, elegimos y cerramos el evento en menos de 24hs. Fue un plus enorme terminar haciendo el evento en una muy linda galería de arte. No tengo dudas de que va a ser nuestra primera opción para organizar los eventos que vengan."
                             </p>
-                            <p class="signature">Juan Perez - Cuatro Cabezas</p>
+                            <p class="signature">Lucía Armendáriz | Business Developer - ‎AB InBev</p>
                         </div>
                     </div>
                 </div>
