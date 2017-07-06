@@ -41,9 +41,6 @@
 				map: map,
 				title: '{{$espacio->name}}'
 			});
-			marker.addListener('click', function() {
-	          infowindow.open(map, marker);
-	        });
 	        //Attach click event to the marker.
             (function (marker, contentInfo) {
                 google.maps.event.addListener(marker, "click", function (e) {
