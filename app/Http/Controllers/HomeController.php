@@ -67,7 +67,7 @@ class HomeController extends Controller
                                     }
                                 )
                                 ->where('status', true)
-                                ->paginate(10);
+                                ->paginate(30);
         }else {
             $espacios = Espacio::select('id', 'name', 'description', 'long', 'lat')
                                 ->with('images')
@@ -76,7 +76,7 @@ class HomeController extends Controller
                                     $query->where('id', \Request::input('categoria'));
                                 })
                                 ->where('status', true)
-                                ->paginate(10);
+                                ->paginate(30);
         }
         $categorias = Categoria::orderBy('id')->pluck('name', 'id');
         return view('search', array(
@@ -97,7 +97,8 @@ class HomeController extends Controller
                         'estilosEspacio',
                         'rules',
                         'characteristics',
-                        'access'
+                        'access',
+                        'disponibilidad'
                     )
                     ->first();
         $categorias = categoria::orderBy('id')->pluck('name', 'id');

@@ -22,15 +22,7 @@
     				</div>
     				<div class="wt-center-column">
     					<label for="people">Invitados</label>
-    					<select name="people" id="people" class="wt-dropdown" v-model="people">
-    						<option value="">Seleccionar</option>
-    						<option value="5">5+</option>
-    						<option value="10">10+</option>
-    						<option value="25">25+</option>
-    						<option value="50">50+</option>
-                            <option value="100+">100 +</option>
-    						<option value="200+">200 +</option>
-    					</select>
+                        <input type="text" class="wt-dropdown" v-model="people" :placeholder="`Máximo ${espacio.quanty} persónas.`">
     				</div>
     			</div>
     			<div class="wt-space-block wt-m-top-2">
@@ -230,6 +222,7 @@
         		people: '',
         		category: this.categoryId,
         		categories: [],
+                espacio: '',
         		horas: [
         			{value: 8, label: '8:00'},
         			{value: 8.5, label: '8:30'},
@@ -304,9 +297,10 @@
         },
         methods: {
         	getCategories() {
-        		this.$http.get(`/api/categoria`)
+        		this.$http.get(`/api/espacio/${this.espacioId}`)
                 .then(res => {
-                    this.categories = res.body;
+                    this.espacio = res.body;
+                    this.categories = this.espacio.categorias;
                 }, err => {
                     console.log(err);
                 });

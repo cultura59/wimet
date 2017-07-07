@@ -36,7 +36,7 @@
 					<div class="container-social">
 						<login-facebook></login-facebook>
 						<button class="container-social__btn btn-google">
-							<img src="img/google_logo.svg" class="icon-social" alt="Login Google">
+							<img src="/img/google_logo.svg" class="icon-social" alt="Login Google">
 							<span>Iniciar sesión con Google</span>
 						</button>
 					</div>
@@ -64,7 +64,7 @@
 					<div class="container-social">
 						<login-facebook></login-facebook>
 						<button class="container-social__btn btn-google">
-							<img src="img/google_logo.svg" class="icon-social" alt="Registrar Google">
+							<img src="/img/google_logo.svg" class="icon-social" alt="Registrar Google">
 							<span>Iniciar sesión con Google</span>
 						</button>
 					</div>

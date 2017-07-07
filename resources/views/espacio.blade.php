@@ -28,11 +28,9 @@
 		(function(){
 			$(window).scroll(function(){
 				if ($(this).scrollTop() > 560 && $(this).scrollTop() < 1870) {
-					console.log($(this).scrollTop());
 					$('#aside-reserva').removeClass('box-reserva');
 					$('#aside-reserva').addClass('box-reserva--active');
 				} else {
-					console.log($(this).scrollTop());
 					$('#aside-reserva').removeClass('box-reserva--active');
 					$('#aside-reserva').addClass('box-reserva');
 				}
@@ -40,7 +38,7 @@
 		})();
 	</script>
 
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyArSoMrIsnDeERvlCOGJ2WVd36zO2SBTMo&callback=initMap" async defer></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZUp-A4EcLNbPonxHhbySVWpP9kzZQQUw&callback=initMap" async defer></script>
 @endpush
 
 @section('content')
@@ -96,6 +94,26 @@
 						<span class="price"><b><i class="fa fa-clock-o" aria-hidden="true"></i></b> ${{$price->price}}.-</span>
 						<span class="min-hours">mínimo {{$price->minhours}} horas</span>
 					</div>
+				</div>
+			</div>
+			<div class="box-descripcion">
+				<div class="box-descripcion__titulo">
+					<span>Precio</span>
+				</div>
+				<div class="box-descripcion__contenido">
+					@foreach($espacio->disponibilidad as $disponibilidad)
+					<div class="wt-space-block">
+						<span>{{$disponibilidad->dia}}</span>
+						<span><hr class="box-descripcion__contenido__separador"></span>
+						@if($disponibilidad->inicio == '0' && $disponibilidad->fin == 0)
+							<span>No disponible.</span>
+						@elseif($disponibilidad->inicio == '0' && $disponibilidad->fin == 24)
+							<span>Abierto 24hs.</span>
+						@else
+							<span>{{$disponibilidad->inicio}} a {{$disponibilidad->fin}}hs.</span>
+						@endif
+					</div>
+					@endforeach
 				</div>
 			</div>
 			<div class="box-amenities wt-m-top-2 wt-m-bot-2">

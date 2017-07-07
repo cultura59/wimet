@@ -61,6 +61,7 @@
     letter-spacing: -0.1px;
     text-align: justify;
     color: #212121;
+    padding-left: .5em;
 }
 
 .wt-dropdown-min {
@@ -192,6 +193,7 @@
 .wt-space-block {
     display: flex;    
     justify-content: space-between;
+    align-items: center;
 }
 
 .wt-center-block-left {
