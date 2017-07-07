@@ -98,7 +98,7 @@
 			</div>
 			<div class="box-descripcion">
 				<div class="box-descripcion__titulo">
-					<span>Precio</span>
+					<span>Disponibilidad</span>
 				</div>
 				<div class="box-descripcion__contenido">
 					@foreach($espacio->disponibilidad as $disponibilidad)
