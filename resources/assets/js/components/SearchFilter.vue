@@ -1,94 +1,130 @@
 <template>
-	<div class="wt-center-block">
-		<div class="dropdown">
-            <button class="dropbtn" @click="showSelectUbicacion()">
-                <span>{{ubicacion}}</span>
-                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-            </button>
-            <div v-if="stUbicacion" class="dropdown__content">
-                <span @click="selectUbucacion('CABA')">CABA</span>
-                <span @click="selectUbucacion('Martinez')">Martinez</span>
-                <span @click="selectUbucacion('San Isidro')">San Isidro</span>
+    <div>
+    	<div class="container-filters">
+    		<div class="container-filters__dropdown">
+                <button class="container-filters__dropdown__button-left" @click="showSelectUbicacion()">
+                    <span>{{ubicacion}}</span>
+                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </button>
+                <template v-if="stUbicacion">
+                    <div class="container-filters__dropdown__content">
+                        <div class="chield-filter" @click="selectUbucacion('CABA')"><span>CABA</span></div>
+                        <div class="chield-filter" @click="selectUbucacion('Martinez')"><span>Martinez</span></div>
+                        <div class="chield-filter" @click="selectUbucacion('San Isidro')"><span>San Isidro</span></div>
+                    </div>
+                </template>
+            </div>
+            <div class="container-filters__dropdown">
+                <button class="container-filters__dropdown__button-right" @click="showSelectCategoria()">
+                    <span>{{(categoria == '') ? 'Qué estás planificando?' : categoria.label}}</span>
+                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </button>
+                <template v-if="stCategoria">
+                    <div class="container-filters__dropdown__content">
+                    	<div class="chield-filter" v-for="cat in categorias" @click="selectCategoria(cat)">
+                            <span>{{cat.label}}</span>
+                        </div>
+                    </div>
+                </template>
+            </div>
+    	</div>
+        <div class="row wt-m-top-1">
+            <div class="col-xs-12 col-md-6">
+                <vue-slider 
+                    @callback="callbackbQuanty" 
+                    :value="[quantyFrom, quantyTo]"
+                    :min="0"
+                    :max="1000"
+                    :tooltip="false"
+                    :event-type="auto"
+                    :process-style="processStyle"
+                    :real-time="true">
+                </vue-slider>
+                <p class="text-center">{{quantyFrom}} a {{quantyTo}} personas.</p>
+            </div>
+            <div class="col-xs-12 col-md-6">
+                <vue-slider 
+                    @callback="callbackbPrice" 
+                    :value="[priceFrom, priceTo]"
+                    :min="0"
+                    :max="10000"
+                    :tooltip="false"
+                    :event-type="auto"
+                    :process-style="processStyle"
+                    :real-time="true">
+                </vue-slider>
+                <p class="text-center">${{priceFrom}} - ${{priceTo}}.-</p>
             </div>
         </div>
-        <div class="dropdown">
-            <button class="dropbtn" @click="showSelectCategoria()">
-                <span>{{(categoria == '') ? 'Qué estás planificando?' : categoria.label}}</span>
-                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-            </button>
-            <div v-if="stCategoria" class="dropdown__content">
-            	<div v-for="cat in categorias"><span @click="selectCategoria(cat)">{{cat.label}}</span></div>
-            </div>
-        </div>
-		<div class="dropdown">
-            <button class="dropbtn" @click="showSelectQuanty()">
-                <span>{{quanty}}</span>
-                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-            </button>
-            <div v-if="stQuanty" class="dropdown__content">
-                <span @click="selectQuanty('5')">5+</span>
-                <span @click="selectQuanty('10')">10+</span>
-                <span @click="selectQuanty('15')">15+</span>
-                <span @click="selectQuanty('25')">25+</span>
-                <span @click="selectQuanty('50')">50+</span>
-                <span @click="selectQuanty('100')">100+</span>
-                <span @click="selectQuanty('200')">200+</span>
-            </div>
-        </div>
-		<div class="dropdown">
-            <button class="dropbtn" @click="showSelectPrice()">
-                <span>{{price}}</span>
-                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-            </button>
-            <div v-if="stPrice" class="dropdown__content">
-                <span @click="selectPrice('0-500')">$0 - $500</span>
-                <span @click="selectPrice('500-1000')">$500 - $1000</span>
-                <span @click="selectPrice('1000-1500')">$1000 - $1500</span>
-                <span @click="selectPrice('1500-2500')">$1500 - $2500</span>
-                <span @click="selectPrice('2500-3500')">$2500 - $3500</span>
-                <span @click="selectPrice('3500')">$3500</span>
-            </div>
-        </div>
-        <button class="btn wt-btn-primary" @click="searchEspacios()">BUSCAR</button>
-	</div>
+    </div>
 </template>
 <script>
+    import vueSlider from 'vue-slider-component';
 	export default {
+        components: {
+            vueSlider
+        },
 		data() {
             return {
-              ubicacion: 'Ubicación',
-              categoria: '',
-              quanty: 'Invitados',
-              price: 'Precio / hr',
-              stUbicacion: false,
-              stCategoria: false,
-              stQuanty: false,
-              stPrice: false,
-              categorias: [
-              	{velue: 1, label: 'Reuniones'},
-              	{velue: 2, label: 'Eventos'},
-              	{velue: 3, label: 'Producciones'},
-              	{velue: 4, label: 'Pop-ups'}
-              ]
+                ubicacion: 'Ubicación',
+                categoria: {},
+                quantyFrom: 0,
+                quantyTo: 10,
+                priceFrom: 100,
+                priceTo: 1000,
+                processStyle: {
+                    "backgroundColor": "#e8536f"
+                },
+                stUbicacion: false,
+                stCategoria: false,
+                categorias: [
+                    {velue: 1, label: 'Reuniones'},
+                    {velue: 2, label: 'Eventos'},
+                    {velue: 3, label: 'Producciones'},
+                    {velue: 4, label: 'Pop-ups'}
+                ]
             }
         },
+        mounted() {
+            this.getParametros();
+        },
         methods: {
-        	// Selectores
+            getParametros() {
+                let urlParams = new URLSearchParams(window.location.search);
+                let catId = urlParams.get('categoria');
+                let quanties = urlParams.get('quanty').split("-");
+                let prices = urlParams.get('price').split("-");
+
+                this.ubicacion = (urlParams.has('ubicacion') && urlParams.get('ubicacion') !== '') ? urlParams.get('ubicacion') : 'Ubicación';
+                this.categorias.forEach((element, index) => {
+                    if(element.velue == catId) {
+                        this.categoria = element;
+                    }
+                });
+                this.quantyFrom = quanties[0];
+                this.quantyTo = quanties[1];
+                this.priceFrom = prices[0];
+                this.priceTo = prices[1];
+            },
+            callbackbPrice(val) {
+                this.priceFrom = val[0];
+                this.priceTo = val[1];
+                this.searchEspacios();
+            },
+            callbackbQuanty(val) {
+                this.quantyFrom = val[0];
+                this.quantyTo = val[1];
+                this.searchEspacios();
+            },
         	selectUbucacion(ubi) {
         		this.ubicacion = ubi;
-        		this.stUbicacion = false;
+        		this.showSelectUbicacion();
+                this.searchEspacios();
         	},
         	selectCategoria(cat) {
         		this.categoria = cat;
-        		this.stCategoria = false;
-        	},
-        	selectQuanty(quanty) {
-        		this.quanty = quanty;
-        		this.stQuanty = false;
-        	},
-        	selectPrice(price) {
-        		this.price = price;
-        		this.stPrice = false;
+        		this.showSelectCategoria();
+                this.searchEspacios();
         	},
         	// Show field
             showSelectUbicacion() {
@@ -103,26 +139,77 @@
             		this.stUbicacion= false;
             	}
             },
-            showSelectQuanty() {
-            	this.stQuanty = !this.stQuanty;
-            	if(this.stQuanty) {
-            		this.stQuanty = false;
-            	}
-            },
-            showSelectPrice() {
-            	this.stPrice = !this.stPrice;
-            	if(this.stPrice) {
-            		this.stPrice = false;
-            	}
-            },
         	searchEspacios () {
-        		let url = `/search?
-        					ubicacion=${this.ubicacion}&
-        					categoria=${this.categoria.velue}&
-        					quanty=${this.quanty.velue}&
-        					price=${this.price.velue}`;
+        		let url = `/search?ubicacion=${this.ubicacion}&categoria=${this.categoria.velue}&`;
+                url += `quanty=${this.quantyFrom}-${this.quantyTo}&price=${this.priceFrom}-${this.priceTo}`;
         		window.location.href = url;
+            },
+            getUrlVars()
+            {
+                var vars = [], hash;
+                var hashes = window.location.href.slice(window.location.href.indexOf('?') + 1).split('&');
+                for(var i = 0; i < hashes.length; i++)
+                {
+                    hash = hashes[i].split('=');
+                    vars.push(hash[0]);
+                    vars[hash[0]] = hash[1];
+                }
+                return vars;
             }
         }
 	}
 </script>
+<style lang="sass">
+    .container-filters {
+        width: 100%;
+        height: 50px;
+        display: flex;
+        justify-content: center;
+        * {
+            transition: none;
+        }
+        &__dropdown {
+            position: relative;
+            width: 50%;
+            &__button-left {
+                width: 100%;
+                display: flex;
+                color: #262629;
+                padding: 0.5em 1em;
+                background: #f2f2f2;
+                border-left: 1px solid #d6d6d6;
+                border-top: 1px solid #d6d6d6;
+                border-right: none;
+                border-bottom: 1px solid #d6d6d6;
+                justify-content: space-between;
+            }
+            &__button-right {
+                width: 100%;
+                background: #f2f2f2;
+                color: #262629;
+                border: 1px solid #d6d6d6;
+                padding: 0.5em 1em;
+                display: flex;
+                justify-content: space-between;
+
+            }
+            &__content {
+                width: 100%;
+                color: #000;
+                background: #fff;
+                border-left: 1px solid #d6d6d6;
+                border-bottom: 1px solid #d6d6d6;
+                border-right: 1px solid #d6d6d6;
+                position: absolute;
+                z-index: 100;
+                .chield-filter {
+                    padding: 0.5em 1em;
+                    &:hover {
+                        background: #dadada;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+    }
+</style>

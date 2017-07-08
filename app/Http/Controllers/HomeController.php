@@ -49,21 +49,20 @@ class HomeController extends Controller
 
         if($request->has('price') && $request->has('quanty'))
         {
+            $quanties = explode("-", \Request::input('quanty'));
+
             $espacios = Espacio::select('id', 'name', 'description', 'long', 'lat')
                                 ->with('images')
-                                ->where('quanty', '>=', \Request::input('quanty'))
+                                ->whereBetween('quanty', [$quanties[0], $quanties[1]])
                                 ->whereHas('categorias', 
                                     function($query) {
-                                    $query->where('id', \Request::input('categoria'));
-                                })
+                                        $query->where('id', \Request::input('categoria'));
+                                    }
+                                )
                                 ->whereHas('priceByCategory', 
                                     function($query) {
                                         $precios = explode("-", \Request::input('price'));
-                                        if(sizeof($precios) > 1) {
-                                            $query->whereBetween('price', [$precios[0], $precios[1]]);
-                                        }else {
-                                            $query->where('price', '>=', $precios[0]);
-                                        }
+                                        $query->whereBetween('price', [$precios[0], $precios[1]]);
                                     }
                                 )
                                 ->where('status', true)

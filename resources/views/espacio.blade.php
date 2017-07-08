@@ -75,16 +75,6 @@
 					<p>{!! $espacio->description !!}</p>
 				</div>
 			</div>
-			@if($espacio->user->personaldescription != "")
-			<div class="box-descripcion">
-				<div class="box-descripcion__titulo">
-					<span>Anfitrión</span>
-				</div>
-				<div class="box-descripcion__contenido">
-					<p>{{$espacio->user->personaldescription}}</p>
-				</div>
-			</div>
-			@endif
 			<div class="box-descripcion">
 				<div class="box-descripcion__titulo">
 					<span>Precio</span>
@@ -176,6 +166,16 @@
 					</div>
 				</div>
 			</div>
+			@if($espacio->user->personaldescription != "")
+			<div class="box-descripcion">
+				<div class="box-descripcion__titulo">
+					<span>Anfitrión</span>
+				</div>
+				<div class="box-descripcion__contenido">
+					<p>{{$espacio->user->personaldescription}}</p>
+				</div>
+			</div>
+			@endif
 		</main>
 	</div>
 

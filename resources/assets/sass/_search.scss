@@ -68,7 +68,7 @@
 	    position: fixed;
 	    top: 60px;
 	    z-index: 1199;
-
+		background-color: $wt-white;
 	    @include netbook {
 			width: 100%;
     	}
@@ -78,12 +78,11 @@
 		&__chield-1 {
 			width: 60%;
 			padding: 20px;
-			margin-top: 100px;
+			margin-top: 9em;
 			position: inherit;
 			left: 0;
 			bottom: 0;
 			top:18%;
-
 			@include netbook {
 				width: 100%;
     		}	 

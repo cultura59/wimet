@@ -221,7 +221,6 @@
   }
 }
 .home-espacio-body {
-  font-family: Poppins;
   width: 960px;
   margin: 0 auto;
   .center-title {
@@ -287,6 +286,11 @@
       .min-hours {
         color: #191919;
         font-size: 11px;
+      }
+      &__separador {
+        width: 250px;
+        margin: 0px;
+        border-top: 1px dashed #eeeeee;
       }
     }
   }
