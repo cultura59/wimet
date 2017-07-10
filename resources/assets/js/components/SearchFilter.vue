@@ -9,8 +9,7 @@
                 <template v-if="stUbicacion">
                     <div class="container-filters__dropdown__content">
                         <div class="chield-filter" @click="selectUbucacion('CABA')"><span>CABA</span></div>
-                        <div class="chield-filter" @click="selectUbucacion('Martinez')"><span>Martinez</span></div>
-                        <div class="chield-filter" @click="selectUbucacion('San Isidro')"><span>San Isidro</span></div>
+                        <div class="chield-filter" @click="selectUbucacion('Buenos Aires')"><span>Buenos Aires</span></div>
                     </div>
                 </template>
             </div>

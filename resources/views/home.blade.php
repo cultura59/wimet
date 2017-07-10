@@ -58,36 +58,52 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-8">
                             <div class="row">
-                                <div class="col-xs-12 wt-m-bot-3 img-hov">
-                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-1.jpg')}}" alt="" class="img-responsive img-home-principal">
+                                <div class="col-xs-12 wt-m-bot-3">
+                                    <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-100&price=100-10000')}}">
+                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-1.jpg')}}" alt="Cocktail" class="img-responsive img-home-principal">
+                                    </a>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 img-hov">
-                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-3.jpg')}}" alt="Workshops" class="img-responsive img-home-principal">
+                                <div class="col-xs-12 col-sm-6">
+                                    <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-100&price=100-10000')}}">
+                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-3.jpg')}}" alt="Workshops" class="img-responsive img-home-principal">
+                                    </a>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 img-hov">
-                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-4.jpg')}}" alt="" class="img-responsive img-home-principal">
+                                <div class="col-xs-12 col-sm-6">
+                                    <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-100&price=100-10000')}}">
+                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-4.jpg')}}" alt="Eventos" class="img-responsive img-home-principal">
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-4 img-hov">
-                            <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-2.jpg')}}" alt="" class="img-responsive img-home-principal">
+                        <div class="col-xs-12 col-sm-4">
+                            <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-100&price=100-10000')}}">
+                                <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-2.jpg')}}" alt="Producción" class="img-responsive img-home-principal">
+                            </a>
                         </div>
                     </div>
                     <!-- container images second-->
                     <div class="row wt-m-top-3">
-                        <div class="col-xs-12 col-sm-4 img-hov">
-                            <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-5.jpg')}}" alt="" class="img-responsive img-home-principal">
+                        <div class="col-xs-12 col-sm-4">
+                            <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-100&price=100-10000')}}">
+                                <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-5.jpg')}}" alt="Pop-ups" class="img-responsive img-home-principal">
+                            </a>
                         </div>
                         <div class="col-xs-12 col-sm-8">
                             <div class="row">
-                                <div class="col-xs-12 wt-m-bot-3 img-hov">
-                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-6.jpg')}}" alt="" class="img-responsive img-home-principal">
+                                <div class="col-xs-12 wt-m-bot-3">
+                                    <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-100&price=100-10000')}}">
+                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-6.jpg')}}" alt="Pop-ups Dinner" class="img-responsive img-home-principal">
+                                    </a>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 img-hov">
-                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-7.jpg')}}" alt="" class="img-responsive img-home-principal">
+                                <div class="col-xs-12 col-sm-6">
+                                    <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-100&price=100-10000')}}">
+                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-7.jpg')}}" alt="Curso" class="img-responsive img-home-principal">
+                                    </a>
                                 </div>
-                                <div class="col-xs-12 col-sm-6 img-hov">
-                                    <img src="{{url('img/wimet-espacios-creativos-reunion-evento-produccion-popup-8.jpg')}}" alt="" class="img-responsive img-home-principal">
+                                <div class="col-xs-12 col-sm-6">
+                                    <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-100&price=100-10000')}}">
+                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-8.jpg')}}" alt="Exposicióm" class="img-responsive img-home-principal">
+                                    </a>
                                 </div>
                             </div>
                         </div>
