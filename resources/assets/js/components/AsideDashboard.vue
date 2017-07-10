@@ -65,10 +65,7 @@
 			getUserAuthenticated() {
 				let vm = this;
 				if(this.$auth.isAuthenticated()) {
-					vm.$http.get('api/usersession')
-					.then(res => {
-						this.user = res.body;
-					});
+					this.user = this.$auth.getUser();
 				}
 			}
 		}

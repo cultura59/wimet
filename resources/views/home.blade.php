@@ -104,21 +104,21 @@
 
                     <div class="row">
                         <div class="col-sm-4 padder-comments">
-                            <img class="center-block brd-round" src="img/testi-1.jpg" alt="benefits of product" width="126" height="126">
+                            <img class="center-block brd-round" src="https://res.cloudinary.com/wimet/image/upload/testi-1.jpg" alt="benefits of product" width="126" height="126">
                             <p class="wt-m-top-3">
                                 "Fue un placer trabajar con el equipo de Wimet. Tuvimos una muy buena experiencia, pudimos organizar nuestra fiesta de fin de año en un lugar diferente y de manera muy rápida. El evento estuvo genial y recibimos felicitaciones de nuestros invitados, especialmente por el lugar."
                             </p>
                             <p class="signature">Matias Doublier | COO - Increase</p>
                         </div>
                         <div class="col-sm-4 padder-comments">
-                            <img class="center-block brd-round" src="img/testi2.jpg" alt="benefits of product" width="126" height="126">
+                            <img class="center-block brd-round" src="https://res.cloudinary.com/wimet/image/upload/testi2.jpg" alt="benefits of product" width="126" height="126">
                             <p class="wt-m-top-3">
                                 "We were early adopters and first clients of Wimet's platform. From the moment we learned about their model, we knew they had great potential to scale the business and create a sustainable company. Moving forward, we will continue to use Wimet's platform for any future events we host."
                             </p>
                             <p class="signature">Lisa Besserman | CEO - Startup Buenos Aires</p>
                         </div>
                         <div class="col-sm-4 padder-comments">
-                            <img class="center-block brd-round" src="img/testi1.jpg" alt="benefits of product" width="126" height="126">
+                            <img class="center-block brd-round" src="https://res.cloudinary.com/wimet/image/upload/testi1.jpg" alt="benefits of product" width="126" height="126">
                             <p class="wt-m-top-3">
                                 "Recurrimos a Wimet porque estábamos a 3 días de una capacitación y nos habíamos quedado sin lugar. Los contactamos, recibimos distintas propuestas acordes a la necesidad y al budget, elegimos y cerramos el evento en menos de 24hs. Fue un plus enorme terminar haciendo el evento en una muy linda galería de arte. No tengo dudas de que va a ser nuestra primera opción para organizar los eventos que vengan."
                             </p>

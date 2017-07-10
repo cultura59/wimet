@@ -59,25 +59,25 @@
                     </div>
                     <div class="wt-m-top-2">
                         <strong>PRECIO</strong>
-            				<div class="wt-space-block wt-m-top-1">
-            					<span>Espacio (por {{totalHoras}}hs)</span>
-            					<span>$ {{subTotal}}</span>
-            				</div>
-            				<div class="wt-space-block wt-m-top-1">
-            					<span>Fee de procesamiento</span>
-            					<span>$ {{fee}}</span>
-            				</div>
-            				<div class="wt-space-block wt-m-top-1">
-            					<span>Precio estimado</span>
-            					<span>$ {{total}}</span>
-            				</div>
+        				<div class="wt-space-block wt-m-top-1">
+        					<span>Espacio (por {{totalHoras}}hs)</span>
+        					<span>$ {{subTotal}}</span>
+        				</div>
+        				<div class="wt-space-block wt-m-top-1">
+        					<span>Fee de procesamiento</span>
+        					<span>$ {{fee}}</span>
+        				</div>
+        				<div class="wt-space-block wt-m-top-1">
+        					<span>Precio estimado</span>
+        					<span>$ {{total}}</span>
+        				</div>
                     </div>
     			</div>
-                <div v-if="clientId != ''">
-                    <button class="btn-reserva wt-m-top-2" @click="openModal(`Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit, aliquid perferendis possimus eum accusamus earum odio qui a iure quis vero ut nesciunt distinctio et facilis dolorem ducimus laborum natus.`)">CONTACTAR AL ANFITRIÓN</button>
-        			<button class="btn-reserva-transparent wt-m-top-1" @click="openModal('')">QUIERO VISITAR EL ESPACIO</button>
+                <div v-if="user.id != ''">
+                    <button class="btn-reserva wt-m-top-2" @click="openModal()">CONTACTAR AL ANFITRIÓN</button>
+        			<button class="btn-reserva-transparent wt-m-top-1">QUIERO VISITAR EL ESPACIO</button>
                 </div>
-                <div v-if="clientId == ''">
+                <div v-if="user.id == ''">
                     <button class="btn-reserva wt-m-top-2"><a href="/login">CONTACTAR AL ANFITRIÓN</a></button>
                     <button class="btn-reserva-transparent wt-m-top-1"><a href="/login">QUIERO VISITAR EL ESPACIO</a></button>
                 </div>
@@ -88,20 +88,36 @@
             <div class="modal-reserva__content">
                 <div class="modal-reserva__left">
                     <div class="container-img">
-                        <img v-bind:src="avatarUrl" alt="Wimet consulta" />
+                        <img class="container-img__imagen" v-bind:src="avatarUrl" alt="Wimet consulta" />
+                        <span class="container-img__nombre">{{user.firstname}}</span>
                     </div>
-                    <div>
-                        <h3>1.</h3>
-                        <p>Providing plenty of details will help the owner and speed up the process.</p>
+                    <div class="wt-m-top-2">
+                        <strong>Fechas</strong>
+                        <ul class="wt-m-top-2">
+                            <li class="list-dates" v-for="item in totalFechas">
+                                <span>{{item.fecha}} desde {{item.inicio}}hs hasta {{item.fin}}hs</span>
+                            </li>
+                        </ul>
                     </div>
-                    <div>
-                        <h3>2.</h3>
-                        <p>If you're ready to move forward, request a quote or schedule a site visit.</p>
+                    <div class="wt-m-top-2">
+                        <strong>Precio</strong>
+                        <div class="wt-space-block wt-m-top-1">
+                            <span>Espacio (por {{totalHoras}}hs)</span>
+                            <span>$ {{subTotal}}</span>
+                        </div>
+                        <div class="wt-space-block wt-m-top-1">
+                            <span>Fee de procesamiento</span>
+                            <span>$ {{fee}}</span>
+                        </div>
+                        <div class="wt-space-block wt-m-top-1">
+                            <span>Precio estimado</span>
+                            <span>$ {{total}}</span>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-reserva__right">
                     <div>
-                        <h2>Contactar</h2>
+                        <h4>¡Contacta al anfitrión!</h4>
                         <span class="close-reserva" @click="closeModal()">&times;</span>
                         <div v-if="(messageError != '')" class="messageError">
                             <p>{{messageError}}</p>
@@ -109,55 +125,24 @@
                         </div>
                     </div>
                     <div class="form-contact">
-                        <div class="form-contact__select">
-                            <label for="">Tipo actividad</label>
-                            <select class="select-lg" v-model="category">
-                                <option value="">Seleccionar</option>
-                                <option v-for="cat in categories" v-bind:value="cat.id">
-                                    {{cat.name}}
-                                </option>
-                            </select>
-                        </div>
-                        <div class="form-contact__select">
-                            <label for="people">Invitados</label>
-                            <select name="people" id="people" class="select-lg" v-model="people">
-                                <option value="">Seleccionar</option>
-                                <option value="5">5+</option>
-                                <option value="10">10+</option>
-                                <option value="25">25+</option>
-                                <option value="50">50+</option>
-                                <option value="100+">100 +</option>
-                                <option value="200+">200 +</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div>
-                        <label for="fechas">Fechas</label>
-                        <ul>
-                            <li class="form-contact" v-for="item in totalFechas">
-                                <span>{{item.fecha}} desde {{item.inicio}}hs hasta {{item.fin}}hs</span>
-                                <span class="cursor-pointer text-danger" @click="removeDate(item)">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="form-contact">
                         <div class="form-contact__textarea">
-                            <label for="title">Título</label>
-                            <input v-model="title" id="title" class="textarea-lg"/>
+                            <label for="title">Título del evento</label>
+                            <input v-model="title" id="title" class="textarea-lg" placeholder="Ej.: Workshop Google for entrepreneurs" />
                         </div>
                     </div>
                     <div class="form-contact">
                         <div class="form-contact__textarea">
                             <label for="mensaje">Mensaje</label>
-                            <textarea v-model="mensaje" id="mensaje" class="textarea-lg" rows="5" placeholder="Cuentale lo mejor que puedas, sobre el evento que quieres realizar al dueño del espacio."></textarea>
+                            <textarea v-model="mensaje" id="mensaje" class="textarea-lg" rows="7" placeholder="Preséntate, describe la actividad que estas planificando y cuéntale cómo utilizarás el espacio. Necesitarás servicios de catering, técnica o producción? 
+
+Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vamos a necesitar mesas y un servicio de Coffee Break. Puede incluirlo en la propuesta? Puedo llevar mi propio catering?"></textarea>
+                            <span class="wt-m-top-2">Nota: Recuerda que esta fuera de nuestros T&C enviar información personal (teléfono, email, etc.).</span>
                         </div>
                     </div>
                     <div class="form-contact">
                         <div class="form-contact__button">
                             <img v-if="!btnSend" src="/img/default.gif" alt="Cargando ..." height="50px" />
-                            <button v-if="btnSend" class="wt-btn-aqua button-sm" @click="sendReserva()">Enviar</button>
+                            <button v-if="btnSend" class="btn-primary-pig" @click="sendReserva()">Enviar</button>
                         </div>
                     </div>
                 </div>                
@@ -216,7 +201,7 @@
         data() {
             return {
                 authenticated: this.$auth.isAuthenticated(),
-                clientId: null,
+                user: null,
         		messageError: '',
                 showDatos: false,
         		people: '',
@@ -352,7 +337,7 @@
             },
             addWishlist() {
                 let body = {
-                    'clientId': this.clientId,
+                    'clientId': this.user.id,
                     'espacio_id': this.espacioId
                 }
                 this.$http.post(`/wishlist`, body)
@@ -373,6 +358,14 @@
                 }else {
                     if(this.totalHoras < this.minhours) {
                         this.messageError = `El mínimo de horas es ${this.minhours}`;
+                        return;
+                    }
+                    if(this.people == "") {
+                        this.messageError = `Debe ingresar cantidad de invitados`;
+                        return;
+                    }
+                    if(this.people > this.espacio.quanty) {
+                        this.messageError = `La cantidad de invitados máxima es ${this.espacio.quanty}`;
                         return;
                     }
                     this.modalReserva = true;
@@ -400,7 +393,7 @@
                 this.btnSend = false;
                 let body = {
                     'title': this.title,
-                    'clientId': this.clientId,
+                    'clientId': this.user.id,
                     'espacioId': this.espacioId,
                     'category': this.category,
                     'invitados': this.people,
@@ -415,11 +408,10 @@
                     'total': this.total
 
                 }
+                this.btnSend = true;
                 this.$http.post(`api/sendreserva`, body)
                 .then(res => {
-                    this.btnSend = true;
-                    this.modalReserva = false;
-                    swal("Consulta enviada!", "En las próximas 48 horas el dueño se pondrá en contacto contigo!", "success");
+                    window.location.href = `/dashboard/user/${this.user.id}/mensajes`;
                 }, err => {
                     console.log(err);
                     swal(err.message);
@@ -435,10 +427,7 @@
             },
             getUserAuthenticated() {
                 if(this.$auth.isAuthenticated()) {
-                    this.$http.get('api/usersession')
-                    .then(res => {
-                        this.clientId = res.body.id;
-                    });
+                    this.user = this.$auth.getUser();
                 }
             }
         }
@@ -447,35 +436,40 @@
 <style lang="sass">
     .modal-reserva {
         position: fixed;
-        z-index: 1;
-        padding-top: 30px;
+        z-index: 1200;
+        padding-top: 60px;
         left: 0;
-        top: 5%;
         width: 100%;
         height: 100%;
         overflow: auto;
-        background-color: rgba(0,0,0,0.4);
+        background-color: rgba(0, 0, 0, 0.4);
         ul {
             padding: 0;
         }
         &__left {
-            width: 30%;
+            width: 40%;
             padding: 2em;
-            background: #eeeeee;
+            background: #f8f8f8;
             .container-img {
-                width: 70%;
+                width: 40%;
                 display: flex;
+                flex-direction: column;
                 justify-content: center;
                 align-items: center;
                 margin: 0 auto;
-                img {
+                &__imagen {
                     width: 100%;
                     border-radius: 5em;
+                }
+                &__nombre {
+                    font-style: italic;
+                    color: #191919;
+                    margin-top: 1em;
                 }
             }
         }
         &__right {
-            width: 80%;
+            width: 60%;
             padding: 1em 2em;
             .form-contact {
                 display: flex;

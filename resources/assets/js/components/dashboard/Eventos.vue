@@ -61,11 +61,8 @@
 	                });
 	                return;
 	            }else {
-					this.$http.get('api/usersession')
-					.then(res => {
-						this.user = res.body;
-            			this.getEventos();
-					});
+	            	this.user = this.$auth.getUser();
+        			this.getEventos();
 				}
 			},
 			getEventos() {

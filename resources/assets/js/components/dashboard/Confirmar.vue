@@ -54,10 +54,7 @@
 	                });
 	                return;
 	            }else {
-					this.$http.get('api/usersession')
-					.then(res => {
-						this.user = res.body;
-					});
+					this.user = this.$auth.getUser();
 				}
 			},
 			confirmarPago() {

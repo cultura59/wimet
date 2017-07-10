@@ -88,7 +88,7 @@
 			xhr.send();
 		}
 	</script>
-	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZUp-A4EcLNbPonxHhbySVWpP9kzZQQUw" async defer></script>
+	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZUp-A4EcLNbPonxHhbySVWpP9kzZQQUw&libraries=places&callback=initAutocomplete"></script>
 @endpush
 
 @section('content')

@@ -167,11 +167,8 @@
 	                });
 	                return;
 	            }else {
-					this.$http.get('api/usersession')
-					.then(res => {
-						this.user = res.body;
-            			this.getMensajes();
-					});
+	            	this.user = this.$auth.getUser();
+        			this.getMensajes();
 				}
 			},
 			getMensajes() {

@@ -58,11 +58,8 @@
 	                });
 	                return;
 	            }else {
-					this.$http.get('api/usersession')
-					.then(res => {
-						this.user = res.body;
-            			this.getPropuestas();
-					});
+	            	this.user = this.$auth.getUser();
+        			this.getPropuestas();
 				}
 			},
 			getPropuestas() {

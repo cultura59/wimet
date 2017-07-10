@@ -204,10 +204,15 @@
 			getUserAuthenticated() {
 				let vm = this;
 				if(this.$auth.isAuthenticated()) {
-					vm.$http.get('api/usersession')
-					.then(res => {
-						this.user = res.body;
-					});
+					if (localStorage.getItem("user") !== null){
+						this.user = this.$auth.getUser();
+					} else {
+						vm.$http.get('api/usersession')
+						.then(res => {
+							this.$auth.setUser(res.body);
+							this.user = this.$auth.getUser();
+						});
+					}
 				}
 			},
 			reloadPage(url, event) {
