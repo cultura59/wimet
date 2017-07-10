@@ -46,37 +46,46 @@ class HomeController extends Controller
      */
     public function search(Request $request) {   
         $querystringArray = \Request::only(['ubicacion','categoria','price','quanty']);
-
-        if($request->has('price') && $request->has('quanty'))
-        {
-            $quanties = explode("-", \Request::input('quanty'));
-
+        $quanties = explode("-", \Request::input('quanty'));
+        
+        if(\Request::input('ubicacion') == "") {
             $espacios = Espacio::select('id', 'name', 'description', 'long', 'lat')
-                                ->with('images')
-                                ->whereBetween('quanty', [$quanties[0], $quanties[1]])
-                                ->whereHas('categorias', 
-                                    function($query) {
-                                        $query->where('id', \Request::input('categoria'));
-                                    }
-                                )
-                                ->whereHas('priceByCategory', 
-                                    function($query) {
-                                        $precios = explode("-", \Request::input('price'));
-                                        $query->whereBetween('price', [$precios[0], $precios[1]]);
-                                    }
-                                )
-                                ->where('status', true)
-                                ->paginate(30);
-        }else {
+                ->with('images')
+                ->whereBetween('quanty', [$quanties[0], $quanties[1]])
+                ->whereHas('categorias', 
+                    function($query) {
+                        $query->where('id', \Request::input('categoria'));
+                    }
+                )
+                ->whereHas('priceByCategory', 
+                    function($query) {
+                        $precios = explode("-", \Request::input('price'));
+                        $query->whereBetween('price', [$precios[0], $precios[1]]);
+                    }
+                )
+                ->where('status', true)
+                ->where('city', \Request::input('ubicacion'))
+                ->paginate(30);
+        } else {
             $espacios = Espacio::select('id', 'name', 'description', 'long', 'lat')
-                                ->with('images')
-                                ->whereHas('categorias', 
-                                    function($query) {
-                                    $query->where('id', \Request::input('categoria'));
-                                })
-                                ->where('status', true)
-                                ->paginate(30);
+                ->with('images')
+                ->whereBetween('quanty', [$quanties[0], $quanties[1]])
+                ->whereHas('categorias', 
+                    function($query) {
+                        $query->where('id', \Request::input('categoria'));
+                    }
+                )
+                ->whereHas('priceByCategory', 
+                    function($query) {
+                        $precios = explode("-", \Request::input('price'));
+                        $query->whereBetween('price', [$precios[0], $precios[1]]);
+                    }
+                )
+                ->where('status', true)
+                ->where('city', \Request::input('ubicacion'))
+                ->paginate(30);
         }
+
         $categorias = Categoria::orderBy('id')->pluck('name', 'id');
         return view('search', array(
                 'espacios' => $espacios->appends($querystringArray),
