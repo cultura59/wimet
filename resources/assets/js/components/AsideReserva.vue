@@ -73,11 +73,11 @@
         				</div>
                     </div>
     			</div>
-                <div v-if="user.id != ''">
+                <div v-if="user != ''">
                     <button class="btn-reserva wt-m-top-2" @click="openModal()">CONTACTAR AL ANFITRIÓN</button>
         			<button class="btn-reserva-transparent wt-m-top-1">QUIERO VISITAR EL ESPACIO</button>
                 </div>
-                <div v-if="user.id == ''">
+                <div v-if="user == ''">
                     <button class="btn-reserva wt-m-top-2"><a href="/login">CONTACTAR AL ANFITRIÓN</a></button>
                     <button class="btn-reserva-transparent wt-m-top-1"><a href="/login">QUIERO VISITAR EL ESPACIO</a></button>
                 </div>
@@ -119,10 +119,6 @@
                     <div>
                         <h4>¡Contacta al anfitrión!</h4>
                         <span class="close-reserva" @click="closeModal()">&times;</span>
-                        <div v-if="(messageError != '')" class="messageError">
-                            <p>{{messageError}}</p>
-                            <i class="fa fa-times cursor-pointer" aria-hidden="true" @click="closeMsg()"></i>
-                        </div>
                     </div>
                     <div class="form-contact">
                         <div class="form-contact__textarea">
@@ -185,7 +181,6 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                 </div>
             </div>
         </div>
-
     </div>
 </template>
 <script>

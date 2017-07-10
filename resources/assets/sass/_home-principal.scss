@@ -163,7 +163,7 @@ html, body {
 	.header-publica {
 		height: 600px;
 		width: 100%;
-		background-image: url(/assets/img/wimet-espacios-creativos-eventos-reuniones-producciones-popups-anfitrion.jpg);
+		background-image: url(https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-eventos-reuniones-producciones-popups-anfitrion.jpg);
 		background-size: cover;
 		color: $wt-white;
 		position: relative;
@@ -251,7 +251,7 @@ html, body {
 			width: 50%;
 			float: right;
 			height: 100%;
-			background-image: url(../img/espacioscomerciales.jpg);
+			background-image: url(https://res.cloudinary.com/wimet/image/upload/espacioscomerciales.jpg);
 			background-size: cover;
 		}
 	}
@@ -262,7 +262,7 @@ html, body {
 			width: 50%;
 			float: left;
 			height: 100%;
-			background-image: url(../img/espaciosprivados.jpg);
+			background-image: url(https://res.cloudinary.com/wimet/image/upload/espaciosprivados.jpg);
 			background-size: cover;
 		}
 		&__descripcion {

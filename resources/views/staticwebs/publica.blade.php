@@ -46,12 +46,12 @@
                 <section class="section-sponsors">
                 	<div class="container">
     	                <div class="row">
-    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w1.png" alt="Increase"></div>
-    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w2.png" alt="startup buenos aires"></div>
-    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w3.png" alt="google"></div>
-    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w4.png" alt="visa"></div>
-    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w5.png" alt="a3"></div>
-    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w6.png" alt="startup chile"></div>
+    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w1.png" alt="Increase"></div>
+    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w2.png" alt="startup buenos aires"></div>
+    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w3.png" alt="google"></div>
+    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w4.png" alt="visa"></div>
+    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w5.png" alt="a3"></div>
+    	                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w6.png" alt="startup chile"></div>
     	                </div>
                     </div>
                 </section>

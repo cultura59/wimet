@@ -58,24 +58,24 @@
                     <div class="row">
                         <div class="col-xs-12 col-sm-8">
                             <div class="row">
-                                <div class="col-xs-12 wt-m-bot-3">
+                                <div class="col-xs-12 wt-m-bot-3 img-hov">
                                     <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-100&price=100-10000')}}">
                                         <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-1.jpg')}}" alt="Cocktail" class="img-responsive img-home-principal">
                                     </a>
                                 </div>
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-6 img-hov">
                                     <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-100&price=100-10000')}}">
                                         <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-3.jpg')}}" alt="Workshops" class="img-responsive img-home-principal">
                                     </a>
                                 </div>
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-6 img-hov">
                                     <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-100&price=100-10000')}}">
                                         <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-4.jpg')}}" alt="Eventos" class="img-responsive img-home-principal">
                                     </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-xs-12 col-sm-4">
+                        <div class="col-xs-12 col-sm-4 img-hov">
                             <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-100&price=100-10000')}}">
                                 <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-2.jpg')}}" alt="Producción" class="img-responsive img-home-principal">
                             </a>
@@ -83,24 +83,24 @@
                     </div>
                     <!-- container images second-->
                     <div class="row wt-m-top-3">
-                        <div class="col-xs-12 col-sm-4">
+                        <div class="col-xs-12 col-sm-4 img-hov">
                             <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-100&price=100-10000')}}">
                                 <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-5.jpg')}}" alt="Pop-ups" class="img-responsive img-home-principal">
                             </a>
                         </div>
                         <div class="col-xs-12 col-sm-8">
                             <div class="row">
-                                <div class="col-xs-12 wt-m-bot-3">
+                                <div class="col-xs-12 wt-m-bot-3 img-hov">
                                     <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-100&price=100-10000')}}">
                                         <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-6.jpg')}}" alt="Pop-ups Dinner" class="img-responsive img-home-principal">
                                     </a>
                                 </div>
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-6 img-hov">
                                     <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-100&price=100-10000')}}">
                                         <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-7.jpg')}}" alt="Curso" class="img-responsive img-home-principal">
                                     </a>
                                 </div>
-                                <div class="col-xs-12 col-sm-6">
+                                <div class="col-xs-12 col-sm-6 img-hov">
                                     <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-100&price=100-10000')}}">
                                         <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-reunion-evento-produccion-popup-8.jpg')}}" alt="Exposicióm" class="img-responsive img-home-principal">
                                     </a>
@@ -147,12 +147,12 @@
             <!-- Sponsors -->
             <section class="container wt-m-bot-1">
                 <div class="row">
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w1.png" alt="Increase"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w2.png" alt="startup buenos aires"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w3.png" alt="google"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w4.png" alt="visa"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w5.png" alt="a3"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="img/w6.png" alt="startup chile"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w1.png" alt="Increase"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w2.png" alt="startup buenos aires"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w3.png" alt="google"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w4.png" alt="visa"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w5.png" alt="a3"></div>
+                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w6.png" alt="startup chile"></div>
                 </div>
             </section>
 
