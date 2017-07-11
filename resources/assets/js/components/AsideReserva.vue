@@ -69,17 +69,20 @@
         				</div>
         				<div class="wt-space-block wt-m-top-1">
         					<span>Precio estimado</span>
-        					<span>$ {{total}}</span>
+        					<span class="precio-estimado">$ {{total}}</span>
         				</div>
+                        <div class="iva-no-incluido">
+                            <span>IVA no incluido</span>
+                        </div>
                     </div>
     			</div>
                 <div v-if="user != ''">
                     <button class="btn-reserva wt-m-top-2" @click="openModal()">CONTACTAR AL ANFITRIÓN</button>
-        			<button class="btn-reserva-transparent wt-m-top-1">QUIERO VISITAR EL ESPACIO</button>
+        			<!--button class="btn-reserva-transparent wt-m-top-1">QUIERO VISITAR EL ESPACIO</button-->
                 </div>
                 <div v-if="user == ''">
                     <button class="btn-reserva wt-m-top-2"><a href="/login">CONTACTAR AL ANFITRIÓN</a></button>
-                    <button class="btn-reserva-transparent wt-m-top-1"><a href="/login">QUIERO VISITAR EL ESPACIO</a></button>
+                    <!--button class="btn-reserva-transparent wt-m-top-1"><a href="/login">QUIERO VISITAR EL ESPACIO</a></button-->
                 </div>
     		</section>
     	</aside>
@@ -111,7 +114,10 @@
                         </div>
                         <div class="wt-space-block wt-m-top-1">
                             <span>Precio estimado</span>
-                            <span>$ {{total}}</span>
+                            <span class="precio-estimado">$ {{total}}</span>
+                        </div>
+                        <div class="iva-no-incluido">
+                            <span>IVA no incluido</span>
                         </div>
                     </div>
                 </div>
@@ -292,6 +298,13 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
         		this.fee = (this.subTotal * 5)/100;
         	},
         	addDate() {
+                if(this.isPar((this.fin - this.inicio)) < this.minhours) {
+                    this.messageError = `El minimo de horas es ${this.minhours}`;
+                    setInterval(() => {
+                        this.messageError = "";
+                    }, 2000);
+                    return;
+                }
         		this.totalFechas.push({
         			'fecha': this.fecha,
         			'inicio': this.timeFormat(this.inicio),

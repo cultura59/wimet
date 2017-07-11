@@ -124,6 +124,19 @@
         margin: 0;
       }
     }
+    .precio-estimado {
+      font-family: Noto serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .iva-no-incluido {
+      justify-content: flex-end;
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 10px;
+    }
   }
 }
 .box-reserva--active {
@@ -364,4 +377,17 @@
     background-color: rgba(84, 84, 84, 0.87);
     color: $wt-white;
   }
+}
+.precio-estimado {
+  font-family: Noto serif;
+  font-style: italic;
+  font-weight: 600;
+  font-size: 16px;
+}
+.iva-no-incluido {
+  justify-content: flex-end;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  font-size: 10px;
 }
