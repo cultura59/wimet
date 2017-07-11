@@ -47,7 +47,6 @@ class HomeController extends Controller
     public function search(Request $request) {   
         $querystringArray = \Request::only(['ubicacion','categoria','price','quanty']);
         $quanties = explode("-", \Request::input('quanty'));
-        
         if(\Request::input('ubicacion') == "") {
             $espacios = Espacio::select('id', 'name', 'description', 'long', 'lat')
                 ->with('images')
@@ -64,7 +63,6 @@ class HomeController extends Controller
                     }
                 )
                 ->where('status', true)
-                ->where('city', \Request::input('ubicacion'))
                 ->paginate(30);
         } else {
             $espacios = Espacio::select('id', 'name', 'description', 'long', 'lat')

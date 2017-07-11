@@ -12,150 +12,212 @@ html, body {
 	width: 100% !important;
 }
 .header-principal {
-	background-image: url(https://res.cloudinary.com/wimet/image/upload/wimet_inspiring_venue_startup_gqsbqg.jpg);
-	height: 80vh;
-	width: 100%;
-	color: $wt-white;
-	position: relative;
-	padding: 10px;
-	.header-navbar {
-		display: flex;
-		justify-content: flex-start;
-		align-items: center;
-		.actions {
-			margin-left: auto;
-			margin-top: 0.5em;
-			ul {
-				list-style: none;
-				li {
-					float: left;
-					padding: 1em;
-					text-decoration: none;
-					
-					@include mobile	{
-						&:first-child {
-				    		display: none;
-				    	}	
-					}				
-					a 	{
-						color: #F1F1F1;
+	@include desktop {
+		background-image: url(https://res.cloudinary.com/wimet/image/upload/wimet_inspiring_venue_startup_gqsbqg.jpg);
+		height: 80vh;
+		width: 100%;
+		color: $wt-white;
+		position: relative;
+		padding: 10px;
+		.header-navbar {
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			.actions {
+				margin-left: auto;
+				margin-top: 0.5em;
+				ul {
+					list-style: none;
+					li {
+						float: left;
+						padding: 1em;
 						text-decoration: none;
-						padding: 10px 15px 5px;
-						border-radius: 2px;
-					    border: 2px solid #F1F1F1;
-					    font-family: Poppins;
-					    font-size: 13px;
-					    letter-spacing: 0.5px;
 						
-						:hover {
+						@include mobile	{
+							&:first-child {
+					    		display: none;
+					    	}	
+						}				
+						a 	{
+							color: #F1F1F1;
+							text-decoration: none;
+							padding: 10px 15px 5px;
+							border-radius: 2px;
+						    border: 2px solid #F1F1F1;
+						    font-family: Poppins;
+						    font-size: 13px;
+						    letter-spacing: 0.5px;
 							
+							:hover {
+								
+							}
+						}
+					}
+				}
+			}
+		}
+		.header-navbar__actions {
+			display: flex;
+			justify-content: center;
+			ul {
+				margin-left: auto;
+				list-style-type: none;
+			}
+		}
+		.texto-header {
+			width: 100%;
+			height: auto;
+			margin-top: 18vh;
+			.text-header__title {
+				text-align: center;
+				font-weight: 600;
+				margin: 20px;
+				padding: 0px;
+				font-family: 'Poppins', sans-serif;
+			    font-size: 50px;
+			    text-shadow: 1px 0px;
+			    letter-spacing: 3px;
+			}
+			.text-header__sub-title {
+				text-align: center;
+				font-weight: 400;
+				margin: 0px;
+				padding: 0px;
+			    font-family: 'Poppins', sans-serif;
+			    font-size: 15px;
+			    letter-spacing: 0.5px;
+			}
+			.texto-header__container-btn {
+				margin: 30px;
+				display: flex;
+				justify-content: center;
+			}
+		}
+		.header-footer {
+			background: rgba(0, 0, 0, 0.3);
+			width: 100%;
+			position: absolute;
+			bottom: 0px;
+			left: 0px;
+			padding: 16px 0px;
+			:first-child	{
+			    	border-right: none !important;
+				    border-top-left-radius: 2px;
+				    border-bottom-left-radius: 2px;
+
+			}
+			.dropbtn-left {
+				width: 250px;
+				height: 50px;
+			    display: flex;
+			    justify-content: space-between;
+			    align-items: center;
+			    color: #545454;
+				cursor: pointer;
+			    text-align: left;
+			    padding: 6px 12px;
+			    font-size: 0.825rem;
+				background-color: $wt-white;
+				border: solid 1px #dadada;
+			}
+			.dropbtn-right {
+				width: 250px;
+				height: 50px;
+			    display: flex;
+			    justify-content: space-between;
+			    align-items: center;
+			    color: #545454;
+				cursor: pointer;
+			    text-align: left;
+			    padding: 6px 12px;
+			    font-size: 0.825rem;
+				background-color: $wt-white;
+				border: solid 1px #dadada;
+				border-radius: 0px;
+			}
+			.dropdown {
+				position: relative;
+				display: inline-block;
+				&__content {
+			    	width: 250px;
+					position: absolute;
+					background-color: $wt-white;
+					min-width: 160px;
+					box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+					z-index: 1;
+					span {
+						color: black;
+						padding: 12px 16px;
+						text-decoration: none;
+						display: block;
+						&:hover {
+							background-color: #f1f1f1;
+							cursor: pointer;
 						}
 					}
 				}
 			}
 		}
 	}
-	.header-navbar__actions {
-		display: flex;
-		justify-content: center;
-		ul {
-			margin-left: auto;
-			list-style-type: none;
-		}
-	}
-	.texto-header {
+	@include mobile {
+		background-image: url(https://res.cloudinary.com/wimet/image/upload/wimet_inspiring_venue_startup_gqsbqg.jpg);
+		height: 80vh;
 		width: 100%;
-		height: auto;
-		margin-top: 18vh;
-		.text-header__title {
-			text-align: center;
-			font-weight: 600;
-			margin: 20px;
-			padding: 0px;
-			font-family: 'Poppins', sans-serif;
-		    font-size: 50px;
-		    text-shadow: 1px 0px;
-		    letter-spacing: 3px;
-		}
-		.text-header__sub-title {
-			text-align: center;
-			font-weight: 400;
-			margin: 0px;
-			padding: 0px;
-		    font-family: 'Poppins', sans-serif;
-		    font-size: 15px;
-		    letter-spacing: 0.5px;
-		}
-		.texto-header__container-btn {
-			margin: 30px;
+		color: $wt-white;
+		position: relative;
+		padding: 10px;
+		.header-navbar {
 			display: flex;
-			justify-content: center;
-		}
-	}
-	.header-footer {
-		background: rgba(0, 0, 0, 0.3);
-		width: 100%;
-		position: absolute;
-		bottom: 0px;
-		left: 0px;
-		padding: 16px 0px;
-
-		:first-child	{
-		    	border-right: none !important;
-			    border-top-left-radius: 2px;
-			    border-bottom-left-radius: 2px;
-
-		}
-		.dropbtn-left {
-			width: 250px;
-			height: 50px;
-		    display: flex;
-		    justify-content: space-between;
-		    align-items: center;
-		    color: #545454;
-			cursor: pointer;
-		    text-align: left;
-		    padding: 6px 12px;
-		    font-size: 0.825rem;
-			background-color: $wt-white;
-			border: solid 1px #dadada;
-		}
-		.dropbtn-right {
-			width: 250px;
-			height: 50px;
-		    display: flex;
-		    justify-content: space-between;
-		    align-items: center;
-		    color: #545454;
-			cursor: pointer;
-		    text-align: left;
-		    padding: 6px 12px;
-		    font-size: 0.825rem;
-			background-color: $wt-white;
-			border: solid 1px #dadada;
-			border-radius: 0px;
-		}
-		.dropdown {
-			position: relative;
-			display: inline-block;
-			&__content {
-		    	width: 250px;
-				position: absolute;
-				background-color: $wt-white;
-				min-width: 160px;
-				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-				z-index: 1;
-				span {
-					color: black;
-					padding: 12px 16px;
-					text-decoration: none;
-					display: block;
-					&:hover {
-						background-color: #f1f1f1;
-						cursor: pointer;
+			justify-content: flex-start;
+			align-items: center;
+			.actions {
+				margin-left: auto;
+				margin-top: 0.5em;
+				ul {
+					list-style: none;
+					li {
+						float: left;
+						padding: 1em;
+						text-decoration: none;
+						
+						@include mobile	{
+							&:first-child {
+					    		display: none;
+					    	}	
+						}				
+						a 	{
+							color: #F1F1F1;
+							text-decoration: none;
+							padding: 10px 15px 5px;
+							border-radius: 2px;
+						    border: 2px solid #F1F1F1;
+						    font-family: Poppins;
+						    font-size: 13px;
+						    letter-spacing: 0.5px;
+							
+							:hover {
+								
+							}
+						}
 					}
 				}
 			}
+		}
+		.header-navbar__actions {
+			display: flex;
+			justify-content: center;
+			ul {
+				margin-left: auto;
+				list-style-type: none;
+			}
+		}
+		.texto-header {
+			width: 100%;
+			height: auto;
+			margin-top: 8vh;
+		}
+		.header-footer {
+			display: none;
 		}
 	}
 }
@@ -309,24 +371,26 @@ html, body {
 	background-color: $wt-white;
 
 	.content-wt	{
-		height: 180px;
-    	padding-top: 45px;
-		h2 {
-			font-size: 24px;
-		    font-weight: 600;
-	        color: rgba(33, 33, 33, 0.87);
-		    font-family: 'Poppins', sans-serif;
-		    letter-spacing: 0.7px;
-	        margin-bottom: 20px;
-	        text-shadow: 0px 0px;
-		}
-		p {
-		    
-		    font-size: 18px;
-		    color: #545454;
-		    font-family: 'Poppins', sans-serif;
-		    letter-spacing: 0.3px;
-    		font-weight: 600;
+		@include desktop {
+			height: 180px;
+	    	padding-top: 45px;
+			h2 {
+				font-size: 24px;
+			    font-weight: 600;
+		        color: rgba(33, 33, 33, 0.87);
+			    font-family: 'Poppins', sans-serif;
+			    letter-spacing: 0.7px;
+		        margin-bottom: 20px;
+		        text-shadow: 0px 0px;
+			}
+			p {
+			    
+			    font-size: 18px;
+			    color: #545454;
+			    font-family: 'Poppins', sans-serif;
+			    letter-spacing: 0.3px;
+	    		font-weight: 600;
+			}
 		}
 	}
 }

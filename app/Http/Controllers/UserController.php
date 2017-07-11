@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Mensaje;
 use DB;
 
 class UserController extends Controller
@@ -46,8 +47,9 @@ class UserController extends Controller
             $user->tipo_clientes_id = 1;
             $user->imagesource = "/avatars/default.png";
             $user->isAdmin = 0;
-            $user->save();
-            $this->registerHubspot($request);
+            dd($user);
+            //$user->save();
+            $this->registerHubspot($user);
             return $user;
         }catch(\Exception $e){
             return response('Los campos no son correctos', 400);
@@ -184,33 +186,11 @@ class UserController extends Controller
                 array(
                     'property' => 'lastname',
                     'value' => $data->lastname
-                ),
-                array(
-                    'property' => 'phone',
-                    'value' => $data->phone
-                ),
-                array(
-                    'property' => 'company',
-                    'value' => $data->businessName
                 )
             )
         );
-        $post_json = json_encode($arr);
-        $keyHuspot = "153f6544-3085-41e5-98d0-80a3d435d496";
-        
-        $endpoint = 'https://api.hubapi.com/contacts/v1/contact?hapikey=' . $keyHuspot;
-        $ch = @curl_init();
-        @curl_setopt($ch, CURLOPT_POST, true);
-        @curl_setopt($ch, CURLOPT_POSTFIELDS, $post_json);
-        @curl_setopt($ch, CURLOPT_URL, $endpoint);
-        @curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        @curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = @curl_exec($ch);
-        $status_code = @curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $curl_errors = curl_error($ch);
-        @curl_close($ch);
-        echo "curl Errors: " . $curl_errors;
-        echo "\nStatus code: " . $status_code;
-        echo "\nResponse: " . $response;
+        $hubspot = new Mensaje();
+        $response = $hubspot->serviceCreateContact($arr);
+        return $response["data"];
     }
 }
