@@ -24,7 +24,7 @@
 
 		function fillInAddress() {
 			var place = autocomplete.getPlace();
-
+			console.log(place);
 			for (var component in componentForm) {
 				document.getElementById(component).value = '';
 				document.getElementById(component).disabled = false;
@@ -34,7 +34,12 @@
 				var addressType = place.address_components[i].types[0];
 				if (componentForm[addressType]) {
 					var val = place.address_components[i][componentForm[addressType]];
-					document.getElementById(addressType).value = val;
+					if(val === "CABA") {
+						document.getElementById(addressType).value = val;
+						document.getElementById("locality").value = place.address_components[i]["long_name"];
+					}else {
+						document.getElementById(addressType).value = val;
+					}
 				}
 			}
 			getLatAndLong(document.getElementById('direccion').value);
