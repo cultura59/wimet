@@ -11,7 +11,7 @@
                   <iframe :src="image360" frameborder="0" width="100%" height="620"></iframe>
                 </div>
                 <div class="imagesModal__content__mySlides" v-for="img in images">
-                    <img v-bind:src="'/' + img.name" style="width: auto; height: 620px">
+                    <img :src="urlImagen(img.name)" style="width: auto; height: 620px">
                 </div>
 
                 <a class="prev" v-on:click="plusSlides(-1)">&#10094;</a>
@@ -45,10 +45,13 @@
                 .then(res => {
                     this.image360 = res.body.image360;
                     this.images = res.body.images;
-                    document.getElementById('imagen-principal').style.backgroundImage = `url(/${this.images[0].name})`;
+                    document.getElementById('imagen-principal').style.backgroundImage = `url(${this.urlImagen(this.images[0].name)})`;
                 }, err => {
                     console.log(err);
                 });
+            },
+            urlImagen(url) {
+              return `https://res.cloudinary.com/wimet/image/upload/${url}`;
             },
             openModal() {
                 document.getElementById('imagesModal').style.display = "block";
