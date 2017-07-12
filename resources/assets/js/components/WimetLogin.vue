@@ -361,5 +361,17 @@
 				}
 			}
 	    }
+	    @media only screen and (max-width: 768px) {
+	    	&__content {
+			    width: 100%;
+			    padding: 5px 20px 10px 20px;
+			    margin: 2.5% auto;
+			    border-radius: 2px;
+			    border: 1px solid #888;
+				background-color: #fefefe;
+			    font-weight: 400;
+			    position: relative;
+	    	}
+	    }
 	}
 </style>

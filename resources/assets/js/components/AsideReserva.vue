@@ -302,7 +302,7 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                     this.messageError = `El minimo de horas es ${this.minhours}`;
                     setInterval(() => {
                         this.messageError = "";
-                    }, 2000);
+                    }, 5000);
                     return;
                 }
         		this.totalFechas.push({
