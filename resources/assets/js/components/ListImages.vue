@@ -4,7 +4,7 @@
     	<div class="row wt-m-bot-4">
     		<div class="col-md-3" v-for="img in images">
     			<i class="fa fa-trash-o fa-2x remove-img" aria-hidden="true"></i>
-                <img v-bind:src="'/' + img.name" class="img-responsive img-rounded" @click="deleteImage(img)">
+                <img :src="urlImagen(img.name)" class="img-responsive img-rounded" @click="deleteImage(img)">
     		</div>
     	</div>
     </div>
@@ -39,6 +39,9 @@
                 }, err => {
                     console.log(err);
                 });
+            },
+            urlImagen(url) {
+                return `https://res.cloudinary.com/wimet/image/upload/q_60/${url}`;
             }
         }
 	}

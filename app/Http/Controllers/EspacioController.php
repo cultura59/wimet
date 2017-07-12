@@ -311,18 +311,27 @@ class EspacioController extends Controller
     * @return redirect to public-amenities
     */
     public function saveImages(Request $request, $id) {
-
+        \Cloudinary::config(array( 
+          "cloud_name" => "wimet", 
+          "api_key" => "278198295249288", 
+          "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw" 
+        ));
         if($request->hasFile('file')) {
             // upload the image //
             $imagesEspacio = $request->file('file');
             $destination_fotoprincipales = 'fotosespacios/';
-            $filename_imagesEspacio = str_random(8).'_'.$imagesEspacio->getClientOriginalName();
+            $filename_imagesEspacio = str_replace(' ', '_', str_random(8).'_'.$imagesEspacio->getClientOriginalName());
+            $extension = "." . pathinfo($imagesEspacio->getClientOriginalName(), PATHINFO_EXTENSION);
 
-            $imagesEspacio->move($destination_fotoprincipales, $filename_imagesEspacio);
             $image = new Image;
             $image->name = $destination_fotoprincipales . $filename_imagesEspacio;
             $image->espacio_id = $id;
             $image->save();
+            $response = \Cloudinary\Uploader::upload($imagesEspacio, 
+                                                    array(
+                                                        "public_id" => $destination_fotoprincipales . str_replace($extension, "", $filename_imagesEspacio)
+                                                    )
+                                                );
             return $image;
         }
     }

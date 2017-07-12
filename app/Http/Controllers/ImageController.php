@@ -38,11 +38,13 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
+        \Cloudinary::config(array( 
+          "cloud_name" => "wimet", 
+          "api_key" => "278198295249288", 
+          "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw" 
+        ));
         $image = Image::find($id);
-        $res = unlink($image->name);
-        if($res) {
-            $image->delete();
-        }
+        \Cloudinary\Uploader::destroy($image->name);
         return $id;
     }
 
@@ -60,12 +62,16 @@ class ImageController extends Controller
 
         foreach ($imagesEspacio as $key => $img) 
         {
-            $filename_imagesEspacio = str_random(8).'_'.$img->getClientOriginalName();
-            $img->move($destination_fotoprincipales, $filename_imagesEspacio);
+            $filename_imagesEspacio = str_replace(' ', '_', str_random(8).'_'.$img->getClientOriginalName());
+
             $image = new Image;
             $image->name = $destination_fotoprincipales . $filename_imagesEspacio;
             $image->espacio_id = $request->espacio_id;
-            $image->save();
+            //$image->save();
+
+            $response = \Cloudder::upload($img->getClientOriginalName(), 1);
+            dd($response);
+            //$img->move($destination_fotoprincipales, $filename_imagesEspacio);
         }
     }
 

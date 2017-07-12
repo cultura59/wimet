@@ -19,7 +19,7 @@
 					<div class="box-expacio">
 						<div class="image-espacio">
 							@if(!$espacio->images->isEmpty())
-							<img src="{{url($espacio->images[0]->name)}}" alt="" class="img-responsive">
+							<img src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->images[0]->name}}" alt="" class="img-responsive">
 							@endif
 						</div>
 						<div class="detalle-espacio">
@@ -53,7 +53,7 @@
 					<div class="box-expacio">
 						<div class="image-espacio">
 							@if(!$borrador->images->isEmpty())
-							<img src="{{url($borrador->images[0]->name)}}" alt="" class="img-responsive">
+							<img src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$borrador->images[0]->name}}" alt="" class="img-responsive">
 							@endif
 						</div>
 						<div class="detalle-espacio">
