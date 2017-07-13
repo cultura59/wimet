@@ -61,10 +61,6 @@
 					<div class="container-social">
 						<login-facebook></login-facebook>
 						<login-google></login-google>
-						<button class="container-social__btn btn-google">
-							<img src="/img/google_logo.svg" class="icon-social" alt="Registrar Google">
-							<span>Iniciar sesión con Google</span>
-						</button>
 					</div>
 					<div class="login-modal-title">
 						<span class="text-center">Regístrate con tu email</span>
@@ -195,6 +191,7 @@
 			logout(event) {
 				event.preventDefault();
 				this.$auth.destroyToken();
+				gapi.auth.signOut();
 				FB.getLoginStatus((resStatusFb) => {
 					resStatusFb.status === 'connected';
 					FB.logout();
