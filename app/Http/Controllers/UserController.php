@@ -44,7 +44,7 @@ class UserController extends Controller
             $user->imagesource = ($request->imagesource) ? $request->imagesource : null;
             $user->password =  bcrypt($request->password);
             $user->tipo_clientes_id = 1;
-            $user->imagesource = "/avatars/default.png";
+            $user->imagesource = ($request->imagesource) ? $request->imagesource : "/avatars/default.png";
             $user->isAdmin = 0;
             $user->save();
             $this->registerHubspot($request);
@@ -212,5 +212,17 @@ class UserController extends Controller
         echo "curl Errors: " . $curl_errors;
         echo "\nStatus code: " . $status_code;
         echo "\nResponse: " . $response;
+    }
+
+
+    public function cambiarContraseniaRedes($id, $contra) {
+        try {
+            $user = User::find($id);
+            $user->password =  bcrypt($contra);
+            $user->save();
+            return $user;
+        }catch(\Exception $e){
+            return response('No se pudo modificar la contraseña: ' . $e->getMessage(), 400);
+        }
     }
 }

@@ -213,8 +213,6 @@ class HomeController extends Controller
         return true;
     }
 
-
-
     public function nosotros()
     {
         return view('staticwebs.nosotros');
@@ -230,6 +228,10 @@ class HomeController extends Controller
     public function publica()
     {
         return view('staticwebs.publica');
+    }
+
+    public function callbackGoogle(Request $request) {
+        dd($request->all());
     }
 }
 

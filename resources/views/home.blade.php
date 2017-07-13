@@ -7,6 +7,7 @@
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
+        <!--meta name="google-signin-client_id" content="900088247996-a43nngn178mlar8kh38amicl98tgejck.apps.googleusercontent.com"-->
 
         <title>{{ config('app.name', 'Laravel') }}</title>
 
@@ -23,6 +24,7 @@
         </script>
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+        <script src="https://apis.google.com/js/api:client.js"></script>
     </head>
     <body>
         <!-- Header Home -->
@@ -155,7 +157,6 @@
                     <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/w6.png" alt="startup chile"></div>
                 </div>
             </section>
-
         </main>
 
         <!-- footer -->

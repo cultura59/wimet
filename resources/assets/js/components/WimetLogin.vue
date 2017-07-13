@@ -35,10 +35,7 @@
 					<span class="close-modal" @click="closeModals()">×</span>
 					<div class="container-social">
 						<login-facebook></login-facebook>
-						<button class="container-social__btn btn-google">
-							<img src="/img/google_logo.svg" class="icon-social" alt="Login Google">
-							<span>Iniciar sesión con Google</span>
-						</button>
+						<login-google></login-google>
 					</div>
 					<div class="login-modal-title">
 						<span class="text-center">Inicia sesión con tu email</span>
@@ -63,6 +60,7 @@
 					<span class="close-modal" @click="closeModals()">×</span>
 					<div class="container-social">
 						<login-facebook></login-facebook>
+						<login-google></login-google>
 						<button class="container-social__btn btn-google">
 							<img src="/img/google_logo.svg" class="icon-social" alt="Registrar Google">
 							<span>Iniciar sesión con Google</span>
@@ -93,6 +91,7 @@
 </template>
 <script>
 	import loginFacebook from './loginFacebook.vue';
+	import loginGoogle from './loginGoogle.vue';
 	import swal from 'sweetalert';
 
 	export default {
@@ -102,7 +101,8 @@
 			'userloged'
 		],
 		components: {
-			'login-facebook': loginFacebook
+			'login-facebook': loginFacebook,
+			'login-google': loginGoogle
 		},
 		data() {
 			return {
@@ -199,6 +199,7 @@
 					resStatusFb.status === 'connected';
 					FB.logout();
 				});
+				window.localStorage.clear();
 				location.href = '/';
 			},
 			getUserAuthenticated() {

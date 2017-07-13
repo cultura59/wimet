@@ -43,14 +43,15 @@
 				FB.login( (res) => {
 					if (res.authResponse) {
 						FB.api('/me', {fields: 'first_name,last_name,email,picture.type(large)'}, (res) => {
-							console.log(res);
 							this.$http.get(`api/user/${res.email}`)
 							.then(resclient => {
-								console.log(resclient);
 								if(resclient.status == 200) {
-									this.email = res.email;
-									this.password = res.id;
-									this.login();
+									this.$http.get(`api/changepassword/${resclient.body.id}/password/${res.id}`)
+									.then(respass => {
+										this.email = res.email;
+										this.password = res.id;
+										this.login();
+									});
 								}
 							}, err => {
 								if(err.status == 400) {
@@ -62,8 +63,10 @@
 										imagesource: res.picture.data.url
 									}
 									this.$http.post('api/user', data)
-									.then(res => {
-										if(res.status == 200) {
+									.then(response => {
+										if(response.status == 200) {
+											this.email = res.email;
+											this.password = res.id;
 											this.login();
 										}else {
 											swal('Ups, algo salio mal', res.message, 'error');

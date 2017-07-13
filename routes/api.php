@@ -54,6 +54,7 @@ Route::get('rules', 'ApiHelpperController@rules');
 
 Route::post('sendreserva', 'HomeController@send_reserva');
 Route::get('geteventos/{id}', 'UserController@getEventos');
+Route::get('changepassword/{id}/password/{contra}', 'UserController@cambiarContraseniaRedes');
 Route::get('mensajes/{id}/type/{type}', 'EventoController@getMensajes');
 Route::get('evento/resumen/{id}', 'EventoController@getResumen');
 Route::get('listpropuestas/{id}', 'PropuestaController@getPropuestas');

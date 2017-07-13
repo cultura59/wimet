@@ -44,7 +44,9 @@ class ImageController extends Controller
           "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw" 
         ));
         $image = Image::find($id);
-        \Cloudinary\Uploader::destroy($image->name);
+        $arrNameImage = explode(".", $image->name);
+        $response = \Cloudinary\Uploader::destroy($arrNameImage[0]);
+        $image->delete();
         return $id;
     }
 
