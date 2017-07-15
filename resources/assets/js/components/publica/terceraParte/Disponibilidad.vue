@@ -99,54 +99,54 @@
 			return {
 				disponibilidad: [],
         		horas: [
-        			{value: 8, label: '8:00'},
-        			{value: 8.5, label: '8:30'},
-        			{value: 9, label: '9:00'},
-        			{value: 9.5, label: '9:30'},
-        			{value: 10, label: '10:00'},
-        			{value: 10.5, label: '10:30'},
-        			{value: 11, label: '11:00'},
-        			{value: 11.5, label: '11:30'},
-        			{value: 12, label: '12:00'},
-        			{value: 12.5, label: '12:30'},
-        			{value: 13, label: '13:00'},
-        			{value: 13.5, label: '13:30'},
-        			{value: 14, label: '14:00'},
-        			{value: 14.5, label: '14:30'},
-        			{value: 15, label: '15:00'},
-        			{value: 15.5, label: '15:30'},
-        			{value: 16, label: '16:00'},
-        			{value: 16.5, label: '16:30'},
-        			{value: 17, label: '17:00'},
-        			{value: 17.5, label: '17:30'},
-        			{value: 18, label: '18:00'},
-        			{value: 18.5, label: '18:30'},
-        			{value: 19, label: '19:00'},
-        			{value: 19.5, label: '19:30'},
-        			{value: 20, label: '20:00'},
-        			{value: 20.5, label: '20:30'},
-        			{value: 21, label: '21:00'},
-        			{value: 21.5, label: '21:30'},
-        			{value: 22, label: '22:00'},
-        			{value: 22.5, label: '22:30'},
-        			{value: 23, label: '23:00'},
-        			{value: 23.5, label: '23:30'},
-        			{value: 24, label: '24:00'},
-        			{value: 24.5, label: '24:30'},
-        			{value: 1, label: '1:00'},
-        			{value: 1.5, label: '1:30'},
-        			{value: 2, label: '2:00'},
-        			{value: 2.5, label: '2:30'},
-        			{value: 3, label: '3:00'},
-        			{value: 3.5, label: '3:30'},
-        			{value: 4, label: '4:00'},
-        			{value: 4.5, label: '4:30'},
-        			{value: 5, label: '5:00'},
-        			{value: 5.5, label: '5:30'},
-        			{value: 6, label: '6:00'},
-        			{value: 6.5, label: '6:30'},
-        			{value: 7, label: '7:00'},
-        			{value: 7.5, label: '7:30'}
+        			{value: 8, label: '08:00AM'},
+        			{value: 8.5, label: '08:30AM'},
+        			{value: 9, label: '09:00AM'},
+        			{value: 9.5, label: '09:30AM'},
+        			{value: 10, label: '10:00AM'},
+        			{value: 10.5, label: '10:30AM'},
+        			{value: 11, label: '11:00AM'},
+        			{value: 11.5, label: '11:30AM'},
+        			{value: 12, label: '12:00PM'},
+        			{value: 12.5, label: '12:30PM'},
+        			{value: 13, label: '01:00PM'},
+        			{value: 13.5, label: '01:30PM'},
+        			{value: 14, label: '02:00PM'},
+        			{value: 14.5, label: '02:30PM'},
+        			{value: 15, label: '03:00PM'},
+        			{value: 15.5, label: '03:30PM'},
+        			{value: 16, label: '04:00PM'},
+        			{value: 16.5, label: '04:30PM'},
+        			{value: 17, label: '05:00PM'},
+        			{value: 17.5, label: '05:30PM'},
+        			{value: 18, label: '06:00PM'},
+        			{value: 18.5, label: '06:30PM'},
+        			{value: 19, label: '07:00PM'},
+        			{value: 19.5, label: '07:30PM'},
+        			{value: 20, label: '08:00PM'},
+        			{value: 20.5, label: '08:30PM'},
+        			{value: 21, label: '09:00PM'},
+        			{value: 21.5, label: '09:30PM'},
+        			{value: 22, label: '10:00PM'},
+        			{value: 22.5, label: '10:30PM'},
+        			{value: 23, label: '11:00PM'},
+        			{value: 23.5, label: '11:30PM'},
+        			{value: 24, label: '12:00AM'},
+        			{value: 24.5, label: '12:30AM'},
+        			{value: 1, label: '01:00AM'},
+        			{value: 1.5, label: '01:30PM'},
+        			{value: 2, label: '02:00PM'},
+        			{value: 2.5, label: '02:30PM'},
+        			{value: 3, label: '03:00AM'},
+        			{value: 3.5, label: '03:30AM'},
+        			{value: 4, label: '04:00AM'},
+        			{value: 4.5, label: '04:30AM'},
+        			{value: 5, label: '05:00AM'},
+        			{value: 5.5, label: '05:30AM'},
+        			{value: 6, label: '06:00AM'},
+        			{value: 6.5, label: '06:30AM'},
+        			{value: 7, label: '07:00AM'},
+        			{value: 7.5, label: '07:30AM'}
         		],
 				inicio: '',
 				fin: '',
@@ -212,14 +212,23 @@
         			vm.agrupadorDias.push({
         				espacio_id: this.espacioId,
 	        			dia: element,
-	        			inicio: vm.inicio,
-	        			fin: vm.fin
+	        			inicio: vm.timeFormat(vm.inicio),
+	        			fin: vm.timeFormat(vm.fin)
 	    			});
         		});
     			this.inicio = '';
     			this.fin = '';
     			this.disponibilidad = [];
         	},
+            timeFormat(time) {
+                let timeformat = time.toString().split('.');
+                let res = time % 2;
+                if(res > 0) {
+                    return `${timeformat[0]}:30`;
+                }else {
+                    return `${timeformat[0]}:00`;
+                }
+            },
             saveDisponibilidad(e){
             	e.preventDefault();
             	this.$http.post(`/api/disponibilidad`, this.agrupadorDias)

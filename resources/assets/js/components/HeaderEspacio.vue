@@ -51,7 +51,7 @@
                 });
             },
             urlImagen(url) {
-              return `https://res.cloudinary.com/wimet/image/upload/${url}`;
+              return `https://res.cloudinary.com/wimet/image/upload/q_60/${url}`;
             },
             openModal() {
                 document.getElementById('imagesModal').style.display = "block";
