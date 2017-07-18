@@ -72,7 +72,7 @@
 			</div>
 			<button class="btn-primary-pig" @click="agruparDiasHoras()">AGREGAR</button>
 			<hr>
-			<div>
+			<div class="wt-m-bot-4">
 				<div v-for="item in agrupadorDias" class="wt-space-block">
 					<span>{{item.dia}}</span>
 					<span>{{item.inicio}} a {{item.fin}} hs. <i class="fa fa-trash cursor-pointer" @click="removeDisponibilidad(item)"></i></span>

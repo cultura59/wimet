@@ -139,7 +139,8 @@
             	}
             },
         	searchEspacios () {
-        		let url = `/search?ubicacion=${this.ubicacion}&categoria=${this.categoria.velue}&`;
+
+        		let url = `/search?ubicacion=${(this.ubicacion == 'Ubicación')? '' : this.ubicacion}&categoria=${this.categoria.velue}&`;
                 url += `quanty=${this.quantyFrom}-${this.quantyTo}&price=${this.priceFrom}-${this.priceTo}`;
         		window.location.href = url;
             },
