@@ -93,7 +93,7 @@ class EventoController extends Controller
                 )
                 ->join('users', 'eventos.user_id', '=', 'users.id')
                 ->where('eventos.cliente_id', $id)
-                ->orderBy('eventos.updated_at', 'desc')
+                ->orderBy('eventos.id', 'desc')
                 ->get();
         } else {
             $mensajes = DB::table('eventos')
@@ -106,7 +106,7 @@ class EventoController extends Controller
             )
             ->join('users', 'eventos.user_id', '=', 'users.id')
             ->where('eventos.user_id', $id)
-            ->orderBy('eventos.updated_at', 'desc')
+            ->orderBy('eventos.id', 'desc')
             ->get();
         }
         return $mensajes;

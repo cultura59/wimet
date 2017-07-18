@@ -47,6 +47,7 @@
 		<aside-reserva 
 			espacio-id="{{$espacio->id}}"
 			avatar-url="{{$espacio->user->imagesource}}"
+			nombre-anfitrion="{{$espacio->user->firstname}}"
 			price="{{$price->price}}"
 			minhours="{{$price->minhours}}"
 			category-id="{{$categoryId}}">

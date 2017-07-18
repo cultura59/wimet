@@ -92,7 +92,7 @@
                 <div class="modal-reserva__left">
                     <div class="container-img">
                         <img class="container-img__imagen" v-bind:src="avatarUrl" alt="Wimet consulta" />
-                        <span class="container-img__nombre">{{user.firstname}}</span>
+                        <span class="container-img__nombre">{{nombreAnfitrion}}</span>
                     </div>
                     <div class="wt-m-top-2">
                         <strong>Fechas</strong>
@@ -195,6 +195,7 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
     	props: [
             'espacioId',
             'avatarUrl',
+            'nombreAnfitrion',
             'price',
             'minhours',
             'categoryId',
