@@ -5,38 +5,38 @@
 			<h4 class="wt-m-top-2">Elige los días que tu espacio podría estar disponible.</h4>
 			<div class="container-disponibilidad-btn-default">
 				<button 
-					@click="addDisponibilidad('lunes')" 
-					:class="estaDisponible('lunes')">
+					@click="addDisponibilidad('Lunes')" 
+					:class="estaDisponible('Lunes')">
 					Lunes
 				</button>
 				<button 
-					@click="addDisponibilidad('martes')" 
-					:class="estaDisponible('martes')">
+					@click="addDisponibilidad('Martes')" 
+					:class="estaDisponible('Martes')">
 					Martes
 				</button>
 				<button 
-					@click="addDisponibilidad('miercoles')" 
-					:class="estaDisponible('miercoles')">
+					@click="addDisponibilidad('Miércoles')" 
+					:class="estaDisponible('Miércoles')">
 					Miércoles
 				</button>
 				<button 
-					@click="addDisponibilidad('jueves')" 
-					:class="estaDisponible('jueves')">
+					@click="addDisponibilidad('Jueves')" 
+					:class="estaDisponible('Jueves')">
 					Jueves
 				</button>
 				<button 
-					@click="addDisponibilidad('viernes')" 
-					:class="estaDisponible('viernes')">
+					@click="addDisponibilidad('Viernes')" 
+					:class="estaDisponible('Viernes')">
 					Viernes
 				</button>
 				<button 
-					@click="addDisponibilidad('sabado')" 
-					:class="estaDisponible('sabado')">
+					@click="addDisponibilidad('Sábado')" 
+					:class="estaDisponible('Sábado')">
 					Sábado
 				</button>
 				<button 
-					@click="addDisponibilidad('domingo')" 
-					:class="estaDisponible('domingo')">
+					@click="addDisponibilidad('Domingo')" 
+					:class="estaDisponible('Domingo')">
 					Domingo
 				</button>
 			</div>
