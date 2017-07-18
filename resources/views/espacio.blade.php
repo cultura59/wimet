@@ -96,11 +96,11 @@
 						<span>{{$disponibilidad->dia}}</span>
 						<span><hr class="box-descripcion__contenido__separador"></span>
 						@if($disponibilidad->inicio == '0' && $disponibilidad->fin == 0)
-							<span>No disponible.</span>
+							<span>No disponible</span>
 						@elseif($disponibilidad->inicio == '0' && $disponibilidad->fin == 24)
-							<span>Abierto 24hs.</span>
+							<span>Abierto 24hs</span>
 						@else
-							<span>{{$disponibilidad->inicio}} a {{$disponibilidad->fin}}hs.</span>
+							<span>{{$disponibilidad->inicio}} - {{$disponibilidad->fin}}</span>
 						@endif
 					</div>
 					@endforeach
