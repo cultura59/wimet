@@ -14,7 +14,7 @@ class CategoriaController extends Controller
      */
     public function index()
     {
-        $categorias = Categoria::select("id", "name")->get();
+        $categorias = Categoria::select("id", "name")->with('subCategory')->get();
         return $categorias;
     }
 

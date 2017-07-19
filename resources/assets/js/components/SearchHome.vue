@@ -17,7 +17,10 @@
                 <i class="fa fa-sort-desc" aria-hidden="true"></i>
             </button>
             <div v-if="stCategoria" class="dropdown__content">
-            	<div v-for="cat in categories"><span @click="selectCategoria(cat)">{{cat.name}}</span></div>
+            	<div v-for="cat in categories" class="contaniner-categorias" @click="selectCategoria(cat)">
+                    <span>{{cat.name}}</span>
+                    <span class="subCategoria">{{showSubCategories(cat.sub_category)}}</span>
+                </div>
             </div>
         </div>
         <button class="wt-btn-primary" @click="searchEspacios()">BUSCAR</button>
@@ -57,6 +60,18 @@
             	if(this.stUbicacion) {
             		this.stUbicacion= false;
             	}
+            },
+            showSubCategories(subCat) {
+                let stringSubCat = "(";
+                for(let i = 0; i < subCat.length; i++) {
+                    stringSubCat += `${subCat[i].name}`;
+
+                    if(i != subCat.length -1) {
+                        stringSubCat += ", ";
+                    }
+                }
+                stringSubCat += ")";
+                return stringSubCat;
             },
         	searchEspacios () {
         		let url = `/search`;
