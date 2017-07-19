@@ -6,9 +6,9 @@
                 <span>{{ubicacion}}</span>
                 <i class="fa fa-sort-desc" aria-hidden="true"></i>
             </button>
-            <div v-if="stUbicacion" class="dropdown__content">
-                <span @click="selectUbucacion('CABA')">CABA</span>
-                <span @click="selectUbucacion('Buenos Aires')">Buenos Aires</span>
+            <div v-if="stUbicacion" class="dropdown__content-left">
+                <span class="contaniner-categorias" @click="selectUbucacion('CABA')">CABA</span>
+                <span class="contaniner-categorias" @click="selectUbucacion('Buenos Aires')">Buenos Aires</span>
             </div>
         </div>
         <div class="dropdown">
@@ -95,7 +95,7 @@
                 }, err => {
                     console.log(err);
                 });
-            },
+            }
         }
 	}
 </script>

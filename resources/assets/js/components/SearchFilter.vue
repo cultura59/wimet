@@ -20,8 +20,9 @@
                 </button>
                 <template v-if="stCategoria">
                     <div class="container-filters__dropdown__content">
-                    	<div class="chield-filter" v-for="cat in categorias" @click="selectCategoria(cat)">
-                            <span>{{cat.label}}</span>
+                    	<div class="chield-filter" v-for="cat in 
+                        " @click="selectCategoria(cat)">
+                            <span>{{cat.name}}</span>
                         </div>
                     </div>
                 </template>
@@ -76,18 +77,21 @@
                 },
                 stUbicacion: false,
                 stCategoria: false,
-                categorias: [
-                    {velue: 1, label: 'Reuniones'},
-                    {velue: 2, label: 'Eventos'},
-                    {velue: 3, label: 'Producciones'},
-                    {velue: 4, label: 'Pop-ups'}
-                ]
+                categorias: ''
             }
         },
         mounted() {
             this.getParametros();
         },
         methods: {
+            getCategories() {
+                this.$http.get(`/api/categoria`)
+                .then(res => {
+                    this.categorias = res.body;
+                }, err => {
+                    console.log(err);
+                });
+            },
             getParametros() {
                 let urlParams = new URLSearchParams(window.location.search);
                 let catId = urlParams.get('categoria');
@@ -96,7 +100,7 @@
 
                 this.ubicacion = (urlParams.has('ubicacion') && urlParams.get('ubicacion') !== '') ? urlParams.get('ubicacion') : 'Ubicación';
                 this.categorias.forEach((element, index) => {
-                    if(element.velue == catId) {
+                    if(element.id == catId) {
                         this.categoria = element;
                     }
                 });
