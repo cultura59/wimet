@@ -183,6 +183,12 @@
     color: $wt-white;
     border-radius: 0px;
     padding: 5px 10px;
+    display: flex;
+    justify-content: space-around;
+    align-items: baseline;
+    .left-hr {
+    	font-size: 11px;
+    }
 }
 
 //------------------------------ layout notfifix ---------------------------------//

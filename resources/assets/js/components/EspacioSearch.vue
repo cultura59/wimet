@@ -2,7 +2,8 @@
 	<a :href="url" target="_blank">
 		<img :src="urlImagen(espacio.image)" :tile="espacio.name" class="img-responsive img-espacio">
 		<div class="search-espacio">
-			$ {{espacio.price}} ARS
+			<span>$ {{espacio.price}}</span>
+			<span class="left-hr">/hr</span>
 		</div>
 		<div class="card-footer-search">
 			<div>

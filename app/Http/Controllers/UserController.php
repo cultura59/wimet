@@ -44,7 +44,7 @@ class UserController extends Controller
             $user->imagesource = ($request->imagesource) ? $request->imagesource : null;
             $user->password =  bcrypt($request->password);
             $user->tipo_clientes_id = 1;
-            $user->imagesource = ($request->imagesource) ? $request->imagesource : "/avatars/default.png";
+            $user->imagesource = ($request->imagesource) ? $request->imagesource : "/img/wimet_ic_avatar_black_big.svg";
             $user->isAdmin = 0;
             $user->save();
             $this->registerHubspot($request);
