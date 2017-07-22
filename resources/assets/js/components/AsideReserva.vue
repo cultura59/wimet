@@ -27,36 +27,15 @@
     			</div>
     			<div class="wt-space-block wt-m-top-2">
     				<div class="wt-center-column">
-    					<label for="fecha">Fecha</label>
-    					<input type="date" id="fecha" v-model="fecha" class="wt-dropdown" @change="checkfechas()"/>
-    				</div>
-    				<div class="wt-center-column">
     					<label for="inicio">Inicio</label>
-    					<select id="inicio" v-model="inicio" class="wt-dropdown-min">
-    						<option value="">Seleccionar</option>
-    						<option v-for="item in horas" v-bind:value="item.value">{{item.label}}</option>
-    					</select>
+    					<input type="text" id="inicio" class="wt-dropdown" placeholder="Check-In" />
     				</div>
     				<div class="wt-center-column">
     					<label for="fin">Fin</label>
-    					<select id="fin" v-model="fin" class="wt-dropdown-min" @change="addDate()">
-    						<option value="">Seleccionar</option>
-    						<option v-for="item in horas" v-bind:value="item.value">{{item.label}}</option>
-    					</select>
+                        <input type="text" id="fin" class="wt-dropdown" placeholder="Check-Out" />
     				</div>
                 </div>
-                <div v-if="showDatos">
-                    <div class="wt-m-top-2">
-                        <span class="agregar-fecha" @click="openModalFechas()">Agregar fecha</span>
-                        <ul>
-                            <li class="list-dates" v-for="item in totalFechas">
-                                <span>{{item.fecha}} desde {{item.inicio}}hs hasta {{item.fin}}hs</span>
-                                <span class="cursor-pointer text-danger" @click="removeDate(item)">
-                                    <i class="fa fa-trash" aria-hidden="true"></i>
-                                </span>
-                            </li>
-                        </ul>
-                    </div>
+                <div>
                     <div class="wt-m-top-2">
                         <strong>PRECIO</strong>
         				<div class="wt-space-block wt-m-top-1">
@@ -95,12 +74,10 @@
                         <span class="container-img__nombre">{{nombreAnfitrion}}</span>
                     </div>
                     <div class="wt-m-top-2">
-                        <strong>Fechas</strong>
-                        <ul class="wt-m-top-2">
-                            <li class="list-dates" v-for="item in totalFechas">
-                                <span>{{item.fecha}} desde {{item.inicio}}hs hasta {{item.fin}}hs</span>
-                            </li>
-                        </ul>
+                        <div class="wt-center-column">
+                            <strong>Fechas</strong>
+                            <span>{{inicio}} - {{fin}}</span>
+                        </div>
                     </div>
                     <div class="wt-m-top-2">
                         <strong>Precio</strong>
@@ -150,47 +127,11 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                 </div>                
             </div>
         </div>
-
-        <div v-if="modalFechas" class="modal-reserva">
-            <div class="modal-reserva__content-fechas">
-                <div class="wt-m-top-1 wt-m-bot-1">
-                    <div class="wt-space-block">
-                        <h3>Lista de fechas</h3>
-                        <span class="close-reserva" @click="closeModalFechas()">&times;</span>
-                    </div>
-                    <div class="wt-center-column wt-m-top-1">
-                        <label for="fecha">Fecha</label>
-                        <input type="date" id="fecha" v-model="fecha" class="wt-dropdown-fechas"/>
-                    </div>
-                    <div class="wt-center-column wt-m-top-1">
-                        <label for="inicio">Inicio</label>
-                        <select id="inicio" v-model="inicio" class="wt-dropdown-fechas">
-                            <option value="">Seleccionar</option>
-                            <option v-for="item in horas" v-bind:value="item.value">{{item.label}}</option>
-                        </select>
-                    </div>
-                    <div class="wt-center-column wt-m-top-1">
-                        <label for="fin">Fin</label>
-                        <select id="fin" v-model="fin" class="wt-dropdown-fechas" @change="addDate()">
-                            <option value="">Seleccionar</option>
-                            <option v-for="item in horas" v-bind:value="item.value">{{item.label}}</option>
-                        </select>
-                    </div>
-                    <ul class="wt-m-top-1 list-group">
-                        <li class="list-group-item justify-content-between" v-for="item in totalFechas">
-                            <span>{{item.fecha}} desde {{item.inicio}}hs hasta {{item.fin}}hs</span>
-                            <span class="cursor-pointer text-danger" @click="removeDate(item)">
-                                <i class="fa fa-trash" aria-hidden="true"></i>
-                            </span>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
     </div>
 </template>
 <script>
     import swal from 'sweetalert';
+    import moment from 'moment';
     export default {
     	props: [
             'espacioId',
@@ -205,82 +146,30 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                 authenticated: this.$auth.isAuthenticated(),
                 user: null,
         		messageError: '',
-                showDatos: false,
         		people: '',
         		category: this.categoryId,
         		categories: [],
                 espacio: '',
-        		horas: [
-        			{value: 8, label: '08:00AM'},
-        			{value: 8.5, label: '08:30AM'},
-        			{value: 9, label: '09:00AM'},
-        			{value: 9.5, label: '09:30AM'},
-        			{value: 10, label: '10:00AM'},
-        			{value: 10.5, label: '10:30AM'},
-        			{value: 11, label: '11:00AM'},
-        			{value: 11.5, label: '11:30AM'},
-        			{value: 12, label: '12:00PM'},
-        			{value: 12.5, label: '12:30PM'},
-        			{value: 13, label: '01:00PM'},
-        			{value: 13.5, label: '01:30PM'},
-        			{value: 14, label: '02:00PM'},
-        			{value: 14.5, label: '02:30PM'},
-        			{value: 15, label: '03:00PM'},
-        			{value: 15.5, label: '03:30PM'},
-        			{value: 16, label: '04:00PM'},
-        			{value: 16.5, label: '04:30PM'},
-        			{value: 17, label: '05:00PM'},
-        			{value: 17.5, label: '05:30PM'},
-        			{value: 18, label: '06:00PM'},
-        			{value: 18.5, label: '06:30PM'},
-        			{value: 19, label: '07:00PM'},
-        			{value: 19.5, label: '07:30PM'},
-        			{value: 20, label: '08:00PM'},
-        			{value: 20.5, label: '08:30PM'},
-        			{value: 21, label: '09:00PM'},
-        			{value: 21.5, label: '09:30PM'},
-        			{value: 22, label: '10:00PM'},
-        			{value: 22.5, label: '10:30PM'},
-        			{value: 23, label: '11:00PM'},
-        			{value: 23.5, label: '11:30PM'},
-        			{value: 24, label: '12:00AM'},
-        			{value: 24.5, label: '12:30AM'},
-        			{value: 1, label: '01:00AM'},
-        			{value: 1.5, label: '01:30AM'},
-        			{value: 2, label: '02:00AM'},
-        			{value: 2.5, label: '02:30AM'},
-        			{value: 3, label: '03:00AM'},
-        			{value: 3.5, label: '03:30AM'},
-        			{value: 4, label: '04:00AM'},
-        			{value: 4.5, label: '04:30AM'},
-        			{value: 5, label: '05:00AM'},
-        			{value: 5.5, label: '05:30AM'},
-        			{value: 6, label: '06:00AM'},
-        			{value: 6.5, label: '06:30AM'},
-        			{value: 7, label: '07:00AM'},
-        			{value: 7.5, label: '07:30AM'}
-        		],
-        		fecha: '',
         		inicio: '',
-        		fin: '',
-        		fee: '-',
+                fin: '',
         		totalHoras: 1,
-        		totalFechas: [],
+                fee: '-',
         		subTotal: this.price,
         		total: '-',
                 modalReserva: false,
                 modalFechas: false,
                 title: '',
                 mensaje: '',
-                btnSend: true,
-                dateStart: '',
-                dateEnd: ''
+                btnSend: true
         	}
         },
         mounted() {
             this.getUserAuthenticated();
             this.getCategories();
             this.calFee();
+        },
+        created() {
+            this.checkFechas();
         },
         methods: {
         	getCategories() {
@@ -298,60 +187,6 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
         	calFee() {
         		this.fee = (this.subTotal * 5)/100;
         	},
-        	addDate() {
-                if(this.isPar((this.fin - this.inicio)) < this.minhours) {
-                    this.messageError = `El minimo de horas es ${this.minhours}`;
-                    setInterval(() => {
-                        this.messageError = "";
-                    }, 5000);
-                    return;
-                }
-        		this.totalFechas.push({
-        			'fecha': this.fecha,
-        			'inicio': this.timeFormat(this.inicio),
-        			'fin': this.timeFormat(this.fin)
-        		});
-                if(this.dateStart == '') {
-                    this.dateStart = this.fecha;
-                }
-                this.dateEnd = this.fecha;
-        		this.totalHoras = this.totalHoras + this.isPar((this.fin - this.inicio));
-        		this.subTotal = (this.totalHoras * this.price);
-        		this.calFee();
-        		this.total = this.subTotal + this.fee;
-                this.showDatos = true;
-                this.fecha = '';
-                this.inicio = '';
-                this.fin = '';
-        	},
-            checkfechas() {
-                let today = new Date() ;
-                let dayselect = new Date(this.fecha);
-                if (dayselect < today) {
-                    this.messageError = `La fecha seleccionada no puede ser días pasados.`;
-                    setInterval(() => {
-                        this.messageError = "";
-                    }, 500);
-                    return;
-                }
-            },
-            timeFormat(time) {
-                let timeformat = time.toString().split('.');
-                let res = time % 2;
-                if(res > 0) {
-                    return `${timeformat[0]}:30`;
-                }else {
-                    return `${timeformat[0]}:00`;
-                }
-            },
-            isPar(time) {
-                let res = time % 1;
-                if(res != 0) {
-                    return time + 0.5;
-                }else {
-                    return time;
-                }
-            },
             closeMsg() {
                 this.messageError = '';
             },
@@ -376,10 +211,6 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                     });
                     return;
                 }else {
-                    if(this.totalHoras < this.minhours) {
-                        this.messageError = `El mínimo de horas es ${this.minhours}`;
-                        return;
-                    }
                     if(this.people == "") {
                         this.messageError = `Debe ingresar cantidad de invitados`;
                         return;
@@ -402,14 +233,10 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                 this.modalFechas = false;
             },
             sendReserva() {
-                if(this.totalFechas < 1) {
-                    this.messageError = `El mínimo de horas es ${this.minhours}`;
-                    return;
-                }
-                if(this.totalHoras < this.minhours) {
-                    this.messageError = `El mínimo de horas es ${this.minhours}`;
-                    return;
-                }
+                let inicio = moment(this.inicio);
+                let fin = moment(this.fin);
+                let totalHoras = this.checkDiffDates(fin, inicio);
+
                 this.btnSend = false;
                 let body = {
                     'title': this.title,
@@ -418,17 +245,17 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                     'category': this.category,
                     'invitados': this.people,
                     'price': this.price,
-                    'totalFechas': this.totalFechas,
                     'totalHoras': this.totalHoras,
+                    'reserva_desde': this.inicio,
+                    'reserva_hasta': this.fin,
                     'mensaje': this.mensaje,
                     'fee': this.fee,
-                    'reserva_desde': this.dateStart,
-                    'reserva_hasta': this.dateEnd,
                     'subTotal': this.subTotal,
                     'total': this.total
-
                 }
                 this.btnSend = true;
+                localStorage.removeItem("consultaInicio");
+                localStorage.removeItem("consultaFin");
                 this.$http.post(`api/sendreserva`, body)
                 .then(res => {
                     window.location.href = `/dashboard/user/${this.user.id}/mensajes`;
@@ -437,18 +264,41 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                     swal(err.message);
                 });
             },
-            removeDate(date) {
-                let aux = this.totalFechas.indexOf(date);
-                this.totalFechas.splice(aux, 1);
-                
-                if(this.totalFechas.length == 0) {
-                    this.showDatos = false;
-                }
-            },
             getUserAuthenticated() {
                 if(this.$auth.isAuthenticated()) {
                     this.user = this.$auth.getUser();
                 }
+            },
+            checkFechas() {
+                setInterval(function () {
+                    let inicio = 0;
+                    let fin = 0;
+                    if(localStorage.getItem("consultaInicio") !== null && localStorage.getItem("consultaFin") !== null)
+                    {
+                        inicio = moment(localStorage.getItem("consultaInicio"));
+                        fin = moment(localStorage.getItem("consultaFin"));
+                        
+                        let totalHoras = this.checkDiffDates(fin, inicio);
+
+                        this.inicio = inicio.format("dd MM yyyy - HH:ii P");
+                        this.fin = fin.format("dd MM yyyy - HH:ii P");
+
+                        document.getElementById("inicio"). value = this.inicio;
+                        document.getElementById("fin"). value = this.fin;
+
+                        if(totalHoras.minute() > 0) {
+                            totalHoras.add(30, 'minutes');
+                        }
+                        this.totalHoras = (this.checkDiffDates(fin, inicio)).hours();
+                        this.subTotal = totalHoras.hours() * this.price;
+                        this.total = this.subTotal + this.fee;
+                    }
+                }.bind(this), 2000); 
+            },
+            checkDiffDates(end, start) {
+                let fin = moment(end);
+                let inicio = moment(start);
+                return moment.utc(fin.diff(inicio));
             }
         }
     }

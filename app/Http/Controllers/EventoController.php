@@ -104,7 +104,7 @@ class EventoController extends Controller
                 'users.firstname',
                 'users.imagesource'
             )
-            ->join('users', 'eventos.user_id', '=', 'users.id')
+            ->join('users', 'eventos.cliente_id', '=', 'users.id')
             ->where('eventos.user_id', $id)
             ->orderBy('eventos.id', 'desc')
             ->get();

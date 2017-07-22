@@ -155,6 +155,7 @@ class HomeController extends Controller
         ];
         try {
             $evento = new Evento();
+            $evento->nombre_evento = $request->title;
             $evento->titulo_cliente = $request->title;
             $evento->estilo_espacios_id = $request->category;
             $evento->invitados = $request->invitados;

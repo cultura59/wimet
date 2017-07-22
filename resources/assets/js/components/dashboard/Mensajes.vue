@@ -93,12 +93,12 @@
 		<div class="mensajes-main">
 			<div class="mensajes-main__links">
 				<a href="#" 
-					:class="(showMensajesType == 2) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
-					@click="changeType($event, 2)">Como anfitrión
-				</a>
-				<a href="#" 
 					:class="(showMensajesType == 1) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
 					@click="changeType($event, 1)">Como organizador
+				</a>
+				<a href="#" 
+					:class="(showMensajesType == 2) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
+					@click="changeType($event, 2)">Como anfitrión
 				</a>
 			</div>
 			<div class="mensajes">
@@ -151,7 +151,7 @@
 				evento: '',
 				espacio: '',
 				eventoselect: '',
-				showMensajesType: 2
+				showMensajesType: 1
 			}
 		},
 		mounted() {

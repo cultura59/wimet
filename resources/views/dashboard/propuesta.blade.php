@@ -13,37 +13,37 @@
 		<div class="dashboard-body">
 			<h4>ID: propuesta: {{$propuesta->id}}</h4>
 
-			<h3 class="wt-m-top-5">Detalles del evento</h3>
+			<h3 class="wt-m-top-3">Detalles del evento</h3>
 			<div>
 				<div class="wt-space-block">
-					<label>Espacio:</label>
+					<label class="container-evento__label">Espacio:</label>
 					<span>{{$espacio->name}}.</span>
 				</div>
 				<div class="wt-space-block">
-					<label>Anfitrión:</label>
+					<label class="container-evento__label">Anfitrión:</label>
 					<span>{{$espacio->user->firstname}}.</span>
 				</div>
 				<div class="wt-space-block">
-					<label>Tipo actividad:</label>
+					<label class="container-evento__label">Tipo actividad:</label>
 					<span>{{$propuesta->catname}} ({{$propuesta->invitados}} invitados).</span>
 				</div>
 				<div class="wt-space-block">
-					<label>Fecha del evento:</label>
+					<label class="container-evento__label">Fecha del evento:</label>
 					<span>Desde {{$propuesta->reserva_desde}} hasta {{$propuesta->reserva_hasta}}.</span>
 				</div>
 			</div>
 			<h3>Detalles del presupuesto</h3>
 			<div>
 				<div class="wt-space-block">
-					<label>Vencimiento propuesta:</label>
+					<label class="container-evento__label">Vencimiento propuesta:</label>
 					<span>{{$propuesta->vencimiento_propuesta}}.</span>
 				</div>
 				<div class="wt-space-block">
-					<label>Depósito de seguridad:</label>
+					<label class="container-evento__label">Depósito de seguridad:</label>
 					<span>${{$propuesta->deposito}}.-</span>
 				</div>
 				<div class="wt-space-block">
-					<label>Política de cancelación:</label>
+					<label class="container-evento__label">Política de cancelación:</label>
 					<span>{{$propuesta->cancellationflexibility}}.</span>
 				</div>
 			</div>

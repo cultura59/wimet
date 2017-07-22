@@ -3,72 +3,82 @@
 		<div>
 			<h4 class="text-center dashboard-title">{{evento.titulo_cliente}}</h4>
 			<div class="navbar-chat">
-				<a href="#"@click="redirectUrl($event, '')" >RESUMEN</a>
-				<a href="#"@click="redirectUrl($event, '/chats')" >MENSAJES</a>
+				<a href="#" @click="redirectUrl($event, '')" >RESUMEN</a>
+				<a href="#" @click="redirectUrl($event, '/chats')" >MENSAJES</a>
 			</div>
 		</div>
-		<h4 class="dashboard-title">Detalles del evento</h4>
-		<div>
-			<div class="container-evento__box">
-				<div class="container-evento__box__item">
-					<label for="titulo">Título del evento</label>
-					<input class="container-evento__box__item__campo" type="text" id="titulo" placeholder="Nombre del evento" v-model="evento.nombre_evento">
+		<h4 class="dashboard-title">Detalles del evento <span class="leer-mas" @click="verDetalle()">+ más</span></h4>
+		<template v-if="showDetail">
+			<div class="row wt-m-top-2">
+				<div class="col-xs-12 col-md-6">
+					<div class="wt-center-column">
+						<label class="container-evento__label" for="titulo">Título del evento</label>
+						<span class="container-evento__span">{{evento.nombre_evento}}</span>
+					</div>
 				</div>
-				<div class="container-evento__box__item">
-					<label for="adquisicion">Fuente de adquisición</label>
-					<select class="container-evento__box__item__campo" id="adquisicion" v-model="evento.lead">
-						<option value="wimet">Wimet</option>
-					</select>
-				</div>
-			</div>
-			<div class="container-evento__box">
-				<div class="container-evento__box__item">
-					<label for="actividad">Tipo de actividad</label>
-					<select class="container-evento__box__item__campo" id="actividad" v-model="evento.estilo_espacios_id">
-						<option value="1">Reunión</option>
-					</select>
-				</div>
-				<div class="container-evento__box__item">
-					<label for="invitados">Invitados</label>
-					<input class="container-evento__box__item__campo" type="text" id="invitados" placeholder="Nombre del evento" v-model="evento.invitados">
+				<div class="col-xs-12 col-md-6">
+					<div class="wt-center-column">
+						<label class="container-evento__label" for="adquisicion">Fuente de adquisición</label>
+						<span class="container-evento__span">{{evento.lead}}</span>
+					</div>
 				</div>
 			</div>
-			<div class="container-evento__box">
-				<div class="container-evento__box__item">
-					<label for="comienza">Comienza</label>
-					<input class="container-evento__box__item__campo" type="date" id="comienza" v-model="evento.reserva_desde">
+			<div class="row wt-m-top-2">
+				<div class="col-xs-12 col-md-6">
+					<div class="wt-center-column">
+						<label class="container-evento__label" for="actividad">Tipo de actividad</label>
+						<span class="container-evento__span">{{categoria.name}}</span>
+					</div>
 				</div>
-				<div class="container-evento__box__item">
-					<label for="finaliza">Finaliza</label>
-					<input class="container-evento__box__item__campo" type="date" id="finaliza" v-model="evento.reserva_hasta">
+				<div class="col-xs-12 col-md-6">
+					<div class="wt-center-column">
+						<label class="container-evento__label" for="invitados">Invitados</label>
+						<span class="container-evento__span">{{evento.invitados}}</span>
+					</div>
 				</div>
 			</div>
-			<div class="container-evento__box">
-				<div class="container-evento__box__item">
-					<label for="estado">Estado</label>
-					<select class="container-evento__box__item__campo" id="estado" v-model="evento.estado">
-						<option value="consulta">Consulta</option>
-						<option value="seguimiento">Seguimiento</option>
-					</select>
+			<div class="row wt-m-top-2">
+				<div class="col-xs-12 col-md-6">
+					<div class="wt-center-column">
+						<label class="container-evento__label" for="comienza">Comienza</label>
+						<span class="container-evento__span">{{evento.reserva_desde}}</span>
+					</div>
 				</div>
-				<div class="container-evento__box__item">
-					<label for="presupuesto">Presupuesto estimado</label>
-					<input class="container-evento__box__item__campo" type="text" id="presupuesto" placeholder="$99.99" v-model="evento.sub_total">
+				<div class="col-xs-12 col-md-6">
+					<div class="wt-center-column">
+						<label class="container-evento__label" for="finaliza">Finaliza</label>
+						<span class="container-evento__span">{{evento.reserva_hasta}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="row wt-m-top-2">
+				<div class="col-xs-12 col-md-6">
+					<div class="wt-center-column">
+						<label class="container-evento__label" for="estado">Estado</label>
+						<span class="container-evento__span">{{evento.estado}}</span>
+					</div>
+				</div>
+				<div class="col-xs-12 col-md-6">
+					<div class="wt-center-column">
+						<label class="container-evento__label" for="presupuesto">Presupuesto estimado</label>
+						<span class="container-evento__span">{{evento.sub_total}}</span>
+					</div>
 				</div>
 			</div>
 			<div class="container-evento__box-flex">
-				<label for="descripcion">Descripción</label>
+				<label class="container-evento__label" for="descripcion">Descripción</label>
 				<textarea 
 					id="descripcion" 
 					class="container-evento__box-flex__campo" 
 					cols="30" 
 					rows="5" 
 					placeholder="Consulta sobre el espacio" 
-					v-model="evento.descripcion_consulta">
+					v-model="evento.descripcion_consulta"
+					disabled="disabled">
 				</textarea>
 			</div>
 			<div class="container-evento__box-flex">
-				<label for="nota">Notas</label>
+				<label class="container-evento__label" for="nota">Notas</label>
 				<textarea 
 					id="nota" 
 					class="container-evento__box-flex__campo" 
@@ -77,7 +87,9 @@
 					v-model="evento.notas">
 				</textarea>
 			</div>
-			<h3 class="wt-m-top-4">Propuestas enviadas</h3>
+		</template>
+		<div>
+			<h3 class="dashboard-title wt-m-top-4">Propuestas enviadas</h3>
 			<table class="table text-center">
 				<tr>
 					<th class="text-center">Número</th>
@@ -104,7 +116,9 @@
 			return {
 				user: {},
 				evento: {},
-				propuestas: ''
+				categoria: {},
+				propuestas: '',
+				showDetail: false
 			}
 		},
 		mounted() {
@@ -128,14 +142,27 @@
 				this.$http.get(`api/evento/${this.eventoId}`)
 				.then(res => {
 					this.evento = res.body;
+					this.getCategoria();
 					this.getPropuestas();
+				});
+			},
+			getCategoria() {
+				this.$http.get(`/api/categoria/${this.evento.estilo_espacios_id}`)
+				.then(res => {
+					this.categoria = res.body;
 				});
 			},
 			getPropuestas() {
 				this.$http.get(`api/propuesta/${this.eventoId}`)
 				.then(res => {
 					this.propuestas = res.body;
+					if(this.propuestas.length == 0) {
+						this.showDetail = true;
+					}
 				});
+			},
+			verDetalle() {
+				this.showDetail = !this.showDetail;
 			},
 			redirectUrl(e, url) {
 				e.preventDefault();
@@ -150,39 +177,34 @@
 </script>
 <style lang="sass">
 	.container-evento {
-		&__box {
-			display: flex;
-		    justify-content: space-between;
-		    margin: 1em 0;
-		    &__item {
-		    	display: flex;
-    			flex-direction: column;
-    			label {
-    				font-size: 12px;
-    			}
-    			&__campo {
-				    padding: 0.5em;
-				    width: 240px;
-				    height: 40px;
-				    background-color: #ffffff;
-				    border: solid 1px #979797;
-				    font-size: 14px;
-				}
-		    }
+		.leer-mas {
+			font-size: 12px;
+			color: #ea516d;
+			cursor: pointer;
+		}
+		&__label {
+			font-size: 14px;
+			font-weight: 500;
+			letter-spacing: -0.1px;
+			color: rgba(33, 33, 33, 0.87);
+		}
+		&__span {
+			font-family: Roboto;
+			font-size: 12px;
+			letter-spacing: -0.1px;
+			color: rgba(33, 33, 33, 0.87);
 		}
 		&__box-flex {
 			display: flex;
 			flex-direction: column;
 		    justify-content: space-between;
 		    margin: 1em 0;
-			label {
-				font-size: 12px;
-			}
 			&__campo {
 			    padding: 0.5em;
 			    background-color: #ffffff;
 			    border: solid 1px #979797;
-			    font-size: 14px;
+			    font-size: 12px;
+			    color: rgba(33, 33, 33, 0.87);
 			}
 		}
 		.btn-mensajes {

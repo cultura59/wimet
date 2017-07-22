@@ -10,17 +10,13 @@
 				<th>Estado</th>
 				<th colspan="2"></th>
 			</tr>
-			<tr class="table-eventos__item"v-for="propuesta in propuestas">
+			<tr class="table-eventos__item cursor-pointer"v-for="propuesta in propuestas" @click="redirectEvento($event, propuesta)">
 				<td>{{propuesta.id}}</td>
 				<td>{{propuesta.created_at}}</td>
 				<td>{{propuesta.reserva_desde}}</td>
 				<td>{{propuesta.name}}</td>
 				<td>${{propuesta.total}}.-</td>
-				<td>
-					<select v-model="propuesta.estado">
-						<option v-for="est in estados" :value="est.key">{{est.value}}</option>
-					</select>
-				</td>
+				<td>{{propuesta.estado}}</td>
 				<td class="table-eventos__item__icons">
 					<a href="#" @click="redirectEvento($event, propuesta)">
 						<i class="fa fa-calendar fa-lg" aria-hidden="true"></i>
@@ -36,13 +32,7 @@
 		data() {
 			return {
 				user: {},
-				propuestas: '',
-				estados: [
-					{key: 'enviada', value: 'enviada'},
-					{key: 'aprobada', value: 'aprobada'},
-					{key: 'rechazada', value: 'rechazada'},
-					{key: 'cancelada', value: 'cancelada'}
-				]
+				propuestas: ''
 			}
 		},
 		mounted() {

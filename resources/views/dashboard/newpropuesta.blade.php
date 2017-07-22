@@ -2,6 +2,40 @@
 
 @section('title', 'Nueva propuesta')
 
+@push('scripts')
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="/js/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+	    $('#comienza').datetimepicker({
+	        language:  'es',
+	        format: "dd MM yyyy - HH:ii P",
+	        showMeridian: 1,
+	        weekStart: 1,
+	        todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+	        showMeridian: 1,
+	        minuteStep: 30,
+	        showMeridian: 1
+	    });
+	    $('#finaliza').datetimepicker({
+	        language:  'es',
+	        format: "dd MM yyyy - HH:ii P",
+	        showMeridian: 1,
+	        weekStart: 1,
+	        todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+	        showMeridian: 1,
+	        minuteStep: 30
+	    });
+	</script>
+@endpush
 @section('content')
 
 	<aside-dashboard selected="reservas"></aside-dashboard>

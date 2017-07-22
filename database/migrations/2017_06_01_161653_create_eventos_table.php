@@ -22,8 +22,8 @@ class CreateEventosTable extends Migration
                 $table->integer('estilo_espacios_id')->unsigned();
                 $table->foreign('estilo_espacios_id')->references('id')->on('estilo_espacios');
                 $table->integer('invitados');
-                $table->timestamp('reserva_desde')->default(\Carbon\Carbon::now()->toDateTimeString());
-                $table->timestamp('reserva_hasta')->default(\Carbon\Carbon::now()->toDateTimeString());
+                $table->string('reserva_desde')->default(null);
+                $table->string('reserva_hasta')->default(null);
                 $table->integer('user_id')->unsigned();
                 $table->foreign('user_id')->references('id')->on('users');
                 $table->integer('cliente_id')->unsigned();

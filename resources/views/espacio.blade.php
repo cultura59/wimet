@@ -4,6 +4,41 @@
 
 @push('scripts')
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/js/bootstrap-datetimepicker.min.js" charset="UTF-8"></script>
+	<script type="text/javascript" src="/js/bootstrap-datetimepicker.es.js" charset="UTF-8"></script>
+	<script type="text/javascript">
+	    $('#inicio').datetimepicker({
+	        language:  'es',
+	        format: "dd MM yyyy - HH:ii P",
+	        showMeridian: 1,
+	        weekStart: 1,
+	        todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+	        showMeridian: 1,
+	        minuteStep: 30,
+	        showMeridian: 1
+	    }).on('changeDate', function(ev){
+			localStorage.setItem("consultaInicio", ev.date);
+		});
+	    $('#fin').datetimepicker({
+	        language:  'es',
+	        format: "dd MM yyyy - HH:ii P",
+	        showMeridian: 1,
+	        weekStart: 1,
+	        todayBtn:  1,
+			autoclose: 1,
+			todayHighlight: 1,
+			startView: 2,
+			forceParse: 0,
+	        showMeridian: 1,
+	        minuteStep: 30
+	    }).on('changeDate', function(ev){
+			localStorage.setItem("consultaFin", ev.date);
+		});
+	</script>
 	<script>
 		var map;
 		function initMap() {
@@ -26,18 +61,39 @@
 		}
 		
 		(function(){
-			$(window).scroll(function(){
-				if ($(this).scrollTop() > 560 && $(this).scrollTop() < 1870) {
-					$('#aside-reserva').removeClass('box-reserva');
-					$('#aside-reserva').addClass('box-reserva--active');
-				} else {
-					$('#aside-reserva').removeClass('box-reserva--active');
-					$('#aside-reserva').addClass('box-reserva');
-				}
-			});	
+			var isMobile = {
+			    Android: function() {
+			        return navigator.userAgent.match(/Android/i);
+			    },
+			    BlackBerry: function() {
+			        return navigator.userAgent.match(/BlackBerry/i);
+			    },
+			    iOS: function() {
+			        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+			    },
+			    Opera: function() {
+			        return navigator.userAgent.match(/Opera Mini/i);
+			    },
+			    Windows: function() {
+			        return navigator.userAgent.match(/IEMobile/i);
+			    },
+			    any: function() {
+			        return (isMobile.Android() || isMobile.BlackBerry() || isMobile.iOS() || isMobile.Opera() || isMobile.Windows());
+			    }
+			};
+			if(!isMobile.any()) {
+				$(window).scroll(function(){
+					if ($(this).scrollTop() > 560 && $(this).scrollTop() < 1870) {
+						$('#aside-reserva').removeClass('box-reserva');
+						$('#aside-reserva').addClass('box-reserva--active');
+					} else {
+						$('#aside-reserva').removeClass('box-reserva--active');
+						$('#aside-reserva').addClass('box-reserva');
+					}
+				});	
+			}
 		})();
 	</script>
-
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZUp-A4EcLNbPonxHhbySVWpP9kzZQQUw&callback=initMap" async defer></script>
 @endpush
 
@@ -111,7 +167,7 @@
 				<p class="box-amenities__title">Amenities</p>
 				<div class="row">
 					@foreach($espacio->servicios as $servicio)
-						<div class="col-md-4">
+						<div class="col-xs-6 col-md-4">
 							<div class="pull-left">
 								<i class="fa fa-check" aria-hidden="true"></i>
 								<span>{{$servicio->nombre}}</span>

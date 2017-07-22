@@ -156,6 +156,7 @@ class UserController extends Controller
                                 'eventos.estado'
                             )
                             ->where('eventos.user_id', $id)
+                            ->orderBy('eventos.id', 'DESC')
                             ->get();
 
             return $eventos;

@@ -1,44 +1,44 @@
 <template>
-	<div class="container-propuesta">
-		<ul v-if="evento.id" class="box-opciones">
-			<li><a :href="`/dashboard/user/${user.id}/evento/${evento.id}`">Detalles evento</a></li>
-			<li><a :href="`/dashboard/user/${user.id}/evento/${evento.id}/chats`">Mensajes evento</a></li>
-		</ul>
+	<div class="container-evento">
+		<template v-if="evento.id" class="box-opciones">
+			<div class="navbar-chat">
+				<a href="#" @click="redirectUrl($event, '')" >RESUMEN</a>
+				<a href="#" @click="redirectUrl($event, '/chats')" >MENSAJES</a>
+			</div>
+		</template>
 		<div>
 			<div class="container-propuesta__titles">
-				<h4 class="cursor-pointer" @click="chageShowSetalles()">1. Detalles del evento</h4>
-				<i class="fa fa-check" aria-hidden="true"></i>
+				<h4 class="dashboard-title" >1. Detalles del evento</h4>
 			</div>
-			<div v-if="showdetalles">
+			<template v-show="showdetalles">
 				<div class="wt-space-block wt-m-top-2 wt-m-bot-1">
 					<div class="wt-center-column">
-						<label for="actividad">Tipo de actividad</label>
+						<label for="actividad" class="container-evento__label">Tipo de actividad</label>
 						<select id="actividad" class="container-propuesta__inputs" v-model="evento.estilo_espacios_id">
 							<option value="1">Reunión</option>
 						</select>
 					</div>
 					<div class="wt-center-column">
-						<label for="invitados">Invitados</label>
+						<label for="invitados" class="container-evento__label">Invitados</label>
 						<input type="text" id="invitados" class="container-propuesta__inputs" placeholder="Nombre del evento" v-model="evento.invitados">
 					</div>
 				</div>
 				<div class="wt-space-block wt-m-bot-2">
 					<div class="wt-center-column">
-						<label for="comienza">Comienza</label>
-						<input type="date" id="comienza" class="container-propuesta__inputs" v-model="evento.reserva_desde">
+						<label for="comienza" class="container-evento__label">Comienza</label>
+						<input type="text" id="comienza" class="container-propuesta__inputs" placeholder="Check-In" :value="evento.reserva_desde">
 					</div>
 					<div class="wt-center-column">
-						<label for="finaliza">Finaliza</label>
-						<input type="date" id="finaliza" class="container-propuesta__inputs" v-model="evento.reserva_hasta">
+						<label for="finaliza" class="container-evento__label">Finaliza</label>
+						<input type="text" id="finaliza" class="container-propuesta__inputs" placeholder="Check-Out" :value="evento.reserva_hasta">
 					</div>
 				</div>
-				<button class="btn-propuesta">GUARDAR</button>
-			</div>
+			</template>
 		</div>
 		<div class="wt-m-top-4">
-			<h4>2. Detalles del presupuesto</h4>
+			<h4 class="dashboard-title">2. Detalles del presupuesto</h4>
 			<div class="content-box-price">
-				<label for="por-hora">Alquiler del espacio</label>
+				<label for="por-hora" class="container-evento__label">Alquiler del espacio</label>
 				<div class="content-box-price__left">
 					<input 
 						type="text" 
@@ -56,33 +56,33 @@
 			<!-- BEGIN Control si existe iva o no -->
 			<div v-if="iva">
 				<div class="wt-m-bot-2">
-					<label for="iva">IVA</label>
+					<label for="iva" class="container-evento__label">IVA</label>
 					<span class="propuesta-m-left-2">$ {{(setIva) ? setIva : '-'}}</span>
 				</div>
 				<div class="wt-m-bot-2">
-					<label for="subTotal">Sub Total</label>
+					<label for="subTotal" class="container-evento__label">Sub Total</label>
 					<span class="propuesta-m-left-1">$ {{(setSubTotal) ? setSubTotal : '-'}}</span>
 				</div>
 			</div>
 			<!-- END Control si existe iva o no -->
 			<div class="wt-m-bot-2">
-				<label for="invitados">Comisión (15%)</label>
+				<label for="invitados" class="container-evento__label">Comisión (15%)</label>
 				<span class="propuesta-m-left-0">$ {{(setComision) ? setComision : '-'}}</span>
 			</div>
 			<div class="wt-m-bot-2">
-				<label for="invitados">Tu pago</label>
+				<label for="invitados" class="container-evento__label">Tu pago</label>
 				<span class="propuesta-m-left-1">$ {{(setTupago) ? setTupago : '-'}}</span>
 			</div>
 			<div class="container-propuesta__detalles wt-m-top-2">
-				<label for="condiciones">Condiciones generales</label>
+				<label for="condiciones" class="container-evento__label">Condiciones generales</label>
 				<textarea id="condiciones" v-model="evento.condiciones"></textarea>
 			</div>
 			<div class="wt-m-top-2">
-				<label for="vencimiento">Vencimiento propuesta</label>
+				<label for="vencimiento" class="container-evento__label">Vencimiento propuesta</label>
 				<input type="date" id="vencimiento" class="container-propuesta__inputs propuesta-m-left-0" v-model="evento.vencimiento_propuesta">
 			</div>
 			<div class="content-box-deposito">
-				<label for="por-hora">Depósito de seguridad</label>
+				<label for="por-hora" class="container-evento__label">Depósito de seguridad</label>
 				<div class="content-box-deposito__left">
 					<input 
 						type="text" 
@@ -94,7 +94,7 @@
 				</div>
 			</div>
 			<div>
-				<label for="cancellationflexibility">Política de cancelación</label>
+				<label for="cancellationflexibility" class="container-evento__label">Política de cancelación</label>
 				<span>{{evento.cancellationflexibility}}</span>
 			</div>
 			<button @click="sendPropuesta()" class="btn-send-presupuesto">ENVIAR PRESUPUESTO</button>
@@ -193,7 +193,7 @@
             decrementDeposito() {
             	this.evento.deposito--;
             },
-            chageShowSetalles() {
+            chageShowDetalles() {
             	this.showdetalles = !this.showdetalles;
             },
             sendPropuesta() {
@@ -230,8 +230,8 @@
             		evento_id: this.evento.id,
             		estilo_espacios_id: this.evento.estilo_espacios_id,
             		invitados: this.evento.invitados,
-            		reserva_desde: this.evento.reserva_desde,
-            		reserva_hasta: this.evento.reserva_hasta,
+            		reserva_desde: document.getElementById("comienza").value,
+            		reserva_hasta: document.getElementById("finaliza").value,
             		user_id: this.evento.user_id,
             		cliente_id: this.evento.cliente_id,
             		espacio_id: this.evento.espacio_id,
@@ -249,7 +249,11 @@
             		cancellationflexibility: this.evento.cancellationflexibility
     			}
     			return data;
-            }
+            },
+			redirectUrl(e, url) {
+				e.preventDefault();
+				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.eventoId}${url}`;
+			}
 		}
 	}
 </script>
