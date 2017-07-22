@@ -1,30 +1,56 @@
 <template>
-	<div class="wt-center-block">
-
-		<div class="dropdown">
-            <button class="dropbtn-left" @click="showSelectUbicacion()">
-                <span>{{ubicacion}}</span>
-                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-            </button>
-            <div v-if="stUbicacion" class="dropdown__content-left">
-                <span class="contaniner-categorias" @click="selectUbucacion('CABA')">CABA</span>
-                <span class="contaniner-categorias" @click="selectUbucacion('Buenos Aires')">Buenos Aires</span>
-            </div>
-        </div>
-        <div class="dropdown">
-            <button class="dropbtn-right" @click="showSelectCategoria()">
-                <span>{{(categoria == '') ? 'Qué estás planificando?' : categoria.name}}</span>
-                <i class="fa fa-sort-desc" aria-hidden="true"></i>
-            </button>
-            <div v-if="stCategoria" class="dropdown__content">
-            	<div v-for="cat in categories" class="contaniner-categorias" @click="selectCategoria(cat)">
-                    <span>{{cat.name}}</span>
-                    <span class="subCategoria">{{showSubCategories(cat.sub_category)}}</span>
+    <div>
+    	<div class="wt-center-block" id="search-desktop">
+    		<div class="dropdown">
+                <button class="dropbtn-left" @click="showSelectUbicacion()">
+                    <span>{{ubicacion}}</span>
+                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </button>
+                <div v-if="stUbicacion" class="dropdown__content-left">
+                    <span class="contaniner-categorias" @click="selectUbucacion('CABA')">CABA</span>
+                    <span class="contaniner-categorias" @click="selectUbucacion('Buenos Aires')">Buenos Aires</span>
                 </div>
             </div>
+            <div class="dropdown">
+                <button class="dropbtn-right" @click="showSelectCategoria()">
+                    <span>{{(categoria == '') ? 'Qué estás planificando?' : categoria.name}}</span>
+                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </button>
+                <div v-if="stCategoria" class="dropdown__content">
+                	<div v-for="cat in categories" class="contaniner-categorias" @click="selectCategoria(cat)">
+                        <span>{{cat.name}}</span>
+                        <span class="subCategoria">{{showSubCategories(cat.sub_category)}}</span>
+                    </div>
+                </div>
+            </div>
+            <button class="wt-btn-primary" @click="searchEspacios()">BUSCAR</button>
+    	</div>
+        <div class="wt-center-column" id="search-mobile">
+            <div class="dropdown wt-m-bot-1">
+                <button class="dropbtn" @click="showSelectUbicacion()">
+                    <span>{{ubicacion}}</span>
+                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </button>
+                <div v-if="stUbicacion" class="dropdown__content">
+                    <span class="contaniner-categorias" @click="selectUbucacion('CABA')">CABA</span>
+                    <span class="contaniner-categorias" @click="selectUbucacion('Buenos Aires')">Buenos Aires</span>
+                </div>
+            </div>
+            <div class="dropdown wt-m-bot-1">
+                <button class="dropbtn" @click="showSelectCategoria()">
+                    <span>{{(categoria == '') ? 'Qué estás planificando?' : categoria.name}}</span>
+                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                </button>
+                <div v-if="stCategoria" class="dropdown__content">
+                    <div v-for="cat in categories" class="contaniner-categorias" @click="selectCategoria(cat)">
+                        <span>{{cat.name}}</span>
+                        <span class="subCategoria">{{showSubCategories(cat.sub_category)}}</span>
+                    </div>
+                </div>
+            </div>
+            <button class="btn-primary-pig-mobile" @click="searchEspacios()">BUSCAR</button>
         </div>
-        <button class="wt-btn-primary" @click="searchEspacios()">BUSCAR</button>
-	</div>
+    </div>
 </template>
 <script>
 	export default {
