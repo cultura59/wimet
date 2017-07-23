@@ -280,8 +280,8 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                         
                         let totalHoras = this.checkDiffDates(fin, inicio);
 
-                        this.inicio = inicio.format("dd MM yyyy - HH:ii P");
-                        this.fin = fin.format("dd MM yyyy - HH:ii P");
+                        this.inicio = inicio.format("DD/MM/YYYY HH:mm a");
+                        this.fin = fin.format("DD/MM/YYYY HH:mm a");
 
                         document.getElementById("inicio"). value = this.inicio;
                         document.getElementById("fin"). value = this.fin;

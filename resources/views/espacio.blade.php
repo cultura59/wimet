@@ -9,7 +9,7 @@
 	<script type="text/javascript">
 	    $('#inicio').datetimepicker({
 	        language:  'es',
-	        format: "dd MM yyyy - HH:ii P",
+	        format: "DD/MM/YYYY HH:mm a",
 	        showMeridian: 1,
 	        weekStart: 1,
 	        todayBtn:  1,
@@ -25,7 +25,7 @@
 		});
 	    $('#fin').datetimepicker({
 	        language:  'es',
-	        format: "dd MM yyyy - HH:ii P",
+	        format: "DD/MM/YYYY HH:mm a",
 	        showMeridian: 1,
 	        weekStart: 1,
 	        todayBtn:  1,

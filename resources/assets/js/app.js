@@ -16,6 +16,7 @@ Vue.component('confirm-reserva', require('./components/ConfirmReserva.vue'));
 Vue.component('espacio-search', require('./components/EspacioSearch.vue'));
 Vue.component('list-images', require('./components/ListImages.vue'));
 Vue.component('aside-reserva', require('./components/AsideReserva.vue'));
+Vue.component('consulta-reserva', require('./components/ConsultaReserva.vue'));
 Vue.component('aside-dashboard', require('./components/AsideDashboard.vue'));
 
 Vue.component('index-publica', require('./components/publica/indexPublica.vue'));
