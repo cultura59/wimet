@@ -35,7 +35,7 @@
             </nav>
             <!-- Title Header -->
             <section class="texto-header container">
-                <h2 class="text-header__title">RE-IMAGINA TU ENCUENTRO</h2>
+                <h2 class="text-header__title">RE-IMAGINA TU <span id="texto-categoria"></span></h2>
                 <h3 class="text-header__sub-title">Descubre y reserva un espacio creativo para tu próxima actividad</h3>
             </section>
             <!-- Footer Header -->

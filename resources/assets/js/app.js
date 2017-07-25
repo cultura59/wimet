@@ -66,3 +66,9 @@ Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
 const app = new Vue({
     el: '#home-espacio'
 });
+import Typed from 'typed.js';
+let typed = new Typed('#texto-categoria', {
+	strings: ["WORKSHOP", "COCKTAIL", "POP-UP", "ENCUENTRO"],
+	typeSpeed: 50,
+	startDelay: 0
+});

@@ -18,7 +18,7 @@
 				            <a href="#" @click="reloadPage(`/dashboard/user/${user.id}/misespacios`, $event)" style="color: #333;">Mi cuenta</a>
 				        </li>
 				        <li class="menue-list__item active">
-				            <a href="#" @click="reloadPage(`/publicar/primer-paso`, $event)" style="color: #333;">PUBLICAR TU ESPACIO</a>
+				            <a href="#" @click="reloadPage(`/publica`, $event)" style="color: #333;">PUBLICAR TU ESPACIO</a>
 				        </li>
 				        <li class="menue-list__last-item">
 				            <a href="#" @click="logout($event)" style="color: #333;">Salir</a>
