@@ -267,6 +267,15 @@
       text-align: justify;
       color: #212121;
     }
+    .title-m-top-7 {
+      opacity: 0.87;
+      font-family: NotoSerif;
+      font-style: italic;
+      letter-spacing: -0.2px;
+      text-align: justify;
+      color: #212121;
+      margin-top: 70px;
+    }
     .verified {
       margin-left: 16px;
       color: #ea516d;
@@ -439,4 +448,125 @@
   align-items: center;
   margin-top: 10px;
   font-size: 10px;
+}
+
+.box-reserva-mobile {
+  font-family: Poppins;
+  width: 100%;
+  height: auto;
+  background-color: #f8f8f8;
+  border: solid 1px #545454;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  &__header {
+    width: 100%;
+    height: 50px;
+    background-color: rgba(32, 32, 32, 0.87);
+    padding: 3px 16px;
+    input[type=date] {
+      padding: 1em;
+    }
+    &__desde {
+      margin: 0;
+      font-family: Roboto;
+      font-size: 12px;
+      letter-spacing: -0.1px;
+      text-align: justify;
+      color: #ffffff;
+    }
+    &__price {
+      display: flex;
+      align-items: baseline;
+      .price {
+        margin: 0;
+        font-size: 16px;
+        font-style: italic;
+        letter-spacing: -0.1px;
+        text-align: right;
+        color: #ffffff;
+      }
+      .minhours {
+        margin: 0 0 0 16px;
+        font-family: Roboto;
+        font-size: 12px;
+        letter-spacing: -0.1px;
+        text-align: justify;
+        color: #ffffff;
+        align-items: center;
+      }
+    }
+  }
+  &__body {
+    padding: 16px;
+    opacity: 0.87;
+    font-family: Roboto;
+    font-size: 12px;
+    letter-spacing: -0.1px;
+    text-align: justify;
+    color: #212121;
+    label {
+      opacity: 0.87;
+      font-family: Roboto;
+      font-size: 12px;
+      letter-spacing: -0.1px;
+      text-align: justify;
+      color: #212121;
+    }
+    .box-contenedor {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      &__chield {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+    .agregar-fecha {
+      width: 75px;
+      height: 14px;
+      opacity: 0.87;
+      font-family: Roboto;
+      font-size: 12px;
+      letter-spacing: -0.1px;
+      text-align: justify;
+      color: #ea516d;
+      cursor: pointer;
+    }
+    .list-dates {
+      padding: 0;
+      border: none;display: flex;
+      justify-content: space-between;
+    }
+    .messageError {
+      margin: 16px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 1em;
+      background: rgba(234, 81, 109, 0.87);
+      color: #fff;
+      border-radius: 2px;
+      border: 1px solid #ea516d;
+      p {
+        margin: 0;
+      }
+    }
+    .precio-estimado {
+      font-family: Noto serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: 16px;
+    }
+    .iva-no-incluido {
+      justify-content: flex-start;
+      display: flex;
+      align-items: center;
+      margin-top: 10px;
+      font-size: 10px;
+    }
+    &__textarea-lg {
+      padding: 5px;
+    }
+  }
 }

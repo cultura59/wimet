@@ -124,6 +124,38 @@ class HomeController extends Controller
         );
     }
 
+    public function consulta($categoriaId, $id)
+    {
+        $espacio = Espacio::where('id', $id)
+                    ->with(
+                        'user', 
+                        'prices', 
+                        'categorias', 
+                        'servicios',
+                        'estilosEspacio',
+                        'rules',
+                        'characteristics',
+                        'access',
+                        'disponibilidad'
+                    )
+                    ->first();
+        $categorias = categoria::orderBy('id')->pluck('name', 'id');
+
+        $price = DB::table('prices')
+                    ->select('id', 'price', 'minhours')
+                    ->where('espacio_id', $id)
+                    ->where('categoria_id', $categoriaId)
+                    ->first();
+
+        return view('consulta', array(
+                'espacio' => $espacio,
+                'price' => $price,
+                'categorias' => $categorias,
+                'categoryId' => $categoriaId
+            )
+        );
+    }
+
     public function reserva($id)
     {
         $espacio = Espacio::find($id);

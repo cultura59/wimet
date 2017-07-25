@@ -124,6 +124,7 @@
 				<span>{{$espacio->city}}, {{$espacio->state}}</span>
 				<span></span>
 			</div>
+			<button class="btn-primary-pig-mobile-lg"><a href="/consulta/{{$categoryId}}/espacio/{{$espacio->id}}">CONTACTAR AL ANFITRIÓN</a></button>
 			<div class="box-descripcion">
 				<div class="box-descripcion__titulo">
 					<span>Espacio</span>

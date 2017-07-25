@@ -22,6 +22,7 @@ Route::get('/logout', function() {
 Route::get('/home', 'HomeController@index');
 Route::get('/search', 'HomeController@search');
 Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio');
+Route::get('/consulta/{categoriaId}/espacio/{id}', 'HomeController@consulta');
 Route::get('/espacio/{id}/evento', 'HomeController@evento')->name('evento');
 Route::get('/callbackgoogle', 'HomeController@callbackGoogle');
 

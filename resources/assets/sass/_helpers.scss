@@ -50,7 +50,6 @@
 }
 
 .wt-dropdown {
-    width: 144px;
     height: 40px;
     background-color: #ffffff;
     border: solid 1px #979797;
@@ -62,6 +61,12 @@
     text-align: justify;
     color: #212121;
     padding-left: .5em;
+    @include desktop {
+        width: 144px;
+    }
+    @include mobile {
+        width: 100%;
+    }
 }
 
 .wt-dropdown-min {
@@ -155,6 +160,19 @@
         color: $wt-white !important;
         background-color: $wt-primary-pig;
         opacity: 87;
+    }
+}
+.btn-primary-pig-mobile-lg {
+    height: 60px;
+    background-color: #eb516d;
+    padding: 20px;
+    width: 100%;
+    border: none;
+    border-radius: 2px;
+    margin-top: 20px;
+    a, a:hover {
+        color: #fff;
+        text-decoration: none;
     }
 }
 
