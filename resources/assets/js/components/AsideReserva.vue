@@ -1,6 +1,6 @@
 <template>
     <div>
-    	<aside id="aside-reserva" class="box-reserva-mobile">
+    	<aside id="aside-reserva" class="box-reserva">
     		<header class="box-reserva__header">
     			<p class="box-reserva__header__desde">Desde</p>
     			<div class="box-reserva__header__price">
