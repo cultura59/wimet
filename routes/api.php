@@ -33,7 +33,7 @@ Route::get('images/{filename}', function ($filename)
 });
 
 Route::resource('espacio', 'EspacioController');
-Route::get('/getespacio/categoria/{categoriaId}/espacio/{id}', 'EspacioController@getEspacio');
+Route::get('/getespacio/categoria/{categoriaId}/espacio/{id}', 'EspacioController@getEspacio')->middleware('throttle:200,1');
 Route::resource('categoria', 'CategoriaController');
 Route::resource('tag', 'TagController');
 Route::resource('servicio', 'ServicioController');
