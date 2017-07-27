@@ -67,16 +67,16 @@ html, body {
 		.texto-header {
 			width: 100%;
 			height: auto;
-			margin-top: 18vh;
+			margin-top: 22vh;
 			.text-header__title {
-				text-align: center;
-				font-weight: 600;
-				margin: 20px;
-				padding: 0px;
-				font-family: 'Poppins', sans-serif;
+				width: 750px;
+			    font-weight: 600;
+			    padding: 0px;
+			    font-family: 'Poppins', sans-serif;
 			    font-size: 50px;
 			    text-shadow: 1px 0px;
 			    letter-spacing: 3px;
+			    margin: 0 auto;
 			}
 			.text-header__sub-title {
 				text-align: center;
@@ -94,6 +94,7 @@ html, body {
 			}
 		}
 		.header-footer {
+			margin-top: 20px;
 			background: rgba(0, 0, 0, 0.3);
 			width: 100%;
 			position: absolute;
@@ -240,6 +241,17 @@ html, body {
 		.texto-header {
 			width: 100%;
 			height: auto;
+    		margin-top: 5vh;
+			.text-header__sub-title {
+				font-weight: 400;
+				padding: 0px;
+			    font-family: 'Poppins', sans-serif;
+			    font-size: 14px;
+			    letter-spacing: 0.5px;
+			}
+		}
+		.header-footer {
+		    margin-top: 10px;
 		}
 		#search-desktop {
 			display: none;

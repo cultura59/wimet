@@ -9,6 +9,7 @@ require('./bootstrap');
 
 Vue.component('wimet-login', require('./components/WimetLogin.vue'));
 Vue.component('button-publica', require('./components/home/buttonPublica.vue'));
+Vue.component('title-home', require('./components/home/titleHome.vue'));
 Vue.component('search-home', require('./components/SearchHome.vue'));
 Vue.component('search-filter', require('./components/SearchFilter.vue'));
 Vue.component('header-espacio', require('./components/HeaderEspacio.vue'));
@@ -65,10 +66,4 @@ Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
 
 const app = new Vue({
     el: '#home-espacio'
-});
-import Typed from 'typed.js';
-let typed = new Typed('#texto-categoria', {
-	strings: ["WORKSHOP", "COCKTAIL", "POP-UP", "ENCUENTRO"],
-	typeSpeed: 50,
-	startDelay: 0
 });
