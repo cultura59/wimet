@@ -42,12 +42,13 @@
 		}
 		#countdown > .container-img > img {
 			width: 350px;
+			margin-top: 20px;
 		}
 		#countdown ul > li {
 		  margin: 0 -3px 0 0;
 		  padding: 0;
 		  display: inline-block;
-		  width: 25%;
+		  width: 24%;
 		  font-size: 72px;
 		  font-size: 6vw;
 		  text-align: center;
