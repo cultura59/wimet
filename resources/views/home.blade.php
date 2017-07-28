@@ -63,7 +63,7 @@
 <body>
 	<div id="countdown">
 		<div class="container-img">
-			<img src="/img/logo_wordmark.svg" alt="Wimet">
+			<img src="/img/wimet_footer_logo_light.svg" alt="Wimet">
 		</div>
 		<ul>
 			<li id="days">
