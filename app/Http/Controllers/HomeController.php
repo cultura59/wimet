@@ -36,6 +36,19 @@ class HomeController extends Controller
     }
 
     /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function newindex()
+    {
+        $categorias = categoria::all();
+        return view('_home', array(
+            'categorias' => $categorias
+        ));
+    }
+
+    /**
      * @fn search()
      * @brief Funcion que retorna la vista del resultados
      * @param Long categoria
