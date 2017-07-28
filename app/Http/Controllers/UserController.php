@@ -118,8 +118,7 @@ class UserController extends Controller
         $user->industry             = $request->industry;
         $user->personaldescription  = $request->personaldescription;
         $user->save();
-
-        $user = User::find($id);
+        $this->registerHubspot($user);
         return view('dashboard.datos', array(
             'user' => $user
         ));
@@ -196,23 +195,8 @@ class UserController extends Controller
                 )
             )
         );
-        $post_json = json_encode($arr);
-        $keyHuspot = "153f6544-3085-41e5-98d0-80a3d435d496";
-        
-        $endpoint = 'https://api.hubapi.com/contacts/v1/contact?hapikey=' . $keyHuspot;
-        $ch = @curl_init();
-        @curl_setopt($ch, CURLOPT_POST, true);
-        @curl_setopt($ch, CURLOPT_POSTFIELDS, $post_json);
-        @curl_setopt($ch, CURLOPT_URL, $endpoint);
-        @curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
-        @curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        $response = @curl_exec($ch);
-        $status_code = @curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $curl_errors = curl_error($ch);
-        @curl_close($ch);
-        echo "curl Errors: " . $curl_errors;
-        echo "\nStatus code: " . $status_code;
-        echo "\nResponse: " . $response;
+        $user = new User();
+        $user->createOrUpdateHubspot($data->email, $arr);
     }
 
 

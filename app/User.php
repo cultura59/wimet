@@ -73,4 +73,28 @@ class User extends Authenticatable
     {
         return $this->hasMany('App\Evento');
     }
+
+    /*
+    * @name createOrUpdateHubspot()
+    * @brief Funcion que crea o actualiza un usuario
+    * @return Boolean
+    */
+    public function createOrUpdateHubspot($email, $arr) {
+        $post_json = json_encode($arr);
+        $keyHuspot = "153f6544-3085-41e5-98d0-80a3d435d496";
+        
+        $endpoint = 'https://api.hubapi.com/contacts/v1/contact/createOrUpdate/email/'.$email.'/?hapikey=' . $keyHuspot;
+        $ch = @curl_init();
+        @curl_setopt($ch, CURLOPT_POST, true);
+        @curl_setopt($ch, CURLOPT_POSTFIELDS, $post_json);
+        @curl_setopt($ch, CURLOPT_URL, $endpoint);
+        @curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        @curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        @curl_close($ch);
+        if($status_code == 200 || $status_code == 204) {
+            return true;
+        }else {
+            return false;
+        }
+    }
 }

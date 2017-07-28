@@ -1,211 +1,180 @@
 <!DOCTYPE html>
-<html lang="{{ config('app.locale', 'es') }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
-        <meta name="google-site-verification" content="A6bEbj0anLR76S8r9y2oG_7UMuN6YUn4-hYL-ZZFLvs" />
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Wimet.co</title>
+	<meta content="width=device-width, initial-scale=1.0, user-scalable=no" name="viewport">
+	<style>
+		html {
+		  box-sizing: border-box;
+		}
 
-        <!-- CSRF Token -->
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+		*, *:before, *:after {
+		  box-sizing: inherit;
+		}
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
+		html,
+		body {
+		  background: url(https://res.cloudinary.com/wimet/image/upload/wimet_inspiring_venue_startup_gqsbqg.jpg);
+		  width: 100%;
+		  height: 100%;
+		  margin:0;
+		}
 
-        <!-- Styles -->
-        <link href="/css/app.css" rel="stylesheet">
+		#countdown {
+		  position: relative;
+		  top: 50%;
+		  transform: translateY(-50%);
+		  width: 50%;
+		  margin: 0 auto;
+		  padding: 15px 0 20px 0;
+		  color: #fff;
+		  border: 1px solid #fff;
+		  border-width: 1px 0;
+		  overflow: hidden;
+		  font-family: 'Arial Narrow', Arial, sans-serif;
+		  font-weight: bold;
+		}
+		#countdown > .container-img {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+		}
+		#countdown > .container-img > img {
+			width: 350px;
+		}
+		#countdown ul > li {
+		  margin: 0 -3px 0 0;
+		  padding: 0;
+		  display: inline-block;
+		  width: 25%;
+		  font-size: 72px;
+		  font-size: 6vw;
+		  text-align: center;
+		}
+		#countdown ul > li .label {
+		  color: #fff;
+		  font-size: 18px;
+		  font-size: 1.5vw;
+		  text-transform: uppercase;
+		}
+	</style>
+</head>
+<body>
+	<div id="countdown">
+		<div class="container-img">
+			<img src="/img/logo_wordmark.svg" alt="Wimet">
+		</div>
+		<ul>
+			<li id="days">
+				<div class="number">00</div>
+				<div class="label">DÍAS</div>
+			</li>
+			<li id="hours">
+				<div class="number">00</div>
+				<div class="label">HORAS</div>
+			</li>
+			<li id="minutes">
+				<div class="number">00</div>
+				<div class="label">MINUTOS</div>
+			</li>
+			<li id="seconds">
+				<div class="number">00</div>
+				<div class="label">SEGUNDOS</div>
+			</li>
+		</ul>
+	</div>
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+	<script>
+		/* --------------------------
+		 * GLOBAL VARS
+		 * -------------------------- */
+		// The date you want to count down to
+		var targetDate = new Date("2017/08/01 11:00:00");   
 
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+		// Other date related variables
+		var days;
+		var hrs;
+		var min;
+		var sec;
 
-        <!-- Scripts -->
-        <script>
-            window.Laravel = <?php echo json_encode([
-                'csrfToken' => csrf_token(),
-            ]); ?>
-        </script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
-        <script src="https://apis.google.com/js/api:client.js"></script>
-    </head>
-    <body>
-        <!-- Header Home -->
-        <header id="home-espacio" class="header-principal">
-            <!-- navbar -->
-            <nav class="header-navbar container-fluid">
-                <a href="/"><img src="{{url('img/wimet_logo_white.svg')}}" alt="Wimet" width="158"/></a>
-                <wimet-login type-login="link-hov" type-svg="white" userloged="link-user-white"></wimet-login>
-            </nav>
-            <!-- Title Header -->
-            <section class="texto-header container">
-                <h2 class="text-header__title">RE-IMAGINA TU <title-home></title-home></h2>
-                <h3 class="text-header__sub-title">Descubre y reserva un espacio creativo para tu próxima actividad</h3>
-            </section>
-            <!-- Footer Header -->
-            <section class="header-footer">         
-                <div class="container">
-                    <search-home></search-home>
-                </div> 
-            </section>
-        </header>
-        
-        <!-- main -->
-        <main>
-            <!-- Categories -->
-            <section class="categories">
-                <div class="container">
-                    <div class="content-wt">
-                        <h2 class="text-center">¿Qué tipo de actividad vas a organizar?</h2>
-                        <p class="text-center">Wimet te permite alquilar espacios únicos que inspiran reuniones, eventos, producciones y pop-ups.</p>
-                    </div>
-                    <!-- container images primary-->
-                    <div class="row">
-                        <div class="col-xs-12 col-sm-8">
-                            <div class="row">
-                                <div class="col-xs-12 wt-m-bot-3 img-hov">
-                                    <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-1000&price=100-10000')}}">
-                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-1.jpg')}}" alt="Cocktail" class="img-responsive img-home-principal">
-                                    </a>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 img-hov">
-                                    <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-1000&price=100-10000')}}">
-                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-3.jpg')}}" alt="Workshops" class="img-responsive img-home-principal">
-                                    </a>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 img-hov">
-                                    <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-1000&price=100-10000')}}">
-                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-4.jpg')}}" alt="Eventos" class="img-responsive img-home-principal">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-xs-12 col-sm-4 img-hov">
-                            <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-1000&price=100-10000')}}">
-                                <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-2.jpg')}}" alt="Producción" class="img-responsive img-home-principal">
-                            </a>
-                        </div>
-                    </div>
-                    <!-- container images second-->
-                    <div class="row wt-m-top-3">
-                        <div class="col-xs-12 col-sm-4 img-hov">
-                            <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-1000&price=100-10000')}}">
-                                <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-5.jpg')}}" alt="Pop-ups" class="img-responsive img-home-principal">
-                            </a>
-                        </div>
-                        <div class="col-xs-12 col-sm-8">
-                            <div class="row">
-                                <div class="col-xs-12 wt-m-bot-3 img-hov">
-                                    <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-1000&price=100-10000')}}">
-                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-6.jpg')}}" alt="Pop-ups Dinner" class="img-responsive img-home-principal">
-                                    </a>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 img-hov">
-                                    <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-1000&price=100-10000')}}">
-                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-7.jpg')}}" alt="Curso" class="img-responsive img-home-principal">
-                                    </a>
-                                </div>
-                                <div class="col-xs-12 col-sm-6 img-hov">
-                                    <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-1000&price=100-10000')}}">
-                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-8.jpg')}}" alt="Exposicióm" class="img-responsive img-home-principal">
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+		/* --------------------------
+		 * ON DOCUMENT LOAD
+		 * -------------------------- */
+		$(function() {
+		   // Calculate time until launch date
+		   timeToLaunch();
+		  // Transition the current countdown from 0 
+		  numberTransition('#days .number', days, 1000, 'easeOutQuad');
+		  numberTransition('#hours .number', hrs, 1000, 'easeOutQuad');
+		  numberTransition('#minutes .number', min, 1000, 'easeOutQuad');
+		  numberTransition('#seconds .number', sec, 1000, 'easeOutQuad');
+		  // Begin Countdown
+		  setTimeout(countDownTimer,1001);
+		});
 
-                </div>
-            </section>
+		/* --------------------------
+		 * FIGURE OUT THE AMOUNT OF 
+		   TIME LEFT BEFORE LAUNCH
+		 * -------------------------- */
+		function timeToLaunch(){
+		    // Get the current date
+		    var currentDate = new Date();
 
-            <!-- Comunity -->
-            <section class="how-work wt-m-top-5 wt-m-bot-1">
-                <div class="container">
-                    <h2 class="text-center dark-grey">Conoce nuestra comunidad</h2>
-                    <h3 class="text-center dark-grey">Wimet te permite alquilar espacios únicos que inspiran</h3>
+		    // Find the difference between dates
+		    var diff = (currentDate - targetDate)/1000;
+		    var diff = Math.abs(Math.floor(diff));  
 
-                    <div class="row">
-                        <div class="col-sm-4 padder-comments">
-                            <img class="center-block brd-round" src="https://res.cloudinary.com/wimet/image/upload/q_60/testi-1.jpg" alt="benefits of product" width="126" height="126">
-                            <p class="wt-m-top-3">
-                                "Fue un placer trabajar con el equipo de Wimet. Tuvimos una muy buena experiencia, pudimos organizar nuestra fiesta de fin de año en un lugar diferente y de manera muy rápida. El evento estuvo genial y recibimos felicitaciones de nuestros invitados, especialmente por el lugar."
-                            </p>
-                            <p class="signature">Matias Doublier | COO - Increase</p>
-                        </div>
-                        <div class="col-sm-4 padder-comments">
-                            <img class="center-block brd-round" src="https://res.cloudinary.com/wimet/image/upload/q_60/testi2.jpg" alt="benefits of product" width="126" height="126">
-                            <p class="wt-m-top-3">
-                                "We were early adopters and first clients of Wimet's platform. From the moment we learned about their model, we knew they had great potential to scale the business and create a sustainable company. Moving forward, we will continue to use Wimet's platform for any future events we host."
-                            </p>
-                            <p class="signature">Lisa Besserman | CEO - Startup Buenos Aires</p>
-                        </div>
-                        <div class="col-sm-4 padder-comments">
-                            <img class="center-block brd-round" src="https://res.cloudinary.com/wimet/image/upload/q_60/testi1.jpg" alt="benefits of product" width="126" height="126">
-                            <p class="wt-m-top-3">
-                                "Recurrimos a Wimet porque estábamos a 3 días de una capacitación y nos habíamos quedado sin lugar. Los contactamos, recibimos distintas propuestas acordes a la necesidad y al budget, elegimos y cerramos el evento en menos de 24hs. Fue un plus enorme terminar haciendo el evento en una muy linda galería de arte. No tengo dudas de que va a ser nuestra primera opción para organizar los eventos que vengan."
-                            </p>
-                            <p class="signature">Lucía Armendáriz | Business Developer - ‎AB InBev</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
+		    // Check number of days until target
+		    days = Math.floor(diff/(24*60*60));
+		    sec = diff - days * 24*60*60;
 
-            <!-- Sponsors -->
-            <section class="container wt-m-bot-1">
-                <div class="row">
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w1.png" alt="Increase"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w2.png" alt="startup buenos aires"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w3.png" alt="google"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w4.png" alt="visa"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w5.png" alt="a3"></div>
-                    <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w6.png" alt="startup chile"></div>
-                </div>
-            </section>
-        </main>
+		    // Check number of hours until target
+		    hrs = Math.floor(sec/(60*60));
+		    sec = sec - hrs * 60*60;
 
-        <!-- footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                   <div class="col-xs-12 col-sm-4">
-                    <img class="img-responsive" src="{{url('img/wimet_footer_logo_light.svg')}}" alt="Wimet" width="163">
-                    <p class="main-footer">
-                        Wimet es un marketplace para eventos dedicado a vincular propietarios de espacios creativos con organizadores que buscan brindar una experiencia memorable.
-                    </p>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Empresa</p>
-                        <ul>
-                            <li><a href="{{url('/nosotros')}}">Nosotros</a></li>
-                            <li><a href="{{url('/nosotros')}}">Cómo funciona</a></li>
-                            <li><a href="{{url('/nosotros')}}">Ayuda</a></li>
-                            <li><a href="{{url('/nosotros')}}">Términos y condiciones</a></li>
-                            <li><a href="{{url('/nosotros')}}">Políticas de privacidad</a></li>
-                        </ul>
-                    </div>
-                     <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Actividades</p>
-                        <ul>
-                            <li><a href="#">Reuniones</a></li>
-                            <li><a href="#">Eventos</a></li>
-                            <li><a href="#">Producciones</a></li>
-                            <li><a href="#">Pop-Ups</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Contacto</p>
-                        <ul>
-                            <li><a href="#">hola@wimet.co</a></li>
-                            <li><a href="#">El Salvador 5218, CABA</a></li>
-                            <li><a href="#">Buenos Aires, Argentina</a></li>
-                        </ul>
-                        <div class="wt-m-top-3 follow">
-                            <img src="{{url('img/wimet_icon_instagram.svg')}}" alt="Wimet" class="img-responsive">
-                            <img src="{{url('img/wimet_icon_facebook.svg')}}" alt="Wimet" class="img-responsive">
-                            <img src="{{url('img/wimet_icon_linkedin.svg')}}" alt="Wimet" class="img-responsive">
-                            <img src="{{url('img/wimet_icon_twitter.svg')}}" alt="Wimet" class="img-responsive">
-                        </div>
-                    
-                    </div>
-                </div>
-            </div>
-        </footer>
+		    // Check number of minutes until target
+		    min = Math.floor(sec/(60));
+		    sec = sec - min * 60;
+		}
 
-        <script src="{{url('/js/app.js')}}"></script>
-    </body>
+		/* --------------------------
+		 * DISPLAY THE CURRENT 
+		   COUNT TO LAUNCH
+		 * -------------------------- */
+		function countDownTimer(){ 
+		    
+		    // Figure out the time to launch
+		    timeToLaunch();
+		    
+		    // Write to countdown component
+		    $( "#days .number" ).text(days);
+		    $( "#hours .number" ).text(hrs);
+		    $( "#minutes .number" ).text(min);
+		    $( "#seconds .number" ).text(sec);
+		    
+		    // Repeat the check every second
+		    setTimeout(countDownTimer,1000);
+		}
+
+		/* --------------------------
+		 * TRANSITION NUMBERS FROM 0
+		   TO CURRENT TIME UNTIL LAUNCH
+		 * -------------------------- */
+		function numberTransition(id, endPoint, transitionDuration, transitionEase){
+		  // Transition numbers from 0 to the final number
+		  $({numberCount: $(id).text()}).animate({numberCount: endPoint}, {
+		      duration: transitionDuration,
+		      easing:transitionEase,
+		      step: function() {
+		        $(id).text(Math.floor(this.numberCount));
+		      },
+		      complete: function() {
+		        $(id).text(this.numberCount);
+		      }
+		   }); 
+		};
+	</script>
+</body>
 </html>

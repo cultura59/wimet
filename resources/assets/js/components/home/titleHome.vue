@@ -3,14 +3,15 @@
 		<span v-if="(title == 1)" class="elementToFadeInAndOut">WORKSHOP</span>
 		<span v-if="(title == 2)" class="elementToFadeInAndOut">COCKTAIL</span>
 		<span v-if="(title == 3)" class="elementToFadeInAndOut">POP-UP</span>
-		<span v-if="(title == 4)" class="elementToFadeInAndOut">ENCUENTRO</span>
+		<span v-if="(title == 4)" class="elementToFadeIn">ENCUENTRO</span>
 	</span>
 </template>
 <script>
 	export default {
 		data() {
 			return {
-				title: 1
+				title: 0,
+				eventInterval: null
 			}
 		},
 		mounted() {
@@ -19,14 +20,13 @@
 		methods: {
 			timerTitle() {
 				var self = this;
-				setInterval(()=> {
-					console.log("Entro aca");
-					self.changeTitle();
-				}, 3000);
+				this.eventInterval = setInterval(()=> {
+										self.changeTitle();
+									}, 3000);
 			},				
 			changeTitle() {
-				if(this.title >= 4) {
-					this.title = 1;
+				if(this.title == 4) {
+					clearInterval(this.eventInterval);
 				}else {
 					this.title++;
 				}
@@ -40,6 +40,10 @@
 	    -webkit-animation: fadeinout 3s linear forwards;
 	    animation: fadeinout 3s linear forwards;
 	}
+	
+	.elementToFadeIn {
+		animation: fadein 3s linear forwards;
+	}
 
 	@-webkit-keyframes fadeinout {
 		0%,100% { opacity: 0; }
@@ -49,5 +53,15 @@
 	@keyframes fadeinout {
 		0%,100% { opacity: 0; }
 		50% { opacity: 1; }
+	}
+
+	@-webkit-keyframes fadein {
+		0% { opacity: 0; }
+		100% { opacity: 1; }
+	}
+
+	@keyframes fadein {
+		0% { opacity: 0; }
+		100% { opacity: 1; }
 	}
 </style>
