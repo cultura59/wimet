@@ -8,7 +8,7 @@
                 </button>
                 <div v-if="stUbicacion" class="dropdown__content-left">
                     <span class="contaniner-categorias" @click="selectUbucacion('CABA')">CABA</span>
-                    <span class="contaniner-categorias" @click="selectUbucacion('Buenos Aires')">Buenos Aires</span>
+                    <span class="contaniner-categorias" @click="selectUbucacion('Buenos Aires')">Gran Buenos Aires</span>
                 </div>
             </div>
             <div class="dropdown">

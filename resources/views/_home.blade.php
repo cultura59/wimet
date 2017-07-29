@@ -125,10 +125,8 @@
             <!-- Comunity -->
             <section class="how-work wt-m-top-5 wt-m-bot-1">
                 <div class="container">
-                    <h2 class="text-center dark-grey">Conoce nuestra comunidad</h2>
-                    <h3 class="text-center dark-grey">Wimet te permite alquilar espacios únicos que inspiran</h3>
-
-                    <div class="row">
+                    <h2 class="text-center dark-grey">Conoce a nuestra comunidad</h2>
+                    <div class="row wt-m-top-5 ">
                         <div class="col-sm-4 padder-comments">
                             <img class="center-block brd-round" src="https://res.cloudinary.com/wimet/image/upload/q_60/testi-1.jpg" alt="benefits of product" width="126" height="126">
                             <p class="wt-m-top-3">
@@ -146,7 +144,7 @@
                         <div class="col-sm-4 padder-comments">
                             <img class="center-block brd-round" src="https://res.cloudinary.com/wimet/image/upload/q_60/testi1.jpg" alt="benefits of product" width="126" height="126">
                             <p class="wt-m-top-3">
-                                "Recurrimos a Wimet porque estábamos a 3 días de una capacitación y nos habíamos quedado sin lugar. Los contactamos, recibimos distintas propuestas acordes a la necesidad y al budget, elegimos y cerramos el evento en menos de 24hs. Fue un plus enorme terminar haciendo el evento en una muy linda galería de arte. No tengo dudas de que va a ser nuestra primera opción para organizar los eventos que vengan."
+                                "Recurrimos a Wimet porque estábamos a 3 días de una capacitación y nos habíamos quedado sin lugar. Los contactamos, recibimos distintas propuestas acordes a la necesidad y al budget, elegimos y cerramos el evento en menos de 24hs. No tengo dudas de que va a ser nuestra primera opción para organizar los eventos que vengan."
                             </p>
                             <p class="signature">Lucía Armendáriz | Business Developer - ‎AB InBev</p>
                         </div>
@@ -190,10 +188,18 @@
                      <div class="col-xs-12 col-sm-2">
                         <p class="col-footer">Actividades</p>
                         <ul>
-                            <li><a href="#">Reuniones</a></li>
-                            <li><a href="#">Eventos</a></li>
-                            <li><a href="#">Producciones</a></li>
-                            <li><a href="#">Pop-Ups</a></li>
+                            <li>
+                                <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-1000&price=100-10000')}}">Reuniones</a>
+                            </li>
+                            <li>
+                                <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-1000&price=100-10000')}}">Eventos</a>
+                            </li>
+                            <li>
+                                <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-1000&price=100-10000')}}">Producciones</a>
+                            </li>
+                            <li>
+                                <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-1000&price=100-10000')}}">Pop-Ups</a>
+                            </li>
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-2">
@@ -204,10 +210,18 @@
                             <li><a href="#">Buenos Aires, Argentina</a></li>
                         </ul>
                         <div class="wt-m-top-3 follow">
-                            <img src="{{url('img/wimet_icon_instagram.svg')}}" alt="Wimet" class="img-responsive">
-                            <img src="{{url('img/wimet_icon_facebook.svg')}}" alt="Wimet" class="img-responsive">
-                            <img src="{{url('img/wimet_icon_linkedin.svg')}}" alt="Wimet" class="img-responsive">
-                            <img src="{{url('img/wimet_icon_twitter.svg')}}" alt="Wimet" class="img-responsive">
+                            <a href="https://www.facebook.com/wimet.co/">
+                                <img src="{{url('img/wimet_icon_facebook.svg')}}" alt="Wimet" class="img-responsive">
+                            </a>
+                            <a href="https://www.instagram.com/wimet.co/">
+                                <img src="{{url('img/wimet_icon_instagram.svg')}}" alt="Wimet" class="img-responsive">
+                            </a>
+                            <a href="https://www.linkedin.com/company/wimet">
+                                <img src="{{url('img/wimet_icon_linkedin.svg')}}" alt="Wimet" class="img-responsive">
+                            </a>
+                            <a href="https://twitter.com/wimetco">
+                                <img src="{{url('img/wimet_icon_twitter.svg')}}" alt="Wimet" class="img-responsive">
+                            </a>
                         </div>
                     
                     </div>
