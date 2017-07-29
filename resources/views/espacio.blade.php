@@ -145,6 +145,7 @@
 					<div class="wt-center-column">
 						<span class="price"><b><i class="fa fa-clock-o" aria-hidden="true"></i></b> ${{$price->price}}.-</span>
 						<span class="min-hours">mínimo {{$price->minhours}} horas</span>
+						<span class="min-hours">NOTA: El precio se encuentra sujeto a modificaciones en función de la temporada/ época del año.</span>
 					</div>
 				</div>
 			</div>
@@ -242,7 +243,7 @@
 	</div>
 
     <!-- footer -->
-    <footer id="footer">
+    <footer>
         <div class="container">
             <div class="row">
                <div class="col-xs-12 col-sm-4">
@@ -264,10 +265,18 @@
                  <div class="col-xs-12 col-sm-2">
                     <p class="col-footer">Actividades</p>
                     <ul>
-                        <li><a href="#">Reuniones</a></li>
-                        <li><a href="#">Eventos</a></li>
-                        <li><a href="#">Producciones</a></li>
-                        <li><a href="#">Pop-Ups</a></li>
+                        <li>
+                            <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-1000&price=100-10000')}}">Reuniones</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-1000&price=100-10000')}}">Eventos</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-1000&price=100-10000')}}">Producciones</a>
+                        </li>
+                        <li>
+                            <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-1000&price=100-10000')}}">Pop-Ups</a>
+                        </li>
                     </ul>
                 </div>
                 <div class="col-xs-12 col-sm-2">
@@ -278,10 +287,18 @@
                         <li><a href="#">Buenos Aires, Argentina</a></li>
                     </ul>
                     <div class="wt-m-top-3 follow">
-                        <img src="{{url('img/wimet_icon_instagram.svg')}}" alt="Wimet" class="img-responsive">
-                        <img src="{{url('img/wimet_icon_facebook.svg')}}" alt="Wimet" class="img-responsive">
-                        <img src="{{url('img/wimet_icon_linkedin.svg')}}" alt="Wimet" class="img-responsive">
-                        <img src="{{url('img/wimet_icon_twitter.svg')}}" alt="Wimet" class="img-responsive">
+                        <a href="https://www.facebook.com/wimet.co/">
+                            <img src="{{url('img/wimet_icon_facebook.svg')}}" alt="Wimet" class="img-responsive">
+                        </a>
+                        <a href="https://www.instagram.com/wimet.co/">
+                            <img src="{{url('img/wimet_icon_instagram.svg')}}" alt="Wimet" class="img-responsive">
+                        </a>
+                        <a href="https://www.linkedin.com/company/wimet">
+                            <img src="{{url('img/wimet_icon_linkedin.svg')}}" alt="Wimet" class="img-responsive">
+                        </a>
+                        <a href="https://twitter.com/wimetco">
+                            <img src="{{url('img/wimet_icon_twitter.svg')}}" alt="Wimet" class="img-responsive">
+                        </a>
                     </div>
                 
                 </div>
