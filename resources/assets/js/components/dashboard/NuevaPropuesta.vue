@@ -66,7 +66,8 @@
 			</div>
 			<!-- END Control si existe iva o no -->
 			<div class="wt-m-bot-2">
-				<label for="invitados" class="container-evento__label">Comisión (15%)</label>
+				<label v-if="iva" for="invitados" class="container-evento__label">Comisión (15%)</label>
+				<label v-if="!iva" for="invitados" class="container-evento__label">Comisión (15% + IVA)</label>
 				<span class="propuesta-m-left-0">$ {{(setComision) ? setComision : '-'}}</span>
 			</div>
 			<div class="wt-m-bot-2">
@@ -122,9 +123,9 @@
         },
         computed: {
         	setIva() {
-        		this.evento.iva = (parseInt(this.evento.sub_total) * 21) / 100;
+        		this.evento.iva = (parseFloat(this.evento.sub_total) * 21) / 100;
         		if(this.iva) {
-            		this.evento.montoConIva = this.evento.iva + this.evento.sub_total;
+            		this.evento.montoConIva = parseFloat(this.evento.iva) + parseFloat(this.evento.sub_total);
             		this.evento.fee = (this.evento.montoConIva * 21) / 100;
             		this.evento.total = this.evento.montoConIva + this.evento.fee;
             	}else {
@@ -135,25 +136,20 @@
             	return this.evento.iva;
         	},
         	setSubTotal() {
-        		return parseInt(this.evento.sub_total + this.evento.iva);
+        		return parseFloat(this.evento.sub_total) + parseFloat(this.evento.iva);
         	},
         	setComision() {
         		let res;
-        		if(this.iva){
-        			this.evento.comision = ((parseInt(this.evento.sub_total) + this.evento.iva) * 15) / 100;
-	            	res = this.evento.comision;
-        		}else {
-	            	this.evento.comision = (parseInt(this.evento.sub_total) * 15) / 100;
-	            	res = this.evento.comision;
-	            }
+    			this.evento.comision = ((parseFloat(this.evento.sub_total) + this.evento.iva) * 15) / 100;
+            	res = parseFloat(this.evento.comision);
 	            return parseFloat(Math.round(res * 100) / 100).toFixed(2);
             },
             setTupago() {
             	if(this.iva){
-        			this.evento.tu_pago = (parseInt(this.evento.sub_total) + this.evento.iva) - this.evento.comision;
+        			this.evento.tu_pago = (parseFloat(this.evento.sub_total) + this.evento.iva) - this.evento.comision;
 	            	return this.evento.tu_pago;
         		}else {
-	            	this.evento.tu_pago = parseInt(this.evento.sub_total) - this.evento.comision;
+	            	this.evento.tu_pago = parseFloat(this.evento.sub_total) - this.evento.comision;
 	            	return this.evento.tu_pago;
 	            }
             }
@@ -218,7 +214,7 @@
             },
             calcularIvaYFee() {
             	if(this.iva) {
-            		this.evento.montoConIva = this.evento.iva + this.evento.sub_total;
+            		this.evento.montoConIva = parseFloat(this.evento.iva) + parseFloat(this.evento.sub_total);
             		this.evento.fee = (this.evento.montoConIva * 21) / 100;
             		this.evento.total = this.evento.montoConIva + this.evento.fee;
             	}else {

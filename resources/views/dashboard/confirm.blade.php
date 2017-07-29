@@ -12,7 +12,7 @@
 		</div>
 		<div class="dashboard-body">
 			<!-- Para hacer las pruebas en produccion reemplazar "sandbox_init_point" por "init_point" -->
-			<dasboard-confirmar url="{{ $preference['response']['sandbox_init_point'] }}"></dasboard-confirmar>
+			<dasboard-confirmar url="{{ $preference['response']['init_point'] }}"></dasboard-confirmar>
 		</div>
 	</section>
 
