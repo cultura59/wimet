@@ -111,7 +111,6 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
         mounted() {
             this.getUserAuthenticated();
             this.getCategories();
-            this.calFee();
         },
         created() {
             this.checkFechas();
@@ -129,9 +128,6 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
             changeCategory() {
                 window.location = `/categoria/${this.category}/espacio/${this.espacioId}`;
             },
-        	calFee() {
-        		this.fee = (this.subTotal * 5)/100;
-        	},
             closeMsg() {
                 this.messageError = '';
             },
@@ -208,6 +204,7 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                         }
                         this.totalHoras = (this.checkDiffDates(fin, inicio)).hours();
                         this.subTotal = totalHoras.hours() * this.price;
+                        this.fee = (this.subTotal * 5)/100;
                         this.total = this.subTotal + this.fee;
                     }
                 }.bind(this), 4000); 
