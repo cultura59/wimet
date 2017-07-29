@@ -22,6 +22,8 @@
 	        showMeridian: 1
 	    }).on('changeDate', function(ev){
 			localStorage.setItem("consultaInicio", ev.date);
+			$('#fin').val('');
+			localStorage.removeItem("consultaFin", ev.date);
 		});
 	    $('#fin').datetimepicker({
 	        language:  'es',
