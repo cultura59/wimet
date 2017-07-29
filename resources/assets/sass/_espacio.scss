@@ -24,9 +24,9 @@
       height: 36px;
       opacity: 0.87;
       border-radius: 2px;
-      background-color: #ffffff;
-      border: 1px solid #dadada;
-      font-size: 13px;
+      background-color: $wt-white;
+      border: 1px solid $wt-white;
+      font-size: 12px;
       font-weight: 500;
       color: #212121;    
       margin: 400px 0 0 100px;
@@ -449,7 +449,11 @@
   margin-top: 10px;
   font-size: 10px;
 }
-
+.icon-people {
+  width: 1.5rem;
+  box-shadow: none !important;
+  margin-top: 0 !important;
+}
 .box-reserva-mobile {
   font-family: Poppins;
   width: 100%;

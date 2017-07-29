@@ -112,10 +112,9 @@
                     <div class="form-contact">
                         <div class="form-contact__textarea">
                             <label for="mensaje">Mensaje</label>
-                            <textarea v-model="mensaje" id="mensaje" class="textarea-lg" rows="7" placeholder="Preséntate, describe la actividad que estas planificando y cuéntale cómo utilizarás el espacio. Necesitarás servicios de catering, técnica o producción? 
-
-Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vamos a necesitar mesas y un servicio de Coffee Break. Puede incluirlo en la propuesta? Puedo llevar mi propio catering?"></textarea>
-                            <span class="wt-m-top-2">Nota: Recuerda que esta fuera de nuestros T&C enviar información personal (teléfono, email, etc.).</span>
+                            <textarea v-model="mensaje" id="mensaje" class="textarea-lg" rows="7" placeholder="Preséntate, describe la actividad que estas planificando y cuéntale cómo utilizarás el espacio. ¿Necesitarás servicios de catering, técnica o producción? 
+Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vamos a necesitar mesas y un servicio de Coffee Break.'"></textarea>
+                            <span class="wt-m-top-2">Nota: Recuerda que esta fuera de nuestros <a class="link-wimet" href="#">Términos y condiciones</a> enviar información de contacto (teléfono, email, etc.).</span>
                         </div>
                     </div>
                     <div class="form-contact">
@@ -189,18 +188,6 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
         	},
             closeMsg() {
                 this.messageError = '';
-            },
-            addWishlist() {
-                let body = {
-                    'clientId': this.user.id,
-                    'espacio_id': this.espacioId
-                }
-                this.$http.post(`/wishlist`, body)
-                .then(res => {
-                    this.showModal = true;
-                }, err => {
-                    console.log(err);
-                });
             },
             openModal(Mensaje) {
                 if(!this.authenticated) {
@@ -277,7 +264,14 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                     {
                         inicio = moment(localStorage.getItem("consultaInicio"));
                         fin = moment(localStorage.getItem("consultaFin"));
-                        
+
+                        if(inicio > fin) {
+                            localStorage.removeItem("consultaInicio");
+                            localStorage.removeItem("consultaFin");
+                            this.messageError = 'La fecha de inicio no puede ser mayor que la de fin';
+                            return;
+                        }
+
                         let totalHoras = this.checkDiffDates(fin, inicio);
 
                         this.inicio = inicio.format("DD/MM/YYYY HH:mm a");
@@ -313,6 +307,7 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
         height: 100%;
         overflow: auto;
         background-color: rgba(0, 0, 0, 0.4);
+        color: #212121;
         ul {
             padding: 0;
         }
@@ -482,6 +477,11 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
         text-decoration: none;
         cursor: pointer;
     }
-
+    .link-wimet {
+        color: #ea516d;
+        &:hover, &:focus {
+            color: #ea516d;
+        }
+    }
     .modal-body {padding: 2px 16px;}
 </style>

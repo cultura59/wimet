@@ -47,7 +47,7 @@ class Mensaje extends Model
 			}
 
 			//Array de to, from email
-			$arrMessage = array(
+            $arrMessage = array(
                 'to' => $email,
                 'from' => "adrian@wimet.co"
             );

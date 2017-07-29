@@ -122,7 +122,9 @@
 			</div>
 			<div class="direccion">
 				<span>{{$espacio->city}}, {{$espacio->state}}</span>
-				<span></span>
+			</div>
+			<div class="wt-m-top-1">
+				<img src="/img/wimet_ic_group_black_24px.svg" alt="" class="icon-people"> {{$espacio->quanty}} Máx
 			</div>
 			<button class="btn-primary-pig-mobile-lg"><a href="/consulta/{{$categoryId}}/espacio/{{$espacio->id}}">CONTACTAR AL ANFITRIÓN</a></button>
 			<div class="box-descripcion">

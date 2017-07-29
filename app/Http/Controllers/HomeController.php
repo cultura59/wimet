@@ -76,6 +76,7 @@ class HomeController extends Controller
                     }
                 )
                 ->where('status', true)
+                ->orderBy('order')
                 ->paginate(30);
         } else {
             $espacios = Espacio::select('id', 'name', 'description', 'long', 'lat')
@@ -94,6 +95,7 @@ class HomeController extends Controller
                 )
                 ->where('status', true)
                 ->where('city', \Request::input('ubicacion'))
+                ->orderBy('order')
                 ->paginate(30);
         }
 
@@ -193,11 +195,8 @@ class HomeController extends Controller
     public function send_reserva(Request $request) {
         $cliente = User::find($request->clientId);
         $espacio = Espacio::find($request->espacioId);
-        $data = [
-            "usuario" => $cliente,
-            "espacio" => $espacio,
-            "reserva" => $request
-        ];
+        $duenio = User::find($espacio->user_id);
+
         try {
             $evento = new Evento();
             $evento->nombre_evento = $request->title;
@@ -219,12 +218,17 @@ class HomeController extends Controller
                 ["evento_id" => $evento->id, "user_id" => $request->clientId, "mensaje" => $request->mensaje]
             ]);
 
-            Mail::send(["text"=>"email"], $data, function($message){
-                $message->to("rojasadrian.e@gmail.com", "Adrian Rojas")
-                        ->subject("Tienes una nueva consulta por tu espacio");
+            /* Datos de envio de email (Consulta al dueño */
+            $datos = [
+                'name' => $duenio->firstname, 
+                'espacio' => $espacio->name
+            ];
 
-                $message->from("adrian@wimet.co", "Consultas Wimet");
+            Mail::send('emails.consulta', $datos, function ($message) {
+                $message->from('adrian@wimet.co', 'Adrian Rojas');
+                $message->to('rojasadrian.e@gmail.com')->subject('Esto es un email de prueba!');;
             });
+            /* Datos de envio de email (Consulta al dueño */
 
             return $evento;
         }catch(\Exception $e){

@@ -40,6 +40,7 @@ class CreateEspaciosTable extends Migration
                 $table->enum('type', array('comercial', 'privado'))->nullable();
                 $table->integer('step')->default(1)->nullable();
                 $table->text('image360')->nullable();
+                $table->integer('order');
                 $table->timestamps();
                 $table->softDeletes();
                 $table->boolean('status')->default(false);

@@ -28,6 +28,7 @@ class Espacio extends Model
                             'securitydeposit',
                             'image360',
                             'cancellationflexibility',
+                            'order',
                             'status'
 						];
 	/**
