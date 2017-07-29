@@ -58,7 +58,7 @@
 	            '</div>';
 				marker = new google.maps.Marker({
 					position: new google.maps.LatLng({{$espacio->lat}}, {{$espacio->long}}),
-					icon: 'https://res.cloudinary.com/wimet/image/upload/c_scale,w_40/v1501352935/wimet_google_marker__2_ojga13.ico',
+					icon: 'https://res.cloudinary.com/wimet/image/upload/c_scale,w_36/v1501352935/wimet_google_marker__2_ojga13.ico',
 					map: map,
 					title: '{{$espacio->name}}'
 				});
