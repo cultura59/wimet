@@ -194,7 +194,9 @@ class HomeController extends Controller
 
     public function send_reserva(Request $request) {
         $cliente = User::find($request->clientId);
-        $espacio = Espacio::find($request->espacioId);
+        $espacio = Espacio::where('id', $request->espacioId)
+                    ->with('images')
+                    ->first();
         $duenio = User::find($espacio->user_id);
 
         try {
@@ -220,13 +222,16 @@ class HomeController extends Controller
 
             /* Datos de envio de email (Consulta al dueño */
             $datos = [
-                'name' => $duenio->firstname, 
-                'espacio' => $espacio->name
+                'imagenEspacio' => $espacio->images[0]->name,
+                'nombreEspacio' => $espacio->name,
+                'fecha' => $request->reserva_desde . " - " . $request->reserva_hasta, 
+                'idUser' => $cliente->id
             ];
 
-            Mail::send('emails.consulta', $datos, function ($message) {
-                $message->from('adrian@wimet.co', 'Adrian Rojas');
-                $message->to('rojasadrian.e@gmail.com')->subject('Esto es un email de prueba!');;
+            Mail::send('emails.consulta-usuario', $datos, function ($message) {
+                $message->from('alejandro@wimet.co', 'Alejandro');
+                $message->to('federico.e@gmail.com')->subject('Tienes una nueva solicitud de reserva
+Felicitaciones!');;
             });
             /* Datos de envio de email (Consulta al dueño */
 

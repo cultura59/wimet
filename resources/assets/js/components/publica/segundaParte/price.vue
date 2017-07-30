@@ -49,7 +49,7 @@
 				<i class="fa fa-arrow-left" aria-hidden="true"></i>
 				<span>ATRÁS</span>
 			</a>
-			<a class="btn wt-btn-primary" href="#" @click="savePrice($event)">CONTINUAR</a>
+			<a class="btn wt-btn-primary" href="#" @click="savePrice($event)">GUARDAR</a>
 		</div>
 	</div>
 </template>

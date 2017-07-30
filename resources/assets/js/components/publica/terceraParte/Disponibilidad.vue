@@ -84,7 +84,7 @@
 				<i class="fa fa-arrow-left" aria-hidden="true"></i>
 				<span>ATRÁS</span>
 			</a>
-			<a class="btn wt-btn-primary" href="#" @click="saveDisponibilidad($event)">CONTINUAR</a>
+			<a class="btn wt-btn-primary" href="#" @click="saveDisponibilidad($event)">GUARDAR</a>
 		</div>
 	</div>
 </template>

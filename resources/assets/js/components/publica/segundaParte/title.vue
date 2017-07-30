@@ -21,7 +21,7 @@
 				<i class="fa fa-arrow-left" aria-hidden="true"></i>
 				<span>ATRÁS</span>
 			</a>
-			<button class="btn-primary-pig" @click="saveEspacio()">CONTINUAR</button>
+			<button class="btn-primary-pig" @click="saveEspacio()">GUARDAR</button>
 		</div>
 	</div>
 </template>

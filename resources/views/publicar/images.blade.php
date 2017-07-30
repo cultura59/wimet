@@ -54,7 +54,7 @@
 				<span>ATRÁS</span>
 			</a>
 			<a href="{{route('publica-caracteristicas', array('id' => $espacio->id))}}">
-				<input class="btn-primary-pig" type="submit" value="CONTINUAR"/>
+				<input class="btn-primary-pig" type="submit" value="GUARDAR"/>
 			</a>
 		</div>
 		{!! Form::close() !!}

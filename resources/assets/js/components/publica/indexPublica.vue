@@ -46,7 +46,7 @@
 					</div>
 					<p class="sub-title-info">Fotos, descripción, título.</p>
 					<a v-if="step == 2" :href="`/publicar/segundo-paso/espacio/${espacioId}/images`">
-						<button class="btn-primary-pig">CONTINUAR</button>
+						<button class="btn-primary-pig">GUARDAR</button>
 					</a>
 					<a v-if="step > 2" :href="`/publicar/segundo-paso/espacio/${espacioId}/images`" class="link">EDITAR</a>
 				</div>
@@ -58,7 +58,7 @@
 					</div>
 					<p class="sub-title-info">Reglas, precio y políticas del espacio.</p>
 					<a v-if="step == 3" :href="`/publicar/tercer-paso/espacio/${espacioId}/reglas`">
-						<button class="btn-primary-pig">CONTINUAR</button>
+						<button class="btn-primary-pig">GUARDAR</button>
 					</a>
 					<a v-if="step == 4" :href="`/publicar/tercer-paso/espacio/${espacioId}/reglas`" class="link">EDITAR</a>
 				</div>

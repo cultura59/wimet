@@ -59,11 +59,14 @@
 						<div class="detalle-espacio">
 							<div class="detalle-espacio__title">
 								<h3>{{$borrador->name}}</h3>
+								@if($borrador->step == 4)
+								@endif
 								<ul class="list-inline">
 								@foreach($borrador->categorias as $cat)
 									<li>{{$cat->name}}</li>
 								@endforeach
 								</ul>
+								<strong class="pendiente-aprobacion">Pendiente de aprobación...</strong>
 							</div>
 							<div class="wt-center-column">
 								<a href="{{route('publica-steps', array('espacioId' => $borrador->id))}}">

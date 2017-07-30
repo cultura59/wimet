@@ -89,7 +89,7 @@
 				<i class="fa fa-arrow-left" aria-hidden="true"></i>
 				<span>ATRÁS</span>
 			</a>
-			<input class="btn-primary-pig" type="submit" value="CONTINUAR"/>
+			<input class="btn-primary-pig" type="submit" value="GUARDAR"/>
 		</div>
 		{!! Form::close() !!}
 	</div>

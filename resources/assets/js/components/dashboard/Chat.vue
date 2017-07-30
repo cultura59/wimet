@@ -8,7 +8,14 @@
 				<a href="#"@click="redirectUrl($event, '/chats')" >MENSAJES</a>
 			</div>
 		</template>
-
+		<template v-if="(user.id && user.id == evento.user_id)">
+			<p>A pasos de reservar el espacio de Alejandro
+La mayoría de los anfitriones responden en un plazo de 24 hs. Si has elegido esta publicación y estas de acuerdo con sus políticas y precio, demuestra tu interés en confirmar la reserva, solicitando el presupuesto formal al anfitrión.</p>
+		</template>
+		<template v-if="(user.id && user.id != evento.user_id)">
+			<p>A pasos de realizar la actividad de Federico 
+La mayoría de los organizadores cuando se contactan con el anfitrión es porque han visto las cualidades del espacio, y lo han elegido. Quítate las dudas del evento y cuando estés listo, envía tu presupuesto formal para confirmar la reserva.</p>
+		</template>
 		<template v-if="(user.id && user.id == evento.cliente_id)">
 			<label class="cursor-pointer" @click="redirectMensajes()">< Ver mensajes</label>
 		</template>
@@ -19,14 +26,14 @@
 				<button 
 					v-if="user.id != evento.cliente_id" 
 					class="btn-presupuesto" 
-					@click="enviarPropuesta()">Enviar presupuesto
+					@click="enviarPropuesta()">ENVIAR PRESUPUESTO
 				</button>
 				<button 
 					v-if="user.id == evento.cliente_id" 
 					class="btn-presupuesto" 
-					@click="solicitarPropuesta()">Solicitar presupuesto
+					@click="solicitarPropuesta()">SOLICITAR PRESUPUESTO
 				</button>
-				<button class="btn-enviar-chat" @click="sendMensaje()">Enviar</button>
+				<button class="btn-enviar-chat" @click="sendMensaje()">ENVIAR</button>
 			</div>
 		</div>
 		<div class="mensajes">
@@ -188,7 +195,7 @@
 			    display: flex;
 			    justify-content: space-between;
 			    .btn-presupuesto {
-				    width: 128px;
+				    width: 150px;
 				    height: 40px;
 				    opacity: 0.87;
 				    border-radius: 2px;
