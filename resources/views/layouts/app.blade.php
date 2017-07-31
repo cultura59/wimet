@@ -34,6 +34,12 @@
             ga('create', 'UA-77438674-1', 'auto');
             ga('send', 'pageview');
         </script>
+        <script type="text/javascript">
+            setTimeout(function(){var a=document.createElement("script");
+            var b=document.getElementsByTagName("script")[0];
+            a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0058/8165.js?"+Math.floor(new Date().getTime()/3600000);
+            a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+        </script>
     </head>
     <body>
         <div id="home-espacio">

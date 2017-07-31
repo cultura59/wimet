@@ -85,7 +85,7 @@
 				var map = new google.maps.Map(document.getElementById('map-canvas'),mapOptions);
 				var marker = new google.maps.Marker({
 					position: new google.maps.LatLng(lat, lng),
-					icon: 'http://www.wimet.co/img/favicon.ico',
+					icon: 'https://res.cloudinary.com/wimet/image/upload/c_scale,w_36/v1501352935/wimet_google_marker__2_ojga13.ico',
 					map: map
 				});
 			};
