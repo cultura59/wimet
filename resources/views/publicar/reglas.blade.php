@@ -42,6 +42,7 @@
 	</div>
 	<div class="container-right">
 		<div class="container-right__dialog-box">
+			<img class="img-responsive" src="https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-reglas" style="width: 100px; margin-bottom: 50px;">
 			<div>
 				<p>Las reglas delimitan lo que se puede hacer o no en tu espacio. Tomate un momento para dejar bien en claro lo que se puede hacer y lo que no.</p>
 			</div>

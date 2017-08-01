@@ -35,9 +35,7 @@
 	</div>
 	<div class="container-right">
 		<div class="container-right__dialog-box">
-			<div class="wt-m-bot-4">
-				<i class="fa fa-usd fa-3x" aria-hidden="true"></i>
-			</div>
+			<img class="img-responsive" src="https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-precio" style="width: 100px; margin-bottom: 50px;">
 			<div>
 				<p>El precio es fundamental para poder filtrar a los potenciales organizadores. Por favor, incluye el valor estimado que consideres para alquilar tu espacio. Toma en cuenta que el espacio se mide por hora y con un mínimo de horas que representen la rentabilidad que esperas recibir.
 Sólo números, sin comas ni puntos.
