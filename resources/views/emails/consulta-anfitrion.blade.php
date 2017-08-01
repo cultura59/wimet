@@ -5,7 +5,6 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>Tienes una nueva solicitud de reserva Felicitaciones!</title>
-        
 	    <style type="text/css">
 			p{
 				margin:10px 0;
@@ -91,7 +90,6 @@
 			.mcnDividerBlock{
 				table-layout:fixed !important;
 			}
-
 			h1{
 				color:#222222;
 				font-family:Helvetica;
@@ -102,7 +100,6 @@
 				letter-spacing:normal;
 				text-align:center;
 			}
-
 			h2{
 				color:#222222;
 				font-family:Helvetica;
@@ -113,7 +110,6 @@
 				letter-spacing:normal;
 				text-align:left;
 			}
-
 			h3{
 				color:#444444;
 				font-family:Helvetica;
@@ -124,7 +120,6 @@
 				letter-spacing:normal;
 				text-align:left;
 			}
-
 			h4{
 				color:#999999;
 				font-family:Georgia;
@@ -135,7 +130,6 @@
 				letter-spacing:normal;
 				text-align:left;
 			}
-
 			#templateHeader{
 				background-color:#ffffff;
 				background-image:none;
@@ -147,7 +141,6 @@
 				padding-top:8px;
 				padding-bottom:8px;
 			}
-
 			.headerContainer{
 				background-color:#transparent;
 				background-image:none;
@@ -159,7 +152,6 @@
 				padding-top:0;
 				padding-bottom:0;
 			}
-
 			.headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
 				color:#808080;
 				font-family:Helvetica;
@@ -167,13 +159,11 @@
 				line-height:150%;
 				text-align:left;
 			}
-
 			.headerContainer .mcnTextContent a,.headerContainer .mcnTextContent p a{
 				color:#ea516d;
 				font-weight:normal;
 				text-decoration:underline;
 			}
-
 			#templateBody{
 				background-color:#ffffff;
 				background-image:none;
@@ -182,10 +172,9 @@
 				background-size:cover;
 				border-top:0;
 				border-bottom:0;
-				padding-top:14px;
-				padding-bottom:14px;
+				padding-top:13px;
+				padding-bottom:13px;
 			}
-
 			.bodyContainer{
 				background-color:#transparent;
 				background-image:none;
@@ -197,7 +186,6 @@
 				padding-top:0;
 				padding-bottom:0;
 			}
-
 			.bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p{
 				color:#808080;
 				font-family:Helvetica;
@@ -205,13 +193,11 @@
 				line-height:150%;
 				text-align:left;
 			}
-
 			.bodyContainer .mcnTextContent a,.bodyContainer .mcnTextContent p a{
 				color:#00ADD8;
 				font-weight:normal;
 				text-decoration:underline;
 			}
-
 			#templateFooter{
 				background-color:#f8f8f8;
 				background-image:none;
@@ -223,7 +209,6 @@
 				padding-top:31px;
 				padding-bottom:31px;
 			}
-
 			.footerContainer{
 				background-color:#transparent;
 				background-image:none;
@@ -235,7 +220,6 @@
 				padding-top:0;
 				padding-bottom:0;
 			}
-
 			.footerContainer .mcnTextContent,.footerContainer .mcnTextContent p{
 				color:#212121;
 				font-family:Helvetica;
@@ -243,38 +227,37 @@
 				line-height:150%;
 				text-align:center;
 			}
-
 			.footerContainer .mcnTextContent a,.footerContainer .mcnTextContent p a{
 				color:#ea516d;
 				font-weight:normal;
 				text-decoration:underline;
 			}
-				@media only screen and (min-width:768px){
-					.templateContainer{
-						width:600px !important;
-					}
-
-			}	@media only screen and (max-width: 480px){
+			@media only screen and (min-width:768px){
+				.templateContainer{
+					width:600px !important;
+				}
+			}	
+			@media only screen and (max-width: 480px){
 					body,table,td,p,a,li,blockquote{
 						-webkit-text-size-adjust:none !important;
 					}
-
-			}	@media only screen and (max-width: 480px){
-					body{
-						width:100% !important;
-						min-width:100% !important;
-					}
-
-			}	@media only screen and (max-width: 480px){
-					.mcnImage{
-						width:100% !important;
-					}
-
-			}	@media only screen and (max-width: 480px){
-					.mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaptionBottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcnImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionRightTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRightImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCardRightTextContentContainer{
-						max-width:100% !important;
-						width:100% !important;
-					}
+			}	
+			@media only screen and (max-width: 480px){
+				body{
+					width:100% !important;
+					min-width:100% !important;
+				}
+			}	
+			@media only screen and (max-width: 480px){
+				.mcnImage{
+					width:100% !important;
+				}
+			}
+			@media only screen and (max-width: 480px){
+				.mcnCartContainer,.mcnCaptionTopContent,.mcnRecContentContainer,.mcnCaptionBottomContent,.mcnTextContentContainer,.mcnBoxedTextContentContainer,.mcnImageGroupContentContainer,.mcnCaptionLeftTextContentContainer,.mcnCaptionRightTextContentContainer,.mcnCaptionLeftImageContentContainer,.mcnCaptionRightImageContentContainer,.mcnImageCardLeftTextContentContainer,.mcnImageCardRightTextContentContainer{
+					max-width:100% !important;
+					width:100% !important;
+				}
 
 			}	@media only screen and (max-width: 480px){
 					.mcnBoxedTextContentContainer{
@@ -333,49 +316,42 @@
 					}
 
 			}	@media only screen and (max-width: 480px){
-
 					h1{
 						font-size:30px !important;
 						line-height:125% !important;
 					}
 
 			}	@media only screen and (max-width: 480px){
-
 					h2{
 						font-size:26px !important;
 						line-height:125% !important;
 					}
 
 			}	@media only screen and (max-width: 480px){
-
 					h3{
 						font-size:20px !important;
 						line-height:150% !important;
 					}
 
 			}	@media only screen and (max-width: 480px){
-
 					h4{
 						font-size:18px !important;
 						line-height:150% !important;
 					}
 
 			}	@media only screen and (max-width: 480px){
-
 					.mcnBoxedTextContentContainer .mcnTextContent,.mcnBoxedTextContentContainer .mcnTextContent p{
 						font-size:14px !important;
 						line-height:150% !important;
 					}
 
 			}	@media only screen and (max-width: 480px){
-
 					.headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
 						font-size:16px !important;
 						line-height:150% !important;
 					}
 
 			}	@media only screen and (max-width: 480px){
-
 					.bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p{
 						font-size:16px !important;
 						line-height:150% !important;
@@ -386,7 +362,8 @@
 						font-size:14px !important;
 						line-height:150% !important;
 					}
-				}
+
+			}
 		</style>
 	</head>
     <body>
@@ -442,8 +419,8 @@
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
-                            <h1 class="null" style="text-align: left;"><span style="color:#333333"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="font-size:32px">Tu consulta ha sido enviada</span></span></span></h1>
-<span style="color:#666666">Esto no es una reserva confirmada - al menos no todavía. Obtendrás una respuesta en las próximas horas.</span><br>
+                            <h1 class="null" style="text-align: left;"><span style="color:#333333"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="font-size:32px">Responda a la consulta de {{$nombreUser}}</span></span></span></h1>
+<span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="font-size:14px"><span style="color:#666666">Esto no es una reserva confirmada - al menos no todavía. Puedes conversar con el organizador y enviar una propuesta una vez que cuentes con toda la información para el alquiler de tu espacio.</span></span></span><br>
 &nbsp;
                         </td>
                     </tr>
@@ -454,23 +431,103 @@
             </td>
         </tr>
     </tbody>
-</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnImageBlock" style="min-width:100%;">
-    <tbody class="mcnImageBlockOuter">
-            <tr>
-                <td valign="top" style="padding:0px" class="mcnImageBlockInner">
-                    <table align="left" width="100%" border="0" cellpadding="0" cellspacing="0" class="mcnImageContentContainer" style="min-width:100%;">
-                        <tbody><tr>
-                            <td class="mcnImageContent" valign="top" style="padding-right: 0px; padding-left: 0px; padding-top: 0; padding-bottom: 0; text-align:center;">
-                                
-                                    
-                                        <img align="center" alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$imagenEspacio}}" width="600" style="max-width:1920px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
-                                    
-                                
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnCaptionBlock">
+    <tbody class="mcnCaptionBlockOuter">
+        <tr>
+            <td class="mcnCaptionBlockInner" valign="top" style="padding:9px;">
+                
+
+
+
+<table border="0" cellpadding="0" cellspacing="0" class="mcnCaptionRightContentOuter" width="100%">
+    <tbody><tr>
+        <td valign="top" class="mcnCaptionRightContentInner" style="padding:0 9px ;">
+            <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnCaptionRightImageContentContainer">
+                <tbody><tr>
+                    <td class="mcnCaptionRightImageContent" valign="top">
+                        <img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$imagenEspacio}}" width="176" style="max-width:1920px;" class="mcnImage">
+                    </td>
+                </tr>
+            </tbody></table>
+            <table class="mcnCaptionRightTextContentContainer" align="right" border="0" cellpadding="0" cellspacing="0" width="352">
+                <tbody><tr>
+                    <td valign="top" class="mcnTextContent">
+                        <span style="font-size:24px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><em><span style="color:#333333">{{$nombreEspacio}}</span></em></span></span><br>
+<span style="font-size:20px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333">{{$fecha}}</span></span></span>
+                    </td>
+                </tr>
+            </tbody></table>
+        </td>
+    </tr>
+</tbody></table>
+
+
+
+
+            </td>
+        </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock" style="min-width:100%;">
+    <tbody class="mcnDividerBlockOuter">
+        <tr>
+            <td class="mcnDividerBlockInner" style="min-width:100%; padding:18px;">
+                <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%;border-top: 2px solid #EAEAEA;">
+                    <tbody><tr>
+                        <td>
+                            <span></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+            </td>
+        </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock" style="min-width:100%;">
+    <tbody class="mcnButtonBlockOuter">
+        <tr>
+            <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 2px;background-color: #EA516D;">
+                    <tbody>
+                        <tr>
+                            <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
+                                <a class="mcnButton " title="VER CONSULTAS" href="http://wimet.co/dashboard/user/{{$idUser}}/mensajes" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER CONSULTAS</a>
                             </td>
                         </tr>
-                    </tbody></table>
-                </td>
-            </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock" style="min-width:100%;">
+    <tbody class="mcnButtonBlockOuter">
+        <tr>
+            <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonContentContainer" style="border-collapse: separate !important;border: 2px solid #EA516D;border-radius: 2px;">
+                    <tbody>
+                        <tr>
+                            <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
+                                <a class="mcnButton " title="ENVIAR PRESUPUESTO" href="http://wimet.co/dashboard/user/{{$idUser}}/eventos" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #EA516D;">ENVIAR PRESUPUESTO</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock" style="min-width:100%;">
+    <tbody class="mcnDividerBlockOuter">
+        <tr>
+            <td class="mcnDividerBlockInner" style="min-width:100%; padding:18px;">
+                <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%;border-top: 2px solid #EAEAEA;">
+                    <tbody><tr>
+                        <td>
+                            <span></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+
+            </td>
+        </tr>
     </tbody>
 </table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
     <tbody class="mcnTextBlockOuter">
@@ -484,9 +541,9 @@
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
-                            <p><span style="font-size:24px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><em><span style="color:#333333">{{$nombreEspacio}}</span></em></span></span><br>
-<span style="font-size:20px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333">{{$fecha}}</span></span></span></p>
-
+                            <h1 class="null" style="text-align: left;"><span style="font-size:24px"><span style="color:#333333"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Responda dentro de las 24hs.</span></span></span></h1>
+<span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="font-size:14px"><span style="color:#666666">Nos hemos dado cuenta de que los anfitriones que respondes a las consultas con mayor rapidez, tienen la tasa de efectividad (éxito) más alta en nuestra web.</span></span></span><br>
+&nbsp;
                         </td>
                     </tr>
                 </tbody></table>
@@ -511,19 +568,50 @@
             </td>
         </tr>
     </tbody>
-</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock" style="min-width:100%;">
-    <tbody class="mcnButtonBlockOuter">
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock" style="min-width:100%;">
+    <tbody class="mcnTextBlockOuter">
         <tr>
-            <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
-                <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 2px;background-color: #EA516D;">
-                    <tbody>
-                        <tr>
-                            <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-                                <a class="mcnButton " title="VER CONSULTAS" href="http://wimet.co/dashboard/user/{{$idUser}}/mensajes" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER CONSULTAS</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+            <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
+              	
+			    
+				
+                <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
+                    <tbody><tr>
+                        
+                        <td valign="top" class="mcnTextContent" style="padding: 0px 18px 9px; line-height: 125%;">
+                        
+                            <h1 class="null" style="text-align: left;"><span style="font-size:24px"><span style="color:#333333"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Preguntas frecuentes</span></span></span></h1>
+<span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333"><span style="font-size:16px">¿Puedo rechazar solicitudes de reserva?</span></span><br>
+<span style="font-size:14px"><a href="https://wimet.zendesk.com/hc/es/articles/115000892254--Puedo-rechazar-solicitudes-de-reserva-" target="_blank" title="Ver más"><span style="color:#EA516D">ver más...</span></a><span style="color:#666666">&nbsp;</span></span><br>
+<br>
+<span style="color:#333333"><span style="font-size:16px">¿Qué debe tener mi publicación para ser exitoso?&nbsp;</span></span><br>
+<a href="https://wimet.zendesk.com/hc/es/articles/115000892154--Qu%C3%A9-debe-tener-una-publicaci%C3%B3n-para-ser-exitosa-" target="_blank" title="Ver más"><span style="font-size:14px"><span style="color:#EA516D">ver más...</span></span></a><br>
+<br>
+<span style="color:#333333"><span style="font-size:16px">¿Wimet cobra alguna comisión?&nbsp;</span></span><br>
+<span style="font-size:14px"><a href="https://wimet.zendesk.com/hc/es/articles/115000660614--Publicar-un-espacio-en-Wimet-implica-alg%C3%BAn-costo-" target="_blank" title="Ver más"><span style="color:#EA516D">ver más...</span></a><span style="color:#666666">&nbsp;</span></span><br>
+<br>
+<span style="color:#333333"><span style="font-size:16px">Encuentra más respuestas en nuestro </span></span><a href="https://wimet.zendesk.com/hc/es" target="_blank" title="Centro de ayuda"><span style="color:#EA516D"><span style="font-size:16px">Centro de ayuda</span></span></a><span style="color:#333333"><span style="font-size:16px">&nbsp;</span></span></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+				
+                
+				
+            </td>
+        </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock" style="min-width:100%;">
+    <tbody class="mcnDividerBlockOuter">
+        <tr>
+            <td class="mcnDividerBlockInner" style="min-width:100%; padding:18px;">
+                <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="min-width: 100%;border-top: 2px solid #EAEAEA;">
+                    <tbody><tr>
+                        <td>
+                            <span></span>
+                        </td>
+                    </tr>
+                </tbody></table>
+
             </td>
         </tr>
     </tbody>
@@ -539,7 +627,7 @@
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
-                            <div style="text-align: center;"><span style="font-size:12px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">¿Necesitas ayuda para reservar un espacio?<br>
+                            <div style="text-align: center;"><span style="font-size:12px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">¿Necesitas ayuda con el alquiler de tu&nbsp;espacio?<br>
 Nuestros equipo está aquí para ayudarte en <a href="mailto:soporte@wimet.co?subject=Ayuda%20para%20el%20alquiler%20de%20un%20espacio" target="_blank"><span style="color:#EA516D">soporte@wimet.co</span></a></span></span></div>
 
                         </td>

@@ -3,7 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Categoria;
 use App\Mensaje;
+use App\Espacio;
+use App\Evento;
+use App\User;
+use Mail;
 use DB;
 
 class MensajeController extends Controller
@@ -42,6 +47,44 @@ class MensajeController extends Controller
     public function store(Request $request)
     {
         try {
+            $evento = Evento::find($request->evento_id);
+            $espacio = Espacio::where('id', $evento->espacio_id)
+                    ->with('images')
+                    ->first();
+
+            $user = User::find($evento->user_id);
+            $cliente = User::find($evento->cliente_id);
+            $categoria = Categoria::find($evento->estilo_espacios_id);
+            /* Datos de envio de email (Consulta al dueño */
+            $datos = [
+                'mensaje' => $request->mensaje,
+                'evento' => $evento,
+                'espacio' => $espacio,
+                'imagenEspacio' => $espacio->images[0]->name,
+                'usuario' => $user,
+                'cliente' => $cliente,
+                'categoria' => $categoria
+            ];
+
+            if($request->user_id != $espacio->user_id) 
+            {
+                Mail::send('emails.mensaje-anfitrion', $datos, function ($message) {
+                    $message->from('adrian@wimet.co', 'Wimet.co');
+                    //$message->to('rojasadrian.e@gmail.com')
+                    $message->to($user->email)
+                    ->cc('adrian@wimet.co')
+                    ->subject('Tienes un nuevo mensaje sobre un evento');
+                });
+            }else {
+                Mail::send('emails.mensaje-usuario', $datos, function ($message) {
+                    $message->from('adrian@wimet.co', 'Wimet.co');
+                    //$message->to('rojasadrian.e@gmail.com')
+                    $message->to($cliente->email)
+                    ->cc('adrian@wimet.co')
+                    ->subject('Tienes un nuevo mensaje sobre tu evento');
+                });
+            }
+            /* Datos de envio de email (Consulta al dueño */
             $mensaje = new Mensaje($request->all());
             $mensaje->save();
             return response($mensaje, 204); 

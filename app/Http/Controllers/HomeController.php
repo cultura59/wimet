@@ -225,13 +225,25 @@ class HomeController extends Controller
                 'imagenEspacio' => $espacio->images[0]->name,
                 'nombreEspacio' => $espacio->name,
                 'fecha' => $request->reserva_desde . " - " . $request->reserva_hasta, 
-                'idUser' => $cliente->id
+                'idUser' => $cliente->id,
+                'nombreUser' => $cliente->firstname
             ];
 
+            Mail::send('emails.consulta-anfitrion', $datos, function ($message) {
+                $message->from('adrian@wimet.co', 'Alejandro');
+                $message->to($duenio->email)
+                ->cc('adrian@wimet.co')
+                ->cc('alejandro@wimet.co')
+                ->cc('federico@wimet.co')
+                ->subject('Tienes una nueva solicitud de reserva Felicitaciones!');
+            });
+
             Mail::send('emails.consulta-usuario', $datos, function ($message) {
-                $message->from('alejandro@wimet.co', 'Alejandro');
-                $message->to('federico.e@gmail.com')->subject('Tienes una nueva solicitud de reserva
-Felicitaciones!');;
+                $message->from('adrian@wimet.co', 'Alejandro');
+                $message->to($cliente->email)
+                //$message->to('rojasadrian.e@gmail.com')
+                ->cc('adrian@wimet.co')
+                ->subject('Tienes una nueva solicitud de reserva Felicitaciones!');
             });
             /* Datos de envio de email (Consulta al dueño */
 

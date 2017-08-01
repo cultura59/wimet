@@ -595,6 +595,17 @@ html, body {
 	}
 }
 
+@include mobile {
+	.categorias-desktop {
+		display: none;
+	}
+}
+@include desktop {
+	.categorias-mobile {
+		display: none;
+	}
+}
+
 footer {
 	background-color: $wt-dark-blue;
 	color: #dadada;

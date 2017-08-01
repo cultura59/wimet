@@ -187,11 +187,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
             },
             openModal(Mensaje) {
                 if(!this.authenticated) {
-                    swal({
-                      title: 'No estas loguedo',
-                      text: "Debes iniciar sesión para hacer una pregunta o reserva.",
-                      imageUrl: "/avatars/default.png"
-                    });
+                    this.messageError = "Debes iniciar sesión para hacer una pregunta";
                     return;
                 }else {
                     if(this.people == "") {
@@ -236,13 +232,13 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     'subTotal': this.subTotal,
                     'total': this.total
                 }
-                this.btnSend = true;
                 localStorage.removeItem("consultaInicio");
                 localStorage.removeItem("consultaFin");
                 this.$http.post(`api/sendreserva`, body)
                 .then(res => {
                     window.location.href = `/dashboard/user/${this.user.id}/mensajes`;
                 }, err => {
+                    this.btnSend = true;
                     swal(err.message);
                 });
             },
