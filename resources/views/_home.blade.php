@@ -68,7 +68,7 @@
                 <div class="container">
                     <div class="content-wt">
                         <h2 class="text-center">¿Qué tipo de actividad vas a organizar?</h2>
-                        <p class="text-center">Wimet te permite alquilar espacios únicos que inspiran reuniones, eventos, producciones y pop-ups.</p>
+                        <p class="text-center">Wimet te permite alquilar espacios únicos que inspiran</p>
                     </div>
                     <div class="categorias-desktop">
                         <!-- container images primary-->

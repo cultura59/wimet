@@ -61,11 +61,13 @@
 	</div>
 	<div class="container-right">
 		<div class="container-right__dialog-box">
-			<img class="img-responsive" src="https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-fotos" style="width: 100px; margin-bottom: 50px;">
+			<img class="img-responsive" src="https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-fotos" style="width: 100px; margin-bottom: 20px;">
 			<div>
-				<p>Muchos anfitriones cuentan con al menos 5 fotos. Puedes empezar con una y añadir más en otro momento. Incluir fotos de todos los ambientes a los que tendrán acceso los invitados les ayudará a hacerse una idea de cómo podría ser su evento. Las imágenes deben tener una calidad superior en dimensiones a 1920 x 1080px.</p>
-				<p>Importante: Por carga puedes subir 2MB por imagen y hasta 20 MB en total.</p>
-				<p>Tips: Asegúrate de que haya bastante luz en el espacio. A veces, hacer fotos desde una esquina puede darte una mejor perspectiva que hacerlas desde un ángulo frontal.</p>
+				<p>Muchos anfitriones cuentan con al menos 5 fotos. Puedes empezar con una y sumar más en otro momento. Incluir fotos de todos los ambientes a los que tendrán acceso los invitados les ayudará a hacerse una idea de cómo podría ser su evento. Las imágenes deben tener una calidad superior en dimensiones a 1920 x 1080px.</p>
+
+				<p>Importante: La primera imagen que cargues será la portada de tu perfil. Por carga puedes subir hasta 2MB por imagen y 20 MB en total.</p>
+				<p>Tips: Asegúrate de que haya bastante luz en el espacio.
+A veces, hacer fotos desde una esquina puede darte una mejor perspectiva que hacerlas desde un ángulo frontal.</p>
 			</div>
 		</div>
 	</div>

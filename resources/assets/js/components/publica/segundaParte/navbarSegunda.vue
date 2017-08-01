@@ -3,7 +3,7 @@
 		<button 
 			:class="(url == 'images') ? 'navbar-pasos__btm--active' : 'navbar-pasos__btn-first'" 
 			@click="changeUrl('images')">
-			Fotos
+			Imágenes
 		</button>
 		<button 
 			:class="(url == 'caracteristicas') ? 'navbar-pasos__btm--active' : 'navbar-pasos__btn-first'" 

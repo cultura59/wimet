@@ -20,9 +20,10 @@
 				<i class="fa fa-usd fa-3x" aria-hidden="true"></i>
 			</div>
 			<div>
-				<p>El precio es fundamental para poder filtrar a los potenciales organizadores. Por favor, incluye el valor estimado que consideres para alquilar tu espacio. Toma en cuenta que el espacio se mide por hora y con un mínimo de horas que representen la rentabilidad que esperas recibir.
-Sólo números, sin comas ni puntos.
-Ahh si! guarda uno por vez ;)</p>
+				<p>Comprender en que días y horarios estará disponible tu espacio, permite que las solicitudes de alquiler no se superpongan con tus propias actividades/ agenda.</p>
+				<p>Registra cada día en orden y desde el horario inicial que tu espacio estaría disponible en ese día hasta en que horario la actividad podría terminar.</p>
+				<p>Ejemplo:</p>
+				<p>Viernes de 9AM a 5AM</p>
 			</div>
 		</div>
 	</div>

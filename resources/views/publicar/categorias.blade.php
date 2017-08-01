@@ -16,7 +16,7 @@
 		<input type="hidden" name="id" value="{{$espacio->id}}">
 		<div class="container-center">
 			@include('errors/error-notification')
-			<h3>¿Qué tipo de actividad se puede a cabo en tu espacio?</h3>
+			<h3>¿Qué tipo de actividades se pueden llevar a cabo en tu espacio?</h3>
 			<div class="container-center__list">
 				@foreach($categorias as $categoria)
 				<!-- Item -->

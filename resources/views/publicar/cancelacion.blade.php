@@ -53,7 +53,7 @@
 							<div class="left__item">
 								<span>
 									<input type="radio" id="moderado" name="cancellationflexibility" value="moderado" required style="display: none;" @if($espacio->cancellationflexibility== 'moderado') checked @endif>
-									<label for="moderado" class="wt-publica-label">Moderado</label>
+									<label for="moderado" class="wt-publica-label">Moderada</label>
 								</span>
 								<span class="item-description">(Reembolso completo hasta 30 días antes del evento, excepto los gastos de procesamiento).</span>
 							</div>
@@ -63,7 +63,7 @@
 							<div class="left__item">
 								<span>
 									<input type="radio" id="estricto" name="cancellationflexibility" value="estricto" required style="display: none;" @if($espacio->cancellationflexibility== 'estricto') checked @endif>
-									<label for="estricto" class="wt-publica-label">Estricto</label>
+									<label for="estricto" class="wt-publica-label">Estricta</label>
 								</span>
 								<span class="item-description">(50% de reembolso hasta 30 días antes del evento, excepto gastos de procesamiento).</span>
 							</div>
@@ -71,13 +71,12 @@
 					</div>
 				</div>
 				<div class="wt-m-top-3 wt-m-bot-3">
-					<h4>Deposito de garantía</h4>
+					<h4>Depósito de garantía</h4>
 					<div class="box-publica">
 						<div class="box-publica__container">
 							<input class="box-publica__container__input" type="text" id="securitydeposit" name="securitydeposit" value="{{$espacio->securitydeposit}}" placeholder="$0.-">
 							<button class="box-publica__container__pointer-center" onclick="incrementInput('securitydeposit')">+</button>
 							<button class="box-publica__container__pointer" onclick="decrencrementInput('securitydeposit')">-</button>
-							<span class="box-publica__container__name">Ambientes</span>
 						</div>
 					</div>
 				</div>
@@ -97,11 +96,6 @@
 		<div class="container-right__dialog-box">
 			<div>
 				<p>Para tu tranquilidad, es importante que definas que tipo de política de pagos recibirás y si quieres un depósito de garantía.</p>
-				<ul>
-					<li>Flexible: Reembolso completo hasta 5 días antes del evento, excepto los gastos de procesamiento.</li>
-					<li>Moderada: Reembolso completo hasta 10 días antes del evento, excepto los gastos de procesamiento.</li>
-					<li>Estricta: 50% de reembolso hasta 10 días antes del evento, excepto gastos de procesamiento.</li>
-				</ul>
 			</div>
 		</div>
 	</div>

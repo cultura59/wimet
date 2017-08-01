@@ -18,7 +18,7 @@
 		<button 
 			:class="(url == 'cancelacion') ? 'navbar-pasos__btm--active' : 'navbar-pasos__btn-last'" 
 			@click="changeUrl('cancelacion')">
-			Políiticas
+			Políticas
 		</button>
 	</div>
 </template>

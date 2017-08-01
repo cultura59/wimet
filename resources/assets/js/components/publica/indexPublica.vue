@@ -3,23 +3,24 @@
 		<div class="container-left">
 			<div class="content-publica">
 				<div v-if="step == 2">
-					<h1>¡Lo estas haciendo muy bien {{user.firstname}}!</h1>
+					<h1>¡Lo estas haciendo muy bien, {{user.firstname}}!</h1>
 					<p class="sub-title-info">
-						Es momento de añadir algo de información sobre tu espacio para que puedas publicarlo.
+						Es momento de añadir información descriptiva sobre tu espacio para que puedas publicarlo.
 					</p>
 				</div>
 				<div v-if="step == 3">
 					<h1>¡Excelente trabajo!</h1>
 					<p class="sub-title-info">
-						Define tu política de precios para comenzar operar.
+						Define la política y reglas de tu espacio para poder ofrecerlo.
 					</p>
 				</div>
 				<div v-if="step == 4">
 					<h1>¡Felicitaciones {{user.firstname}}!</h1>
 					<p class="sub-title-info">
 						Tu espacio será publicado en la plataforma una vez aprobado por nuestro equipo. Este proceso puede demorar hasta 48 hs.<br>
-						Si falta alguna información, por favor accede a tu espacio y edita lo que consideres relevante.
+						Si falta alguna información, por favor, accede a tu espacio y edita lo que consideres relevante.
 					</p>
+					<p class="sub-title-info">Para que el espacio sea revisado debes completar todos los pasos, sin contar los opcionales.</p>
 					<div v-if="enviarValidacion">
 						<a :href="`/dashboard/user/${user.id}/misespacios`">
 							<button class="btn-primary-pig-lg">ENVIAR PARA APROBACIÓN</button>
@@ -33,9 +34,9 @@
 				<div class="box-step">
 					<div>
 						<img v-if="step >= 1" src="/img/wimet_ic_check_24px_accent.svg" style="width: 30px" alt="Primer paso" class="pull-right">
-						<h2 class="Sub-title">Paso 1: Lo escencial</h2>
+						<h2 class="Sub-title">Paso 1: Lo esencial</h2>
 					</div>
-					<p class="sub-title-info">Tipo de espacio, capacidad, dirección.</p>
+					<p class="sub-title-info">Tipo de espacio, accesibilidad, capacidad y dirección.</p>
 					<a :href="`/publicar/primer-paso/espacio/${espacioId}/categorias`" class="link">EDITAR</a>
 				</div>
 				
@@ -44,7 +45,7 @@
 						<img v-if="step > 2" src="/img/wimet_ic_check_24px_accent.svg" style="width: 30px" alt="Primer paso" class="pull-right">
 						<h2 class="Sub-title">Paso 2: Exhibe tu lugar</h2>
 					</div>
-					<p class="sub-title-info">Fotos, descripción, título.</p>
+					<p class="sub-title-info">Imágenes, características, amenities y descripción.</p>
 					<a v-if="step == 2" :href="`/publicar/segundo-paso/espacio/${espacioId}/images`">
 						<button class="btn-primary-pig">GUARDAR</button>
 					</a>
@@ -56,7 +57,7 @@
 						<img v-if="step == 4" src="/img/wimet_ic_check_24px_accent.svg" style="width: 30px" alt="Primer paso" class="pull-right">
 						<h2 class="Sub-title">Paso 3: Prepárate para alquilar</h2>
 					</div>
-					<p class="sub-title-info">Reglas, precio y políticas del espacio.</p>
+					<p class="sub-title-info">Reglas, precio, disponibilidad y políticas del espacio.</p>
 					<a v-if="step == 3" :href="`/publicar/tercer-paso/espacio/${espacioId}/reglas`">
 						<button class="btn-primary-pig">GUARDAR</button>
 					</a>

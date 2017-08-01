@@ -168,6 +168,7 @@
 		<div class="container-right__dialog-box">
 			<img class="img-responsive" src="https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-direccion" style="width: 100px; margin-bottom: 50px;">
 			<div>
+				<p>Escribe tu dirección y selecciónala a través del buscador de Google. Debe aparecer en el mapa inferior, de lo contrario, no estará registrado en la plataforma.</p>
 				<p>No te preocupes. Tu dirección exacta sólo se mostrará a los usuarios que cuenten con una reserva confirmada.</p>
 			</div>
 		</div>

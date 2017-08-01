@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<div class="container-center">
-			<h3>¿Cual es el precio de tu espacio?</h3>
+			<h3>¿Cuál es el precio de tu espacio?</h3>
 			<div class="content-categories">
 				<button 
 					v-for="cat in categories" 
@@ -36,7 +36,7 @@
 						</div>
 						<label for="por-hora">Mínimo de horas</label>
 					</div>
-					<span>(puedes establecer una cantidad mínima de horas a contratar).</span>
+					<span>(puedes establecer una cantidad mínima de horas a contratar)</span>
 				</div>
 				<div class="check-all">
 					<input type="checkbox" id="all-categories" v-model="allCategories" @change="changeAllCategories()">
