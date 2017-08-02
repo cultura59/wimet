@@ -9,10 +9,12 @@
     			</div>
     		</header>
     		<section class="box-reserva__body">
-                <div v-if="(messageError != '')" class="messageError">
-                    <p>{{messageError}}</p>
-                    <i class="fa fa-times cursor-pointer" aria-hidden="true" @click="closeMsg()"></i>
-                </div>
+                <template v-if="(messageError != '')">
+                    <div class="messageError">
+                        <p>{{messageError}}</p>
+                        <i class="fa fa-times cursor-pointer" aria-hidden="true" @click="closeMsg()"></i>
+                    </div>
+                </template>
     			<div class="wt-space-block">
     				<div class="wt-center-column">
     					<label for="activity">Tipo actividad</label>
@@ -103,6 +105,12 @@
                         <h4>¡Contacta al anfitrión!</h4>
                         <span class="close-reserva" @click="closeModal()">&times;</span>
                     </div>
+                    <template v-if="(messageError != '')">
+                        <div class="messageError">
+                            <p>{{messageError}}</p>
+                            <i class="fa fa-times cursor-pointer" aria-hidden="true" @click="closeMsg()"></i>
+                        </div>
+                    </template>
                     <div class="form-contact">
                         <div class="form-contact__textarea">
                             <label for="title">Título del evento</label>
@@ -212,11 +220,16 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 this.modalFechas = false;
             },
             sendReserva() {
+                this.btnSend = false;
+                if(this.mensaje.includes("@")) {
+                    this.messageError = "No se pueden incluir emails en el mensaje";
+                    this.btnSend = true;
+                    return
+                }
                 let inicio = moment(this.inicio);
                 let fin = moment(this.fin);
                 let totalHoras = this.checkDiffDates(fin, inicio);
 
-                this.btnSend = false;
                 let body = {
                     'title': this.title,
                     'clientId': this.user.id,

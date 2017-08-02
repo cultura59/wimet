@@ -128,20 +128,6 @@
       border: none;display: flex;
       justify-content: space-between;
     }
-    .messageError {
-      margin: 16px 0;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      padding: 1em;
-      background: rgba(234, 81, 109, 0.87);
-      color: #fff;
-      border-radius: 2px;
-      border: 1px solid #ea516d;
-      p {
-        margin: 0;
-      }
-    }
     .precio-estimado {
       font-family: Noto serif;
       font-style: italic;
@@ -580,4 +566,18 @@
 .pendiente-aprobacion {
   margin-top: 10px;
   color: #ea516d;
+}
+.messageError {
+  margin: 16px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 1em;
+  background: rgba(234, 81, 109, 0.87);
+  color: #fff;
+  border-radius: 2px;
+  border: 1px solid #ea516d;
+  p {
+    margin: 0;
+  }
 }

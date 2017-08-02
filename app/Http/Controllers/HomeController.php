@@ -229,7 +229,7 @@ class HomeController extends Controller
                 'nombreUser' => $cliente->firstname
             ];
 
-            Mail::send('emails.consulta-anfitrion', $datos, function ($message) {
+            Mail::send('emails.consulta-anfitrion', $datos, function ($message) use ($duenio){
                 $message->from('adrian@wimet.co', 'Alejandro');
                 $message->to($duenio->email)
                 ->cc('adrian@wimet.co')
@@ -238,7 +238,7 @@ class HomeController extends Controller
                 ->subject('Tienes una nueva solicitud de reserva Felicitaciones!');
             });
 
-            Mail::send('emails.consulta-usuario', $datos, function ($message) {
+            Mail::send('emails.consulta-usuario', $datos, function ($message) use ($cliente){
                 $message->from('adrian@wimet.co', 'Alejandro');
                 $message->to($cliente->email)
                 //$message->to('rojasadrian.e@gmail.com')
