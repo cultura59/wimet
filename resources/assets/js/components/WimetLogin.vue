@@ -178,7 +178,7 @@
 						this.$auth.setToken(res.body.access_token, res.body.expires_in + Date.now());
 						this.showModalLogin = false;
 						setTimeout(() => {
-							//location.reload(); 
+							location.reload(); 
 						}, 1000);
 					}
 				}, err => {
@@ -215,7 +215,7 @@
 			},
 			reloadPage(url, event) {
 				event.preventDefault();
-				//location.href = url;
+				location.href = url;
 			},
 			publicaUrl(e) {
 				e.preventDefault();

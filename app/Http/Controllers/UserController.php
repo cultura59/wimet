@@ -174,10 +174,6 @@ class UserController extends Controller
         $arr = array(
             'properties' => array(
                 array(
-                    'property' => 'user_id_wimet',
-                    'value' => $data->id
-                ),
-                array(
                     'property' => 'email',
                     'value' => $data->email
                 ),
@@ -196,6 +192,30 @@ class UserController extends Controller
                 array(
                     'property' => 'company',
                     'value' => $data->businessName
+                ),
+                array(
+                    'property' => 'industry',
+                    'value' => ''
+                ),
+                array(
+                    'property' => 'city',
+                    'value' => ''
+                ),
+                array(
+                    'property' => 'urlfacebook',
+                    'value' => ''
+                ),
+                array(
+                    'property' => 'urllinkedin',
+                    'value' => ''
+                ),
+                array(
+                    'property' => 'tipo_clientes_id',
+                    'value' => 1
+                ),
+                array(
+                    'property' => 'user_id_wimet',
+                    'value' => $data->id
                 )
             )
         );
