@@ -214,8 +214,12 @@ class UserController extends Controller
                     'value' => 1
                 ),
                 array(
-                    'property' => 'user_id_wimet',
-                    'value' => $data->id
+                    'property' => 'fuente',
+                    'value' => 'Website form'
+                ),
+                array(
+                    'property' => 'esanfitrion',
+                    'value' => false
                 )
             )
         );

@@ -42,7 +42,7 @@
 	<div class="container-right">
 		<div class="container-right__dialog-box">
 			<div>
-				<p>Los invitados se sentirán como en casa si les ofreces algunos elementos básicos durante su evento. Algunos anfitriones preparan el espacio para los requerimientos necesarios del organizador. Nada de esto es obligatorio, pero ayuda a dar una experiencia más cálida a los invitados.</p>
+				<p>Los invitados se sentirán como en casa si les ofreces algunos elementos básicos durante su evento. Algunos anfitriones preparan el espacio para los requerimientos necesarios del organizador. Nada de esto es obligatorio, pero ayuda a crear una mejor experiencia.</p>
 			</div>
 		</div>
 	</div>

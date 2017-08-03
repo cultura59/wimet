@@ -45,7 +45,7 @@
 									<input type="radio" id="flexible" name="cancellationflexibility" value="flexible" required style="display: none;" @if($espacio->cancellationflexibility== 'flexible') checked @endif>
 									<label for="flexible" class="wt-publica-label">Flexible</label>
 								</span>
-								<span class="item-description">(Reembolso completo hasta 15 días antes del evento, excepto los gastos de procesamiento).</span>
+								<span class="item-description">(Reembolso completo hasta 15 días antes del evento, excepto los gastos de procesamiento)</span>
 							</div>
 						</div>
 						<!-- Item -->
@@ -55,7 +55,7 @@
 									<input type="radio" id="moderado" name="cancellationflexibility" value="moderado" required style="display: none;" @if($espacio->cancellationflexibility== 'moderado') checked @endif>
 									<label for="moderado" class="wt-publica-label">Moderada</label>
 								</span>
-								<span class="item-description">(Reembolso completo hasta 30 días antes del evento, excepto los gastos de procesamiento).</span>
+								<span class="item-description">(Reembolso completo hasta 30 días antes del evento, excepto los gastos de procesamiento)</span>
 							</div>
 						</div>
 						<!-- Item -->
@@ -65,7 +65,7 @@
 									<input type="radio" id="estricto" name="cancellationflexibility" value="estricto" required style="display: none;" @if($espacio->cancellationflexibility== 'estricto') checked @endif>
 									<label for="estricto" class="wt-publica-label">Estricta</label>
 								</span>
-								<span class="item-description">(50% de reembolso hasta 30 días antes del evento, excepto gastos de procesamiento).</span>
+								<span class="item-description">(50% de reembolso hasta 30 días antes del evento, excepto gastos de procesamiento)</span>
 							</div>
 						</div>
 					</div>

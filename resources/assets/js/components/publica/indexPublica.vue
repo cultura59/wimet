@@ -20,7 +20,6 @@
 						Tu espacio será publicado en la plataforma una vez aprobado por nuestro equipo. Este proceso puede demorar hasta 48 hs.<br>
 						Si falta alguna información, por favor, accede a tu espacio y edita lo que consideres relevante.
 					</p>
-					<p class="sub-title-info">Para que el espacio sea revisado debes completar todos los pasos, sin contar los opcionales.</p>
 					<div v-if="enviarValidacion">
 						<a :href="`/dashboard/user/${user.id}/misespacios`">
 							<button class="btn-primary-pig-lg">ENVIAR PARA APROBACIÓN</button>

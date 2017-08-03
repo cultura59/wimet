@@ -91,9 +91,10 @@
 				this.$http.post('saveEspaciowithoutdata', data)
 				.then(res => {
 					if(res.status == 200) {
+						console.log(res.body);
 						location.href = `/publicar/primer-paso/espacio/${res.body.id}/categorias`;
 					}else {
-						swal("Error al guardar el espacio", "Los datos no son correctos", "error")
+						swal("Error al guardar el espacio", "Los datos no son correctos", "error");
 					}
 				});
 			}

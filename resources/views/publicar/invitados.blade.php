@@ -24,27 +24,27 @@
 						<span class="box-publica__container__name">Máximo de asistentes</span>
 					</div>
 					<div class="box-publica__description">
-						<span class="description-text">(sólo los disponibles para el uso de invitados).</span>
+						<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
 					</div>
 				</div>
 
 				<div class="box-publica">
 					<div class="box-publica__container">
 						<input class="box-publica__container__input" type="text" name="foot" value="{{$espacio->foot}}" placeholder="0">
-						<span class="box-publica__container__name">De pie (Opcional)</span>
+						<span class="box-publica__container__name">De pie (opcional)</span>
 					</div>
 					<div class="box-publica__description">
-						<span class="description-text">(Actividad informal tipo cocktail, etc).</span>
+						<span class="description-text">(Actividad informal tipo cocktail)</span>
 					</div>
 				</div>
 
 				<div class="box-publica">
 					<div class="box-publica__container">
 						<input class="box-publica__container__input" type="text" name="seated" value="{{$espacio->seated}}" placeholder="0">
-						<span class="box-publica__container__name">Sentados</span>
+						<span class="box-publica__container__name">Sentados (opcional)</span>
 					</div>
 					<div class="box-publica__description">
-						<span class="description-text">(Actividad formal con mesas y/o sillas, etc).</span>
+						<span class="description-text">(Actividad formal con mesas y/o sillas)</span>
 					</div>
 				</div>
 			</div>

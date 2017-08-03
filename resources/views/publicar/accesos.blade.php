@@ -45,7 +45,7 @@
 						<span class="box-publica__container__name">Ambientes</span>
 					</div>
 					<div class="box-publica__description">
-						<span class="description-text">(sólo los disponibles para el uso de invitados).</span>
+						<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
 					</div>
 				</div>
 				<div class="box-publica">
@@ -56,7 +56,7 @@
 						<span class="box-publica__container__name">Baños</span>
 					</div>
 					<div class="box-publica__description">
-						<span class="description-text">(sólo los disponibles para el uso de invitados).</span>
+						<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
 					</div>
 				</div>
 				<div class="box-publica" style="display: none;">
@@ -67,7 +67,7 @@
 						<span class="box-publica__container__name">Piso</span>
 					</div>
 					<div class="box-publica__description">
-						<span class="description-text">(sólo los disponibles para el uso de invitados).</span>
+						<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
 					</div>
 				</div>
 				<div class="box-publica">
@@ -78,7 +78,7 @@
 						<span class="box-publica__container__name">Superficie</span>
 					</div>
 					<div class="box-publica__description">
-						<span class="description-text">(sólo los disponibles para el uso de invitados).</span>
+						<span class="description-text">(sólo los disponibles para el uso de invitados)</span>
 					</div>
 				</div>
 			</div>
@@ -93,7 +93,7 @@
 							$espacio->access->contains('id', $as->id), 
 							array('id' => 'id-access-' . $as->id, 'style' => 'display: none;')) 
 						}}
-						<label for="id-access-{{$as->id}}" class="wt-publica-label">{{$as->nombre}}.</label>
+						<label for="id-access-{{$as->id}}" class="wt-publica-label">{{$as->nombre}}</label>
 					</div>
 					@endforeach
 				</div>

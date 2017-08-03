@@ -9,10 +9,10 @@
 			</div>
 		</template>
 		<template v-if="(user.id && user.id == evento.user_id)">
-			<p class="mensajes-alert">La mayoría de los anfitriones responden en un plazo de 24 hs. Si has elegido esta publicación y estas de acuerdo con sus políticas y precio, demuestra tu interés en confirmar la reserva, solicitando el presupuesto formal al anfitrión.</p>
+			<p class="mensajes-alert">La mayoría de los organizadores cuando se contactan con el anfitrión es porque han visto las cualidades del espacio, y lo han elegido. Quítate las dudas del evento y cuando estés listo, envía tu presupuesto formal para confirmar la reserva.</p>
 		</template>
 		<template v-if="(user.id && user.id != evento.user_id)">
-			<p class="mensajes-alert">La mayoría de los organizadores cuando se contactan con el anfitrión es porque han visto las cualidades del espacio, y lo han elegido. Quítate las dudas del evento y cuando estés listo, envía tu presupuesto formal para confirmar la reserva.</p>
+			<p class="mensajes-alert">La mayoría de los anfitriones responden en un plazo de 24 hs. Si has elegido esta publicación y estas de acuerdo con sus políticas y precio, demuestra tu interés en confirmar la reserva, solicitando el presupuesto formal al anfitrión.</p>
 		</template>
 		<template v-if="(user.id && user.id == evento.cliente_id)">
 			<label class="cursor-pointer" @click="redirectMensajes()">< Ver mensajes</label>
