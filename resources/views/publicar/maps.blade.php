@@ -116,13 +116,22 @@
 				<h3>¿Cuál es la dirección exacta?</h3>
 				<div class="row wt-m-top-2">
 					<div class="col-md-12">
-						<input 
-							type="text" 
-							id="direccion" 
-							class="wt-publica-input"
-							value="{{$espacio->adress}}, {{$espacio->city}}, {{$espacio->state}}" 
-							placeholder="Ej.: El Salvador 5218, Palermo" 
-							onFocus="geolocate()" />
+						@if($espacio->adress == "" || $espacio->city == "" || $espacio->state == "")
+							<input 
+								type="text" 
+								id="direccion" 
+								class="wt-publica-input"
+								placeholder="Ej.: El Salvador 5218, Palermo" 
+								onFocus="geolocate()" />
+						@else 
+							<input 
+								type="text" 
+								id="direccion" 
+								class="wt-publica-input"
+								value="{{$espacio->adress}}, {{$espacio->city}}, {{$espacio->state}}" 
+								placeholder="Ej.: El Salvador 5218, Palermo" 
+								onFocus="geolocate()" />
+						@endif
 					</div>
 				</div>
 				<div style="display: none;">

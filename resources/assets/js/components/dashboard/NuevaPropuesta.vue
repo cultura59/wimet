@@ -44,7 +44,9 @@
 						type="text" 
 						placeholder="$ 100.-" 
 						class="content-box-price__left__input"
-						v-model="evento.sub_total">
+						v-model="subTotal"
+						:value="subTotal" 
+						v-on:input="evento.sub_total = $event.target.value">
 					<button class="content-box-price__left__btn1" @click="decrementPrice()">-</button>
 					<button class="content-box-price__left__btn2" @click="incrementPrice()">+</button>
 				</div>
@@ -57,22 +59,22 @@
 			<div v-if="iva">
 				<div class="wt-m-bot-2">
 					<label for="iva" class="container-evento__label">IVA</label>
-					<span class="propuesta-m-left-2">$ {{(setIva) ? setIva : '-'}}</span>
+					<span class="propuesta-m-left-2">$ {{(evento.iva) ? evento.iva : '-'}}</span>
 				</div>
 				<div class="wt-m-bot-2">
 					<label for="subTotal" class="container-evento__label">Sub Total</label>
-					<span class="propuesta-m-left-1">$ {{(setSubTotal) ? setSubTotal : '-'}}</span>
+					<span class="propuesta-m-left-1">$ {{(evento.montoConIva) ? evento.montoConIva : '-'}}</span>
 				</div>
 			</div>
 			<!-- END Control si existe iva o no -->
 			<div class="wt-m-bot-2">
 				<label v-if="iva" for="invitados" class="container-evento__label">Comisión (15%)</label>
 				<label v-if="!iva" for="invitados" class="container-evento__label">Comisión (15% + IVA)</label>
-				<span class="propuesta-m-left-0">$ {{(setComision) ? setComision : '-'}}</span>
+				<span class="propuesta-m-left-0">$ {{(evento.comision) ? evento.comision : '-'}}</span>
 			</div>
 			<div class="wt-m-bot-2">
 				<label for="invitados" class="container-evento__label">Tu pago</label>
-				<span class="propuesta-m-left-1">$ {{(setTupago) ? setTupago : '-'}}</span>
+				<span class="propuesta-m-left-1">$ {{(evento.tu_pago) ? evento.tu_pago : '-'}}</span>
 			</div>
 			<div class="container-propuesta__detalles wt-m-top-2">
 				<label for="condiciones" class="container-evento__label">Condiciones generales</label>
@@ -114,45 +116,21 @@
 				user: {},
 				evento: {},
 				iva: true,
-				showdetalles: false
+				showdetalles: false,
+				subTotal: 0
 			}
 		},
 		mounted() {
             this.getUserAuthenticated();
             this.getEvento();
         },
-        computed: {
-        	setIva() {
-        		this.evento.iva = (parseFloat(this.evento.sub_total) * 21) / 100;
-        		if(this.iva) {
-            		this.evento.montoConIva = parseFloat(this.evento.iva) + parseFloat(this.evento.sub_total);
-            		this.evento.fee = (this.evento.montoConIva * 21) / 100;
-            		this.evento.total = this.evento.montoConIva + this.evento.fee;
-            	}else {
-            		this.evento.montoConIva = this.evento.sub_total;
-            		this.evento.fee = (this.evento.sub_total * 21) / 100;
-            		this.evento.total = this.evento.montoConIva + this.evento.fee;
-            	}
-            	return this.evento.iva;
+        watch: {
+        	iva() {
+        		this.calcIvanAndTotals();
         	},
-        	setSubTotal() {
-        		return parseFloat(this.evento.sub_total) + parseFloat(this.evento.iva);
-        	},
-        	setComision() {
-        		let res;
-    			this.evento.comision = ((parseFloat(this.evento.sub_total) + this.evento.iva) * 15) / 100;
-            	res = parseFloat(this.evento.comision);
-	            return parseFloat(Math.round(res * 100) / 100).toFixed(2);
-            },
-            setTupago() {
-            	if(this.iva){
-        			this.evento.tu_pago = (parseFloat(this.evento.sub_total) + this.evento.iva) - this.evento.comision;
-	            	return this.evento.tu_pago;
-        		}else {
-	            	this.evento.tu_pago = parseFloat(this.evento.sub_total) - this.evento.comision;
-	            	return this.evento.tu_pago;
-	            }
-            }
+        	subTotal() {
+        		this.calcIvanAndTotals();
+        	}
         },
 		methods: {
 			getUserAuthenticated() {
@@ -171,17 +149,19 @@
 				this.$http.get(`api/evento/${this.eventoId}`)
 				.then(res => {
 					this.evento = res.body;
-					this.evento.comision = (this.evento.sub_total * 15) / 100;
-            		this.evento.tu_pago = this.evento.sub_total - this.evento.comision;
+					this.subTotal = this.evento.sub_total;
+					this.calcIvanAndTotals();
             		this.evento.deposito = this.securitydeposit;
             		this.evento.cancellationflexibility = this.cancellationflexibility;
 				});
 			},
             incrementPrice() {
             	this.evento.sub_total++;
+            	this.calcIvanAndTotals();
             },
             decrementPrice() {
             	this.evento.sub_total--;
+            	this.calcIvanAndTotals();
             },
             incrementDeposito() {
             	this.evento.deposito++;
@@ -213,15 +193,7 @@
             	});
             },
             calcularIvaYFee() {
-            	if(this.iva) {
-            		this.evento.montoConIva = parseFloat(this.evento.iva) + parseFloat(this.evento.sub_total);
-            		this.evento.fee = (this.evento.montoConIva * 21) / 100;
-            		this.evento.total = this.evento.montoConIva + this.evento.fee;
-            	}else {
-            		this.evento.montoConIva = this.evento.sub_total;
-            		this.evento.fee = (this.evento.sub_total * 21) / 100;
-            		this.evento.total = this.evento.montoConIva + this.evento.fee;
-            	}
+            	this.calcIvanAndTotals();
             	let data = {
             		evento_id: this.evento.id,
             		estilo_espacios_id: this.evento.estilo_espacios_id,
@@ -249,6 +221,23 @@
 			redirectUrl(e, url) {
 				e.preventDefault();
 				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.eventoId}${url}`;
+			},
+			calcIvanAndTotals() {
+				this.evento.sub_total = this.evento.sub_total;
+				this.evento.iva = (parseFloat(this.evento.sub_total) * 21) / 100;
+	    		if(this.iva) {
+	        		this.evento.montoConIva = parseFloat(this.evento.iva) + parseFloat(this.evento.sub_total);
+					this.evento.comision = (this.evento.montoConIva * 15) / 100;
+	        		this.evento.fee = (this.evento.montoConIva * 5) / 100;
+	    			this.evento.tu_pago = (parseFloat(this.evento.sub_total) + this.evento.iva) - this.evento.comision;
+	        		this.evento.total = this.evento.montoConIva + this.evento.fee;
+	        	}else {
+	        		this.evento.montoConIva = this.evento.sub_total;
+					this.evento.comision = ((parseFloat(this.evento.montoConIva) + this.evento.iva) * 15) / 100;
+	        		this.evento.fee = (this.evento.sub_total * 5) / 100;
+	        		this.evento.tu_pago = parseFloat(this.evento.sub_total) - this.evento.comision;
+	        		this.evento.total = this.evento.montoConIva + this.evento.fee;
+	            }
 			}
 		}
 	}

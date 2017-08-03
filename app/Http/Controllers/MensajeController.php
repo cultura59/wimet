@@ -69,18 +69,20 @@ class MensajeController extends Controller
             if($request->user_id != $espacio->user_id) 
             {
                 Mail::send('emails.mensaje-anfitrion', $datos, function ($message) use ($user) {
-                    $message->from('adrian@wimet.co', 'Wimet.co');
-                    //$message->to('rojasadrian.e@gmail.com')
+                    $message->from('info@wimet.co', 'Wimet');
                     $message->to($user->email)
                     ->cc('adrian@wimet.co')
+                    ->cc('alejandro@wimet.co')
+                    ->cc('federico@wimet.co')
                     ->subject('Tienes un nuevo mensaje sobre un evento');
                 });
             }else {
                 Mail::send('emails.mensaje-usuario', $datos, function ($message) use ($cliente) {
-                    $message->from('adrian@wimet.co', 'Wimet.co');
-                    //$message->to('rojasadrian.e@gmail.com')
+                    $message->from('info@wimet.co', 'Wimet');
                     $message->to($cliente->email)
                     ->cc('adrian@wimet.co')
+                    ->cc('alejandro@wimet.co')
+                    ->cc('federico@wimet.co')
                     ->subject('Tienes un nuevo mensaje sobre tu evento');
                 });
             }

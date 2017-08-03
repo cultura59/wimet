@@ -31,7 +31,9 @@
                 <div class="col-md-12 padding-leftright-null text-center">
                     <h2 class="margin-bottom-null title">PRENSA</h2>
                     <div class="padding-md">
-                        <p class="heading ">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime veniam voluptatibus, illo aliquid magni itaque dolorum laborum temporibus.</p>
+                        <p class="heading">El avance de las tecnologías ha permitido nuevas formas de acceso a la información y la posibilidad de potenciar nuestros lazos o relaciones. Nosotros creemos que estos nuevos paradigmas dan lugar a que podamos re imaginar la forma en que nos encontramos, compartimos y creamos.</p>
+                        <p class="heading">Cada espacio espera contar su historia.</br>
+                        Revive y comparte la experiencia Wimet.</p>
                         <a href="blog-masonry-sidebar" class="btn-alt active shadow small margin-null">Descargar Kit de Prensa </a>
                     </div>
                 </div>

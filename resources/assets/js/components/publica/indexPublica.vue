@@ -15,7 +15,7 @@
 					</p>
 				</div>
 				<div v-if="step == 4">
-					<h1>¡Felicitaciones {{user.firstname}}!</h1>
+					<h1>¡Felicitaciones, {{user.firstname}}!</h1>
 					<p class="sub-title-info">
 						Tu espacio será publicado en la plataforma una vez aprobado por nuestro equipo. Este proceso puede demorar hasta 48 hs.<br>
 						Si falta alguna información, por favor, accede a tu espacio y edita lo que consideres relevante.
@@ -46,7 +46,7 @@
 					</div>
 					<p class="sub-title-info">Imágenes, características, amenities y descripción.</p>
 					<a v-if="step == 2" :href="`/publicar/segundo-paso/espacio/${espacioId}/images`">
-						<button class="btn-primary-pig">GUARDAR</button>
+						<button class="btn-primary-pig">CONTINUAR</button>
 					</a>
 					<a v-if="step > 2" :href="`/publicar/segundo-paso/espacio/${espacioId}/images`" class="link">EDITAR</a>
 				</div>
@@ -58,7 +58,7 @@
 					</div>
 					<p class="sub-title-info">Reglas, precio, disponibilidad y políticas del espacio.</p>
 					<a v-if="step == 3" :href="`/publicar/tercer-paso/espacio/${espacioId}/reglas`">
-						<button class="btn-primary-pig">GUARDAR</button>
+						<button class="btn-primary-pig">CONTINUAR</button>
 					</a>
 					<a v-if="step == 4" :href="`/publicar/tercer-paso/espacio/${espacioId}/reglas`" class="link">EDITAR</a>
 				</div>

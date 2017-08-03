@@ -14,7 +14,7 @@
 		<navbar-tercero espacio-id="{{$espacio->id}}" url="reglas"></navbar-tercero>
 		{!! Form::open(array('url' => 'savereglas', 'method' => 'POST')) !!}
 		<div class="container-center">
-			<h3>Establece reglas sobre el espacio</h3>
+			<h3>Establece las reglas sobre el espacio</h3>
 			<div class="row wt-m-top-4">
 				<input type="hidden" name="id" value="{{$espacio->id}}">
 				@foreach($reglas as $regla)

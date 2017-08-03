@@ -2,8 +2,8 @@
 	<div>
 		<div class="container-center">
 			<div id="first-step">
-				<h2>¡Hola {{user.firstname}}! Estas a pasos de</h2>
-				<h2>ser anfitrión de tu espacio ;)</h2>
+				<h2>¡Hola {{user.firstname}}! Estás a 3 pasos de</h2>
+				<h2>ser anfitrión de tu espacio :-)</h2>
 				<div class="wt-m-top-3 wt-m-bot-3">
 					<span class="title-paso">PASO 1: DATOS BÁSICOS (descripción del lugar)</span>
 				</div>

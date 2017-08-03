@@ -78,10 +78,10 @@
                         <div class="menu-holder">
                             <ul>
                                 <li class="submenu">
-                                    <a href="#">PUBLICA TU ESPACIO</a>
+                                    <a href="/publica">PUBLICA TU ESPACIO</a>
                                 </li>
                                 <li class="submenu">
-                                    <a href="#">Ingresa</a>
+                                    <a href="/">Ingresa</a>
                                 </li>
                             </ul>
                         </div>

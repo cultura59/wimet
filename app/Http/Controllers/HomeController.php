@@ -230,7 +230,7 @@ class HomeController extends Controller
             ];
 
             Mail::send('emails.consulta-anfitrion', $datos, function ($message) use ($duenio){
-                $message->from('adrian@wimet.co', 'Alejandro');
+                $message->from('info@wimet.co', 'Wimet');
                 $message->to($duenio->email)
                 ->cc('adrian@wimet.co')
                 ->cc('alejandro@wimet.co')
@@ -239,10 +239,11 @@ class HomeController extends Controller
             });
 
             Mail::send('emails.consulta-usuario', $datos, function ($message) use ($cliente){
-                $message->from('adrian@wimet.co', 'Alejandro');
+                $message->from('info@wimet.co', 'Wimet');
                 $message->to($cliente->email)
-                //$message->to('rojasadrian.e@gmail.com')
                 ->cc('adrian@wimet.co')
+                ->cc('alejandro@wimet.co')
+                ->cc('federico@wimet.co')
                 ->subject('Tienes una nueva solicitud de reserva Felicitaciones!');
             });
             /* Datos de envio de email (Consulta al dueño */

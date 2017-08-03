@@ -75,7 +75,24 @@
 			<div class="wt-m-bot-4">
 				<div v-for="item in agrupadorDias" class="wt-space-block">
 					<span>{{item.dia}}</span>
-					<span>{{item.inicio}} a {{item.fin}} hs. <i class="fa fa-trash cursor-pointer" @click="removeDisponibilidad(item)"></i></span>
+					<template v-if="(item.inicio == 0 && item.fin == 0)">
+						<span>
+							No disponible 
+							<i class="fa fa-trash cursor-pointer" @click="removeDisponibilidad(item)"></i>
+						</span>
+					</template>
+					<template v-if="(item.inicio == 0 && item.fin == 24)">
+						<span>
+							Abierto 24hs 
+							<i class="fa fa-trash cursor-pointer" @click="removeDisponibilidad(item)"></i>
+						</span>
+					</template>
+					<template v-if="(item.inicio != 0 && item.fin != 24)">
+						<span>
+							{{item.inicio}} a {{item.fin}} hs 
+							<i class="fa fa-trash cursor-pointer" @click="removeDisponibilidad(item)"></i>
+						</span>
+					</template>
 				</div>
 			</div>
 		</div>

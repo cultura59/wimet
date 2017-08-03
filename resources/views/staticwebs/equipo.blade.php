@@ -31,7 +31,7 @@
                 <div class="col-md-12 padding-leftright-null text-center">
                     <h2 class="margin-bottom-null title">Management Team</h2>
                     <div class="padding-md">
-                        <p class="heading margin-bottom">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime veniam voluptatibus, illo aliquid magni itaque dolorum laborum temporibus.</p>
+                        <p class="heading margin-bottom">Apasionados por las posibilidades de diversas experiencias y con más de 10 años de know-how en eventos, nos encontramos a disposición a través de Wimet Concierge para asistirte en todos tus detalles.</p>
                     </div>
                 </div>
                 <div class="col-md-4">

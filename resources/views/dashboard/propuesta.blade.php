@@ -71,7 +71,7 @@
 				<span>Desde {{$propuesta->reserva_desde}} hasta {{$propuesta->reserva_hasta}}</span>
 				<div>
 					<div class="wt-space-block">
-						<label>Espacio (por {{$evento->total_horas}}hs)</label>
+						<label>Espacio /{{$evento->total_horas}}hs</label>
 						<span>${{number_format($propuesta->sub_total, 2, '.', ',')}}.-</span>
 					</div>
 					<div class="wt-space-block">
@@ -82,14 +82,25 @@
 						<label>Subtotal</label>
 						<span>${{number_format($propuesta->monto_con_iva, 2, '.', ',')}}.-</span>
 					</div>
-					<div class="wt-space-block">
-						<label>Fee</label>
-						<span>${{number_format($propuesta->fee, 2, '.', ',')}}.-</span>
-					</div>
-					<div class="propuesta-datos__total">
-						<label>Total</label>
-						<h3>${{number_format($propuesta->total, 2, '.', ',')}}.-</h3>
-					</div>
+					@if($userId == $propuesta->user_id)
+						<div class="wt-space-block">
+							<label>Comisión (15%)</label>
+							<span>${{number_format($propuesta->comision, 2, '.', ',')}}.-</span>
+						</div>
+						<div class="propuesta-datos__total">
+							<label>Total espacio</label>
+							<h3>${{number_format($propuesta->tu_pago, 2, '.', ',')}}.-</h3>
+						</div>
+					@else
+						<div class="wt-space-block">
+							<label>Fee (5%)</label>
+							<span>${{number_format($propuesta->fee, 2, '.', ',')}}.-</span>
+						</div>
+						<div class="propuesta-datos__total">
+							<label>Total</label>
+							<h3>${{number_format($propuesta->total, 2, '.', ',')}}.-</h3>
+						</div>
+					@endif
 				</div>
 			</div>
 		</div>

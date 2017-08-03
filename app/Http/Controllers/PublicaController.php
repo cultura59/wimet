@@ -128,7 +128,7 @@ class PublicaController extends Controller
     */
     public function segundoPasoCaracteristicas($id) {
         $espacio = Espacio::with('characteristics')->find($id);
-        $characteristics = Characteristics::all();
+        $characteristics = Characteristics::orderBy('nombre', 'asc')->get();
         return View('publicar.caracteristicas',
             array(
                 'espacio' => $espacio,
@@ -144,7 +144,7 @@ class PublicaController extends Controller
     */
     public function segundoPasoAmenities($id) {
         $espacio = Espacio::with('servicios')->find($id);
-        $amenities = Servicio::all();
+        $amenities = Servicio::orderBy('nombre', 'asc')->get();
         return View('publicar.amenities',
             array(
                 'espacio' => $espacio,

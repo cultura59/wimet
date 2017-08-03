@@ -148,7 +148,7 @@ class DashboardController extends Controller
      */
     public function propuestas($userId)
     {
-        return view('dashboard.propuestas');
+        return view('dashboard.propuestas', array('userId' => $userId));
     }
 
 	/**

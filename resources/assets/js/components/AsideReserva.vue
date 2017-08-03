@@ -24,7 +24,7 @@
     				</div>
     				<div class="wt-center-column">
     					<label for="people">Invitados</label>
-                        <input type="text" class="wt-dropdown" v-model="people" :placeholder="`Máximo ${espacio.quanty} persónas.`">
+                        <input type="text" class="wt-dropdown" v-model="people" :placeholder="`Máximo ${espacio.quanty} personas.`">
     				</div>
     			</div>
     			<div class="wt-space-block wt-m-top-2">
