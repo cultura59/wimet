@@ -122,13 +122,17 @@
                             <label for="mensaje">Mensaje</label>
                             <textarea v-model="mensaje" id="mensaje" class="textarea-lg" rows="7" placeholder="Preséntate, describe la actividad que estas planificando y cuéntale cómo utilizarás el espacio. ¿Necesitarás servicios de catering, técnica o producción? 
 Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vamos a necesitar mesas y un servicio de Coffee Break.'"></textarea>
-                            <span class="wt-m-top-2">Nota: Recuerda que esta fuera de nuestros <a class="link-wimet" href="#">Términos y condiciones</a> enviar información de contacto (teléfono, email, etc.).</span>
+                            <span class="wt-m-top-2">
+                                <input type="checkbox" id="terminos" style="display: none;" v-model="terminos">
+                                <label class="wt-publica-label" for="terminos">Acepto los <a class="link-wimet" href="#">términos y condiciones</a></label>
+                            </span>
+                            <span class="wt-m-top-2">Nota: Recuerda que esta fuera de nuestros  enviar información de contacto (teléfono, email, etc.).</span>
                         </div>
                     </div>
                     <div class="form-contact">
                         <div class="form-contact__button">
-                            <img v-if="!btnSend" src="/img/default.gif" alt="Cargando ..." height="50px" />
-                            <button v-if="btnSend" class="btn-primary-pig" @click="sendReserva()">Enviar</button>
+                            <img v-show="!btnSend" src="/img/default.gif" alt="Cargando ..." height="50px" />
+                            <button v-show="(btnSend && terminos)" class="btn-primary-pig" @click="sendReserva()">Enviar</button>
                         </div>
                     </div>
                 </div>                
@@ -167,7 +171,8 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 modalFechas: false,
                 title: '',
                 mensaje: '',
-                btnSend: true
+                btnSend: true,
+                terminos: true
         	}
         },
         mounted() {
@@ -245,8 +250,6 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     'subTotal': this.subTotal,
                     'total': this.total
                 }
-                localStorage.removeItem("consultaInicio");
-                localStorage.removeItem("consultaFin");
                 this.$http.post(`api/sendreserva`, body)
                 .then(res => {
                     window.location.href = `/dashboard/user/${this.user.id}/mensajes`;

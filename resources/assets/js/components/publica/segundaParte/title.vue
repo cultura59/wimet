@@ -54,6 +54,8 @@
 				this.$http.get(`api/espacio/${this.espacioId}`)
 				.then((res) => {
 					this.espacio = res.body;
+					let name = parseInt(this.espacio.name);
+					this.espacio.name = (Number.isInteger(name)) ? '' : this.espacio.name;
 				});
 			},
 			saveEspacio() {
