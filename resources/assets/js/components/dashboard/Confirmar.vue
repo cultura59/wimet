@@ -22,7 +22,7 @@
 					<input id="telefono" type="text" v-model="user.phone" class="input-confirmar" placeholder="Ingrese teléfono"/>
 				</div>
 			</div>
-			<button class="btn-primary-pig wt-m-top-2" @click="confirmarPago()">GUARDAR</button>
+			<button class="btn-primary-pig wt-m-top-2" @click="guardarUser()">GUARDAR</button>
 		</div>
 		<div class="wt-m-top-4">
 			<h3>2. Detalles de pago</h3>
@@ -56,6 +56,12 @@
 	            }else {
 					this.user = this.$auth.getUser();
 				}
+			},
+			guardarUser() {
+				this.$http.put(`api/userupdate/${this.user.id}`, this.user)
+				.then(res => {
+					swal('Datos guardados', 'Se modificaron los datos del usuario', 'success');
+				});
 			},
 			confirmarPago() {
 				if(this.user.phone == "") {

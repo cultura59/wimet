@@ -125,6 +125,42 @@ class UserController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function updateUserConfirm(Request $request, $id)
+    {
+        try {
+            $user = User::find($id);
+            if ($request->hasFile('imagesource')) {
+                // upload the image //
+                $imageUser                      = $request->file('imagesource');
+                $destination_fotoprincipales    = 'avatars/';
+                $filename_imageUser             = str_random(8).'_'.$imageUser->getClientOriginalName();
+
+                $imageUser->move($destination_fotoprincipales, $filename_imageUser);
+
+                $user->imagesource          = "/" . $destination_fotoprincipales . $filename_imageUser;
+            }
+
+            $user->firstname            = $request->firstname;
+            $user->lastname             = $request->lastname;
+            $user->email                = $request->email;
+            $user->phone                = ($request->phone) ? $request->phone : "";
+            $user->businessName         = ($request->businessName) ? $request->businessName : "";
+            $user->industry             = ($request->industry) ? $request->industry : "";
+            $user->personaldescription  = ($request->personaldescription) ? $request->personaldescription : "";
+            $user->save();
+            return $user;
+        }catch(\Exception $e){
+            return response('Los campos no son correctos', 400);
+        }
+    }
+
+    /**
      * Remove the specified resource from storage.
      *
      * @param  int  $id
