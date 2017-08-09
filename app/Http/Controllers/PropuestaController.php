@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Propuesta;
+use App\Espacio;
 use App\Mensaje;
+use App\User;
 
 class PropuestaController extends Controller
 {
@@ -35,11 +37,20 @@ class PropuestaController extends Controller
             $propuesta = new Propuesta($request->all());
             $propuesta->estado = 'enviada';
             $propuesta->save();
+            
+            $espacio = Espacio::where('id', $evento->espacio_id)->with('images')->first();
+            $user = User::find($propuesta->user_id);
+            $cliente = User::find($propuesta->cliente_id);
+
+            $userHubspot = new User();
+            $userHubspot->registerHubspot($cliente, 3);
+
             $mensaje = new Mensaje();
             $mensaje->user_id = 1; 
             $mensaje->evento_id = $propuesta->evento_id; 
             $mensaje->mensaje = "El dueño del espacio envio una propuesta para el evento.";
             $mensaje->save();
+            
             return response($propuesta, 204); 
         }catch(\Exception $e){
             return response('Los campos no son correctos, '.$e->getMessage(), 400);

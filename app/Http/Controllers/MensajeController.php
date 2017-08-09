@@ -55,6 +55,10 @@ class MensajeController extends Controller
             $user = User::find($evento->user_id);
             $cliente = User::find($evento->cliente_id);
             $categoria = Categoria::find($evento->estilo_espacios_id);
+
+            $userHubspot = new User();
+            $userHubspot->registerHubspot($cliente, 2);
+            
             /* Datos de envio de email (Consulta al dueño */
             $datos = [
                 'mensaje' => $request->mensaje,

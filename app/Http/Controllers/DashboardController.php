@@ -291,6 +291,11 @@ class DashboardController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function propuestaSuccess($id, $propuestaId, Request $request) {
+        if($request->estado == 'ok') {
+            $cliente = User::find($id);
+            $userHubspot = new User();
+            $userHubspot->registerHubspot($cliente, 3);
+        }
         return view('dashboard.success', 
             array(
                     'id' => $propuestaId,

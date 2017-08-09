@@ -242,6 +242,39 @@ class UserController extends Controller
         echo "\nResponse: " . $response;
     }
 
+    /**
+     * Create/update a user instance after a valid registration. into huspot
+     *
+     * @param  array  $data
+     * @return User
+     */
+    public function regitroStepHubspot($data, $step) {
+        $arr = array(
+            'properties' => array(
+                array(
+                    'property' => 'step_wimet_espacios',
+                    'value' => $step
+                )
+            )
+        );
+        $post_json = json_encode($arr);
+        $keyHuspot = "153f6544-3085-41e5-98d0-80a3d435d496";
+        
+        $endpoint = 'https://api.hubapi.com/contacts/v1/contact/createOrUpdate/email/'.$data->email.'/?hapikey=' . $keyHuspot;
+        $ch = @curl_init();
+        @curl_setopt($ch, CURLOPT_POST, true);
+        @curl_setopt($ch, CURLOPT_POSTFIELDS, $post_json);
+        @curl_setopt($ch, CURLOPT_URL, $endpoint);
+        @curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        @curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = @curl_exec($ch);
+        $status_code = @curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curl_errors = curl_error($ch);
+        @curl_close($ch);
+        Log::debug("curl Errors: " . $curl_errors);
+        Log::debug("Status code: " . $status_code);
+        Log::debug("Response: " . $response);
+    }
 
     public function cambiarContraseniaRedes($id, $contra) {
         try {
