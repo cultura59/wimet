@@ -60,3 +60,4 @@ Route::get('evento/resumen/{id}', 'EventoController@getResumen');
 Route::get('listpropuestas/{id}', 'PropuestaController@getPropuestas');
 Route::get('propuesta/{id}/rechazada', 'PropuestaController@rechazar');
 Route::put('userupdate/{id}', 'USerController@updateUserConfirm');
+Route::put('updatepass/{id}', 'USerController@cambiarContrasenia')->name('updatepass');

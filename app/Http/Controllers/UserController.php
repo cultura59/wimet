@@ -322,4 +322,17 @@ class UserController extends Controller
             return response('No se pudo modificar la contraseña: ' . $e->getMessage(), 400);
         }
     }
+
+    public function cambiarContrasenia($id, Request $request) {
+        try {
+            $user = User::find($id);
+            $user->password =  bcrypt($request->password);
+            $user->save();
+            return view('dashboard.datos', array(
+                'user' => $user
+            ));
+        }catch(\Exception $e){
+            return response('No se pudo modificar la contraseña: ' . $e->getMessage(), 400);
+        }
+    }
 }

@@ -10,8 +10,8 @@
 		<div class="dashboard-header">
 			<h4>MI PERFIL</h4>
 		</div>
-        {!!Form::model($user, array('route' => array('user.update', $user->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data'))!!}
 		<div class="dashboard-body">
+            {!!Form::model($user, array('route' => array('user.update', $user->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data'))!!}
             <div class="row">
                 <div class="personal-data col-xs-12 col-md-6">
                     <h2>Tus Datos</h2>
@@ -55,13 +55,32 @@
             <div id="box-registrar" class="form-group pull-right">
                 <button type="submit" class="btn wt-btn-primary">GUARDAR</button>
             </div>
-	    </div>
+            {!! Form::close() !!}
+            {!!Form::model($user, array('route' => array('updatepass', $user->id), 'method' => 'PUT', 'enctype' => 'multipart/form-data'))!!}
+            <div class="row wt-m-top-5">
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label for="password">Contraseña</label>
+                        <input type="password" class="form-control" name="password" placeholder="Ingrese contraseña" />
+                    </div>
+                </div>
+                <div class="col-xs-12 col-md-6">
+                    <div class="form-group">
+                        <label for="repassword">Repetir Contraseña</label>
+                        <input type="password" class="form-control" name="password" placeholder="Repita contraseña" />
+                    </div>
+                </div>
+            </div>
+            <div id="box-registrar" class="form-group pull-right">
+                <button type="submit" class="btn wt-btn-primary">GUARDAR</button>
+            </div>
+            {!! Form::close() !!}
+        </div>
         <div class="avatar">
-        	<img src="{{$user->imagesource}}" alt="{{$user->firstname}}">
-        	<label for="imagesource">CARGAR</label>
+            <img src="{{$user->imagesource}}" alt="{{$user->firstname}}">
+            <label for="imagesource">CARGAR</label>
             <input id="imagesource" type="file" name="imagesource" style="display: none;" />
         </div>
-        {!! Form::close() !!}
 	</section>
 
 @endsection

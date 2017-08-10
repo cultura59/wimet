@@ -225,7 +225,9 @@
 							50% de reembolso hasta 30 días antes del evento, excepto gastos de procesamiento.
 						</span>
 						@endif<br>
+						@if($espacio->securitydeposit != '' && $espacio->securitydeposit != 0)
 						<span>Depósito de garantia: ${{$espacio->securitydeposit}}.</span>
+						@endif
 					</div>
 				</div>
 			</div>
