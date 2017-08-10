@@ -11,18 +11,32 @@
 				</button>
 			</div>
 			<div>
-				<div class="content-bpx-price">
-					<div class="content-bpx-price__left">
-						<input 
-							type="text" 
-							placeholder="$ 100.-" 
-							class="content-bpx-price__left__input"
-							v-model="categorySelected.price">
-						<button class="content-bpx-price__left__btn1" @click="incrementPrice()">+</button>
-						<button class="content-bpx-price__left__btn2" @click="decrementPrice()">-</button>
-					</div>
-					<label for="por-hora">Por hora</label>
-				</div> 
+				<div class="wt-center-center">
+					<div class="content-bpx-price">
+						<div class="content-bpx-price__left">
+							<input 
+								type="text" 
+								placeholder="$ 100.-" 
+								class="content-bpx-price__left__input"
+								v-model="categorySelected.price">
+							<button class="content-bpx-price__left__btn1" @click="incrementPrice()">+</button>
+							<button class="content-bpx-price__left__btn2" @click="decrementPrice()">-</button>
+						</div>
+						<label for="por-hora">Por hora</label>
+					</div> 
+					<div class="content-bpx-price">
+						<div class="content-bpx-price__left">
+							<input 
+								type="text" 
+								placeholder="$ 100.-" 
+								class="content-bpx-price__left__input"
+								v-model="categorySelected.daily">
+							<button class="content-bpx-price__left__btn1" @click="incrementDaily()">+</button>
+							<button class="content-bpx-price__left__btn2" @click="decrementDaily()">-</button>
+						</div>
+						<label for="por-hora">Por día</label>
+					</div> 
+				</div>
 				<div>
 					<div class="content-bpx-price">
 						<div class="content-bpx-price__left">
@@ -83,6 +97,12 @@
             },
             decrementPrice() {
             	this.categorySelected.price = this.categorySelected.price - 1;
+            },
+            incrementDaily() {
+            	this.categorySelected.daily = this.categorySelected.daily + 1;
+            },
+            decrementDaily() {
+            	this.categorySelected.daily = this.categorySelected.daily - 1;
             },
             incrementHour() {
             	this.categorySelected.minhours = this.categorySelected.minhours + 1;

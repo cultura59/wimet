@@ -41,7 +41,8 @@
                     <div class="wt-m-top-2">
                         <strong>PRECIO</strong>
         				<div class="wt-space-block wt-m-top-1">
-        					<span>Espacio (por {{totalHoras}}hs)</span>
+                            <span v-if="(days == 0)">Espacio (por {{totalHoras}}hs)</span>
+                            <span v-if="(days > 0)">Espacio (por {{days}} días)</span>
         					<span>$ {{subTotal}}</span>
         				</div>
         				<div class="wt-space-block wt-m-top-1">
@@ -84,7 +85,8 @@
                     <div class="wt-m-top-2">
                         <strong>Precio</strong>
                         <div class="wt-space-block wt-m-top-1">
-                            <span>Espacio (por {{totalHoras}}hs)</span>
+                            <span v-if="(days == 0)">Espacio (por {{totalHoras}}hs)</span>
+                            <span v-if="(days > 0)">Espacio (por {{days}} días)</span>
                             <span>$ {{subTotal}}</span>
                         </div>
                         <div class="wt-space-block wt-m-top-1">
@@ -149,6 +151,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
             'avatarUrl',
             'nombreAnfitrion',
             'price',
+            'daily',
             'minhours',
             'categoryId',
         ],
@@ -172,7 +175,8 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 title: '',
                 mensaje: '',
                 btnSend: true,
-                terminos: true
+                terminos: true,
+                days: 0
         	}
         },
         mounted() {
@@ -290,8 +294,43 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                         if(totalHoras.minute() > 0) {
                             totalHoras.add(30, 'minutes');
                         }
-                        this.totalHoras = (this.checkDiffDates(fin, inicio)).hours();
-                        this.subTotal = totalHoras.hours() * this.price;
+                        this.totalHoras = this.checkDiffHours(fin, inicio);
+                        
+                        if(this.daily > 0) {
+                            //Chequeo que el precio no supere las 8hs
+                            if(this.totalHoras < 10) {
+                                this.subTotal = totalHoras.hours() * this.price;
+                                this.days = 0;
+                            }
+                            //Chequeo que el precio supere las 8hs pero no las 24hs
+                            if(this.totalHoras > 10 && this.totalHoras < 24) {
+                                this.subTotal = parseFloat(this.daily);
+                                this.days = 1;
+                            }
+                            //Chequeo que el precio supere las 48 
+                            if(this.totalHoras > 24 && this.totalHoras < 48) {
+                                this.subTotal = (parseFloat(this.daily) * 2);
+                                this.days = 2;
+                            }
+                            //Chequeo que el precio supere las 72 
+                            if(this.totalHoras > 48 && this.totalHoras < 72) {
+                                this.subTotal = (parseFloat(this.daily) * 3);
+                                this.days = 3;
+                            }
+                            //Chequeo que el precio supere las 96 
+                            if(this.totalHoras > 72 && this.totalHoras < 96) {
+                                this.subTotal = (parseFloat(this.daily) * 4);
+                                this.days = 4;
+                            }
+                            //Chequeo que el precio supere las 110 
+                            if(this.totalHoras > 96 && this.totalHoras < 110) {
+                                this.subTotal = (parseFloat(this.daily) * 5);
+                                this.days = 5;
+                            }
+                        }else {
+                            this.subTotal = totalHoras.hours() * this.price;
+                            this.days = 0;
+                        }
                         this.fee = (this.subTotal * 5)/100;
                         this.total = this.subTotal + this.fee;
                     }
@@ -301,6 +340,11 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 let fin = moment(end);
                 let inicio = moment(start);
                 return moment.utc(fin.diff(inicio));
+            },
+            checkDiffHours(end, start) {
+                let fin = moment(end);
+                let inicio = moment(start);
+                return fin.diff(inicio, 'hours');
             }
         }
     }

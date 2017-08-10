@@ -107,6 +107,7 @@
 			avatar-url="{{$espacio->user->imagesource}}"
 			nombre-anfitrion="{{$espacio->user->firstname}}"
 			price="{{$price->price}}"
+			daily="{{$price->daily}}"
 			minhours="{{$price->minhours}}"
 			category-id="{{$categoryId}}">
 		</aside-reserva>
@@ -142,11 +143,17 @@
 					<span>Precio</span>
 				</div>
 				<div class="box-descripcion__contenido">
-					<div class="wt-center-column">
-						<span class="price"><b><i class="fa fa-clock-o" aria-hidden="true"></i></b> ${{$price->price}}.-</span>
-						<span class="min-hours">mínimo {{$price->minhours}} horas</span>
-						<span class="min-hours">NOTA: El precio se encuentra sujeto a modificaciones en función de la temporada/ época del año.</span>
+					<div class="container-prices">
+						<div class="wt-center-column">
+							<span class="price"><b><i class="fa fa-clock-o" aria-hidden="true"></i></b> ${{$price->price}}.-</span>
+							<span class="min-hours">mínimo {{$price->minhours}} horas</span>
+						</div>
+						<div class="wt-center-column wt-m-lf-3">
+							<span class="price"><b><i class="fa fa-clock-o" aria-hidden="true"></i></b> ${{$price->daily}}.-</span>
+							<span class="min-hours">Por jornada</span>
+						</div>
 					</div>
+					<span class="min-hours">NOTA: El precio se encuentra sujeto a modificaciones en función de la temporada/ época del año.</span>
 				</div>
 			</div>
 			<div class="box-descripcion">

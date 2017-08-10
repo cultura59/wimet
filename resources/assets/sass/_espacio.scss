@@ -324,6 +324,10 @@
       @include mobile {
         width: 100%
       }
+      .container-prices {
+        display: flex;
+        margin-bottom: 1em;
+      }
       .price {
         color: #212121;
         font-size: 19px;

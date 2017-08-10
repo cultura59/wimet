@@ -210,12 +210,14 @@ class EspacioController extends Controller
                 $price->espacio_id      = $objEncontrado->espacio_id;
                 $price->categoria_id    = $objEncontrado->categoria_id;
                 $price->price           = $objEncontrado->price;
+                $price->daily           = $objEncontrado->daily;
                 $price->minhours        = $objEncontrado->minhours;
                 $price->status          = $objEncontrado->status;
             }else {
                 $price->espacio_id      = $espacio->id;
                 $price->categoria_id    = $categoria;
                 $price->price           = 0;
+                $price->daily           = 0;
                 $price->minhours        = 0;
                 $price->status          = true;
             }
@@ -400,6 +402,9 @@ class EspacioController extends Controller
             }
             if($cat['price']) {
                 $price->price = $cat['price'];
+            }
+            if($cat['daily']) {
+                $price->daily = $cat['daily'];
             }
             if($cat['minhours']) {
                 $price->minhours = $cat['minhours'];

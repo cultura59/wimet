@@ -125,7 +125,7 @@ class HomeController extends Controller
         $categorias = categoria::orderBy('id')->pluck('name', 'id');
 
         $price = DB::table('prices')
-                    ->select('id', 'price', 'minhours')
+                    ->select('id', 'price', 'daily', 'minhours')
                     ->where('espacio_id', $id)
                     ->where('categoria_id', $categoriaId)
                     ->first();
