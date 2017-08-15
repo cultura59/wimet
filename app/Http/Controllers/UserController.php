@@ -223,11 +223,11 @@ class UserController extends Controller
                 ),
                 array(
                     'property' => 'phone',
-                    'value' => $data->phone
+                    'value' => ($data->phone) ? $data->phone : ''
                 ),
                 array(
                     'property' => 'company',
-                    'value' => $data->businessName
+                    'value' => ($data->businessName) ? $data->businessName : ''
                 ),
                 array(
                     'property' => 'industry',
