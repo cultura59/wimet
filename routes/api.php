@@ -59,5 +59,5 @@ Route::get('mensajes/{id}/type/{type}', 'EventoController@getMensajes');
 Route::get('evento/resumen/{id}', 'EventoController@getResumen');
 Route::get('listpropuestas/{id}', 'PropuestaController@getPropuestas');
 Route::get('propuesta/{id}/rechazada', 'PropuestaController@rechazar');
-Route::put('userupdate/{id}', 'USerController@updateUserConfirm');
-Route::put('updatepass/{id}', 'USerController@cambiarContrasenia')->name('updatepass');
+Route::put('userupdate/{id}', 'UserController@updateUserConfirm');
+Route::put('updatepass/{id}', 'UserController@cambiarContrasenia')->name('updatepass');
