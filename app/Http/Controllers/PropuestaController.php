@@ -38,18 +38,32 @@ class PropuestaController extends Controller
             $propuesta->estado = 'enviada';
             $propuesta->save();
             
-            $espacio = Espacio::where('id', $evento->espacio_id)->with('images')->first();
+            $espacio = Espacio::where('id', $propuesta->espacio_id)->with('images')->first();
             $user = User::find($propuesta->user_id);
             $cliente = User::find($propuesta->cliente_id);
-
-            $userHubspot = new User();
-            $userHubspot->registerHubspot($cliente, 3);
 
             $mensaje = new Mensaje();
             $mensaje->user_id = 1; 
             $mensaje->evento_id = $propuesta->evento_id; 
             $mensaje->mensaje = "El dueño del espacio envio una propuesta para el evento.";
             $mensaje->save();
+
+            /* Datos de envio de email (presupuesto al organizador)
+            $datos = [
+                'mensaje' => $request->mensaje,
+                'propuesta' => $propuesta,
+                'espacio' => $espacio,
+                'imagenEspacio' => $espacio->images[0]->name,
+                'usuario' => $user,
+                'cliente' => $cliente
+            ];
+            Mail::send('emails.envio-presupuesto', $datos, function ($message) use ($cliente) {
+                $message->from('info@wimet.co', 'Wimet');
+                $message->to($cliente->email)
+                    ->bcc('info@wimet.co')
+                    ->subject('Tienes un nuevo mensaje sobre tu evento');
+            });
+            Datos de envio de email (presupuesto al organizador) */
             
             return response($propuesta, 204); 
         }catch(\Exception $e){

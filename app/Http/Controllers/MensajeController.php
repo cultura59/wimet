@@ -69,7 +69,7 @@ class MensajeController extends Controller
                 'categoria' => $categoria
             ];
             if($request->presupuesto) {
-                Mail::send('emails.solicitud-prosupuesto', $datos, function ($message) use ($user) {
+                Mail::send('emails.solicitud-presupuesto', $datos, function ($message) use ($user) {
                     $message->from('info@wimet.co', 'Wimet');
                     $message->to($user->email)
                         ->bcc('info@wimet.co')

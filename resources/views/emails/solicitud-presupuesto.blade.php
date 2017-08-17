@@ -447,7 +447,7 @@
                             <table border="0" cellpadding="18" cellspacing="0" class="mcnTextContentContainer" width="100%" style="min-width: 100% !important;border: 1px none #999999;">
                                 <tbody><tr>
                                     <td valign="top" class="mcnTextContent" style="color: #000002;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
-                                        <div style="text-align: left;"><font color="#666666">Hola {{$duenio->firstname}},<br>
+                                        <div style="text-align: left;"><font color="#666666">Hola {{$usuario->firstname}},<br>
 <br>
 {{$cliente->firstname}} te ha enviado una solicitud presupuesto, para poder llevar a cabo su&nbsp;<strong>{{$categoria->name}}</strong>, en el espacio&nbsp;<strong>{{$espacio->name}}</strong>.<br>
 <br>
