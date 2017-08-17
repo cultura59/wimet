@@ -1,6 +1,5 @@
 <template>
 	<div class="container-evento">
-
 		<template v-if="(user.id && user.id == evento.user_id)">
 			<h4 class="text-center dashboard-title">{{evento.titulo_cliente}}</h4>
 			<div class="navbar-chat">
@@ -118,6 +117,7 @@
 				let data = {
 					evento_id: this.eventoId,
 					user_id: 1,
+					presupuesto: true,
 					mensaje: `El usuario ${this.user.firstname} a solicitado que le envies un presupuesto.`
 				}
 				this.$http.post('api/mensaje', data)
@@ -139,6 +139,7 @@
 				let data = {
 					evento_id: this.eventoId,
 					user_id: this.user.id,
+                    presupuesto: false,
 					mensaje: this.mensajeEnviar
 				}
 				this.$http.post('api/mensaje', data)

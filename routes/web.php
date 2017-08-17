@@ -11,27 +11,35 @@
 |
 */
 
+// Ruta principal HOME
 Route::get('/', 'HomeController@index');
-Route::get('/newhome', 'HomeController@newindex');
 
 Auth::routes();
+
+// Ruta logout
 Route::get('/logout', function() {
 	Auth::logout();
 	return back();
 });
 
+// Rutas a pantallas principales y estaticas
 Route::get('/home', 'HomeController@index');
 Route::get('/search', 'HomeController@search');
 Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio');
 Route::get('/consulta/{categoriaId}/espacio/{id}', 'HomeController@consulta');
 Route::get('/espacio/{id}/evento', 'HomeController@evento')->name('evento');
 Route::get('/callbackgoogle', 'HomeController@callbackGoogle');
+Route::get('/nosotros', 'HomeController@nosotros');
+Route::get('/equipo', 'HomeController@equipo');
+Route::get('/prensa', 'HomeController@prensa');
+Route::get('/publica', 'HomeController@publica');
 
-Route::get('/publicar/espacio/{espacioId}', 
-				'HomeController@publicar')->name('publica-steps');
+// Primer pantala de publica tu espacio
+Route::get('/publicar/espacio/{espacioId}', 'HomeController@publicar')->name('publica-steps');
+
+// Agrupador de las pantallas de publica tu espacio
 Route::group(['prefix' => 'publicar'], function() {
-	Route::get('/user/{id}/primer-paso', 
-				'PublicaController@index');
+	Route::get('/user/{id}/primer-paso', 'PublicaController@index');
 	//Primer paso con sus acciones
 	Route::group(['prefix' => 'primer-paso'], function() {
 		Route::get('/espacio/{id}/categorias', 
@@ -94,9 +102,7 @@ Route::post('savereglas', 'EspacioController@saveRules');
 Route::post('wishlist', 'EspacioController@saveWishlist');
 Route::post('savecancelacion', 'EspacioController@saveCancelacion');
 
-Route::get('/redirect', 'SocialAuthController@redirect');
-Route::get('/callback', 'SocialAuthController@callback');
-
+// Agrupador de pantallas del Dashboard
 Route::group(['prefix' => 'dashboard'], function() {
 	Route::get('/user/{id}', 'DashboardController@index');	
 	Route::get('/user/{id}/mensajes', 'DashboardController@mensajes');
@@ -114,8 +120,3 @@ Route::group(['prefix' => 'dashboard'], function() {
 	Route::get('/user/{id}/misespacios', 'DashboardController@misespacios')->name('misespacios');
 	Route::get('/user/{id}/datos', 'DashboardController@datos');
 });
-
-Route::get('/nosotros', 'HomeController@nosotros');
-Route::get('/equipo', 'HomeController@equipo');
-Route::get('/prensa', 'HomeController@prensa');
-Route::get('/publica', 'HomeController@publica');

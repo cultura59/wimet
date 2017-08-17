@@ -227,15 +227,15 @@
 				this.evento.iva = (parseFloat(this.evento.sub_total) * 21) / 100;
 	    		if(this.iva) {
 	        		this.evento.montoConIva = parseFloat(this.evento.iva) + parseFloat(this.evento.sub_total);
-					this.evento.comision = (this.evento.montoConIva * 15) / 100;
+					this.evento.comision = parseFloat((this.evento.montoConIva * 15) / 100).toFixed(2);
 	        		this.evento.fee = (this.evento.montoConIva * 5) / 100;
-	    			this.evento.tu_pago = (parseFloat(this.evento.sub_total) + this.evento.iva) - this.evento.comision;
-	        		this.evento.total = this.evento.montoConIva + this.evento.fee;
+	    			this.evento.tu_pago = parseFloat((this.evento.sub_total+ this.evento.iva) - this.evento.comision).toFixed(2);
+	        		this.evento.total = parseFloat(this.evento.montoConIva + this.evento.fee).toFixed(2);
 	        	}else {
 	        		this.evento.montoConIva = this.evento.sub_total;
-					this.evento.comision = ((parseFloat(this.evento.montoConIva) + this.evento.iva) * 15) / 100;
+					this.evento.comision = parseFloat(((this.evento.montoConIva + this.evento.iva) * 15) / 100).toFixed(2);
 	        		this.evento.fee = (this.evento.sub_total * 5) / 100;
-	        		this.evento.tu_pago = parseFloat(this.evento.sub_total) - this.evento.comision;
+	        		this.evento.tu_pago = parseFloat(this.evento.sub_total - this.evento.comision).toFixed(2);
 	        		this.evento.total = this.evento.montoConIva + this.evento.fee;
 	            }
 			}

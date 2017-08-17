@@ -1,16 +1,16 @@
 <template>
 	<span>
-		<span v-if="(title == 1)" class="elementToFadeInAndOut">WORKSHOP</span>
-		<span v-if="(title == 2)" class="elementToFadeInAndOut">COCKTAIL</span>
-		<span v-if="(title == 3)" class="elementToFadeInAndOut">POP-UP</span>
-		<span v-if="(title == 4)" class="elementToFadeIn">ENCUENTRO</span>
+		<span v-show="(title == 1)" class="elementToFadeInAndOut">WORKSHOP</span>
+		<span v-show="(title == 2)" class="elementToFadeInAndOut">COCKTAIL</span>
+		<span v-show="(title == 3)" class="elementToFadeInAndOut">POP-UP</span>
+		<span v-show="(title == 4)" class="elementToFadeIn">ENCUENTRO</span>
 	</span>
 </template>
 <script>
 	export default {
 		data() {
 			return {
-				title: 0,
+				title: 1,
 				eventInterval: null
 			}
 		},

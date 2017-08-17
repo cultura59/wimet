@@ -38,7 +38,6 @@ Vue.component('dasboard-chats', require('./components/dashboard/Chat.vue'));
 Vue.component('dasboard-nueva-propuesta', require('./components/dashboard/NuevaPropuesta.vue'));
 Vue.component('dasboard-confirmar', require('./components/dashboard/Confirmar.vue'));
 
-
 import Auth from './packages/auth/Auth.js';
 Vue.use(Auth);
 
@@ -67,3 +66,7 @@ Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
 const app = new Vue({
     el: '#home-espacio'
 });
+
+import moment from 'moment';
+
+Vue.prototype.$moment = moment;

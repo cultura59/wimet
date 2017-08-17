@@ -76,7 +76,6 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
 </template>
 <script>
     import swal from 'sweetalert';
-    import moment from 'moment';
 	export default {
 	    props: [
             'espacioId',
@@ -146,8 +145,8 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                     }.bind(this), 4000);
                     return;
                 }
-                let inicio = moment(this.inicio);
-                let fin = moment(this.fin);
+                let inicio = this.$moment(this.inicio);
+                let fin = this.$moment(this.fin);
                 let totalHoras = this.checkDiffDates(fin, inicio);
 
                 this.btnSend = false;
@@ -188,8 +187,8 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                     let fin = 0;
                     if(localStorage.getItem("consultaInicio") !== null && localStorage.getItem("consultaFin") !== null)
                     {
-                        inicio = moment(localStorage.getItem("consultaInicio"));
-                        fin = moment(localStorage.getItem("consultaFin"));
+                        inicio = this.$moment(localStorage.getItem("consultaInicio"));
+                        fin = this.$moment(localStorage.getItem("consultaFin"));
                         
                         let totalHoras = this.checkDiffDates(fin, inicio);
 
@@ -210,9 +209,9 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                 }.bind(this), 4000); 
             },
             checkDiffDates(end, start) {
-                let fin = moment(end);
-                let inicio = moment(start);
-                return moment.utc(fin.diff(inicio));
+                let fin = this.$moment(end);
+                let inicio = this.$moment(start);
+                return this.$moment.utc(fin.diff(inicio));
             }
         }
 	}

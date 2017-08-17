@@ -47,13 +47,15 @@ class MensajeController extends Controller
     public function store(Request $request)
     {
         try {
+            // Obtengo datos del evento
             $evento = Evento::find($request->evento_id);
-            $espacio = Espacio::where('id', $evento->espacio_id)
-                    ->with('images')
-                    ->first();
-
+            // Obtengo datos del espacio
+            $espacio = Espacio::where('id', $evento->espacio_id)->with('images')->first();
+            // Obtengo los datos del dueño
             $user = User::find($evento->user_id);
+            // Obtengo los datos del organizador
             $cliente = User::find($evento->cliente_id);
+            // Obtengo los datos de la categoria
             $categoria = Categoria::find($evento->estilo_espacios_id);
             
             /* Datos de envio de email (Consulta al dueño */
@@ -66,26 +68,29 @@ class MensajeController extends Controller
                 'cliente' => $cliente,
                 'categoria' => $categoria
             ];
-
-            if($request->user_id != $espacio->user_id) 
-            {
-                Mail::send('emails.mensaje-anfitrion', $datos, function ($message) use ($user) {
+            if($request->presupuesto) {
+                Mail::send('emails.solicitud-prosupuesto', $datos, function ($message) use ($user) {
                     $message->from('info@wimet.co', 'Wimet');
                     $message->to($user->email)
-                    ->cc('adrian@wimet.co')
-                    ->cc('alejandro@wimet.co')
-                    ->cc('federico@wimet.co')
-                    ->subject('Tienes un nuevo mensaje sobre un evento');
+                        ->bcc('info@wimet.co')
+                        ->subject('Tienes una nueva solicitud de un presupuesto');
                 });
             }else {
-                Mail::send('emails.mensaje-usuario', $datos, function ($message) use ($cliente) {
-                    $message->from('info@wimet.co', 'Wimet');
-                    $message->to($cliente->email)
-                    ->cc('adrian@wimet.co')
-                    ->cc('alejandro@wimet.co')
-                    ->cc('federico@wimet.co')
-                    ->subject('Tienes un nuevo mensaje sobre tu evento');
-                });
+                if ($request->user_id != $espacio->user_id) {
+                    Mail::send('emails.mensaje-anfitrion', $datos, function ($message) use ($user) {
+                        $message->from('info@wimet.co', 'Wimet');
+                        $message->to($user->email)
+                            ->bcc('info@wimet.co')
+                            ->subject('Tienes un nuevo mensaje sobre un evento');
+                    });
+                } else {
+                    Mail::send('emails.mensaje-usuario', $datos, function ($message) use ($cliente) {
+                        $message->from('info@wimet.co', 'Wimet');
+                        $message->to($cliente->email)
+                            ->bcc('info@wimet.co')
+                            ->subject('Tienes un nuevo mensaje sobre tu evento');
+                    });
+                }
             }
             /* Datos de envio de email (Consulta al dueño */
             $mensaje = new Mensaje($request->all());

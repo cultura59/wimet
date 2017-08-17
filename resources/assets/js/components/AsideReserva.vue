@@ -144,7 +144,6 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
 </template>
 <script>
     import swal from 'sweetalert';
-    import moment from 'moment';
     export default {
     	props: [
             'espacioId',
@@ -235,8 +234,8 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     this.btnSend = true;
                     return
                 }
-                let inicio = moment(this.inicio);
-                let fin = moment(this.fin);
+                let inicio = this.$moment(this.inicio);
+                let fin = this.$moment(this.fin);
                 let totalHoras = this.checkDiffDates(fin, inicio);
 
                 let body = {
@@ -273,8 +272,8 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     let fin = 0;
                     if(localStorage.getItem("consultaInicio") !== null && localStorage.getItem("consultaFin") !== null)
                     {
-                        inicio = moment(localStorage.getItem("consultaInicio"));
-                        fin = moment(localStorage.getItem("consultaFin"));
+                        inicio = this.$moment(localStorage.getItem("consultaInicio"));
+                        fin = this.$moment(localStorage.getItem("consultaFin"));
 
                         if(inicio > fin) {
                             localStorage.removeItem("consultaInicio");
@@ -337,13 +336,13 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 }.bind(this), 2000); 
             },
             checkDiffDates(end, start) {
-                let fin = moment(end);
-                let inicio = moment(start);
-                return moment.utc(fin.diff(inicio));
+                let fin = this.$moment(end);
+                let inicio = this.$moment(start);
+                return this.$moment.utc(fin.diff(inicio));
             },
             checkDiffHours(end, start) {
-                let fin = moment(end);
-                let inicio = moment(start);
+                let fin = this.$moment(end);
+                let inicio = this.$moment(start);
                 return fin.diff(inicio, 'hours');
             }
         }

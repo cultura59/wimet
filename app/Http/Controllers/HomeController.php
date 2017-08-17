@@ -36,19 +36,6 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function newindex()
-    {
-        $categorias = categoria::all();
-        return view('_home', array(
-            'categorias' => $categorias
-        ));
-    }
-
-    /**
      * @fn search()
      * @brief Funcion que retorna la vista del resultados
      * @param Long categoria
@@ -107,6 +94,12 @@ class HomeController extends Controller
         );
     }
 
+    /**
+     * @brief Funcion que renderiza a la vista del Espacio
+     * @param $categoriaId
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function espacio($categoriaId, $id)
     {
         $espacio = Espacio::where('id', $id)
@@ -139,6 +132,12 @@ class HomeController extends Controller
         );
     }
 
+    /**
+     * @brief Funcion que renderiza a la vista de consulta
+     * @param $categoriaId
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function consulta($categoriaId, $id)
     {
         $espacio = Espacio::where('id', $id)
@@ -171,12 +170,22 @@ class HomeController extends Controller
         );
     }
 
+    /**
+     * @brief Funcionque renderiza a la vista de reserva
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function reserva($id)
     {
         $espacio = Espacio::find($id);
         return view('reserva', array('espacio' => $espacio));
     }
 
+    /**
+     * @brief Funcionque renderiza a la vista publicar
+     * @param $espacioId
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
     public function publicar($espacioId)
     {
         $espacio = Espacio::with('access')
@@ -192,14 +201,23 @@ class HomeController extends Controller
         );
     }
 
+    /**
+     * @fn send_reserva()
+     * @brief Funcionque guarda la consulta en la base y a parte envía los emails
+     * @param Request $request
+     * @return Evento $evento
+     */
     public function send_reserva(Request $request) {
+        // Obtengo datos del organizador
         $cliente = User::find($request->clientId);
+        // Obtengo datos del espacio
         $espacio = Espacio::where('id', $request->espacioId)
                     ->with('images')
                     ->first();
+        // Obtengo datos del dueño
         $duenio = User::find($espacio->user_id);
-
         try {
+            //Se crea el evento con los datos del request
             $evento = new Evento();
             $evento->nombre_evento = $request->title;
             $evento->titulo_cliente = $request->title;
@@ -215,45 +233,46 @@ class HomeController extends Controller
             $evento->descripcion_consulta = $request->mensaje;
             $evento->estado = 'consulta';
             $evento->save();
-
+            // Insert en la tabla mensajes
             DB::table('mensajes')->insert([
                 ["evento_id" => $evento->id, "user_id" => $request->clientId, "mensaje" => $request->mensaje]
             ]);
-
-            /* Datos de envio de email (Consulta al dueño */
+            // INICIO -- Datos de envio de email (Consulta al dueño)
             $datos = [
                 'imagenEspacio' => $espacio->images[0]->name,
                 'nombreEspacio' => $espacio->name,
                 'fecha' => $request->reserva_desde . " - " . $request->reserva_hasta, 
                 'idUser' => $cliente->id,
+                'idEvento' => $evento->id,
                 'nombreUser' => $cliente->firstname
             ];
-
+            // Email al anfitrion (Tienens una consulta)
             Mail::send('emails.consulta-anfitrion', $datos, function ($message) use ($duenio){
                 $message->from('info@wimet.co', 'Wimet');
                 $message->to($duenio->email)
-                ->cc('adrian@wimet.co')
-                ->cc('alejandro@wimet.co')
-                ->cc('federico@wimet.co')
-                ->subject('Tienes una nueva solicitud de reserva Felicitaciones!');
+                ->bcc('info@wimet.co')
+                ->subject('¡Tienes una nueva consulta, Felicitaciones!');
             });
-
+            // Email al organizador (Consulta enviada)
             Mail::send('emails.consulta-usuario', $datos, function ($message) use ($cliente){
                 $message->from('info@wimet.co', 'Wimet');
                 $message->to($cliente->email)
-                ->cc('adrian@wimet.co')
-                ->cc('alejandro@wimet.co')
-                ->cc('federico@wimet.co')
-                ->subject('Tienes una nueva solicitud de reserva Felicitaciones!');
+                ->bcc('info@wimet.co')
+                ->subject('¡Tu consulta fue envíada, Felicitaciones!');
             });
-            /* Datos de envio de email (Consulta al dueño */
-
+            // FIN -- Datos de envio de email (Consulta al dueño)
             return $evento;
         }catch(\Exception $e){
             return response('Los campos no son correctos' . $e->getMessage(), 400);
         }
     }
 
+    /**
+     * @fn checkEnvioRevicion()
+     * @brief Funcion que controa el estatus de la publicacion
+     * @param $espacio
+     * @return bool
+     */
     public function checkEnvioRevicion($espacio) {
         if($espacio->surface < 1) {
             return false;
@@ -281,6 +300,7 @@ class HomeController extends Controller
         return true;
     }
 
+    // Metodos a url estaticas
     public function nosotros()
     {
         return view('staticwebs.nosotros');
@@ -298,6 +318,10 @@ class HomeController extends Controller
         return view('staticwebs.publica');
     }
 
+    /**
+     * @brief Ruta callback de Api login de google
+     * @param Request $request
+     */
     public function callbackGoogle(Request $request) {
         dd($request->all());
     }
