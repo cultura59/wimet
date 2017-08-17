@@ -252,8 +252,5 @@
         <script async defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script async defer src="https://apis.google.com/js/api:client.js"></script>
         <script async defer src="{{url('/js/app.js')}}"></script>
-        <!-- Start of HubSpot Embed Code --> 
-        <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2880578.js"></script>
-        <!-- End of HubSpot Embed Code -->
     </body>
 </html>
