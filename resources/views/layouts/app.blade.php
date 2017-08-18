@@ -47,7 +47,7 @@
             <header class="header-with">
                 <nav class="header-navbar container-fluid">
                     <a href="/">
-                        <img class="img-responsive" src="{{url('img/wimet_logo_dark.svg')}}" alt="Wimet" width="158" />
+                        <img class="img-responsive" src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="158" />
                     </a>
                     <wimet-login type-login="btn-login link-hov" type-svg="dark" userloged="link-user-dark"></wimet-login>
                 </nav>
