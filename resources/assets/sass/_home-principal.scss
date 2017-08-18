@@ -45,7 +45,7 @@ html, body {
 							padding: 10px 15px 5px;
 							border-radius: 2px;
 						    border: 2px solid #F1F1F1;
-						    font-family: Poppins;
+						    font-family: Ubuntu Bold Medium;
 						    font-size: 13px;
 						    letter-spacing: 0.5px;
 							
@@ -70,11 +70,10 @@ html, body {
 			height: auto;
 			margin-top: 22vh;
 			.text-header__title {
-				width: 750px;
-			    font-weight: 600;
+			    width: 750px;
 			    padding: 0px;
-			    font-family: 'Poppins', sans-serif;
-			    font-size: 50px;
+			    font-family: 'Ubuntu Bold Medium', sans-serif;
+			    font-size: 48px;
 			    text-shadow: 1px 0px;
 			    letter-spacing: 3px;
 			    margin: 0 auto;
@@ -84,9 +83,10 @@ html, body {
 				font-weight: 400;
 				margin: 0px;
 				padding: 0px;
-			    font-family: 'Poppins', sans-serif;
-			    font-size: 15px;
+			    font-family: 'Noto Serif Italic';
+			    font-size: 16px;
 			    letter-spacing: 0.5px;
+			    font-style: italic;
 			}
 			.texto-header__container-btn {
 				margin: 30px;
@@ -224,7 +224,7 @@ html, body {
 							padding: 10px 15px 5px;
 							border-radius: 2px;
 						    border: 2px solid #F1F1F1;
-						    font-family: Poppins;
+						    font-family: Ubuntu Bold Medium;
 						    font-size: 13px;
 						    letter-spacing: 0.5px;
 						}
@@ -247,7 +247,7 @@ html, body {
 			.text-header__sub-title {
 				font-weight: 400;
 				padding: 0px;
-			    font-family: 'Poppins', sans-serif;
+			    font-family: 'Ubuntu Bold Medium', sans-serif;
 			    font-size: 14px;
 			    letter-spacing: 0.5px;
 			}
@@ -359,10 +359,10 @@ html, body {
 						a 	{
 							color: #F1F1F1;
 							text-decoration: none;
-							padding: 10px 15px 5px;
+							padding: 8px 15px;
 							border-radius: 2px;
 						    border: 2px solid #F1F1F1;
-						    font-family: Poppins;
+						    font-family: Ubuntu Bold Medium;
 						    font-size: 13px;
 						    letter-spacing: 0.5px;
 							&:hover, &:focus {
@@ -484,19 +484,17 @@ html, body {
 			h2 {
 				font-size: 24px;
 			    font-weight: 600;
-		        color: rgba(33, 33, 33, 0.87);
-			    font-family: 'Poppins', sans-serif;
+			    color: #333333;
+			    font-family: 'Ubuntu Bold', sans-serif;
 			    letter-spacing: 0.7px;
-		        margin-bottom: 20px;
-		        text-shadow: 0px 0px;
+			    margin-bottom: 14px;
+			    text-shadow: 0px 0px;
 			}
 			p {
 			    
 			    font-size: 18px;
-			    color: #545454;
-			    font-family: 'Poppins', sans-serif;
-			    letter-spacing: 0.3px;
-	    		font-weight: 600;
+			    color: #666666;
+			    font-family: 'Ubuntu Bold Regular', sans-serif;
 			}
 		}
 	}
@@ -532,14 +530,14 @@ html, body {
 	    font-size: 24px;
 	    font-weight: 600;
 	    color: rgba(33, 33, 33, 0.87);
-	    font-family: 'Poppins', sans-serif;
+	    font-family: 'Ubuntu Bold Medium', sans-serif;
 	    letter-spacing: 0.7px;
 	}
 	h3 {
 	    margin-bottom: 30px;
 	    font-size: 18px;
 	    color: #545454;
-	    font-family: 'Poppins', sans-serif;
+	    font-family: 'Ubuntu Bold Medium', sans-serif;
 	    text-shadow: 0px 0px;
 	}
 	h4 {
@@ -549,17 +547,14 @@ html, body {
     	margin: 12px 0;
 	}
 	p {
-        font-family: 'Roboto Light', arial;
-	    color: #888B8D;
-	    font-size: 14px;
-	    text-shadow: 0px 0px;
+        font-size: 14px;
 	    padding: 0 30px;
 	    text-align: justify;
 	    line-height: 18px;
 	    &.signature {
 		    font-family: NotoSerif;
 		    font-style: italic;
-		    color: #545454;
+		    color: #333333;
 		    font-size: 14px;
 		}
 	}
@@ -609,7 +604,7 @@ html, body {
 }
 
 footer {
-	background-color: $wt-dark-blue;
+	background-color: #253852;
 	color: #dadada;
 	padding: 40px;
 	.main-footer	{
@@ -623,7 +618,7 @@ footer {
 		font-weight: 400;
 	}
 	p.col-footer	{
-		font-family: 'Poppins', sans-serif;
+		font-family: 'Ubuntu Bold Medium', sans-serif;
 		text-transform: uppercase;
 		font-size: 16px;
 		color: $wt-white;

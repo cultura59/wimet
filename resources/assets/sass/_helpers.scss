@@ -100,8 +100,8 @@
 
 .header-principal   {
     .wt-btn-transparent:hover {
-        background-color: #e8536f;
-        border: 2px solid #e8536f !important;
+        background-color: $wt-primary-pig;
+        border: 2px solid $wt-primary-pig !important;
     }
 }
 
@@ -325,7 +325,7 @@
     width: 100px;
     font-size: 12px !important;
     color: $wt-white;
-    background-color: $wt-background-principal;
+    background-color: $wt-primary-pig;
     border-radius: 0 !important;
     border-top-right-radius: 2px !important;
     border-bottom-right-radius: 2px !important;
@@ -586,7 +586,7 @@ svg.white{
 
 .link-hov {
     color: $wt-white;
-    font-family: Poppins;
+    font-family: Ubuntu Bold Medium;
     font-size: 13px;
     letter-spacing: 0.5px;
     background: transparent;

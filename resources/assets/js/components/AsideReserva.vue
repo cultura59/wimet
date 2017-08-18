@@ -24,7 +24,7 @@
     				</div>
     				<div class="wt-center-column">
     					<label for="people">Invitados</label>
-                        <input type="text" class="wt-dropdown" v-model="people" :placeholder="`Máximo ${espacio.quanty} personas.`">
+                        <input type="text" class="wt-dropdown" v-model="people" :placeholder="`Máximo ${espacio.quanty} personas`">
     				</div>
     			</div>
     			<div class="wt-space-block wt-m-top-2">
@@ -126,9 +126,8 @@
 Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vamos a necesitar mesas y un servicio de Coffee Break.'"></textarea>
                             <span class="wt-m-top-2">
                                 <input type="checkbox" id="terminos" style="display: none;" v-model="terminos">
-                                <label class="wt-publica-label" for="terminos">Acepto los <a class="link-wimet" href="#">términos y condiciones</a></label>
+                                <label class="wt-publica-label" for="terminos">Acepto que está fuera de los <a class="link-wimet" href="#">términos y condiciones</a>  enviar información de contacto (teléfono, email, etc.).</label>
                             </span>
-                            <span class="wt-m-top-2">Nota: Recuerda que esta fuera de nuestros  enviar información de contacto (teléfono, email, etc.).</span>
                         </div>
                     </div>
                     <div class="form-contact">
@@ -453,7 +452,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 background: rgba(234, 81, 109, 0.87);
                 color: #fff;
                 border-radius: 2px;
-                border: 1px solid #ea516d;
+                border: 1px solid #FC5289;
                 p {
                     margin: 0;
                 }
@@ -529,9 +528,9 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
         cursor: pointer;
     }
     .link-wimet {
-        color: #ea516d;
+        color: #FC5289;
         &:hover, &:focus {
-            color: #ea516d;
+            color: #FC5289;
         }
     }
     .modal-body {padding: 2px 16px;}

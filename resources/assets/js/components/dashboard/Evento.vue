@@ -179,7 +179,7 @@
 	.container-evento {
 		.leer-mas {
 			font-size: 12px;
-			color: #ea516d;
+			color: #FC5289;
 			cursor: pointer;
 		}
 		&__label {
@@ -209,7 +209,7 @@
 		}
 		.btn-mensajes {
 		    border-radius: 2px;
-		    background-color: #ea516d;
+		    background-color: #FC5289;
 		    border: none;
 		    color: #fff;
 		    width: 240px;

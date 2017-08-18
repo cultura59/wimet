@@ -42,7 +42,7 @@
 			    padding: 10px 15px 5px;
 			    border-radius: 2px;
 			    border: 2px solid #3E3E3E;
-			    font-family: Poppins;
+			    font-family: Ubuntu Bold Medium;
 			    font-size: 13px;
 			    letter-spacing: 0.5px;
 		        text-shadow: 0px 0px;
@@ -248,14 +248,14 @@
 	z-index: 1;
 	&__item {
 		border-bottom: solid 1px #dadada;
-		color: #ea516d !important;
+		color: #FC5289 !important;
 		transition: none;
 		a{
 			padding: 1em;
 			border: none !important;
 		}
 		.active {
-			color: #ea516d;
+			color: #FC5289;
 		}
 		&:hover {
 			font-weight: 700;

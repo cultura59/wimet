@@ -160,7 +160,7 @@
 							text-align:left;
 						}
 						.headerContainer .mcnTextContent a,.headerContainer .mcnTextContent p a{
-							color:#ea516d;
+							color:#FC5289;
 							font-weight:normal;
 							text-decoration:underline;
 						}
@@ -228,7 +228,7 @@
 							text-align:center;
 						}
 						.footerContainer .mcnTextContent a,.footerContainer .mcnTextContent p a{
-							color:#ea516d;
+							color:#FC5289;
 							font-weight:normal;
 							text-decoration:underline;
 						}
@@ -493,7 +493,7 @@
 										<tbody class="mcnButtonBlockOuter">
 										<tr>
 											<td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
-												<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 2px;background-color: #EA516D;">
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 2px;background-color: #FC5289;">
 												<tbody>
 												<tr>
 													<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
@@ -510,11 +510,11 @@
 										<tbody class="mcnButtonBlockOuter">
 										<tr>
 											<td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
-												<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonContentContainer" style="border-collapse: separate !important;border: 2px solid #EA516D;border-radius: 2px;">
+												<table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonContentContainer" style="border-collapse: separate !important;border: 2px solid #FC5289;border-radius: 2px;">
 												<tbody>
 												<tr>
 													<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-														<a class="mcnButton " title="SOLICITAR PRESUPUESTO" href="http://www.wimet.co/dashboard/user/{{$usuario->id}}/evento/{{$evento->id}}/chats" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #EA516D;">SOLICITAR PRESUPUESTO</a>
+														<a class="mcnButton " title="SOLICITAR PRESUPUESTO" href="http://www.wimet.co/dashboard/user/{{$usuario->id}}/evento/{{$evento->id}}/chats" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FC5289;">SOLICITAR PRESUPUESTO</a>
 													</td>
 												</tr>
 												</tbody>
@@ -585,15 +585,15 @@
 													<td valign="top" class="mcnTextContent" style="padding: 0px 18px 9px; line-height: 125%;">
 														<h1 class="null" style="text-align: left;"><span style="font-size:24px"><span style="color:#333333"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Preguntas frecuentes</span></span></span></h1>
 														<span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333"><span style="font-size:16px">¿Cuál es la diferencia entre presupuesto estimado y el envío de presupuesto?</span></span><br>
-														<span style="font-size:14px"><a href="https://wimet.zendesk.com/hc/es/articles/115000891734--Cu%C3%A1l-es-la-diferencia-entre-el-presupuesto-estimado-desde-y-el-env%C3%ADo-de-presupuesto-" target="_blank" title="Ver más"><span style="color:#EA516D">ver más...</span></a><span style="color:#666666">&nbsp;</span></span><br>
+														<span style="font-size:14px"><a href="https://wimet.zendesk.com/hc/es/articles/115000891734--Cu%C3%A1l-es-la-diferencia-entre-el-presupuesto-estimado-desde-y-el-env%C3%ADo-de-presupuesto-" target="_blank" title="Ver más"><span style="color:#FC5289">ver más...</span></a><span style="color:#666666">&nbsp;</span></span><br>
 														<br>
 														<span style="color:#333333"><span style="font-size:16px">¿Qué debo hacer si no recibo una respuesta?&nbsp;</span></span><br>
-														<a href="https://wimet.zendesk.com/hc/es/articles/115000915314--Qu%C3%A9-debo-hacer-si-no-obtengo-respuesta-del-anfitri%C3%B3n-" target="_blank" title="Ver más"><span style="font-size:14px"><span style="color:#EA516D">ver más...</span></span></a><br>
+														<a href="https://wimet.zendesk.com/hc/es/articles/115000915314--Qu%C3%A9-debo-hacer-si-no-obtengo-respuesta-del-anfitri%C3%B3n-" target="_blank" title="Ver más"><span style="font-size:14px"><span style="color:#FC5289">ver más...</span></span></a><br>
 														<br>
 														<span style="color:#333333"><span style="font-size:16px">¿Wimet cobra alguna comisión?&nbsp;</span></span><br>
-														<span style="font-size:14px"><a href="https://wimet.zendesk.com/hc/es/articles/115000660614--Publicar-un-espacio-en-Wimet-implica-alg%C3%BAn-costo-" target="_blank" title="Ver más"><span style="color:#EA516D">ver más...</span></a><span style="color:#666666">&nbsp;</span></span><br>
+														<span style="font-size:14px"><a href="https://wimet.zendesk.com/hc/es/articles/115000660614--Publicar-un-espacio-en-Wimet-implica-alg%C3%BAn-costo-" target="_blank" title="Ver más"><span style="color:#FC5289">ver más...</span></a><span style="color:#666666">&nbsp;</span></span><br>
 														<br>
-														<span style="color:#333333"><span style="font-size:16px">Encuentra más respuestas en nuestro </span></span><a href="https://wimet.zendesk.com/hc/es" target="_blank" title="Centro de ayuda"><span style="color:#EA516D"><span style="font-size:16px">Centro de ayuda</span></span></a><span style="color:#333333"><span style="font-size:16px">&nbsp;</span></span></span>
+														<span style="color:#333333"><span style="font-size:16px">Encuentra más respuestas en nuestro </span></span><a href="https://wimet.zendesk.com/hc/es" target="_blank" title="Centro de ayuda"><span style="color:#FC5289"><span style="font-size:16px">Centro de ayuda</span></span></a><span style="color:#333333"><span style="font-size:16px">&nbsp;</span></span></span>
 													</td>
 												</tr>
 												</tbody>
@@ -629,7 +629,7 @@
 													<td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 														<div style="text-align: center;">
 															<span style="font-size:12px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">¿Necesitas ayuda con el alquiler de tu&nbsp;espacio?<br>
-															 Nuestros equipo está aquí para ayudarte en <a href="mailto:soporte@wimet.co?subject=Ayuda%20para%20el%20alquiler%20de%20un%20espacio" target="_blank"><span style="color:#EA516D">soporte@wimet.co</span></a></span></span>
+															 Nuestros equipo está aquí para ayudarte en <a href="mailto:soporte@wimet.co?subject=Ayuda%20para%20el%20alquiler%20de%20un%20espacio" target="_blank"><span style="color:#FC5289">soporte@wimet.co</span></a></span></span>
 														</div>
 													</td>
 												</tr>

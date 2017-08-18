@@ -217,7 +217,7 @@
                 padding: 5px 10px;
             }
             .th-2 {
-                background-color: #ea516d;
+                background-color: #FC5289;
                 padding: 5px 10px;
                 color: #fff;
             }
@@ -355,7 +355,7 @@
     width: 120px;
     height: 40px;
     border-radius: 2px;
-    background-color: #ea516d;
+    background-color: #FC5289;
     border: none;
     color: #fff;
     &:hover {
@@ -367,7 +367,7 @@
     border: none;
     padding: 1em;
     &:hover {
-        color: #ea516d;
+        color: #FC5289;
     }
 }
 .avatar {
@@ -379,27 +379,27 @@
     }
     label {
         border-radius: 2px;
-        border: solid 1px #ea516d;
+        border: solid 1px #FC5289;
         opacity: 0.87;
-        font-family: Poppins;
+        font-family: Ubuntu Bold Medium;
         font-size: 12px;
         font-weight: 500;
         letter-spacing: -0.1px;
-        color: #ea516d;
+        color: #FC5289;
         padding: 1em;
         cursor: pointer;
         width: 110px;
         text-align: center;
         margin-top: 1em;
         &:hover {
-            background-color: #ea516d;
+            background-color: #FC5289;
             color: #fff;
         }
     }
 }
 .dashboard-title {
     opacity: 0.87;
-    font-family: Poppins;
+    font-family: Ubuntu Bold Medium;
     font-size: 18px;
     font-weight: 500;
     color: #191919;

@@ -178,7 +178,7 @@
 				margin: 0 1em;
 				transition: none;
 				&:hover {
-					color: #ea516d;
+					color: #FC5289;
 				}
 			}
 		}
@@ -199,17 +199,17 @@
 				    opacity: 0.87;
 				    border-radius: 2px;
 				    background-color: rgba(0, 0, 0, 0);
-				    border: solid 2px #ea516d;
-				    color: #ea516d;
+				    border: solid 2px #FC5289;
+				    color: #FC5289;
 				    font-size: 11px;
 				    &:hover {
-					    background-color: #ea516d;
+					    background-color: #FC5289;
 					    color: #fff;
 				    }
 				}
 				.btn-enviar-chat {
 					border-radius: 2px;
-				    background-color: #ea516d;
+				    background-color: #FC5289;
 				    color: #fff;
 				    border: none;
 				    width: 110px;
@@ -223,7 +223,7 @@
 		}
 		.btn-mensajes {
 		    border-radius: 2px;
-		    background-color: #ea516d;
+		    background-color: #FC5289;
 		    border: none;
 		    color: #fff;
 		    width: 240px;

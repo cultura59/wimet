@@ -171,7 +171,7 @@
 		}
 	
 		.headerContainer .mcnTextContent a,.headerContainer .mcnTextContent p a{
-			color:#ea516d;
+			color:#FC5289;
 			font-weight:normal;
 			text-decoration:underline;
 		}
@@ -247,7 +247,7 @@
 		}
 	
 		.footerContainer .mcnTextContent a,.footerContainer .mcnTextContent p a{
-			color:#ea516d;
+			color:#FC5289;
 			font-weight:normal;
 			text-decoration:underline;
 		}
@@ -469,7 +469,7 @@ Es importante que tengas en cuenta toda la información proporcionada por el org
     <tbody class="mcnButtonBlockOuter">
         <tr>
             <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 2px;background-color: #EA516D;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 2px;background-color: #FC5289;">
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
@@ -544,11 +544,11 @@ Es importante que tengas en cuenta toda la información proporcionada por el org
     <tbody class="mcnButtonBlockOuter">
         <tr>
             <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
-                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonContentContainer" style="border-collapse: separate !important;border: 2px solid #EA516D;border-radius: 2px;">
+                <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonContentContainer" style="border-collapse: separate !important;border: 2px solid #FC5289;border-radius: 2px;">
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-                                <a class="mcnButton " title="VER PROPUESTA" href="http://" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #EA516D;">VER PROPUESTA</a>
+                                <a class="mcnButton " title="VER PROPUESTA" href="http://" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FC5289;">VER PROPUESTA</a>
                             </td>
                         </tr>
                     </tbody>
@@ -584,7 +584,7 @@ Es importante que tengas en cuenta toda la información proporcionada por el org
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
                             <div style="text-align: center;"><span style="font-size:12px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">¿Necesitas ayuda con el alquiler de tu&nbsp;espacio?<br>
-Nuestros equipo está aquí para ayudarte en <a href="mailto:soporte@wimet.co?subject=Ayuda%20para%20el%20alquiler%20de%20un%20espacio" target="_blank"><span style="color:#EA516D">soporte@wimet.co</span></a></span></span></div>
+Nuestros equipo está aquí para ayudarte en <a href="mailto:soporte@wimet.co?subject=Ayuda%20para%20el%20alquiler%20de%20un%20espacio" target="_blank"><span style="color:#FC5289">soporte@wimet.co</span></a></span></span></div>
 
                         </td>
                     </tr>

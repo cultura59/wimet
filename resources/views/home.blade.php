@@ -14,6 +14,8 @@
         <!-- Styles -->
         <link async defer href="/css/app.css" rel="stylesheet">
 
+        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+
         <link async defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 
         <!-- Scripts -->

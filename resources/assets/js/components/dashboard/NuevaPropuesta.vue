@@ -249,7 +249,7 @@
 			width: 128px;
 			height: 40px;
 			border-radius: 2px;
-			background-color: #ea516d;
+			background-color: #FC5289;
 			font-family: Poppins;
 			font-size: 14px;
 			font-weight: 500;
@@ -366,7 +366,7 @@
 	    width: 208px;
 	    height: 40px;
 	    border-radius: 2px;
-	    background-color: #ea516d;
+	    background-color: #FC5289;
 	    border: none;
 	    font-family: Poppins;
 	    font-size: 14px;

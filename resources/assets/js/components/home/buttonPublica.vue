@@ -291,7 +291,7 @@
 				    width: 100%;
 				    height: 50px;
 				    border-radius: 2px;
-				    background-color: #ea516d;
+				    background-color: #FC5289;
 				    border: none;
 				    color: #fff;
 				    &:hover {
