@@ -42,7 +42,7 @@ html, body {
 						a 	{
 							color: #F1F1F1;
 							text-decoration: none;
-							padding: 10px 15px 5px;
+							padding: 10px 15px;
 							border-radius: 2px;
 						    border: 2px solid #F1F1F1;
 						    font-family: 'Ubuntu';
@@ -83,7 +83,7 @@ html, body {
 				text-align: center;
 				font-weight: 400;
 				margin: 0;
-				padding: 0;
+				padding: 15px;
 				font-family: 'Noto Serif';
 				font-size: 16px;
 				letter-spacing: .5px;
@@ -552,6 +552,7 @@ html, body {
 	    padding: 0 30px;
 	    text-align: justify;
 	    line-height: 18px;
+	    color: #666666;
 	    &.signature {
 		    font-family: NotoSerif;
 		    font-style: italic;
