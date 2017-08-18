@@ -30,7 +30,7 @@
         <header id="home-espacio" class="header-principal">
             <!-- navbar -->
             <nav class="header-navbar container-fluid">
-                <a href="/"><img src="{{url('img/wimet_logo_white.svg')}}" alt="Wimet" width="158"/></a>
+                <a href="/"><img src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo-white_z3tlgh.svg" alt="Wimet" width="158"/></a>
                 <wimet-login type-login="link-hov" type-svg="white" userloged="link-user-white"></wimet-login>
             </nav>
             <!-- Title Header -->
@@ -184,7 +184,7 @@
             <div class="container">
                 <div class="row">
                    <div class="col-xs-12 col-sm-4">
-                    <img class="img-responsive" src="{{url('img/wimet_footer_logo_light.svg')}}" alt="Wimet" width="163">
+                    <img class="img-responsive" src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo-redwhite_scy9a1.svg" alt="Wimet" width="163">
                     <p class="main-footer">
                         Wimet es un marketplace para eventos dedicado a vincular propietarios de espacios creativos con organizadores que buscan brindar una experiencia memorable.
                     </p>
