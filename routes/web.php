@@ -33,6 +33,7 @@ Route::get('/nosotros', 'HomeController@nosotros');
 Route::get('/equipo', 'HomeController@equipo');
 Route::get('/prensa', 'HomeController@prensa');
 Route::get('/publica', 'HomeController@publica');
+Route::get('/enviaraprobacion/{id}', 'PublicaController@enviarAprobacion');
 
 // Primer pantala de publica tu espacio
 Route::get('/publicar/espacio/{espacioId}', 'HomeController@publicar')->name('publica-steps');

@@ -21,7 +21,7 @@
 						Si falta alguna información, por favor, accede a tu espacio y edita lo que consideres relevante.
 					</p>
 					<div v-if="enviarValidacion">
-						<a :href="`/dashboard/user/${user.id}/misespacios`">
+						<a href="#" @click="enviarAprobacion($event, espacioId)">
 							<button class="btn-primary-pig-lg">ENVIAR PARA APROBACIÓN</button>
 						</a>
 					</div>
@@ -99,6 +99,16 @@
                 }else {
                 	location.href = `/`;
                 }
+            },
+            enviarAprobacion(e, id) {
+            	e.preventDefault();
+            	this.$http.get(`api/enviaraprobacion/${id}`)
+                .then(res => {
+                    window.location.href = `/dashboard/user/${this.user.id}/misespacios`;
+                }, err => {
+                    this.btnSend = true;
+                    swal(err.message);
+                });
             }
 		}
 	}

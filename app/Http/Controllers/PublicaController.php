@@ -228,4 +228,21 @@ class PublicaController extends Controller
             )
         );
     }
+
+    public function enviarAprobacion($id) {
+        // Obtengo datos del espacio
+        $espacio = Espacio::where('id', $id)->with('images')->first();
+        // Obtengo los datos del dueño
+        $user = User::find($espacio->user_id);
+
+        $datos = [
+            'espacio' => $espacio,
+            'usuario' => $user
+        ];
+         \Mail::send('emails.nuevo-espacio', $datos, function ($message) use ($user) {
+            $message->from('info@wimet.co', 'Wimet');
+            $message->to('info@wimet.co', 'Wimet')
+                ->subject('Se ha creado o midificado el espacio: ' . $espacio->id);
+        });
+    }
 }
