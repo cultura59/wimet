@@ -45,8 +45,8 @@
 						placeholder="$ 100.-" 
 						class="content-box-price__left__input"
 						v-model="subTotal"
-						:value="subTotal" 
-						v-on:input="evento.sub_total = $event.target.value">
+						@change="calcIvanAndTotals"
+					>
 					<button class="content-box-price__left__btn1" @click="decrementPrice()">-</button>
 					<button class="content-box-price__left__btn2" @click="incrementPrice()">+</button>
 				</div>
@@ -156,12 +156,10 @@
 				});
 			},
             incrementPrice() {
-            	this.evento.sub_total++;
-            	this.calcIvanAndTotals();
+            	this.subTotal++;
             },
             decrementPrice() {
-            	this.evento.sub_total--;
-            	this.calcIvanAndTotals();
+            	this.subTotal--;
             },
             incrementDeposito() {
             	this.evento.deposito++;
@@ -223,22 +221,26 @@
 				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.eventoId}${url}`;
 			},
 			calcIvanAndTotals() {
-				this.evento.sub_total = this.evento.sub_total;
+				this.evento.sub_total = this.subTotal;
 				this.evento.iva = (parseFloat(this.evento.sub_total) * 21) / 100;
 	    		if(this.iva) {
 	        		this.evento.montoConIva = parseFloat(this.evento.iva) + parseFloat(this.evento.sub_total);
-					this.evento.comision = parseFloat((this.evento.montoConIva * 15) / 100).toFixed(2);
+					this.evento.comision = this.stringToDouble((this.evento.montoConIva * 15) / 100);
+					console.log(this.evento.comision);
 	        		this.evento.fee = (this.evento.montoConIva * 5) / 100;
-	    			this.evento.tu_pago = parseFloat((this.evento.sub_total+ this.evento.iva) - this.evento.comision).toFixed(2);
+	    			this.evento.tu_pago = this.stringToDouble((parseInt(this.evento.sub_total) + this.evento.iva) - this.evento.comision);
 	        		this.evento.total = parseFloat(this.evento.montoConIva + this.evento.fee).toFixed(2);
 	        	}else {
 	        		this.evento.montoConIva = this.evento.sub_total;
-					this.evento.comision = parseFloat(((this.evento.montoConIva + this.evento.iva) * 15) / 100).toFixed(2);
+					this.evento.comision = this.stringToDouble(((this.evento.montoConIva + this.evento.iva) * 15) / 100);
 	        		this.evento.fee = (this.evento.sub_total * 5) / 100;
-	        		this.evento.tu_pago = parseFloat(this.evento.sub_total - this.evento.comision).toFixed(2);
+	        		this.evento.tu_pago = this.stringToDouble(parseInt(this.evento.sub_total) - this.evento.comision);
 	        		this.evento.total = this.evento.montoConIva + this.evento.fee;
 	            }
-			}
+			},
+            stringToDouble(num){
+			    return Math.round((parseFloat(num) + 0.00001) * 100) / 100;
+            }
 		}
 	}
 </script>
