@@ -419,7 +419,7 @@
                         
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
                         
-                            <h1 class="null" style="text-align: left;"><span style="color:#333333"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="font-size:32px">Responda a la consulta de {{$nombreUser}}</span></span></span></h1>
+                            <h1 class="null" style="text-align: left;"><span style="color:#333333"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="font-size:32px">Responda a la consulta de {{$cliente->firstname}}</span></span></span></h1>
 <span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="font-size:14px"><span style="color:#666666">Esto no es una reserva confirmada - al menos no todavía. Puedes conversar con el organizador y enviar una propuesta una vez que cuentes con toda la información para el alquiler de tu espacio.</span></span></span><br>
 &nbsp;
                         </td>
@@ -445,15 +445,15 @@
             <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnCaptionRightImageContentContainer">
                 <tbody><tr>
                     <td class="mcnCaptionRightImageContent" valign="top">
-                        <img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$imagenEspacio}}" width="176" style="max-width:1920px;" class="mcnImage">
+                        <img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->images[0]->name}}" width="176" style="max-width:1920px;" class="mcnImage">
                     </td>
                 </tr>
             </tbody></table>
             <table class="mcnCaptionRightTextContentContainer" align="right" border="0" cellpadding="0" cellspacing="0" width="352">
                 <tbody><tr>
                     <td valign="top" class="mcnTextContent">
-                        <span style="font-size:24px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><em><span style="color:#333333">{{$nombreEspacio}}</span></em></span></span><br>
-<span style="font-size:20px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333">{{$fecha}}</span></span></span>
+                        <span style="font-size:24px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><em><span style="color:#333333">{{$espacio->name}}</span></em></span></span><br>
+<span style="font-size:20px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333">{{$evento->reserva_desde}} - {{$evento->reserva_hasta}}</span></span></span>
                     </td>
                 </tr>
             </tbody></table>
@@ -490,7 +490,7 @@
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-                                <a class="mcnButton " title="VER CONSULTAS" href="http://www.wimet.co/dashboard/user/{{$idUser}}/eventos" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER CONSULTAS</a>
+                                <a class="mcnButton " title="VER CONSULTAS" href="http://www.wimet.co/dashboard/user/{{$cliente->id}}/eventos" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER CONSULTAS</a>
                             </td>
                         </tr>
                     </tbody>
@@ -506,7 +506,7 @@
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-                                <a class="mcnButton " title="ENVIAR PRESUPUESTO" href="http://www.wimet.co/dashboard/user/{{$idUser}}/evento/{{$idEvento}}/nuevapropuesta" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FC5289;">ENVIAR PRESUPUESTO</a>
+                                <a class="mcnButton " title="ENVIAR PRESUPUESTO" href="http://www.wimet.co/dashboard/user/{{$cliente->id}}/evento/{{$evento->id}}/nuevapropuesta" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FC5289;">ENVIAR PRESUPUESTO</a>
                             </td>
                         </tr>
                     </tbody>

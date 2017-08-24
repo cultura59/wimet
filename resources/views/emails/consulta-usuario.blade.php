@@ -463,9 +463,9 @@
                             <td class="mcnImageContent" valign="top" style="padding-right: 0px; padding-left: 0px; padding-top: 0; padding-bottom: 0; text-align:center;">
                                 
                                     
-                                        <img align="center" alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$imagenEspacio}}" width="600" style="max-width:1920px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
-                                    
-                                
+                                        <img align="center" alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->images[0]->name}}" width="600" style="max-width:1920px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+
+
                             </td>
                         </tr>
                     </tbody></table>
@@ -476,23 +476,23 @@
     <tbody class="mcnTextBlockOuter">
         <tr>
             <td valign="top" class="mcnTextBlockInner" style="padding-top:9px;">
-              	
-			    
-				
+
+
+
                 <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
                     <tbody><tr>
-                        
+
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
-                        
-                            <p><span style="font-size:24px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><em><span style="color:#333333">{{$nombreEspacio}}</span></em></span></span><br>
-<span style="font-size:20px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333">{{$fecha}}</span></span></span></p>
+
+                            <p><span style="font-size:24px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><em><span style="color:#333333">{{$espacio->name}}</span></em></span></span><br>
+<span style="font-size:20px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333">{{$evento->reserva_desde}} - {{$evento->reserva_hasta}}</span></span></span></p>
 
                         </td>
                     </tr>
                 </tbody></table>
-				
-                
-				
+
+
+
             </td>
         </tr>
     </tbody>
@@ -519,7 +519,7 @@
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-                                <a class="mcnButton " title="VER CONSULTAS" href="http://www.wimet.co/dashboard/user/{{$idUser}}/mensajes" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER CONSULTAS</a>
+                                <a class="mcnButton " title="VER CONSULTAS" href="http://www.wimet.co/dashboard/user/{{$cliente->id}}/mensajes" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER CONSULTAS</a>
                             </td>
                         </tr>
                     </tbody>

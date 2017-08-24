@@ -173,7 +173,7 @@
         <script src="assets/js/imagesloaded.min.js"></script>
         <script src="assets/js/pace.min.js"></script>
         <script src="assets/js/main.js"></script>
-        <!-- Start of HubSpot Embed Code --> 
+        <!-- Start of HubSpot Embed Code -->
         <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2880578.js"></script>
         <!-- End of HubSpot Embed Code -->
     </body>

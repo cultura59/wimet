@@ -3,13 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Mail;
 use DB;
+use Mail;
 use App\User;
 use App\Evento;
 use App\Espacio;
 use App\Mensaje;
 use App\Categoria;
+use App\Mail\ConsultaAnfitrion;
+use App\Mail\ConsultaUsuario;
+
 class HomeController extends Controller
 {
     /**
@@ -237,29 +240,16 @@ class HomeController extends Controller
             DB::table('mensajes')->insert([
                 ["evento_id" => $evento->id, "user_id" => $request->clientId, "mensaje" => $request->mensaje]
             ]);
+
             // INICIO -- Datos de envio de email (Consulta al dueño)
-            $datos = [
-                'imagenEspacio' => $espacio->images[0]->name,
-                'nombreEspacio' => $espacio->name,
-                'fecha' => $request->reserva_desde . " - " . $request->reserva_hasta, 
-                'idUser' => $cliente->id,
-                'idEvento' => $evento->id,
-                'nombreUser' => $cliente->firstname
-            ];
+
             // Email al anfitrion (Tienens una consulta)
-            Mail::send('emails.consulta-anfitrion', $datos, function ($message) use ($duenio){
-                $message->from('info@wimet.co', 'Wimet');
-                $message->to($duenio->email)
-                ->bcc('info@wimet.co')
-                ->subject('¡Tienes una nueva consulta, Felicitaciones!');
-            });
+            Mail::to($duenio->email)
+                ->queue(new ConsultaAnfitrion($evento, $espacio, $cliente));
             // Email al organizador (Consulta enviada)
-            Mail::send('emails.consulta-usuario', $datos, function ($message) use ($cliente){
-                $message->from('info@wimet.co', 'Wimet');
-                $message->to($cliente->email)
-                ->bcc('info@wimet.co')
-                ->subject('¡Tu consulta fue envíada, Felicitaciones!');
-            });
+            Mail::to($cliente->email)
+                ->queue(new ConsultaUsuario($evento, $espacio, $cliente));
+
             // FIN -- Datos de envio de email (Consulta al dueño)
             return $evento;
         }catch(\Exception $e){

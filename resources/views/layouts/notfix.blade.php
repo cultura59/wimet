@@ -33,12 +33,6 @@
             ga('create', 'UA-77438674-1', 'auto');
             ga('send', 'pageview');
         </script>
-        <script type="text/javascript">
-            setTimeout(function(){var a=document.createElement("script");
-            var b=document.getElementsByTagName("script")[0];
-            a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0058/8165.js?"+Math.floor(new Date().getTime()/3600000);
-            a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
-        </script>
     </head>
     <body>
         <div id="home-espacio">
@@ -59,8 +53,11 @@
         </div>
         <script src="{{url('/js/app.js')}}"></script>
         @stack('scripts')
-        <!-- Start of HubSpot Embed Code --> 
-        <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2880578.js"></script>
-        <!-- End of HubSpot Embed Code -->
+        <script type="text/javascript" async defer>
+            setTimeout(function(){var a=document.createElement("script");
+                var b=document.getElementsByTagName("script")[0];
+                a.src=document.location.protocol+"//script.crazyegg.com/pages/scripts/0058/8165.js?"+Math.floor(new Date().getTime()/3600000);
+                a.async=true;a.type="text/javascript";b.parentNode.insertBefore(a,b)}, 1);
+        </script>
     </body>
 </html>
