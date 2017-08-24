@@ -412,7 +412,7 @@
                             <td class="mcnImageContent" valign="top" style="padding-right: 0px; padding-left: 0px; padding-top: 0; padding-bottom: 0; text-align:center;">
                                 
                                     
-                                        <img align="center" alt="" src="https://gallery.mailchimp.com/1149ced625fabf6f0c97d836c/images/e75e9353-5a4c-43c1-9f04-f6f9cf33e93e.png" width="600" style="max-width:1721px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+                                        <img align="center" alt="" src="https://gallery.mailchimp.com/1149ced625fabf6f0c97d836c/images/829c7907-9f97-442d-9f27-5749e7dfdae7.png" width="600" style="max-width:1721px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
                                     
                                 
                             </td>
