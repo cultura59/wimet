@@ -387,7 +387,7 @@
                             <td class="mcnImageContent" valign="top" style="padding-right: 0px; padding-left: 0px; padding-top: 0; padding-bottom: 0; text-align:center;">
                                 
                                     
-                                        <img align="center" alt="" src="https://gallery.mailchimp.com/1149ced625fabf6f0c97d836c/images/829c7907-9f97-442d-9f27-5749e7dfdae7.png" width="150" style="max-width:150px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+                                        <img align="center" alt="" src="https://gallery.mailchimp.com/1149ced625fabf6f0c97d836c/images/829c7907-9f97-442d-9f27-5749e7dfdae7.png" width="150" style="max-width:150px; padding-bottom: 0; float: left; display: inline !important; vertical-align: bottom;" class="mcnImage">
                                     
                                 
                             </td>
