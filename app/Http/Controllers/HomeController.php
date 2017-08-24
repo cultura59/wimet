@@ -8,7 +8,6 @@ use Mail;
 use App\User;
 use App\Evento;
 use App\Espacio;
-use App\Mensaje;
 use App\Categoria;
 use App\Mail\ConsultaAnfitrion;
 use App\Mail\ConsultaUsuario;
@@ -244,11 +243,9 @@ class HomeController extends Controller
             // INICIO -- Datos de envio de email (Consulta al dueño)
 
             // Email al anfitrion (Tienens una consulta)
-            Mail::to($duenio->email)
-                ->queue(new ConsultaAnfitrion($evento, $espacio, $cliente));
+            Mail::to($duenio->email)->queue(new ConsultaAnfitrion($evento, $espacio, $cliente));
             // Email al organizador (Consulta enviada)
-            Mail::to($cliente->email)
-                ->queue(new ConsultaUsuario($evento, $espacio, $cliente));
+            Mail::to($cliente->email)->queue(new ConsultaUsuario($evento, $espacio, $cliente));
 
             // FIN -- Datos de envio de email (Consulta al dueño)
             return $evento;

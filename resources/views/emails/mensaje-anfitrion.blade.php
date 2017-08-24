@@ -448,7 +448,7 @@
                                                                 <table border="0" cellpadding="18" cellspacing="0" class="mcnTextContentContainer" width="100%" style="min-width: 100% !important;background-color: #F8F8F8;border: 1px solid #999999;">
                                                                     <tbody><tr>
                                                                         <td valign="top" class="mcnTextContent" style="color: #000002;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
-                                                                            <div style="text-align: left;"><span style="color:#666666">{!! $mensaje !!}</span></div>
+                                                                            <div style="text-align: left;"><span style="color:#666666">{!! $evento->descripcion_consulta !!}</span></div>
                                                                         </td>
                                                                     </tr>
                                                                     </tbody></table>
@@ -493,7 +493,7 @@
 
 
 
-                                                                            <img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$imagenEspacio}}" width="176" style="max-width:1920px;" class="mcnImage">
+                                                                            <img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->images[0]->name}}" width="176" style="max-width:1920px;" class="mcnImage">
 
 
 

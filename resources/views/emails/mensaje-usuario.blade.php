@@ -394,7 +394,7 @@
 														<tr>
 															<td valign="top" class="mcnTextContent" style="color: #000002;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
 																<div style="text-align: left;">
-																	<span style="color:#666666">{!! $mensaje !!}</span>
+																	<span style="color:#666666">{!! $evento->descripcion_consulta !!}</span>
 																</div>
 															</td>
 														</tr>
@@ -433,7 +433,7 @@
 												<tbody>
 												<tr>
 													<td class="mcnImageCardBottomImageContent" align="left" valign="top" style="padding-top:0px; padding-right:0px; padding-bottom:0; padding-left:0px;">
-														<img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$imagenEspacio}}" width="564" style="max-width:1920px;" class="mcnImage">
+														<img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->images[0]->name}}" width="564" style="max-width:1920px;" class="mcnImage">
 													</td>
 												</tr>
 												<tr>

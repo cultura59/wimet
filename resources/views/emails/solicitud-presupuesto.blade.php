@@ -513,7 +513,7 @@ Es importante que tengas en cuenta toda la información proporcionada por el org
                     
                         
 
-                        <img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$imagenEspacio}}" width="176" style="max-width:1920px;" class="mcnImage">
+                        <img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->images[0]->name}}" width="176" style="max-width:1920px;" class="mcnImage">
                         
 
                     

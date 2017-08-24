@@ -10,6 +10,9 @@ use App\Evento;
 use App\User;
 use Mail;
 use DB;
+use App\Mail\MensajeAnfitrion;
+use App\Mail\MensajeUsuario;
+use App\Mail\SolicitudPresupuesto;
 
 class MensajeController extends Controller
 {
@@ -59,37 +62,13 @@ class MensajeController extends Controller
             $categoria = Categoria::find($evento->estilo_espacios_id);
             
             /* Datos de envio de email (Consulta al dueño */
-            $datos = [
-                'mensaje' => $request->mensaje,
-                'evento' => $evento,
-                'espacio' => $espacio,
-                'imagenEspacio' => $espacio->images[0]->name,
-                'usuario' => $user,
-                'cliente' => $cliente,
-                'categoria' => $categoria
-            ];
             if($request->presupuesto) {
-                Mail::send('emails.solicitud-presupuesto', $datos, function ($message) use ($user) {
-                    $message->from('info@wimet.co', 'Wimet');
-                    $message->to($user->email)
-                        ->bcc('info@wimet.co')
-                        ->subject('Tienes una nueva solicitud de un presupuesto');
-                });
+                Mail::to($user->email)->queue(new SolicitudPresupuesto($evento, $espacio, $user, $cliente, $categoria));
             }else {
                 if ($request->user_id != $espacio->user_id) {
-                    Mail::send('emails.mensaje-anfitrion', $datos, function ($message) use ($user) {
-                        $message->from('info@wimet.co', 'Wimet');
-                        $message->to($user->email)
-                            ->bcc('info@wimet.co')
-                            ->subject('Tienes un nuevo mensaje sobre un evento');
-                    });
+                    Mail::to($user->email)->queue(new MensajeAnfitrion($evento, $espacio, $user, $cliente, $categoria));
                 } else {
-                    Mail::send('emails.mensaje-usuario', $datos, function ($message) use ($cliente) {
-                        $message->from('info@wimet.co', 'Wimet');
-                        $message->to($cliente->email)
-                            ->bcc('info@wimet.co')
-                            ->subject('Tienes un nuevo mensaje sobre tu evento');
-                    });
+                    Mail::to($cliente->email)->queue(new MensajeUsuario($evento, $espacio, $user, $cliente, $categoria));
                 }
             }
             /* Datos de envio de email (Consulta al dueño */

@@ -11,7 +11,7 @@ use App\Espacio;
 use App\User;
 use App\Categoria;
 
-class MensajeUsuario extends Mailable
+class SolicitudPresupuesto extends Mailable
 {
     use Queueable, SerializesModels;
 
@@ -44,7 +44,7 @@ class MensajeUsuario extends Mailable
     {
         return $this->from('info@wimet.co')
             ->bcc('info@wimet.co')
-            ->subject('Tienes un nuevo mensaje sobre tu evento')
-            ->view('emails.mensaje-usuario');
+            ->subject('Tienes una nueva solicitud de un presupuesto')
+            ->view('emails.solicitud-presupuesto');
     }
 }
