@@ -64,7 +64,7 @@
 		</div>
 		<div class="aside-propuesta">
 			<div>
-				<img src="/{{$espacio->images[0]->name}}" alt="{{$espacio->name}}" class="img-responsive">
+				<img src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->images[0]->name}}" alt="{{$espacio->name}}" class="img-responsive">
 			</div>
 			<div class="propuesta-datos">
 				<h3>{{$espacio->name}}</h3>

@@ -16,10 +16,22 @@
                     <span>{{(categoria == '') ? 'Qué estás planificando?' : categoria.name}}</span>
                     <i class="fa fa-sort-desc" aria-hidden="true"></i>
                 </button>
-                <div v-if="stCategoria" class="dropdown__content">
-                	<div v-for="cat in categories" class="contaniner-categorias" @click="selectCategoria(cat)">
-                        <span>{{cat.name}}</span>
-                        <span class="subCategoria">{{showSubCategories(cat.sub_category)}}</span>
+                <div class="dropdown__content">
+                    <div class="contaniner-categorias">
+                        <span>Reuniones</span>
+                        <span class="subCategoria">(Workshops, Presentación, Offsites)</span>
+                    </div>
+                    <div class="contaniner-categorias">
+                        <span>Eventos</span>
+                        <span class="subCategoria">(Corporativos, Sociales, Acciones /Promociones)</span>
+                    </div>
+                    <div class="contaniner-categorias">
+                        <span>Producciones</span>
+                        <span class="subCategoria">(Fotográficas, Filmaciones, Escénicas (musicales y teatrales))</span>
+                    </div>
+                    <div class="contaniner-categorias">
+                        <span>Pop-ups</span>
+                        <span class="subCategoria">(Store, Cursos, Exhibiciones &amp; Cenas)</span>
                     </div>
                 </div>
             </div>

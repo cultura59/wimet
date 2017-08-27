@@ -6,7 +6,7 @@
 	    float: left;
 	    &__links{
 		    padding: 1em 0 2em 0;
-		    width: 55%;
+		    width: 45%;
 		    display: flex;
 		    justify-content: space-between;
 		    &--default {
@@ -39,6 +39,8 @@
 	    .mensajes {
 			width: 100%;
 			height: 600px;
+			overflow-y: scroll;
+			overflow-x: hidden;
 			.mensaje {
 				max-height: 100px;
 				background-color: #f8f8f8;
@@ -122,7 +124,7 @@
 		</div>
 		<div class="aside-propuesta" v-if="(eventoselect !== '')">
 			<div>
-				<img :src="`/${espacio.images[0].name}`" :alt="espacio.name" class="img-responsive">
+				<img :src="`https://res.cloudinary.com/wimet/image/upload/q_60/${espacio.images[0].name}`" :alt="espacio.name" class="img-responsive">
 			</div>
 			<div class="propuesta-datos">
 				<h3>{{espacio.name}}</h3>
