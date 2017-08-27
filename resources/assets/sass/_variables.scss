@@ -14,10 +14,12 @@ $brand-primary: #3097D1;
 $brand-info: #8eb4cb;
 $brand-success: #2ab27b;
 $brand-warning: rgba(240, 173, 78, 1);
-$brand-danger:  #F34C60;
+$brand-danger:  #FC5289;
 
 //Paleta principal de wimet
 $wt-primary-pig: #FC5289;
+$wt-primary-grey: #666666;
+$wt-primary-dark: #333333;
 
 // Colores Wimet -- OLD
 $wt-white: rgba(255, 255, 255, 1);
@@ -26,7 +28,6 @@ $wt-grey-grey: #606060;
 $wt-dark-grey:rgb(94, 94, 94);
 $wt-dark: rgba(0, 0, 0, 1);
 $wt-dark-blue: rgba(37, 64, 80, 1);
-$wt-background-principal: rgba(232, 83, 111, 1);
 $wt-background-secondary: rgba(240, 240, 240, 1);
 $wt-background-claro: rgba(239, 239, 239, 0.5);
 $wt-background-grey: rgba(218, 218, 218, 0.5);
@@ -38,7 +39,7 @@ $wt-darck-blue: rgba(37, 64, 80, 1);
 $wt-yellow: rgba(243, 156, 18, 1);
 
 // Typography
-$font-family-sans-serif: 'Roboto', Noto, sans-serif;
+$font-family-sans-serif: 'Ubuntu', Noto, sans-serif;
 $font-size-base: 14px;
 $line-height-base: 1.6;
 $text-color: #888B8D;

@@ -116,6 +116,7 @@
 	            		if(this.categories[i].id != this.categorySelected.id) {
 		            		this.categories[i].price = this.categorySelected.price;
 		            		this.categories[i].minhours = this.categorySelected.minhours;
+                            this.categories[i].daily = this.categorySelected.daily;
 		            	}
 	            	}
 	            }
@@ -149,20 +150,18 @@
 	    border: none;
 	    padding: 0.5em 2em;
 	    &:hover {
-	    	color: #e8536f;
+	    	color: #FC5289;
 	    	transition: none;
 	    }
 	    &:focus {outline:0;}
 	}
 	.btn-price-active {
-	    background: #e8536f;
-	    border: 1px solid #e8536f;
+	    background: #FC5289;
+	    border: 1px solid #FC5289;
 	    padding: 0.5em 2em;
 	    color: #fff;
 	    border-radius: 2px;
-	    &:hover {
-	    	background: rgba(232, 83, 111, 0.8);
-	    }
+		transition: none;
 	    &:focus {outline:0;}
 	}
 	.content-bpx-price {
@@ -178,23 +177,26 @@
 			    padding: 1em;
 			    width: 40%;
 			    height: 100%;
-			    border-left: 1px solid #dadada;
-			    border-top: 1px solid #dadada;
-			    border-bottom: 1px solid #dadada;
+			    border-left: 1px solid #666666;
+			    border-top: 1px solid #666666;
+			    border-bottom: 1px solid #666666;
 			    border-right: none;
+				color: #666666;
 			}
 			&__btn1 {
 			    width: 20%;
 			    background: #fff;
-			    border-left: 1px solid #dadada;
-			    border-top: 1px solid #dadada;
-			    border-bottom: 1px solid #dadada;
+			    border-left: 1px solid #666666;
+			    border-top: 1px solid #666666;
+			    border-bottom: 1px solid #666666;
 			    border-right: none;
+				color: #666666;
 			}
 			&__btn2 {
 			    width: 20%;
 			    background: #fff;
-			    border: 1px solid #dadada;
+			    border: 1px solid #666666;
+				color: #666666;
 			}
 		}
 		label {
@@ -214,7 +216,7 @@
 			    content: ' ';
 			    width: 1.5em;
 			    height: 1.5em;
-			    border: 1px solid #dadada;
+			    border: 1px solid #666666;
 			    background: #ffF;
 			    border-radius: 4px;
 			    transition: all .2s;

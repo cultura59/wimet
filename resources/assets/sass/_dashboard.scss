@@ -217,7 +217,7 @@
                 padding: 5px 10px;
             }
             .th-2 {
-                background-color: #FC5289;
+                background-color: $wt-primary-pig;
                 padding: 5px 10px;
                 color: #fff;
             }
@@ -299,7 +299,7 @@
                         }
                     }
                     ul {
-                        color: rgba(226, 56, 90, 0.87);
+                        color: $wt-primary-pig;
                         margin-top: 1em;
                     }
                 }
@@ -334,7 +334,7 @@
                         }
                     }
                     ul {
-                        color: rgba(226, 56, 90, 0.87);
+                        color: $wt-primary-pig;
                         margin-top: 1em;
                     }
                 }
@@ -355,11 +355,11 @@
     width: 120px;
     height: 40px;
     border-radius: 2px;
-    background-color: #FC5289;
+    background-color: $wt-primary-pig;
     border: none;
     color: #fff;
     &:hover {
-        background-color: rgba(234, 81, 109, 0.87);
+        background-color: $wt-primary-pig;
     }
 }
 .dashboard-btn-transparent {
@@ -367,7 +367,7 @@
     border: none;
     padding: 1em;
     &:hover {
-        color: #FC5289;
+        color: $wt-primary-pig;
     }
 }
 .avatar {
@@ -379,20 +379,20 @@
     }
     label {
         border-radius: 2px;
-        border: solid 1px #FC5289;
+        border: solid 1px $wt-primary-pig;
         opacity: 0.87;
         font-family: Ubuntu Bold Medium;
         font-size: 12px;
         font-weight: 500;
         letter-spacing: -0.1px;
-        color: #FC5289;
+        color: $wt-primary-pig;
         padding: 1em;
         cursor: pointer;
         width: 110px;
         text-align: center;
         margin-top: 1em;
         &:hover {
-            background-color: #FC5289;
+            background-color: $wt-primary-pig;
             color: #fff;
         }
     }

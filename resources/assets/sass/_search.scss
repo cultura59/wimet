@@ -248,14 +248,14 @@
 	z-index: 1;
 	&__item {
 		border-bottom: solid 1px #dadada;
-		color: #FC5289 !important;
+		color: $wt-primary-pig !important;
 		transition: none;
 		a{
 			padding: 1em;
 			border: none !important;
 		}
 		.active {
-			color: #FC5289;
+			color: $wt-primary-pig;
 		}
 		&:hover {
 			font-weight: 700;

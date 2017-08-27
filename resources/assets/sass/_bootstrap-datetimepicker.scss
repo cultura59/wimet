@@ -241,15 +241,15 @@
 .datetimepicker table tr td.active.disabled,
 .datetimepicker table tr td.active.disabled:hover {
 	background-color: #006dcc;
-	background-image: -moz-linear-gradient(top, #FC5289, #FC5289);
-	background-image: -ms-linear-gradient(top, #FC5289, #FC5289);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FC5289), to(#FC5289));
-	background-image: -webkit-linear-gradient(top, #FC5289, #FC5289);
-	background-image: -o-linear-gradient(top, #FC5289, #FC5289);
-	background-image: linear-gradient(to bottom, #FC5289, #FC5289);
+	background-image: -moz-linear-gradient(top, $wt-primary-pig, $wt-primary-pig);
+	background-image: -ms-linear-gradient(top, $wt-primary-pig, $wt-primary-pig);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from($wt-primary-pig), to($wt-primary-pig));
+	background-image: -webkit-linear-gradient(top, $wt-primary-pig, $wt-primary-pig);
+	background-image: -o-linear-gradient(top, $wt-primary-pig, $wt-primary-pig);
+	background-image: linear-gradient(to bottom, $wt-primary-pig, $wt-primary-pig);
 	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FC5289', endColorstr='#FC5289', GradientType=0);
-	border-color: #FC5289 #FC5289 #002a80;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$wt-primary-pig', endColorstr='$wt-primary-pig', GradientType=0);
+	border-color: $wt-primary-pig $wt-primary-pig #002a80;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 	color: #ffffff;
@@ -276,7 +276,7 @@
 .datetimepicker table tr td.active:hover[disabled],
 .datetimepicker table tr td.active.disabled[disabled],
 .datetimepicker table tr td.active.disabled:hover[disabled] {
-	background-color: #FC5289;
+	background-color: $wt-primary-pig;
 }
 
 .datetimepicker table tr td.active:active,
@@ -342,15 +342,15 @@
 .datetimepicker table tr td span.active.disabled,
 .datetimepicker table tr td span.active.disabled:hover {
 	background-color: #006dcc;
-	background-image: -moz-linear-gradient(top, #FC5289, #FC5289);
-	background-image: -ms-linear-gradient(top, #FC5289, #FC5289);
-	background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#FC5289), to(#FC5289));
-	background-image: -webkit-linear-gradient(top, #FC5289, #FC5289);
-	background-image: -o-linear-gradient(top, #FC5289, #FC5289);
-	background-image: linear-gradient(to bottom, #FC5289, #FC5289);
+	background-image: -moz-linear-gradient(top, $wt-primary-pig, $wt-primary-pig);
+	background-image: -ms-linear-gradient(top, $wt-primary-pig, $wt-primary-pig);
+	background-image: -webkit-gradient(linear, 0 0, 0 100%, from($wt-primary-pig), to($wt-primary-pig));
+	background-image: -webkit-linear-gradient(top, $wt-primary-pig, $wt-primary-pig);
+	background-image: -o-linear-gradient(top, $wt-primary-pig, $wt-primary-pig);
+	background-image: linear-gradient(to bottom, $wt-primary-pig, $wt-primary-pig);
 	background-repeat: repeat-x;
-	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#FC5289', endColorstr='#FC5289', GradientType=0);
-	border-color: #FC5289 #FC5289 #002a80;
+	filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$wt-primary-pig', endColorstr='$wt-primary-pig', GradientType=0);
+	border-color: $wt-primary-pig $wt-primary-pig #002a80;
 	border-color: rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.1) rgba(0, 0, 0, 0.25);
 	filter: progid:DXImageTransform.Microsoft.gradient(enabled=false);
 	color: #ffffff;
@@ -377,7 +377,7 @@
 .datetimepicker table tr td span.active:hover[disabled],
 .datetimepicker table tr td span.active.disabled[disabled],
 .datetimepicker table tr td span.active.disabled:hover[disabled] {
-	background-color: #FC5289;
+	background-color: $wt-primary-pig;
 }
 
 .datetimepicker table tr td span.active:active,
