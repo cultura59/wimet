@@ -3,18 +3,19 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta content="width=device-width, user-scalable=no, initial-scale=1, maximum-scale=1" name="viewport">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-site-verification" content="A6bEbj0anLR76S8r9y2oG_7UMuN6YUn4-hYL-ZZFLvs" />
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>{{ config('app.name', 'Laravel') }}</title>
-
+        <link rel="manifest" href="/manifest.json">
+        <meta name="theme-color" content="#FC5289">
         <!-- Styles -->
-        <link async defer href="/css/app.css" rel="stylesheet">
+        <link href="/css/app.css" rel="stylesheet">
 
-        <link rel="stylesheet" type="text/css" href="http://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
+        <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Ubuntu:regular,bold&subset=Latin">
 
         <link async defer rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
 
@@ -253,6 +254,6 @@
         </script>
         <script async defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script async defer src="https://apis.google.com/js/api:client.js"></script>
-        <script async defer src="{{url('/js/app.js')}}"></script>
+        <script async defer src="/js/app.js"></script>
     </body>
 </html>

@@ -94,7 +94,7 @@
     &:hover, &:focus {
         color: #fff;
         text-decoration: none;
-        background: rgba(243, 76, 96, 0.7);
+        background: $wt-primary-pig;
     }
 }
 
@@ -111,7 +111,7 @@
     a:hover, a:focus {
         color: #fff;
         text-decoration: none;
-        background: rgba(243, 76, 96, 0.7);
+        background: $wt-primary-pig;
     }
 }
 
@@ -150,15 +150,15 @@
 .btn-primary-pig-mobile {
     width: 100%;
     height: 40px;
-    background: #b4374e;
+    background: $wt-primary-pig;
     font-weight: 500;
     letter-spacing: -0.1px;
     color: $wt-white;
-    border: 1px solid #b4374e;
+    border: 1px solid $wt-primary-pig;
     border-radius: 2px;
     &:hover {
         color: $wt-white !important;
-        background-color: #b4374e;
+        background-color: $wt-primary-pig;
         opacity: 87;
     }
 }
@@ -168,7 +168,7 @@
     }
     @include mobile {
         height: 60px;
-        background-color: #eb516d;
+        background-color: $wt-primary-pig;
         padding: 20px;
         width: 100%;
         border: none;
@@ -438,7 +438,7 @@
     font-weight: 600;
 }
 .text-primary {
-    color: $brand-danger;
+    color: $wt-primary-pig;
 }
 
 //--------------------------------- The Modal (background) -----------------------------------//

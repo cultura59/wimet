@@ -15,7 +15,10 @@
 					<div class="wt-center-column">
 						<label for="actividad" class="container-evento__label">Tipo de actividad</label>
 						<select id="actividad" class="container-propuesta__inputs" v-model="evento.estilo_espacios_id">
-							<option value="1">Reunión</option>
+							<option value="1">Reuniones</option>
+							<option value="2">Eventos</option>
+							<option value="3">Producciones</option>
+							<option value="4">Pop-ups</option>
 						</select>
 					</div>
 					<div class="wt-center-column">
@@ -226,7 +229,6 @@
 	    		if(this.iva) {
 	        		this.evento.montoConIva = parseFloat(this.evento.iva) + parseFloat(this.evento.sub_total);
 					this.evento.comision = this.stringToDouble((this.evento.montoConIva * 15) / 100);
-					console.log(this.evento.comision);
 	        		this.evento.fee = (this.evento.montoConIva * 5) / 100;
 	    			this.evento.tu_pago = this.stringToDouble((parseInt(this.evento.sub_total) + this.evento.iva) - this.evento.comision);
 	        		this.evento.total = parseFloat(this.evento.montoConIva + this.evento.fee).toFixed(2);

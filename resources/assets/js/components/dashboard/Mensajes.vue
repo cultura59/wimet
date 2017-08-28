@@ -39,7 +39,7 @@
 	    .mensajes {
 			width: 100%;
 			height: 600px;
-			overflow-y: scroll;
+			overflow-y: auto;
 			overflow-x: hidden;
 			.mensaje {
 				max-height: 100px;

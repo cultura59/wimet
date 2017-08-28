@@ -1,0 +1,21 @@
+{
+  "name": "Wimet",
+  "short_name": "Wimet",
+  "start_url": "/",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#FC5289",
+  "theme_color": "#FC5289",
+  "icons": [
+    {
+      "src": "http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo-white_z3tlgh.svg",
+      "sizes": "192x192",
+      "type": "image/svg"
+    },
+    {
+      "src": "http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo-white_z3tlgh.svg",
+      "sizes": "512x512",
+      "type": "image/svg"
+    }
+  ]
+}
