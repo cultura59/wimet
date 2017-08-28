@@ -556,7 +556,19 @@
     transition: all 1.35s cubic-bezier(0.19, 1, 0.22, 1);
   }
 }
+svg.pig{
+    position: absolute;
+    width: 158px;
+    height: 38px;
+    top: 1em;
 
+    rect {
+        fill: none;
+        stroke: $wt-primary-pig;
+        stroke-width: 4;
+        stroke-dasharray: 422, 0;
+    }
+}
 svg.dark{
     position: absolute;
     width: 158px;
