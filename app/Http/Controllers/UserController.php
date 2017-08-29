@@ -47,7 +47,7 @@ class UserController extends Controller
             $user->imagesource = ($request->imagesource) ? $request->imagesource : "/img/wimet_ic_avatar_black_big.svg";
             $user->isAdmin = 0;
             $user->save();
-            $this->registerHubspot($request);
+            $this->registerHubspot($user);
             return $user;
         }catch(\Exception $e){
             return response('Los campos no son correctos', 400);
