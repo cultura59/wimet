@@ -254,6 +254,10 @@ class UserController extends Controller
                     'value' => 'Website form'
                 ),
                 array(
+                    'property' => 'user_id_wimet',
+                    'value' => $data->id
+                ),
+                array(
                     'property' => 'esanfitrion',
                     'value' => false
                 )
@@ -295,7 +299,6 @@ class UserController extends Controller
         );
         $post_json = json_encode($arr);
         $keyHuspot = "153f6544-3085-41e5-98d0-80a3d435d496";
-        
         $endpoint = 'https://api.hubapi.com/contacts/v1/contact/createOrUpdate/email/'.$data->email.'/?hapikey=' . $keyHuspot;
         $ch = @curl_init();
         @curl_setopt($ch, CURLOPT_POST, true);
@@ -307,9 +310,6 @@ class UserController extends Controller
         $status_code = @curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $curl_errors = curl_error($ch);
         @curl_close($ch);
-        Log::debug("curl Errors: " . $curl_errors);
-        Log::debug("Status code: " . $status_code);
-        Log::debug("Response: " . $response);
     }
 
     public function cambiarContraseniaRedes($id, $contra) {

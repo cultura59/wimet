@@ -171,6 +171,10 @@ class EspacioController extends Controller
             $espacio->description = nl2br($request->description);
             $espacio->step = ($espacio->step == 4) ? $espacio->step : $request->step;
             $espacio->save();
+            if($espacio->step != 4) {
+                $user = User::find($espacio->user_id);
+                $this->regitroStepHubspot($user, $request->step);
+            }
             return $espacio;
         }catch(\Exception $e){
             return response('Los campos no son correctos')->status(400);
@@ -302,6 +306,10 @@ class EspacioController extends Controller
         }
         $espacio->step = ($espacio->step == 4) ? $espacio->step : 2;
         $espacio->save();
+        if($espacio->step == 2) {
+            $user = User::find($espacio->user_id);
+            $this->regitroStepHubspot($user, 2);
+        }
         return \Redirect::route('publica-steps', array(
                 "espacioId" => $espacio->id
             )
@@ -332,10 +340,10 @@ class EspacioController extends Controller
             $image->espacio_id = $id;
             $image->save();
             $response = \Cloudinary\Uploader::upload($imagesEspacio, 
-                                                    array(
-                                                        "public_id" => $destination_fotoprincipales . str_replace($extension, "", $filename_imagesEspacio)
-                                                    )
-                                                );
+                array(
+                    "public_id" => $destination_fotoprincipales . str_replace($extension, "", $filename_imagesEspacio)
+                )
+            );
             return $image;
         }
     }
@@ -431,6 +439,10 @@ class EspacioController extends Controller
         }
         $espacio->step = 4;
         $espacio->save();
+        if($espacio->step == 4) {
+            $user = User::find($espacio->user_id);
+            $this->regitroStepHubspot($user, 4);
+        }
         return \Redirect::route('publica-steps', array(
                 "espacioId" => $espacio->id
             )
@@ -464,6 +476,10 @@ class EspacioController extends Controller
                 array(
                     'property' => 'esanfitrion',
                     'value' => true
+                ),
+                array(
+                    'property' => 'step_wimet',
+                    'value' => 1
                 )
             )
         );
@@ -484,5 +500,35 @@ class EspacioController extends Controller
         Log::debug("curl Errors: " . $curl_errors);
         Log::debug("Status code: " . $status_code);
         Log::debug("Response: " . $response);
+    }
+
+    /**
+     * Create/update a user instance after a valid registration. into huspot
+     *
+     * @param  array  $data
+     * @return User
+     */
+    public function regitroStepHubspot($data, $step) {
+        $arr = array(
+            'properties' => array(
+                array(
+                    'property' => 'step_wimet',
+                    'value' => $step
+                )
+            )
+        );
+        $post_json = json_encode($arr);
+        $keyHuspot = "153f6544-3085-41e5-98d0-80a3d435d496";
+        $endpoint = 'https://api.hubapi.com/contacts/v1/contact/createOrUpdate/email/'.$data->email.'/?hapikey=' . $keyHuspot;
+        $ch = @curl_init();
+        @curl_setopt($ch, CURLOPT_POST, true);
+        @curl_setopt($ch, CURLOPT_POSTFIELDS, $post_json);
+        @curl_setopt($ch, CURLOPT_URL, $endpoint);
+        @curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type: application/json'));
+        @curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+        $response = @curl_exec($ch);
+        $status_code = @curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $curl_errors = curl_error($ch);
+        @curl_close($ch);
     }
 }

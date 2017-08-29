@@ -132,7 +132,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     </div>
                     <div class="form-contact">
                         <div class="form-contact__button">
-                            <svg v-show="!btnSend" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                             width="40px" height="40px" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve">
                             <path opacity="0.2" fill="#FC5289" d="M20.201,5.169c-8.254,0-14.946,6.692-14.946,14.946c0,8.255,6.692,14.946,14.946,14.946
                             s14.946-6.691,14.946-14.946C35.146,11.861,28.455,5.169,20.201,5.169z M20.201,31.749c-6.425,0-11.634-5.208-11.634-11.634
@@ -148,6 +148,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                             repeatCount="indefinite"/>
                             </path>
                             </svg>
+                            <img v-show="!btnSend" src="/img/default.gif" alt="Cargando ..." height="50px" />
                             <button v-show="(btnSend && terminos)" class="btn-primary-pig" @click="sendReserva()">Enviar</button>
                         </div>
                     </div>
