@@ -43,7 +43,6 @@ class MensajeUsuario extends Mailable
     public function build()
     {
         return $this->from('info@wimet.co')
-            ->bcc('info@wimet.co')
             ->subject('Tienes un nuevo mensaje sobre tu evento')
             ->view('emails.mensaje-usuario');
     }

@@ -43,8 +43,7 @@ class MensajeAnfitrion extends Mailable
     public function build()
     {
         return $this->from('info@wimet.co')
-                ->bcc('info@wimet.co')
-                ->subject('Tienes un nuevo mensaje sobre un evento')
-                ->view('emails.mensaje-anfitrion');
+            ->subject('Tienes un nuevo mensaje sobre un evento')
+            ->view('emails.mensaje-anfitrion');
     }
 }

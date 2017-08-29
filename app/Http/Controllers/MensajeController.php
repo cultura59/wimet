@@ -63,12 +63,18 @@ class MensajeController extends Controller
             
             /* Datos de envio de email (Consulta al dueño */
             if($request->presupuesto) {
-                Mail::to($user->email)->queue(new SolicitudPresupuesto($evento, $espacio, $cliente, $user, $categoria));
+                Mail::to($user->email)
+                    ->bcc('info@wimet.co')
+                    ->queue(new SolicitudPresupuesto($evento, $espacio, $cliente, $user, $categoria));
             }else {
                 if ($request->user_id != $espacio->user_id) {
-                    Mail::to($user->email)->queue(new MensajeAnfitrion($evento, $espacio, $cliente, $user, $categoria));
+                    Mail::to($user->email)
+                        ->bcc('info@wimet.co')
+                        ->queue(new MensajeAnfitrion($evento, $espacio, $cliente, $user, $categoria));
                 } else {
-                    Mail::to($cliente->email)->queue(new MensajeUsuario($evento, $espacio, $cliente, $user, $categoria));
+                    Mail::to($cliente->email)
+                        ->bcc('info@wimet.co')
+                        ->queue(new MensajeUsuario($evento, $espacio, $cliente, $user, $categoria));
                 }
             }
             /* Datos de envio de email (Consulta al dueño */

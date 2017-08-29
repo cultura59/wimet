@@ -38,7 +38,6 @@ class ConsultaAnfitrion extends Mailable
     public function build()
     {
         return $this->from('info@wimet.co')
-                ->bcc('info@wimet.co')
                 ->subject('¡Tienes una nueva consulta, Felicitaciones!')
                 ->view('emails.consulta-anfitrion');
     }
