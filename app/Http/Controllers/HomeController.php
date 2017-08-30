@@ -241,14 +241,14 @@ class HomeController extends Controller
             ]);
 
             // INICIO -- Datos de envio de email (Consulta al dueño)
-
+            $emails = ['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'];
             // Email al anfitrion (Tienens una consulta)
             Mail::to($duenio->email)
-                ->bcc('info@wimet.co')
+                ->bcc($emails)
                 ->queue(new ConsultaAnfitrion($evento, $espacio, $cliente));
             // Email al organizador (Consulta enviada)
             Mail::to($cliente->email)
-                ->bcc('info@wimet.co')
+                ->bcc($emails)
                 ->queue(new ConsultaUsuario($evento, $espacio, $cliente));
 
             // FIN -- Datos de envio de email (Consulta al dueño)
