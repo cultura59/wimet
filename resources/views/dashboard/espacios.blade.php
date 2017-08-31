@@ -15,7 +15,7 @@
 				<h4>PUBLICADOS</h4>
 				@include('errors/error-notification')
 				<div class="container-espacios">
-				@foreach($espacios as $espacio)
+				@forelse($espacios as $espacio)
 					<div class="box-expacio">
 						<div class="image-espacio">
 							@if(!$espacio->images->isEmpty())
@@ -43,13 +43,15 @@
 							</div>
 						</div>
 					</div>
-				@endforeach
+				@empty
+					<p>No posee espacios activos...</p>
+				@endforelse
 				</div>
 			</div>
 			<div class="wt-m-top-4">
 				<h4>BORRADOR</h4>
 				<div class="container-espacios">
-				@foreach($borradores as $borrador)
+				@forelse($borradores as $borrador)
 					<div class="box-expacio">
 						<div class="image-espacio">
 							@if(!$borrador->images->isEmpty())
@@ -80,7 +82,9 @@
 							</div>
 						</div>
 					</div>
-				@endforeach
+				@empty
+					<p>No posee espacios en borrador...</p>
+				@endforelse
 				</div>
 			</div>
 		</div>

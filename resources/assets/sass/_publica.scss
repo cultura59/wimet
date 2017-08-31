@@ -1,7 +1,7 @@
 .section-publica {
 	h1, h2, h3, h4 {
-		font-family: 'Ubuntu Medium';
 		color: $wt-primary-dark;
+		font-weight: 600;
 	}
 	.content-publica {
 		padding: 2em;
@@ -205,7 +205,7 @@
 		  font-stretch: normal;
 		  line-height: normal;
 		  letter-spacing: -0.1px;
-		  color: $wt-primary-grey;
+		  color: $wt-primary-dark;
 		}
 		.box-step {
 		    width: 50%;
