@@ -394,7 +394,7 @@
 														<tr>
 															<td valign="top" class="mcnTextContent" style="color: #000002;font-family: Helvetica;font-size: 14px;font-weight: normal;text-align: center;">
 																<div style="text-align: left;">
-																	<span style="color:#666666">{!! $evento->descripcion_consulta !!}</span>
+																	<span style="color:#666666">{!! $mensaje !!}</span>
 																</div>
 															</td>
 														</tr>

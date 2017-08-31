@@ -60,6 +60,9 @@ class MensajeController extends Controller
             $cliente = User::find($evento->cliente_id);
             // Obtengo los datos de la categoria
             $categoria = Categoria::find($evento->estilo_espacios_id);
+            /* Datos de envio de email (Consulta al dueño */
+            $mensaje = new Mensaje($request->all());
+            $mensaje->save();
             
             /* Datos de envio de email (Consulta al dueño */
             $emails = ['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'];
@@ -71,16 +74,13 @@ class MensajeController extends Controller
                 if ($request->user_id != $espacio->user_id) {
                     Mail::to($user->email)
                         ->bcc($emails)
-                        ->queue(new MensajeAnfitrion($evento, $espacio, $cliente, $user, $categoria));
+                        ->queue(new MensajeAnfitrion($evento, $espacio, $cliente, $user, $categoria, $mensaje));
                 } else {
                     Mail::to($cliente->email)
                         ->bcc($emails)
-                        ->queue(new MensajeUsuario($evento, $espacio, $cliente, $user, $categoria));
+                        ->queue(new MensajeUsuario($evento, $espacio, $cliente, $user, $categoria, $mensaje));
                 }
             }
-            /* Datos de envio de email (Consulta al dueño */
-            $mensaje = new Mensaje($request->all());
-            $mensaje->save();
             return response($mensaje, 204); 
         }catch(\Exception $e){
             return response('Los campos no son correctos, '.$e->getMessage(), 400);
