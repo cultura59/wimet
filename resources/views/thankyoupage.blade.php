@@ -64,7 +64,7 @@
                     <p class="col-footer">Empresa</p>
                     <ul>
                         <li><a href="{{url('/nosotros')}}">Nosotros</a></li>
-                        <li><a href="{{url('/nosotros')}}">Cómo funciona</a></li>
+                        <li><a href="www.blog.wimet.com">Cómo funciona</a></li>
                         <li><a href="{{url('/nosotros')}}">Ayuda</a></li>
                         <li><a href="{{url('/nosotros')}}">Términos y condiciones</a></li>
                         <li><a href="{{url('/nosotros')}}">Políticas de privacidad</a></li>
