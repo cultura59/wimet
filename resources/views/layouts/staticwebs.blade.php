@@ -133,7 +133,7 @@
                         <h6 class="heading white margin-bottom-extrasmall">Empresa</h6>
                         <ul class="sitemap">
                             <li><a href="nosotros">Nosotros</a></li>
-                            <li><a href="www.blog.wimet.com">Cómo funciona</a></li>
+                            <li><a href="http://blog.wimet.co">Blog</a></li>
                             <li><a href="ayuda">Ayuda</a></li>
                             <li><a href="">Términos y Condiciones</a></li>
                             <li><a href="">Políticas de Privacidad</a></li>
