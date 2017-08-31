@@ -1,0 +1,11 @@
+.header-thankyoupage {
+  background-image: url(/assets/img/wimet-espacios-creativos-eventos-reuniones-producciones-popups-nosotros.jpg);
+  background-color: $wt-primary-grey;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 600px;
+  color: $wt-white;
+  text-shadow: 2px 2px 2px $wt-primary-grey;
+}

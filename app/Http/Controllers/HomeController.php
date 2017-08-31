@@ -135,6 +135,14 @@ class HomeController extends Controller
     }
 
     /**
+     * @brief Funcion que redirecciona a la thank you page
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function thankyou($id) {
+        return view('thankyoupage', array("id" => $id));
+    }
+
+    /**
      * @brief Funcion que renderiza a la vista de consulta
      * @param $categoriaId
      * @param $id

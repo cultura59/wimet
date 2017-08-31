@@ -254,7 +254,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 }
                 this.$http.post(`api/sendreserva`, body)
                 .then(res => {
-                    window.location.href = `/dashboard/user/${this.user.id}/mensajes`;
+                    window.location.href = `/thankyou/${this.user.id}`;
                 }, err => {
                     this.btnSend = true;
                     swal(err.message);
