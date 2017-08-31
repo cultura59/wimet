@@ -35,7 +35,7 @@ class MensajeUsuario extends Mailable
         $this->cliente = $cliente;
         $this->usuario = $usuario;
         $this->categoria = $categoria;
-        $this->mensaje = $msj;
+        $this->mensaje = $msj->mensaje;
     }
 
     /**
