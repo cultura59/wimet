@@ -5,14 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta name="google-site-verification" content="A6bEbj0anLR76S8r9y2oG_7UMuN6YUn4-hYL-ZZFLvs" />
-        <meta content="https://res.cloudinary.com/wimet/image/upload/fotosespacios/MkC1QOAt_Salondelbajo-06.jpg" property="og:image">
-        <meta content="Wimet.co | RE-IMAGINA TU ENCUENTRO" property="og:title">
-        <meta content="Que el espacio no sea una condición sino una oportunidad. Descubre en Wimet espacios únicos que potencian tu creatividad." name="og:description">
-
-        <meta content="https://res.cloudinary.com/wimet/image/upload/fotosespacios/MkC1QOAt_Salondelbajo-06.jpg" property="twitter:image">
-        <meta content="Wimet.co | RE-IMAGINA TU ENCUENTRO" property="twitter:title">
-        <meta content="Que el espacio no sea una condición sino una oportunidad. Descubre en Wimet espacios únicos que potencian tu creatividad." name="twitter:description">
-
+        <meta content="Que el espacio no sea una condición sino una oportunidad. Descubre en Wimet espacios únicos que potencian tu creatividad." name="description">
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -49,6 +42,11 @@
             <img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=346994115731020&ev=PageView&noscript=1"/>
         </noscript>
         <!-- End Facebook Pixel Code -->
+
+        <meta content="www.wimet.co" property="og:url">
+        <meta content="Wimet.co | RE-IMAGINA TU ENCUENTRO" property="og:title">
+        <meta content="Que el espacio no sea una condición sino una oportunidad. Descubre en Wimet espacios únicos que potencian tu creatividad." property="og:description">
+        <meta content="https://res.cloudinary.com/wimet/image/upload/fotosespacios/MkC1QOAt_Salondelbajo-06.jpg" property="og:image">
     </head>
     <body>
         <!-- Header Home -->
