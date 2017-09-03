@@ -118,7 +118,6 @@ class UserController extends Controller
         $user->industry             = ($request->industry) ? $request->industry : "";
         $user->personaldescription  = ($request->personaldescription) ? $request->personaldescription : "";
         $user->save();
-        $this->registerHubspot($user);
         return view('dashboard.datos', array(
             'user' => $user
         ));
@@ -277,9 +276,6 @@ class UserController extends Controller
         $status_code = @curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $curl_errors = curl_error($ch);
         @curl_close($ch);
-        echo "curl Errors: " . $curl_errors;
-        echo "\nStatus code: " . $status_code;
-        echo "\nResponse: " . $response;
     }
 
     /**

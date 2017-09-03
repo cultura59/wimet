@@ -44,6 +44,7 @@
         <!-- End Facebook Pixel Code -->
     </head>
     <body>
+        <img src="https://res.cloudinary.com/wimet/image/upload/fotosespacios/MkC1QOAt_Salondelbajo-06.jpg" alt="Wimet.co" style="display: none;">
         <!-- Header Home -->
         <header id="home-espacio" class="header-principal">
             <!-- navbar -->

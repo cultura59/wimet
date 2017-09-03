@@ -233,7 +233,7 @@
 	    			this.evento.tu_pago = this.stringToDouble((parseInt(this.evento.sub_total) + this.evento.iva) - this.evento.comision);
 	        		this.evento.total = parseFloat(this.evento.montoConIva + this.evento.fee).toFixed(2);
 	        	}else {
-	        		this.evento.montoConIva = this.evento.sub_total;
+	        		this.evento.montoConIva = parseFloat(this.evento.sub_total);
 					this.evento.comision = this.stringToDouble(((this.evento.montoConIva + this.evento.iva) * 15) / 100);
 	        		this.evento.fee = (this.evento.sub_total * 5) / 100;
 	        		this.evento.tu_pago = this.stringToDouble(parseInt(this.evento.sub_total) - this.evento.comision);
