@@ -101,7 +101,18 @@
 			</div>
 			<div>
 				<label for="cancellationflexibility" class="container-evento__label">Política de cancelación</label>
-				<span>{{evento.cancellationflexibility}}</span>
+				<template v-if="evento.cancellationflexibility == 'flexible'">
+					<span>{{evento.cancellationflexibility}}</span><br>
+					<span>(Reembolso completo hasta 15 días antes del evento, excepto los gastos de procesamiento)</span>
+				</template>
+				<template v-if="evento.cancellationflexibility == 'moderado'">
+					<span>{{evento.cancellationflexibility}}</span><br>
+					<span>(Reembolso completo hasta 30 días antes del evento, excepto los gastos de procesamiento)</span>
+				</template>
+				<template v-if="evento.cancellationflexibility == 'estricto'">
+					<span>{{evento.cancellationflexibility}}</span><br>
+					<span>(50% de reembolso hasta 30 días antes del evento, excepto gastos de procesamiento)</span>
+				</template>
 			</div>
 			<button @click="sendPropuesta()" class="btn-send-presupuesto">ENVIAR PRESUPUESTO</button>
 		</div>
