@@ -156,6 +156,7 @@
 					this.calcIvanAndTotals();
             		this.evento.deposito = this.securitydeposit;
             		this.evento.cancellationflexibility = this.cancellationflexibility;
+                    this.evento.vencimiento_propuesta = this.$moment().add(3, 'days').format('YYYY-MM-DD');
 				});
 			},
             incrementPrice() {
@@ -178,7 +179,7 @@
             		swal("Campo requerido!", "Debe ingresar fecha de vencimiento de la propuesta", "error");
             		return;
             	}
-            	
+
             	let data = this.calcularIvaYFee();
 
             	this.$http.post(`api/propuesta`, data)

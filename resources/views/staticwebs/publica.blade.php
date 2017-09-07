@@ -29,7 +29,7 @@
             <header class="header-publica">
                 <!-- navbar -->
                 <nav class="header-navbar container-fluid">
-                    <a href="/"><img src="{{url('img/wimet_logo_white.svg')}}" alt="Wimet" width="158"/></a>
+                    <a href="/"><img src="https://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo-white_z3tlgh.svg" alt="Wimet" width="158"/></a>
                 </nav>
                 <div class="header-publica__main">
                 	<h2>Publica tu espacio</h2>
@@ -114,7 +114,9 @@
                 <section class="summar-espacio">
                 	<h2 class="wt-m-bot-3">¿Listo para sumar tu espacio?</h2>
                     <button-publica type-btn="btn-sumar-espacio"></button-publica>
-                	<p class="wt-m-top-3">Si tienes alguna duda puedes consultar nuestras<span class="preguntas-freguentes"> preguntas frecuentes</span></p>
+                	<p class="wt-m-top-3">Si tienes alguna duda puedes consultar nuestras
+                        <a href="https://wimet.zendesk.com/hc/es" target="_blank"><span class="preguntas-freguentes">preguntas frecuentes</span></a>
+                    </p>
                 </section>
             </main>
 
