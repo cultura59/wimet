@@ -10,9 +10,11 @@ use App\Image;
 use App\Price;
 use App\User;
 use DB;
+use Mail;
 use Validator;
 use Symfony\Component\HttpFoundation\Response;
 use Auth;
+use App\Mail\NuevoEspacio;
 
 class EspacioController extends Controller
 {
@@ -145,13 +147,20 @@ class EspacioController extends Controller
     */
     public function saveEspacioWithoutData(Request $request) {
         try {
+            $emails = ['adrian@wimet.co', 'alejandro@wiemt.co', 'federico@wimet.co'];
+
             $user = User::find($request->user_id);
-            $espaciosUser = $user->espacios()->where('status', false)->get();
+            // Se crea el espacio
             $espacio = new Espacio($request->all());
             $espacio->status = false;
             $espacio->save();
-            $espacio->estilosEspacio()->sync($request->estilos);
+            // Se guardan las categorias asociadas al espacio
+            $categorias = $espacio->estilosEspacio()->sync($request->estilos);
+            // Se modifica el tipo de usuario en Hubspot
             $this->registerHubspot($user);
+            // Envia email a wimet informando el nuevo espacio
+            Mail::to($emails)
+                ->queue(new NuevoEspacio($espacio, $user, $categorias));
             return $espacio;
         }catch(\Exception $e){
             return response('Los campos no son correctos', 400);
