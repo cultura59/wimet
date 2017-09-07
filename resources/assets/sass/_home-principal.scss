@@ -330,147 +330,285 @@ html, body {
 	}
 }
 .page-publica {
-	.header-publica {
-		height: 600px;
-		width: 100%;
-		background-image: url(https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-eventos-reuniones-producciones-popups-anfitrion.jpg);
-		background-size: cover;
-		color: $wt-white;
-		position: relative;
-		padding: 10px;
-		.header-navbar {
-			display: flex;
-			justify-content: flex-start;
-			align-items: center;
-			.actions {
-				margin-left: auto;
-				margin-top: 0.5em;
-				ul {
-					list-style: none;
-					li {
-						float: left;
-						padding: 1em;
-						text-decoration: none;
-						
-						@include mobile	{
-							&:first-child {
-					    		display: none;
-					    	}	
-						}				
-						a 	{
-							color: #F1F1F1;
+	@include desktop {
+		.header-publica {
+			height: 600px;
+			width: 100%;
+			background-image: url(https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-eventos-reuniones-producciones-popups-anfitrion.jpg);
+			background-size: cover;
+			color: $wt-white;
+			position: relative;
+			padding: 10px;
+			.header-navbar {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				.actions {
+					margin-left: auto;
+					margin-top: 0.5em;
+					ul {
+						list-style: none;
+						li {
+							float: left;
+							padding: 1em;
 							text-decoration: none;
-							padding: 10px 15px 10px;
-							border-radius: 2px;
-							border: 2px solid #F1F1F1;
-							font-family: 'Ubuntu';
-							font-size: 13px;
-							letter-spacing: .5px;
-							&:hover, &:focus {
-						        color: #fff;
-						        text-decoration: none;
-						        background: $wt-primary-pig;
-						        border: 2px solid $wt-primary-pig;
-						    }
+
+							@include mobile {
+								&:first-child {
+									display: none;
+								}
+							}
+							a {
+								color: #F1F1F1;
+								text-decoration: none;
+								padding: 10px 15px 10px;
+								border-radius: 2px;
+								border: 2px solid #F1F1F1;
+								font-family: 'Ubuntu';
+								font-size: 13px;
+								letter-spacing: .5px;
+								&:hover, &:focus {
+									color: #fff;
+									text-decoration: none;
+									background: $wt-primary-pig;
+									border: 2px solid $wt-primary-pig;
+								}
+							}
 						}
 					}
 				}
 			}
+			.header-navbar__actions {
+				display: flex;
+				justify-content: center;
+				ul {
+					margin-left: auto;
+					list-style-type: none;
+				}
+			}
+			&__main {
+				margin-top: 200px;
+				margin-left: 50px;
+				h2 {
+					font-size: 38px;
+				}
+			}
 		}
-		.header-navbar__actions {
+		.section-sponsors {
+			background-color: #f8f8f8;
+		}
+		.section-espacios-1 {
+			width: 100%;
+			height: 488px;
+			margin-top: 5em;
+			&__descripcion {
+				width: 50%;
+				padding: 5em;
+				float: left;
+				li {
+					list-style: none;
+				}
+				li:before {
+					content: '';
+					display: inline-block;
+					height: 15px;
+					width: 15px;
+					background-image: url(../img/wimet_ic_check_24px_accent.svg);
+					background-repeat: no-repeat;
+					margin-right: 1em;
+				}
+			}
+			&__banner {
+				width: 50%;
+				float: right;
+				height: 100%;
+				background-image: url(https://res.cloudinary.com/wimet/image/upload/espacioscomerciales.jpg);
+				background-size: cover;
+			}
+		}
+		.section-espacios-2 {
+			width: 100%;
+			height: 488px;
+			&__banner {
+				width: 50%;
+				float: left;
+				height: 100%;
+				background-image: url(https://res.cloudinary.com/wimet/image/upload/espaciosprivados.jpg);
+				background-size: cover;
+			}
+			&__descripcion {
+				width: 50%;
+				padding: 5em;
+				float: right;
+				li {
+					list-style: none;
+				}
+				li:before {
+					content: '';
+					display: inline-block;
+					height: 15px;
+					width: 15px;
+					background-image: url(../img/wimet_ic_check_24px_accent.svg);
+					background-repeat: no-repeat;
+					margin-right: 1em;
+				}
+			}
+		}
+		.summar-espacio {
+			height: 300px;
+			background-color: $wt-primary-pig;
 			display: flex;
+			flex-direction: column;
 			justify-content: center;
-			ul {
-				margin-left: auto;
-				list-style-type: none;
+			align-items: center;
+			color: $wt-white;
+			.btn-sumar-espacio {
+				width: 173px;
+				height: 40px;
+				border-radius: 2px;
+				background-color: #ffffff;
+				border: none;
+				color: $wt-primary-pig;
 			}
-		}
-		&__main {
-			margin-top: 200px;
-			margin-left: 50px;
-			h2 {
-				font-size: 38px;
+			.preguntas-freguentes {
+				color: #1c3240;
 			}
 		}
 	}
-	.section-sponsors {
-		background-color: #f8f8f8;
-	}
-	.section-espacios-1 {
-		width: 100%;
-		height: 488px;
-		margin-top: 5em;
-		&__descripcion {
-			width: 50%;
-			padding: 5em;
-			float: left;
-			li{
-				list-style: none;
-			}
-			li:before {
-			    content: '';
-			    display: inline-block;
-			    height: 15px;
-			    width: 15px;
-			    background-image: url(../img/wimet_ic_check_24px_accent.svg);
-			    background-repeat: no-repeat;
-			    margin-right: 1em;
-			}
-		}
-		&__banner {
-			width: 50%;
-			float: right;
-			height: 100%;
-			background-image: url(https://res.cloudinary.com/wimet/image/upload/espacioscomerciales.jpg);
+	@include mobile {
+		.header-publica {
+			height: 600px;
+			width: 100%;
+			background-image: url(https://res.cloudinary.com/wimet/image/upload/wimet-espacios-creativos-eventos-reuniones-producciones-popups-anfitrion.jpg);
 			background-size: cover;
-		}
-	}
-	.section-espacios-2 {
-		width: 100%;
-		height: 488px;
-		&__banner {
-			width: 50%;
-			float: left;
-			height: 100%;
-			background-image: url(https://res.cloudinary.com/wimet/image/upload/espaciosprivados.jpg);
-			background-size: cover;
-		}
-		&__descripcion {
-			width: 50%;
-			padding: 5em;
-			float: right;
-			li{
-				list-style: none;
+			color: $wt-white;
+			position: relative;
+			padding: 10px;
+			.header-navbar {
+				display: flex;
+				justify-content: flex-start;
+				align-items: center;
+				.actions {
+					margin-left: auto;
+					margin-top: 0.5em;
+					ul {
+						list-style: none;
+						li {
+							float: left;
+							padding: 1em;
+							text-decoration: none;
+
+							@include mobile {
+								&:first-child {
+									display: none;
+								}
+							}
+							a {
+								color: #F1F1F1;
+								text-decoration: none;
+								padding: 10px 15px 10px;
+								border-radius: 2px;
+								border: 2px solid #F1F1F1;
+								font-family: 'Ubuntu';
+								font-size: 13px;
+								letter-spacing: .5px;
+								&:hover, &:focus {
+									color: #fff;
+									text-decoration: none;
+									background: $wt-primary-pig;
+									border: 2px solid $wt-primary-pig;
+								}
+							}
+						}
+					}
+				}
 			}
-			li:before {
-			    content: '';
-			    display: inline-block;
-			    height: 15px;
-			    width: 15px;
-			    background-image: url(../img/wimet_ic_check_24px_accent.svg);
-			    background-repeat: no-repeat;
-			    margin-right: 1em;
+			.header-navbar__actions {
+				display: flex;
+				justify-content: center;
+				ul {
+					margin-left: auto;
+					list-style-type: none;
+				}
+			}
+			&__main {
+				margin-top: 150px;
+				margin-left: 50px;
+				h2 {
+					font-size: 34px;
+				}
 			}
 		}
-	}
-	.summar-espacio {
-		height: 300px;
-		background-color: $wt-primary-pig;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		color: $wt-white;
-		.btn-sumar-espacio {
-		    width: 173px;
-		    height: 40px;
-		    border-radius: 2px;
-		    background-color: #ffffff;
-		    border: none;
-		    color: $wt-primary-pig;
+		.section-sponsors {
+			background-color: #f8f8f8;
 		}
-		.preguntas-freguentes {
-			color: #1c3240;
+		.section-espacios-1 {
+			width: 100%;
+			height: auto;
+			&__descripcion {
+				width: 100%;
+				padding: 1em;
+				li {
+					list-style: none;
+				}
+				li:before {
+					content: '';
+					display: inline-block;
+					height: 15px;
+					width: 15px;
+					background-image: url(../img/wimet_ic_check_24px_accent.svg);
+					background-repeat: no-repeat;
+					margin-right: 1em;
+				}
+			}
+			&__banner {
+				display: none;
+			}
+		}
+		.section-espacios-2 {
+			width: 100%;
+			height: auto;
+			&__banner {
+				display: none;
+			}
+			&__descripcion {
+				width: 100%;
+				padding: 1em;
+				li {
+					list-style: none;
+				}
+				li:before {
+					content: '';
+					display: inline-block;
+					height: 15px;
+					width: 15px;
+					background-image: url(../img/wimet_ic_check_24px_accent.svg);
+					background-repeat: no-repeat;
+					margin-right: 1em;
+				}
+			}
+		}
+		.summar-espacio {
+			height: 300px;
+			background-color: $wt-primary-pig;
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+			color: $wt-white;
+			padding: 1em;
+			text-align: center;
+			.btn-sumar-espacio {
+				width: 173px;
+				height: 40px;
+				border-radius: 2px;
+				background-color: #ffffff;
+				border: none;
+				color: $wt-primary-pig;
+			}
+			.preguntas-freguentes {
+				color: #1c3240;
+			}
 		}
 	}
 }
