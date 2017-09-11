@@ -1,47 +1,28 @@
 <template>
     <div class="container">
-        <div class="row wt-m-top-5">
-            <div class="col-md-6">
-                <h2>Ultimos usuarios</h2>
-                <table class="table table-striped">
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Apillido</th>
-                        <th>Email</th>
-                        <th>Creado</th>
-                        <th>Acciones</th>
-                    </tr>
-                    <tr v-for="user in users.data" :key="user.id">
-                        <td>{{user.id}}</td>
-                        <td>{{user.firstname}}</td>
-                        <td>{{user.lastname}}</td>
-                        <td>{{user.email}}</td>
-                        <td>{{$moment(user.created_at).format('DD/MM/YYYY')}}</td>
-                        <td><a href="#"><i class="material-icons">edit</i></a></td>
-                    </tr>
-                </table>
-            </div>
-            <div class="col-md-6">
-                <h2>Ultimos espacios</h2>
-                <table class="table table-striped">
-                    <tr>
-                        <th>#</th>
-                        <th>Nombre</th>
-                        <th>Paso</th>
-                        <th>Estado</th>
-                        <th>Creado</th>
-                        <th>Acciones</th>
-                    </tr>
-                    <tr v-for="espacio in espacios.data" :key="espacio.id">
-                        <td>{{espacio.id}}</td>
-                        <td>{{espacio.name}}</td>
-                        <td>{{espacio.step}}</td>
-                        <td>{{(espacio.status == 1) ? 'Publicado' : 'Borrador'}}</td>
-                        <td>{{$moment(espacio.created_at).format('DD/MM/YYYY')}}</td>
-                        <td><a href="#"><i class="material-icons">edit</i></a></td>
-                    </tr>
-                </table>
+        <div>
+            <h2>Ultimos usuarios</h2>
+            <table class="table table-striped">
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Apillido</th>
+                    <th>Email</th>
+                    <th>Es anfitrión</th>
+                    <th>Creado</th>
+                </tr>
+                <tr v-for="user in users.data" :key="user.id" class="cursor-pointer">
+                    <td>{{user.id}}</td>
+                    <td>{{user.firstname}}</td>
+                    <td>{{user.lastname}}</td>
+                    <td>{{user.email}}</td>
+                    <td>{{(user.tipo_cliente_id == 1) ? 'No' : 'Sí'}}</td>
+                    <td>{{$moment(user.created_at).format('DD/MM/YYYY')}}</td>
+                </tr>
+            </table>
+            <div class="wt-center-center">
+                <a v-if="(this.users.prev_page_url != null)" href="#" @clieck="backUser($event)">Atrás</a><br>
+                <a v-if="(this.users.next_page_url != null)" href="#" @clieck="nextUser($event)">Siguiente</a>
             </div>
         </div>
     </div>
@@ -50,13 +31,11 @@
     export default {
         data() {
             return {
-                users: '',
-                espacios: ''
+                users: ''
             }
         },
         mounted() {
             this.getUsers();
-            this.getEspacios();
         },
         methods: {
             getUsers() {
@@ -67,13 +46,30 @@
                     console.log(err);
                 });
             },
-            getEspacios() {
-                this.$http.get('api/espacio')
-                .then(res => {
-                    this.espacios = (res.body);
-                }, err => {
-                    console.log(err);
-                });
+            backUser(e) {
+                e.preventDefault();
+                this.runUrl(this.users.prev_page_url);
+            },
+            nextUser(e) {
+                e.preventDefault();
+                this.runUrl(this.users.next_page_url);
+            },
+            runUrl(url) {
+                fetch(url, {method: 'GET', headers: {'Authorization': `Bearer ${this.$auth.getToken()}`}})
+                    .then((response) => {
+                            if (response.status !== 200) {
+                                console.log('Looks like there was a problem. Status Code: ' +
+                                    response.status);
+                                return;
+                            }
+                            response.json().then((resJson) => {
+                                this.users = resJson;
+                            });
+                        }
+                    )
+                    .catch(function(err) {
+                        console.log('Fetch Error :-S', err);
+                    });
             }
         }
     }

@@ -16,7 +16,7 @@ class EventoController extends Controller
      */
     public function index()
     {
-        //
+        return Evento::orderBy('id', 'DESC')->paginate(10);
     }
 
     /**
