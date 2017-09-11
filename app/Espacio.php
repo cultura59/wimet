@@ -147,4 +147,33 @@ class Espacio extends Model
     {
         return $this->hasMany('App\Disponibilidad');
     }
+
+    // this is a recommended way to declare event handlers
+    protected static function boot() {
+        parent::boot();
+
+        static::deleting(function($espacio) { // before delete() method call this
+            $espacio->prices()->delete();
+            $espacio->categorias()->delete();
+            $espacio->servicios()->delete();
+            $espacio->consultas()->delete();
+            $espacio->estilosEspacio()->delete();
+            $espacio->rules()->delete();
+            $espacio->characteristics()->delete();
+            $espacio->access()->delete();
+            $espacio->disponibilidad()->delete();
+
+            $images = $espacio->images();
+            foreach ($images as $image) {
+                \Cloudinary::config(array(
+                    "cloud_name" => "wimet",
+                    "api_key" => "278198295249288",
+                    "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw"
+                ));
+                $arrNameImage = explode(".", $image->name);
+                $response = \Cloudinary\Uploader::destroy($arrNameImage[0]);
+                $image->delete();
+            }
+        });
+    }
 }

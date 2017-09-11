@@ -10,7 +10,7 @@
 <body>
     <h1>Se registro un nuevo espacio!</h1>
     <ul>
-        <li>Link: <a href="http://localhost:8000/publicar/espacio/{{$espacio->id}}">{{$espacio->name}}</a></li>
+        <li>Link: <a href="http://wimet.co/publicar/espacio/{{$espacio->id}}">{{$espacio->name}}</a></li>
         <li>Nombre dueño: {{$usuario->firstname}}</li>
         <li>Apellido dueño: {{$usuario->lastname}}</li>
         <li>Email: {{$usuario->email}}</li>

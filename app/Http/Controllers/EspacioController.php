@@ -35,7 +35,8 @@ class EspacioController extends Controller
                 'images',
                 'characteristics',
                 'access'
-            )->get();
+            )->orderBy('id', 'DESC')
+            ->paginate(10);
         return $espacios;
     }
 
@@ -147,7 +148,7 @@ class EspacioController extends Controller
     */
     public function saveEspacioWithoutData(Request $request) {
         try {
-            $emails = ['adrian@wimet.co', 'alejandro@wiemt.co', 'federico@wimet.co'];
+            $emails = ['adrian@wimet.co', 'alejandro@wimet.co', 'federico@wimet.co'];
 
             $user = User::find($request->user_id);
             // Se crea el espacio

@@ -1,6 +1,9 @@
 #home-espacio {
   position: relative;
 }
+#adminApp {
+  background-color: #f9f9f9;
+}
 #map-espacio {
   height: 300px;
   @include desktop {

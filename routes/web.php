@@ -122,3 +122,7 @@ Route::group(['prefix' => 'dashboard'], function() {
 	Route::get('/user/{id}/misespacios', 'DashboardController@misespacios')->name('misespacios');
 	Route::get('/user/{id}/datos', 'DashboardController@datos');
 });
+
+Route::group(['prefix' => 'admin'], function (){
+    Route::get('/', 'AdminController@dashboard');
+});

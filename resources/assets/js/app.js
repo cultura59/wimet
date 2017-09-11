@@ -39,6 +39,9 @@ Vue.component('dasboard-nueva-propuesta', require('./components/dashboard/NuevaP
 Vue.component('dasboard-confirmar', require('./components/dashboard/Confirmar.vue'));
 
 import Auth from './packages/auth/Auth.js';
+import VueRouter from 'vue-router';
+
+Vue.use(VueRouter);
 Vue.use(Auth);
 
 window.fbAsyncInit = () => {
@@ -66,6 +69,11 @@ Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
 const app = new Vue({
     el: '#home-espacio'
 });
+
+import {router} from './components/routes';
+const admin = new Vue({
+    router
+}).$mount('#adminApp')
 
 import moment from 'moment';
 

@@ -22,7 +22,7 @@
 				var self = this;
 				this.eventInterval = setInterval(()=> {
 										self.changeTitle();
-									}, 3000);
+									}, 2000);
 			},				
 			changeTitle() {
 				if(this.title == 4) {
