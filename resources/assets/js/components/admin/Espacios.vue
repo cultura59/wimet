@@ -17,7 +17,7 @@
                 <tr v-for="(espacio, key) in espacios.data" :key="espacio.id" class="cursor-pointer">
                     <td>{{espacio.id}}</td>
                     <td>{{(espacio.name == null)? '-' : espacio.name}}</td>
-                    <td>{{espacio.user.firstname}} {{espacio.user.firstname}}</td>
+                    <td>{{espacio.user.firstname}} {{espacio.user.lastname}}</td>
                     <td>{{(espacio.city == null)? '-' : espacio.city}}</td>
                     <td>{{(espacio.state == null)? '-' : espacio.state}}</td>
                     <td>{{espacio.step}}</td>

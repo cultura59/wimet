@@ -36,9 +36,9 @@
 			<main>
                 <div class="container wt-m-top-2">
                     <ul class="list-inline">
-                        <li><router-link to="/">Usuarios</router-link></li>
-                        <li><router-link to="/espacios">Espacios</router-link></li>
-                        <li><router-link to="/eventos">Eventos</router-link></li>
+                        <li><router-link to="/admin/">Usuarios</router-link></li>
+                        <li><router-link to="/admin/espacios">Espacios</router-link></li>
+                        <li><router-link to="/admin/eventos">Eventos</router-link></li>
                     </ul>
                 </div>
 				<router-view></router-view>
