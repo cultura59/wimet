@@ -15,7 +15,7 @@
                 </tr>
                 <tr v-for="evento in eventos.data" :key="evento.id" class="cursor-pointer">
                     <td>{{evento.id}}</td>
-                    <td>{{(evento.titulo_cliente == null)? '-' : evento.titulo_cliente}}</td>
+                    <td>{{(evento.titulo_cliente == "")? '-' : evento.titulo_cliente}}</td>
                     <td>{{evento.reserva_desde}}</td>
                     <td>{{evento.reserva_hasta}}</td>
                     <td>{{evento.total_horas}}</td>

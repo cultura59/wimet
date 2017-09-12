@@ -27,7 +27,8 @@ class EspacioController extends Controller
     public function index()
     {
         $espacios = Espacio::with(
-                'prices', 
+                'prices',
+                'user',
                 'categorias', 
                 'servicios',
                 'estilosEspacio',
@@ -100,6 +101,25 @@ class EspacioController extends Controller
                     ->first();
         $espacio->description = strip_tags($espacio->description);
         return $espacio;
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, $id)
+    {
+        try {
+            $espacio = Espacio::find($id);
+            $espacio->status = $request->status;
+            $espacio->save();
+            return $espacio;
+        }catch (\Exception $e) {
+            return response('Los campos no son correctos ' . $e->getMessage(), 400);
+        }
     }
 
     /**
