@@ -24,10 +24,10 @@ class PublicaController extends Controller
     public function index(Request $request, $id) {
         $user = User::find($id);
         $espaciosUser = $user->espacios()->where('status', false)->get();
-        if($espaciosUser->count() >= 1) {
+        /*if($espaciosUser->count() >= 1) {
             $request->session()->flash('alert-danger', 'Ya posee espacios en borrador, debe finalizar los mismos.');
             return \Redirect::route('misespacios', array('id' => $id));
-        }
+        }*/
     	$estilos = EstiloEspacio::pluck('nombre', 'id');
     	return view('publicar.index', 
     		array(
