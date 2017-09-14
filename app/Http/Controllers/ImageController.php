@@ -77,4 +77,21 @@ class ImageController extends Controller
         }
     }
 
+    /**
+     * Funcion que modifica los datos de la imagen
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function update(Request $request, $id) {
+        try {
+            $imagen = Image::find($id);
+            $imagen->imgorder = $request->imgorder;
+            $imagen->save();
+            return $imagen;
+        } catch (\Exception $e) {
+            return response('Los campos no son correctos, ' . $e->getMessage(), 400);
+        }
+    }
+
 }
