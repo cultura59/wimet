@@ -242,15 +242,34 @@ html, body {
 			}
 		}
 		.texto-header {
-			width: 100%;
-			height: auto;
-    		margin-top: 5vh;
-			.text-header__sub-title {
-				font-weight: 400;
-				padding: 0px;
-			    font-family: 'Ubuntu', sans-serif;
-			    font-size: 14px;
-			    letter-spacing: 0.5px;
+			@include mobile {
+				width: 100%;
+				height: auto;
+				margin-top: 25px;
+				.text-header__title {
+					font-size: 36px;
+					font-weight: bold;
+				}
+				.text-header__sub-title {
+					font-weight: 400;
+					padding: 0px;
+					font-family: 'Ubuntu', sans-serif;
+					font-size: 14px;
+					letter-spacing: 1px;
+				}
+			}
+			@include desktop {
+				width: 100%;
+				height: auto;
+				margin-top: 5vh;
+				.text-header__sub-title {
+					font-weight:
+					400;
+					padding: 0px;
+					font-family: 'Ubuntu', sans-serif;
+					font-size: 14px;
+					letter-spacing: 0.5px;
+				}
 			}
 		}
 		.header-footer {

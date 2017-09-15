@@ -102,13 +102,14 @@
             },
             enviarAprobacion(e, id) {
             	e.preventDefault();
-            	this.$http.get(`api/enviaraprobacion/${id}`)
+                window.location.href = `/dashboard/user/${this.user.id}/misespacios`;
+            	/*this.$http.get(`api/enviaraprobacion/${id}`)
                 .then(res => {
                     window.location.href = `/dashboard/user/${this.user.id}/misespacios`;
                 }, err => {
                     this.btnSend = true;
                     swal(err.message);
-                });
+                });*/
             }
 		}
 	}

@@ -26,7 +26,9 @@ class ImageController extends Controller
      */
     public function show($id)
     {
-        $image = Image::where('espacio_id', $id)->get();
+        $image = Image::where('espacio_id', $id)
+            ->orderBy('imgorder')
+            ->get();
         return $image;
     }
 

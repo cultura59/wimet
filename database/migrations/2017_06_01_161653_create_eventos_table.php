@@ -19,8 +19,6 @@ class CreateEventosTable extends Migration
                 $table->string('nombre_evento')->nullable();
                 $table->string('titulo_cliente')->nullable();
                 $table->enum('lead', array('wimet'))->default('wimet');
-                $table->integer('estilo_espacios_id')->unsigned();
-                $table->foreign('estilo_espacios_id')->references('id')->on('estilo_espacios');
                 $table->integer('invitados');
                 $table->string('reserva_desde')->default(null);
                 $table->string('reserva_hasta')->default(null);

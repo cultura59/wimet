@@ -71,9 +71,9 @@
 			</div>
 			<!-- END Control si existe iva o no -->
 			<div class="wt-m-bot-2">
-				<label v-if="iva" for="invitados" class="container-evento__label">Comisión (15%)</label>
-				<label v-if="!iva" for="invitados" class="container-evento__label">Comisión (15% + IVA)</label>
-				<span class="propuesta-m-left-0">$ {{(evento.comision) ? evento.comision : '-'}}</span>
+				<label v-if="iva" for="invitados" class="container-evento__label">Comisión wimet(15%)</label>
+				<label v-if="!iva" for="invitados" class="container-evento__label">Comisión wimet(15% + IVA)</label>
+				<span class="propuesta-m-left-0">($ {{(evento.comision) ? evento.comision : '-'}})</span>
 			</div>
 			<div class="wt-m-bot-2">
 				<label for="invitados" class="container-evento__label">Tu pago</label>

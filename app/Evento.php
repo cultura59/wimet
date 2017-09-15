@@ -41,4 +41,13 @@ class Evento extends Model
 	{
 		return $this->hasMany('App\Propuesta');
 	}
+
+    // this is a recommended way to declare event handlers
+    protected static function boot() {
+        parent::boot();
+        static::deleting(function($evento) {
+            // before delete() method call this
+            $evento->mensajes()->delete();
+        });
+    }
 }

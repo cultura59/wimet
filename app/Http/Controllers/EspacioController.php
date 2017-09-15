@@ -37,7 +37,7 @@ class EspacioController extends Controller
                 'characteristics',
                 'access'
             )->orderBy('id', 'DESC')
-            ->paginate(10);
+            ->paginate(20);
         return $espacios;
     }
 
@@ -144,6 +144,7 @@ class EspacioController extends Controller
                         ['espacios.id', '=', $id],
                         ['categoria_espacio.categoria_id', '=', $categoriaId],
                     ])
+                    ->orderBy('images.imgorder', 'ASC')
                     ->get();
         return $espacio;
     }

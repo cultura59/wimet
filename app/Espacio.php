@@ -148,20 +148,30 @@ class Espacio extends Model
         return $this->hasMany('App\Disponibilidad');
     }
 
+    /**
+     * @fn images()
+     * @brief Funcion que retorna todas las imagenes asociadas al espacio
+     */
+    public function eventos()
+    {
+        return $this->hasMany('App\Evento');
+    }
+
     // this is a recommended way to declare event handlers
     protected static function boot() {
         parent::boot();
 
-        static::deleting(function($espacio) { // before delete() method call this
+        static::deleting(function($espacio) {
+            // before delete() method call this
+            $espacio->eventos()->delete();
             $espacio->prices()->delete();
-            $espacio->categorias()->delete();
-            $espacio->servicios()->delete();
-            $espacio->consultas()->delete();
-            $espacio->estilosEspacio()->delete();
-            $espacio->rules()->delete();
-            $espacio->characteristics()->delete();
-            $espacio->access()->delete();
-            $espacio->disponibilidad()->delete();
+            $espacio->categorias()->sync([]);
+            $espacio->servicios()->sync([])();
+            $espacio->estilosEspacio()->sync([])();
+            $espacio->rules()->sync([])();
+            $espacio->characteristics()->sync([])();
+            $espacio->access()->sync([])();
+            $espacio->disponibilidad()->sync([])();
 
             $images = $espacio->images();
             foreach ($images as $image) {

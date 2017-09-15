@@ -11,7 +11,7 @@
                 <th>Paso</th>
                 <th>Estado</th>
                 <th>Creado</th>
-                <th colspan="4">Acciones</th>
+                <th colspan="5">Acciones</th>
             </tr>
             <tr v-for="(espacio, key) in espacios.data" :key="espacio.id" class="cursor-pointer">
                 <td>{{espacio.id}}</td>
@@ -45,6 +45,7 @@
                     <a v-if="(espacio.status == 0)" href="#" @click="updateEspacio($event, espacio, key)">Activar</a>
                     <a v-if="(espacio.status == 1)" href="#" @click="updateEspacio($event, espacio, key)">Desactivar</a>
                 </td>
+                <td><a href="#" @click="deleteEspacio($event, espacio.id, key)">Borrar</a></td>
             </tr>
         </table>
         <div class="wt-center-center">
@@ -71,6 +72,31 @@
                 }, err => {
                     console.log(err);
                 });
+            },
+            updateEspacio(e, espacio, key) {
+                e.preventDefault();
+                espacio.status = !espacio.status;
+                this.$http.put(`api/espacio/${espacio.id}`, espacio)
+                    .then(res => {
+                        this.espacios[key] = res.body;
+                    }, err => {
+                        espacio.status = !espacio.status;
+                        console.log(err);
+                    });
+            },
+            deleteEspacio(e, id, key) {
+                let vm = this;
+                this.$http.delete(`api/espacio/${id}`)
+                    .then(res => {
+                        alert('El espacio fue borrado');
+                        this.getEspacios();
+                    }, err => {
+                        console.log(err);
+                    });
+            },
+            backEspacio(e) {
+                e.preventDefault();
+                this.runUrl(this.espacios.prev_page_url);
             },
             nextEspacio(e) {
                 e.preventDefault();
