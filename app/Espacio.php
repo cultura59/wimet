@@ -166,12 +166,12 @@ class Espacio extends Model
             $espacio->eventos()->delete();
             $espacio->prices()->delete();
             $espacio->categorias()->sync([]);
-            $espacio->servicios()->sync([])();
-            $espacio->estilosEspacio()->sync([])();
-            $espacio->rules()->sync([])();
-            $espacio->characteristics()->sync([])();
-            $espacio->access()->sync([])();
-            $espacio->disponibilidad()->sync([])();
+            $espacio->servicios()->sync([]);
+            $espacio->estilosEspacio()->sync([]);
+            $espacio->rules()->sync([]);
+            $espacio->characteristics()->sync([]);
+            $espacio->access()->sync([]);
+            $espacio->disponibilidad()->sync([]);
 
             $images = $espacio->images();
             foreach ($images as $image) {
