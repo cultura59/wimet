@@ -1,33 +1,35 @@
 <template>
-    <div class="container">
-        <div>
-            <h2>Eventos</h2>
-            <table class="table table-striped">
+    <div>
+        <h2>Eventos</h2>
+        <table class="striped">
+            <thead>
                 <tr>
-                    <th>#</th>
-                    <th>Nombre</th>
-                    <th>Fecha desde</th>
-                    <th>Fecha hasta</th>
-                    <th>Total horas</th>
-                    <th>Precio estimado</th>
-                    <th>Estado</th>
-                    <th>Creado</th>
-                </tr>
+                <th>#</th>
+                <th>Nombre</th>
+                <th>Fecha desde</th>
+                <th>Fecha hasta</th>
+                <th>Total horas</th>
+                <th>Precio estimado</th>
+                <th>Estado</th>
+                <th>Creado</th>
+            </tr>
+            </thead>
+            <tbody>
                 <tr v-for="evento in eventos.data" :key="evento.id" class="cursor-pointer">
-                    <td>{{evento.id}}</td>
-                    <td>{{(evento.titulo_cliente == "")? '-' : evento.titulo_cliente}}</td>
-                    <td>{{evento.reserva_desde}}</td>
-                    <td>{{evento.reserva_hasta}}</td>
-                    <td>{{evento.total_horas}}</td>
-                    <td>${{evento.sub_total}}</td>
-                    <td>{{evento.estado}}</td>
-                    <td>{{$moment(evento.created_at).format('DD/MM/YYYY')}}</td>
-                </tr>
-            </table>
-            <div class="wt-center-center">
-                <a v-if="(this.eventos.prev_page_url != null)" href="#" @click="backevento($event)">Atrás</a><br>
-                <a v-if="(this.eventos.next_page_url != null)" href="#" @click="nextevento($event)">Siguiente</a>
-            </div>
+                <td>{{evento.id}}</td>
+                <td>{{(evento.titulo_cliente == "")? '-' : evento.titulo_cliente}}</td>
+                <td>{{evento.reserva_desde}}</td>
+                <td>{{evento.reserva_hasta}}</td>
+                <td>{{evento.total_horas}}</td>
+                <td>${{evento.sub_total}}</td>
+                <td>{{evento.estado}}</td>
+                <td>{{$moment(evento.created_at).format('DD/MM/YYYY')}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <div class="wt-center-center">
+            <a v-if="(this.eventos.prev_page_url != null)" href="#" @click="backevento($event)">Atrás</a><br>
+            <a v-if="(this.eventos.next_page_url != null)" href="#" @click="nextevento($event)">Siguiente</a>
         </div>
     </div>
 </template>
