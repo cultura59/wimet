@@ -2,16 +2,16 @@
     <div class="container">
         <h2>imagenes</h2>
         <div class="row">
-            <div class="col-md-4" v-for="(imagen, key) in imagenes" :key="imagen.id">
-                <div>
-                    <img :src="`https://res.cloudinary.com/wimet/image/upload/q_60/${imagen.name}`" class="img-responsive">
-                </div>
-                <div class="row wt-m-top-1">
-                    <div class="col-md-6">
+            <div class="col s12 m4" v-for="(imagen, key) in imagenes" :key="imagen.id">
+                <div class="card">
+                    <div class="card-image">
+                        <img :src="`https://res.cloudinary.com/wimet/image/upload/q_60/${imagen.name}`" class="responsive-img">
+                    </div>
+                    <div class="card-content">
                         <input type="text" v-model="imagen.imgorder" placeholder="Orden de la imagen" class="form-control">
                     </div>
-                    <div class="col-md-6">
-                        <button class="btn-primary-pig" @click="updateImagen($event, imagen)">Guardar</button>
+                    <div class="card-action">
+                        <a class="waves-effect btn" @click="updateImagen($event, imagen)">Guardar</a>
                     </div>
                 </div>
             </div>

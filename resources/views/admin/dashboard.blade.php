@@ -16,31 +16,32 @@
             ]); ?>
         </script>
 
-		<title>{{ config('app.name', 'Laravel') }} - @yield('title')</title>
+		<title>{{ config('app.name', 'Laravel') }} - Admin</title>
 
 		<!-- Styles -->
-		<link href="/css/app.css" rel="stylesheet">
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 	</head>
 	<body>
 		<div id="adminApp">
 			<!-- Header Home -->
-			<header class="header-with-not-fix">
-				<nav class="header-navbar container-fluid">
-					<a href="/">
-						<img class="img-responsive" src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="158" />
+			<nav class="nav-extended">
+				<div class="nav-wrapper">
+					<a href="/" class="brand-logo right">
+						<img class="responsive-img" src="https://res.cloudinary.com/wimet/image/upload/wimet-logo-white_z3tlgh.svg" alt="Wimet" style="margin: 1em;width: 250px;"/>
 					</a>
-					<wimet-login type-login="btn-login link-hov" type-svg="dark" userloged="link-user-dark"></wimet-login>
-				</nav>
-			</header>
+				</div>
+				<div class="nav-content">
+					<ul class="tabs tabs-transparent">
+						<li class="tab"><router-link to="/admin/">Usuarios</router-link></li>
+						<li class="tab"><router-link to="/admin/espacios">Espacios</router-link></li>
+						<li class="tab"><router-link to="/admin/eventos">Eventos</router-link></li>
+					</ul>
+				</div>
+			</nav>
 			<!-- main -->
-			<main>
-                <div class="container wt-m-top-2">
-                    <ul class="list-inline">
-                        <li><router-link to="/admin/">Usuarios</router-link></li>
-                        <li><router-link to="/admin/espacios">Espacios</router-link></li>
-                        <li><router-link to="/admin/eventos">Eventos</router-link></li>
-                    </ul>
-                </div>
+			<main class="container">
 				<router-view></router-view>
 			</main>
 		</div>

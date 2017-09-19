@@ -1,19 +1,22 @@
 <template>
-    <div class="container">
+    <div>
         <h2>Espacios</h2>
-        <table class="table table-striped">
-            <tr>
-                <th>#</th>
-                <th>Nombre</th>
-                <th>Dueño</th>
-                <th>Ciudad</th>
-                <th>Provincia</th>
-                <th>Paso</th>
-                <th>Estado</th>
-                <th>Creado</th>
-                <th colspan="5">Acciones</th>
-            </tr>
-            <tr v-for="(espacio, key) in espacios.data" :key="espacio.id" class="cursor-pointer">
+        <table class="striped">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Dueño</th>
+                    <th>Ciudad</th>
+                    <th>Provincia</th>
+                    <th>Paso</th>
+                    <th>Estado</th>
+                    <th>Creado</th>
+                    <th colspan="5">Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(espacio, key) in espacios.data" :key="espacio.id" class="cursor-pointer">
                 <td>{{espacio.id}}</td>
                 <td>{{(espacio.name == null)? '-' : espacio.name}}</td>
                 <td>{{espacio.user.firstname}} {{espacio.user.lastname}}</td>
@@ -26,7 +29,7 @@
                     <a
                         v-if="(espacio.categorias.length > 0)"
                         :href="`/categoria/${espacio.categorias[0].id}/espacio/${espacio.id}`"
-                        target="_blank">Ver
+                        target="_blank"><i class="material-icons">visibility</i>
                     </a>
                     <span v-if="(!espacio.categorias.length > 0)">-</span>
                 </td>
@@ -34,23 +37,36 @@
                     <a
                         v-if="(espacio.categorias.length > 0)"
                         :href="`/publicar/espacio/${espacio.id}`"
-                        target="_blank">Editar
+                        target="_blank"><i class="material-icons">edit</i>
                     </a>
                     <span v-if="(!espacio.categorias.length > 0)">-</span>
                 </td>
                 <td>
-                    <router-link :to="`/admin/espacio/${espacio.id}/imagenes`"><a href="#">Imagenes</a></router-link>
+                    <router-link :to="`/admin/espacio/${espacio.id}/imagenes`">
+                        <i class="material-icons">perm_media</i>
+                    </router-link>
                 </td>
                 <td>
-                    <a v-if="(espacio.status == 0)" href="#" @click="updateEspacio($event, espacio, key)">Activar</a>
-                    <a v-if="(espacio.status == 1)" href="#" @click="updateEspacio($event, espacio, key)">Desactivar</a>
+                    <a v-if="(espacio.status == 0)" href="#" @click="updateEspacio($event, espacio, key)">
+                        <i class="material-icons">thumb_down</i>
+                    </a>
+                    <a v-if="(espacio.status == 1)" href="#" @click="updateEspacio($event, espacio, key)">
+                        <i class="material-icons">thumb_up</i>
+                    </a>
                 </td>
-                <td><a href="#" @click="deleteEspacio($event, espacio.id, key)">Borrar</a></td>
+                <td><a href="#" @click="deleteEspacio($event, espacio.id, key)">
+                    <i class="material-icons">delete</i></a>
+                </td>
             </tr>
+            </tbody>
         </table>
         <div class="wt-center-center">
-            <a v-if="(this.espacios.prev_page_url != null)" href="#" @click="backEspacio($event)">Atrás</a><br>
-            <a v-if="(this.espacios.next_page_url != null)" href="#" @click="nextEspacio($event)">Siguiente</a>
+            <a v-if="(this.espacios.prev_page_url != null)" href="#" @click="backEspacio($event)">
+                <i class="material-icons">navigate_before</i>
+            </a>
+            <a v-if="(this.espacios.next_page_url != null)" href="#" @click="nextEspacio($event)">
+                <i class="material-icons">navigate_next</i>
+            </a>
         </div>
     </div>
 </template>

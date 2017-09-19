@@ -1,8 +1,8 @@
 <template>
-    <div class="container">
-        <div>
-            <h2>Ultimos usuarios</h2>
-            <table class="table table-striped">
+    <div>
+        <h2>Ultimos usuarios</h2>
+        <table class="striped">
+            <thead>
                 <tr>
                     <th>#</th>
                     <th>Nombre</th>
@@ -11,6 +11,8 @@
                     <th>Es anfitrión</th>
                     <th>Creado</th>
                 </tr>
+            </thead>
+            <tbody>
                 <tr v-for="user in users.data" :key="user.id" class="cursor-pointer">
                     <td>{{user.id}}</td>
                     <td>{{user.firstname}}</td>
@@ -19,11 +21,11 @@
                     <td>{{(user.tipo_cliente_id == 1) ? 'No' : 'Sí'}}</td>
                     <td>{{$moment(user.created_at).format('DD/MM/YYYY')}}</td>
                 </tr>
-            </table>
-            <div class="wt-center-center">
-                <a v-if="(this.users.prev_page_url != null)" href="#" @clieck="backUser($event)">Atrás</a><br>
-                <a v-if="(this.users.next_page_url != null)" href="#" @clieck="nextUser($event)">Siguiente</a>
-            </div>
+            </tbody>
+        </table>
+        <div class="wt-center-center">
+            <a v-if="(this.users.prev_page_url != null)" href="#" @clieck="backUser($event)">Atrás</a><br>
+            <a v-if="(this.users.next_page_url != null)" href="#" @clieck="nextUser($event)">Siguiente</a>
         </div>
     </div>
 </template>
