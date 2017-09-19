@@ -12,6 +12,7 @@
                 <th>Precio estimado</th>
                 <th>Estado</th>
                 <th>Creado</th>
+                <th>Acción</th>
             </tr>
             </thead>
             <tbody>
@@ -24,6 +25,11 @@
                 <td>${{evento.sub_total}}</td>
                 <td>{{evento.estado}}</td>
                 <td>{{$moment(evento.created_at).format('DD/MM/YYYY')}}</td>
+                <td>
+                    <router-link :to="`/admin/evento/${evento.id}/mensajes`">
+                        <i class="material-icons">visibility</i>
+                    </router-link>
+                </td>
             </tr>
             </tbody>
         </table>

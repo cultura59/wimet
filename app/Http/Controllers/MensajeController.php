@@ -109,7 +109,7 @@ class MensajeController extends Controller
                             ->join('tipo_clientes', 'users.tipo_clientes_id', '=', 'tipo_clientes.id')
                             ->where('evento_id', $id)
                             ->orderBy('mensajes.id', 'desc')
-                            ->get();
+                            ->paginate(15);
             return $mensajes;
         }catch(\Exception $e){
             return response('Los campos no son correctos, ' . $e->getMessage(), 400);
