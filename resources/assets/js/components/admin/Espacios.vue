@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>Espacios</h2>
-        <table class="striped">
+        <table class="highlight center responsive-table">
             <thead>
                 <tr>
                     <th>#</th>
@@ -17,47 +17,49 @@
             </thead>
             <tbody>
                 <tr v-for="(espacio, key) in espacios.data" :key="espacio.id" class="cursor-pointer">
-                <td>{{espacio.id}}</td>
-                <td>{{(espacio.name == null)? '-' : espacio.name}}</td>
-                <td>{{espacio.user.firstname}} {{espacio.user.lastname}}</td>
-                <td>{{(espacio.city == null)? '-' : espacio.city}}</td>
-                <td>{{(espacio.state == null)? '-' : espacio.state}}</td>
-                <td>{{espacio.step}}</td>
-                <td>{{(espacio.status == 1) ? 'Publicado' : 'Borrador'}}</td>
-                <td>{{$moment(espacio.created_at).format('DD/MM/YYYY')}}</td>
-                <td>
-                    <a
-                        v-if="(espacio.categorias.length > 0)"
-                        :href="`/categoria/${espacio.categorias[0].id}/espacio/${espacio.id}`"
-                        target="_blank"><i class="material-icons">visibility</i>
-                    </a>
-                    <span v-if="(!espacio.categorias.length > 0)">-</span>
-                </td>
-                <td>
-                    <a
-                        v-if="(espacio.categorias.length > 0)"
-                        :href="`/publicar/espacio/${espacio.id}`"
-                        target="_blank"><i class="material-icons">edit</i>
-                    </a>
-                    <span v-if="(!espacio.categorias.length > 0)">-</span>
-                </td>
-                <td>
-                    <router-link :to="`/admin/espacio/${espacio.id}/imagenes`">
-                        <i class="material-icons">perm_media</i>
-                    </router-link>
-                </td>
-                <td>
-                    <a v-if="(espacio.status == 0)" href="#" @click="updateEspacio($event, espacio, key)">
-                        <i class="material-icons">thumb_down</i>
-                    </a>
-                    <a v-if="(espacio.status == 1)" href="#" @click="updateEspacio($event, espacio, key)">
-                        <i class="material-icons">thumb_up</i>
-                    </a>
-                </td>
-                <td><a href="#" @click="deleteEspacio($event, espacio.id, key)">
-                    <i class="material-icons">delete</i></a>
-                </td>
-            </tr>
+                    <td>{{espacio.id}}</td>
+                    <td>{{(espacio.name == null)? '-' : espacio.name}}</td>
+                    <td>{{espacio.user.firstname}} {{espacio.user.lastname}}</td>
+                    <td>{{(espacio.city == null)? '-' : espacio.city}}</td>
+                    <td>{{(espacio.state == null)? '-' : espacio.state}}</td>
+                    <td>{{espacio.step}}</td>
+                    <td>{{(espacio.status == 1) ? 'Publicado' : 'Borrador'}}</td>
+                    <td>{{$moment(espacio.created_at).format('DD/MM/YYYY')}}</td>
+                    <td>
+                        <a
+                            v-if="(espacio.categorias.length > 0)"
+                            :href="`/categoria/${espacio.categorias[0].id}/espacio/${espacio.id}`"
+                            target="_blank"><i class="material-icons">visibility</i>
+                        </a>
+                        <span v-if="(!espacio.categorias.length > 0)">-</span>
+                    </td>
+                    <td>
+                        <a
+                            v-if="(espacio.categorias.length > 0)"
+                            :href="`/publicar/espacio/${espacio.id}`"
+                            target="_blank"><i class="material-icons">edit</i>
+                        </a>
+                        <span v-if="(!espacio.categorias.length > 0)">-</span>
+                    </td>
+                    <td>
+                        <router-link :to="`/admin/espacio/${espacio.id}/imagenes`">
+                            <i class="material-icons">perm_media</i>
+                        </router-link>
+                    </td>
+                    <td>
+                        <a v-if="(espacio.status == 0)" href="#" @click="updateEspacio($event, espacio, key)">
+                            <i class="material-icons">thumb_down</i>
+                        </a>
+                        <a v-if="(espacio.status == 1)" href="#" @click="updateEspacio($event, espacio, key)">
+                            <i class="material-icons">thumb_up</i>
+                        </a>
+                    </td>
+                    <td>
+                        <a href="#" @click="deleteEspacio($event, espacio.id, key)">
+                            <i class="material-icons">delete</i>
+                        </a>
+                    </td>
+                </tr>
             </tbody>
         </table>
         <div class="wt-center-center">

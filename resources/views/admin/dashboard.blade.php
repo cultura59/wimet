@@ -25,26 +25,56 @@
 	</head>
 	<body>
 		<div id="adminApp">
-			<!-- Header Home -->
-			<nav class="nav-extended">
-				<div class="nav-wrapper">
-					<a href="/" class="brand-logo right">
-						<img class="responsive-img" src="https://res.cloudinary.com/wimet/image/upload/wimet-logo-white_z3tlgh.svg" alt="Wimet" style="margin: 1em;width: 250px;"/>
-					</a>
+			<!-- Template login -->
+			<template v-if="!logued">
+				<div class="container">
+					<div>
+						<img src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet">
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="user" type="text" v-model="u">
+							<label for="user">Usuario</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<input id="password" type="password" v-model="p">
+							<label for="password">Password</label>
+						</div>
+					</div>
+					<div class="row">
+						<div class="input-field col s12">
+							<button class="waves-effect btn" @click="l()">Login</button>
+						</div>
+					</div>
 				</div>
-				<div class="nav-content">
-					<ul class="tabs tabs-transparent">
-						<li class="tab"><router-link to="/admin/">Usuarios</router-link></li>
-						<li class="tab"><router-link to="/admin/espacios">Espacios</router-link></li>
-						<li class="tab"><router-link to="/admin/eventos">Eventos</router-link></li>
-					</ul>
-				</div>
-			</nav>
-			<!-- main -->
-			<main class="container">
-				<router-view></router-view>
-			</main>
+			</template>
+			<!-- Template de vistas -->
+			<template v-if="logued">
+				<!-- Header Home -->
+				<nav class="nav-extended">
+					<div class="nav-wrapper">
+						<a href="/" class="brand-logo right">
+							<img class="responsive-img" src="https://res.cloudinary.com/wimet/image/upload/wimet-logo-white_z3tlgh.svg" alt="Wimet" style="margin: 1em;width: 250px;"/>
+						</a>
+					</div>
+					<div class="nav-content">
+						<ul class="tabs tabs-transparent">
+							<li class="tab"><router-link to="/admin/">Usuarios</router-link></li>
+							<li class="tab"><router-link to="/admin/espacios">Espacios</router-link></li>
+							<li class="tab"><router-link to="/admin/eventos">Eventos</router-link></li>
+						</ul>
+					</div>
+				</nav>
+				<!-- main -->
+				<main class="container">
+					<router-view></router-view>
+				</main>
+			</template>
 		</div>
 		<script src="{{url('/js/app.js')}}"></script>
+		<!-- Compiled and minified JavaScript -->
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 	</body>
 </html>
