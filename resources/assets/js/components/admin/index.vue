@@ -18,7 +18,7 @@
                     <td>{{user.firstname}}</td>
                     <td>{{user.lastname}}</td>
                     <td>{{user.email}}</td>
-                    <td>{{(user.tipo_cliente_id == 1) ? 'No' : 'Sí'}}</td>
+                    <td>{{(user.tipo_cliente_id == 2) ? 'Sí' : 'No'}}</td>
                     <td>{{$moment(user.created_at).format('DD/MM/YYYY')}}</td>
                 </tr>
             </tbody>

@@ -16,7 +16,9 @@ class EventoController extends Controller
      */
     public function index()
     {
-        return Evento::orderBy('id', 'DESC')->paginate(20);
+        return Evento::with('espacio')
+            ->orderBy('id', 'DESC')
+            ->paginate(20);
     }
 
     /**

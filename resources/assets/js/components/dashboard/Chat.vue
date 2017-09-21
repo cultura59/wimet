@@ -107,7 +107,7 @@
 			getMensajes() {
 				this.$http.get(`api/mensaje/${this.eventoId}`)
 				.then(res => {
-					this.mensajes = res.body;
+					this.mensajes = res.body.data;
 				});
 			},
 			enviarPropuesta() {

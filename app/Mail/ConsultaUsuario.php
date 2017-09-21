@@ -38,7 +38,7 @@ class ConsultaUsuario extends Mailable
     public function build()
     {
         return $this->from('info@wimet.co')
-            ->subject('¡Tu consulta fue envíada, Felicitaciones!')
+            ->subject('¡Tu consulta fue enviada, Felicitaciones!')
             ->view('emails.consulta-usuario');
     }
 }

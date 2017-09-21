@@ -68,7 +68,7 @@
 					</div>
 				</nav>
 				<!-- main -->
-				<main class="container">
+				<main style="margin:1em;">
 					<router-view></router-view>
 				</main>
 			</template>
