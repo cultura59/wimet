@@ -99,12 +99,12 @@ class HomeController extends Controller
     /**
      * @brief Funcion que renderiza a la vista del Espacio
      * @param $categoriaId
-     * @param $id
+     * @param $name
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function espacio($categoriaId, $id)
+    public function espacio($categoriaId, $name)
     {
-        $espacio = Espacio::where('id', $id)
+        $espacio = Espacio::where('name', $name)
                     ->with(
                         'user', 
                         'prices', 
@@ -121,7 +121,7 @@ class HomeController extends Controller
 
         $price = DB::table('prices')
                     ->select('id', 'price', 'daily', 'minhours')
-                    ->where('espacio_id', $id)
+                    ->where('espacio_id', $espacio->id)
                     ->where('categoria_id', $categoriaId)
                     ->first();
 

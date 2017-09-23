@@ -28,7 +28,7 @@
                     <td>
                         <a
                             v-if="(espacio.categorias.length > 0)"
-                            :href="`/categoria/${espacio.categorias[0].id}/espacio/${espacio.id}`"
+                            :href="`/categoria/${espacio.categorias[0].id}/espacio/${espacio.name}`"
                             target="_blank" title="Ver"><i class="material-icons">visibility</i>
                         </a>
                         <span v-if="(!espacio.categorias.length > 0)">-</span>

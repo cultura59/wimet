@@ -87,7 +87,7 @@ const admin = new Vue({
 		}
 	},
     router
-}).$mount('#adminApp')
+}).$mount('#adminApp');
 
 import moment from 'moment';
 

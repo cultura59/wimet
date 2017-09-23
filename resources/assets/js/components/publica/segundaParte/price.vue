@@ -1,6 +1,9 @@
 <template>
 	<div>
 		<div class="container-center">
+			<div class="alert alert-danger" v-show="errorMsg">
+				<strong>Ups!</strong> Debes ingresar mínimo de horas y algun precio.
+			</div>
 			<h3>¿Cuál es el precio de tu espacio?</h3>
 			<div class="content-categories">
 				<button 
@@ -78,7 +81,8 @@
 			return {
 				categories: [],
 				categorySelected: {},
-				allCategories: false
+				allCategories: false,
+                errorMsg: false
 			}
 		},
 		mounted() {
@@ -123,6 +127,18 @@
             },
             savePrice(e){
             	e.preventDefault();
+                for(let i = 0; i < this.categories.length; i++) {
+                    if(this.categories[i].daily == 0) {
+                        if(this.categories[i].price == 0 || this.categories[i].minhours == 0){
+							this.errorMsg = true;
+                            setInterval(() =>{
+                                this.this.allCategories = false;
+                                this.errorMsg = false;
+							}, 4000);
+                            return;
+						};
+                    }
+                }
             	let data = {categories: this.categories};
             	this.$http.post('saveprice', data)
             	.then((res) =>{

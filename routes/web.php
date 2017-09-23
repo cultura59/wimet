@@ -25,7 +25,7 @@ Route::get('/logout', function() {
 // Rutas a pantallas principales y estaticas
 Route::get('/home', 'HomeController@index');
 Route::get('/search', 'HomeController@search');
-Route::get('/categoria/{categoriaId}/espacio/{id}', 'HomeController@espacio')->name('homespacio');
+Route::get('/categoria/{categoriaId}/espacio/{name}', 'HomeController@espacio')->name('homespacio');
 Route::get('/consulta/{categoriaId}/espacio/{id}', 'HomeController@consulta');
 Route::get('/espacio/{id}/evento', 'HomeController@evento')->name('evento');
 Route::get('/thankyou/{id}', 'HomeController@thankyou');
@@ -34,6 +34,7 @@ Route::get('/nosotros', 'HomeController@nosotros');
 Route::get('/equipo', 'HomeController@equipo');
 Route::get('/prensa', 'HomeController@prensa');
 Route::get('/publica', 'HomeController@publica');
+Route::get('/publica/thankyou/{id}', 'PublicaController@thankyou');
 Route::get('/enviaraprobacion/{id}', 'PublicaController@enviarAprobacion');
 
 // Primer pantala de publica tu espacio

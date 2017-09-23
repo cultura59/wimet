@@ -34,7 +34,7 @@
 		data() {
 			return {
 				espacio: {},
-				url: `/categoria/${this.categoryId}/espacio/${this.espacioId}`
+				url: ''
 			}
 		},
 		mounted() {
@@ -45,6 +45,7 @@
 				this.$http.get(`/api/getespacio/categoria/${this.categoryId}/espacio/${this.espacioId}`)
 	            .then(res => {
 	            	this.espacio = res.body[0];
+                    this.url = `/categoria/${this.categoryId}/espacio/${this.espacio.name}`;
 	            }, err => {
 	                console.log(err);
 	            });

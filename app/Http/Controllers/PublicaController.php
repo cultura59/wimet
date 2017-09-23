@@ -44,7 +44,7 @@ class PublicaController extends Controller
     public function primerPasoCategoria($id) {
         $espacio = Espacio::with('categorias')->find($id);
     	$categorias = Categoria::with('subCategory')->get();
-    	return view('publicar.categorias', 
+    	return view('publicar.categorias',
     		array(
     			'espacio' => $espacio,
     			'categorias' => $categorias
@@ -244,5 +244,18 @@ class PublicaController extends Controller
             $message->to('info@wimet.co', 'Wimet')
                 ->subject('Se ha creado o midificado el espacio: ' . $espacio->id);
         });
+    }
+
+    /**
+     * @fn thankyoupage()
+     * @brief Funcion que retorna la vista thankyoupage de publicacion
+     * @return render thankyoupage page
+     */
+    public function thankyou($id) {
+        return view('publicar.thankyoupage',
+            array(
+                'id' => $id
+            )
+        );
     }
 }

@@ -36,7 +36,7 @@
 									<button class="btn-primary-pig">MODIFICAR</button>
 								</a>
 								@if(!$espacio->categorias->isEmpty())
-								<a href="{{url('/categoria/'. $espacio->categorias[0]->id .'/espacio/'. $espacio->id)}}" target="_blank" class="wt-m-top-1">
+								<a href="{{url('/categoria/'. $espacio->categorias[0]->id .'/espacio/'. $espacio->name)}}" target="_blank" class="wt-m-top-1">
 									<button class="btn-primary-transparent">VER ESPACIO</button>
 								</a>
 								@endif
@@ -75,7 +75,7 @@
 									<button class="btn-primary-pig">FINALIZAR</button>
 								</a>
 								@if(!$borrador->categorias->isEmpty())
-								<a href="{{url('/categoria/'. $borrador->categorias[0]->id .'/espacio/'. $borrador->id)}}" target="_blank" class="wt-m-top-1">
+								<a href="{{url('/categoria/'. $borrador->categorias[0]->id .'/espacio/'. $borrador->name)}}" target="_blank" class="wt-m-top-1">
 									<button class="btn-primary-transparent">VISTA PREVIA</button>
 								</a>
 								@endif
