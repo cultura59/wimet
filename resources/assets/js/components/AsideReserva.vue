@@ -195,7 +195,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 });
         	},
             changeCategory() {
-                window.location = `/categoria/${this.category}/espacio/${this.name}`;
+                window.location = `/categoria/${this.category}/espacio/${this.espacio.name}`;
             },
             closeMsg() {
                 this.messageError = '';
