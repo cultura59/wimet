@@ -112,7 +112,7 @@
                     url += `&categoria=${this.categoria.id}`;
                 }
 
-        		window.location.href = url += `&quanty=0-1000&price=100-10000`;
+        		window.location.href = url += `&quanty=0-1000&price=100-100000`;
             },
             getCategories() {
                 this.$http.get(`/api/categoria`)
