@@ -34,7 +34,7 @@
 					<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
 					<span class="close-modal" @click="closeModals()">×</span>
 					<div class="container-social">
-						<login-facebook></login-facebook>
+						<login-facebook urlredirect="0"></login-facebook>
 						<login-google></login-google>
 					</div>
 					<div class="login-modal-title">
@@ -62,7 +62,7 @@
 					<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
 					<span class="close-modal" @click="closeModals()">×</span>
 					<div class="container-social">
-						<login-facebook></login-facebook>
+						<login-facebook urlredirect="0"></login-facebook>
 						<login-google></login-google>
 					</div>
 					<div class="login-modal-title">

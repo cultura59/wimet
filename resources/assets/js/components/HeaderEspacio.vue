@@ -51,7 +51,7 @@
                 });
             },
             urlImagen(url) {
-              return `https://res.cloudinary.com/wimet/image/upload/q_60/${url}`;
+              return `https://res.cloudinary.com/wimet/image/upload/w_100,g_south_east,x_5,y_5,l_wimet-logo-white_z3tlgh/q_60/${url}`;
             },
             openModal() {
                 document.getElementById('imagesModal').style.display = "block";

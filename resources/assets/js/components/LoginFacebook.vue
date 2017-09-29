@@ -12,6 +12,9 @@
 <script>
 	import swal from 'sweetalert';
 	export default {
+	    props: [
+	        'urlredirect'
+		],
 		data() {
 			return {
 				email: '',
@@ -34,7 +37,11 @@
 					if(res.status == 200) {
 						this.$auth.setToken(res.body.access_token, res.body.expires_in + Date.now());
 						setTimeout(() => {
-							location.reload(); 
+							if(this.urlredirect == 1) {
+							    this.getUserAuthenticated();
+							}else {
+                                location.reload();
+                            }
 						}, 2000);
 					}else {
 						swal('Ups, algo salio mal', 'Intenta ingresar nuevamente', 'error');
@@ -87,7 +94,26 @@
 						console.log('User cancelled login or did not fully authorize.');
 					}
 				}, {scope: 'email,user_likes'});
-			}
+			},
+            getUserAuthenticated() {
+                let vm = this;
+                if(this.$auth.isAuthenticated()) {
+                    if (localStorage.getItem("user") !== null){
+                        this.user = this.$auth.getUser();
+                    } else {
+                        vm.$http.get('api/usersession', {
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem('token')}`
+                            }
+                        })
+						.then(res => {
+							this.$auth.setUser(res.body);
+							this.user = this.$auth.getUser();
+							location.href = `/publicar/user/${res.body.id}/primer-paso`;
+						});
+                    }
+                }
+            }
 		}
 	}
 </script>

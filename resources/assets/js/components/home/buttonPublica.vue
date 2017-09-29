@@ -7,7 +7,7 @@
 				<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
 				<span class="close-modal" @click="closeModals()">×</span>
 				<div class="container-social">
-					<login-facebook></login-facebook>
+					<login-facebook urlredirect="1"></login-facebook>
 					<button class="container-social__btn btn-google">
 						<img src="img/google_logo.svg" class="icon-social" alt="Login Google">
 						<span>Iniciar sesión con Google</span>
@@ -33,7 +33,7 @@
 				<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
 				<span class="close-modal" @click="closeModals()">×</span>
 				<div class="container-social">
-					<login-facebook></login-facebook>
+					<login-facebook urlredirect="1"></login-facebook>
 					<button class="container-social__btn btn-google">
 						<img src="img/google_logo.svg" class="icon-social" alt="Registrar Google">
 						<span>Iniciar sesión con Google</span>
@@ -150,7 +150,7 @@
 						this.$auth.setToken(res.body.access_token, res.body.expires_in + Date.now());
 						this.showModalLogin = false;
 						setTimeout(() => {
-							location.reload(); 
+                            this.getUserAuthenticated();
 						}, 1000);
 					}
 				}, err => {
@@ -175,11 +175,16 @@
 					if (localStorage.getItem("user") !== null){
 						this.user = this.$auth.getUser();
 					} else {
-						vm.$http.get('api/usersession')
+						vm.$http.get('api/usersession', {
+                            headers: {
+                                Authorization: `Bearer ${localStorage.getItem('token')}`
+                            }
+						})
 						.then(res => {
 							this.$auth.setUser(res.body);
 							this.user = this.$auth.getUser();
-						});
+                            location.href = `/publicar/user/${res.body.id}/primer-paso`;
+                        });
 					}
 				}
 			},
