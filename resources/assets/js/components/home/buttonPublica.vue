@@ -118,19 +118,21 @@
 					}, 3000);
 					return;
 				}
-				let data = {
-					firstname: this.firstname,
-					lastname: this.lastname,
-					email: this.email,
-					password: this.password,
-					imagesource: this.imagesource
-				}
-				this.$http.post('api/user', data)
+                let data = {
+                    firstname: this.firstname,
+                    lastname: this.lastname,
+                    email: this.email,
+                    password: this.password,
+                    imagesource: this.imagesource,
+                    status: false
+                }
+                this.$http.post('api/user', data)
 				.then(res => {
 					if(res.status == 200) {
-						this.login();
 						this.showModalRegistro = false;
+						swal('Cuenta registrada!', 'Se ha enviado un email a su correo', 'success');
 					}else {
+						this.showBtnLogin = true;
 						swal('Ups, algo salio mal', res.message, 'error');
 					}
 				});
