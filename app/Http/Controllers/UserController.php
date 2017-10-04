@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
 use DB;
+use App\User;
+use App\Mail\ConfirmAccount;
 
 class UserController extends Controller
 {
@@ -46,8 +47,13 @@ class UserController extends Controller
             $user->tipo_clientes_id = 1;
             $user->imagesource = ($request->imagesource) ? $request->imagesource : "/img/wimet_ic_avatar_black_big.svg";
             $user->isAdmin = 0;
+            $user->status = ($request->status == false) ? $request->status : true;
             $user->save();
-            $this->registerHubspot($user);
+            if($user->status) {
+                $this->registerHubspot($user);
+            }else {
+                \Mail::to($user->email)->queue(new ConfirmAccount($user));
+            }
             return $user;
         }catch(\Exception $e){
             return response('Los campos no son correctos', 400);
@@ -330,5 +336,22 @@ class UserController extends Controller
         }catch(\Exception $e){
             return response('No se pudo modificar la contraseña: ' . $e->getMessage(), 400);
         }
+    }
+
+    /**
+     * @fn confirmAccount
+     * @brief Funcion que activa la cuenta en base a su codigo
+     * @param $id
+     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     */
+    public function confirmAccount($id) {
+        $user = User::find(\Crypt::decrypt($id));
+        $user->status = true;
+        $user->save();
+        $this->registerHubspot($user);
+        return view('users.confirmaccount', array(
+                'user' => $user
+            )
+        );
     }
 }

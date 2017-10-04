@@ -30,10 +30,9 @@ class CreateUsersTable extends Migration
               $table->string('urllinkedin')->nullable();
               $table->text('databank')->nullable();
               $table->integer('tipo_clientes_id')->unsigned()->default(1);
-              $table->foreign('tipo_clientes_id')
-                    ->references('id')->on('tipo_clientes')
-                    ->onDelete('cascade');
+              $table->foreign('tipo_clientes_id')->references('id')->on('tipo_clientes');
               $table->boolean('isAdmin')->default(false);
+              $table->boolean('status')->default(false);
               $table->rememberToken();
               $table->timestamps();
               $table->softDeletes();

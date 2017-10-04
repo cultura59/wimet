@@ -95,7 +95,6 @@
 	import loginFacebook from './loginFacebook.vue';
 	import loginGoogle from './loginGoogle.vue';
 	import swal from 'sweetalert';
-
 	export default {
 		props: [
 			'typeLogin',
@@ -159,13 +158,14 @@
 					lastname: this.lastname,
 					email: this.email,
 					password: this.password,
-					imagesource: this.imagesource
+					imagesource: this.imagesource,
+					status: false
 				}
 				this.$http.post('api/user', data)
 				.then(res => {
 					if(res.status == 200) {
-						this.login();
 						this.showModalRegistro = false;
+                        swal('Cuenta registrada!', 'Se ha enviado un email a su correo', 'success');
 					}else {
 					    this.showBtnLogin = true;
 						swal('Ups, algo salio mal', res.message, 'error');

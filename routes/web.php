@@ -36,6 +36,7 @@ Route::get('/prensa', 'HomeController@prensa');
 Route::get('/publica', 'HomeController@publica');
 Route::get('/publica/thankyou/{id}', 'PublicaController@thankyou');
 Route::get('/enviaraprobacion/{id}', 'PublicaController@enviarAprobacion');
+Route::get('/confirmaccount/{id}', 'UserController@confirmAccount');
 
 // Primer pantala de publica tu espacio
 Route::get('/publicar/espacio/{espacioId}', 'HomeController@publicar')->name('publica-steps');
