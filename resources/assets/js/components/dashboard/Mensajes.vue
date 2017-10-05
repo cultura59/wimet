@@ -14,7 +14,7 @@
 			<div class="mensajes">
 				<div 
 					v-if="(eventoselect !== '')"
-					v-for="(mensaje, key) in mensajes" 
+					v-for="(mensaje, key) in mensajes"
 					@click="redirectMensajes($event, mensaje.id)"
 					class="cursor-pointer mensaje row"
 				>
@@ -120,7 +120,7 @@
 				&:hover, &:focus {
 					transition: none;
 					text-decoration: none;
-					border-bottom: 2px solid #e2385a;
+					border-bottom: 4px solid #e2385a;
 				}
 			}
 			&--active {
@@ -131,11 +131,8 @@
 				letter-spacing: -0.1px;
 				text-align: justify;
 				color: #e2385a;
-				&:hover, &:focus {
-					transition: none;
-					text-decoration: none;
-					border-bottom: 2px solid #e2385a;
-				}
+				text-decoration: none;
+				border-bottom: 4px solid #e2385a;
 			}
 		}
 		.mensajes {
