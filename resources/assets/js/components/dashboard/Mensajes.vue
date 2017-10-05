@@ -15,21 +15,23 @@
 				<div 
 					v-if="(eventoselect !== '')"
 					v-for="(mensaje, key) in mensajes" 
-					:class="(eventoselect.id == mensaje.id) ? 'mensaje--active':'mensaje'"
 					@click="redirectMensajes($event, mensaje.id)"
-					class="cursor-pointer"
+					class="cursor-pointer mensaje row"
 				>
-					<div class="mensaje__left">
+					<div class="col-md-1">
 						<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
 					</div>
-					<div class="mensaje__right">
+					<div class="col-md-2">
 						<div class="wt-center-column">
 							<span>{{mensaje.firstname}}</span>
 							<span>{{mensaje.created_at}}</span>
 						</div>
-						<div class="mensaje__right__text">
-							<p>{{recortarTexto(mensaje.mensaje)}}...</p>
-						</div>
+					</div>
+					<div class="col-md-8">
+						<p>{{recortarTexto(mensaje.mensaje)}}...</p>
+					</div>
+					<div class="col-md-1">
+						<span>Consulta</span>
 					</div>
 				</div>
 			</div>
@@ -116,8 +118,9 @@
 				text-align: justify;
 				color: #191919;
 				&:hover, &:focus {
-					color: #191919;
+					transition: none;
 					text-decoration: none;
+					border-bottom: 2px solid #e2385a;
 				}
 			}
 			&--active {
@@ -129,8 +132,9 @@
 				text-align: justify;
 				color: #e2385a;
 				&:hover, &:focus {
+					transition: none;
 					text-decoration: none;
-					color: #e2385a;
+					border-bottom: 2px solid #e2385a;
 				}
 			}
 		}
@@ -156,7 +160,10 @@
 					display: flex;
 					flex-direction: row;
 					&__text {
-						padding-left: 1em;
+						padding-left: 2em;
+						display: flex;
+						justify-content: baseline;
+						align-items: center;
 					}
 				}
 			}
