@@ -30,7 +30,10 @@
 					class="btn-presupuesto" 
 					@click="solicitarPropuesta()">SOLICITAR PRESUPUESTO
 				</button>
-				<button class="btn-enviar-chat" @click="sendMensaje()">ENVIAR</button>
+				<button v-if="!showLoading" class="btn-enviar-chat" @click="sendMensaje()">ENVIAR</button>
+				<button v-if="showLoading" class="btn-enviar-chat" @click="sendMensaje()">
+					<img src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="40px" />
+				</button>
 			</div>
 		</div>
 		<div class="mensajes">
@@ -77,7 +80,8 @@
 				user: {},
 				mensajeEnviar: '',
 				mensajes: '',
-				evento: ''
+				evento: '',
+                showLoading: false
 			}
 		},
 		mounted() {
@@ -136,6 +140,7 @@
 				});
 			},
 			sendMensaje(){
+			    this.showLoading = true;
 				let data = {
 					evento_id: this.eventoId,
 					user_id: this.user.id,
@@ -144,6 +149,7 @@
 				}
 				this.$http.post('api/mensaje', data)
 				.then(res => {
+                    this.showLoading = false;
 					if(res.status == 204) {
 						this.getMensajes();
 						this.mensajeEnviar = '';

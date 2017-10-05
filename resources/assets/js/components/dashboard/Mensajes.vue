@@ -15,19 +15,20 @@
 				<div 
 					v-if="(eventoselect !== '')"
 					v-for="(mensaje, key) in mensajes" 
-					:class="(eventoselect.id == mensaje.id) ? 'mensaje--active':'mensaje'" 
-					@click="getResumen(mensaje)">
+					:class="(eventoselect.id == mensaje.id) ? 'mensaje--active':'mensaje'"
+					@click="redirectMensajes($event, mensaje.id)"
+					class="cursor-pointer"
+				>
 					<div class="mensaje__left">
 						<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
 					</div>
 					<div class="mensaje__right">
-						<div class="wt-space-block">
+						<div class="wt-center-column">
 							<span>{{mensaje.firstname}}</span>
 							<span>{{mensaje.created_at}}</span>
 						</div>
-						<div>
+						<div class="mensaje__right__text">
 							<p>{{recortarTexto(mensaje.mensaje)}}...</p>
-							<a href="#" class="link-chats" @click="redirectMensajes($event, mensaje.id)">Ver más</a>
 						</div>
 					</div>
 				</div>
@@ -153,7 +154,10 @@
 					width: 90%;
 					padding-left: 1em;
 					display: flex;
-					flex-direction: column;
+					flex-direction: row;
+					&__text {
+						padding-left: 1em;
+					}
 				}
 			}
 			.mensaje--active {
