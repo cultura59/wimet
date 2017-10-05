@@ -1,95 +1,3 @@
-<style lang="sass">
-	.mensajes-main {
-		padding: 1em 5em;
-	    height: 930px;
-	    width: 60%;
-	    float: left;
-	    &__links{
-		    padding: 1em 0 2em 0;
-		    width: 45%;
-		    display: flex;
-		    justify-content: space-between;
-		    &--default {
-			    opacity: 0.87;
-			    font-family: Poppins;
-			    font-size: 16px;
-			    font-weight: 500;
-			    letter-spacing: -0.1px;
-			    text-align: justify;
-			    color: #191919;
-			    &:hover, &:focus {
-			    	color: #191919;
-		    	    text-decoration: none;
-			    }
-			}
-			&--active {
-			    opacity: 0.87;
-			    font-family: Poppins;
-			    font-size: 16px;
-			    font-weight: 500;
-			    letter-spacing: -0.1px;
-			    text-align: justify;
-			    color: #e2385a;
-			    &:hover, &:focus {
-		    	    text-decoration: none;
-			    	color: #e2385a;
-			    }
-			}
-		}
-	    .mensajes {
-			width: 100%;
-			height: 600px;
-			overflow-y: auto;
-			overflow-x: hidden;
-			.mensaje {
-				max-height: 100px;
-				background-color: #f8f8f8;
-				border-top: 1px solid #fff;
-				border-bottom: 1px solid #fff;
-				padding: 10px;
-				cursor: pointer;
-				&__left {
-					width: 10%;
-					float: left;
-				}
-				&__right {
-					width: 90%;
-					padding-left: 1em;
-					display: flex;
-				    flex-direction: column;
-				}
-			}
-			.mensaje--active {
-				max-height: 100px;
-				background-color: #f0f0f0;
-				border-top: 1px solid #fff;
-				border-bottom: 1px solid #fff;
-				padding: 10px;
-				cursor: pointer;
-				&__left {
-					width: 10%;
-					float: left;
-				}
-				&__right {
-					width: 90%;
-					padding-left: 1em;
-					display: flex;
-				    flex-direction: column;
-				}
-			}
-	    }
-	}
-    .btn-mensajes-chat {
-    	border: none;
-	    padding: 1em;
-	    color: #fff;
-	    background-color: #e2385a;
-	    border-radius: 2px;
-	    &:hover {
-	    	opacity: 87;
-	    }
-    }
-</style>
 <template>
 	<div>
 		<div class="mensajes-main">
@@ -117,28 +25,11 @@
 							<span>{{mensaje.firstname}}</span>
 							<span>{{mensaje.created_at}}</span>
 						</div>
-						<p>{{recortarTexto(mensaje.descripcion_consulta)}}...</p>
+						<div>
+							<p>{{recortarTexto(mensaje.mensaje)}}...</p>
+							<a href="#" class="link-chats" @click="redirectMensajes($event, mensaje.id)">Ver más</a>
+						</div>
 					</div>
-				</div>
-			</div>
-		</div>
-		<div class="aside-propuesta" v-if="(eventoselect !== '')">
-			<div>
-				<img :src="`https://res.cloudinary.com/wimet/image/upload/q_60/${espacio.images[0].name}`" :alt="espacio.name" class="img-responsive">
-			</div>
-			<div class="propuesta-datos">
-				<h3>{{espacio.name}}</h3>
-				<span>Desde {{evento.reserva_desde}} hasta {{evento.reserva_hasta}}</span>
-				<div>
-					<div class="wt-space-block">
-						<label>Espacio (por {{evento.total_horas}}hs)</label>
-						<span>${{evento.sub_total}}.-</span>
-					</div>
-					<div class="propuesta-datos__total">
-						<label>Total</label>
-						<h3>${{evento.sub_total}}.-</h3>
-					</div>
-					<button class="btn-mensajes-chat" @click="redirectMensajes(evento.id)">Mensajes</button>
 				</div>
 			</div>
 		</div>
@@ -192,7 +83,8 @@
 					this.espacio = res.body.espacio;
 				});
 			},
-			redirectMensajes(eventoId){
+			redirectMensajes(e, eventoId){
+			    e.preventDefault();
 				window.location.href = `/dashboard/user/${this.user.id}/evento/${eventoId}/chats`;
 			},
 			changeType(e, type) {
@@ -203,3 +95,89 @@
 		}
 	}
 </script>
+<style lang="sass" scoped>
+	.mensajes-main {
+		padding: 1em 5em;
+		height: 930px;
+		width: 100%;
+		float: left;
+		&__links{
+			padding: 1em 0 2em 0;
+			width: 25%;
+			display: flex;
+			justify-content: space-between;
+			&--default {
+				opacity: 0.87;
+				font-family: Poppins;
+				font-size: 16px;
+				font-weight: 500;
+				letter-spacing: -0.1px;
+				text-align: justify;
+				color: #191919;
+				&:hover, &:focus {
+					color: #191919;
+					text-decoration: none;
+				}
+			}
+			&--active {
+				opacity: 0.87;
+				font-family: Poppins;
+				font-size: 16px;
+				font-weight: 500;
+				letter-spacing: -0.1px;
+				text-align: justify;
+				color: #e2385a;
+				&:hover, &:focus {
+					text-decoration: none;
+					color: #e2385a;
+				}
+			}
+		}
+		.mensajes {
+			width: 100%;
+			height: 600px;
+			overflow-y: auto;
+			overflow-x: hidden;
+			.mensaje {
+				max-height: 100px;
+				background-color: #f8f8f8;
+				border-top: 1px solid #fff;
+				border-bottom: 1px solid #fff;
+				padding: 10px;
+				cursor: pointer;
+				&__left {
+					width: 5%;
+					float: left;
+				}
+				&__right {
+					width: 90%;
+					padding-left: 1em;
+					display: flex;
+					flex-direction: column;
+				}
+			}
+			.mensaje--active {
+				max-height: 100px;
+				background-color: #f0f0f0;
+				border-top: 1px solid #fff;
+				border-bottom: 1px solid #fff;
+				padding: 10px;
+				cursor: pointer;
+				&__left {
+					width: 5%;
+					float: left;
+				}
+				&__right {
+					width: 90%;
+					padding-left: 1em;
+					display: flex;
+					flex-direction: column;
+				}
+			}
+		}
+	}
+	.link-chats {
+		text-decoration: none;
+		color: #e2385a;
+	}
+</style>

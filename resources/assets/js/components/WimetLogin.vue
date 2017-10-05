@@ -45,7 +45,7 @@
 						<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" @keyup.enter="login()"/>
 						<button v-if="showBtnLogin" class="container-login__login" @click="login()">Iniciar sesión</button>
 						<button v-if="!showBtnLogin" class="container-login__login" @click="login()">
-							<img src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-pig_oxestq.svg" alt="Cargando ..." height="50px" />
+							<img src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="50px" />
 						</button>
 					</div>
 					<div class="container-footer">
@@ -75,7 +75,7 @@
 						<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" />
 						<button v-if="showBtnLogin" class="container-login__login" @click="registrar()">Regístrate</button>
 						<button v-if="!showBtnLogin" class="container-login__login" @click="login()">
-							<img src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-pig_oxestq.svg" alt="Cargando ..." height="50px" />
+							<img src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="50px" />
 						</button>
 						<div class="container-terminos">
 							<input type="checkbox" id="terminos" v-model="terminos" style="display:none">

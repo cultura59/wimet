@@ -88,27 +88,37 @@ class EventoController extends Controller
             $mensajes = DB::table('eventos')
                 ->select(
                     'eventos.id',
-                    'eventos.created_at',
-                    'eventos.descripcion_consulta',
+                    'mensajes.created_at',
+                    'mensajes.mensaje',
                     'users.firstname',
                     'users.imagesource'
                 )
                 ->join('users', 'eventos.user_id', '=', 'users.id')
+                ->join('mensajes', function ($join) {
+                    $join->on('eventos.id', '=', 'mensajes.evento_id')
+                    ->orderBy('mensajes.id', 'DESC')
+                    ->limit(1);
+                })
                 ->where('eventos.cliente_id', $id)
-                ->orderBy('eventos.id', 'desc')
+                ->orderBy('mensajes.created_at', 'desc')
                 ->get();
         } else {
             $mensajes = DB::table('eventos')
             ->select(
                 'eventos.id',
-                'eventos.created_at',
-                'eventos.descripcion_consulta',
+                'mensajes.created_at',
+                'mensajes.mensaje',
                 'users.firstname',
                 'users.imagesource'
             )
-            ->join('users', 'eventos.cliente_id', '=', 'users.id')
+            ->join('users', 'eventos.user_id', '=', 'users.id')
+            ->join('mensajes', function ($join) {
+                $join->on('eventos.id', '=', 'mensajes.evento_id')
+                    ->orderBy('mensajes.id', 'DESC')
+                    ->limit(1);
+            })
             ->where('eventos.user_id', $id)
-            ->orderBy('eventos.id', 'desc')
+            ->orderBy('mensajes.created_at', 'desc')
             ->get();
         }
         return $mensajes;

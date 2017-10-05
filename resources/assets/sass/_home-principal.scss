@@ -45,7 +45,7 @@ html, body {
 							padding: 10px 15px;
 							border-radius: 2px;
 						    border: 2px solid #F1F1F1;
-						    font-family: 'Ubuntu';
+						    font-family: $font-family-sans-serif;
 						    font-size: 13px;
 						    letter-spacing: 0.5px;
 							
@@ -72,7 +72,7 @@ html, body {
 			.text-header__title {
 		        width: 750px;
 			    padding: 0;
-			    font-family: 'Ubuntu';
+			    font-family: $font-family-sans-serif;
 			    font-size: 48px;
 			    text-shadow: 1px 0;
 			    letter-spacing: 3px;
@@ -225,7 +225,7 @@ html, body {
 							padding: 10px 15px 5px;
 							border-radius: 2px;
 						    border: 2px solid #F1F1F1;
-						    font-family: 'Ubuntu';
+						    font-family: $font-family-sans-serif;
 						    font-size: 13px;
 						    letter-spacing: 0.5px;
 						}
@@ -253,7 +253,7 @@ html, body {
 				.text-header__sub-title {
 					font-weight: 400;
 					padding: 0px;
-					font-family: 'Ubuntu', sans-serif;
+					font-family: $font-family-sans-serif, sans-serif;
 					font-size: 14px;
 					letter-spacing: 1px;
 				}
@@ -266,7 +266,7 @@ html, body {
 					font-weight:
 					400;
 					padding: 0px;
-					font-family: 'Ubuntu', sans-serif;
+					font-family: $font-family-sans-serif, sans-serif;
 					font-size: 14px;
 					letter-spacing: 0.5px;
 				}
@@ -383,7 +383,7 @@ html, body {
 								padding: 10px 15px 10px;
 								border-radius: 2px;
 								border: 2px solid #F1F1F1;
-								font-family: 'Ubuntu';
+								font-family: $font-family-sans-serif;
 								font-size: 13px;
 								letter-spacing: .5px;
 								&:hover, &:focus {
@@ -528,7 +528,7 @@ html, body {
 								padding: 10px 15px 10px;
 								border-radius: 2px;
 								border: 2px solid #F1F1F1;
-								font-family: 'Ubuntu';
+								font-family: $font-family-sans-serif;
 								font-size: 13px;
 								letter-spacing: .5px;
 								&:hover, &:focus {
@@ -642,7 +642,7 @@ html, body {
 			h2 {
 				font-size: 24px;
 				color: #333;
-				font-family: 'Ubuntu';
+				font-family: $font-family-sans-serif;
 				letter-spacing: .7px;
 				margin-bottom: 14px;
 				text-shadow: 0 0;
@@ -652,7 +652,7 @@ html, body {
 			    
 			    font-size: 18px;
 			    color: #666666;
-			    font-family: 'Ubuntu', sans-serif;
+			    font-family: $font-family-sans-serif, sans-serif;
 			}
 		}
 	}
@@ -688,14 +688,14 @@ html, body {
 	    font-size: 24px;
 	    font-weight: 600;
 	    color: rgba(33, 33, 33, 0.87);
-	    font-family: 'Ubuntu', sans-serif;
+	    font-family: $font-family-sans-serif, sans-serif;
 	    letter-spacing: 0.7px;
 	}
 	h3 {
 	    margin-bottom: 30px;
 	    font-size: 18px;
 	    color: #545454;
-	    font-family: 'Ubuntu', sans-serif;
+	    font-family: $font-family-sans-serif, sans-serif;
 	    text-shadow: 0px 0px;
 	}
 	h4 {
@@ -777,7 +777,7 @@ footer {
 		font-weight: 400;
 	}
 	p.col-footer	{
-		font-family: 'Ubuntu', sans-serif;
+		font-family: $font-family-sans-serif, sans-serif;
 		text-transform: uppercase;
 		font-size: 16px;
 		color: $wt-white;
