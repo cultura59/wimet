@@ -83,11 +83,19 @@ class EventoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function getMensajes($id, $type) {
+    public function getMensajes(Request $request, $id, $type) {
+        // Se chequea si el que pide los mensajes es anfitrion u organizador
         if($type == 1) {
+            $whereType = 'eventos.cliente_id';
+        }else {
+            $whereType = 'eventos.user_id';
+        }
+        if ($request->has('estado')) {
+            //Query de mensajes
             $mensajes = DB::table('eventos')
                 ->select(
                     'eventos.id',
+                    'eventos.estado',
                     'mensajes.created_at',
                     'mensajes.mensaje',
                     'users.firstname',
@@ -96,30 +104,33 @@ class EventoController extends Controller
                 ->join('users', 'eventos.user_id', '=', 'users.id')
                 ->join('mensajes', function ($join) {
                     $join->on('eventos.id', '=', 'mensajes.evento_id')
-                    ->orderBy('mensajes.id', 'DESC')
-                    ->limit(1);
+                        ->orderBy('mensajes.id', 'DESC')
+                        ->limit(1);
                 })
-                ->where('eventos.cliente_id', $id)
+                ->where($whereType, $id)
+                ->where('eventos.estado', $request->input('estado'))
                 ->orderBy('mensajes.created_at', 'desc')
                 ->get();
-        } else {
+        }else {
+            //Query de mensajes
             $mensajes = DB::table('eventos')
-            ->select(
-                'eventos.id',
-                'mensajes.created_at',
-                'mensajes.mensaje',
-                'users.firstname',
-                'users.imagesource'
-            )
-            ->join('users', 'eventos.user_id', '=', 'users.id')
-            ->join('mensajes', function ($join) {
-                $join->on('eventos.id', '=', 'mensajes.evento_id')
-                    ->orderBy('mensajes.id', 'DESC')
-                    ->limit(1);
-            })
-            ->where('eventos.user_id', $id)
-            ->orderBy('mensajes.created_at', 'desc')
-            ->get();
+                ->select(
+                    'eventos.id',
+                    'eventos.estado',
+                    'mensajes.created_at',
+                    'mensajes.mensaje',
+                    'users.firstname',
+                    'users.imagesource'
+                )
+                ->join('users', 'eventos.user_id', '=', 'users.id')
+                ->join('mensajes', function ($join) {
+                    $join->on('eventos.id', '=', 'mensajes.evento_id')
+                        ->orderBy('mensajes.id', 'DESC')
+                        ->limit(1);
+                })
+                ->where($whereType, $id)
+                ->orderBy('mensajes.created_at', 'desc')
+                ->get();
         }
         return $mensajes;
     }

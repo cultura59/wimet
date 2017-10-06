@@ -2,14 +2,28 @@
 	<div>
 		<div class="mensajes-main">
 			<div class="mensajes-main__links">
-				<a href="#" 
-					:class="(showMensajesType == 1) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
-					@click="changeType($event, 1)">Como organizador
-				</a>
-				<a href="#" 
-					:class="(showMensajesType == 2) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
-					@click="changeType($event, 2)">Como anfitrión
-				</a>
+				<div>
+					<a href="#" 
+						:class="(showMensajesType == 1) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
+						@click="changeType($event, 1)">Como organizador
+					</a>
+					<a href="#" 
+						:class="(showMensajesType == 2) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
+						@click="changeType($event, 2)">Como anfitrión
+					</a>
+				</div>
+				<div>
+					<select v-model="filtroType" @change="getMensajes(filtroType)" class="mensajes-main__select">
+						<option value="">Todos</option>
+                        <option value="consulta">Consulta</option>
+						<option value="seguimiento">Seguimiento</option>
+						<option value="visita">Visita</option>
+						<option value="presupuesto">Presupuesto</option>
+						<option value="reservado">Reservado</option>
+                        <option value="realizado">Realizado</option>
+                        <option value="perdido">Perdido</option>
+					</select>
+				</div>
 			</div>
 			<div class="mensajes">
 				<div 
@@ -27,13 +41,16 @@
 							<span>{{mensaje.created_at}}</span>
 						</div>
 					</div>
-					<div class="col-md-8">
+					<div class="col-md-7">
 						<p>{{recortarTexto(mensaje.mensaje)}}...</p>
 					</div>
-					<div class="col-md-1">
-						<span>Consulta</span>
+					<div class="col-md-2">
+						<span>{{mensaje.estado}}</span>
 					</div>
 				</div>
+                <div v-if="(mensajes.length == 0)">
+                    <p>No hay consultas aún...</p>
+                </div>
 			</div>
 		</div>
 	</div>
@@ -47,7 +64,8 @@
 				evento: '',
 				espacio: '',
 				eventoselect: '',
-				showMensajesType: 1
+				showMensajesType: 1,
+                filtroType: ''
 			}
 		},
 		mounted() {
@@ -64,27 +82,24 @@
 	                return;
 	            }else {
 	            	this.user = this.$auth.getUser();
-        			this.getMensajes();
+        			this.getMensajes('');
 				}
 			},
-			getMensajes() {
-				this.$http.get(`api/mensajes/${this.user.id}/type/${this.showMensajesType}`)
+			getMensajes(filtro) {
+                let url = `api/mensajes/${this.user.id}/type/${this.showMensajesType}`;
+
+                if(filtro !== ''){
+                    url += `?estado=${filtro}`;
+                }
+
+				this.$http.get(url)
 				.then(res => {
 					this.mensajes = res.body;
 					this.eventoselect = this.mensajes[0];
-					this.getResumen(this.eventoselect);
 				});
 			},
 			recortarTexto(texto) {
 				return texto.substring(0, 140);
-			},
-			getResumen(evento) {
-				this.eventoselect = evento;
-				this.$http.get(`api/evento/resumen/${evento.id}`)
-				.then(res => {
-					this.evento = res.body.evento;
-					this.espacio = res.body.espacio;
-				});
 			},
 			redirectMensajes(e, eventoId){
 			    e.preventDefault();
@@ -93,7 +108,7 @@
 			changeType(e, type) {
 				e.preventDefault();
 				this.showMensajesType = type;
-				this.getMensajes();
+				this.getMensajes('');
 			}
 		}
 	}
@@ -106,7 +121,6 @@
 		float: left;
 		&__links{
 			padding: 1em 0 2em 0;
-			width: 25%;
 			display: flex;
 			justify-content: space-between;
 			&--default {
@@ -115,6 +129,7 @@
 				font-weight: 500;
 				letter-spacing: -0.1px;
 				text-align: justify;
+                margin-right: 1em;
 				color: #191919;
 				&:hover, &:focus {
 					transition: none;
@@ -131,6 +146,7 @@
 				color: #e2385a;
 				text-decoration: none;
 				border-bottom: 4px solid #e2385a;
+                margin-right: 1em;
 			}
 		}
 		.mensajes {
@@ -181,6 +197,10 @@
 				}
 			}
 		}
+        &__select {
+            padding: 5px;
+            cursor: pointer;
+        }
 	}
 	.link-chats {
 		text-decoration: none;
