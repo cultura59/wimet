@@ -76,9 +76,8 @@
 	.section-main {
 		display: flex;
 		&__chield-1 {
-			width: 60%;
-			padding: 20px;
-			margin-top: 9em;
+			width: 66%;
+            margin-top: 4.3em;
 			position: inherit;
 			left: 0;
 			bottom: 0;
@@ -88,7 +87,7 @@
     		}	 
 		}
 		&__chield-2 {
-			width: 40%;
+			width: 34%;
 			position: fixed;
 			margin-top: 60px;
 			top: 0;
@@ -105,10 +104,12 @@
 		font-weight: 600;
 	}
 	.search-data {
-		padding: 0 10px;
+		padding: 0 2em;
 		a, a:hover {
 			text-decoration: none;
 			color: #636b6f;
+			display: flex;
+			flex-direction: column;
 		}
 		img {
 			box-shadow: 1px 1px 2px 0px rgba(133,131,133,1);
@@ -118,7 +119,6 @@
 			font-size: 1em;
 			font-weight: 500;
 			margin: 0;
-			padding: 5% 3%;
 			color: rgba(33, 33, 33, 0.87);
 		}
 		.img-responsive {
@@ -134,17 +134,24 @@
 		margin-top: 0 !important;
 	}
 	.card-footer-search	{
-		display: inline-flex;
-    	width: 100%;
-    	height: 75px;
-
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+        height: 75px;
     	div:first-child	{
-    		width: 64%;
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          padding: 0.5em 1em 0em 1em;
     	}
     	div:last-child	{
-    		width: 36%
-    	}	
-
+          width: 100%;
+          display: flex;
+          justify-content: space-between;
+          align-items: baseline;
+          padding: 0em 1em 0.5em 1em;
+    	}
     	.card-avatar-search	{
     		width: 44px;
 		    height: 44px;
@@ -160,16 +167,10 @@
     	}
 
     	.star-row	{
-    		position: absolute;
-    		bottom: 8px;
-    		left: 58%;
-
-    		@include netbook {
-				left: 220px;
-    		}	 
+            width: 5em !important;
     		i 	{
-    		font-size: 12px;
-    		color: #f49e6e;
+              font-size: 12px;
+              color: #f49e6e;
     		}
     	}   	
 	}
@@ -284,4 +285,18 @@
 }
 .link-user-white {
 	color: $wt-white;
+}
+
+img[src="https://res.cloudinary.com/wimet/image/upload/c_scale,w_36/v1501352935/wimet_google_marker__2_ojga13.ico"] {
+	font-size: 15px !important;
+	line-height: 18px !important;
+	letter-spacing: 0.2px !important;
+	padding: 4px 5px 4px 6px !important;
+	color: #222222 !important;
+	font-weight: 700 !important;
+	background-color: #ffffff !important;
+	border: 1px solid rgba(0, 0, 0, 0.2) !important;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.15) !important;
+	border-radius: 2px !important;
+	position: relative !important;
 }

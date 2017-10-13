@@ -75,7 +75,7 @@ class EspacioController extends Controller
             }
             return $espacio;
         }catch(\Exception $e){
-            return response('Los campos no son correctos', 400);
+            return response('Los campos no son correctos, ' . $e->getMessage(), 400);
         }
     }
 
@@ -561,5 +561,52 @@ class EspacioController extends Controller
         $status_code = @curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $curl_errors = curl_error($ch);
         @curl_close($ch);
+    }
+
+    /**
+     * @fn searchEspacios
+     * @brief Funcion que retorna los los espacios en base a los parametros
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|string|Response
+     */
+    public function searchEspacios(Request $request) {
+        $querystringArray = $request->only(['ubicacion','categoria','price','quanty']);
+        $query = Espacio::query();
+        $query->select('id');
+        try {
+            //Chequeo si existe el filtro por ubicacion
+            if ($request->has('ubicacion')) {
+                $query->where('city', $request->input('ubicacion'));
+            }
+            //Chequeo si existe el filtro por categoria
+            if($request->has('categoria')){
+                $query->whereHas('categorias',
+                    function($subQuery) {
+                        $subQuery->where('id', \Request::input('categoria'));
+                    }
+                );
+            }
+            //Chequeo si existe el filtro por quanty
+            if($request->has('price')){
+                $query->whereHas('priceByCategory',
+                    function($subQuery) {
+                        $precios = explode("-", \Request::input('price'));
+                        $subQuery->whereBetween('price', [$precios[0], $precios[1]]);
+                    }
+                );
+            }
+            //Chequeo si existe el filtro por quanty
+            if($request->has('quanty')) {
+                $quanties = explode("-", \Request::input('quanty'));
+                $query->whereBetween('quanty', [$quanties[0], $quanties[1]]);
+            }
+            // Filtro por espacios activos
+            $query->where('espacios.status', '=', true);
+            $espacios = $query->paginate(20);
+            $espacios->appends($querystringArray);
+            return $espacios;
+        }catch (\Exception $e) {
+            return response('Los campos no son correctos, error: ' . $e->getMessage(), 400);
+        }
     }
 }

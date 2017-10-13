@@ -42,14 +42,16 @@
                 <p class="text-center">{{quantyFrom}} a {{quantyTo}} personas.</p>
             </div>
             <div class="col-xs-12 col-md-6">
-                <vue-slider 
-                    @callback="callbackbPrice" 
+                <vue-slider
+                    @callback="callbackbPrice"
                     :value="[priceFrom, priceTo]"
                     :min="0"
                     :max="10000"
                     :tooltip="false"
                     :event-type="auto"
                     :process-style="processStyle"
+                    :tooltip-style="sliderStyle"
+                    :slider-style="sliderStyle"
                     :real-time="true">
                 </vue-slider>
                 <p class="text-center">${{priceFrom}} - ${{priceTo}}.-</p>
@@ -72,7 +74,10 @@
                 priceFrom: 100,
                 priceTo: 1000,
                 processStyle: {
-                    "backgroundColor": "#e8536f"
+                    "backgroundColor": "#fc5289"
+                },
+                sliderStyle: {
+                    "backgroundColor": "#fc5289"
                 },
                 stUbicacion: false,
                 stCategoria: false,

@@ -7,9 +7,10 @@
 
 require('./bootstrap');
 
+Vue.component('home-search', require('./components/home/HomeSearch.vue'));
+Vue.component('title-home', require('./components/home/titleHome.vue'));
 Vue.component('wimet-login', require('./components/WimetLogin.vue'));
 Vue.component('button-publica', require('./components/home/buttonPublica.vue'));
-Vue.component('title-home', require('./components/home/titleHome.vue'));
 Vue.component('search-home', require('./components/SearchHome.vue'));
 Vue.component('search-filter', require('./components/SearchFilter.vue'));
 Vue.component('header-espacio', require('./components/HeaderEspacio.vue'));

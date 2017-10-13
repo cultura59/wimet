@@ -82,7 +82,7 @@
 	            '</div>'+
 	            '<h5 id="firstHeading" class="firstHeading">{{$espacio->name}}</h5>'+
 	            '<div id="bodyContent">'+
-	            '<a href="/categoria/'+{{Request::input("categoria")}}+'/espacio/{{$espacio->id}}" target="_blank">'+
+	            '<a href="/categoria/'+{{Request::input("categoria")}}+'/espacio/{{$espacio->name}}" target="_blank">'+
 	            '<img class="img-responsive" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->images[0]->name}}" style="width: 100%" />'+
 	            '</a> '+
 	            '</div>'+
@@ -91,7 +91,7 @@
 					position: new google.maps.LatLng({{$espacio->lat}}, {{$espacio->long}}),
 					icon: 'https://res.cloudinary.com/wimet/image/upload/c_scale,w_36/v1501352935/wimet_google_marker__2_ojga13.ico',
 					map: map,
-					title: '{{$espacio->name}}'
+					title: '$ {{$espacio->priceByCategory[0]->price}}/hr'
 				});
 		        //Attach click event to the marker.
 	            (function (marker, contentInfo) {
@@ -110,35 +110,13 @@
 
 @section('content')
     <div class="search">
-		<div class="container-fuild">
-			<div class="search-form">
-				<search-filter></search-filter>
+		<section class="section-main">
+			<div class="section-main__chield-1">
+				<home-search></home-search>
 			</div>
-
-			<section class="section-main">
-				<div class="section-main__chield-1">					
-					<div class="search-data wt-m-top-3">
-						<div class="row">
-							@foreach($espacios as $espacio)
-							<div class="col-xs-12 col-sm-6">
-								<espacio-search 
-									espacio-id="{{$espacio->id}}"
-									category-id="{{Request::input('categoria')}}"
-								></espacio-search>
-							</div>
-							@endforeach
-						</div>
-						<div>
-							{{ $espacios->links() }}
-						</div>
-					</div>
-				</div>
-				<div class="section-main__chield-2">
-					<div id="map"></div>
-				</div>
-			</section>
-
+			<div class="section-main__chield-2">
+				<div id="map"></div>
 			</div>
-		</div>
+		</section>
 	</div>
 @endsection
