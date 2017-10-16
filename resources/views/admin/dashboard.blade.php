@@ -26,7 +26,7 @@
 	<body>
 		<div id="adminApp">
 			<!-- Template login -->
-			<template v-if="!logued">
+			<template v-if="logued">
 				<div class="container">
 					<div>
 						<img src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet">
@@ -51,7 +51,7 @@
 				</div>
 			</template>
 			<!-- Template de vistas -->
-			<template v-if="logued">
+			<template v-if="!logued">
 				<!-- Header Home -->
 				<nav class="nav-extended">
 					<div class="nav-wrapper">

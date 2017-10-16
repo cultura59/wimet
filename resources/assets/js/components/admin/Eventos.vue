@@ -28,7 +28,7 @@
                 <td>{{evento.estado}}</td>
                 <td>{{$moment(evento.created_at).format('DD/MM/YYYY')}}</td>
                 <td>
-                    <router-link :to="`/admin/evento/${evento.id}/mensajes`">
+                    <router-link :to="`/evento/${evento.id}/mensajes`">
                         <i class="material-icons">visibility</i>
                     </router-link>
                 </td>

@@ -127,4 +127,5 @@ Route::group(['prefix' => 'dashboard'], function() {
 
 Route::group(['prefix' => 'admin'], function (){
     Route::get('/', 'AdminController@dashboard');
+    Route::get('getinfo', 'AdminController@admindash');
 });
