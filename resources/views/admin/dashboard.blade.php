@@ -61,9 +61,10 @@
 					</div>
 					<div class="nav-content">
 						<ul class="tabs tabs-transparent">
-							<li class="tab"><router-link to="/admin/">Usuarios</router-link></li>
-							<li class="tab"><router-link to="/admin/espacios">Espacios</router-link></li>
-							<li class="tab"><router-link to="/admin/eventos">Eventos</router-link></li>
+							<li class="tab"><router-link to="/">Home</router-link></li>
+							<li class="tab"><router-link to="/usuarios">Usuarios</router-link></li>
+							<li class="tab"><router-link to="/espacios">Espacios</router-link></li>
+							<li class="tab"><router-link to="/eventos">Eventos</router-link></li>
 						</ul>
 					</div>
 				</nav>
@@ -73,7 +74,7 @@
 				</main>
 			</template>
 		</div>
-		<script src="{{url('/js/app.js')}}"></script>
+		<script src="{{url('/js/admin.js')}}"></script>
 		<!-- Compiled and minified JavaScript -->
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
 	</body>

@@ -251,7 +251,10 @@ class PublicaController extends Controller
      * @brief Funcion que retorna la vista thankyoupage de publicacion
      * @return render thankyoupage page
      */
-    public function thankyou($id) {
+    public function thankyou($id, $espacioId) {
+        $espacio = Espacio::find($espacioId);
+        $espacio->step = 5;
+        $espacio->save();
         return view('publicar.thankyoupage',
             array(
                 'id' => $id

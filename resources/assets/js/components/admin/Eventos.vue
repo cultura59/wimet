@@ -1,7 +1,7 @@
 <template>
     <div>
         <h2>Eventos</h2>
-        <table class="striped">
+        <table class="striped responsive-table">
             <thead>
                 <tr>
                 <th>#</th>
@@ -20,7 +20,7 @@
                 <tr v-for="evento in eventos.data" :key="evento.id" class="cursor-pointer">
                 <td>{{evento.id}}</td>
                 <td>{{(evento.titulo_cliente == "")? '-' : evento.titulo_cliente}}</td>
-                <td>{{evento.espacio.name}}</td>
+                <td>{{evento.name}}</td>
                 <td>{{evento.reserva_desde}}</td>
                 <td>{{evento.reserva_hasta}}</td>
                 <td>{{evento.total_horas}}</td>

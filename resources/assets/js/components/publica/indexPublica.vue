@@ -102,7 +102,7 @@
             },
             enviarAprobacion(e) {
             	e.preventDefault();
-                window.location.href = `/publica/thankyou/${this.user.id}`;
+                window.location.href = `/publica/thankyou/${this.user.id}/espacio/${this.espacioId}`;
             }
 		}
 	}

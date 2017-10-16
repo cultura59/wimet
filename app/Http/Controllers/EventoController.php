@@ -14,11 +14,30 @@ class EventoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        return Evento::with('espacio')
-            ->orderBy('id', 'DESC')
-            ->paginate(20);
+        $query = DB::table('eventos');
+        $query->select(
+            'eventos.id',
+            'eventos.titulo_cliente',
+            'eventos.reserva_desde',
+            'eventos.reserva_hasta',
+            'eventos.total_horas',
+            'eventos.sub_total',
+            'eventos.estado',
+            'espacios.name',
+            'mensajes.created_at',
+            'mensajes.mensaje'
+        );
+        $query->join('espacios', 'eventos.espacio_id', '=', 'espacios.id');
+        $query->join('mensajes', function ($join) {
+            $join->on('eventos.id', '=', 'mensajes.evento_id')
+                ->orderBy('mensajes.id', 'DESC')
+                ->limit(1);
+        });
+        $query->orderBy('mensajes.created_at', 'desc')->groupBy('eventos.titulo_cliente');
+        $mensajes = $query->paginate(20);
+        return $mensajes;
     }
 
     /**

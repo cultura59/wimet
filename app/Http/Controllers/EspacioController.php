@@ -24,20 +24,24 @@ class EspacioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $espacios = Espacio::with(
-                'prices',
-                'user',
-                'categorias', 
-                'servicios',
-                'estilosEspacio',
-                'rules',
-                'images',
-                'characteristics',
-                'access'
-            )->orderBy('id', 'DESC')
-            ->paginate(20);
+        $query = Espacio::with(
+            'prices',
+            'user',
+            'categorias',
+            'servicios',
+            'estilosEspacio',
+            'rules',
+            'images',
+            'characteristics',
+            'access'
+        );
+        $query->orderBy('id', 'DESC');
+        if($request->has('step')) {
+            $query->where('step', '=', $request->input('step'));
+        }
+        $espacios = $query->paginate(20);
         return $espacios;
     }
 
@@ -114,6 +118,7 @@ class EspacioController extends Controller
     {
         try {
             $espacio = Espacio::find($id);
+            $espacio->step = $request->step;
             $espacio->status = $request->status;
             $espacio->save();
             return $espacio;

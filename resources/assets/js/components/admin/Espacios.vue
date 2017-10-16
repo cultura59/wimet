@@ -1,6 +1,21 @@
 <template>
     <div>
         <h2>Espacios</h2>
+        <div class="row">
+            <div class="col s12 m3 offset-m9">
+                <label>Filtros pasos</label>
+                <select v-model="step" @change="selectStep()">
+                    <option value="">Seleccione un paso</option>
+                    <option value="1">Selecciono categoria</option>
+                    <option value="2">Finalizo Primer paso</option>
+                    <option value="3">Finalizo Segundo paso</option>
+                    <option value="4">Finalizo Tercer paso</option>
+                    <option value="5">Pendiente de aprobación</option>
+                    <option value="6">Espacios aprobados</option>
+                </select>
+            </div>
+        </div>
+        <span>Total espacios: {{espacios.total}}</span>
         <table class="highlight center responsive-table">
             <thead>
                 <tr>
@@ -129,7 +144,8 @@
                 espacios: '',
                 showModal: false,
                 espacioSelected: null,
-                showStep: 'primer-paso'
+                showStep: 'primer-paso',
+                step: ''
             }
         },
         mounted() {
@@ -146,6 +162,7 @@
             },
             updateEspacio(e, espacio, key) {
                 e.preventDefault();
+                espacio.step = 6;
                 espacio.status = !espacio.status;
                 this.$http.put(`api/espacio/${espacio.id}`, espacio)
                     .then(res => {
@@ -188,6 +205,14 @@
                 )
                 .catch(function(err) {
                     console.log('Fetch Error :-S', err);
+                });
+            },
+            selectStep() {
+                this.$http.get(`api/espacio?step=${this.step}`)
+                .then(res => {
+                    this.espacios = (res.body);
+                }, err => {
+                    console.log(err);
                 });
             },
             actionModal(e, espacio){
@@ -250,4 +275,7 @@
         color: white;
     }
     .modal-body {padding: 2px 16px;}
+    select {
+        display: block;
+    }
 </style>

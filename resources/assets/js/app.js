@@ -40,9 +40,6 @@ Vue.component('dasboard-nueva-propuesta', require('./components/dashboard/NuevaP
 Vue.component('dasboard-confirmar', require('./components/dashboard/Confirmar.vue'));
 
 import Auth from './packages/auth/Auth.js';
-import VueRouter from 'vue-router';
-
-Vue.use(VueRouter);
 Vue.use(Auth);
 
 window.fbAsyncInit = () => {
@@ -71,25 +68,5 @@ const app = new Vue({
     el: '#home-espacio'
 });
 
-import {router} from './components/routes';
-const admin = new Vue({
-	data: {
-		logued: false,
-		u: '',
-		p: ''
-	},
-	methods: {
-		l()	{
-			if (this.u == "serafin" && this.p == "neverpony") {
-				this.logued = true;
-			}else {
-				console.log("Entro por no");
-			}
-		}
-	},
-    router
-}).$mount('#adminApp');
-
 import moment from 'moment';
-
 Vue.prototype.$moment = moment;

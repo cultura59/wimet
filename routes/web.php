@@ -34,7 +34,7 @@ Route::get('/nosotros', 'HomeController@nosotros');
 Route::get('/equipo', 'HomeController@equipo');
 Route::get('/prensa', 'HomeController@prensa');
 Route::get('/publica', 'HomeController@publica');
-Route::get('/publica/thankyou/{id}', 'PublicaController@thankyou');
+Route::get('/publica/thankyou/{id}/espacio/{espacioId}', 'PublicaController@thankyou');
 Route::get('/enviaraprobacion/{id}', 'PublicaController@enviarAprobacion');
 Route::get('/confirmaccount/{id}', 'UserController@confirmAccount');
 

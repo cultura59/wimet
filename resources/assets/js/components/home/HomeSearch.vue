@@ -2,15 +2,15 @@
     <div>
         <div class="container-filters">
             <div class="dropdown">
-                <span class="dropbtn">{{selectUbicacion}} <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
-                <div class="dropdown-content">
+                <span class="dropbtn" @click="btnCategoria = !btnCategoria">{{selectUbicacion}} <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
+                <div class="dropdown-content" v-if="btnCategoria">
                     <a href="#" @click="changeUbicacion($event, 'CABA')">CABA</a>
                     <a href="#" @click="changeUbicacion($event, 'Buenos Aires')">Gran Buenos Aires</a>
                 </div>
             </div>
             <div class="dropdown">
-                <span class="dropbtn">{{showCategoria(categoriaId)}} <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
-                <div class="dropdown-content">
+                <span class="dropbtn" @click="btnAsistente = !btnAsistente">{{showCategoria(categoriaId)}} <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
+                <div class="dropdown-content" v-if="btnAsistente">
                     <a
                         href="#"
                         v-for="categoria in categorias"
@@ -19,9 +19,9 @@
                     </a>
                 </div>
             </div>
-            <div class="dropdown">
+            <div class="dropdown-modal">
                 <span class="dropbtn" @click="btnPrice = !btnPrice">PRECIO/HORA <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
-                <div class="dropdown-content__range" v-if="btnPrice">
+                <div class="dropdown-modal-content__range" v-if="btnPrice">
                     <p class="text-center">${{priceFrom}} - ${{priceTo}}</p>
                     <vue-slider
                         @callback="callbackbPrice"
@@ -41,9 +41,9 @@
                     </div>
                 </div>
             </div>
-            <div class="dropdown">
-                <span class="dropbtn" @click="btnQuanty = !btnPrice">ASISTENTES <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
-                <div class="dropdown-content__range" v-if="btnQuanty">
+            <div class="dropdown-modal">
+                <span class="dropbtn" @click="btnQuanty = !btnQuanty">ASISTENTES <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
+                <div class="dropdown-modal-content__range" v-if="btnQuanty">
                     <p class="text-center">{{quantyFrom}} - {{quantyTo}} asistentes</p>
                     <vue-slider
                             @callback="callbackbQuanty"
@@ -113,6 +113,8 @@
                 quantyFrom: 0,
                 quantyTo: 1000,
                 slideWith: '100%',
+                btnCategoria: false,
+                btnAsistente: false,
                 btnPrice: false,
                 btnQuanty: false,
                 processStyle: {
@@ -157,12 +159,14 @@
             changeUbicacion(e, value){
                 e.preventDefault();
                 this.opacacidad = true;
+                this.btnCategoria = false;
                 this.selectUbicacion = value;
                 this.updateQueryStringParameter('ubicacion', value);
             },
             changeCategoria(e, value){
                 e.preventDefault();
                 this.opacacidad = true;
+                this.btnAsistente = false;
                 this.categoriaId = value;
                 this.updateQueryStringParameter('categoria', value);
             },
@@ -270,17 +274,15 @@
     .dropbtn {
         cursor: pointer;
     }
-
     .dropdown {
         position: relative;
         display: inline-block;
         &-content {
-            display: none;
             position: absolute;
             min-width: 160px;border-radius: 2px;
             background-color: #ffffff;
             box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
-            border: solid 1px #dadada;
+            margin-top: 1rem;
             z-index: 1;
             a {
                 color: #545454;
@@ -320,7 +322,57 @@
             }
         }
     }
-        .box-opaco {opacity: 0.4;}
+    .dropdown-modal {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        &-content {
+            display: none;
+            position: absolute;
+            min-width: 160px;border-radius: 2px;
+            background-color: #ffffff;
+            box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
+            z-index: 1;
+            a {
+                color: #545454;
+                padding: 12px 16px;
+                text-decoration: none;
+                display: block;
+                &:hover {background-color: #f1f1f1}
+            }
+        }
+        &:hover .dropdown-content {
+            display: block;
+        }
+        &-content__range {
+            display: flex;
+            padding: 1em;
+            width: 18em;
+            flex-direction: column;
+            position: absolute;
+            min-width: 160px;
+            border-radius: 2px;
+            background-color: #ffffff;
+            box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
+            border: solid 1px #dadada;
+            z-index: 1;
+            margin-top: 3em;
+            &__acciones {
+                display: flex;
+                justify-content: space-around;
+                align-items: baseline;
+                margin-top: 1em;
+                .aceptar {
+                    border-radius: 2px;
+                    background-color: #fc5289;
+                    border: none;
+                    color: white;
+                    padding: 0.5em 1em;
+                }
+            }
+        }
+    }
+    .box-opaco {opacity: 0.4;}
     .pagination-search {
         display: flex;
         padding-left: 0;
