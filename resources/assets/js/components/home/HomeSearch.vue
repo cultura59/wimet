@@ -46,16 +46,16 @@
                 <div class="dropdown-modal-content__range" v-if="btnQuanty">
                     <p class="text-center">{{quantyFrom}} - {{quantyTo}} asistentes</p>
                     <vue-slider
-                            @callback="callbackbQuanty"
-                            :value="[quantyFrom, quantyTo]"
-                            :min="0"
-                            :max="10000"
-                            :width="'100%'"
-                            :tooltip="false"
-                            :event-type="auto"
-                            :process-style="processStyle"
-                            :slider-style="processStyle"
-                            :real-time="true">
+                        @callback="callbackbQuanty"
+                        :value="[quantyFrom, quantyTo]"
+                        :min="0"
+                        :max="10000"
+                        :width="'100%'"
+                        :tooltip="false"
+                        :event-type="auto"
+                        :process-style="processStyle"
+                        :slider-style="processStyle"
+                        :real-time="true">
                     </vue-slider>
                     <div class="dropdown-content__range__acciones">
                         <span class="cursor-pointer" @click="btnQuanty = !btnQuanty">CANCELAR</span>
@@ -86,6 +86,65 @@
                     @click="changePage($event, n)"
                 >{{n}}</a>
                 <a href="#" @click="prevPage($event)">&raquo;</a>
+            </div>
+        </div>
+        <div class="btn-filtros" @click="modalFilter = !modalFilter">
+            <span>Filtros</span>
+            <i class="material-icons">filter_list</i>
+        </div>
+        <div v-if="modalFilter" class="modal-filtros">
+            <!-- Modal content -->
+            <div class="modal-filtros__content">
+                <span class="close" @click="modalFilter = !modalFilter">&times;</span>
+                <div class="container-select">
+                    <label>Seleccione ubicación</label>
+                    <select v-model="selectUbicacion" class="select-filtro">
+                        <option value="Ubicación">Ubicación</option>
+                        <option value="CABA">CABA</option>
+                        <option value="Buenos Aires">Gran Buenos Aires</option>
+                    </select>
+                </div>
+                <div class="container-select">
+                    <label>Seleccione tipo actividad</label>
+                    <select v-model="categoriaId" class="select-filtro">
+                        <option v-for="categoria in categorias" :value="categoria.id">{{categoria.name}}</option>
+                    </select>
+                </div>
+                <div class="container-select">
+                    <label>Seleccione rango de precio</label>
+                    <vue-slider
+                            @callback="callbackbPrice"
+                            :value="[priceFrom, priceTo]"
+                            :min="0"
+                            :max="20000"
+                            :width="'100%'"
+                            :tooltip="false"
+                            :event-type="auto"
+                            :process-style="processStyle"
+                            :slider-style="processStyle"
+                            :real-time="true">
+                    </vue-slider>
+                    <p class="text-center">${{priceFrom}} - ${{priceTo}}</p>
+                </div>
+                <div class="container-select">
+                    <label>Seleccione rango de asistentes</label>
+                    <vue-slider
+                        @callback="callbackbQuanty"
+                        :value="[quantyFrom, quantyTo]"
+                        :min="0"
+                        :max="10000"
+                        :width="'100%'"
+                        :tooltip="false"
+                        :event-type="auto"
+                        :process-style="processStyle"
+                        :slider-style="processStyle"
+                        :real-time="true">
+                    </vue-slider>
+                    <p class="text-center">{{quantyFrom}} - {{quantyTo}} asistentes</p>
+                </div>
+                <div class="container-select">
+                    <button class="btn-buscar-filtros" @click="buscarEspacio()">Buscar espacios</button>
+                </div>
             </div>
         </div>
     </div>
@@ -120,7 +179,8 @@
                 processStyle: {
                     "backgroundColor": "#fc5289"
                 },
-                opacacidad: false
+                opacacidad: false,
+                modalFilter: false
             }
         },
         mounted() {
@@ -248,13 +308,33 @@
                 e.preventDefault();
                 this.opacacidad = true;
                 this.updateQueryStringParameter('page', page);
+            },
+            buscarEspacio() {
+                this.opacacidad = true;
+                let price = `${this.priceFrom}-${this.priceTo}`;
+                let quanty = `${this.quantyFrom}-${this.quantyTo}`;
+                this.url = `api/searchespacios?ubicacion=${this.selectUbicacion}&categoria=${this.categoriaId}&price=${price}&quanty=${quanty}`;
+                this.$http.get(this.url)
+                .then(res => {
+                    this.espacios = res.body;
+                    this.opacacidad = false;
+                    this.modalFilter = false;
+                }, err => {
+                    console.log(err);
+                    this.opacacidad = false;
+                });
             }
         }
     }
 </script>
 <style lang="sass" scoped>
     .container-filters {
-        display: flex;
+        @media (max-width: 767px) {
+            display: none;
+        }
+        @media (min-width: 768px) {
+            display: flex;
+        }
         justify-content: space-between;
         align-items: center;
         padding: 0 2em;
@@ -390,6 +470,62 @@
         .active {
             background-color: #fc5289;
             color: white;
+        }
+    }
+    .btn-filtros {
+        @media (max-width: 767px) {
+            display: flex;
+        }
+            @media (min-width: 768px) {
+            display: none;
+        }
+        left: 0px !important;
+        right: 0px !important;
+        bottom: 3em;
+        position: fixed !important;
+        opacity: 1 !important;
+        text-align: center !important;
+        color: #fff;
+        background: #fc5289;
+        border-radius: 80px !important;
+        margin: 0 8em;
+        padding: .5em 0;
+        justify-content: center;
+        align-items: center;
+        cursor: pointer;
+    }
+    .modal-filtros {
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgb(0,0,0);
+        background-color: rgba(0,0,0,0.4);
+        &__content {
+            background-color: #fefefe;
+            margin: 20% auto;
+            padding: 1em;
+            border: 1px solid #888;
+            width: 90%;
+            .container-select {
+                display: flex;
+                flex-direction: column;
+                margin-top: 2em;
+                .select-filtro {
+                    padding: 1em;
+                    border: 1px solid #dadada;
+                    width: 100%;
+                }
+                .btn-buscar-filtros {
+                    color: #fff;
+                    background: #fc5289;
+                    border: none;
+                    padding: 0.5em;
+                }
+            }
         }
     }
 </style>
