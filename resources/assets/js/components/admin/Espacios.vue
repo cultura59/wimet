@@ -99,13 +99,13 @@
                 <div class="modal-body">
                     <ul class="tabs">
                         <li class="tab col s3">
-                            <a :class="{active: (showStep == 'primer-paso')}" href="#" @click="showStep = 'primer-paso'">Primer paso</a>
+                            <a :class="{active: (showStep == 'primer-paso')}" href="#" @click="changeStep($event, 'primer-paso')">Primer paso</a>
                         </li>
                         <li class="tab col s3">
-                            <a :class="{active: (showStep == 'segundo-paso')}" href="#" @click="showStep = 'segundo-paso'">Segundo paso</a>
+                            <a :class="{active: (showStep == 'segundo-paso')}" href="#" @click="changeStep($event, 'segundo-paso')">Segundo paso</a>
                         </li>
                         <li class="tab col s3">
-                            <a :class="{active: (showStep == 'tercer-paso')}" href="#" @click="showStep = 'tercer-paso'">Tercer paso</a>
+                            <a :class="{active: (showStep == 'tercer-paso')}" href="#" @click="changeStep($event, 'tercer-paso')">Tercer paso</a>
                         </li>
                     </ul>
                     <ul class="collection with-header" v-show="(showStep == 'primer-paso')">
@@ -206,6 +206,10 @@
                 .catch(function(err) {
                     console.log('Fetch Error :-S', err);
                 });
+            },
+            changeStep(e, step) {
+                e.preventDefault();
+                this.showStep = step;
             },
             selectStep() {
                 this.$http.get(`api/espacio?step=${this.step}`)
