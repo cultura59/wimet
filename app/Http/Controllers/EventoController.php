@@ -35,7 +35,7 @@ class EventoController extends Controller
                 ->orderBy('mensajes.id', 'DESC')
                 ->limit(1);
         });
-        $query->orderBy('mensajes.created_at', 'desc')->groupBy('eventos.titulo_cliente');
+        $query->orderBy('mensajes.created_at', 'desc')->groupBy('eventos.id');
         $mensajes = $query->paginate(20);
         return $mensajes;
     }

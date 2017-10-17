@@ -181,6 +181,9 @@ class EspacioController extends Controller
             $espacio = new Espacio($request->all());
             $espacio->status = false;
             $espacio->save();
+            // se cambia el tipo del usuario
+            $user->tipo_clientes_id = 2;
+            $user->save();
             // Se guardan las categorias asociadas al espacio
             $categorias = $espacio->estilosEspacio()->sync($request->estilos);
             // Se modifica el tipo de usuario en Hubspot

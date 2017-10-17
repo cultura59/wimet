@@ -18,14 +18,18 @@
                     <td>{{user.firstname}}</td>
                     <td>{{user.lastname}}</td>
                     <td>{{user.email}}</td>
-                    <td>{{(user.tipo_cliente_id == 2) ? 'Sí' : 'No'}}</td>
+                    <td>{{(user.tipo_clientes_id == 2) ? 'Sí' : 'No'}}</td>
                     <td>{{$moment(user.created_at).format('DD/MM/YYYY')}}</td>
                 </tr>
             </tbody>
         </table>
         <div class="wt-center-center">
-            <a v-if="(this.users.prev_page_url != null)" href="#" @clieck="backUser($event)">Atrás</a><br>
-            <a v-if="(this.users.next_page_url != null)" href="#" @clieck="nextUser($event)">Siguiente</a>
+            <a v-if="(this.users.prev_page_url != null)" href="#" @click="backUser($event)">
+                <i class="material-icons">navigate_before</i>
+            </a>
+            <a v-if="(this.users.next_page_url != null)" href="#" @click="nextUser($event)">
+                <i class="material-icons">navigate_next</i>
+            </a>
         </div>
     </div>
 </template>
@@ -58,20 +62,20 @@
             },
             runUrl(url) {
                 fetch(url, {method: 'GET', headers: {'Authorization': `Bearer ${this.$auth.getToken()}`}})
-                    .then((response) => {
-                            if (response.status !== 200) {
-                                console.log('Looks like there was a problem. Status Code: ' +
-                                    response.status);
-                                return;
-                            }
-                            response.json().then((resJson) => {
-                                this.users = resJson;
-                            });
+                .then((response) => {
+                        if (response.status !== 200) {
+                            console.log('Looks like there was a problem. Status Code: ' +
+                                response.status);
+                            return;
                         }
-                    )
-                    .catch(function(err) {
-                        console.log('Fetch Error :-S', err);
-                    });
+                        response.json().then((resJson) => {
+                            this.users = resJson;
+                        });
+                    }
+                )
+                .catch(function(err) {
+                    console.log('Fetch Error :-S', err);
+                });
             }
         }
     }

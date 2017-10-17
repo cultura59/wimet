@@ -1,12 +1,15 @@
 require('./bootstrap');
+import Auth from './packages/auth/Auth.js';
 import VueRouter from 'vue-router';
+import {router} from './components/routes';
 
+Vue.use(Auth);
 Vue.use(VueRouter);
 
 const ip = location.host;
 Vue.http.options.root = `http://${ip}`;
+Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
 
-import {router} from './components/routes';
 const admin = new Vue({
 	data: {
 		logued: false,

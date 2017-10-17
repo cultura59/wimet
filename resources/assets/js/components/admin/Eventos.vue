@@ -36,8 +36,12 @@
             </tbody>
         </table>
         <div class="wt-center-center">
-            <a v-if="(this.eventos.prev_page_url != null)" href="#" @click="backevento($event)">Atrás</a><br>
-            <a v-if="(this.eventos.next_page_url != null)" href="#" @click="nextevento($event)">Siguiente</a>
+            <a v-if="(this.eventos.prev_page_url != null)" href="#" @click="backevento($event)">
+                <i class="material-icons">navigate_before</i>
+            </a><br>
+            <a v-if="(this.eventos.next_page_url != null)" href="#" @click="nextevento($event)">
+                <i class="material-icons">navigate_next</i>
+            </a>
         </div>
     </div>
 </template>
