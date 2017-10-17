@@ -41,7 +41,8 @@ class EspacioController extends Controller
         if($request->has('step')) {
             $query->where('step', '=', $request->input('step'));
         }
-        $espacios = $query->paginate(20);
+        $querystringArray = $request->only(['step','page']);
+        $espacios = $query->paginate(20)->appends($querystringArray);
         return $espacios;
     }
 
