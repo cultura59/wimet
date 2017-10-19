@@ -47,12 +47,14 @@
 						}
 					}, err => {
 						if(err.status == 400) {
+						    this.showBtnLoginGoogle = false;
 							let data = {
 								firstname: resGoogle.ofa,
 								lastname: resGoogle.wea,
 								email: resGoogle.U3,
 								password: resGoogle.Eea,
-								imagesource: resGoogle.Paa
+								imagesource: resGoogle.Paa,
+								status: true
 							}
 							this.$http.post('api/user', data)
 							.then(res => {
@@ -72,6 +74,7 @@
 				});
 			},
 			login() {
+                this.showBtnLoginGoogle = false;
 				let data = {
 					client_id: 2,
 					client_secret: 'XjZ3yp33zTrPdF0vWPLPH1sQ62swzzbBVvAnJa0A',

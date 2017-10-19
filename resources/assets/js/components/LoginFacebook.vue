@@ -73,7 +73,8 @@
 										lastname: res.last_name,
 										email: res.email,
 										password: res.id,
-										imagesource: res.picture.data.url
+										imagesource: res.picture.data.url,
+										status: true
 									}
 									this.$http.post('api/user', data)
 									.then(response => {

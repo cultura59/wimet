@@ -47,7 +47,7 @@ class UserController extends Controller
             $user->tipo_clientes_id = 1;
             $user->imagesource = ($request->imagesource) ? $request->imagesource : "/img/wimet_ic_avatar_black_big.svg";
             $user->isAdmin = 0;
-            $user->status = ($request->status == false) ? $request->status : true;
+            $user->status = ($request->status == false || $request->status == null) ? false : true;
             $user->save();
             if($user->status) {
                 $this->registerHubspot($user);
@@ -56,7 +56,7 @@ class UserController extends Controller
             }
             return $user;
         }catch(\Exception $e){
-            return response('Los campos no son correctos', 400);
+            return response('Los campos no son correctos, error: ' . $e->getMessage(), 400);
         }
     }
 

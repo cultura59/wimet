@@ -57,7 +57,7 @@
                         <span v-if="(!espacio.categorias.length > 0)">-</span>
                     </td>
                     <td>
-                        <router-link :to="`/admin/espacio/${espacio.id}/imagenes`" title="Imagenes">
+                        <router-link :to="`/espacio/${espacio.id}/imagenes`" title="Imagenes">
                             <i class="material-icons">perm_media</i>
                         </router-link>
                     </td>
