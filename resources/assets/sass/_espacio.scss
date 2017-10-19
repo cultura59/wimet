@@ -31,11 +31,11 @@
       border: 1px solid $wt-white;
       font-size: 12px;
       font-weight: 500;
-      color: #212121;    
+      color: $wt-primary-grey;
       margin: 400px 0 0 100px;
       &:hover {
-        background-color: #212121;
-        border: 1px solid #212121;
+        background-color: $wt-primary-pig;
+        border: 1px solid $wt-primary-pig;
         color: #ffffff;
       }
     }

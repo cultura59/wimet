@@ -52,7 +52,7 @@
 			</div>
 			<div class="wt-center-column wt-m-top-2">
 				<label for="title">Título del evento</label>
-				<input id="title" placeholder="Ej.: Workshop Google for entrepreneurs" class="wt-dropdown">
+				<input v-model="title" id="title" placeholder="Ej.: Workshop Google for entrepreneurs" class="wt-dropdown">
 			</div>
 			<div class="wt-center-column wt-m-top-2">
 				<label for="mensaje">Mensaje</label>
@@ -65,6 +65,9 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
 	        </div>
 	        <div v-if="user != ''">
 	            <button v-show="btnSend" class="btn-reserva wt-m-top-2" @click="sendReserva()">CONTACTAR AL ANFITRIÓN</button>
+				<button v-show="!btnSend" class="btn-reserva wt-m-top-2">
+					<img src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="50px" />
+				</button>
 				<!--button class="btn-reserva-transparent wt-m-top-1">QUIERO VISITAR EL ESPACIO</button-->
 	        </div>
 	        <div v-if="user == ''">
@@ -131,6 +134,7 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                 this.messageError = '';
             },
             sendReserva() {
+        	    console.log(this.category);
                 if(this.people == "") {
                     this.messageError = `Debe ingresar cantidad de invitados`;
                     setInterval(function () {
@@ -149,6 +153,21 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                 let fin = this.$moment(this.fin);
                 let totalHoras = this.checkDiffDates(fin, inicio);
 
+                if(this.title == "") {
+                    this.messageError = `Debe ingresarle un nombre a su evento`;
+                    setInterval(function () {
+                        this.messageError = '';
+                    }.bind(this), 4000);
+                    return;
+                }
+                if(this.inicio == "" && this.fin == "") {
+                    this.messageError = `Debe ingresar una fecha de inicio y fin`;
+                    setInterval(function () {
+                        this.messageError = '';
+                    }.bind(this), 4000);
+                    return;
+                }
+                this.loadingConsulta = false;
                 this.btnSend = false;
                 let body = {
                     'title': this.title,
@@ -169,7 +188,7 @@ Ej: Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vam
                 localStorage.removeItem("consultaFin");
                 this.$http.post(`api/sendreserva`, body)
                 .then(res => {
-                    this.messageError = `La consulta fue enviada, consulte su e-mail`;
+                    window.location.href = `/thankyou/${this.user.id}`;
                 }, err => {
                 	this.btnSend = true;
                     console.log(err);
