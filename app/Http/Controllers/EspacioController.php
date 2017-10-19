@@ -137,21 +137,27 @@ class EspacioController extends Controller
      */
     public function getEspacio($categoriaId, $id)
     {
-        $espacio = DB::table('espacios')
-                    ->join('categoria_espacio', 'espacios.id', '=', 'categoria_espacio.espacio_id')
-                    ->join('prices', function($join) {
-                        $join->on('espacios.id', '=', 'prices.espacio_id');
-                        $join->on('categoria_espacio.categoria_id', '=', 'prices.categoria_id');
-                    })
-                    ->join('images', 'espacios.id', '=', 'images.espacio_id')
-                    ->join('users', 'espacios.user_id', '=', 'users.id')
-                    ->select('espacios.name', 'espacios.quanty', 'images.name as image', 'prices.price', 'users.imagesource')
-                    ->where([
-                        ['espacios.id', '=', $id],
-                        ['categoria_espacio.categoria_id', '=', $categoriaId],
-                    ])
-                    ->orderBy('images.imgorder', 'ASC')
-                    ->get();
+        $query = DB::table('espacios');
+        $query->join('categoria_espacio', 'espacios.id', '=', 'categoria_espacio.espacio_id');
+        // Join con precios por Id categoria y Id de espacio
+        $query->join('prices', function($join) {
+            $join->on('espacios.id', '=', 'prices.espacio_id');
+            $join->on('categoria_espacio.categoria_id', '=', 'prices.categoria_id');
+        });
+        // Join de imagenes ordenadas por imgorder y Id
+        $query->join('images', function($join) {
+            $join->on('espacios.id', '=', 'images.espacio_id');
+            $join->orderBy('images.imgorder');
+            $join->orderBy('images.id');
+        });
+        $query->join('users', 'espacios.user_id', '=', 'users.id');
+        $query->select('espacios.name', 'espacios.quanty', 'images.name as image', 'prices.price', 'users.imagesource');
+        $query->where([
+            ['espacios.id', '=', $id],
+            ['categoria_espacio.categoria_id', '=', $categoriaId],
+        ]);
+        $query->groupBy('espacios.id');
+        $espacio = $query->get();
         return $espacio;
     }
 

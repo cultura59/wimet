@@ -1,20 +1,20 @@
 <template>
     <div>
-        <header class="home-espacio-header cursor-pointer" id="imagen-principal" v-on:click="openModal();currentSlide(1)">
-            <button class="home-espacio-header__boton" v-on:click="openModal();currentSlide(1)">VER FOTOS</button>
+        <header class="home-espacio-header cursor-pointer" id="imagen-principal" @click="openModal();currentSlide(1)">
+            <button class="home-espacio-header__boton" @click="openModal();currentSlide(1)">VER FOTOS</button>
         </header>
 
         <div v-show="imagesModal" class="imagesModal">
-            <span class="close-header cursor" v-on:click="closeModal()">&times;</span>
-            <div class="imagesModal__content" @keyup.right="plusSlides(1)" @keyup.left="plusSlides(-1)">
+            <span class="close-header cursor" @click="closeModal()">&times;</span>
+            <div class="imagesModal__content">
                 <div v-if="(image360 !== null)" class="imagesModal__content__mySlides">
-                  <iframe :src="image360" frameborder="0" width="100%" height="620"></iframe>
+                  <iframe :src="image360" frameborder="0" class="materpot"></iframe>
                 </div>
                 <div class="imagesModal__content__mySlides" v-for="img in images">
                     <img :src="urlImagen(img.name)" class="header-img">
                 </div>
-                <a class="prev" v-on:click="plusSlides(-1)">&#10094;</a>
-                <a class="next" v-on:click="plusSlides(1)">&#10095;</a>
+                <a class="prev" @click="plusSlides(-1)">&#10094;</a>
+                <a class="next" @click="plusSlides(1)">&#10095;</a>
             </div>
         </div>
     </div>
@@ -110,6 +110,10 @@
                         width: auto;
                         height: 620px;
                     }
+                    .materpot {
+                        width: 1024px;
+                        height: 620px
+                    }
                 }
             }
         }
@@ -141,6 +145,10 @@
                     text-align: center;
                     .header-img {
                         width: 100%;
+                    }
+                    .materpot{
+                        width: 100%;
+                        height: 620px
                     }
                 }
             }
