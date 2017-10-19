@@ -148,10 +148,12 @@
 							<span class="price"><b><i class="fa fa-clock-o" aria-hidden="true"></i></b> ${{$price->price}}.-</span>
 							<span class="min-hours">mínimo {{$price->minhours}} horas</span>
 						</div>
+						@if($price->daily != "" || $price->daily != null)
 						<div class="wt-center-column wt-m-lf-3">
 							<span class="price"><b><i class="fa fa-clock-o" aria-hidden="true"></i></b> ${{$price->daily}}.-</span>
 							<span class="min-hours">Por jornada</span>
 						</div>
+						@endif
 					</div>
 					<span class="min-hours">NOTA: El precio se encuentra sujeto a modificaciones en función de la temporada/ época del año.</span>
 				</div>
