@@ -35,6 +35,10 @@ class EventoController extends Controller
                 ->orderBy('mensajes.id', 'DESC')
                 ->limit(1);
         });
+        // Chequeo si se manda el filtro de estados
+        if($request->has('statusEvento')) {
+            $query->where('eventos.estado', '=', $request->input('statusEvento'));
+        }
         $query->orderBy('mensajes.created_at', 'desc')->groupBy('eventos.id');
         $mensajes = $query->paginate(20);
         return $mensajes;

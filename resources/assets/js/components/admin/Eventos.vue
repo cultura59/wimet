@@ -1,6 +1,17 @@
 <template>
     <div>
         <h2>Eventos</h2>
+        <div class="row">
+            <div class="col s12 m3 offset-m9">
+                <label>Filtros pasos</label>
+                <select v-model="statusEvento" @change="selectEstado()">
+                    <option value="">Seleccione estado</option>
+                    <option value="consulta">Consulta</option>
+                    <option value="seguimiento">Seguimiento</option>
+                </select>
+            </div>
+        </div>
+        <span>Total eventos: {{eventos.total}}</span>
         <table class="striped responsive-table">
             <thead>
                 <tr>
@@ -38,7 +49,7 @@
         <div class="wt-center-center">
             <a v-if="(this.eventos.prev_page_url != null)" href="#" @click="backevento($event)">
                 <i class="material-icons">navigate_before</i>
-            </a><br>
+            </a>
             <a v-if="(this.eventos.next_page_url != null)" href="#" @click="nextevento($event)">
                 <i class="material-icons">navigate_next</i>
             </a>
@@ -49,7 +60,8 @@
     export default {
         data() {
             return {
-                eventos: ''
+                eventos: '',
+                statusEvento: ''
             }
         },
         mounted() {
@@ -88,7 +100,20 @@
                 .catch(function(err) {
                     console.log('Fetch Error :-S', err);
                 });
-            }
+            },
+            selectEstado() {
+                this.$http.get(`api/evento?statusEvento=${this.statusEvento}`)
+                    .then(res => {
+                        this.eventos = (res.body);
+                    }, err => {
+                        console.log(err);
+                    });
+            },
         }
     }
 </script>
+<style scoped>
+    select {
+        display: block;
+    }
+</style>
