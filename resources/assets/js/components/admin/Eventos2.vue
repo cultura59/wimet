@@ -36,20 +36,20 @@
                 <h4 class="center-align white-text">Reservado</h4>
                 <div
                     class="card-panel white"
-                    v-for="seguimiento in seguimientos.data"
-                    :key="seguimiento.id"
-                    @click="showEventoModal(seguimiento)">
-                    <span>{{seguimiento.titulo_cliente}}</span>
+                    v-for="reservado in reservados.data"
+                    :key="reservado.id"
+                    @click="showEventoModal(reservado)">
+                    <span>{{reservado.titulo_cliente}}</span>
                 </div>
             </div>
             <div class="cardboard__item">
                 <h4 class="center-align white-text">Visita</h4>
                 <div
                     class="card-panel white"
-                    v-for="seguimiento in seguimientos.data"
-                    :key="seguimiento.id"
-                    @click="showEventoModal(seguimiento)">
-                    <span>{{seguimiento.titulo_cliente}}</span>
+                    v-for="visita in visitas.data"
+                    :key="visita.id"
+                    @click="showEventoModal(visita)">
+                    <span>{{visita.titulo_cliente}}</span>
                 </div>
             </div>
         </div>
@@ -154,6 +154,8 @@
                 consultas: [],
                 seguimientos: [],
                 presupuestos: [],
+                reservados: [],
+                visitas: [],
                 mensajes: [],
                 mensajeSelected: {},
                 showStep: 'resumen'
@@ -163,6 +165,8 @@
             this.getConsultas();
             this.getSeguimientos();
             this.getPresupuestos();
+            this.getReservados();
+            this.getVisitas();
         },
         methods: {
             getConsultas() {
@@ -189,6 +193,22 @@
                     console.log(err);
                 });
             },
+            getReservados(){
+                this.$http.get('api/evento?statusEvento=reservado')
+                    .then(res => {
+                        this.reservados = (res.body);
+                    }, err => {
+                        console.log(err);
+                    });
+            },
+            getVisitas(){
+                this.$http.get('api/evento?statusEvento=visita')
+                .then(res => {
+                    this.visitas = (res.body);
+                }, err => {
+                    console.log(err);
+                });
+            },
             showEventoModal(event) {
                 this.eventSelect = event;
                 this.eventoModal = true;
@@ -204,6 +224,8 @@
                     this.getConsultas();
                     this.getSeguimientos();
                     this.getPresupuestos();
+                    this.getReservados();
+                    this.getVisitas();
                     this.eventoModal = false;
                     this.showStep = 'resumen';
                     alert('El evento fue modificado!');
