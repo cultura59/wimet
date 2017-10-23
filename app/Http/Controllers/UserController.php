@@ -71,13 +71,18 @@ class UserController extends Controller
         try {
             $user = User::where('email', $id)->first();
             if($user == null) {
-                return response('No se encontro el usuario', 400);
+                $userById = User::where('id', $id)->first();
+                if($userById == null) {
+                    return response('No se encontro el usuario', 400);
+                }else {
+                    return $userById;
+                }
             }else {
                 return $user;
             }
             return $user;
         }catch(\Exception $e){
-            return response('Los campos no son correctos', 500);
+            return response('Error interno, ' . $e->getMessage(), 500);
         }
     }
 

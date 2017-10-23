@@ -66,6 +66,9 @@
                             <a :class="{active: (showStep == 'resumen')}" href="#" @click="changeStep($event, 'resumen')">Resumen</a>
                         </li>
                         <li class="tab col s3">
+                            <a :class="{active: (showStep == 'usuarios')}" href="#" @click="changeStep($event, 'usuarios')">Usuarios</a>
+                        </li>
+                        <li class="tab col s3">
                             <a :class="{active: (showStep == 'mensajes')}" href="#" @click="changeStep($event, 'mensajes')">Mensajes</a>
                         </li>
                         <li class="tab col s3">
@@ -99,6 +102,17 @@
                                 <option value="perdido">Perdido</option>
                             </select>
                         </li>
+                    </ul>
+                    <ul class="collection with-header" v-show="(showStep == 'usuarios')">
+                        <li class="collection-header"><h5>Usuarios</h5></li>
+                        <li class="collection-item">Dueño - Nombre:
+                            <span>{{duenio.firstname}} {{duenio.lastname}}</span>
+                        </li>
+                        <li class="collection-item">Dueño - Email: <span>{{duenio.email}}</span></li>
+                        <li class="collection-item">Cliente - Nombre:
+                            <span>{{cliente.firstname}} {{cliente.lastname}}</span>
+                        </li>
+                        <li class="collection-item">Cliente - Email: <span>{{cliente.email}}</span></li>
                     </ul>
                     <div class="collection with-header" v-show="(showStep == 'mensajes')">
                         <table class="highlight center responsive-table">
@@ -157,6 +171,8 @@
                 reservados: [],
                 visitas: [],
                 mensajes: [],
+                duenio: {},
+                cliente: {},
                 mensajeSelected: {},
                 showStep: 'resumen'
             }
@@ -238,6 +254,10 @@
                 if(step == "mensajes") {
                     this.getmensajes();
                 }
+                if(step == "usuarios") {
+                    this.getDuenio();
+                    this.getCliente();
+                }
                 this.showStep = step;
             },
             getmensajes() {
@@ -270,6 +290,22 @@
                     .then(res => {
                         this.mensajes[key] = res.body;
                         alert('El mensaje fue enviado!');
+                    }, err => {
+                        console.log(err);
+                    });
+            },
+            getDuenio() {
+                this.$http.get(`api/user/${this.eventSelect.user_id}`)
+                .then(res => {
+                    this.duenio = res.body;
+                }, err => {
+                    console.log(err);
+                });
+            },
+            getCliente() {
+                this.$http.get(`api/user/${this.eventSelect.cliente_id}`)
+                    .then(res => {
+                        this.cliente = res.body;
                     }, err => {
                         console.log(err);
                     });

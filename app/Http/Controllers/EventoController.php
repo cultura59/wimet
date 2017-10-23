@@ -20,17 +20,7 @@ class EventoController extends Controller
     {
         $query = DB::table('eventos');
         $query->select(
-            'eventos.id',
-            'eventos.estilo_espacios_id',
-            'eventos.espacio_id',
-            'eventos.titulo_cliente',
-            'eventos.reserva_desde',
-            'eventos.reserva_hasta',
-            'eventos.total_horas',
-            'eventos.sub_total',
-            'eventos.invitados',
-            'eventos.notas',
-            'eventos.estado',
+            'eventos.*',
             'espacios.name',
             'mensajes.created_at',
             'mensajes.mensaje'
