@@ -168,4 +168,19 @@
             }
         }
     }
+    .cardboard {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        &__item {
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid #FFFFFF;
+            padding: 1em;
+            cursor: pointer;
+            height: 100vh;
+            overflow-y: auto;
+        }
+    }
 </style>

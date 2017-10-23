@@ -66,9 +66,19 @@ class MensajeController extends Controller
             $mensaje->status = false;
             $mensaje->save();
 
+            // Modifico el estado para la primer respuesta
+            if($evento->estado == "consulta"){
+                $evento->estado = "seguimiento";
+                $evento->save();
+            }
+
             /* Datos de envio de email (Consulta al dueño */
             $emails = ['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'];
             if($request->presupuesto) {
+                // Cambio el estado del evento a propuesta
+                $evento->estado = "propuesta";
+                $evento->save();
+
                 Mail::to($user->email)
                     ->bcc($emails)
                     ->queue(new SolicitudPresupuesto($evento, $espacio, $cliente, $user, $categoria));

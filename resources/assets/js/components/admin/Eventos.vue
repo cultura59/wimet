@@ -8,6 +8,7 @@
                     <option value="">Seleccione estado</option>
                     <option value="consulta">Consulta</option>
                     <option value="seguimiento">Seguimiento</option>
+                    <option value="propuesta">Propuesta</option>
                 </select>
             </div>
         </div>

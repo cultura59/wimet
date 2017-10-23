@@ -65,6 +65,7 @@
 							<li class="tab"><router-link to="/usuarios">Usuarios</router-link></li>
 							<li class="tab"><router-link to="/espacios">Espacios</router-link></li>
 							<li class="tab"><router-link to="/eventos">Eventos</router-link></li>
+							<li class="tab"><router-link to="/eventos2">Eventos Trello</router-link></li>
 						</ul>
 					</div>
 				</nav>

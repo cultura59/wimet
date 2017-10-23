@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Evento;
 use App\Espacio;
 use DB;
+use League\Event\Event;
+use Mockery\Exception;
 
 class EventoController extends Controller
 {
@@ -19,11 +21,15 @@ class EventoController extends Controller
         $query = DB::table('eventos');
         $query->select(
             'eventos.id',
+            'eventos.estilo_espacios_id',
+            'eventos.espacio_id',
             'eventos.titulo_cliente',
             'eventos.reserva_desde',
             'eventos.reserva_hasta',
             'eventos.total_horas',
             'eventos.sub_total',
+            'eventos.invitados',
+            'eventos.notas',
             'eventos.estado',
             'espacios.name',
             'mensajes.created_at',
@@ -86,7 +92,13 @@ class EventoController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $evento = Evento::find($request->id);
+            $evento->update($request->all());
+            return $evento;
+        }catch(\Exception $e){
+            return response('Los campos no son correctos: ' . $e->getMessage(), 400);
+        }
     }
 
     /**
