@@ -10,6 +10,9 @@ use App\Evento;
 use App\User;
 use Mail;
 use DB;
+use App\Mail\MensajeAnfitrion;
+use App\Mail\MensajeUsuario;
+use App\Mail\SolicitudPresupuesto;
 
 class MensajeController extends Controller
 {
@@ -22,16 +25,16 @@ class MensajeController extends Controller
     {
         try {
             $mensajes = DB::table('mensajes')
-                ->join('users', 'mensajes.user_id', '=', 'users.id')
-                ->select(
-                    'users.firstname',
-                    'users.imagesource',
-                    'mensajes.mensaje',
-                    'mensajes.created_at'
-                )
-                ->where('evento_id', $id)
-                ->orderBy('id', 'desc')
-                ->get();
+                            ->join('users', 'mensajes.user_id', '=', 'users.id')
+                            ->select(
+                                'users.firstname',
+                                'users.imagesource',
+                                'mensajes.mensaje',
+                                'mensajes.created_at'
+                            )
+                            ->where('evento_id', $id)
+                            ->orderBy('id', 'desc')
+                            ->get();
             return $mensajes;
         }catch(\Exception $e){
             return response('Los campos no son correctos', 400);
@@ -59,42 +62,31 @@ class MensajeController extends Controller
             $categoria = Categoria::find($evento->estilo_espacios_id);
 
             /* Datos de envio de email (Consulta al dueño */
-            $datos = [
-                'mensaje' => $request->mensaje,
-                'evento' => $evento,
-                'espacio' => $espacio,
-                'imagenEspacio' => $espacio->images[0]->name,
-                'usuario' => $user,
-                'cliente' => $cliente,
-                'categoria' => $categoria
-            ];
-            if($request->presupuesto) {
-                Mail::send('emails.solicitud-presupuesto', $datos, function ($message) use ($user) {
-                    $message->from('info@wimet.co', 'Wimet');
-                    $message->to($user->email)
-                        ->bcc('info@wimet.co')
-                        ->subject('Tienes una nueva solicitud de un presupuesto');
-                });
-            }else {
-                if ($request->user_id != $espacio->user_id) {
-                    Mail::send('emails.mensaje-anfitrion', $datos, function ($message) use ($user) {
-                        $message->from('info@wimet.co', 'Wimet');
-                        $message->to($user->email)
-                            ->bcc('info@wimet.co')
-                            ->subject('Tienes un nuevo mensaje sobre un evento');
-                    });
-                } else {
-                    Mail::send('emails.mensaje-usuario', $datos, function ($message) use ($cliente) {
-                        $message->from('info@wimet.co', 'Wimet');
-                        $message->to($cliente->email)
-                            ->bcc('info@wimet.co')
-                            ->subject('Tienes un nuevo mensaje sobre tu evento');
-                    });
-                }
-            }
-            /* Datos de envio de email (Consulta al dueño */
             $mensaje = new Mensaje($request->all());
+            $mensaje->status = false;
             $mensaje->save();
+
+            // Modifico el estado para la primer respuesta
+            if($evento->estado == "consulta"){
+                $evento->estado = "seguimiento";
+            }
+            $evento->save();
+            /* Datos de envio de email (Consulta al dueño */
+            $emails = ['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'];
+            if($request->presupuesto) {
+                // Cambio el estado del evento a propuesta
+                $evento->estado = "propuesta";
+                $evento->save();
+
+                Mail::to($user->email)
+                    ->bcc($emails)
+                    ->queue(new SolicitudPresupuesto($evento, $espacio, $cliente, $user, $categoria));
+                $mensaje->status = true;
+                $mensaje->save();
+            }
+            // Mando datos al equipo de wimet
+            Mail::to($emails)->queue(new MensajeAnfitrion($evento, $espacio, $cliente, $user, $categoria, $mensaje));
+
             return response($mensaje, 204);
         }catch(\Exception $e){
             return response('Los campos no son correctos, '.$e->getMessage(), 400);
@@ -111,19 +103,17 @@ class MensajeController extends Controller
     {
         try {
             $mensajes = DB::table('mensajes')
-                ->select(
-                    'users.firstname',
-                    'users.imagesource',
-                    'mensajes.mensaje',
-                    'mensajes.created_at',
-                    'mensajes.user_id',
-                    'tipo_clientes.nombre'
-                )
-                ->join('users', 'mensajes.user_id', '=', 'users.id')
-                ->join('tipo_clientes', 'users.tipo_clientes_id', '=', 'tipo_clientes.id')
-                ->where('evento_id', $id)
-                ->orderBy('mensajes.id', 'desc')
-                ->get();
+                            ->select(
+                                'mensajes.*',
+                                'users.firstname',
+                                'users.imagesource',
+                                'tipo_clientes.nombre'
+                            )
+                            ->join('users', 'mensajes.user_id', '=', 'users.id')
+                            ->join('tipo_clientes', 'users.tipo_clientes_id', '=', 'tipo_clientes.id')
+                            ->where('evento_id', $id)
+                            ->orderBy('mensajes.id', 'desc')
+                            ->paginate(15);
             return $mensajes;
         }catch(\Exception $e){
             return response('Los campos no son correctos, ' . $e->getMessage(), 400);
@@ -139,7 +129,14 @@ class MensajeController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        try {
+            $mensajes = Mensaje::find($id);
+            $mensajes->mensaje = $request->mensaje;
+            $mensajes->save();
+            return $mensajes;
+        }catch(\Exception $e){
+            return response('Los campos no son correctos, error: ' . $e->getMessage(), 400);
+        }
     }
 
     /**
@@ -155,7 +152,44 @@ class MensajeController extends Controller
             $mensajes->delete();
             return response('El mensaje fue borrado', 200);
         }catch(\Exception $e){
-            return response('Los campos no son correctos', 400);
+            return response('Los campos no son correctos, error: ' . $e->getMessage(), 400);
+        }
+    }
+
+    /**
+     *
+     * @brief Funcion que envía el email
+     * @param $id
+     */
+    public function sendEmailConsulta($id) {
+        try {
+            // Obtengo datos del mensaje
+            $mensaje = Mensaje::find($id);
+            // Obtengo datos del evento
+            $evento = Evento::find($mensaje->evento_id);
+            // Obtengo datos del espacio
+            $espacio = Espacio::where('id', $evento->espacio_id)->with('images')->first();
+            // Obtengo los datos del dueño
+            $user = User::find($evento->user_id);
+            // Obtengo los datos del organizador
+            $cliente = User::find($evento->cliente_id);
+            // Obtengo los datos de la categoria
+            $categoria = Categoria::find($evento->estilo_espacios_id);
+
+            /* Datos de envio de email (Consulta al dueño */
+            if ($mensaje->user_id != $espacio->user_id) {
+                Mail::to($user->email)->queue(new MensajeAnfitrion($evento, $espacio, $cliente, $user, $categoria, $mensaje));
+            } else {
+                Mail::to($cliente->email)->queue(new MensajeUsuario($evento, $espacio, $cliente, $user, $categoria, $mensaje));
+            }
+
+            // Actualizo el status del mensaje
+            $mensaje->status = true;
+            $mensaje->save();
+
+            return $mensaje;
+        }catch (\Exception $e) {
+            return response('Los campos no son correctos, error: ' . $e->getMessage(), 400);
         }
     }
 }
