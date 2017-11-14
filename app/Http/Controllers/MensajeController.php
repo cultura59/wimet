@@ -75,7 +75,7 @@ class MensajeController extends Controller
                 Mail::send('emails.solicitud-presupuesto', $datos, function ($message) use ($user) {
                     $message->from('info@wimet.co', 'Wimet');
                     $message->to($user->email)
-                        ->bcc('info@wimet.co')
+                        ->bcc(['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'])
                         ->subject('Tienes una nueva solicitud de un presupuesto');
                 });
             }else {
@@ -83,14 +83,14 @@ class MensajeController extends Controller
                     Mail::send('emails.mensaje-anfitrion', $datos, function ($message) use ($user) {
                         $message->from('info@wimet.co', 'Wimet');
                         $message->to($user->email)
-                            ->bcc('info@wimet.co')
+                            ->bcc(['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'])
                             ->subject('Tienes un nuevo mensaje sobre un evento');
                     });
                 } else {
                     Mail::send('emails.mensaje-usuario', $datos, function ($message) use ($cliente) {
                         $message->from('info@wimet.co', 'Wimet');
                         $message->to($cliente->email)
-                            ->bcc('info@wimet.co')
+                            ->bcc(['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'])
                             ->subject('Tienes un nuevo mensaje sobre tu evento');
                     });
                 }
