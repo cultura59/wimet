@@ -19,7 +19,7 @@ class DashboardController extends Controller
     public function index()
     {
         $categorias = categoria::all();
-        return view('dashboard.index', array(
+        return view('layouts.dashboard', array(
             'categorias' => $categorias
         ));
     }

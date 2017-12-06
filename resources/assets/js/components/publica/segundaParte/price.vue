@@ -14,51 +14,37 @@
 				</button>
 			</div>
 			<div>
-				<div class="wt-center-center">
+				<div>
 					<div class="content-bpx-price">
 						<div class="content-bpx-price__left">
-							<input 
-								type="text" 
-								placeholder="$ 100.-" 
-								class="content-bpx-price__left__input"
-								v-model="categorySelected.price">
-							<button class="content-bpx-price__left__btn1" @click="incrementPrice()">+</button>
-							<button class="content-bpx-price__left__btn2" @click="decrementPrice()">-</button>
-						</div>
-						<label for="por-hora">Por hora</label>
-					</div> 
-					<div class="content-bpx-price">
-						<div class="content-bpx-price__left">
-							<input 
-								type="text" 
-								placeholder="$ 100.-" 
+							<input
+								type="text"
+								placeholder="$ 100.-"
 								class="content-bpx-price__left__input"
 								v-model="categorySelected.daily">
 							<button class="content-bpx-price__left__btn1" @click="incrementDaily()">+</button>
 							<button class="content-bpx-price__left__btn2" @click="decrementDaily()">-</button>
 						</div>
 						<label for="por-hora">Por día</label>
-					</div> 
-				</div>
-				<div>
-					<div class="content-bpx-price">
-						<div class="content-bpx-price__left">
-							<input 
-								type="text" 
-								placeholder="3 hs.-" 
-								class="content-bpx-price__left__input"
-								v-model="categorySelected.minhours">
-							<button class="content-bpx-price__left__btn1" @click="incrementHour()">+</button>
-							<button class="content-bpx-price__left__btn2" @click="decrementHour()">-</button>
-						</div>
-						<label for="por-hora">Mínimo de horas</label>
 					</div>
-					<span>(puedes establecer una cantidad mínima de horas a contratar)</span>
 				</div>
 				<div class="check-all">
 					<input type="checkbox" id="all-categories" v-model="allCategories" @change="changeAllCategories()">
 					<label class="all-categories" for="all-categories">Establecer precios para todas las categorias.</label>
 				</div>
+                <div class="check-all">
+                    <input type="checkbox" id="all-rangos" v-model="rangoPrecios" @change="changeAllCategories()">
+                    <label class="all-categories" for="all-rangos">Rango de precios</label>
+                </div>
+				<div v-if="rangoPrecios">
+					<input type="text" class="select-range" placeholder="Invitados desde">
+					<input type="text" class="select-range" placeholder="Invitados hasta">
+                    <input type="text" class="select-range" placeholder="Precio">
+					<button class="btn-primary-pig">+</button>
+				</div>
+                <div>
+
+                </div>
 			</div>
 		</div>
 		<div class="buttons" id="second-buttons">
@@ -82,6 +68,7 @@
 				categories: [],
 				categorySelected: {},
 				allCategories: false,
+                rangoPrecios: false,
                 errorMsg: false
 			}
 		},
@@ -91,28 +78,17 @@
         methods: {
         	getCategories() {
         		this.categories = eval(this.prices);
+        		console.log(this.categories);
         		this.categorySelected = this.categories[0];
             },
             selectCategory(cat) {
             	this.categorySelected = cat;
-            },
-            incrementPrice() {
-            	this.categorySelected.price = this.categorySelected.price + 1;
-            },
-            decrementPrice() {
-            	this.categorySelected.price = this.categorySelected.price - 1;
             },
             incrementDaily() {
             	this.categorySelected.daily = this.categorySelected.daily + 1;
             },
             decrementDaily() {
             	this.categorySelected.daily = this.categorySelected.daily - 1;
-            },
-            incrementHour() {
-            	this.categorySelected.minhours = this.categorySelected.minhours + 1;
-            },
-            decrementHour() {
-            	this.categorySelected.minhours = this.categorySelected.minhours - 1;
             },
             changeAllCategories() {
             	if(this.allCategories == true) {
@@ -150,6 +126,9 @@
             backPage(e) {
             	e.preventDefault();
             	window.location.href = `/publicar/tercer-paso/espacio/${this.espacioId}/reglas`;
+            },
+            selectRangos() {
+                this.rangoPrecios = !this.rangoPrecios;
             }
         }
 	}
@@ -243,4 +222,7 @@
 			}
 		}
 	}
+    .select-range {
+        padding: .4em;
+    }
 </style>

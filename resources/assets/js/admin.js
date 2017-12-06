@@ -1,7 +1,7 @@
 require('./bootstrap');
 import Auth from './packages/auth/Auth.js';
 import VueRouter from 'vue-router';
-import {router} from './components/routes';
+import {router} from './components/admin/routes';
 
 Vue.use(Auth);
 Vue.use(VueRouter);

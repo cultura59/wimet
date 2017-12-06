@@ -472,7 +472,6 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
         animation-name: animatetop;
         animation-duration: 0.4s
     }
-
     .modal-reserva__content-fechas {
         display: flex;
         justify-content: center;

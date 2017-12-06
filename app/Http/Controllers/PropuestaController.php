@@ -15,13 +15,13 @@ class PropuestaController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
         try {
-            $propuestas = Propuesta::where('evento_id', $id)->get();
+            $propuestas = Propuesta::where('evento_id', $request->eventoId)->get();
             return $propuestas;
         }catch(\Exception $e){
-            return response('No se encontraron propuestas asociadas al evento', 400);
+            return response('No se encontraron propuestas asociadas al evento, ' . $e->getMessage(), 400);
         }
     }
 

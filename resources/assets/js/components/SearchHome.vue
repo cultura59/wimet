@@ -1,19 +1,19 @@
 <template>
     <div>
-    	<div class="wt-center-block" id="search-desktop">
-    		<div class="dropdown">
+    	<div id="search-desktop">
+    		<div class="content-dropbtn-select"><div class="dropdown">
                 <button class="dropbtn-left" @click="showSelectUbicacion()">
                     <span>{{ubicacion}}</span>
                     <i class="fa fa-sort-desc" aria-hidden="true"></i>
                 </button>
                 <div v-if="stUbicacion" class="dropdown__content-left">
-                    <span class="contaniner-categorias" @click="selectUbucacion('CABA')">CABA</span>
-                    <span class="contaniner-categorias" @click="selectUbucacion('Buenos Aires')">Gran Buenos Aires</span>
+                    <span class="contaniner-categorias" @click="selectUbicacion('CABA')">CABA</span>
+                    <span class="contaniner-categorias" @click="selectUbicacion('Buenos Aires')">Gran Buenos Aires</span>
                 </div>
-            </div>
-            <div class="dropdown">
+            </div></div>
+            <div class="content-dropbtn-select"><div class="dropdown">
                 <button class="dropbtn-right" @click="showSelectCategoria()">
-                    <span>{{(categoria == '') ? 'Qué estás planificando?' : categoria.name}}</span>
+                    <span>{{(categoria == '') ? 'QUÉ ESTÁS PLANIFICANDO?' : categoria.name}}</span>
                     <i class="fa fa-sort-desc" aria-hidden="true"></i>
                 </button>
                 <div v-if="stCategoria" class="dropdown__content">
@@ -22,8 +22,8 @@
                         <span class="subCategoria">{{showSubCategories(cat.sub_category)}}</span>
                     </div>
                 </div>
-            </div>
-            <button class="wt-btn-primary" @click="searchEspacios()">BUSCAR</button>
+            </div></div>
+            <div class="content-dropbtn-btn"><button class="search-home-btn" @click="searchEspacios()">BUSCAR</button></div>
     	</div>
         <div class="wt-center-column" id="search-mobile">
             <div class="dropdown wt-m-bot-1">
@@ -32,13 +32,13 @@
                     <i class="fa fa-sort-desc" aria-hidden="true"></i>
                 </button>
                 <div v-if="stUbicacion" class="dropdown__content">
-                    <span class="contaniner-categorias" @click="selectUbucacion('CABA')">CABA</span>
-                    <span class="contaniner-categorias" @click="selectUbucacion('Buenos Aires')">Buenos Aires</span>
+                    <span class="contaniner-categorias" @click="selectUbicacion('CABA')">CABA</span>
+                    <span class="contaniner-categorias" @click="selectUbicacion('Buenos Aires')">Buenos Aires</span>
                 </div>
             </div>
             <div class="dropdown wt-m-bot-1">
                 <button class="dropbtn" @click="showSelectCategoria()">
-                    <span>{{(categoria == '') ? 'Qué estás planificando?' : categoria.name}}</span>
+                    <span>{{(categoria == '') ? 'QUÉ ESTÁS PLANIFICANDO?' : categoria.name}}</span>
                     <i class="fa fa-sort-desc" aria-hidden="true"></i>
                 </button>
                 <div v-if="stCategoria" class="dropdown__content">
@@ -56,7 +56,7 @@
 	export default {
 		data() {
             return {
-              ubicacion: 'Ubicación',
+              ubicacion: 'UBICACIÓN',
               categoria: '',
               stUbicacion: false,
               stCategoria: false,
@@ -67,13 +67,19 @@
             this.getCategories();
         },
         methods: {
-        	selectUbucacion(ubi) {
+        	selectUbicacion(ubi) {
         		this.ubicacion = ubi;
         		this.stUbicacion = false;
+        		if(this.categoria == '') {
+        		    this.stCategoria = true;
+                }
         	},
         	selectCategoria(cat) {
         		this.categoria = cat;
         		this.stCategoria = false;
+                if(this.ubicacion == 'Ubicación') {
+                    this.stUbicacion = false;
+                }
         	},
             showSelectUbicacion() {
             	this.stUbicacion = !this.stUbicacion;
@@ -105,11 +111,15 @@
                 if(this.ubicacion !== 'Ubicación') {
                     url += `?ubicacion=${this.ubicacion}`;
                 }else{
-                    url += `?ubicacion=`;
+                    this.stUbicacion = true;
+                    return;
                 }
                 
                 if(this.categoria.id !== undefined) {
                     url += `&categoria=${this.categoria.id}`;
+                }else {
+                    this.stCategoria = true;
+                    return;
                 }
 
         		window.location.href = url += `&quanty=0-1000&price=100-100000`;
@@ -125,3 +135,28 @@
         }
 	}
 </script>
+<style lang="sass" scoped>
+    .search-home-btn {
+        width: 100%;
+        display: inline-block;
+        margin-bottom: 0;
+        font-weight: normal;
+        text-align: center;
+        vertical-align: middle;
+        cursor: pointer;
+        border: 1px solid transparent;
+        white-space: nowrap;
+        padding: 1em 2em;
+        line-height: 1.6;
+        font-size: 12px !important;
+        color: white;
+        background-color: #FC5289;
+        border-radius: 0 !important;
+        border-top-right-radius: 2px !important;
+        border-bottom-right-radius: 2px !important;
+        height: 100%;
+        &:hover, &:focus {
+            color: white !important;
+        }
+    }
+</style>

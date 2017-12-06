@@ -8,20 +8,18 @@
 require('./bootstrap');
 
 Vue.component('home-search', require('./components/home/HomeSearch.vue'));
+Vue.component('home-espacio', require('./components/home/Espacio.vue'));
 Vue.component('title-home', require('./components/home/titleHome.vue'));
 Vue.component('wimet-login', require('./components/WimetLogin.vue'));
 Vue.component('button-publica', require('./components/home/buttonPublica.vue'));
 Vue.component('search-home', require('./components/SearchHome.vue'));
-Vue.component('search-filter', require('./components/SearchFilter.vue'));
-Vue.component('header-espacio', require('./components/HeaderEspacio.vue'));
+Vue.component('header-espacio', require('./components/home/HeaderEspacio.vue'));
 Vue.component('confirm-reserva', require('./components/ConfirmReserva.vue'));
 Vue.component('espacio-search', require('./components/EspacioSearch.vue'));
 Vue.component('list-images', require('./components/ListImages.vue'));
 Vue.component('aside-reserva', require('./components/AsideReserva.vue'));
 Vue.component('consulta-reserva', require('./components/ConsultaReserva.vue'));
-Vue.component('aside-dashboard', require('./components/AsideDashboard.vue'));
 
-Vue.component('index-publica', require('./components/publica/indexPublica.vue'));
 Vue.component('navbar-primero', require('./components/publica/primerParte/navbarPrimera.vue'));
 Vue.component('navbar-segundo', require('./components/publica/segundaParte/navbarSegunda.vue'));
 Vue.component('navbar-tercero', require('./components/publica/terceraParte/navbarTercera.vue'));
@@ -39,6 +37,7 @@ Vue.component('dasboard-chats', require('./components/dashboard/Chat.vue'));
 Vue.component('dasboard-nueva-propuesta', require('./components/dashboard/NuevaPropuesta.vue'));
 Vue.component('dasboard-confirmar', require('./components/dashboard/Confirmar.vue'));
 
+import {store} from './components/home/Services';
 import Auth from './packages/auth/Auth.js';
 Vue.use(Auth);
 
@@ -64,9 +63,10 @@ Vue.http.options.root = `http://${ip}`;
 
 Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
 
-const app = new Vue({
-    el: '#home-espacio'
-});
-
 import moment from 'moment';
 Vue.prototype.$moment = moment;
+
+const app = new Vue({
+    el: '#home-espacio',
+    store
+});

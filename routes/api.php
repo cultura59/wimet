@@ -17,26 +17,12 @@ Route::get('/usersession', function (Request $request) {
     return $request->user();
 })->middleware('auth:api');
 
-Route::get('images/{filename}', function ($filename)
-{
-    $path = storage_path() . '/' . $filename;
-
-    if(!File::exists($path)) abort(404);
-
-    $file = File::get($path);
-    $type = File::mimeType($path);
-
-    $response = Response::make($file, 200);
-    $response->header("Content-Type", $type);
-
-    return $response;
-});
-
 Route::resource('espacio', 'EspacioController');
 Route::get('/getespacio/categoria/{categoriaId}/espacio/{id}', 'EspacioController@getEspacio')->middleware('throttle:200,1');
 Route::resource('categoria', 'CategoriaController');
 Route::resource('tag', 'TagController');
 Route::resource('servicio', 'ServicioController');
+Route::resource('caracteristica', 'CharacteristicsController');
 Route::resource('tipocliente', 'TipoClienteController');
 Route::resource('consulta', 'ConsultaController');
 Route::resource('image', 'ImageController');
@@ -52,6 +38,9 @@ Route::get('characteristics', 'ApiHelpperController@characteristics');
 Route::get('estiloespacio', 'ApiHelpperController@estiloespacio');
 Route::get('rules', 'ApiHelpperController@rules');
 
+Route::get('mpresponse', 'MercadoPagoController@responseMP');
+
+Route::post('/customlogin', 'UserController@customLogin');
 Route::post('sendreserva', 'HomeController@send_reserva');
 Route::get('geteventos/{id}', 'UserController@getEventos');
 Route::get('changepassword/{id}/password/{contra}', 'UserController@cambiarContraseniaRedes');
@@ -61,5 +50,7 @@ Route::get('listpropuestas/{id}', 'PropuestaController@getPropuestas');
 Route::get('propuesta/{id}/rechazada', 'PropuestaController@rechazar');
 Route::get('mensaje/{id}/send', 'MensajeController@sendEmailConsulta');
 Route::get('searchespacios', 'EspacioController@searchEspacios');
+Route::get('eventosdias/{id}', 'EventoController@getDias');
 Route::put('userupdate/{id}', 'UserController@updateUserConfirm');
 Route::put('updatepass/{id}', 'UserController@cambiarContrasenia')->name('updatepass');
+Route::get('emailexist/{email}', 'UserController@emailExist');

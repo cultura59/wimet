@@ -1,11 +1,11 @@
 import VueRouter from 'vue-router';
-import IndexAdmin from './admin/index.vue';
-import UsuariosAdmin from './admin/Usuarios.vue';
-import EspaciosAdmin from './admin/Espacios.vue';
-import EventosAdmin from './admin/Eventos.vue';
-import Eventos2Admin from './admin/Eventos2.vue';
-import ImagenesAdmin from './admin/Imagenes.vue';
-import MensajesAdmin from './admin/Mensajes.vue';
+import IndexAdmin from './index.vue';
+import UsuariosAdmin from './Usuarios.vue';
+import EspaciosAdmin from './Espacios.vue';
+import EventosAdmin from './Eventos.vue';
+import Eventos2Admin from './Eventos2.vue';
+import ImagenesAdmin from './Imagenes.vue';
+import MensajesAdmin from './Mensajes.vue';
 
 const routes = [
     { path: '/', component: IndexAdmin },

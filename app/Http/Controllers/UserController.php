@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use Log;
 use App\User;
 use App\Mail\ConfirmAccount;
+use \Laravel\Passport\Http\Controllers\AccessTokenController;
 
 class UserController extends Controller
 {
@@ -109,29 +111,34 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $user = User::find($id);
-        if ($request->hasFile('imagesource')) {
-            // upload the image //
-            $imageUser                      = $request->file('imagesource');
-            $destination_fotoprincipales    = 'avatars/';
-            $filename_imageUser             = str_random(8).'_'.$imageUser->getClientOriginalName();
+        try {
+            $user = User::find($id);
+            if($user == '' || $user == null) {
+                return response('No se encontro el usuario en la base', 404);
+            }
+            // Se chequea si existe la imagen en la request
+            if ($request->hasFile('imagesource')) {
+                // upload the image //
+                $imageUser = $request->file('imagesource');
+                $destination_fotoprincipales = 'avatars/';
+                $filename_imageUser = str_random(8) . '_' . $imageUser->getClientOriginalName();
 
-            $imageUser->move($destination_fotoprincipales, $filename_imageUser);
+                $imageUser->move($destination_fotoprincipales, $filename_imageUser);
 
-            $user->imagesource          = "/" . $destination_fotoprincipales . $filename_imageUser;
+                $user->imagesource = "/" . $destination_fotoprincipales . $filename_imageUser;
+            }
+            $user->firstname = $request->firstname;
+            $user->lastname = $request->lastname;
+            $user->email = $request->email;
+            $user->phone = ($request->phone) ? $request->phone : "";
+            $user->businessName = ($request->businessName) ? $request->businessName : "";
+            $user->industry = ($request->industry) ? $request->industry : "";
+            $user->personaldescription = ($request->personaldescription) ? $request->personaldescription : "";
+            $user->save();
+            return $user;
+        }catch (\Exception $e) {
+            return response('Error al editar el usuario', 500);
         }
-
-        $user->firstname            = $request->firstname;
-        $user->lastname             = $request->lastname;
-        $user->email                = $request->email;
-        $user->phone                = ($request->phone) ? $request->phone : "";
-        $user->businessName         = ($request->businessName) ? $request->businessName : "";
-        $user->industry             = ($request->industry) ? $request->industry : "";
-        $user->personaldescription  = ($request->personaldescription) ? $request->personaldescription : "";
-        $user->save();
-        return view('dashboard.datos', array(
-            'user' => $user
-        ));
     }
 
     /**
@@ -341,6 +348,16 @@ class UserController extends Controller
         }catch(\Exception $e){
             return response('No se pudo modificar la contraseña: ' . $e->getMessage(), 400);
         }
+    }
+
+    /**
+     * @brief Funcion que controla si existe o no el email
+     * @param $email
+     * @return bool
+     */
+    public function emailExist($email) {
+        $user = User::where('email', '=', $email)->first();
+        return $user;
     }
 
     /**

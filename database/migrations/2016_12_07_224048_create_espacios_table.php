@@ -35,15 +35,15 @@ class CreateEspaciosTable extends Migration
                 $table->string('country')->nullable();
                 $table->string('long')->nullable();
                 $table->string('lat')->nullable();
-                $table->double('securitydeposit', 15, 2)->default(0)->nullable();
                 $table->enum('cancellationflexibility', array('flexible', 'moderado', 'estricto'))->nullable();
                 $table->enum('type', array('comercial', 'privado'))->nullable();
                 $table->integer('step')->default(1)->nullable();
                 $table->text('image360')->nullable();
-                $table->integer('order');
+                $table->increments('order');
+                $table->boolean('rango_precio')->default(false);
+                $table->boolean('status')->default(false);
                 $table->timestamps();
                 $table->softDeletes();
-                $table->boolean('status')->default(false);
             });
         }
     }

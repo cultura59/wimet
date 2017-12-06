@@ -2,14 +2,14 @@
 	<div>
 		<div class="mensajes-main">
 			<div class="mensajes-main__links">
-				<div>
+				<div v-if="$store.getters.getUser.tipo_clientes_id > 1" >
 					<a href="#" 
 						:class="(showMensajesType == 1) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
-						@click="changeType($event, 1)">Como organizador
+						@click="changeType($event, 1)">COMO ORGANIZADOR
 					</a>
 					<a href="#" 
 						:class="(showMensajesType == 2) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
-						@click="changeType($event, 2)">Como anfitrión
+						@click="changeType($event, 2)">COMO ANFITRIÓN
 					</a>
 				</div>
 				<div>
@@ -26,31 +26,53 @@
 				</div>
 			</div>
 			<div class="mensajes">
-				<div 
-					v-if="(eventoselect !== '')"
-					v-for="(mensaje, key) in mensajes"
-					@click="redirectMensajes($event, mensaje.id)"
-					class="cursor-pointer mensaje row"
-				>
-					<div class="col-md-1">
-						<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
+				<div v-if="!loadingData">
+					<div
+						v-if="(eventoselect !== '')"
+						v-for="(mensaje, key) in mensajes"
+						class="cursor-pointer mensaje row"
+					>
+						<router-link :to="`/mensaje/${mensaje.evento_id}`">
+							<div class="col-md-1">
+								<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
+							</div>
+							<div class="col-md-2">
+								<div class="wt-center-column">
+									<span>{{mensaje.firstname}}</span>
+									<span>{{$moment(mensaje.created_at).locale('es').format("MMM DD")}}</span>
+								</div>
+							</div>
+							<div class="col-md-7">
+								<p>{{recortarTexto(mensaje.mensaje)}}...</p>
+							</div>
+							<div class="col-md-2">
+								<span class="status">{{mensaje.estado}}</span>
+							</div>
+						</router-link>
 					</div>
-					<div class="col-md-2">
-						<div class="wt-center-column">
-							<span>{{mensaje.firstname}}</span>
-							<span>{{mensaje.created_at}}</span>
-						</div>
-					</div>
-					<div class="col-md-7">
-						<p>{{recortarTexto(mensaje.mensaje)}}...</p>
-					</div>
-					<div class="col-md-2">
-						<span>{{mensaje.estado}}</span>
+					<div v-if="(mensajes.length == 0)">
+						<p>No hay consultas aún...</p>
 					</div>
 				</div>
-                <div v-if="(mensajes.length == 0)">
-                    <p>No hay consultas aún...</p>
-                </div>
+				<div v-if="loadingData">
+					<div class="white-widget grey-bg author-area">
+						<div class="auth-info row">
+							<div class="timeline-wrapper">
+								<div class="timeline-item">
+									<div class="animated-background">
+										<div class="background-masker header-top"></div>
+										<div class="background-masker header-left"></div>
+										<div class="background-masker header-right"></div>
+										<div class="background-masker header-bottom"></div>
+										<div class="background-masker subheader-left"></div>
+										<div class="background-masker subheader-right"></div>
+										<div class="background-masker subheader-bottom"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>
@@ -59,7 +81,7 @@
 	export default {
 		data() {
 			return {
-				user: {},
+                loadingData: true,
 				mensajes: '',
 				evento: '',
 				espacio: '',
@@ -69,24 +91,12 @@
 			}
 		},
 		mounted() {
-            this.getUserAuthenticated();
+            this.getMensajes('');
         },
 		methods: {
-			getUserAuthenticated() {
-				if(!this.$auth.isAuthenticated()) {
-	                swal({
-	                  title: 'No estas loguedo',
-	                  text: "Debes iniciar sesión para hacer una pregunta o reserva.",
-	                  imageUrl: "/avatars/default.png"
-	                });
-	                return;
-	            }else {
-	            	this.user = this.$auth.getUser();
-        			this.getMensajes('');
-				}
-			},
 			getMensajes(filtro) {
-                let url = `api/mensajes/${this.user.id}/type/${this.showMensajesType}`;
+			    this.loadingData = true;
+                let url = `api/mensajes/${this.$store.getters.getUser.id}/type/${this.showMensajesType}`;
 
                 if(filtro !== ''){
                     url += `?estado=${filtro}`;
@@ -96,14 +106,11 @@
 				.then(res => {
 					this.mensajes = res.body;
 					this.eventoselect = this.mensajes[0];
+					this.loadingData = false;
 				});
 			},
 			recortarTexto(texto) {
 				return texto.substring(0, 140);
-			},
-			redirectMensajes(e, eventoId){
-			    e.preventDefault();
-				window.location.href = `/dashboard/user/${this.user.id}/evento/${eventoId}/chats`;
 			},
 			changeType(e, type) {
 				e.preventDefault();
@@ -116,9 +123,8 @@
 <style lang="sass" scoped>
 	.mensajes-main {
 		padding: 1em 5em;
-		height: 930px;
-		width: 100%;
-		float: left;
+		width: 85%;
+		margin: 0 auto;
 		&__links{
 			padding: 1em 0 2em 0;
 			display: flex;
@@ -134,7 +140,8 @@
 				&:hover, &:focus {
 					transition: none;
 					text-decoration: none;
-					border-bottom: 4px solid #e2385a;
+					border-bottom: 2px solid #d17f87;
+					padding-bottom: .5em;
 				}
 			}
 			&--active {
@@ -143,15 +150,16 @@
 				font-weight: 500;
 				letter-spacing: -0.1px;
 				text-align: justify;
-				color: #e2385a;
+				color: #d17f87;
 				text-decoration: none;
-				border-bottom: 4px solid #e2385a;
+				border-bottom: 2px solid #d17f87;
                 margin-right: 1em;
+				padding-bottom: .5em;
 			}
 		}
 		.mensajes {
 			width: 100%;
-			height: 600px;
+			height: 30em;
 			overflow-y: auto;
 			overflow-x: hidden;
 			.mensaje {
@@ -176,6 +184,9 @@
 						justify-content: baseline;
 						align-items: center;
 					}
+				}
+				.status {
+					color: #d17f87;
 				}
 			}
 			.mensaje--active {

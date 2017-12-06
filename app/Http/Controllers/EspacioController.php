@@ -38,10 +38,18 @@ class EspacioController extends Controller
             'access'
         );
         $query->orderBy('id', 'DESC');
+        // Filtro por status
+        if($request->has('status')) {
+            $query->where('status', '=', $request->input('status'));
+        }
+        // Filtro por step
         if($request->has('step')) {
             $query->where('step', '=', $request->input('step'));
         }
-        $querystringArray = $request->only(['step','page']);
+        if($request->has('user')){
+            $query->where('user_id', '=', $request->input('user'));
+        }
+        $querystringArray = $request->only(['status','step','page']);
         $espacios = $query->paginate(20)->appends($querystringArray);
         return $espacios;
     }
@@ -93,18 +101,18 @@ class EspacioController extends Controller
     public function show($id)
     {
         $espacio = Espacio::where('id', $id)
-                    ->with(
-                        'prices', 
-                        'categorias', 
-                        'servicios',
-                        'estilosEspacio',
-                        'rules',
-                        'images',
-                        'characteristics',
-                        'access'
-                    )
-                    ->first();
-        $espacio->description = strip_tags($espacio->description);
+            ->with(
+                'prices',
+                'categorias',
+                'servicios',
+                'estilosEspacio',
+                'rules',
+                'images',
+                'characteristics',
+                'access'
+            )
+            ->first();
+        $espacio->description = $espacio->description;
         return $espacio;
     }
 
@@ -587,7 +595,7 @@ class EspacioController extends Controller
     public function searchEspacios(Request $request) {
         $querystringArray = $request->only(['ubicacion','categoria','price','quanty']);
         $query = Espacio::query();
-        $query->select('id');
+        $query->select('id', 'long', 'lat');
         try {
             //Chequeo si existe el filtro por ubicacion
             if ($request->has('ubicacion')) {
@@ -606,14 +614,22 @@ class EspacioController extends Controller
                 $query->whereHas('priceByCategory',
                     function($subQuery) {
                         $precios = explode("-", \Request::input('price'));
-                        $subQuery->whereBetween('price', [$precios[0], $precios[1]]);
+                        if($precios[1] == "5000") {
+                            $subQuery->where('price', '>=', $precios[0]);
+                        }else {
+                            $subQuery->whereBetween('price', [$precios[0], $precios[1]]);
+                        }
                     }
                 );
             }
             //Chequeo si existe el filtro por quanty
             if($request->has('quanty')) {
                 $quanties = explode("-", \Request::input('quanty'));
-                $query->whereBetween('quanty', [$quanties[0], $quanties[1]]);
+                if($quanties[1] == '5000') {
+                    $query->where('quanty', '>=', $quanties[0]);
+                }else {
+                    $query->whereBetween('quanty', [$quanties[0], $quanties[1]]);
+                }
             }
             // Filtro por espacios activos
             $query->where('espacios.status', '=', true);

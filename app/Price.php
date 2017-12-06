@@ -12,4 +12,8 @@ class Price extends Model
 	{
 		return $this->hasMany('App\Categoria');
 	}
+
+	public function getRangos(){
+        return $this->hasMany('App\RangoPrecios');
+    }
 }

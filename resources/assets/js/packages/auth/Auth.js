@@ -31,16 +31,6 @@ export default function(Vue) {
 			}else {
 				return false;
 			}
-		},
-		setUser (user) {
-			let userString = JSON.stringify(user);
-			let encodedString = btoa(userString);
-			localStorage.setItem('user', encodedString);
-		},
-		getUser () {
-			let decodedString = atob(localStorage.getItem('user'));
-			let userJson = JSON.parse(decodedString);
-			return userJson;
 		}
 	}
 	Object.defineProperties(Vue.prototype, {

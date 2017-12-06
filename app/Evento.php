@@ -51,6 +51,14 @@ class Evento extends Model
 		return $this->hasMany('App\Propuesta');
 	}
 
+    /**
+     * @fn getEventosDias()
+     * @brief funcion que retorna todos los dias asociados al evento
+     */
+	public function eventosdias() {
+	    $this->hasMany('App\EventosDias');
+    }
+
     // this is a recommended way to declare event handlers
     protected static function boot() {
         parent::boot();

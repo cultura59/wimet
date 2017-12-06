@@ -18,6 +18,7 @@
 
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
         <script src="https://apis.google.com/js/api:client.js"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZUp-A4EcLNbPonxHhbySVWpP9kzZQQUw&callback"></script>
                 
         <!-- Scripts -->
         <script>
@@ -55,20 +56,12 @@
     <body>
         <div id="home-espacio">
             <!-- Header Home -->
-            <header class="header-with">
-                <nav class="header-navbar container-fluid">
-                    <a href="/">
-                        <img class="img-responsive" src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="158" />
-                    </a>
-                    <wimet-login type-login="btn-login link-hov" type-svg="dark" userloged="link-user-dark"></wimet-login>
-                </nav>
-            </header>
-
+            <wimet-login fixed="true"></wimet-login>
             <!-- main -->
             <main>
                 @yield('content')
             </main>
-        </div>
+            </div>
         <script type="text/javascript">
             goog_snippet_vars = function() {
                 var w = window;

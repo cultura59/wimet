@@ -1,3 +1,4 @@
+@import "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css";
 .header-dashboard {
     width: 85%;
     height: 60px;
@@ -157,8 +158,8 @@
     height: 1050px;
 }
 .dashboard-container {
-    width: 85%;
-    height: 108%;
+    width: 100%;
+    height: 100%;
     float: right;
     margin-left: auto;
     background-color: $wt-white;
@@ -181,10 +182,7 @@
         }
     }
     .dashboard-body {
-        padding: 1em 5em;
-        height: 900px;
-        width: 60%;
-        float: left;
+        width: 100%;
         .mensajes-alert {
             background-color: rgba(252, 233, 237, 0.87);
             padding: 1em;

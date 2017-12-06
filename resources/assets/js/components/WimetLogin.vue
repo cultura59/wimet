@@ -1,122 +1,128 @@
 <template>
-	<div class="actions">
-		<ul>
-			<li>
-	            <a href="#" @click="publicaUrl($event)" class="wt-btn-transparent">
-	                PUBLICA TU ESPACIO
-	            </a>
-	        </li>
-	        <li>
-				<button v-if="!authenticated" :class="typeLogin" @click="openModalLogin()">Ingresar</button>
-				<template v-if="authenticated">
-					<a href="#" id="menu-user" :class="userloged">{{ user.firstname }}</a>
-				    <ul class="menue-list">
-				        <li class="menue-list__item">
-				            <a href="#" @click="reloadPage(`/dashboard/user/${user.id}/datos`, $event)" style="color: #333;">Editar perfil</a>
-				        </li>
-				        <li class="menue-list__item">
-				            <a href="#" @click="reloadPage(`/dashboard/user/${user.id}/misespacios`, $event)" style="color: #333;">Mi cuenta</a>
-				        </li>
-				        <li class="menue-list__item active">
-				            <a href="#" @click="reloadPage(`/publica`, $event)" style="color: #333;">PUBLICAR TU ESPACIO</a>
-				        </li>
-				        <li class="menue-list__last-item">
-				            <a href="#" @click="logout($event)" style="color: #333;">Salir</a>
-				        </li>
-				    </ul>
-			    </template>
-			</li>
-		</ul>
-		<template v-if="showModalLogin">
-			<div class="login-modal" @click="closeModalEvent($event)">
-				<div class="login-modal__content">
-					<h3>¡Te estábamos esperando!</h3>
-					<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
-					<span class="close-modal" @click="closeModals()">×</span>
-					<div class="container-social">
-						<login-facebook urlredirect="0"></login-facebook>
-						<login-google></login-google>
-					</div>
-					<div class="login-modal-title">
-						<span class="text-center">Inicia sesión con tu email</span>
-					</div>
-					<div class="container-login">
-						<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
-						<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" @keyup.enter="login()"/>
-						<button v-if="showBtnLogin" class="container-login__login" @click="login()">Iniciar sesión</button>
-						<button v-if="!showBtnLogin" class="container-login__login" @click="login()">
-							<img src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="50px" />
-						</button>
-					</div>
-					<div class="container-footer">
-						<span class="container-footer__pregunta">¿No tienes cuenta?</span>
-						<span class="container-footer__registro" @click="openModalRegistro()">Registrate</span>
-					</div>
-				</div>
-			</div>
-		</template>
-		<template v-if="showModalRegistro">
-			<div class="login-modal" @click="closeModalEvent($event)">
-				<div class="login-modal__content">
-					<h3>¡Crea tu cuenta y comienza a explorar!</h3>
-					<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
-					<span class="close-modal" @click="closeModals()">×</span>
-					<div class="container-social">
-						<login-facebook urlredirect="0"></login-facebook>
-						<login-google></login-google>
-					</div>
-					<div class="login-modal-title">
-						<span class="text-center">Regístrate con tu email</span>
-					</div>
-					<div class="container-login">
-						<input type="text" class="container-login__email" placeholder="Nombre" v-model="firstname" />
-						<input type="text" class="container-login__email" placeholder="Apellido" v-model="lastname" />
-						<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
-						<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" />
-						<button v-if="showBtnLogin" class="container-login__login" @click="registrar()">Regístrate</button>
-						<button v-if="!showBtnLogin" class="container-login__login" @click="login()">
-							<img src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="50px" />
-						</button>
-						<div class="container-terminos">
-							<input type="checkbox" id="terminos" v-model="terminos" style="display:none">
-							<label for="terminos" class="container-terminos__texto">Acepto los términos y condiciones.</label>
+	<header class="login-header" :class="{'header-fixed': (fixed == 'true')}">
+		<nav class="login-header__navbar">
+			<a href="/"><img src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="158" class="img-responsive"></a>
+			<div class="login-header__navbar__actions">
+				<ul class="login-header__navbar__actions__menue">
+					<template v-if="authenticated">
+						<li>
+							<a href="#" @click="reloadPage(`/dashboard#/mensajes`, $event)" >Mensajes</a>
+						</li>
+						<li>
+							<img class="header-avatar" :src="$store.getters.getUser.imagesource" :alt="$store.getters.getUser.firstname">
+							<a href="#" id="menu-user" :class="userloged">{{ $store.getters.getUser.firstname }}</a>
+							<ul class="menue-list">
+								<li class="menue-list__item" @click="reloadPage(`/dashboard#/perfil`, $event)">
+									<a href="#" style="color: #333;">Mi perfil</a>
+								</li>
+								<li class="menue-list__item" @click="reloadPage(`/dashboard#/favoritos`, $event)">
+									<a href="#" style="color: #333;">Favoritos</a>
+								</li>
+								<li class="menue-list__item active" @click="reloadPage(`/publica`, $event)">
+									<a href="#" style="color: #fc5289;">PUBLICAR TU ESPACIO</a>
+								</li>
+								<li class="menue-list__last-item" @click="logout($event)">
+									<a href="#" style="color: #333;">Salir</a>
+								</li>
+							</ul>
+						</li>
+					</template>
+					<template v-if="!authenticated">
+						<li>
+							<a href="#" @click="openModalLogin()">Ingresar</a>
+						</li>
+						<li>
+							<a href="#" @click="openModalRegistro()">Registrarme</a>
+						</li>
+						<li>
+							<button @click="publicaUrl($event)" class="btn-publica-login">
+								PUBLICA TU ESPACIO
+							</button>
+						</li>
+					</template>
+				</ul>
+				<template v-if="showModalLogin">
+					<div class="login-modal" @click="closeModalEvent($event)">
+						<div class="login-modal__content">
+							<h3>¡Te estábamos esperando!</h3>
+							<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
+							<span class="close-modal" @click="closeModals()">×</span>
+							<div class="container-social">
+								<login-facebook urlredirect="0"></login-facebook>
+								<login-google></login-google>
+							</div>
+							<div class="login-modal-title">
+								<span class="text-center">Inicia sesión con tu email</span>
+							</div>
+							<div class="container-login">
+								<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
+								<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" @keyup.enter="login()"/>
+								<button v-if="showBtnLogin" class="container-login__login" @click="login()">Iniciar sesión</button>
+								<button v-if="!showBtnLogin" class="container-login__login" @click="login()">
+									<img src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="50px" />
+								</button>
+							</div>
+							<div class="container-footer">
+								<span class="container-footer__pregunta">¿No tienes cuenta?</span>
+								<span class="container-footer__registro" @click="openModalRegistro()">Registrate</span>
+							</div>
 						</div>
 					</div>
-					<div class="container-footer">
-						<span class="container-footer__pregunta">¿Ya tienes cuenta?</span>
-						<span class="container-footer__registro" @click="openModalLogin()">Inicia sesión</span>
+				</template>
+				<template v-if="showModalRegistro">
+					<div class="login-modal" @click="closeModalEvent($event)">
+						<div class="login-modal__content">
+							<h3>¡Crea tu cuenta y comienza a explorar!</h3>
+							<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
+							<span class="close-modal" @click="closeModals()">×</span>
+							<div class="container-social">
+								<login-facebook urlredirect="0"></login-facebook>
+								<login-google></login-google>
+							</div>
+							<div class="login-modal-title">
+								<span class="text-center">Regístrate con tu email</span>
+							</div>
+							<div class="container-login">
+								<input type="text" class="container-login__email" placeholder="Nombre" v-model="firstname" />
+								<input type="text" class="container-login__email" placeholder="Apellido" v-model="lastname" />
+								<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
+								<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" />
+								<button v-if="showBtnLogin" class="container-login__login" @click="registrar()">Regístrate</button>
+								<button v-if="!showBtnLogin" class="container-login__login" @click="login()">
+									<img src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="50px" />
+								</button>
+								<div class="container-terminos">
+									<input type="checkbox" id="terminos" v-model="terminos" style="display:none">
+									<label for="terminos" class="container-terminos__texto">Acepto los términos y condiciones.</label>
+								</div>
+							</div>
+							<div class="container-footer">
+								<span class="container-footer__pregunta">¿Ya tienes cuenta?</span>
+								<span class="container-footer__registro" @click="openModalLogin()">Inicia sesión</span>
+							</div>
+						</div>
 					</div>
-				</div>
+				</template>
 			</div>
-		</template>
-	</div>
+		</nav>
+	</header>
 </template>
 <script>
 	import loginFacebook from './loginFacebook.vue';
 	import loginGoogle from './loginGoogle.vue';
+	import {registerLogin} from '../mixins/registerLogin';
 	import swal from 'sweetalert';
 	export default {
-		props: [
-			'typeLogin',
-			'typeSvg',
-			'userloged'
-		],
+        mixins: [registerLogin],
+		props: ['fixed'],
 		components: {
 			'login-facebook': loginFacebook,
 			'login-google': loginGoogle
 		},
 		data() {
 			return {
-				email: '',
-				password: '',
-				imagesource: '',
 				showModalLogin: false,
-				showModalRegistro: false,
-				authenticated: this.$auth.isAuthenticated(),
-				user: {},
-				msgError: '',
-				terminos: true,
-				showBtnLogin: true
+				showModalRegistro: false
 			}
 		},
 		mounted() {
@@ -142,86 +148,6 @@
 				if (!isClickInside) {
 					this.showModalLogin = false;
 					this.showModalRegistro = false;
-				}
-			},
-			registrar() {
-				if(!this.terminos) {
-					this.msgError = 'Debe aceptar los terminos y condiciones';
-					setInterval(() => {
-						this.msgError = '';
-					}, 3000);
-					return;
-				}
-				this.showBtnLogin = false;
-				let data = {
-					firstname: this.firstname,
-					lastname: this.lastname,
-					email: this.email,
-					password: this.password,
-					imagesource: this.imagesource,
-					status: false
-				}
-				this.$http.post('api/user', data)
-				.then(res => {
-					if(res.status == 200) {
-						this.showModalRegistro = false;
-                        swal('Cuenta registrada!', 'Se ha enviado un email a su correo', 'success');
-					}else {
-					    this.showBtnLogin = true;
-						swal('Ups, algo salio mal', res.message, 'error');
-					}
-				});
-			},
-			login() {
-				this.showBtnLogin = false;
-				let data = {
-					client_id: 2,
-					client_secret: 'XjZ3yp33zTrPdF0vWPLPH1sQ62swzzbBVvAnJa0A',
-					grant_type: 'password',
-					username: this.email,
-					password: this.password
-				}
-				//this.showModalLogin = false;
-				this.$http.post('oauth/token', data)
-				.then(res => {
-					if(res.status == 200) {
-						this.$auth.setToken(res.body.access_token, res.body.expires_in + Date.now());
-						this.showModalLogin = false;
-						setTimeout(() => {
-							location.reload(); 
-						}, 1000);
-					}
-				}, err => {
-					this.showBtnLogin = true;
-					this.msgError = `El email ${this.email} no existe, registralo :)`;
-					setInterval(() => {
-						this.msgError = '';
-					}, 3000);
-				});
-			},
-			logout(event) {
-				event.preventDefault();
-				this.$auth.destroyToken();
-				gapi.auth.signOut();
-				FB.getLoginStatus((resStatusFb) => {
-					resStatusFb.status === 'connected';
-					FB.logout();
-				});
-				window.localStorage.clear();
-				location.href = '/';
-			},
-			getUserAuthenticated() {
-				let vm = this;
-				if(this.$auth.isAuthenticated()) {
-					if (localStorage.getItem("user") !== null){
-						this.user = this.$auth.getUser();
-					} else {
-						vm.$http.get('api/usersession')
-						.then(res => {
-							this.$auth.setUser(res.body);
-							this.user = this.$auth.getUser();
-						});
-					}
 				}
 			},
 			reloadPage(url, event) {
@@ -383,5 +309,60 @@
 			    position: relative;
 	    	}
 	    }
+	}
+	.header-avatar {
+		width: 40px;
+		border-radius: 50%;
+		margin-right: 1em;
+	}
+	.login-header {
+		width: 100%;
+		height: 60px;
+		background-color: white;
+		color: #333;
+		position: relative;
+		z-index: 1200;
+		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1) !important;
+		&__navbar {
+			height: 100%;
+			display: flex;
+			justify-content: flex-start;
+			align-items: center;
+			margin-right: auto;
+			margin-left: auto;
+			padding-left: 15px;
+			padding-right: 15px;
+			&__actions {
+				margin-left: auto;
+				&__menue {
+					display: flex;
+					justify-content: center;
+					align-items: center;
+					list-style: none;
+					margin: 0px;
+					li {
+						float: left;
+						padding: 1em;
+						text-decoration: none;
+						a {
+							text-decoration: none;
+						}
+						.btn-publica-login {
+							border: 2px solid #212121;
+							background-color: transparent;
+							color: #212121;
+							padding: .5em;
+							&:hover {
+								border: 2px solid #FC5289;
+								color: #FC5289;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+	.header-fixed {
+		position: fixed;
 	}
 </style>

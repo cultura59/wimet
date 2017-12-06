@@ -235,14 +235,19 @@ class HomeController extends Controller
             $evento->invitados = $request->invitados;
             $evento->cliente_id = $request->clientId;
             $evento->user_id = $espacio->user_id;
-            $evento->reserva_desde = $request->reserva_desde;
-            $evento->reserva_hasta = $request->reserva_hasta;
             $evento->espacio_id = $request->espacioId;
             $evento->sub_total = $request->subTotal;
             $evento->total_horas = $request->totalHoras;
             $evento->descripcion_consulta = $request->mensaje;
             $evento->estado = 'consulta';
             $evento->save();
+            $days = [];
+            foreach ($request->dias as $dia) {
+                $days[] = array("evento_id" => $evento->id, "fecha" => $dia["date"], "tipo" => $dia["workingDay"]);
+            }
+            // Insert eventos dias
+            DB::table('eventos_dias')->insert($days);
+
             // Insert en la tabla mensajes
             DB::table('mensajes')->insert([
                 ["evento_id" => $evento->id, "user_id" => $request->clientId, "mensaje" => $request->mensaje]
@@ -258,11 +263,10 @@ class HomeController extends Controller
             Mail::to($cliente->email)
                 ->bcc($emails)
                 ->queue(new ConsultaUsuario($evento, $espacio, $cliente));
-
             // FIN -- Datos de envio de email (Consulta al dueño)
             return $evento;
         }catch(\Exception $e){
-            return response('Los campos no son correctos' . $e->getMessage(), 400);
+            return response('Los campos no son correctos ' . $e->getMessage(), 400);
         }
     }
 

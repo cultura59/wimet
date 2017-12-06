@@ -30,4 +30,12 @@ class Propuesta extends Model
 							'condiciones',
 							'iva'
 						];
+
+    /**
+     * @fn getPropuestasDias()
+     * @brief funcion que retorna todos los dias asociados a la propuesta
+     */
+    public function getPropuestasDias() {
+        $this->hasMany('App\PropuestasDias');
+    }
 }

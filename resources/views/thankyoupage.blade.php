@@ -30,7 +30,7 @@
                 display.textContent = seconds;
 
                 if (--timer < 0) {
-                    window.location = "/dashboard/user/{{$id}}/mensajes";
+                    window.location = "/dashboard#/mensaje/{{$id}}";
                 }
             }, 1000);
         }

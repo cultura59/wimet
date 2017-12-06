@@ -22,6 +22,7 @@ class CreateMensajesTable extends Migration
                 $table->foreign('user_id')->references('id')->on('users');
                 $table->text('mensaje')->nullable();
                 $table->boolean('status')->default(true);
+                $table->boolean('viewed')->default(false);
                 $table->timestamps();
             });
         }

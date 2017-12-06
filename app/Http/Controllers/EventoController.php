@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Mensaje;
 use Illuminate\Http\Request;
 use App\Evento;
+use App\EventosDias;
 use App\Espacio;
 use DB;
-use League\Event\Event;
-use Mockery\Exception;
 
 class EventoController extends Controller
 {
@@ -115,48 +115,21 @@ class EventoController extends Controller
         }else {
             $whereType = 'eventos.user_id';
         }
+        //Query de eventos
+        $queryEventos = Evento::query();
+        $queryEventos->select('id');
         if ($request->has('estado')) {
-            //Query de mensajes
-            $mensajes = DB::table('eventos')
-                ->select(
-                    'eventos.id',
-                    'eventos.estado',
-                    'mensajes.created_at',
-                    'mensajes.mensaje',
-                    'users.firstname',
-                    'users.imagesource'
-                )
-                ->join('users', 'eventos.user_id', '=', 'users.id')
-                ->join('mensajes', function ($join) {
-                    $join->on('eventos.id', '=', 'mensajes.evento_id')
-                        ->orderBy('mensajes.id', 'DESC')
-                        ->limit(1);
-                })
-                ->where($whereType, $id)
-                ->where('eventos.estado', $request->input('estado'))
-                ->orderBy('mensajes.created_at', 'desc')
-                ->get();
-        }else {
-            //Query de mensajes
-            $mensajes = DB::table('eventos')
-                ->select(
-                    'eventos.id',
-                    'eventos.estado',
-                    'mensajes.created_at',
-                    'mensajes.mensaje',
-                    'users.firstname',
-                    'users.imagesource'
-                )
-                ->join('users', 'eventos.user_id', '=', 'users.id')
-                ->join('mensajes', function ($join) {
-                    $join->on('eventos.id', '=', 'mensajes.evento_id')
-                        ->orderBy('mensajes.id', 'DESC')
-                        ->limit(1);
-                })
-                ->where($whereType, $id)
-                ->orderBy('mensajes.created_at', 'desc')
-                ->get();
+            $queryEventos->where('eventos.estado', $request->input('estado'));
         }
+        $eventosIds = $queryEventos->where($whereType, $id)->get();
+
+        //Query de mensajes
+        $queryMensjes = DB::table('mensajes');
+        $queryMensjes->join('users', 'mensajes.user_id', '=', 'users.id');
+        $queryMensjes->join('eventos', 'mensajes.evento_id', '=', 'eventos.id');
+        $queryMensjes->whereIn('evento_id', $eventosIds);
+        $queryMensjes->orderBy('mensajes.id', 'desc');
+        $mensajes = $queryMensjes->get()->unique('evento_id');
         return $mensajes;
     }
 
@@ -178,5 +151,10 @@ class EventoController extends Controller
             'espacio' => $espacio
         ];
         return $datos;
+    }
+
+    public function getDias($id) {
+        $dias = EventosDias::where('evento_id', '=', $id)->get();
+        return $dias;
     }
 }

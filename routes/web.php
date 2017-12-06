@@ -40,6 +40,7 @@ Route::get('/confirmaccount/{id}', 'UserController@confirmAccount');
 
 // Primer pantala de publica tu espacio
 Route::get('/publicar/espacio/{espacioId}', 'HomeController@publicar')->name('publica-steps');
+Route::get('/publica/espacio', 'PublicaController@index');
 
 // Agrupador de las pantallas de publica tu espacio
 Route::group(['prefix' => 'publicar'], function() {
@@ -108,7 +109,8 @@ Route::post('savecancelacion', 'EspacioController@saveCancelacion');
 
 // Agrupador de pantallas del Dashboard
 Route::group(['prefix' => 'dashboard'], function() {
-	Route::get('/user/{id}', 'DashboardController@index');	
+    Route::get('/', 'DashboardController@index');
+	//Route::get('/user/{id}', 'DashboardController@index');
 	Route::get('/user/{id}/mensajes', 'DashboardController@mensajes');
 	Route::get('/user/{id}/consultas', 'DashboardController@consultas');
 	Route::get('/user/{id}/consulta/{consultaId}', 'DashboardController@consulta');

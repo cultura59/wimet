@@ -1,20 +1,20 @@
 <template>
 	<div>
-		<button v-show="showBtnLoginGoogle" id="customBtn" class="container-social__btn btn-google" @click="loginGoogle()">
+		<button v-if="showBtnLoginGoogle" id="customBtn" class="container-social__btn btn-google" @click="loginGoogle()">
 			<img src="/img/google_logo.svg" class="icon-social" alt="Login Google">
 			<span>Iniciar sesión con Google</span>
 		</button>
-		<button v-show="!showBtnLoginGoogle" class="container-social__btn btn-google">
+		<button v-if="!showBtnLoginGoogle" class="container-social__btn btn-google">
 			<img src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-pig_oxestq.svg" alt="Cargando ..." height="50px" />
 		</button>
 	</div>
 </template>
 <script>
+    import {registerLogin} from '../mixins/registerLogin';
 	export default {
+        mixins: [registerLogin],
 		data() {
 			return {
-				email: '',
-				password: '',
 				auth2: '',
 				showBtnLoginGoogle: true
 			}
@@ -47,56 +47,19 @@
 						}
 					}, err => {
 						if(err.status == 400) {
-						    this.showBtnLoginGoogle = false;
-							let data = {
-								firstname: resGoogle.ofa,
-								lastname: resGoogle.wea,
-								email: resGoogle.U3,
-								password: resGoogle.Eea,
-								imagesource: resGoogle.Paa,
-								status: true
-							}
-							this.$http.post('api/user', data)
-							.then(res => {
-								if(res.status == 200) {
-									this.email = resGoogle.U3;
-									this.password = resGoogle.Eea;
-									this.login();
-								}else {
-									this.showBtnLoginGoogle = true;
-									swal('Ups, algo salio mal', res.message, 'error');
-								}
-							});
+						this.showBtnLoginGoogle = false;
+						this.firstname = resGoogle.ofa;
+						this.lastname = resGoogle.wea;
+						this.email = resGoogle.U3;
+						this.password = resGoogle.Eea;
+						this.imagesource = resGoogle.Paa;
+						this.status = true;
+						this.registrar();
 						}
 	                });
 				}, error => {
 					console.log(JSON.stringify(error, undefined, 2));
 				});
-			},
-			login() {
-                this.showBtnLoginGoogle = false;
-				let data = {
-					client_id: 2,
-					client_secret: 'XjZ3yp33zTrPdF0vWPLPH1sQ62swzzbBVvAnJa0A',
-					grant_type: 'password',
-					username: this.email,
-					password: this.password
-				}
-				this.$http.post('oauth/token', data)
-				.then(res => {
-					if(res.status == 200) {
-						this.$auth.setToken(res.body.access_token, res.body.expires_in + Date.now());
-						setTimeout(() => {
-							location.reload(); 
-						}, 1000);
-					}else {
-						this.showBtnLoginGoogle = true;
-						swal('Ups, algo salio mal', 'Intenta ingresar nuevamente', 'error');
-					}
-				}, err => {
-					this.showBtnLoginGoogle = true;
-					swal('Ups, algo salio mal', 'Intenta ingresar nuevamente', 'error');
-                });
 			}
         }
 	}
