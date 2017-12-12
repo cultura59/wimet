@@ -98,6 +98,7 @@
                                     <mapa-espacio
                                         name="espacio-mapa"
                                         icon="radio"
+                                        zoom="12"
                                         gwith="100%"
                                         gheight="300px"
                                         :gespacios="espacioMap"

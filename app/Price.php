@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Price extends Model
 {
-    protected $fillable = ['price'];
+    protected $fillable = ['price', 'daily', 'cancellationflexibility', 'securitydeposit', 'cantidad_personas'];
 
     public function getCategories() 
 	{

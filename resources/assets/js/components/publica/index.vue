@@ -2,12 +2,21 @@
 	<div>
 		<template v-if="authenticated">
 			<div class="publica-navbar">
-				<router-link to="/" :class="{active: $route.path == '/'}">1. Basico</router-link>
-				<router-link to="/mensajes" :class="{active: $route.name == 'actividades'}">2. Actividades</router-link>
-				<router-link to="/propuestas" :class="{active: $route.name == 'amenities'}">3. Amenities</router-link>
-				<router-link to="/espacios" :class="{active: $route.name == 'disponibilidad'}">4. Disponibilidad</router-link>
-				<router-link to="/favoritos" :class="{active: $route.name == 'fotos'}">4. Fotos</router-link>
-				<router-link to="/perfil" :class="{active: $route.name == 'descripcion'}">5. Descripción</router-link>
+				<a href="#" @click="changeUrl($event, '/')" :class="{active: $route.path == '/'}">1. Basico</a>
+				<template v-if="$store.getters.getEspacio.categorias.length < 0">
+					<a href="#" :class="{active: $route.name == 'actividades'}">2. Actividades</a>
+				</template>
+				<template v-if="$store.getters.getEspacio.categorias.length > 0">
+					<a href="#"
+					   v-for="(cat, key) in $store.getters.getEspacio.categorias"
+						@click="changeUrl($event, `/actividad/${cat.name}`)"
+						:class="{active: $route.params.name == cat.name}">2.{{key+1}} {{cat.name}}
+					</a>
+				</template>
+				<a href="#" @click="changeUrl($event, '/amenities')" :class="{active: $route.name == 'amenities'}">3. Amenities</a>
+				<a href="#" @click="changeUrl($event, '/disponibilidad')" :class="{active: $route.name == 'disponibilidad'}">4. Disponibilidad</a>
+				<a href="#" @click="changeUrl($event, '/foto')" :class="{active: $route.name == 'foto'}">4. Fotos</a>
+				<a href="#" @click="changeUrl($event, '/descripcion')" :class="{active: $route.name == 'descripcion'}">5. Descripción</a>
 			</div>
 			<div class="container">
 				<router-view></router-view>
@@ -45,6 +54,7 @@
     import loginGoogle from '../loginGoogle.vue';
     import {registerLogin} from '../../mixins/registerLogin';
     export default {
+        name: 'index-publica',
         mixins: [registerLogin],
         components: {
             'login-facebook': loginFacebook,
@@ -59,7 +69,21 @@
             if(this.$auth.isAuthenticated()) {
                 this.getUserAuthenticated();
             }
-        }
+        },
+		methods: {
+            showName(id) {
+                let arr = this.$store.getters.getEspacio.categorias;
+                for(let i = 0; i < arr.length; i++) {
+                    if(arr[i].id == id) {
+                        return arr[i].name;
+					}
+				}
+			},
+			changeUrl(e, url) {
+                e.preventDefault();
+                this.$router.push(url);
+			}
+		}
     }
 </script>
 <style lang="sass" scoped>

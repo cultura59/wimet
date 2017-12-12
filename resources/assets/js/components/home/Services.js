@@ -14,19 +14,34 @@ const vuexLocalStorage = new VuexPersist({
 export const store = new Vuex.Store({
     state: {
         user: null,
-        categoriesSelected: []
+        espacio: {categorias: []},
+        categoriesSelected: [],
+        categories: [],
+        categorySelected: {}
     },
     getters: {
         getUser: state => {
             return state.user;
         },
+        getEspacio: state => {
+            return state.espacio;
+        },
         getCategoriesSelected: state => {
             return state.categoriesSelected;
+        },
+        getCategories: state => {
+            return state.categories;
+        },
+        getCategorySelected: state => {
+            return state.categorySelected;
         }
     },
     mutations: {
         setUser(state, user) {
             state.user =  user;
+        },
+        setEspacio(state, espacio) {
+            state.espacio = espacio;
         },
         setCategoriesSelected(state, categories) {
             state.categoriesSelected = [];
@@ -34,6 +49,12 @@ export const store = new Vuex.Store({
         },
         clearInfo(state) {
             state.user = {};
+        },
+        setCategories(state, categories) {
+            state.categories = categories;
+        },
+        setCategorySelected(state, category) {
+            state.categorySelected = category;
         }
     },
     plugins: [vuexLocalStorage.plugin]

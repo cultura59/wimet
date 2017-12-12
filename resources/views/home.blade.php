@@ -52,7 +52,7 @@
             <wimet-login fixed="false"></wimet-login>
             <div class="container">
                 <!-- Title Header -->
-                <section class="texto-header">
+                <section class="texto-header col-md-8">
                     <h2 class="text-header__title">RE-IMAGINA TU <title-home></title-home></h2>
                     <h3 class="text-header__sub-title">Descubre y reserva un espacio creativo para tu próxima actividad</h3>
                     <!-- Footer Header -->
@@ -60,6 +60,9 @@
                         <search-home></search-home>
                     </section>
                 </section>
+                <div class="col-md-4">
+                    <img src="https://res.cloudinary.com/wimet/image/upload/v1512758094/conversacion_v01-_1_e98com.gif" class="img-responsive">
+                </div>
             </div>
             <!-- main -->
             <main>

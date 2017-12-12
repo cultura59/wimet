@@ -4,7 +4,7 @@
 <script>
     export default {
         name: 'google-map',
-        props: ['name', 'icon', 'gwith', 'gheight', 'gespacios'],
+        props: ['name', 'icon', 'zoom', 'gwith', 'gheight', 'gespacios'],
         data() {
             return {
                 mapName: this.name + "-map",
@@ -54,7 +54,7 @@
                 const mapCentre = this.gespacios[0];
                 this.map = new google.maps.Map(element, {
                     center: new google.maps.LatLng(mapCentre.lat, mapCentre.long),
-                    zoom: 14,
+                    zoom: parseInt(this.zoom),
                     disableDefaultUI: false,
                     scrollwheel: false,
                     navigationControl: false,

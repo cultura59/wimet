@@ -154,6 +154,7 @@
                 <google-maps
                     name="search-filters"
                     icon="location"
+                    zoom="12"
                     gwith="100%"
                     gheight="650px"
                     :gespacios="espacios.data"

@@ -20,6 +20,8 @@ class CreateEspacioServicioPivotTable extends Migration
                 $table->integer('servicio_id')->unsigned()->index();
                 $table->foreign('servicio_id')->references('id')->on('servicios')->onDelete('cascade');
                 $table->primary(['espacio_id', 'servicio_id']);
+                $table->timestamps();
+                $table->softDeletes();
             });
         }
     }

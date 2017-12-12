@@ -86,6 +86,22 @@ class EspacioController extends Controller
             if($request->estilos) {
                 $espacio->estilosEspacio()->sync($request->estilos);
             }
+            if($request->categorias){
+                $espacio->categorias()->sync($request->categorias);
+            }
+
+            foreach ($request->categorias as $key => $categoria)
+            {
+                $price = new Price;
+                $price->espacio_id      = $espacio->id;
+                $price->categoria_id    = $categoria;
+                $price->price           = 0;
+                $price->daily           = 0;
+                $price->minhours        = 0;
+                $price->status          = true;
+                $price->save();
+            }
+
             return $espacio;
         }catch(\Exception $e){
             return response('Los campos no son correctos, ' . $e->getMessage(), 400);
@@ -126,10 +142,12 @@ class EspacioController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            $input = $request->all();
             $espacio = Espacio::find($id);
-            $espacio->step = $request->step;
-            $espacio->status = $request->status;
-            $espacio->save();
+            $espacio->update($input);
+            if($request->servicios){
+                $espacio->servicios()->sync($request->servicios);
+            }
             return $espacio;
         }catch (\Exception $e) {
             return response('Los campos no son correctos ' . $e->getMessage(), 400);
@@ -258,7 +276,6 @@ class EspacioController extends Controller
             $objEncontrado = null;
 
             foreach ($oldPrices->get() as $key => $oldPrice) {
-                var_dump((int)$categoria . " " . $oldPrice->categoria_id);
                 if((int)$categoria == $oldPrice->categoria_id) {
                     $objEncontrado = $oldPrice;
                 }
@@ -454,27 +471,31 @@ class EspacioController extends Controller
     * @return redirect to public-caracteristicas
     */
     public function savePrice(Request $request) {
-        foreach ($request->categories as $key => $cat) {
-            $price = Price::find($cat['id']);
-            if($cat['espacio_id']) {
-                $price->espacio_id = $cat['espacio_id'];
+        try {
+            foreach ($request->categories as $key => $cat) {
+                $price = Price::find($cat['id']);
+                if ($cat['espacio_id']) {
+                    $price->espacio_id = $cat['espacio_id'];
+                }
+                if ($cat['categoria_id']) {
+                    $price->categoria_id = $cat['categoria_id'];
+                }
+                if ($cat['price']) {
+                    $price->price = $cat['price'];
+                }
+                if ($cat['daily']) {
+                    $price->daily = $cat['daily'];
+                }
+                if ($cat['minhours']) {
+                    $price->minhours = $cat['minhours'];
+                }
+                $price->status = $cat['status'];
+                $price->save();
             }
-            if($cat['categoria_id']) {
-                $price->categoria_id = $cat['categoria_id'];
-            }
-            if($cat['price']) {
-                $price->price = $cat['price'];
-            }
-            if($cat['daily']) {
-                $price->daily = $cat['daily'];
-            }
-            if($cat['minhours']) {
-                $price->minhours = $cat['minhours'];
-            }
-            $price->status = $cat['status'];
-            $price->save();
+            return response('Los precios fueron modificados', 200);
+        }catch(\Exception $e) {
+            return response('Los precios no fueron modificados', 500);
         }
-        return response('Los precios fueron modificados', 200);
     }
 
     /**

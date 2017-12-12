@@ -31,6 +31,7 @@ Route::resource('evento', 'EventoController');
 Route::resource('mensaje', 'MensajeController');
 Route::resource('propuesta', 'PropuestaController');
 Route::resource('disponibilidad', 'DisponibilidadController');
+Route::resource('price', 'PriceController');
 
 Route::get('access', 'ApiHelpperController@access');
 Route::get('accessibilities', 'ApiHelpperController@accessibilities');

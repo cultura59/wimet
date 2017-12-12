@@ -1,14 +1,5 @@
-#map {
-  height: 700px;
-  widows: 100%;
-  * {
-        transition: width 0s;
-    }
-}
-
-#map-publica {
-  height: 500px;
-  widows: 100%;
+*:focus {
+    outline: none;
 }
 
 .btn-login {
