@@ -18,7 +18,6 @@ use App\Mail\NuevoEspacio;
 
 class EspacioController extends Controller
 {
-
     /**
      * Display a listing of the resource.
      *
@@ -125,7 +124,8 @@ class EspacioController extends Controller
                 'rules',
                 'images',
                 'characteristics',
-                'access'
+                'access',
+                'user'
             )
             ->first();
         $espacio->description = $espacio->description;
@@ -416,6 +416,36 @@ class EspacioController extends Controller
                 )
             );
             return $image;
+        }
+    }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
+    public function savePortada(Request $request, $id) {
+        \Cloudinary::config(array(
+            "cloud_name" => "wimet",
+            "api_key" => "278198295249288",
+            "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw"
+        ));
+        try {
+            $espacio = Espacio::find($id);
+            $imagenPortada = $request->file('portada');
+            $destination_fotoprincipales = 'fotosespacios/' . $id . '/';
+            $extension = "." . pathinfo($imagenPortada->getClientOriginalName(), PATHINFO_EXTENSION);
+            $filename = "wimet_espacios_creativos_reuniones_producciones_eventos_retail_".$espacio->name."_portada_".$extension;
+            $espacio->portada = $destination_fotoprincipales . $filename;
+            $espacio->save();
+            \Cloudinary\Uploader::upload($imagenPortada,
+                array(
+                    "public_id" => $destination_fotoprincipales . str_replace($extension, "", $filename)
+                )
+            );
+            return $espacio;
+        }catch (\Exception $e) {
+            return response('Error al guardar la imagen de portada, intente nuevamente'. $e->getMessage(), 500);
         }
     }
 

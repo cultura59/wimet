@@ -1,32 +1,41 @@
 <template>
 	<div>
-		<div class="mensajes-main">
+		<div class="container-mis-mensajes">
+			<span class="container-mis-mensajes__title">MIS ESPACIOS</span>
 			<div class="mensajes-main__links">
 				<div v-if="$store.getters.getUser.tipo_clientes_id > 1" >
-					<a href="#" 
-						:class="(showMensajesType == 1) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
-						@click="changeType($event, 1)">COMO ORGANIZADOR
+					<a href="#"
+					   :class="(showMensajesType == 1) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'"
+					   @click="changeType($event, 1)">COMO ORGANIZADOR
 					</a>
-					<a href="#" 
-						:class="(showMensajesType == 2) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'" 
-						@click="changeType($event, 2)">COMO ANFITRIÓN
+					<a href="#"
+					   :class="(showMensajesType == 2) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'"
+					   @click="changeType($event, 2)">COMO ANFITRIÓN
 					</a>
 				</div>
 				<div>
 					<select v-model="filtroType" @change="getMensajes(filtroType)" class="mensajes-main__select">
-						<option value="">Todos</option>
-                        <option value="consulta">Consulta</option>
+						<option value="">Todos los mensajes</option>
+						<option value="consulta">Consulta</option>
 						<option value="seguimiento">Seguimiento</option>
 						<option value="visita">Visita</option>
 						<option value="presupuesto">Presupuesto</option>
 						<option value="reservado">Reservado</option>
-                        <option value="realizado">Realizado</option>
-                        <option value="perdido">Perdido</option>
+						<option value="realizado">Realizado</option>
+						<option value="perdido">Perdido</option>
 					</select>
 				</div>
 			</div>
+		</div>
+		<div class="mensajes-main">
 			<div class="mensajes">
 				<div v-if="!loadingData">
+					<div class="row wt-m-bot-1">
+						<div class="col-md-1"></div>
+						<div class="col-md-7"><strong>Recibido</strong></div>
+						<div class="col-md-2"><p class="text-center"><b>Evento</b></p></div>
+						<div class="col-md-2"><p class="text-center"><b>Estado</b></p></div>
+					</div>
 					<div
 						v-if="(eventoselect !== '')"
 						v-for="(mensaje, key) in mensajes"
@@ -34,19 +43,22 @@
 					>
 						<router-link :to="`/mensaje/${mensaje.evento_id}`">
 							<div class="col-md-1">
-								<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle">
+								<img :src="mensaje.imagesource" :alt="mensaje.firstname" class="img-responsive img-circle" style="width: 44px;">
 							</div>
 							<div class="col-md-2">
 								<div class="wt-center-column">
-									<span>{{mensaje.firstname}}</span>
-									<span>{{$moment(mensaje.created_at).locale('es').format("MMM DD")}}</span>
+									<strong>{{mensaje.firstname}}</strong>
+									<span class="firstUpper">{{$moment(mensaje.created_at).locale('es').format("MMM DD")}}</span>
 								</div>
 							</div>
-							<div class="col-md-7">
-								<p>{{recortarTexto(mensaje.mensaje)}}...</p>
+							<div class="col-md-5">
+								<p>{{recortarTexto(mensaje.mensaje, 75)}}...</p>
 							</div>
 							<div class="col-md-2">
-								<span class="status">{{mensaje.estado}}</span>
+								<p class="text-center">{{recortarTexto(mensaje.name, 20)}}...</p>
+							</div>
+							<div class="col-md-2">
+								<p class="status text-center">{{mensaje.estado}}</p>
 							</div>
 						</router-link>
 					</div>
@@ -109,8 +121,8 @@
 					this.loadingData = false;
 				});
 			},
-			recortarTexto(texto) {
-				return texto.substring(0, 140);
+			recortarTexto(texto, number) {
+				return texto.substring(0, number);
 			},
 			changeType(e, type) {
 				e.preventDefault();
@@ -121,40 +133,49 @@
 	}
 </script>
 <style lang="sass" scoped>
+	.container-mis-mensajes {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 0 2em;
+		margin-top: 4em;
+		align-items: flex-end;
+		&__title {
+			font-family: Ubuntu;
+			font-size: 16px;
+			font-weight: bold;
+			color: #333333;
+			margin-bottom: 1em;
+		}
+	}
 	.mensajes-main {
-		padding: 1em 5em;
-		width: 85%;
-		margin: 0 auto;
+		padding: 3em 2em;
+		background-color: #ffffff;
+		box-shadow: 0 0 68px 0 rgba(0, 0, 0, 0.1);
 		&__links{
-			padding: 1em 0 2em 0;
 			display: flex;
 			justify-content: space-between;
 			&--default {
 				opacity: 0.87;
-				font-size: 16px;
-				font-weight: 500;
-				letter-spacing: -0.1px;
-				text-align: justify;
+				font-size: 12px;
                 margin-right: 1em;
 				color: #191919;
+				text-decoration: none;
 				&:hover, &:focus {
 					transition: none;
 					text-decoration: none;
 					border-bottom: 2px solid #d17f87;
-					padding-bottom: .5em;
+					padding-bottom: 1em;
 				}
 			}
 			&--active {
 				opacity: 0.87;
-				font-size: 16px;
-				font-weight: 500;
-				letter-spacing: -0.1px;
-				text-align: justify;
+				font-size: 12px;
 				color: #d17f87;
 				text-decoration: none;
-				border-bottom: 2px solid #d17f87;
+				border-bottom: 4px solid #d17f87;
                 margin-right: 1em;
-				padding-bottom: .5em;
+				padding-bottom: 1em;
 			}
 		}
 		.mensajes {
@@ -165,56 +186,28 @@
 			.mensaje {
 				max-height: 100px;
 				background-color: #f8f8f8;
-				border-top: 1px solid #fff;
-				border-bottom: 1px solid #fff;
+				border-top: 2px solid #fff;
+				border-bottom: 2px solid #fff;
 				padding: 10px;
 				cursor: pointer;
-				&__left {
-					width: 5%;
-					float: left;
+				a{
+					font-family: Ubuntu;
+					font-size: 12px;
+					color: #333333;
 				}
-				&__right {
-					width: 90%;
-					padding-left: 1em;
-					display: flex;
-					flex-direction: row;
-					&__text {
-						padding-left: 2em;
-						display: flex;
-						justify-content: baseline;
-						align-items: center;
-					}
-				}
-				.status {
-					color: #d17f87;
-				}
-			}
-			.mensaje--active {
-				max-height: 100px;
-				background-color: #f0f0f0;
-				border-top: 1px solid #fff;
-				border-bottom: 1px solid #fff;
-				padding: 10px;
-				cursor: pointer;
-				&__left {
-					width: 5%;
-					float: left;
-				}
-				&__right {
-					width: 90%;
-					padding-left: 1em;
-					display: flex;
-					flex-direction: column;
-				}
+				.firstUpper {text-transform: capitalize;}
+				.status {color: #d17f87;}
 			}
 		}
         &__select {
-            padding: 5px;
-            cursor: pointer;
+			padding: .5em 2em;
+			cursor: pointer;
+			border: 1px solid #fff;
         }
 	}
 	.link-chats {
 		text-decoration: none;
 		color: #e2385a;
 	}
+	b, strong {color: #333333}
 </style>

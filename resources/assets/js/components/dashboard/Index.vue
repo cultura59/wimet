@@ -13,7 +13,7 @@
                     <router-link to="/perfil" :class="{active: $route.name == 'Perfil'}">Mi perfil</router-link>
                 </div>
                 <section class="dashboard-container">
-                    <div class="dashboard-body">
+                    <div class="container">
                         <router-view></router-view>
                     </div>
                 </section>
@@ -77,34 +77,33 @@
         display: flex;
         justify-content: baseline;
         align-items: center;
-        height: 45px;
-        background-color: #f8f8f8;
+        background-color: #666666;
         padding: 0 50px;
+        height: 100%;
         a {
             transition: none;
-            color: #333;
-            margin: 10px 30px 0px 15px;
-            padding-bottom: 10px;
+            color: #fff;
+            padding: .5em 1em;
+            text-align: center;
+            width: 100px;
+            padding-top: 4px;
             &:hover, &:focus {
                 transition: none;
                 text-decoration: none;
-                border-bottom: 2px solid #d17f87;
+                border-top: 4px solid #fc5289;
             }
         }
         .active {
-            transition: none;
-            color: #d17f87;
-            margin: 10px 30px 0px 15px;
-            padding-bottom: 10px;
-            transition: none;
-            text-decoration: none;
-            border-bottom: 2px solid #d17f87;
+            color: #fc5289;
+            height: 100%;
+            width: 110px;
+            background-color: #f8f8f8;
+            border-top: 4px solid #fc5289;
             &:hover, &:focus {
                 transition: none;
                 text-decoration: none;
-                border-bottom: 2px solid #d17f87;
+                border-top: 4px solid #fc5289;
+            }
         }
-    }
-
     }
 </style>

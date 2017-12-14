@@ -93,7 +93,7 @@
         },
         data() {
             return {
-                espacio: {categorias: []},
+                espacio: (this.$store.getters.getEspacio.id != undefined)?this.$store.getters.getEspacio:{categorias: []},
                 estiloespacio: [],
                 categories: [],
                 showMapa: false,

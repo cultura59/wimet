@@ -1,4 +1,7 @@
 @import "//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css";
+.body-dashboard {
+    background-color: #f8f8f8;
+}
 .header-dashboard {
     width: 85%;
     height: 60px;
@@ -160,9 +163,8 @@
 .dashboard-container {
     width: 100%;
     height: 100%;
-    float: right;
-    margin-left: auto;
-    background-color: $wt-white;
+    background-color: #f8f8f8;
+    position: relative;
     .dashboard-header {
         @include desktop {
             padding: 1em 5em;
@@ -195,67 +197,6 @@
             color: rgba(66, 66, 66, 0.87);
         }
     }
-    .dashboard-body-fluid {
-        height: 930px;
-        width: 100%;
-        float: left;
-        @include desktop {
-            padding: 1em 5em;
-        }
-        @include mobile {
-             padding: 1em;
-        }
-        .table-dashboard-eventos {
-            border: solid 1px #979797;
-            margin: 2em 0;
-            width: 100%;
-            max-width: 100%;
-            .th-1 {
-                background-color: #d8d8d8;
-                padding: 5px 10px;
-            }
-            .th-2 {
-                background-color: $wt-primary-pig;
-                padding: 5px 10px;
-                color: #fff;
-            }
-            .th-3 {
-                background-color: #c34e68;
-                padding: 5px 10px;
-                color: #fff;
-            }
-            .th-4 {
-                background-color: #9b4b62;
-                padding: 5px 10px;
-                color: #fff;
-            }
-            .th-5 {
-                background-color: #74475d;
-                padding: 5px 10px;
-                color: #fff;
-            }
-            .th-6 {
-                background-color: #4c4457;
-                padding: 5px 10px;
-                color: #fff;
-            }
-            .th-7 {
-                background-color: #254152;
-                padding: 5px 10px;
-                color: #fff;
-            }
-            .th-8 {
-                background-color: #545454;
-                padding: 5px 10px;
-                color: #fff;
-            }
-            &__td {
-                border: solid 1px #979797;
-                padding: 5px 10px;
-                text-align: center;
-            }
-        }
-    }
     .aside-propuesta {
         width: 40%;
         float: right;
@@ -265,76 +206,79 @@
         margin: 0 auto;
         padding: 2em 0;
     }
-    .container-espacios {
-        margin: 2em 0 auto;
-        .box-expacio {
-            @include desktop {
-                width: 100%;
-                height: auto;
-                background-color: #f8f8f8;
-                margin: .5em 0 auto;
-                padding: 5px;
+    .box-expacio {
+        @include desktop {
+            width: 100%;
+            height: 160px;
+            margin-bottom: 2em;
+            padding: 5px;
+            display: -webkit-box;
+            display: flex;
+            background-color: #f8f8f8;
+            position: relative;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2);
+            .image-espacio {
+                width: 23%;
+            }
+            .detalle-espacio {
+                padding: 2em;
+                width: 77%;
                 display: flex;
-                .image-espacio {
-                    width: 23%;
+                justify-content: space-between;
+                align-items: center;
+                &__title {
+                    h3 {
+                        margin: 0;
+                    }
+                    a {
+                        margin: 0 1em;
+                    }
+                    i {
+                        color: #212121;
+                        opacity: 0.17;
+                    }
                 }
-                .detalle-espacio {
-                    padding: 2em;
-                    width: 77%;
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    &__title {
-                        h3 {
-                            margin: 0;
-                        }
-                        a {
-                            margin: 0 1em;
-                        }
-                        i {
-                            color: #212121;
-                            opacity: 0.17;
-                        }
-                    }
-                    ul {
-                        color: $wt-primary-pig;
-                        margin-top: 1em;
-                    }
+                ul {
+                    color: $wt-primary-pig;
+                    margin-top: 1em;
+                    font-family: Roboto;
+                    font-size: 12px;
+                    text-transform: uppercase;
                 }
             }
-            @include mobile {
+        }
+        @include mobile {
+            width: 100%;
+            height: auto;
+            background-color: #f8f8f8;
+            margin: .5em 0 auto;
+            padding: 5px;
+            display: flex;
+            flex-direction: column;
+            .image-espacio {
                 width: 100%;
-                height: auto;
-                background-color: #f8f8f8;
-                margin: .5em 0 auto;
-                padding: 5px;
+            }
+            .detalle-espacio {
+                padding: 1em;
+                width: 100%;
                 display: flex;
                 flex-direction: column;
-                .image-espacio {
-                    width: 100%;
+                justify-content: space-between;
+                &__title {
+                    h3 {
+                        margin: 0;
+                    }
+                    a {
+                        margin: 0 1em;
+                    }
+                    i {
+                        color: #212121;
+                        opacity: 0.17;
+                    }
                 }
-                .detalle-espacio {
-                    padding: 1em;
-                    width: 100%;
-                    display: flex;
-                    flex-direction: column;
-                    justify-content: space-between;
-                    &__title {
-                        h3 {
-                            margin: 0;
-                        }
-                        a {
-                            margin: 0 1em;
-                        }
-                        i {
-                            color: #212121;
-                            opacity: 0.17;
-                        }
-                    }
-                    ul {
-                        color: $wt-primary-pig;
-                        margin-top: 1em;
-                    }
+                ul {
+                    color: $wt-primary-pig;
+                    margin-top: 1em;
                 }
             }
         }

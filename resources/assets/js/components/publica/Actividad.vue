@@ -127,18 +127,8 @@
             savePrice() {
                 this.btnSend = false;
                 if(this.all) {
-                    for (let i = 0; i < this.$store.getters.getEspacio.prices.length; i++) {
-                        this.$http.put(`api/price/${this.$store.getters.getEspacio.prices[i].id}`, this.price)
-                        .then(res => {
-                            let espacio = this.$store.getters.getEspacio;
-                            espacio.prices[i] = res.body;
-                            this.$store.commit('setEspacio', espacio);
-                        }, err => {
-                            this.btnSend = true;
-                            console.log(err);
-                        });
-                    }
-                    this.$router.push("/amenities");
+                    let arr = this.$store.getters.getEspacio.prices;
+                    this.saveFunctionPrice(arr);
                 }else {
                     this.$http.put(`api/price/${this.price.id}`, this.price)
                     .then(res => {
@@ -159,6 +149,32 @@
                         console.log(err);
                     });
                 }
+            },
+            saveFunctionPrice(arr) {
+                let item = arr.shift();
+                this.$http.put(`api/price/${item.id}`, this.price)
+                .then(res => {
+                    if(arr.length > 1) {
+                        this.saveFunctionPrice(arr);
+                    }else {
+                        this.getEspacio(this.$store.getters.getEspacio.id);
+                    }
+                }, err => {
+                    this.btnSend = true;
+                    console.log(err);
+                });
+            },
+            getEspacio(id) {
+                this.$http.get(`api/espacio/${id}`)
+                    .then(res => {
+                        this.$store.commit('setEspacio', res.body);
+                        setInterval(() => {
+                            this.$router.push("/amenities");
+                        }, 3000);
+                    }, err => {
+                        this.btnSend = true;
+                        $toastr.error("Ups...", "Hubo un problema al crear su espacio, vuelva a intentarlo");
+                    });
             }
         }
     }

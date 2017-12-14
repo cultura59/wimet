@@ -5,7 +5,7 @@
                 <h1 class="publica-titulo">{{$store.getters.getUser.firstname}} es hora de elegir</h1>
                 <h1 class="publica-titulo">tus mejores fotos</h1>
                 <form>
-                    <input type="file" id="box-images" style="display: none;">
+                    <input type="file" id="box-images" style="display: none;" name="portada">
                     <label id="fake-input" for="box-images" class="box-images">
                         <img class="box-images__image" src="https://res.cloudinary.com/wimet/image/upload/v1512822338/icon-nube.svg">
                         <span class="box-images__text">haga clic para cargar o arrastra tu foto de portada aquí</span>
@@ -61,30 +61,32 @@
                 event.preventDefault();
                 let files = event.dataTransfer.files;
                 for (let i = 0; i < files.length; i++) {
-                    console.log("Filename: " + files[i].name);
-                    console.log("Type: " + files[i].type);
-                    console.log("Size: " + files[i].size + " bytes");
-
                     formData.append('type', 'file');
-                    formData.append('image', files[i]);
-
+                    formData.append('portada', files[i]);
                     this.saveImage(formData);
                 }
             }, false);
         },
         methods: {
             saveImage(form) {
-                fetch('https://api.imgur.com/3/upload.json', {
-                    method: 'POST',
+                fetch(`http://localhost:8000/api/saveportada/${this.$store.getters.getEspacio.id}`, {
+                    method: 'post',
                     headers: {
                         Accept: 'application/json',
                         Authorization: `Bearer ${this.$auth.getToken()}`
                     },
                     body: form
                 })
-                .then(processStatus)
-                .then(parseJson);
-                console.log(parseJson);
+                .then((res)=> {
+                    if (res.status === 200 || res.status === 0) {
+                        return Promise.resolve(res)
+                    } else {
+                        return Promise.reject(new Error('Error loading: ' + url))
+                    }
+                })
+                .then((resJson) => {
+                    console.log(resJson);
+                });
             }
         }
     }

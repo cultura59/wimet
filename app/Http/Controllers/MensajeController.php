@@ -33,7 +33,7 @@ class MensajeController extends Controller
                                 'mensajes.created_at'
                             )
                             ->where('evento_id', $id)
-                            ->orderBy('id', 'desc')
+                            ->orderBy('mensajes.id', 'desc')
                             ->get();
             return $mensajes;
         }catch(\Exception $e){
@@ -123,8 +123,8 @@ class MensajeController extends Controller
                             ->join('users', 'mensajes.user_id', '=', 'users.id')
                             ->join('tipo_clientes', 'users.tipo_clientes_id', '=', 'tipo_clientes.id')
                             ->where('evento_id', $id)
-                            ->orderBy('mensajes.id', 'asc')
-                            ->paginate(15);
+                            ->orderBy('mensajes.id', 'desc')
+                            ->get();
             return $mensajes;
         }catch(\Exception $e){
             return response('Los campos no son correctos, ' . $e->getMessage(), 400);

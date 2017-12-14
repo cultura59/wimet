@@ -26,6 +26,7 @@ class Espacio extends Model
                             'long',
                             'lat',
                             'securitydeposit',
+                            'portada',
                             'image360',
                             'cancellationflexibility',
                             'order',

@@ -41,7 +41,9 @@ Route::get('rules', 'ApiHelpperController@rules');
 
 Route::get('mpresponse', 'MercadoPagoController@responseMP');
 
-Route::post('/customlogin', 'UserController@customLogin');
+Route::post('saveportada/{id}', 'EspacioController@savePortada');
+Route::post('customlogin', 'UserController@customLogin');
+Route::post('user/foto/{id}', 'UserController@changeAvatar');
 Route::post('sendreserva', 'HomeController@send_reserva');
 Route::get('geteventos/{id}', 'UserController@getEventos');
 Route::get('changepassword/{id}/password/{contra}', 'UserController@cambiarContraseniaRedes');

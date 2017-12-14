@@ -376,4 +376,40 @@ class UserController extends Controller
             )
         );
     }
+
+    /**
+     * @param Request $request
+     * @param $id
+     * @return mixed
+     */
+    public function changeAvatar(Request $request, $id) {
+        try {
+            $user = User::find($id);
+            \Cloudinary::config(array(
+                "cloud_name" => "wimet",
+                "api_key" => "278198295249288",
+                "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw"
+            ));
+            if($request->hasFile('image')) {
+                // upload the image //
+                $imagesAvatar = $request->file('image');
+                $destination_avatar = 'user/' . $id . '/';
+                $filename_avatar = str_replace(' ', '_', str_random(8).'_'.$imagesAvatar->getClientOriginalName());
+                $extension = "." . pathinfo($imagesAvatar->getClientOriginalName(), PATHINFO_EXTENSION);
+
+                $response = \Cloudinary\Uploader::upload($imagesAvatar,
+                    array(
+                        "public_id" => $destination_avatar . str_replace($extension, "", $filename_avatar)
+                    )
+                );
+                $user->imagesource = "http://res.cloudinary.com/wimet/image/upload/" . $destination_avatar . $filename_avatar;
+                $user->save();
+                return $user;
+            }else {
+                return reponse('Se se ha adjuntado ninguna imagen', 404);
+            }
+        }catch (\Exception $e) {
+            return reponse('No se pudo modificar el avatar', 500);
+        }
+    }
 }

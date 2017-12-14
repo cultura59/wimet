@@ -127,6 +127,7 @@ class EventoController extends Controller
         $queryMensjes = DB::table('mensajes');
         $queryMensjes->join('users', 'mensajes.user_id', '=', 'users.id');
         $queryMensjes->join('eventos', 'mensajes.evento_id', '=', 'eventos.id');
+        $queryMensjes->join('espacios', 'eventos.espacio_id', '=', 'espacios.id');
         $queryMensjes->whereIn('evento_id', $eventosIds);
         $queryMensjes->orderBy('mensajes.id', 'desc');
         $mensajes = $queryMensjes->get()->unique('evento_id');
