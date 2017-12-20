@@ -34,7 +34,7 @@
                                 <strong v-if="estado == 0" class="pendiente-aprobacion">Pendiente de aprobación...</strong>
                             </div>
                             <div class="wt-center-column">
-                                <a v-if="espacio.status == false" :href="`/publicar/espacio/${espacio.id}`" target="_blank">
+                                <a v-if="espacio.status == false" href="#" @click="getEspacio($event, espacio)">
                                     <button class="espacios-main__btn">EDITAR</button>
                                 </a>
                                 <a :href="`/categoria/1/espacio/${espacio.name}`" target="_blank" class="wt-m-top-1">
@@ -90,6 +90,12 @@
                 }, err => {
                     console.log(err);
                 });
+            },
+            getEspacio(e, espacio) {
+                e.preventDefault();
+                this.loadingData = true;
+                this.$store.commit('setEspacio', espacio);
+                location.href = '/publica/espacio';
             }
         }
     }

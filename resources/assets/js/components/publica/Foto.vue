@@ -4,31 +4,43 @@
             <div class="col-xs-12 col-md-6">
                 <h1 class="publica-titulo">{{$store.getters.getUser.firstname}} es hora de elegir</h1>
                 <h1 class="publica-titulo">tus mejores fotos</h1>
-                <form>
+                <form v-show="$store.getters.getEspacio.portada == '' || $store.getters.getEspacio.portada == undefined" class="wt-m-top-3">
                     <input type="file" id="box-images" style="display: none;" name="portada">
                     <label id="fake-input" for="box-images" class="box-images">
                         <img class="box-images__image" src="https://res.cloudinary.com/wimet/image/upload/v1512822338/icon-nube.svg">
                         <span class="box-images__text">haga clic para cargar o arrastra tu foto de portada aquí</span>
                     </label>
                 </form>
-                <div class="row">
+                <div v-show="$store.getters.getEspacio.portada !== '' && $store.getters.getEspacio.portada !== undefined" class="row wt-m-top-3">
                     <div class="col-md-8">
                         <div class="row">
                             <div class="col-md-12">
-                                <div class="img-box-preview-large"></div>
+                                <div class="img-box-preview-large" :style="imgPortada">
+                                    <img src="/img/icon_remove_img.svg" class="btn-remove-img" @click="deletePortada()">
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="img-box-preview wt-m-top-1"></div>
+                                <div class="img-box-preview wt-m-top-1 wt-center-center">
+                                    <img src="/img/icon_add_img.svg" class="btn-add-img">
+                                </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="img-box-preview wt-m-top-1"></div>
+                                <div class="img-box-preview wt-m-top-1 wt-center-center">
+                                    <img src="/img/icon_add_img.svg" class="btn-add-img">
+                                </div>
                             </div>
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="img-box-preview"></div>
-                        <div class="img-box-preview wt-m-top-1 wt-m-bot-1"></div>
-                        <div class="img-box-preview"></div>
+                        <div class="img-box-preview wt-center-center">
+                            <img src="/img/icon_add_img.svg" class="btn-add-img">
+                        </div>
+                        <div class="img-box-preview wt-m-top-1 wt-m-bot-1 wt-center-center">
+                            <img src="/img/icon_add_img.svg" class="btn-add-img">
+                        </div>
+                        <div class="img-box-preview wt-center-center">
+                            <img src="/img/icon_add_img.svg" class="btn-add-img">
+                        </div>
                     </div>
                 </div>
                 <div class="wt-space-block wt-m-top-3">
@@ -45,31 +57,56 @@
         </div>
     </div>
 </template>
-
 <script>
     export default {
         name: "foto",
+        data() {
+            return {
+                imgPortada: {}
+            }
+        },
         mounted(){
-            let target = document.getElementById("fake-input");
-            let formData = new FormData();
-            // Action dragover
-            target.addEventListener("dragover", (event) => {
-                event.preventDefault();
-            }, false);
-            // Action dragdrop
-            target.addEventListener("drop", (event) => {
-                event.preventDefault();
-                let files = event.dataTransfer.files;
-                for (let i = 0; i < files.length; i++) {
-                    formData.append('type', 'file');
-                    formData.append('portada', files[i]);
-                    this.saveImage(formData);
+            this.init();
+        },
+        created() {
+            if(this.$store.getters.getEspacio.portada !== '' || this.$store.getters.getEspacio.portada !== undefined)
+            {
+                this.imgPortada = {
+                    'background-image': `url(${this.$store.getters.getEspacio.portada})`,
+                    'background-size': 'cover'
                 }
-            }, false);
+            }
         },
         methods: {
+            init() {
+                let target = document.getElementById("fake-input");
+                let formData = new FormData();
+                // Action dragover
+                target.addEventListener("dragover", (event) => {
+                    event.preventDefault();
+                }, false);
+                // Action dragdrop
+                target.addEventListener("drop", (event) => {
+                    event.preventDefault();
+                    let file = event.dataTransfer.files[0];
+                    //Check the file type
+                    if (!file.type.match('image.*')) {
+                        this.$toastr.error(`El archivo debe ser una imagen`, 'Ups hubo un error');
+                        return;
+                    }
+                    //Check the file type
+                    if (file.size >= 2000000) {
+                        this.$toastr.error(`El archivo debe pesar menos de 2MB`, 'Ups hubo un error');
+                        return;
+                    }
+                    // Add the file to the request.
+                    formData.append('type', 'file');
+                    formData.append('portada', file);
+                    this.saveImage(formData);
+                }, false);
+            },
             saveImage(form) {
-                fetch(`http://localhost:8000/api/saveportada/${this.$store.getters.getEspacio.id}`, {
+                fetch(`/api/saveportada/${this.$store.getters.getEspacio.id}`, {
                     method: 'post',
                     headers: {
                         Accept: 'application/json',
@@ -78,20 +115,38 @@
                     body: form
                 })
                 .then((res)=> {
-                    if (res.status === 200 || res.status === 0) {
-                        return Promise.resolve(res)
-                    } else {
-                        return Promise.reject(new Error('Error loading: ' + url))
-                    }
+                    this.getEspacio();
                 })
                 .then((resJson) => {
                     console.log(resJson);
+                });
+            },
+            getEspacio() {
+                this.$http.get(`api/espacio/${this.$store.getters.getEspacio.id}`)
+                .then(res => {
+                    this.imgPortada = {
+                        'background-image': `url(${res.body.portada})`,
+                        'background-size': 'cover'
+                    };
+                    this.$store.commit('setEspacio', res.body);
+                    this.$toastr.success(`El archivo fue cargado correctamente`, 'Portada cargada');
+                }, err => {
+                    this.$toastr.error(err, 'Ups hubo un error');
+                });
+            },
+            deletePortada() {
+                this.$http.delete(`api/deleteportada/${this.$store.getters.getEspacio.id}`)
+                .then(res => {
+                    let espacio = this.$store.getters.getEspacio;
+                    espacio.portada = "";
+                    this.$store.commit('setEspacio', espacio);
+                }, err => {
+                    this.$toastr.error(err, 'Ups hubo un error');
                 });
             }
         }
     }
 </script>
-
 <style lang="sass" scoped>
     .box-images {
         width: 100%;
@@ -115,11 +170,22 @@
     .img-box-preview {
         width: 100%;
         height: 91px;
-        border: solid 1px #979797
+        border: solid 1px #979797;
     }
     .img-box-preview-large {
         width: 100%;
         height: 190px;
-        border: solid 1px #979797
+        border: solid 1px #979797;
+        position: relative;
+    }
+    .btn-add-img {
+        cursor: pointer;
+    }
+    .btn-remove-img {
+        position: absolute;
+        height: 25px;
+        right: 0;
+        background: #666;
+        cursor: pointer;
     }
 </style>

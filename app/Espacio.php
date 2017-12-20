@@ -47,7 +47,7 @@ class Espacio extends Model
      */
     public function prices()
     {
-        return $this->hasMany('App\Price')->with('getRangos');
+        return $this->hasMany('App\Price')->with('Categoria');
     }
 
     /**

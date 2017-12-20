@@ -101,6 +101,11 @@ class EspacioController extends Controller
                 $price->save();
             }
 
+            //Actualizo el tipo de usuario
+            $user = User::find($espacio->user_id);
+            $user->tipo_clientes_id = 2;
+            $user->save();
+
             return $espacio;
         }catch(\Exception $e){
             return response('Los campos no son correctos, ' . $e->getMessage(), 400);
@@ -115,20 +120,19 @@ class EspacioController extends Controller
      */
     public function show($id)
     {
-        $espacio = Espacio::where('id', $id)
-            ->with(
-                'prices',
-                'categorias',
-                'servicios',
-                'estilosEspacio',
-                'rules',
-                'images',
-                'characteristics',
-                'access',
-                'user'
-            )
-            ->first();
-        $espacio->description = $espacio->description;
+        $espacio = $query = Espacio::with(
+            'prices',
+            'user',
+            'categorias',
+            'servicios',
+            'estilosEspacio',
+            'rules',
+            'images',
+            'characteristics',
+            'access'
+        );
+        $espacio->where('id', '=', $id);
+        $espacio->first();
         return $espacio;
     }
 
@@ -435,17 +439,44 @@ class EspacioController extends Controller
             $imagenPortada = $request->file('portada');
             $destination_fotoprincipales = 'fotosespacios/' . $id . '/';
             $extension = "." . pathinfo($imagenPortada->getClientOriginalName(), PATHINFO_EXTENSION);
-            $filename = "wimet_espacios_creativos_reuniones_producciones_eventos_retail_".$espacio->name."_portada_".$extension;
-            $espacio->portada = $destination_fotoprincipales . $filename;
-            $espacio->save();
+            $filename = "wimet_espacios_creativos_reuniones_producciones_eventos_retail_".$espacio->name."_portada".$extension;
             \Cloudinary\Uploader::upload($imagenPortada,
                 array(
                     "public_id" => $destination_fotoprincipales . str_replace($extension, "", $filename)
                 )
             );
+            $cloudinaryUrl = "http://res.cloudinary.com/wimet/image/upload/";
+            $espacio->portada = $cloudinaryUrl . $destination_fotoprincipales . $filename;
+            $espacio->save();
             return $espacio;
         }catch (\Exception $e) {
             return response('Error al guardar la imagen de portada, intente nuevamente'. $e->getMessage(), 500);
+        }
+    }
+
+    /**
+     * @param $id
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|Response
+     */
+    public function destroyPortada($id)
+    {
+        try {
+            $espacio = Espacio::find($id);
+            \Cloudinary::config(array(
+                "cloud_name" => "wimet",
+                "api_key" => "278198295249288",
+                "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw"
+            ));
+
+            //Busca la imagen actual y la borra
+            $cloudinaryUrl = "http://res.cloudinary.com/wimet/image/upload/";
+            $namesearch = str_replace($cloudinaryUrl, "", $espacio->portada);
+            \Cloudinary\Uploader::destroy($namesearch);
+            $espacio->portada = "";
+            $espacio->save();
+            return $espacio;
+        }catch (\Exception $e) {
+            return response('No se pudo borrar la imagen actual', 500);
         }
     }
 

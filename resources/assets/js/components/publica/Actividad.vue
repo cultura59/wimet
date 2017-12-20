@@ -1,6 +1,6 @@
 <template>
     <div class="wt-m-top-3">
-        <div class="row">
+        <div v-if="showBox" class="row">
             <div class="col-xs-12 col-md-6">
                 <h1 class="publica-titulo">Establece las condiciones</h1>
                 <h1 class="publica-titulo">para {{$route.params.name}}</h1>
@@ -9,7 +9,7 @@
                         <label class="label-publica">CAPACIDAD</label>
                     </div>
                     <div class="publica-box__rigth">
-                        <input class="input-publica" type="text" placeholder="Capacidad del espacio" v-model="price.cantidad_personas">
+                        <input class="input-publica" type="text" placeholder="Capacidad del espacio" v-model="$store.getters.getEspacio.prices[indexCat].cantidad_personas">
                     </div>
                 </div>
                 <div class="publica-box">
@@ -23,12 +23,15 @@
                                     class="publica-price__box__input"
                                     type="text"
                                     placeholder="$1000"
-                                    v-model="price.daily"
+                                    v-model="$store.getters.getEspacio.prices[indexCat].daily"
                                     @change="calMediaJornada()">
                                 <label class="label-publica">por día</label>
                             </div>
                             <div class="publica-price__box">
-                                <input class="publica-price__box__input" type="text" placeholder="$6000" v-model="price.price">
+                                <input
+                                    class="publica-price__box__input"
+                                    type="text" placeholder="$6000"
+                                    v-model="$store.getters.getEspacio.prices[indexCat].price">
                                 <label class="label-publica">por 1/2 día</label>
                             </div>
                         </div>
@@ -39,7 +42,11 @@
                         <label class="label-publica">DEPÓSITO DE SEGURIDAD</label>
                     </div>
                     <div class="publica-box__rigth">
-                        <input class="input-publica" type="text" placeholder="$6000" v-model="price.securitydeposit">
+                        <input
+                            class="input-publica"
+                            type="text"
+                            placeholder="$6000"
+                            v-model="$store.getters.getEspacio.prices[indexCat].securitydeposit">
                     </div>
                 </div>
                 <div class="publica-box">
@@ -50,21 +57,21 @@
                         <div class="publica-cacellation">
                             <div
                                 class="publica-cacellation__box"
-                                :class="{'publica-cacellation__box--active': price.cancellationflexibility == 'flexible'}"
+                                :class="{'publica-cacellation__box--active': $store.getters.getEspacio.prices[indexCat].cancellationflexibility == 'flexible'}"
                                 @click="selectFlexibility('flexible')">
                                 <span class="publica-cacellation__box__title">FLEXIBLE</span>
                                 <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
                             </div>
                             <div
                                 class="publica-cacellation__box"
-                                :class="{'publica-cacellation__box--active': price.cancellationflexibility == 'moderado'}"
+                                :class="{'publica-cacellation__box--active': $store.getters.getEspacio.prices[indexCat].cancellationflexibility == 'moderado'}"
                                 @click="selectFlexibility('moderado')">
                                 <span class="publica-cacellation__box__title">MODERADA</span>
                                 <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
                             </div>
                             <div
                                 class="publica-cacellation__box"
-                                :class="{'publica-cacellation__box--active': price.cancellationflexibility == 'estricto'}"
+                                :class="{'publica-cacellation__box--active': $store.getters.getEspacio.prices[indexCat].cancellationflexibility == 'estricto'}"
                                 @click="selectFlexibility('estricto')">
                                 <span class="publica-cacellation__box__title">ESTRICTA</span>
                                 <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
@@ -101,28 +108,35 @@
                 espacio: this.$store.getters.getEspacio,
                 price: {},
                 all: true,
-                indexCat: ''
+                indexCat: '',
+                showBox: false
             }
         },
         mounted() {
             this.getIndexCategory();
         },
+        watch: {
+            '$route' (to, from) {
+                if(to.params.name !== this.$store.getters.getEspacio.prices[this.indexCat].categoria.name) {
+                    this.getIndexCategory();
+                }
+            }
+        },
         methods: {
             getIndexCategory() {
-                let arr = this.$store.getters.getEspacio.prices;
-                for(let i=0; i<arr.length; i++) {
-                    if(arr[i].categoria_id == this.$store.getters.getCategorySelected.id) {
-                        this.price = arr[i];
+                for(let i=0; i<this.$store.getters.getEspacio.prices.length; i++) {
+                    if(this.$store.getters.getEspacio.prices[i].categoria.name == this.$route.params.name) {
                         this.indexCat = i;
+                        this.showBox = true;
                         return;
                     }
                 }
             },
             selectFlexibility(val){
-                this.price.cancellationflexibility = val;
+                this.$store.getters.getEspacio.prices[this.indexCat].cancellationflexibility = val;
             },
             calMediaJornada() {
-                this.price.price = (this.price.daily * 60)/100;
+                this.$store.getters.getEspacio.prices[this.indexCat].price = (this.$store.getters.getEspacio.prices[this.indexCat].daily * 60)/100;
             },
             savePrice() {
                 this.btnSend = false;
@@ -130,19 +144,15 @@
                     let arr = this.$store.getters.getEspacio.prices;
                     this.saveFunctionPrice(arr);
                 }else {
-                    this.$http.put(`api/price/${this.price.id}`, this.price)
+                    this.$http.put(`api/price/${this.$store.getters.getEspacio.prices[this.indexCat].id}`, this.$store.getters.getEspacio.prices[this.indexCat])
                     .then(res => {
-                        let espacio = this.$store.getters.getEspacio;
-                        espacio.prices[this.indexCat] = res.body;
-                        this.$store.commit('setEspacio', espacio);
-                        if(this.indexCat < this.$store.getters.getEspacio.prices.length) {
-                            let index = this.$store.getters.getEspacio.categorias[this.indexCat+1];
-                            this.$store.commit('setCategorySelected', index);
-                            this.$router.push(`/actividad/${index.name}`);
+                        if((this.indexCat+1) < this.$store.getters.getEspacio.prices.length) {
+                            let index = this.$store.getters.getEspacio.prices[this.indexCat+1];
+                            this.$router.push({ name: 'actividad', params: { name: index.categoria.name }});
+                            this.indexCat = this.indexCat + 1;
                             this.btnSend = true;
                         }else {
-                            this.$store.commit('setCategorySelected', {});
-                            this.$router.push("/amenities");
+                            this.$router.push({ name: "amenities"});
                         }
                     }, err => {
                         this.btnSend = true;
@@ -152,7 +162,7 @@
             },
             saveFunctionPrice(arr) {
                 let item = arr.shift();
-                this.$http.put(`api/price/${item.id}`, this.price)
+                this.$http.put(`api/price/${item.id}`, this.$store.getters.getEspacio.prices[this.indexCat])
                 .then(res => {
                     if(arr.length > 1) {
                         this.saveFunctionPrice(arr);
@@ -169,8 +179,8 @@
                     .then(res => {
                         this.$store.commit('setEspacio', res.body);
                         setInterval(() => {
-                            this.$router.push("/amenities");
-                        }, 3000);
+                            location.href = '/publica/espacio#/amenities';
+                        }, 2000);
                     }, err => {
                         this.btnSend = true;
                         $toastr.error("Ups...", "Hubo un problema al crear su espacio, vuelva a intentarlo");

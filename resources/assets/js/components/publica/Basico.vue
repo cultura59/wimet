@@ -152,8 +152,20 @@
                 this.showMapa = true;
             },
             saveEspacio() {
+                if(this.espacio.estilos == undefined) {
+                    this.$toastr.error("Debe ingresar tipo de espacio", "Ups...");
+                    return;
+                }
+                if(this.espacio.categorias.length == 0) {
+                    this.$toastr.error("Debe ingresar al menos una categoria", "Ups...");
+                    return;
+                }
+                if(this.espacio.adress == undefined) {
+                    this.$toastr.error("Debe ingresar una dirección", "Ups...");
+                    return;
+                }
                 this.btnSend = false;
-                this.espacio.name = `wiemt-${Date.now()}`;
+                this.espacio.name = `wimet-${Date.now()}`;
                 this.espacio.description = '';
                 this.espacio.estilos = [this.espacio.estilos];
                 this.espacio.step = 1;
@@ -172,11 +184,11 @@
                     this.$store.commit('setEspacio', res.body);
                     setInterval(() => {
                         this.$store.commit('setCategorySelected', res.body.categorias[0]);
-                        this.$router.push(`/actividad/${res.body.categorias[0].name}`);
+                        this.$router.push({ name: 'actividad', params: { name: res.body.categorias[0].name }});
                     }, 3000);
                 }, err => {
                     this.btnSend = true;
-                    $toastr.error("Ups...", "Hubo un problema al crear su espacio, vuelva a intentarlo");
+                    this.$toastr.error("Ups...", "Hubo un problema al crear su espacio, vuelva a intentarlo");
                 });
             }
         }

@@ -42,6 +42,7 @@ Route::get('rules', 'ApiHelpperController@rules');
 Route::get('mpresponse', 'MercadoPagoController@responseMP');
 
 Route::post('saveportada/{id}', 'EspacioController@savePortada');
+Route::delete('deleteportada/{id}', 'EspacioController@destroyPortada');
 Route::post('customlogin', 'UserController@customLogin');
 Route::post('user/foto/{id}', 'UserController@changeAvatar');
 Route::post('sendreserva', 'HomeController@send_reserva');

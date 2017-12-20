@@ -402,7 +402,8 @@ class UserController extends Controller
                         "public_id" => $destination_avatar . str_replace($extension, "", $filename_avatar)
                     )
                 );
-                $user->imagesource = "http://res.cloudinary.com/wimet/image/upload/" . $destination_avatar . $filename_avatar;
+                $cloudinaryUrl = "http://res.cloudinary.com/wimet/image/upload/";
+                $user->imagesource = $cloudinaryUrl . $destination_avatar . $filename_avatar;
                 $user->save();
                 return $user;
             }else {

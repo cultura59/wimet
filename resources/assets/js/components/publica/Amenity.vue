@@ -96,9 +96,7 @@
                 this.$http.get(`api/espacio/${id}`)
                     .then(res => {
                         this.$store.commit('setEspacio', res.body);
-                        setInterval(() => {
-                            this.$router.push('/disponibilidad');
-                        }, 3000);
+                        this.$router.push({ name: "disponibilidad"});
                     }, err => {
                         this.btnSend = true;
                         $toastr.error("Ups...", "Hubo un problema al modificar su espacio, vuelva a intentarlo");

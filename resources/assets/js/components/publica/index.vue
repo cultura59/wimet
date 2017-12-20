@@ -2,21 +2,22 @@
 	<div>
 		<template v-if="authenticated">
 			<div class="publica-navbar">
-				<a href="#" @click="changeUrl($event, '/')" :class="{active: $route.path == '/'}">1. Basico</a>
-				<template v-if="$store.getters.getEspacio.categorias.length < 0">
+				<a href="#" :class="{active: $route.path == '/'}" @click="changeUrl($event, 'basico', null)">1. Basico</a>
+				<template v-if="$store.getters.getEspacio.prices.length == 0 || $store.getters.getEspacio.prices == undefined">
 					<a href="#" :class="{active: $route.name == 'actividades'}">2. Actividades</a>
 				</template>
-				<template v-if="$store.getters.getEspacio.categorias.length > 0">
-					<a href="#"
-					   v-for="(cat, key) in $store.getters.getEspacio.categorias"
-						@click="changeUrl($event, `/actividad/${cat.name}`)"
-						:class="{active: $route.params.name == cat.name}">2.{{key+1}} {{cat.name}}
-					</a>
+				<template v-if="$store.getters.getEspacio.prices.length > 0">
+					<router-link
+						v-for="(cat, key) in $store.getters.getEspacio.prices"
+						v-if="cat.categoria.name != undefined"
+						:to="`/actividad/${cat.categoria.name}`"
+						:class="{active: $route.params.name == cat.categoria.name}">2.{{key+1}} {{cat.categoria.name}}
+					</router-link>
 				</template>
-				<a href="#" @click="changeUrl($event, '/amenities')" :class="{active: $route.name == 'amenities'}">3. Amenities</a>
-				<a href="#" @click="changeUrl($event, '/disponibilidad')" :class="{active: $route.name == 'disponibilidad'}">4. Disponibilidad</a>
-				<a href="#" @click="changeUrl($event, '/foto')" :class="{active: $route.name == 'foto'}">4. Fotos</a>
-				<a href="#" @click="changeUrl($event, '/descripcion')" :class="{active: $route.name == 'descripcion'}">5. Descripción</a>
+				<router-link to="/amenities" :class="{active: $route.name == 'amenities'}">3. Amenities</router-link>
+				<router-link to="/disponibilidad" :class="{active: $route.name == 'disponibilidad'}">4. Disponibilidad</router-link>
+				<router-link to="/foto" :class="{active: $route.name == 'foto'}">5. Fotos</router-link>
+				<router-link to="/descripcion" :class="{active: $route.name == 'descripcion'}">6. Descripción</router-link>
 			</div>
 			<div class="container">
 				<router-view></router-view>
@@ -71,17 +72,13 @@
             }
         },
 		methods: {
-            showName(id) {
-                let arr = this.$store.getters.getEspacio.categorias;
-                for(let i = 0; i < arr.length; i++) {
-                    if(arr[i].id == id) {
-                        return arr[i].name;
-					}
-				}
-			},
-			changeUrl(e, url) {
+			changeUrl(e, name, params) {
                 e.preventDefault();
-                this.$router.push(url);
+                if(params !== null) {
+                    this.$router.push({name: name, params: params});
+                }else {
+                    this.$router.push({name: name});
+				}
 			}
 		}
     }

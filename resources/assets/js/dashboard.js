@@ -6,7 +6,7 @@ Vue.component('dasboard-index', require('./components/dashboard/Index.vue'));
 import Vuex from 'vuex'
 import VueRouter from 'vue-router';
 import {router} from './components/dashboard/routes';
-import {store} from './components/dashboard/Services';
+import {store} from './components/home/Services';
 import Auth from './packages/auth/Auth.js';
 
 Vue.use(VueResource);

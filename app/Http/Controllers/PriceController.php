@@ -70,6 +70,7 @@ class PriceController extends Controller
     public function update(Request $request, $id)
     {
         try {
+            if($request)
             $input = $request->all();
             $price = Price::findOrFail($id);
             $price->update($input);

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Espacio;
 use Illuminate\Http\Request;
 use App\Image;
 
@@ -40,16 +41,23 @@ class ImageController extends Controller
      */
     public function destroy($id)
     {
-        \Cloudinary::config(array( 
-          "cloud_name" => "wimet", 
-          "api_key" => "278198295249288", 
-          "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw" 
-        ));
-        $image = Image::find($id);
-        $arrNameImage = explode(".", $image->name);
-        $response = \Cloudinary\Uploader::destroy($arrNameImage[0]);
-        $image->delete();
-        return $id;
+        try {
+            \Cloudinary::config(array(
+                "cloud_name" => "wimet",
+                "api_key" => "278198295249288",
+                "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw"
+            ));
+
+            //Busca la imagen actual y la borra
+            $imagen = Image::find($id);
+            $cloudinaryUrl = "http://res.cloudinary.com/wimet/image/upload/";
+            $namesearch = str_replace($cloudinaryUrl, "", $imagen->name);
+            \Cloudinary\Uploader::destroy($namesearch);
+            $imagen->delete();
+            return $id;
+        }catch (\Exception $e) {
+            return response('No se pudo borrar la imagen actual', 500);
+        }
     }
 
     /**
@@ -60,22 +68,31 @@ class ImageController extends Controller
      */
     public function store(Request $request)
     {
-        // upload the image //
-        $imagesEspacio = $request->file('imagenes');
-        $destination_fotoprincipales = 'fotosespacios/';
-
-        foreach ($imagesEspacio as $key => $img) 
-        {
-            $filename_imagesEspacio = str_replace(' ', '_', str_random(8).'_'.$img->getClientOriginalName());
-
-            $image = new Image;
-            $image->name = $destination_fotoprincipales . $filename_imagesEspacio;
-            $image->espacio_id = $request->espacio_id;
-            //$image->save();
-
-            $response = \Cloudder::upload($img->getClientOriginalName(), 1);
-            dd($response);
-            //$img->move($destination_fotoprincipales, $filename_imagesEspacio);
+        \Cloudinary::config(array(
+            "cloud_name" => "wimet",
+            "api_key" => "278198295249288",
+            "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw"
+        ));
+        try {
+            // Busca el espacio y asocia la nueva imagen
+            $espacio = Espacio::find($request->espacio_id);
+            $imagenPortada = $request->file('img_'.$request->imgorder);
+            $destination_fotoprincipales = 'fotosespacios/' . $espacio->id . '/';
+            $extension = "." . pathinfo($imagenPortada->getClientOriginalName(), PATHINFO_EXTENSION);
+            $filename = "wimet_espacios_creativos_reuniones_producciones_eventos_retail_".$espacio->name."_".$request->imgorder.$extension;
+            \Cloudinary\Uploader::upload($imagenPortada,
+                array(
+                    "public_id" => $destination_fotoprincipales . str_replace($extension, "", $filename)
+                )
+            );
+            $cloudinaryUrl = "http://res.cloudinary.com/wimet/image/upload/";
+            $imagen = new Image();
+            $imagen->name = $cloudinaryUrl . $destination_fotoprincipales . $filename;
+            $imagen->imgorder = $request->imgorder;
+            $imagen->save();
+            return $imagen;
+        } catch (\Exception $e) {
+            return response('Los campos no son correctos, ' . $e->getMessage(), 400);
         }
     }
 
@@ -86,14 +103,7 @@ class ImageController extends Controller
      * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function update(Request $request, $id) {
-        try {
-            $imagen = Image::find($id);
-            $imagen->imgorder = $request->imgorder;
-            $imagen->save();
-            return $imagen;
-        } catch (\Exception $e) {
-            return response('Los campos no son correctos, ' . $e->getMessage(), 400);
-        }
+
     }
 
 }
