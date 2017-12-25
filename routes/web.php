@@ -99,7 +99,6 @@ Route::post('savecategories', 'EspacioController@saveCategory');
 Route::post('saveaccess', 'EspacioController@saveAccess');
 Route::post('saveinvitados', 'EspacioController@saveInvitados');
 Route::post('saveadress', 'EspacioController@saveAdress');
-Route::post('saveimages/espacioid/{espacioId}', 'EspacioController@saveImages')->name('saveimages');
 Route::post('saveamenities', 'EspacioController@saveAmenities');
 Route::post('savecaracteristicas', 'EspacioController@saveCaracteristicas');
 Route::post('saveprice', 'EspacioController@savePrice');

@@ -62,9 +62,12 @@ class EspacioController extends Controller
     public function store(Request $request)
     {
         try {
+            DB::beginTransaction();
             $espacio = new Espacio();
             $espacio->user_id = $request->user_id;
             $espacio->name = $request->name;
+            $espacio->phone = $request->phone;
+            $espacio->staticname = str_slug($request->name);
             $espacio->description = $request->description;
             $espacio->quantyrooms = ($request->quantyrooms) ? $request->quantyrooms : null;
             $espacio->quantybathrooms = ($request->quantyrooms) ? $request->quantyrooms : null;
@@ -82,32 +85,33 @@ class EspacioController extends Controller
             $espacio->step = ($request->step) ? $request->step : null;
             $espacio->status = false;
             $espacio->save();
-            if($request->estilos) {
-                $espacio->estilosEspacio()->sync($request->estilos);
-            }
-            if($request->categorias){
-                $espacio->categorias()->sync($request->categorias);
-            }
 
-            foreach ($request->categorias as $key => $categoria)
-            {
-                $price = new Price;
-                $price->espacio_id      = $espacio->id;
-                $price->categoria_id    = $categoria;
-                $price->price           = 0;
-                $price->daily           = 0;
-                $price->minhours        = 0;
-                $price->status          = true;
-                $price->save();
+            // Actualizo las categorias
+            if($request->categorias){
+                $arrCategories = [];
+                foreach ($request->categorias as $key => $categoria)
+                {
+                    array_push($arrCategories, $categoria['id']);
+                    $price = new Price;
+                    $price->espacio_id      = $espacio->id;
+                    $price->categoria_id    = $categoria['id'];
+                    $price->price           = 0;
+                    $price->daily           = 0;
+                    $price->minhours        = 0;
+                    $price->status          = true;
+                    $price->save();
+                }
+                $espacio->categorias()->sync($arrCategories);
             }
 
             //Actualizo el tipo de usuario
             $user = User::find($espacio->user_id);
             $user->tipo_clientes_id = 2;
             $user->save();
-
+            DB::commit();
             return $espacio;
         }catch(\Exception $e){
+            DB::rollBack();
             return response('Los campos no son correctos, ' . $e->getMessage(), 400);
         }
     }
@@ -120,7 +124,7 @@ class EspacioController extends Controller
      */
     public function show($id)
     {
-        $espacio = $query = Espacio::with(
+        $query = Espacio::with(
             'prices',
             'user',
             'categorias',
@@ -131,8 +135,8 @@ class EspacioController extends Controller
             'characteristics',
             'access'
         );
-        $espacio->where('id', '=', $id);
-        $espacio->first();
+        $query->where('id', '=', $id);
+        $espacio = $query->first();
         return $espacio;
     }
 
@@ -147,10 +151,24 @@ class EspacioController extends Controller
     {
         try {
             $input = $request->all();
+            $input['staticname'] = str_slug($input['name']);
             $espacio = Espacio::find($id);
             $espacio->update($input);
+            // Se sincronizan los servicios
             if($request->servicios){
-                $espacio->servicios()->sync($request->servicios);
+                $arrServicios = [];
+                foreach ($request->servicios as $servicio) {
+                    array_push($arrServicios, $servicio['id']);
+                }
+                $espacio->servicios()->sync($arrServicios);
+            }
+            // Se sincronizan los accesos
+            if($request->access){
+                $arrAccess = [];
+                foreach ($request->access as $acc) {
+                    array_push($arrAccess, $acc['id']);
+                }
+                $espacio->access()->sync($arrAccess);
             }
             return $espacio;
         }catch (\Exception $e) {
@@ -174,14 +192,8 @@ class EspacioController extends Controller
             $join->on('espacios.id', '=', 'prices.espacio_id');
             $join->on('categoria_espacio.categoria_id', '=', 'prices.categoria_id');
         });
-        // Join de imagenes ordenadas por imgorder y Id
-        $query->join('images', function($join) {
-            $join->on('espacios.id', '=', 'images.espacio_id');
-            $join->orderBy('images.imgorder');
-            $join->orderBy('images.id');
-        });
         $query->join('users', 'espacios.user_id', '=', 'users.id');
-        $query->select('espacios.name', 'espacios.quanty', 'images.name as image', 'prices.price', 'users.imagesource');
+        $query->select('espacios.name', 'espacios.quanty', 'espacios.portada', 'espacios.staticname', 'prices.price', 'users.imagesource');
         $query->where([
             ['espacios.id', '=', $id],
             ['categoria_espacio.categoria_id', '=', $categoriaId],
@@ -403,23 +415,30 @@ class EspacioController extends Controller
           "api_key" => "278198295249288", 
           "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw" 
         ));
-        if($request->hasFile('file')) {
-            // upload the image //
-            $imagesEspacio = $request->file('file');
-            $destination_fotoprincipales = 'fotosespacios/';
-            $filename_imagesEspacio = str_replace(' ', '_', str_random(8).'_'.$imagesEspacio->getClientOriginalName());
-            $extension = "." . pathinfo($imagesEspacio->getClientOriginalName(), PATHINFO_EXTENSION);
+        try {
+            if ($request->hasFile('file')) {
+                $espacio = Espacio::find($id);
+                // upload the image //
+                $imagesEspacio = $request->file('file');
+                $destination_fotoprincipales = 'fotosespacios/' . $id . '/';
+                $extension = "." . pathinfo($imagesEspacio->getClientOriginalName(), PATHINFO_EXTENSION);
+                $filename = "wimet_espacios_creativos_reuniones_producciones_eventos_retail_" . $espacio->staticname . "_" . $request->imgorder . $extension;
 
-            $image = new Image;
-            $image->name = $destination_fotoprincipales . $filename_imagesEspacio;
-            $image->espacio_id = $id;
-            $image->save();
-            $response = \Cloudinary\Uploader::upload($imagesEspacio, 
-                array(
-                    "public_id" => $destination_fotoprincipales . str_replace($extension, "", $filename_imagesEspacio)
-                )
-            );
-            return $image;
+                \Cloudinary\Uploader::upload($imagesEspacio,
+                    array(
+                        "public_id" => $destination_fotoprincipales . str_replace($extension, "", $filename)
+                    )
+                );
+                $cloudinaryUrl = "http://res.cloudinary.com/wimet/image/upload/";
+                $image = new Image;
+                $image->name = $cloudinaryUrl . $destination_fotoprincipales . $filename;
+                $image->espacio_id = $id;
+                $image->imgorder = $request->imgorder;
+                $image->save();
+                return $image;
+            }
+        }catch (\Exception $e) {
+            return response('Error al guardar la imagen, intente nuevamente'. $e->getMessage(), 500);
         }
     }
 
@@ -435,20 +454,23 @@ class EspacioController extends Controller
             "api_secret" => "UCZYJFDClfelbwqG_CJajCWI-cw"
         ));
         try {
-            $espacio = Espacio::find($id);
-            $imagenPortada = $request->file('portada');
-            $destination_fotoprincipales = 'fotosespacios/' . $id . '/';
-            $extension = "." . pathinfo($imagenPortada->getClientOriginalName(), PATHINFO_EXTENSION);
-            $filename = "wimet_espacios_creativos_reuniones_producciones_eventos_retail_".$espacio->name."_portada".$extension;
-            \Cloudinary\Uploader::upload($imagenPortada,
-                array(
-                    "public_id" => $destination_fotoprincipales . str_replace($extension, "", $filename)
-                )
-            );
-            $cloudinaryUrl = "http://res.cloudinary.com/wimet/image/upload/";
-            $espacio->portada = $cloudinaryUrl . $destination_fotoprincipales . $filename;
-            $espacio->save();
-            return $espacio;
+            if ($request->hasFile('portada')) {
+                $espacio = Espacio::find($id);
+                $imagenPortada = $request->file('portada');
+                $destination_fotoprincipales = 'fotosespacios/' . $id . '/';
+                $extension = "." . pathinfo($imagenPortada->getClientOriginalName(), PATHINFO_EXTENSION);
+                $filename = "wimet_espacios_creativos_reuniones_producciones_eventos_retail_" . $espacio->staticname . "_portada" . $extension;
+
+                \Cloudinary\Uploader::upload($imagenPortada,
+                    array(
+                        "public_id" => $destination_fotoprincipales . str_replace($extension, "", $filename)
+                    )
+                );
+                $cloudinaryUrl = "http://res.cloudinary.com/wimet/image/upload/";
+                $espacio->portada = $cloudinaryUrl . $destination_fotoprincipales . $filename;
+                $espacio->save();
+                return $espacio;
+            }
         }catch (\Exception $e) {
             return response('Error al guardar la imagen de portada, intente nuevamente'. $e->getMessage(), 500);
         }

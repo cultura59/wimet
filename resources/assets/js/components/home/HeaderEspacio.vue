@@ -11,7 +11,7 @@
                   <iframe :src="image360" frameborder="0" class="materpot"></iframe>
                 </div>
                 <div class="imagesModal__content__mySlides" v-for="img in images">
-                    <img :src="urlImagen(img.name)" class="header-img">
+                    <img :src="img.name" class="header-img">
                 </div>
                 <a class="prev" @click="plusSlides(-1)">&#10094;</a>
                 <a class="next" @click="plusSlides(1)">&#10095;</a>
@@ -45,13 +45,10 @@
                 .then(res => {
                     this.image360 = res.body.image360;
                     this.images = res.body.images;
-                    document.getElementById('imagen-principal').style.backgroundImage = `url(${this.urlImagen(this.images[0].name)})`;
+                    document.getElementById('imagen-principal').style.backgroundImage = `url(${res.body.portada})`;
                 }, err => {
                     console.log(err);
                 });
-            },
-            urlImagen(url) {
-              return `https://res.cloudinary.com/wimet/image/upload/w_100,g_south_east,x_5,y_5,l_wimet-logo-white_z3tlgh/q_60/${url}`;
             },
             openModal() {
                 this.imagesModal = true;

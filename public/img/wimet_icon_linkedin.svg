@@ -10,7 +10,7 @@
 		<clipPath id="SVGID_2_">
 			<use xlink:href="#SVGID_1_"  overflow="visible"/>
 		</clipPath>
-		<rect x="5.6" y="8.5" clip-path="url(#SVGID_2_)" fill="#FFFFFF" width="11" height="16.2"/>
+		<rect x="5.6" y="8.5" clip-path="url(#SVGID_2_)" fill="#666666" width="11" height="16.2"/>
 	</g>
 	<g>
 		<defs>
@@ -20,7 +20,7 @@
 		<clipPath id="SVGID_4_">
 			<use xlink:href="#SVGID_3_"  overflow="visible"/>
 		</clipPath>
-		<rect x="5.4" y="4.7" clip-path="url(#SVGID_4_)" fill="#FFFFFF" width="11.4" height="11.5"/>
+		<rect x="5.4" y="4.7" clip-path="url(#SVGID_4_)" fill="#666666" width="11.4" height="11.5"/>
 	</g>
 	<g>
 		<defs>
@@ -30,9 +30,9 @@
 		<clipPath id="SVGID_6_">
 			<use xlink:href="#SVGID_5_"  overflow="visible"/>
 		</clipPath>
-		<rect x="9.4" y="8.2" clip-path="url(#SVGID_6_)" fill="#FFFFFF" width="15.9" height="16.5"/>
+		<rect x="9.4" y="8.2" clip-path="url(#SVGID_6_)" fill="#666666" width="15.9" height="16.5"/>
 	</g>
-	<path fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" d="M15,27.5C8.1,27.5,2.5,21.9,2.5,15S8.1,2.5,15,2.5
+	<path fill="none" stroke="#666666" stroke-width="2" stroke-miterlimit="10" d="M15,27.5C8.1,27.5,2.5,21.9,2.5,15S8.1,2.5,15,2.5
 		S27.5,8.1,27.5,15S21.9,27.5,15,27.5z"/>
 </g>
 </svg>

@@ -8,20 +8,40 @@
                     <div class="col-md-6">
                         <h3>ESPACIO</h3>
                         <div v-for="acc in accesos">
-                            <input :id="`acceso-${acc.id}`" type="checkbox" :value="acc.id" style="display: none;" v-model="espacio.access">
+                            <input :id="`acceso-${acc.id}`" type="checkbox" :value="acc" style="display: none;" v-model="espacio.access">
                             <label :for="`acceso-${acc.id}`" class="wt-publica-label">{{acc.nombre}}</label>
                         </div>
                         <h3>EQUIPAMIENTO</h3>
-                        <div v-for="equipamiento in equipamientos">
-                            <input :id="`equipamiento-${equipamiento.id}`" type="checkbox" :value="equipamiento.id" style="display: none;">
-                            <label :for="`equipamiento-${equipamiento.id}`" class="wt-publica-label">{{equipamiento.nombre}}</label>
+                        <div v-for="equipamiento in amenities">
+                            <input
+                                v-if="equipamiento.tipo == 'equipamiento'"
+                                :id="`ametiny-${equipamiento.id}`"
+                                type="checkbox"
+                                :value="equipamiento"
+                                style="display: none;"
+                                v-model="espacio.servicios">
+                            <label
+                                v-if="equipamiento.tipo == 'equipamiento'"
+                                :for="`ametiny-${equipamiento.id}`"
+                                class="wt-publica-label">{{equipamiento.nombre}}
+                            </label>
                         </div>
                     </div>
                     <div class="col-md-6">
                         <h3>AMENITIES</h3>
                         <div v-for="amenity in amenities">
-                            <input :id="`ametiny-${amenity.id}`" type="checkbox" :value="amenity.id" style="display: none;" v-model="espacio.servicios">
-                            <label :for="`ametiny-${amenity.id}`" class="wt-publica-label">{{amenity.nombre}}</label>
+                            <input
+                                v-if="amenity.tipo == 'amenities'"
+                                :id="`ametiny-${amenity.id}`"
+                                type="checkbox"
+                                :value="amenity"
+                                style="display: none;"
+                                v-model="espacio.servicios">
+                            <label
+                                v-if="amenity.tipo == 'amenities'"
+                                :for="`ametiny-${amenity.id}`"
+                                class="wt-publica-label">{{amenity.nombre}}
+                            </label>
                         </div>
                     </div>
                 </div>
@@ -56,7 +76,6 @@
         mounted() {
             this.getAccesos();
             this.getAmenities();
-            this.getEquipamientos();
         },
         methods: {
             getAccesos() {
@@ -68,14 +87,6 @@
                 });
             },
             getAmenities() {
-                this.$http.get('api/accessibilities')
-                .then(res => {
-                    this.equipamientos = res.body;
-                }, err => {
-                    console.log(err);
-                });
-            },
-            getEquipamientos() {
                 this.$http.get('api/servicio')
                 .then(res => {
                     this.amenities = res.body;
@@ -85,6 +96,7 @@
             },
             updateEspacio() {
                 this.btnSend = false;
+                this.espacio.step = 4;
                 this.$http.put(`api/espacio/${this.espacio.id}`, this.espacio)
                 .then(res => {
                     this.getEspacio(res.body.id);

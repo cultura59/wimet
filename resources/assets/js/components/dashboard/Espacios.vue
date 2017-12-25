@@ -2,7 +2,7 @@
     <div>
         <div class="container-mis-espacios">
             <span class="container-mis-espacios__title">MIS ESPACIOS</span>
-            <a href="/publica/espacio" class="container-mis-espacios__btn">NUEVO ESPACIO</a>
+            <a href="#" @click="newEspacio($event)" class="container-mis-espacios__btn">NUEVO ESPACIO</a>
         </div>
         <div class="espacios-main">
             <div>
@@ -18,7 +18,7 @@
                         <div
                             v-if="espacio.images.length > 0"
                             class="image-espacio"
-                            :style="`background-image: url(https://res.cloudinary.com/wimet/image/upload/q_60/${espacio.images[0].name});background-size: cover;`">
+                            :style="`background-image: url(${espacio.portada});background-size: cover;`">
                         </div>
                         <div
                             v-if="espacio.images.length == 0"
@@ -95,6 +95,11 @@
                 e.preventDefault();
                 this.loadingData = true;
                 this.$store.commit('setEspacio', espacio);
+                location.href = '/publica/espacio#/resumen';
+            },
+            newEspacio(e) {
+                e.preventDefault();
+                this.$store.commit('setEspacio', {});
                 location.href = '/publica/espacio';
             }
         }

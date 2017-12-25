@@ -98,9 +98,9 @@
                                     <mapa-espacio
                                         name="espacio-mapa"
                                         icon="radio"
-                                        zoom="12"
+                                        zoom="13"
                                         gwith="100%"
-                                        gheight="300px"
+                                        gheight="400px"
                                         :gespacios="espacioMap"
                                     >
                                     </mapa-espacio>
@@ -119,41 +119,12 @@
                     <div class="col-md-4">
                         <div class="calendar">
                             <section class="espacio-categorias">
-                                <div
-                                    v-if="inPrice(1)"
+                                <div v-for="price in espacio.prices"
                                     class="espacio-categorias__categoria"
-                                    :class="{'espacio-categorias__categoria--active': (priceCategoria.categoria_id == 1)}"
-                                    @click="selectCategory(1)"
-                                >
-                                    <i class="fa fa-users fa-4x" aria-hidden="true"></i>
-                                    <span>REUNIÓN</span>
-                                </div>
-                                <div
-                                    v-if="inPrice(2)"
-                                    class="espacio-categorias__categoria"
-                                    :class="{'espacio-categorias__categoria--active': (priceCategoria.categoria_id == 2)}"
-                                    @click="selectCategory(2)"
-                                >
-                                    <i class="fa fa-glass fa-4x" aria-hidden="true"></i>
-                                    <span>EVENTO</span>
-                                </div>
-                                <div
-                                    v-if="inPrice(3)"
-                                    class="espacio-categorias__categoria"
-                                    :class="{'espacio-categorias__categoria--active': (priceCategoria.categoria_id == 3)}"
-                                    @click="selectCategory(3)"
-                                >
-                                    <i class="fa fa-video-camera fa-4x" aria-hidden="true"></i>
-                                    <span>PRODUCCIÓN</span>
-                                </div>
-                                <div
-                                    v-if="inPrice(4)"
-                                    class="espacio-categorias__categoria"
-                                    :class="{'espacio-categorias__categoria--active': (priceCategoria.categoria_id == 4)}"
-                                    @click="selectCategory(4)"
-                                >
-                                    <i class="fa fa-sitemap fa-4x" aria-hidden="true"></i>
-                                    <span>COWORKING</span>
+                                    :class="{'espacio-categorias__categoria--active': (priceCategoria.categoria_id == price.categoria.id)}"
+                                    @click="selectCategory(price.categoria.id)">
+                                    <img :src="price.categoria.icon" :alt="price.categoria.name" class="img-responsive">
+                                    <span>{{price.categoria.name}}</span>
                                 </div>
                             </section>
                             <header class="calendar__header">
@@ -309,7 +280,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
             <div class="container">
                 <div class="row">
                     <div class="col-xs-12 col-sm-4">
-                        <img class="img-responsive" src="http://www.wimet.co/img/wimet_footer_logo_light.svg" alt="Wimet" width="163">
+                        <img class="img-responsive" src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="163">
                         <p class="main-footer">
                             Wimet es un marketplace para eventos dedicado a vincular propietarios de espacios creativos con organizadores que buscan brindar una experiencia memorable.
                         </p>
@@ -481,6 +452,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     days.push({
                         name: date.format("dd").substring(0, 1),
                         number: date.date(),
+                        isCurrentMonth: date.month() === this.$moment(),
                         isToday: date.format('YYYY-MM-DD') === this.$moment().format('YYYY-MM-DD'),
                         isAvailable: this.isAvailable(date),
                         date: date,
@@ -519,15 +491,6 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 // Lo rearmo con los nuevos días
                 this.month.month(this.month.month() + 1);
                 this.buildMonth(next, this.month);
-            },
-            inPrice(categoryId) {
-                let aux = this.espacio.prices;
-                for(let i = 0; i < aux.length; i++) {
-                    if(aux[i].categoria_id == categoryId) {
-                        return true;
-                    }
-                }
-                return false;
             },
             selectCategory(categoryId) {
                 let aux = this.espacio.prices;
@@ -587,7 +550,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 this.total = this.subTotal + this.fee;
             },
             inArray(val) {
-                if(!val.month() === this.month.month()) {
+                if(val.month() !== this.month.month()) {
                     return 'removeDay';
                 }
                 for(let i = 0; i < this.selected.length; i++) {
@@ -764,6 +727,9 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 display: flex;
                 width: 50%;
                 justify-content: space-between;
+                img {
+                    border-radius: 50%;
+                }
                 &__datos {
                     display: flex;
                     flex-direction: column;

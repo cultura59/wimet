@@ -20,6 +20,7 @@ class DisponibilidadController extends Controller
         if(count($disponibilidades) > 0) {
             $espacio = Espacio::find($disponibilidades[0]['espacio_id']);
             $espacio->disponibilidad()->delete();
+            $espacio->step = 5;
             $espacio->save();
         }
         foreach ($disponibilidades as $key => $disponibilidad) {

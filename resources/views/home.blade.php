@@ -200,7 +200,7 @@
                 <div class="container">
                     <div class="row">
                        <div class="col-xs-12 col-sm-4">
-                        <img class="img-responsive" src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo-redwhite_scy9a1.svg" alt="Wimet" width="163">
+                        <img class="img-responsive" src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="163">
                         <p class="main-footer">
                             Wimet es un marketplace para eventos dedicado a vincular propietarios de espacios creativos con organizadores que buscan brindar una experiencia memorable.
                         </p>

@@ -104,7 +104,7 @@ class HomeController extends Controller
      */
     public function espacio($categoriaId, $name)
     {
-        $espacio = Espacio::where('name', $name)
+        $espacio = Espacio::where('staticname', $name)
                     ->with(
                         'user', 
                         'prices', 

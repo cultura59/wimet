@@ -64,3 +64,32 @@
         }
 	}
 </script>
+<style lang="sass">
+	.container-social__btn {
+		border: none;
+		width: 100%;
+		height: 50px;
+		border-radius: 2px;
+		margin-top: 5px;
+	}
+	.btn-linkedin {
+		background-color: #007ab6;
+		color: #fff;
+		&:hover {
+			background-color: rgba(0, 122, 182, 0.80);
+		}
+	}
+	.btn-google {
+		background-color: #fff;
+		border: solid 1px #979797;
+		color: #979797;
+		&:hover {
+			color: #000;
+		}
+	}
+	.icon-social {
+		color: #fff;
+		margin-right: 1.5em;
+		width: 15px;
+	}
+</style>

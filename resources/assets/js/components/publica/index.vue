@@ -3,10 +3,10 @@
 		<template v-if="authenticated">
 			<div class="publica-navbar">
 				<a href="#" :class="{active: $route.path == '/'}" @click="changeUrl($event, 'basico', null)">1. Basico</a>
-				<template v-if="$store.getters.getEspacio.prices.length == 0 || $store.getters.getEspacio.prices == undefined">
+				<template v-if="$store.getters.getEspacio.prices == undefined">
 					<a href="#" :class="{active: $route.name == 'actividades'}">2. Actividades</a>
 				</template>
-				<template v-if="$store.getters.getEspacio.prices.length > 0">
+				<template v-if="$store.getters.getEspacio.prices !== undefined">
 					<router-link
 						v-for="(cat, key) in $store.getters.getEspacio.prices"
 						v-if="cat.categoria.name != undefined"

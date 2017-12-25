@@ -7,31 +7,34 @@ use Illuminate\Database\Eloquent\Model;
 class Espacio extends Model
 {
 	protected $fillable = [
-                            'user_id',
-                            'name',
-                            'description',
-                            'rule',
-                            'politcancel',
-                            'quantyrooms',
-                            'quantybathrooms',
-                            'floor',
-                            'surface',
-                            'quanty',
-                            'foot',
-                            'seated',
-                            'adress',
-                            'city',
-                            'state',
-                            'country',
-                            'long',
-                            'lat',
-                            'securitydeposit',
-                            'portada',
-                            'image360',
-                            'cancellationflexibility',
-                            'order',
-                            'status'
-						];
+        'user_id',
+        'name',
+        'phone',
+        'staticname',
+        'description',
+        'rule',
+        'politcancel',
+        'quantyrooms',
+        'quantybathrooms',
+        'floor',
+        'surface',
+        'quanty',
+        'foot',
+        'seated',
+        'adress',
+        'city',
+        'state',
+        'country',
+        'long',
+        'lat',
+        'securitydeposit',
+        'portada',
+        'image360',
+        'cancellationflexibility',
+        'order',
+        'step',
+        'status'
+    ];
 	/**
 	 * @fn user()
 	 * @brief funcion que retorna el usuario asociado al espacio
@@ -39,6 +42,14 @@ class Espacio extends Model
 	public function user()
     {
         return $this->belongsTo('App\User');
+    }
+
+    /**
+     * @fn estilo()
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function estilo() {
+	    return $this->belongsTo('App\EstiloEspacio');
     }
 
     /**
@@ -83,7 +94,7 @@ class Espacio extends Model
      */
     public function servicios()
     {
-    	return $this->belongsToMany('App\Servicio');
+    	return $this->belongsToMany('App\Servicio')->select('id', 'nombre', 'tipo');
     }
 
     /**
@@ -137,7 +148,7 @@ class Espacio extends Model
      */
     public function access()
     {
-        return $this->belongsToMany('App\Access');
+        return $this->belongsToMany('App\Access')->select('id', 'nombre');
     }
 
     /*

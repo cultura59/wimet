@@ -38,10 +38,12 @@ Route::get('accessibilities', 'ApiHelpperController@accessibilities');
 Route::get('characteristics', 'ApiHelpperController@characteristics');
 Route::get('estiloespacio', 'ApiHelpperController@estiloespacio');
 Route::get('rules', 'ApiHelpperController@rules');
+Route::get('repare', 'ApiHelpperController@repareDataBase');
 
 Route::get('mpresponse', 'MercadoPagoController@responseMP');
 
 Route::post('saveportada/{id}', 'EspacioController@savePortada');
+Route::post('saveimage/{id}', 'EspacioController@saveImages');
 Route::delete('deleteportada/{id}', 'EspacioController@destroyPortada');
 Route::post('customlogin', 'UserController@customLogin');
 Route::post('user/foto/{id}', 'UserController@changeAvatar');

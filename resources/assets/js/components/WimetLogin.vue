@@ -18,7 +18,7 @@
 								<li class="menue-list__item" @click="reloadPage(`/dashboard#/favoritos`, $event)">
 									<a href="#" style="color: #333;">Favoritos</a>
 								</li>
-								<li class="menue-list__item active" @click="reloadPage(`/publica`, $event)">
+								<li class="menue-list__item active" @click="publicaUrl($event)">
 									<a href="#" style="color: #fc5289;">PUBLICAR TU ESPACIO</a>
 								</li>
 								<li class="menue-list__last-item" @click="logout($event)">
@@ -156,12 +156,14 @@
 			},
 			publicaUrl(e) {
 				e.preventDefault();
-				location.href = `/publica`;
+				this.$store.commit('setEspacio', {});
+				location.href = `/publica/espacio`;
 			}
 		}
 	}
 </script>
-<style lang="sass">
+<style lang="sass" scoped>
+	a {color: #333333}
 	.loader-login path, .loader-login rect{fill: #fff;}
 	.login-modal {
 	    position: fixed;
@@ -212,33 +214,6 @@
 			}
 			.container-social {
 			    padding-bottom: 1em;
-			    &__btn {
-				    border: none;
-				    width: 100%;
-				    height: 50px;
-				    border-radius: 2px;
-				    margin-top: 5px;
-				}
-			    .btn-linkedin {
-			    	background-color: #007ab6;
-			    	color: #fff;
-			    	&:hover {
-			    		background-color: rgba(0, 122, 182, 0.80);
-			    	}
-			    }
-			    .btn-google {
-			    	background-color: #fff;
-			    	border: solid 1px #979797;
-			    	color: #979797;
-			    	&:hover {
-			    		color: #000;
-			    	}
-			    }
-		    	.icon-social {
-					color: #fff;
-					margin-right: 1.5em;
-					width: 15px;
-		    	}
 			}
 			.container-login {
 			    display: flex;

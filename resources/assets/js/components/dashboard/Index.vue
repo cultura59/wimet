@@ -44,6 +44,69 @@
                 </div>
             </div>
         </template>
+        <!-- footer -->
+        <footer>
+            <div class="container">
+                <div class="row">
+                    <div class="col-xs-12 col-sm-4">
+                        <img class="img-responsive" src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="163">
+                        <p class="main-footer">
+                            Wimet es un marketplace para eventos dedicado a vincular propietarios de espacios creativos con organizadores que buscan brindar una experiencia memorable.
+                        </p>
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <p class="col-footer">Empresa</p>
+                        <ul>
+                            <li><a href="http://www.wimet.co/nosotros">Nosotros</a></li>
+                            <li><a href="http://blog.wimet.co">Blog</a></li>
+                            <li><a href="http://www.wimet.co/nosotros">Ayuda</a></li>
+                            <li><a href="http://www.wimet.co/nosotros">Términos y condiciones</a></li>
+                            <li><a href="http://www.wimet.co/nosotros">Políticas de privacidad</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <p class="col-footer">Actividades</p>
+                        <ul>
+                            <li>
+                                <a href="/search?ubicacion=&categoria=1&quanty=0-1000&price=100-10000">Reuniones</a>
+                            </li>
+                            <li>
+                                <a href="/search?ubicacion=&categoria=2&quanty=0-1000&price=100-10000">Eventos</a>
+                            </li>
+                            <li>
+                                <a href="/search?ubicacion=&categoria=3&quanty=0-1000&price=100-10000">Producciones</a>
+                            </li>
+                            <li>
+                                <a href="/search?ubicacion=&categoria=4&quanty=0-1000&price=100-10000">Pop-Ups</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-2">
+                        <p class="col-footer">Contacto</p>
+                        <ul>
+                            <li><a href="#">hola@wimet.co</a></li>
+                            <li><a href="#">El Salvador 5218, CABA</a></li>
+                            <li><a href="#">Buenos Aires, Argentina</a></li>
+                        </ul>
+                        <div class="wt-m-top-3 follow">
+                            <a href="https://www.facebook.com/wimet.co/">
+                                <img src="http://www.wimet.co/img/wimet_icon_facebook.svg" alt="Wimet" class="img-responsive">
+                            </a>
+                            <a href="https://www.instagram.com/wimet.co/">
+                                <img src="http://www.wimet.co/img/wimet_icon_instagram.svg" alt="Wimet" class="img-responsive">
+                            </a>
+                            <a href="https://www.linkedin.com/company/wimet">
+                                <img src="http://www.wimet.co/img/wimet_icon_linkedin.svg" alt="Wimet" class="img-responsive">
+                            </a>
+                            <a href="https://twitter.com/wimetco">
+                                <img src="http://www.wimet.co/img/wimet_icon_twitter.svg" alt="Wimet" class="img-responsive">
+                            </a>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </footer>
     </div>
 </template>
 <script>
@@ -104,6 +167,141 @@
                 text-decoration: none;
                 border-top: 4px solid #fc5289;
             }
+        }
+    }
+    .login-modal {
+        position: fixed;
+        z-index: 1;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.4);
+        &__content {
+            width: 450px;
+            padding: 5px 20px 10px 20px;
+            margin: 2.5% auto;
+            border-radius: 2px;
+            border: 1px solid #888;
+            background-color: #fefefe;
+            font-weight: 400;
+            position: relative;
+            h3 {
+                opacity: 0.87;
+                font-family: Poppins;
+                font-size: 18px;
+                font-weight: 500;
+                letter-spacing: -0.1px;
+                text-align: center;
+                color: #4a4a4a;
+            }
+            .login-modal-title {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1em;
+                font-family: Roboto;
+                font-size: 13px;
+                font-weight: 500;
+                letter-spacing: -0.2px;
+                text-align: center;
+                color: #888b8d;
+            }
+            .close-modal {
+                color: #888b8d;
+                font-size: 28px;
+                font-weight: bold;
+                cursor: pointer;
+                position: absolute;
+                top: 0;
+                right: .5em;
+            }
+            .container-social {
+                padding-bottom: 1em;
+                &__btn {
+                    border: none;
+                    width: 100%;
+                    height: 50px;
+                    border-radius: 2px;
+                    margin-top: 5px;
+                }
+                .btn-google {
+                    background-color: #fff;
+                    border: solid 1px #979797;
+                    color: #979797;
+                    &:hover {
+                        color: #000;
+                    }
+                }
+            }
+            .container-login {
+                display: flex;
+                flex-direction: column;
+                input {
+                    border-radius: 2px;
+                    border: solid 1px #979797;
+                    padding: 1em;
+                    width: 100%;
+                    height: 50px;
+                    margin-bottom: 5px;
+                    color: #979797;
+                }
+                &__login {
+                    width: 100%;
+                    height: 50px;
+                    border-radius: 2px;
+                    background-color: #FC5289;
+                    border: none;
+                    color: #fff;
+                    &:hover {
+                        background-color: rgba(234, 81, 109, 0.80);
+                    }
+                }
+                .container-terminos {
+                    display: flex;
+                    justify-content: center;
+                    margin-top: 1em;
+                    &__texto {
+                        font-family: Roboto;
+                        font-size: 13px;
+                        font-weight: 500;
+                        letter-spacing: -0.2px;
+                        text-align: center;
+                        color: #888b8d;
+                        cursor: pointer;
+                    }
+                }
+            }
+            .container-footer {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                padding: 1em 0;
+                &__pregunta {
+                    font-family: Roboto;
+                    font-size: 14px;
+                    font-weight: 500;
+                    letter-spacing: -0.2px;
+                    color: #424242;
+                }
+                &__registro {
+                    color: #e2385a;
+                    margin-left: 1em;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+    @media only screen and (max-width: 768px) {
+        &__content {
+            width: 100%;
+            padding: 5px 20px 10px 20px;
+            margin: 2.5% auto;
+            border-radius: 2px;
+            border: 1px solid #888;
+            background-color: #fefefe;
+            font-weight: 400;
+            position: relative;
         }
     }
 </style>

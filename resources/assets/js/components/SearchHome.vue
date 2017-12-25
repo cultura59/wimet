@@ -1,28 +1,37 @@
 <template>
     <div>
     	<div id="search-desktop">
-    		<div class="content-dropbtn-select"><div class="dropdown">
-                <button class="dropbtn-left" @click="showSelectUbicacion()">
-                    <span>{{ubicacion}}</span>
-                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                </button>
-                <div v-if="stUbicacion" class="dropdown__content-left">
-                    <span class="contaniner-categorias" @click="selectUbicacion('CABA')">CABA</span>
-                    <span class="contaniner-categorias" @click="selectUbicacion('Buenos Aires')">Gran Buenos Aires</span>
-                </div>
-            </div></div>
-            <div class="content-dropbtn-select"><div class="dropdown">
-                <button class="dropbtn-right" @click="showSelectCategoria()">
-                    <span>{{(categoria == '') ? 'QUÉ ESTÁS PLANIFICANDO?' : categoria.name}}</span>
-                    <i class="fa fa-sort-desc" aria-hidden="true"></i>
-                </button>
-                <div v-if="stCategoria" class="dropdown__content">
-                	<div v-for="cat in categories" class="contaniner-categorias" @click="selectCategoria(cat)">
-                        <span>{{cat.name}}</span>
-                        <span class="subCategoria">{{showSubCategories(cat.sub_category)}}</span>
+    		<div class="content-dropbtn-select">
+                <div class="dropdown">
+                    <button class="dropbtn-left" @click="showSelectUbicacion()">
+                        <span>{{ubicacion}}</span>
+                        <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                    </button>
+                    <div v-if="stUbicacion" class="dropdown__content-left">
+                        <span class="contaniner-categorias" @click="selectUbicacion('CABA')">Ciudad Autonoma de Buenos Aires</span>
+                        <span class="contaniner-categorias" @click="selectUbicacion('Buenos Aires')">Gran Buenos Aires</span>
                     </div>
                 </div>
-            </div></div>
+            </div>
+            <div class="content-dropbtn-select">
+                <div class="dropdown">
+                    <button class="dropbtn-right" @click="showSelectCategoria()">
+                        <span>{{(categoria == '') ? 'QUÉ ESTÁS PLANIFICANDO?' : categoria.name}}</span>
+                        <i class="fa fa-sort-desc" aria-hidden="true"></i>
+                    </button>
+                    <div v-if="stCategoria" class="dropdown__content">
+                        <div v-for="cat in categories" class="contaniner-categorias" @click="selectCategoria(cat)">
+                            <div>
+                                <img :src="cat.icon" :alt="cat.name" class="img-responsive">
+                            </div>
+                            <div class="wt-center-column">
+                                <span>{{cat.name}}</span>
+                                <span class="subCategoria">{{showSubCategories(cat.sub_category)}}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="content-dropbtn-btn"><button class="search-home-btn" @click="searchEspacios()">BUSCAR</button></div>
     	</div>
         <div class="wt-center-column" id="search-mobile">

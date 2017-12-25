@@ -60,7 +60,7 @@
                     navigationControl: false,
                     mapTypeControl: true,
                     scaleControl: false,
-                    draggable: true,
+                    draggable: false,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
                 this.map.mapTypes.set('sylver', this.styledMapType);

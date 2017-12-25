@@ -12,9 +12,16 @@ class ServicioController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $servicios = Servicio::all();
+        $query = Servicio::query();
+        $query->select('id', 'nombre', 'tipo');
+
+        if($request->has('tipo')){
+            $query->where('tipo', '=', $request->get('tipo'));
+        }
+
+        $servicios = $query->get();
         return $servicios;
     }
 

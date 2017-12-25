@@ -31,7 +31,11 @@ window.fbAsyncInit = () => {
 }(document, 'script', 'facebook-jssdk'));
 
 const ip = location.host;
-Vue.http.options.root = `http://${ip}`;
+if(ip !== "") {
+    Vue.http.options.root = `http://${ip}`;
+} else {
+    Vue.http.options.root = `http://localhost:8000`;
+}
 
 Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
 
@@ -48,7 +52,7 @@ toastr.options = {
     "debug": false,
     "newestOnTop": false,
     "progressBar": true,
-    "positionClass": "toast-top-center",
+    "positionClass": "toast-top-right",
     "preventDuplicates": false,
     "onclick": null,
     "showDuration": "300",

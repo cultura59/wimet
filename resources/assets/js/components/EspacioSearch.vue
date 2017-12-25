@@ -20,7 +20,7 @@
 			</div>
 		</div>
 		<a v-if="!loadingData" :href="url" target="_blank">
-			<img :src="urlImagen(espacio.image)" :tile="espacio.name" class="img-responsive img-espacio">
+			<img :src="espacio.portada" :tile="espacio.name" class="img-responsive img-espacio">
 			<div class="card-footer-search">
 				<div>
 					<strong>{{espacio.name}}</strong>
@@ -63,14 +63,11 @@
 				this.$http.get(`/api/getespacio/categoria/${this.categoryId}/espacio/${this.espacioId}`)
 	            .then(res => {
 	            	this.espacio = res.body[0];
-                    this.url = `/categoria/${this.categoryId}/espacio/${this.espacio.name}`;
+                    this.url = `/categoria/${this.categoryId}/espacio/${this.espacio.staticname}`;
                     this.loadingData = false;
 	            }, err => {
 	                console.log(err);
 	            });
-	        },
-	        urlImagen(url) {
-	        	return `https://res.cloudinary.com/wimet/image/upload/q_60/${url}`;
 	        }
 		}
 	}

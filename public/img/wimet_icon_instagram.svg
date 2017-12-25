@@ -2,7 +2,7 @@
 <!-- Generator: Adobe Illustrator 18.1.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
 <svg version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
 	 viewBox="0 0 30 30" enable-background="new 0 0 30 30" xml:space="preserve">
-<path fill="none" stroke="#FFFFFF" stroke-width="2" stroke-miterlimit="10" d="M15,27.4c-6.9,0-12.5-5.6-12.5-12.5S8.1,2.4,15,2.4
+<path fill="none" stroke="#666666" stroke-width="2" stroke-miterlimit="10" d="M15,27.4c-6.9,0-12.5-5.6-12.5-12.5S8.1,2.4,15,2.4
 	c6.9,0,12.5,5.6,12.5,12.5S21.9,27.4,15,27.4z"/>
 <g>
 	<defs>
@@ -20,7 +20,7 @@
 	<clipPath id="SVGID_2_">
 		<use xlink:href="#SVGID_1_"  overflow="visible"/>
 	</clipPath>
-	<rect x="4.6" y="4.6" clip-path="url(#SVGID_2_)" fill="#FFFFFF" width="20.8" height="21.1"/>
+	<rect x="4.6" y="4.6" clip-path="url(#SVGID_2_)" fill="#666666" width="20.8" height="21.1"/>
 </g>
 <g>
 	<defs>
@@ -30,7 +30,7 @@
 	<clipPath id="SVGID_4_">
 		<use xlink:href="#SVGID_3_"  overflow="visible"/>
 	</clipPath>
-	<rect x="7.7" y="7.6" clip-path="url(#SVGID_4_)" fill="#FFFFFF" width="14.7" height="15"/>
+	<rect x="7.7" y="7.6" clip-path="url(#SVGID_4_)" fill="#666666" width="14.7" height="15"/>
 </g>
 <g>
 	<defs>
@@ -40,6 +40,6 @@
 	<clipPath id="SVGID_6_">
 		<use xlink:href="#SVGID_5_"  overflow="visible"/>
 	</clipPath>
-	<rect x="13.4" y="6.8" clip-path="url(#SVGID_6_)" fill="#FFFFFF" width="9.9" height="10.2"/>
+	<rect x="13.4" y="6.8" clip-path="url(#SVGID_6_)" fill="#666666" width="9.9" height="10.2"/>
 </g>
 </svg>
