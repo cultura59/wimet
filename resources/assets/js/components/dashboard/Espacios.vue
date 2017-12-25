@@ -37,7 +37,7 @@
                                 <a v-if="espacio.status == false" href="#" @click="getEspacio($event, espacio)">
                                     <button class="espacios-main__btn">EDITAR</button>
                                 </a>
-                                <a :href="`/categoria/1/espacio/${espacio.name}`" target="_blank" class="wt-m-top-1">
+                                <a :href="`/categoria/1/espacio/${espacio.staticname}`" target="_blank" class="wt-m-top-1">
                                     <button class="espacios-main__btn">VISTA PREVIA</button>
                                 </a>
                             </div>

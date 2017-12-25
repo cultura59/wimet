@@ -185,7 +185,7 @@
                 .then(res => {
                     this.espacio = res.body;
                     this.backgroundEspacio = {
-                        backgroundImage: `url(https://res.cloudinary.com/wimet/image/upload/q_60/${this.espacio.images[0].name})`,
+                        backgroundImage: `url(${this.espacio.images[0].name})`,
                         backgroundSize: 'cover',
                         backgroundPosition: 'center',
                         height: '200px',
@@ -232,6 +232,7 @@
         left: 3em;
         top: 1em;
         text-decoration: none;
+        color: #333333;
     }
     .container-evento {
         display: flex;
