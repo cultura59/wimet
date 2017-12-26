@@ -62,6 +62,7 @@ class EspacioController extends Controller
     public function store(Request $request)
     {
         try {
+            $lastEspacio = Espacio::latest()->first();
             DB::beginTransaction();
             $espacio = new Espacio();
             $espacio->user_id = $request->user_id;
@@ -84,6 +85,7 @@ class EspacioController extends Controller
             $espacio->lat = ($request->lat) ? $request->lat : null;
             $espacio->step = ($request->step) ? $request->step : null;
             $espacio->status = false;
+            $espacio->order = $lastEspacio->order + 1;
             $espacio->save();
 
             // Actualizo las categorias
