@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use DB;
 use Log;
 use App\User;
+use App\Wishlist;
 use App\Mail\ConfirmAccount;
 use \Laravel\Passport\Http\Controllers\AccessTokenController;
 

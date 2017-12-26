@@ -15,7 +15,7 @@ class ServicioController extends Controller
     public function index(Request $request)
     {
         $query = Servicio::query();
-        $query->select('id', 'nombre', 'tipo');
+        $query->select('id', 'nombre', 'tipo', 'icon');
 
         if($request->has('tipo')){
             $query->where('tipo', '=', $request->get('tipo'));

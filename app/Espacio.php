@@ -94,7 +94,7 @@ class Espacio extends Model
      */
     public function servicios()
     {
-    	return $this->belongsToMany('App\Servicio')->select('id', 'nombre', 'tipo');
+    	return $this->belongsToMany('App\Servicio')->select('id', 'nombre', 'tipo', 'icon');
     }
 
     /**
@@ -148,7 +148,7 @@ class Espacio extends Model
      */
     public function access()
     {
-        return $this->belongsToMany('App\Access')->select('id', 'nombre');
+        return $this->belongsToMany('App\Access')->select('id', 'nombre', 'icon');
     }
 
     /*

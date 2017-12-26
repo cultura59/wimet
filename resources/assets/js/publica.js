@@ -32,7 +32,11 @@ window.fbAsyncInit = () => {
 }(document, 'script', 'facebook-jssdk'));
 
 const ip = location.host;
-Vue.http.options.root = `http://${ip}`;
+if(ip !== "") {
+    Vue.http.options.root = `http://${ip}`;
+} else {
+    Vue.http.options.root = `http://localhost:8000`;
+}
 
 Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
 

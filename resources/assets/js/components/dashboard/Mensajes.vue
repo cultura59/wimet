@@ -1,31 +1,29 @@
 <template>
 	<div>
 		<div class="container-mis-mensajes">
-			<span class="container-mis-mensajes__title">MIS ESPACIOS</span>
+			<span class="container-mis-mensajes__title">MIS MENSAJES</span>
 			<div class="mensajes-main__links">
 				<div v-if="$store.getters.getUser.tipo_clientes_id > 1" >
-					<a href="#"
-					   :class="(showMensajesType == 1) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'"
-					   @click="changeType($event, 1)">COMO ORGANIZADOR
-					</a>
 					<a href="#"
 					   :class="(showMensajesType == 2) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'"
 					   @click="changeType($event, 2)">COMO ANFITRIÓN
 					</a>
-				</div>
-				<div>
-					<select v-model="filtroType" @change="getMensajes(filtroType)" class="mensajes-main__select">
-						<option value="">Todos los mensajes</option>
-						<option value="consulta">Consulta</option>
-						<option value="seguimiento">Seguimiento</option>
-						<option value="visita">Visita</option>
-						<option value="presupuesto">Presupuesto</option>
-						<option value="reservado">Reservado</option>
-						<option value="realizado">Realizado</option>
-						<option value="perdido">Perdido</option>
-					</select>
+					<a href="#"
+					   :class="(showMensajesType == 1) ? 'mensajes-main__links--active' : 'mensajes-main__links--default'"
+					   @click="changeType($event, 1)">COMO ORGANIZADOR
+					</a>
 				</div>
 			</div>
+			<select v-model="filtroType" @change="getMensajes(filtroType)" class="mensajes-main__select">
+				<option value="">Todos los mensajes</option>
+				<option value="consulta">Consulta</option>
+				<option value="seguimiento">Seguimiento</option>
+				<option value="visita">Visita</option>
+				<option value="presupuesto">Presupuesto</option>
+				<option value="reservado">Reservado</option>
+				<option value="realizado">Realizado</option>
+				<option value="perdido">Perdido</option>
+			</select>
 		</div>
 		<div class="mensajes-main">
 			<div class="mensajes">
@@ -98,7 +96,7 @@
 				evento: '',
 				espacio: '',
 				eventoselect: '',
-				showMensajesType: 1,
+				showMensajesType: 2,
                 filtroType: ''
 			}
 		},
@@ -139,7 +137,7 @@
 		justify-content: space-between;
 		padding: 0 2em;
 		margin-top: 4em;
-		align-items: flex-end;
+		align-items: center;
 		&__title {
 			font-family: Ubuntu;
 			font-size: 16px;
@@ -158,24 +156,26 @@
 			&--default {
 				opacity: 0.87;
 				font-size: 12px;
-                margin-right: 1em;
 				color: #191919;
 				text-decoration: none;
+				padding: .8em 0;
+				margin: 0 .5em;
 				&:hover, &:focus {
 					transition: none;
 					text-decoration: none;
-					border-bottom: 2px solid #d17f87;
-					padding-bottom: 1em;
+					border-bottom: 4px solid #fc5289;
+					padding: .8em 0;
+					margin: 0 .5em;
 				}
 			}
 			&--active {
 				opacity: 0.87;
 				font-size: 12px;
-				color: #d17f87;
+				color: #fc5289;
 				text-decoration: none;
-				border-bottom: 4px solid #d17f87;
-                margin-right: 1em;
-				padding-bottom: 1em;
+				border-bottom: 4px solid #fc5289;
+				padding: .8em 0;
+				margin: 0 .5em;
 			}
 		}
 		.mensajes {
@@ -196,13 +196,17 @@
 					color: #333333;
 				}
 				.firstUpper {text-transform: capitalize;}
-				.status {color: #d17f87;}
+				.status {color: #fc5289;}
 			}
 		}
         &__select {
-			padding: .5em 2em;
+			padding: .6em 2em;
 			cursor: pointer;
 			border: 1px solid #fff;
+			-webkit-appearance: none;
+			border-radius: 0px;
+			background-color: #fff;
+			color: #191919;
         }
 	}
 	.link-chats {

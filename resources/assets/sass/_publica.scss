@@ -257,6 +257,8 @@
 	padding-left: 2.3em;
 	position: relative;
 	cursor: pointer;
+	font-weight: 400;
+	font-size: 12px;
 	&:before {
 		content: ' ';
 		border: 1px solid $wt-primary-grey;

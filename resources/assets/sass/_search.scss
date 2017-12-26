@@ -52,10 +52,16 @@
 			color: #636b6f;
 			display: flex;
 			flex-direction: column;
+			position: relative;
 		}
 		img {
 			box-shadow: 1px 1px 2px 0px rgba(133,131,133,1);
 			margin-top: 20px;
+		}
+		.img-whishlist {
+			position: absolute;
+			right: 1em;
+			top: 1em;
 		}
 		p {
 			font-size: 1em;

@@ -60,21 +60,21 @@
                                 :class="{'publica-cacellation__box--active': $store.getters.getEspacio.prices[indexCat].cancellationflexibility == 'flexible'}"
                                 @click="selectFlexibility('flexible')">
                                 <span class="publica-cacellation__box__title">FLEXIBLE</span>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+                                <span>Reembolso completo hasta 15 días antes del evento, excepto los gastos de procesamiento.</span>
                             </div>
                             <div
                                 class="publica-cacellation__box"
                                 :class="{'publica-cacellation__box--active': $store.getters.getEspacio.prices[indexCat].cancellationflexibility == 'moderado'}"
                                 @click="selectFlexibility('moderado')">
                                 <span class="publica-cacellation__box__title">MODERADA</span>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+                                <span>Reembolso completo hasta 30 días antes del evento, excepto los gastos de procesamiento.</span>
                             </div>
                             <div
                                 class="publica-cacellation__box"
                                 :class="{'publica-cacellation__box--active': $store.getters.getEspacio.prices[indexCat].cancellationflexibility == 'estricto'}"
                                 @click="selectFlexibility('estricto')">
                                 <span class="publica-cacellation__box__title">ESTRICTA</span>
-                                <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</span>
+                                <span>50% de reembolso hasta 30 días antes del evento, excepto gastos de procesamiento.</span>
                             </div>
                         </div>
                     </div>
@@ -93,7 +93,10 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <img src="/img/wimet_amenities.svg" class="img-responsive">
+                <img v-show="this.$route.params.name == 'Reunion'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_reunion.svg" class="img-responsive">
+                <img v-show="this.$route.params.name == 'Evento'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_evento.svg" class="img-responsive">
+                <img v-show="this.$route.params.name == 'Produccion'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_produccion.svg" class="img-responsive">
+                <img v-show="this.$route.params.name == 'Retail'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_retail.svg" class="img-responsive">
             </div>
         </div>
     </div>
@@ -178,9 +181,7 @@
                 this.$http.get(`api/espacio/${id}`)
                     .then(res => {
                         this.$store.commit('setEspacio', res.body);
-                        setInterval(() => {
-                            location.href = '/publica/espacio#/amenities';
-                        }, 2000);
+                        this.$router.push({ name: "amenities"});
                     }, err => {
                         this.btnSend = true;
                         $toastr.error("Ups...", "Hubo un problema al crear su espacio, vuelva a intentarlo");
@@ -210,6 +211,7 @@
         display: flex;
         flex-direction: column;
         border: 1px solid #dadada;
+        font-size: 12px;
         &__box {
             padding: 1em;
             display: flex;

@@ -9,7 +9,10 @@
                         <h3>ESPACIO</h3>
                         <div v-for="acc in accesos">
                             <input :id="`acceso-${acc.id}`" type="checkbox" :value="acc" style="display: none;" v-model="espacio.access">
-                            <label :for="`acceso-${acc.id}`" class="wt-publica-label">{{acc.nombre}}</label>
+                            <label :for="`acceso-${acc.id}`" class="wt-publica-label">
+                                <img :src="acc.icon" :alt="acc.nombre">
+                                {{acc.nombre}}
+                            </label>
                         </div>
                         <h3>EQUIPAMIENTO</h3>
                         <div v-for="equipamiento in amenities">
@@ -23,7 +26,9 @@
                             <label
                                 v-if="equipamiento.tipo == 'equipamiento'"
                                 :for="`ametiny-${equipamiento.id}`"
-                                class="wt-publica-label">{{equipamiento.nombre}}
+                                class="wt-publica-label">
+                                <img :src="equipamiento.icon" :alt="equipamiento.nombre">
+                                {{equipamiento.nombre}}
                             </label>
                         </div>
                     </div>
@@ -40,7 +45,9 @@
                             <label
                                 v-if="amenity.tipo == 'amenities'"
                                 :for="`ametiny-${amenity.id}`"
-                                class="wt-publica-label">{{amenity.nombre}}
+                                class="wt-publica-label">
+                                <img :src="amenity.icon" :alt="amenity.nombre">
+                                {{amenity.nombre}}
                             </label>
                         </div>
                     </div>

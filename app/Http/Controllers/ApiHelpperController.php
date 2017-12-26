@@ -20,7 +20,7 @@ class ApiHelpperController extends Controller
      */
     public function access()
     {
-        return Access::select('id', 'nombre')->get();
+        return Access::select('id', 'nombre', 'icon')->get();
     }
 
 	/**

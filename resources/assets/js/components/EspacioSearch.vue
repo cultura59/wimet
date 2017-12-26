@@ -20,6 +20,7 @@
 			</div>
 		</div>
 		<a v-if="!loadingData" :href="url" target="_blank">
+			<img @click="addWhishlist($event, espacio.id)" src="/img/corazon_unactive.svg" class="img-whishlist">
 			<img :src="espacio.portada" :tile="espacio.name" class="img-responsive img-espacio">
 			<div class="card-footer-search">
 				<div>
@@ -68,7 +69,12 @@
 	            }, err => {
 	                console.log(err);
 	            });
-	        }
+	        },
+            addWhishlist(e, id) {
+			    e.preventDefault();
+			    console.log(id);
+			    return;
+			}
 		}
 	}
 </script>
