@@ -126,20 +126,24 @@ class EspacioController extends Controller
      */
     public function show($id)
     {
-        $query = Espacio::with(
-            'prices',
-            'user',
-            'categorias',
-            'servicios',
-            'estilosEspacio',
-            'rules',
-            'images',
-            'characteristics',
-            'access'
-        );
-        $query->where('id', '=', $id);
-        $espacio = $query->first();
-        return $espacio;
+        try {
+            $query = Espacio::with(
+                'prices',
+                'user',
+                'categorias',
+                'servicios',
+                'estilosEspacio',
+                'rules',
+                'images',
+                'characteristics',
+                'access'
+            );
+            $query->where('id', '=', $id);
+            $espacio = $query->first();
+            return $espacio;
+        }catch (\Exception $e) {
+            return \response('Error: ' . $e->getMessage(), 500);
+        }
     }
 
     /**
