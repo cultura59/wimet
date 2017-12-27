@@ -5,7 +5,7 @@
                 <div class="dropdown">
                     <span class="dropbtn" @click="setDropdown('btnCategoria')">{{selectUbicacion}} <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
                     <div class="dropdown-content" v-if="selectDropdown == 'btnCategoria'">
-                        <a href="#" @click="changeUbicacion($event, 'CABA')">CABA</a>
+                        <a href="#" @click="changeUbicacion($event, 'CABA')">Ciudad de Buenos Aires</a>
                         <a href="#" @click="changeUbicacion($event, 'Buenos Aires')">Gran Buenos Aires</a>
                     </div>
                 </div>

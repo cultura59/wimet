@@ -28,8 +28,10 @@
                             <router-link :to="`/actividad/${$store.getters.getEspacio.prices[0].categoria.name}`" class="box-container__btn__edit">EDITAR</router-link>
                             <img src="/img/wimet_ic_check_24px_accent.svg">
                         </template>
-                        <button v-if="$store.getters.getEspacio.step <= 1" class="btn-complete">
-                            <router-link :to="`/actividad/${$store.getters.getEspacio.prices[0].categoria.name}`">COMPLETAR</router-link>
+                        <button
+                            v-if="$store.getters.getEspacio.step <= 1"
+                            @click="changeUrl('actividad', $store.getters.getEspacio.prices[0].categoria.name)"
+                            class="btn-complete">COMPLETAR
                         </button>
                     </div>
                 </div>
@@ -43,8 +45,10 @@
                             <router-link to="/amenities" class="box-container__btn__edit">EDITAR</router-link>
                             <img src="/img/wimet_ic_check_24px_accent.svg">
                         </template>
-                        <button v-if="$store.getters.getEspacio.step <= 2" class="btn-complete">
-                            <router-link to="/amenities">COMPLETAR</router-link>
+                        <button
+                            v-if="$store.getters.getEspacio.step <= 2"
+                            @click="changeUrl('amenities', null)"
+                            class="btn-complete">COMPLETAR
                         </button>
                     </div>
                 </div>
@@ -58,8 +62,10 @@
                             <router-link to="/disponibilidad" class="box-container__btn__edit">EDITAR</router-link>
                             <img src="/img/wimet_ic_check_24px_accent.svg">
                         </template>
-                        <button v-if="$store.getters.getEspacio.step <= 3" class="btn-complete">
-                            <router-link to="/disponibilidad">COMPLETAR</router-link>
+                        <button
+                            v-if="$store.getters.getEspacio.step <= 3"
+                            @click="changeUrl('disponibilidad', null)"
+                            class="btn-complete">COMPLETAR
                         </button>
                     </div>
                 </div>
@@ -73,8 +79,10 @@
                             <router-link to="/foto" class="box-container__btn__edit">EDITAR</router-link>
                             <img src="/img/wimet_ic_check_24px_accent.svg">
                         </template>
-                        <button v-if="$store.getters.getEspacio.step <= 4" class="btn-complete">
-                            <router-link to="/foto">COMPLETAR</router-link>
+                        <button
+                            v-if="$store.getters.getEspacio.step <= 4"
+                            @click="changeUrl('foto', null)"
+                            class="btn-complete">COMPLETAR
                         </button>
                     </div>
                 </div>
@@ -88,8 +96,10 @@
                             <router-link to="/descripcion" class="box-container__btn__edit">EDITAR</router-link>
                             <img src="/img/wimet_ic_check_24px_accent.svg">
                         </template>
-                        <button v-if="$store.getters.getEspacio.step <= 5" class="btn-complete">
-                            <router-link to="/descripcion">COMPLETAR</router-link>
+                        <button
+                            v-if="$store.getters.getEspacio.step <= 5"
+                            @click="changeUrl('descripcion', null)"
+                            class="btn-complete">COMPLETAR
                         </button>
                     </div>
                 </div>
@@ -124,6 +134,13 @@
                     this.btnSend = true;
                     $toastr.error("Ups...", "Hubo un problema al modificar su espacio, vuelva a intentarlo");
                 });
+            },
+            changeUrl(url, val) {
+                if(val === null) {
+                    this.$router.push({name: url});
+                } else {
+                    this.$router.push({name: url, params: { name: val }});
+                }
             }
         }
     }
@@ -147,7 +164,6 @@
         &__btn {
             display: flex;
             justify-content: space-between;
-            height: 23px;
             &__edit {
                 font-size: 12px;
                 color: #ea516d;

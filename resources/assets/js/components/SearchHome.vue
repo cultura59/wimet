@@ -8,7 +8,7 @@
                         <i class="fa fa-sort-desc" aria-hidden="true"></i>
                     </button>
                     <div v-if="stUbicacion" class="dropdown__content-left">
-                        <span class="contaniner-categorias" @click="selectUbicacion('CABA')">Ciudad Autonoma de Buenos Aires</span>
+                        <span class="contaniner-categorias" @click="selectUbicacion('CABA')">Ciudad de Buenos Aires</span>
                         <span class="contaniner-categorias" @click="selectUbicacion('Buenos Aires')">Gran Buenos Aires</span>
                     </div>
                 </div>

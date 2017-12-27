@@ -31,7 +31,10 @@
                 <div class="col-md-12 padding-leftright-null text-center">
                     <h2 class="margin-bottom-null title">PRENSA</h2>
                     <div class="padding-md">
-                        <p class="heading">El avance de las tecnologías ha permitido nuevas formas de acceso a la información y la posibilidad de potenciar nuestros lazos o relaciones. Nosotros creemos que estos nuevos paradigmas dan lugar a que podamos <b>re-imaginar la forma en que nos encontramos, compartimos y creamos.</b></p>
+                        <p class="heading">
+                            El avance de las tecnologías ha permitido nuevas formas de acceso a la información y la posibilidad de potenciar nuestros lazos o relaciones.
+                        </p>
+                        <p class="heading">Nosotros creemos que estos nuevos paradigmas dan lugar a que podamos <b>re-imaginar la forma en que nos encontramos, compartimos y creamos.</b></p>
                         <p class="heading">Cada espacio espera contar su historia.</br>
                         Revive y comparte la <i>experiencia Wimet.</i></p>
                         <a href="blog-masonry-sidebar" class="btn-alt active shadow small margin-null">Descargar Kit de Prensa </a>
