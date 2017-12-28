@@ -1,20 +1,19 @@
 language: php
 
 php:
-  - '7.0'
-  - '7.1'
-
-sudo: false
+  - 7.0
 
 before_script:
+  - chmod 777 -R storage
   - cp .env.ci .env
-  - composer install --dev --prefer-source --no-interaction
+  - mysql -u root -e "CREATE DATABASE mydb;"
+  - mysql -u root -e "GRANT ALL PRIVILEGES ON mydb.* TO 'travis'@'%';";
+  - composer self-update
+  - composer install --no-interaction
   - php artisan key:generate
-  - php artisan migrate --seed
 
 script:
-  - vendor/bin/phpmd app text codesize design naming unusedcode
-  - vendor/bin/phpunit --testdox --coverage-text tests
+  - vendor/bin/phpunit
 
 notifications:
   email:
