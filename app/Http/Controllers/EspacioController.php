@@ -176,6 +176,14 @@ class EspacioController extends Controller
                 }
                 $espacio->access()->sync($arrAccess);
             }
+            // Se sincronizan los espacios favoritos
+            if($request->espacios){
+                $arrEspacios = [];
+                foreach ($request->espacios as $esp) {
+                    array_push($arrEspacios, $esp['id']);
+                }
+                $espacio->espacios()->sync($arrEspacios);
+            }
             return $espacio;
         }catch (\Exception $e) {
             return response('Los campos no son correctos ' . $e->getMessage(), 400);

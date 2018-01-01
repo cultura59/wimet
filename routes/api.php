@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,7 +15,9 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/usersession', function (Request $request) {
-    return $request->user();
+    return User::with('espacios')
+            ->where('id', '=', $request->user()->id)
+            ->first();
 })->middleware('auth:api');
 
 Route::resource('espacio', 'EspacioController');
@@ -41,6 +44,7 @@ Route::get('rules', 'ApiHelpperController@rules');
 Route::get('repare', 'ApiHelpperController@repareDataBase');
 
 Route::get('mpresponse', 'MercadoPagoController@responseMP');
+Route::post('sendpayment', 'MercadoPagoController@sendPayment');
 
 Route::post('saveportada/{id}', 'EspacioController@savePortada');
 Route::post('saveimage/{id}', 'EspacioController@saveImages');

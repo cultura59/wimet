@@ -55,10 +55,11 @@
                 this.map = new google.maps.Map(element, {
                     center: new google.maps.LatLng(mapCentre.lat, mapCentre.long),
                     zoom: parseInt(this.zoom),
-                    disableDefaultUI: false,
+                    maxZoom: 15,
+                    disableDefaultUI: true,
                     scrollwheel: false,
                     navigationControl: false,
-                    mapTypeControl: true,
+                    mapTypeControl: false,
                     scaleControl: false,
                     draggable: false,
                     mapTypeId: google.maps.MapTypeId.ROADMAP

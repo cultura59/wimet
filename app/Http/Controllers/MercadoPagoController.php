@@ -9,7 +9,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Log;
+use MP;
 
 class MercadoPagoController extends Controller
 {
@@ -32,5 +32,32 @@ class MercadoPagoController extends Controller
         );
 
         dd($mp->post($request));
+    }
+
+    /**
+     * @fn sendPayment()
+     * @param Request $request
+     * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function sendPayment(Request $request) {
+        try {
+            return $request->all();
+            $mp = new MP("TEST-8248736349517024-122213-0a87e93a32890c78b05090e7cee77fcc__LD_LA__-291916384");
+            $payment_data = array(
+                "transaction_amount" => 1500,
+                "token" => $request["token"],
+                "description" => "Title of what you are paying for",
+                "installments" => 1,
+                "payment_method_id" => $request["paymentMethodId"],
+                "payer" => array (
+                    "email" => $request["email"]
+                ),
+                "capture" => false
+            );
+            return $mp->post("/v1/payments", $payment_data);
+            return response('Se enviaran los datos por email', 200);
+        } catch (\Exception $e) {
+            return response('Hubo un error al realizar el pago, ' . $e->getMessage(), 500);
+        }
     }
 }

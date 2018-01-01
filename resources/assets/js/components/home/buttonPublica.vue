@@ -196,7 +196,8 @@
 			},
 			publicaUrl() {
 				if(this.$auth.isAuthenticated()) {
-					location.href = `/publicar/user/${this.user.id}/primer-paso`;
+                    this.$store.commit('setEspacio', {});
+                    location.href = `/publica/espacio`;
 				}else {
 					this.openModalLogin();
 				}

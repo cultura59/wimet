@@ -39,7 +39,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token', 'isAdmin',
+        'pivot', 'password', 'remember_token', 'isAdmin',
     ];
 
     /**
@@ -51,7 +51,7 @@ class User extends Authenticatable
 
     public function espacios() 
     {
-        return $this->hasMany('App\Espacio');
+        return $this->belongsToMany('App\Espacio')->select('id');
     }
 
     public function tipoCliente()
@@ -67,6 +67,10 @@ class User extends Authenticatable
     public function eventos() 
     {
         return $this->hasMany('App\Evento');
+    }
+
+    public function reservations() {
+        return $this->hasMany('Reservation');
     }
 
     /*

@@ -157,7 +157,7 @@
 			publicaUrl(e) {
 				e.preventDefault();
 				this.$store.commit('setEspacio', {});
-				location.href = `/publica/espacio`;
+				location.href = `/publica`;
 			}
 		}
 	}
