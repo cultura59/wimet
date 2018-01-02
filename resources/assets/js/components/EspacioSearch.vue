@@ -74,6 +74,9 @@
 	            });
 	        },
 			inArray(id) {
+			    if(this.$store.getters.getUser.espacios === undefined) {
+			        return false;
+				}
 				for(let i = 0; i < this.$store.getters.getUser.espacios.length; i++) {
 				    if(this.$store.getters.getUser.espacios[i].id == id) {
 				        return true;
