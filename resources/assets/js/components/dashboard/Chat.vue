@@ -99,7 +99,7 @@
                             <tr v-for="propuesta in propuestas" class="active">
                                 <td>{{propuesta.id}}</td>
                                 <td>{{propuesta.pagos[0].pestado}}</td>
-                                <td>{{propuesta.created_at}}</td>
+                                <td>{{$moment(propuesta.created_at).locale('es').format('DD/MM/YYYY')}}</td>
                                 <td>{{propuesta.pagos[0].pvencimiento}}</td>
                                 <td>${{propuesta.sub_total}}</td>
                             </tr>

@@ -336,6 +336,7 @@
 			padding: 20px;
 			border: 1px solid #888;
 			width: 60%;
+			height: 12em;
 			&__btn {
 				border-radius: 1px;
 				background-color: #fc5289;
