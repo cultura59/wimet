@@ -119,20 +119,20 @@
 		<div v-show="modalServicios" class="modalServicios">
 			<div class="modalServicios__content">
 				<span class="close" @click="modalServicios = false">&times;</span>
-				<div>
-					<div>
+				<div class="row wt-m-top-3">
+					<div class="wt-center-column col-md-6">
 						<label for="descripcion">Descripción</label>
 						<input type="text" placeholder="Servicio" v-model="newServicio.sdescripcion">
 					</div>
-					<div>
+					<div class="modalServicios__content__box col-md-2">
 						<label for="importe">Importe</label>
 						<input type="text" placeholder="$ 1000" v-model="newServicio.simporte">
 					</div>
-					<div>
+					<div class="modalServicios__content__box col-md-2">
 						<label for="cantidad">Cantidad</label>
 						<input type="text" placeholder="10" v-model="newServicio.scantidad">
 					</div>
-					<div>
+					<div class="modalServicios__content__box col-md-2">
 						<label for="total">Total</label>
 						<span>${{(newServicio.simporte * newServicio.scantidad)}}</span>
 					</div>
@@ -240,9 +240,9 @@
                 propuesta.dias = this.dias;
                 this.$http.post('api/propuesta', propuesta)
 				.then(res => {
-					console.log(res.body);
+                    this.$router.push({name: 'Mensaje', params: { eventoId: this.$route.params.id }});
 				}, err => {
-					console.log(err.body);
+                    this.$toastr.error("Propuesta no enviada!", "Hubo un error al intentar enviar la propuesta, intente nuevamente");
 				});
             }
         }
@@ -336,7 +336,17 @@
 			padding: 20px;
 			border: 1px solid #888;
 			width: 60%;
-			height: 12em;
+			height: 14em;
+			label { color: #333}
+			&__box {
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				input {
+					width: 100%;
+				}
+			}
 			&__btn {
 				border-radius: 1px;
 				background-color: #fc5289;
