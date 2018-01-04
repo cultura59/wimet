@@ -300,6 +300,10 @@
     @include desktop {
       border-right: 1px solid #dadada;
     }
+    span {
+      float: right;
+      margin-right: 1.5em;
+    }
   }
   &__contenido {
     height: auto;

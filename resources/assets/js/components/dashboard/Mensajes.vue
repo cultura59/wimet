@@ -60,7 +60,7 @@
 							</div>
 						</router-link>
 					</div>
-					<div v-if="(mensajes.length == 0)">
+					<div v-if="(mensajes.length == 0)" class="no-hay-mensajes">
 						<p>No hay consultas aún...</p>
 					</div>
 				</div>
@@ -214,4 +214,12 @@
 		color: #e2385a;
 	}
 	b, strong {color: #333333}
+	.no-hay-mensajes {
+		height: 150px;
+		border-radius: 10px;
+		background-color: #f8f8f8;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 </style>

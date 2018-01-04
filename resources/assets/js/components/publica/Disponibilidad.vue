@@ -285,34 +285,34 @@
             background-color: #ffffff;
             border: none;
             &:hover {
-                color: rgba(226, 56, 90, 1);
-                border: solid 1px rgba(226, 56, 90, 1);
+                color: #fc5289;
+                border: solid 1px #fc5289;
                 border-radius: 2px;
                 transition: none;
+            }
         }
-    }
         .btn-disponibilidad--active {
             width: 76px;
             height: 40px;
-            background-color: rgba(226, 56, 90, 1);
+            background-color: #fc5289;
             color: #ffffff;
             border: none;
             border-radius: 2px;
             &:hover {
-                background-color: rgba(226, 56, 90, 0.87);
+                background-color: #fc5289;
                 color: #ffffff;
                 transition: none;
+            }
         }
     }
+    .disponibilidad-tiempos {
+        width: 23%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2em;
     }
-        .disponibilidad-tiempos {
-            width: 23%;
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 2em;
-    }
-        .tipo-disponibilidad-box {
-            display: flex;
-            margin-bottom: 2em;
+    .tipo-disponibilidad-box {
+        display: flex;
+        margin-bottom: 2em;
     }
 </style>

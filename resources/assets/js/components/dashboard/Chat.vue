@@ -10,8 +10,8 @@
             </div>
             <template v-if="espacio.id != undefined && evento.id != undefined && mensajes.length > 0">
             <div class="row">
+                <h4 class="text-center">{{evento.nombre_evento}}</h4>
                 <div class="col-md-6">
-                    <h4>{{evento.nombre_evento}}</h4>
                     <div class="alerta">La mayoría de los anfitriones responden en un plazo de 24 hs. Si has elegido esta publicación y estas de acuerdo con sus políticas y precio, demuestra tu interés solicitando el presupuesto formal al anfitrión.</div>
                     <textarea rows="4" class="evento-main__textarea" placeholder="Escribe tu respuesta..." v-model="mensajeEnviar"></textarea>
                     <div class="content-bottons">
@@ -56,7 +56,6 @@
                     </div>
                 </div>
                 <div class="col-md-6">
-                    <h4>Resumen</h4>
                     <div class="resumen-detalle">
                         <div :style="backgroundEspacio"></div>
                         <div class="resumen-detalle__info">
@@ -86,6 +85,26 @@
                     <div v-if="propuestas.length == 0" class="preview-propuestas">
                         <span class="preview-propuestas_texto">Aún no tienes propuestas</span>
                     </div>
+                    <table v-if="propuestas.length > 0" class="table">
+                        <thead>
+                            <tr>
+                                <th>Número</th>
+                                <th>Estado</th>
+                                <th>Creación</th>
+                                <th>Vto.</th>
+                                <th>Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr v-for="propuesta in propuestas" class="active">
+                                <td>{{propuesta.id}}</td>
+                                <td>{{propuesta.pagos[0].pestado}}</td>
+                                <td>{{propuesta.created_at}}</td>
+                                <td>{{propuesta.pagos[0].pvencimiento}}</td>
+                                <td>${{propuesta.sub_total}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
                     <div class="content-anfitrion">
                         <img v-if="espacio.user.imagesource != undefined" :src="espacio.user.imagesource" :alt="espacio.user.firstname">
                         <div class="content-anfitrion__detail">
@@ -128,6 +147,7 @@
                         this.fee = (parseFloat(this.evento.sub_total) * 5) / 100;
                         this.getDias();
                         this.getEspacio();
+                        this.getPropuestas();
                     });
             },
             getMensajes() {
@@ -136,7 +156,9 @@
                         this.mensajes = res.body;
                     });
             },
-            enviarPropuesta() {},
+            enviarPropuesta() {
+                this.$router.push({name: 'nueva-propuesta', params: { eventoId: this.$route.params.id }});
+            },
             solicitarPropuesta() {
                 let data = {
                     evento_id: this.$route.params.id,

@@ -9,7 +9,7 @@
                         <label class="label-publica">CAPACIDAD</label>
                     </div>
                     <div class="publica-box__rigth">
-                        <input class="input-publica" type="text" placeholder="Capacidad del espacio" v-model="$store.getters.getEspacio.prices[indexCat].cantidad_personas">
+                        <input class="input-publica" type="text" placeholder="Máximo de asistentes" v-model="$store.getters.getEspacio.prices[indexCat].cantidad_personas">
                     </div>
                 </div>
                 <div class="publica-box">

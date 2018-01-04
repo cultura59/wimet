@@ -136,6 +136,14 @@ class UserController extends Controller
             $user->industry = ($request->industry) ? $request->industry : "";
             $user->personaldescription = ($request->personaldescription) ? $request->personaldescription : "";
             $user->save();
+            // Se sincronizan los espacios favoritos
+            if($request->espacios){
+                $arrEspacios = [];
+                foreach ($request->espacios as $esp) {
+                    array_push($arrEspacios, $esp['id']);
+                }
+                $user->espacios()->sync($arrEspacios);
+            }
             return $user;
         }catch (\Exception $e) {
             return response('Error al editar el usuario', 500);

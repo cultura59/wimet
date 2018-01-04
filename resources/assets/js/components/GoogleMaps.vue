@@ -56,12 +56,12 @@
                     center: new google.maps.LatLng(mapCentre.lat, mapCentre.long),
                     zoom: parseInt(this.zoom),
                     maxZoom: 15,
-                    disableDefaultUI: true,
+                    disableDefaultUI: false,
                     scrollwheel: false,
                     navigationControl: false,
                     mapTypeControl: false,
                     scaleControl: false,
-                    draggable: false,
+                    draggable: true,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
                 this.map.mapTypes.set('sylver', this.styledMapType);

@@ -49,7 +49,7 @@
     <body>
         <div id="home-espacio">
             <!-- Header Home -->
-            <wimet-login fixed="false"></wimet-login>
+            <wimet-login fixed="false" shadow="false"></wimet-login>
             <div class="container">
                 <!-- Title Header -->
                 <section class="texto-header col-md-8">
@@ -75,56 +75,29 @@
                         <div class="categorias-desktop">
                             <!-- container images primary-->
                             <div class="row">
-                                <div class="col-xs-12 col-sm-8">
-                                    <div class="row">
-                                        <div class="col-xs-12 wt-m-bot-3 img-hov">
-                                            <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-1000&price=100-100000')}}">
-                                                <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-1.svg')}}" alt="Cocktail" class="img-responsive img-home-principal">
-                                            </a>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 img-hov">
-                                            <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-1000&price=100-100000')}}">
-                                                <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-3.svg')}}" alt="Workshops" class="img-responsive img-home-principal">
-                                            </a>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 img-hov">
-                                            <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-1000&price=100-100000')}}">
-                                                <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-4.svg')}}" alt="Eventos" class="img-responsive img-home-principal">
-                                            </a>
-                                        </div>
-                                    </div>
+                                <div class="col-md-3 img-hov">
+                                    <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-1000&price=100-100000')}}">
+                                        <h3>Reuniones</h3>
+                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet_espacio_reunion.jpg')}}" alt="Retail" class="img-responsive img-home-principal">
+                                    </a>
                                 </div>
-                                <div class="col-xs-12 col-sm-4 img-hov">
+                                <div class="col-md-3 img-hov">
+                                    <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-1000&price=100-100000')}}">
+                                        <h3>Eventos</h3>
+                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet_espacio_evento.jpg')}}" alt="Retail" class="img-responsive img-home-principal">
+                                    </a>
+                                </div>
+                                <div class="col-md-3 img-hov">
                                     <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-1000&price=100-100000')}}">
-                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-2.svg')}}" alt="Producción" class="img-responsive img-home-principal">
+                                        <h3>Producciones</h3>
+                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet_espacio_produccion.jpg')}}" alt="Retail" class="img-responsive img-home-principal">
                                     </a>
                                 </div>
-                            </div>
-                            <!-- container images second-->
-                            <div class="row wt-m-top-3">
-                                <div class="col-xs-12 col-sm-4 img-hov">
+                                <div class="col-md-3 img-hov">
                                     <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-1000&price=100-100000')}}">
-                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-5.svg')}}" alt="Pop-ups" class="img-responsive img-home-principal">
+                                        <h3>Retails</h3>
+                                        <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet_espacio_retail.jpg')}}" alt="Retail" class="img-responsive img-home-principal">
                                     </a>
-                                </div>
-                                <div class="col-xs-12 col-sm-8">
-                                    <div class="row">
-                                        <div class="col-xs-12 wt-m-bot-3 img-hov">
-                                            <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-1000&price=100-100000')}}">
-                                                <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-6.svg')}}" alt="Pop-ups Dinner" class="img-responsive img-home-principal">
-                                            </a>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 img-hov">
-                                            <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-1000&price=100-100000')}}">
-                                                <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-7.svg')}}" alt="Curso" class="img-responsive img-home-principal">
-                                            </a>
-                                        </div>
-                                        <div class="col-xs-12 col-sm-6 img-hov">
-                                            <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-1000&price=100-100000')}}">
-                                                <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-8.svg')}}" alt="Exposicióm" class="img-responsive img-home-principal">
-                                            </a>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -154,30 +127,45 @@
                 </section>
 
                 <!-- Comunity -->
-                <section class="how-work wt-m-top-5 wt-m-bot-1">
+                <section class="how-work wt-m-top-3 wt-m-bot-1">
                     <div class="container">
-                        <h2 class="text-center dark-grey">Conoce a nuestra comunidad</h2>
+                        <h1 class="title-black">Cada espacio, un estilo que potencia tu creatividad.</h1>
                         <div class="row wt-m-top-5 ">
-                            <div class="col-sm-4 padder-comments">
-                                <img class="center-block brd-round" src="https://res.cloudinary.com/wimet/image/upload/q_60/testi-1.jpg" alt="benefits of product" width="126" height="126">
-                                <p class="wt-m-top-3">
-                                    "Fue un placer trabajar con el equipo de Wimet. Tuvimos una muy buena experiencia, pudimos organizar nuestra fiesta de fin de año en un lugar diferente y de manera muy rápida. El evento estuvo genial y recibimos felicitaciones de nuestros invitados, especialmente por el lugar."
-                                </p>
-                                <p class="signature">Matias Doublier | COO - Increase</p>
+                            <div class="col-sm-4">
+                                <div class="paso-a-paso">
+                                    <div class="paso-a-paso__left">
+                                        <h1>1</h1>
+                                    </div>
+                                    <div class="paso-a-paso__right">
+                                        <strong class="title">Encuentra el espacio ideal</strong>
+                                        <span>Elija su espacio de trabajo, privado o compartido en coworking, al mejor precio.</span>
+                                    </div>
+                                </div>
+                                <img src="https://res.cloudinary.com/wimet/image/upload/ilustraciones/home_contacta.gif" alt="Contacta dueños" class="img-responsive">
                             </div>
-                            <div class="col-sm-4 padder-comments">
-                                <img class="center-block brd-round" src="https://res.cloudinary.com/wimet/image/upload/q_60/testi2.jpg" alt="benefits of product" width="126" height="126">
-                                <p class="wt-m-top-3">
-                                    "We were early adopters and first clients of Wimet's platform. From the moment we learned about their model, we knew they had great potential to scale the business and create a sustainable company. Moving forward, we will continue to use Wimet's platform for any future events we host."
-                                </p>
-                                <p class="signature">Lisa Besserman | CEO - Startup Buenos Aires</p>
+                            <div class="col-sm-4">
+                                <div class="paso-a-paso">
+                                    <div class="paso-a-paso__left">
+                                        <h1>2</h1>
+                                    </div>
+                                    <div class="paso-a-paso__right">
+                                        <strong class="title">Contacta al anfitrión</strong>
+                                        <span>Elija su espacio de trabajo, privado o compartido en coworking, al mejor precio.</span>
+                                    </div>
+                                </div>
+                                <img src="https://res.cloudinary.com/wimet/image/upload/v1514991556/ilustraciones/home_encuentra.gif" alt="Encuentra espacios" class="img-responsive">
                             </div>
-                            <div class="col-sm-4 padder-comments">
-                                <img class="center-block brd-round" src="https://res.cloudinary.com/wimet/image/upload/q_60/testi1.jpg" alt="benefits of product" width="126" height="126">
-                                <p class="wt-m-top-3">
-                                    "Recurrimos a Wimet porque estábamos a 3 días de una capacitación y nos habíamos quedado sin lugar. Los contactamos, recibimos distintas propuestas acordes a la necesidad y al budget, elegimos y cerramos el evento en menos de 24hs. No tengo dudas de que va a ser nuestra primera opción para organizar los eventos que vengan."
-                                </p>
-                                <p class="signature">Lucía Armendáriz | Business Developer - ‎AB InBev</p>
+                            <div class="col-sm-4">
+                                <div class="paso-a-paso">
+                                    <div class="paso-a-paso__left">
+                                        <h1>3</h1>
+                                    </div>
+                                    <div class="paso-a-paso__right">
+                                        <strong class="title">Reserva tu lugar</strong>
+                                        <span>Elija su espacio de trabajo, privado o compartido en coworking, al mejor precio.</span>
+                                    </div>
+                                </div>
+                                <img src="https://res.cloudinary.com/wimet/image/upload/ilustraciones/home_reserva.gif" alt="Reserva tu espacio" class="img-responsive">
                             </div>
                         </div>
                     </div>
@@ -186,6 +174,7 @@
                 <!-- Sponsors -->
                 <section class="container wt-m-bot-1">
                     <div class="row">
+                        <h3 class="title-black">Profesionales y empresas con la innovación como ADN.</h3>
                         <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w1.png" alt="Increase"></div>
                         <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w2.png" alt="startup buenos aires"></div>
                         <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w3.png" alt="google"></div>
@@ -194,6 +183,32 @@
                         <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w6.png" alt="startup chile"></div>
                     </div>
                 </section>
+
+                <!-- Sponsors -->
+                <section class="container wt-m-bot-1">
+                    <div class="row">
+                        <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w7.png" alt="Increase"></div>
+                        <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w8.png" alt="startup buenos aires"></div>
+                        <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w9.png" alt="google"></div>
+                        <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w10.png" alt="visa"></div>
+                        <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w11.png" alt="a3"></div>
+                        <div class="col-sm-2"><img class="img-responsive center-block" src="https://res.cloudinary.com/wimet/image/upload/q_60/w12.png" alt="startup chile"></div>
+                    </div>
+                </section>
+
+                <section class="referidos">
+                    <div class="container">
+                        <div class="referidos__content">
+                            <img src="https://res.cloudinary.com/wimet/image/upload/v1514992053/ilustraciones/wimet_characters.svg" alt=" Programa de referidos" class="img-responsive">
+                            <div class="referidos__content__textos">
+                                <span>Invita a tus amigos! Regala $500 y recibe $500.</span>
+                                <span class="wt-m-top-3">Comparte tu espiritu de #WimetHunter y dale un acceso a tus amigos a un mundo de posibilidades. Recibirán $500 en créditos se registren y tu obtendrás $500 cuando hayan su primer reserva.</span>
+                            </div>
+                            <button class="referidos__btn-send">Enviar Invitaciones</button>
+                        </div>
+                    </div>
+                </section>
+
             </main>
             <!-- footer -->
             <footer>

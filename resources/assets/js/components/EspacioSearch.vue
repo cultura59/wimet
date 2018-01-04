@@ -20,6 +20,7 @@
 			</div>
 		</div>
 		<a v-if="!loadingData" :href="url" target="_blank" class="link-espacio">
+			<img v-if="espacio.image360 !== null" src="https://res.cloudinary.com/wimet/image/upload/tag_virtual.svg" class="img-3d" alt="wimet-imagen-3d">
 			<img
 				@click="addWhishlist($event, espacio.id)"
 				:src="(inArray(espacio.id)) ? '/img/corazon_active.svg' : '/img/corazon_unactive.svg'"
@@ -86,6 +87,9 @@
 			},
             addWhishlist(e, id) {
 			    e.preventDefault();
+			    if(this.$store.getters.getUser.id === undefined) {
+                    this.$toastr.error('Debes iniciar sesión para poder agregar favoritos', 'Ups, no estas logueado!');
+				}
                 let agregar = true;
                 for(let i = 0; i < this.$store.getters.getUser.espacios.length;i++) {
                     if(this.$store.getters.getUser.espacios[i].id == id) {
@@ -101,7 +105,6 @@
             updateUser() {
                 this.$http.put(`api/user/${this.$store.getters.getUser.id}`, this.$store.getters.getUser)
 				.then(res => {
-					this.$toastr.success('Sus datos fueron modificados correctamente!');
 				}, err => {
 					this.$toastr.error(err, 'Ups, hubo un error!');
 				});
@@ -275,5 +278,12 @@
 	.background-masker.content-third-end {
 		left: 300px;
 		top: 88px;
+	}
+	.img-3d {
+		width: 90px;
+		position: absolute;
+		top: 1em;
+		left: -1em;
+		box-shadow: none !important;
 	}
 </style>

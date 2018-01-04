@@ -1,417 +1,350 @@
 <template>
-	<div class="container-evento">
-		<template v-if="evento.id" class="box-opciones">
-			<div class="navbar-chat">
-				<a href="#" @click="redirectUrl($event, '')" >RESUMEN</a>
-				<a href="#" @click="redirectUrl($event, '/chats')" >MENSAJES</a>
-			</div>
-		</template>
-		<div>
-			<div class="container-propuesta__titles">
-				<h4 class="dashboard-title" >1. Detalles del evento</h4>
-			</div>
-			<template v-show="showdetalles">
-				<div class="wt-space-block wt-m-top-2 wt-m-bot-1">
-					<div class="wt-center-column">
-						<label for="actividad" class="container-evento__label">Tipo de actividad</label>
-						<select id="actividad" class="container-propuesta__inputs" v-model="evento.estilo_espacios_id">
-							<option value="1">Reuniones</option>
-							<option value="2">Eventos</option>
-							<option value="3">Producciones</option>
-							<option value="4">Pop-ups</option>
-						</select>
-					</div>
-					<div class="wt-center-column">
-						<label for="invitados" class="container-evento__label">Invitados</label>
-						<input type="text" id="invitados" class="container-propuesta__inputs" placeholder="Nombre del evento" v-model="evento.invitados">
-					</div>
-				</div>
-				<div class="wt-space-block wt-m-bot-2">
-					<div class="wt-center-column">
-						<label for="comienza" class="container-evento__label">Comienza</label>
-						<input type="text" id="comienza" class="container-propuesta__inputs" placeholder="Check-In" :value="evento.reserva_desde">
-					</div>
-					<div class="wt-center-column">
-						<label for="finaliza" class="container-evento__label">Finaliza</label>
-						<input type="text" id="finaliza" class="container-propuesta__inputs" placeholder="Check-Out" :value="evento.reserva_hasta">
-					</div>
-				</div>
-			</template>
+	<div>
+		<router-link :to="`/mensaje/${$route.params.id}`" class="left-icon"><img src="/img/ic_left.svg"> ATRAS</router-link>
+		<div class="container-propuesta">
+			<span class="container-propuesta__title">PROPUESTA</span>
 		</div>
-		<div class="wt-m-top-4">
-			<h4 class="dashboard-title">2. Detalles del presupuesto</h4>
-			<div class="content-box-price">
-				<label for="por-hora" class="container-evento__label">Alquiler del espacio</label>
-				<div class="content-box-price__left">
-					<input 
-						type="text" 
-						placeholder="$ 100.-" 
-						class="content-box-price__left__input"
-						v-model="subTotal"
-						@change="calcIvanAndTotals"
-					>
-					<button class="content-box-price__left__btn1" @click="decrementPrice()">-</button>
-					<button class="content-box-price__left__btn2" @click="incrementPrice()">+</button>
+		<div class="propuesta-main">
+			<div class="row">
+				<div class="col-md-8">
+					<div>
+						<h4>Presupuesto</h4>
+						<table class="table">
+							<thead>
+								<tr>
+									<th class="col-md-6">Descripción</th>
+									<th class="col-md-2 text-center">Importe</th>
+									<th class="col-md-2 text-center">Cantidad</th>
+									<th class="col-md-2 text-center">Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="active">
+									<td class="col-md-6">Mi espacio</td>
+									<td colspan="2"></td>
+									<td class="col-md-2">
+										<input type="text" placeholder="$ 10000" class="pull-right" v-model="evento.sub_total" @change="changeSubTotal()">
+									</td>
+								</tr>
+								<tr class="active" v-for="(servicio, index)  in servicios">
+									<td class="col-md-6">{{servicio.sdescripcion}}</td>
+									<td class="col-md-2 text-center">${{servicio.simporte}}</td>
+									<td class="col-md-2 text-center">{{servicio.scantidad}}</td>
+									<td class="col-md-2 text-center">${{servicio.stotal}}
+										<a href="#" class="pull-right" @click="deleteServicio($event, index)">
+											<img src="https://res.cloudinary.com/wimet/image/upload/icons/icon_remove_img_black.svg" class="btn-remove-img">
+										</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+						<div class="box-servicios">
+							<div>
+								<button class="box-servicios__btn" @click="modalServicios = true">Agregar</button>
+							</div>
+							<div>
+								<span class="box-servicios__total">Total</span>
+								<span>$ {{total_servicios}}</span>
+							</div>
+						</div>
+					</div>
+					<div>
+						<h4 class="wt-m-top-4">Historial de Pagos por espacio</h4>
+						<table class="table wt-m-top-2">
+							<thead>
+								<tr>
+									<th>Descripción</th>
+									<th class="text-center">%</th>
+									<th class="text-center">Estado</th>
+									<th class="text-center">Vencimiento</th>
+									<th class="text-center">Total</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="success">
+									<td>Seña</td>
+									<td class="text-center">-</td>
+									<td class="text-center">Aprobada</td>
+									<td class="text-center">05/01/2018</td>
+									<td class="text-center">$ 1800</td>
+								</tr>
+								<tr class="active" v-for="pago in pagos">
+									<td>{{pago.pdescripcion}}</td>
+									<td class="text-center">-</td>
+									<td class="text-center">{{pago.pestado}}</td>
+									<td class="text-center">{{pago.pvencimiento}}</td>
+									<td class="text-center">$ {{pago.ptotal}}</td>
+								</tr>
+							</tbody>
+						</table>
+						<button class="send-propuesta" @click="crearPropuesta()">ENVIAR</button>
+					</div>
 				</div>
-				<div class="propuesta-m-left-0">
-					<input type="checkbox" id="iva" v-model="iva" style="display: none;">
-					<label for="iva" class="wt-publica-label">IVA</label>
+				<div class="col-md-4">
+					<h4>Resumen</h4>
+					<div class="box-resumen">
+						<img :src="espacio.portada" class="img-responsive">
+						<div class="box-resumen__body">
+							<span class="wt-m-bot-1">Estado: {{evento.estado}}</span>
+							<span class="wt-m-bot-1">Actividad: {{getCategoria(evento.estilo_espacios_id)}}</span>
+							<span class="wt-m-bot-1">Invitados: {{evento.invitados}}</span>
+							<span class="wt-m-bot-1">Fechas solicitadas</span>
+							<ul>
+								<li v-for="dia in dias" :key="dia.id">
+									<span v-if="dia.tipo == 'all'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (jornada completa)</span>
+									<span v-if="dia.tipo == 'morning'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (media jornada - am)</span>
+									<span v-if="dia.tipo == 'night'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (media jornada - pm)</span>
+								</li>
+							</ul>
+							<h4 class="wt-m-top-2">PRECIO</h4>
+							<div class="box-resumen__precios">
+								<div class="wt-space-block wt-m-bot-1">
+									<span>Total x espacio</span>
+									<span>${{evento.sub_total}}</span>
+								</div>
+								<div class="wt-space-block wt-m-bot-1">
+									<span>Comisión Wimet</span>
+									<span>${{fee}}</span>
+								</div>
+								<div class="wt-space-block">
+									<strong>Recibirás</strong>
+									<strong>${{evento.sub_total - fee}}</strong>
+								</div>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
-			<!-- BEGIN Control si existe iva o no -->
-			<div v-if="iva">
-				<div class="wt-m-bot-2">
-					<label for="iva" class="container-evento__label">IVA</label>
-					<span class="propuesta-m-left-2">$ {{(evento.iva) ? evento.iva : '-'}}</span>
+		</div>
+		<div v-show="modalServicios" class="modalServicios">
+			<div class="modalServicios__content">
+				<span class="close" @click="modalServicios = false">&times;</span>
+				<div>
+					<div>
+						<label for="descripcion">Descripción</label>
+						<input type="text" placeholder="Servicio" v-model="newServicio.sdescripcion">
+					</div>
+					<div>
+						<label for="importe">Importe</label>
+						<input type="text" placeholder="$ 1000" v-model="newServicio.simporte">
+					</div>
+					<div>
+						<label for="cantidad">Cantidad</label>
+						<input type="text" placeholder="10" v-model="newServicio.scantidad">
+					</div>
+					<div>
+						<label for="total">Total</label>
+						<span>${{(newServicio.simporte * newServicio.scantidad)}}</span>
+					</div>
 				</div>
-				<div class="wt-m-bot-2">
-					<label for="subTotal" class="container-evento__label">Sub Total</label>
-					<span class="propuesta-m-left-1">$ {{(evento.montoConIva) ? evento.montoConIva : '-'}}</span>
-				</div>
+				<button class="modalServicios__content__btn" @click="agregarServicio()">AGREGAR</button>
 			</div>
-			<!-- END Control si existe iva o no -->
-			<div class="wt-m-bot-2">
-				<label v-if="iva" for="invitados" class="container-evento__label">Comisión wimet(15%)</label>
-				<label v-if="!iva" for="invitados" class="container-evento__label">Comisión wimet(15% + IVA)</label>
-				<span class="propuesta-m-left-0">($ {{(evento.comision) ? evento.comision : '-'}})</span>
-			</div>
-			<div class="wt-m-bot-2">
-				<label for="invitados" class="container-evento__label">Tu pago</label>
-				<span class="propuesta-m-left-1">$ {{(evento.tu_pago) ? evento.tu_pago : '-'}}</span>
-			</div>
-			<div class="container-propuesta__detalles wt-m-top-2">
-				<label for="condiciones" class="container-evento__label">Condiciones generales</label>
-				<textarea id="condiciones" v-model="evento.condiciones"></textarea>
-			</div>
-			<div class="wt-m-top-2">
-				<label for="vencimiento" class="container-evento__label">Vencimiento propuesta</label>
-				<input type="date" id="vencimiento" class="container-propuesta__inputs propuesta-m-left-0" v-model="evento.vencimiento_propuesta">
-			</div>
-			<div class="content-box-deposito">
-				<label for="por-hora" class="container-evento__label">Depósito de seguridad</label>
-				<div class="content-box-deposito__left">
-					<input 
-						type="text" 
-						placeholder="$ 100.-" 
-						class="content-box-deposito__left__input"
-						v-model="evento.deposito">
-					<button class="content-box-deposito__left__btn1" @click="decrementDeposito()">-</button>
-					<button class="content-box-deposito__left__btn2" @click="incrementDeposito()">+</button>
-				</div>
-			</div>
-			<div>
-				<label for="cancellationflexibility" class="container-evento__label">Política de cancelación</label>
-				<template v-if="evento.cancellationflexibility == 'flexible'">
-					<span>{{evento.cancellationflexibility}}</span><br>
-					<span>(Reembolso completo hasta 15 días antes del evento, excepto los gastos de procesamiento)</span>
-				</template>
-				<template v-if="evento.cancellationflexibility == 'moderado'">
-					<span>{{evento.cancellationflexibility}}</span><br>
-					<span>(Reembolso completo hasta 30 días antes del evento, excepto los gastos de procesamiento)</span>
-				</template>
-				<template v-if="evento.cancellationflexibility == 'estricto'">
-					<span>{{evento.cancellationflexibility}}</span><br>
-					<span>(50% de reembolso hasta 30 días antes del evento, excepto gastos de procesamiento)</span>
-				</template>
-			</div>
-			<button @click="sendPropuesta()" class="btn-send-presupuesto">ENVIAR PRESUPUESTO</button>
 		</div>
 	</div>
 </template>
+
 <script>
 	export default {
-		props: [
-			'eventoId',
-			'securitydeposit',
-			'cancellationflexibility'
-		],
+        name: "nueva-propuesta",
 		data() {
 			return {
-				user: {},
-				evento: {},
-				iva: true,
-				showdetalles: false,
-				subTotal: 0
+                evento: {},
+				pagos: [],
+				servicios: [],
+				newServicio: {
+                    sdescripcion: '',
+					simporte: 0,
+					scantidad: 0,
+					stotal: 0
+				},
+                espacio: {},
+                dias: [],
+                showLoading: false,
+                backgroundEspacio: {},
+                fee: 1800,
+				date: '',
+                lastDay: '',
+				total_servicios: 0,
+                modalServicios: false
 			}
 		},
-		mounted() {
-            this.getUserAuthenticated();
+        mounted() {
             this.getEvento();
         },
-        watch: {
-        	iva() {
-        		this.calcIvanAndTotals();
-        	},
-        	subTotal() {
-        		this.calcIvanAndTotals();
-        	}
-        },
-		methods: {
-			getUserAuthenticated() {
-				if(!this.$auth.isAuthenticated()) {
-	                swal({
-	                  title: 'No estas loguedo',
-	                  text: "Debes iniciar sesión para hacer una pregunta o reserva.",
-	                  imageUrl: "/avatars/default.png"
-	                });
-	                return;
-	            }else {
-					this.user = this.$auth.getUser();
-				}
-			},
-			getEvento() {
-				this.$http.get(`api/evento/${this.eventoId}`)
+        methods: {
+            getEvento() {
+                this.$http.get(`api/evento/${this.$route.params.id}`)
 				.then(res => {
 					this.evento = res.body;
-					this.subTotal = this.evento.sub_total;
-					this.calcIvanAndTotals();
-            		this.evento.deposito = this.securitydeposit;
-            		this.evento.cancellationflexibility = this.cancellationflexibility;
-                    this.evento.vencimiento_propuesta = this.$moment().add(3, 'days').format('YYYY-MM-DD');
+					this.servicios = [];
+					this.total_servicios = this.evento.sub_total;
+					this.getDias();
+					this.getEspacio();
 				});
+            },
+            getEspacio() {
+                this.$http.get(`api/espacio/${this.evento.espacio_id}`)
+				.then(res => {
+					this.espacio = res.body;
+				}, err => {
+					console.log(err);
+				});
+            },
+            getDias() {
+                this.$http.get(`api/eventosdias/${this.$route.params.id}`)
+                    .then(res => {
+                        this.dias = res.body;
+                        this.lastDay = this.$moment(this.dias[this.dias.length - 1].fecha).subtract(3, 'days').format("DD/MM/YYYY");
+                        this.pagos = [
+                            {pdescripcion: 'Reserva', espacio_id: this.evento.espacio_id, ptotal: (this.evento.sub_total / 2), pvencimiento: this.$moment().add(5, 'days').format("DD/MM/YYYY"), pestado: 'Pendiente'},
+                            {pdescripcion: 'Saldo', espacio_id: this.evento.espacio_id, ptotal: (this.evento.sub_total / 2), pvencimiento: this.lastDay, pestado: 'Pendiente'}
+                        ];
+                    });
+            },
+            getCategoria(id) {
+                switch(id) {
+                    case 1:
+                        return 'REUNIÓN';
+                    case 2:
+                        return 'EVENTO';
+                    case 3:
+                        return 'PRODUCCIÓN';
+                    case 4:
+                        return 'POP-UPS';
+                }
+            },
+			changeSubTotal() {
+                this.pagos = [];
+                this.pagos.push({descripcion: 'Reserva', espacio_id: this.evento.espacio_id, total: (this.evento.sub_total / 2), vencimiento: this.$moment().add(5, 'days').format("DD/MM/YYYY"), estado: 'Pendiente'});
+                this.pagos.push({descripcion: 'Saldo', espacio_id: this.evento.espacio_id, total: (this.evento.sub_total / 2), vencimiento: this.lastDay, estado: 'Pendiente'});
+				this.total_servicios = this.evento.sub_total;
 			},
-            incrementPrice() {
-            	this.subTotal++;
-            },
-            decrementPrice() {
-            	this.subTotal--;
-            },
-            incrementDeposito() {
-            	this.evento.deposito++;
-            },
-            decrementDeposito() {
-            	this.evento.deposito--;
-            },
-            chageShowDetalles() {
-            	this.showdetalles = !this.showdetalles;
-            },
-            sendPropuesta() {
-            	if(this.evento.vencimiento_propuesta == undefined) {
-            		swal("Campo requerido!", "Debe ingresar fecha de vencimiento de la propuesta", "error");
-            		return;
-            	}
-
-            	let data = this.calcularIvaYFee();
-
-            	this.$http.post(`api/propuesta`, data)
-            	.then(res => {
-            		if(res.status == 204) {
-            			swal("Propuesta enviada!", "Ya falta poco, felicitaciones!", "success");
-            			setInterval(()=>{
-            				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.evento.id}`;
-            			}, 3000);
-            		}else {
-            			swal("Propuesta no enviada!", "Revisa los datos envíados", "error");
-            		}
-            	});
-            },
-            calcularIvaYFee() {
-            	this.calcIvanAndTotals();
-            	let data = {
-            		evento_id: this.evento.id,
-            		estilo_espacios_id: this.evento.estilo_espacios_id,
-            		invitados: this.evento.invitados,
-            		reserva_desde: document.getElementById("comienza").value,
-            		reserva_hasta: document.getElementById("finaliza").value,
-            		user_id: this.evento.user_id,
-            		cliente_id: this.evento.cliente_id,
-            		espacio_id: this.evento.espacio_id,
-            		sub_total: this.evento.sub_total,
-            		tu_pago: this.evento.tu_pago,
-            		comision: this.evento.comision,
-            		condiciones: this.evento.condiciones,
-            		iva: this.iva,
-            		monto_iva: this.evento.iva,
-            		monto_con_iva: this.evento.montoConIva,
-            		fee: this.evento.fee,
-            		total: this.evento.total,
-            		vencimiento_propuesta: this.evento.vencimiento_propuesta,
-            		deposito: (this.evento.deposito > 0) ? this.evento.deposito : 0,
-            		cancellationflexibility: this.evento.cancellationflexibility
-    			}
-    			return data;
-            },
-			redirectUrl(e, url) {
-				e.preventDefault();
-				window.location.href = `/dashboard/user/${this.user.id}/evento/${this.eventoId}${url}`;
+            agregarServicio() {
+                this.newServicio.stotal = (this.newServicio.simporte * this.newServicio.scantidad);
+                this.total_servicios = this.total_servicios + this.newServicio.stotal;
+                this.servicios.push(this.newServicio);
+                this.newServicio = {sdescripcion: '', simporte: 0, scantidad: 0, stotal: 0};
+                this.modalServicios = false;
 			},
-			calcIvanAndTotals() {
-				this.evento.sub_total = this.subTotal;
-				this.evento.iva = (parseFloat(this.evento.sub_total) * 21) / 100;
-	    		if(this.iva) {
-	        		this.evento.montoConIva = parseFloat(this.evento.iva) + parseFloat(this.evento.sub_total);
-					this.evento.comision = this.stringToDouble((this.evento.montoConIva * 15) / 100);
-	        		this.evento.fee = (this.evento.montoConIva * 5) / 100;
-	    			this.evento.tu_pago = this.stringToDouble((parseInt(this.evento.sub_total) + this.evento.iva) - this.evento.comision);
-	        		this.evento.total = parseFloat(this.evento.montoConIva + this.evento.fee).toFixed(2);
-	        	}else {
-	        		this.evento.montoConIva = parseFloat(this.evento.sub_total);
-					this.evento.comision = this.stringToDouble(((this.evento.montoConIva + this.evento.iva) * 15) / 100);
-	        		this.evento.fee = (this.evento.sub_total * 5) / 100;
-	        		this.evento.tu_pago = this.stringToDouble(parseInt(this.evento.sub_total) - this.evento.comision);
-	        		this.evento.total = this.evento.montoConIva + this.evento.fee;
-	            }
+			deleteServicio(e, index) {
+                e.preventDefault();
+                this.total_servicios = this.total_servicios - this.servicios[index].stotal;
+                this.servicios.splice(index, 1);
 			},
-            stringToDouble(num){
-			    return Math.round((parseFloat(num) + 0.00001) * 100) / 100;
+			crearPropuesta() {
+                let propuesta = this.evento;
+                propuesta.evento_id = this.evento.id;
+                delete propuesta['id'];
+                propuesta.servicios = this.servicios;
+                propuesta.pagos = this.pagos;
+                propuesta.dias = this.dias;
+                this.$http.post('api/propuesta', propuesta)
+				.then(res => {
+					console.log(res.body);
+				}, err => {
+					console.log(err.body);
+				});
             }
-		}
+        }
 	}
 </script>
-<style lang="sass">
-	*{outline:0;}
+
+<style lang="sass" scoped>
+	.left-icon {
+		position: absolute;
+		left: 3em;
+		top: 1em;
+		text-decoration: none;
+		color: #333333;
+	}
 	.container-propuesta {
-		.btn-propuesta {
-			width: 128px;
-			height: 40px;
-			border-radius: 2px;
-			background-color: #FC5289;
-			font-family: Poppins;
-			font-size: 14px;
-			font-weight: 500;
-			letter-spacing: -0.1px;
-			color: #ffffff;
-			border: none;
-			&:hover {
-				background-color: rgba(234, 81, 109, 0.87);
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		padding: 0 2em;
+		margin-top: 3em;
+		align-items: flex-end;
+		&__title {
+			font-family: Ubuntu;
+			font-size: 16px;
+			font-weight: bold;
+			color: #333333;
+		}
+	}
+	.propuesta-main {
+		margin-top: 2em;
+		padding: 2em;
+		background-color: #ffffff;
+		box-shadow: 0 0 68px 0 rgba(0, 0, 0, 0.1);
+		color: #333333;
+		td { border-top: 1px solid #fff !important}
+		.row-lg { min-width: 15em;}
+		.box-servicios {
+			display: flex;
+			justify-content: space-between;
+			align-items: baseline;
+			padding: 0 2em;
+			&__btn {
+				border: 1px solid #333;
+				padding: .5em 2em;
+			}
+			&__total {
+				font-weight: bold;
+				font-size: 16px;
+				margin-right: 6em;
 			}
 		}
-		&__titles {
-		    display: flex;
-		    justify-content: space-between;
-		    align-items: baseline;
-		}
-		&__inputs {
-			width: 240px;
-		    height: 40px;
-		    background-color: #ffffff;
-		    border: solid 1px #979797;
-		    padding: .5em;
-		}
-		&__detalles {
+	}
+	.send-propuesta {
+		border-radius: 1px;
+		background-color: #fc5289;
+		color: #fff;
+		padding: .5em 3em;
+		border: none;
+		float: right;
+		margin-top: 2em;
+	}
+	.box-resumen {
+		border: 1px solid #dadada;
+		&__body {
+			padding: 2em;
 			display: flex;
 			flex-direction: column;
-			textarea {
-				width: 510px;
-				height: 80px;
-				background-color: #ffffff;
-				border: solid 1px #979797;
+			ul {
+				margin-left: 2em;
+			}
+			&__precios {
+				display: flex;
+				flex-direction: column;
 			}
 		}
 	}
-	.content-box-price {
-	    display: flex;
-	    align-items: baseline;
-	    margin: 2em 0;
-	    &__left {
-		    display: flex;
-		    height: 100%;
-	        margin-left: 4em;
-			&__input {
-			    padding: .5em;
-			    width: 226px;
-    			height: 40px;
-			    border-left: 1px solid #979797;
-			    border-top: 1px solid #979797;
-			    border-bottom: 1px solid #979797;
-			    border-right: none;
-			}
-			&__btn1 {
-			    width: 20%;
-			    background: #fff;
-			    border-left: 1px solid #979797;
-			    border-top: 1px solid #979797;
-			    border-bottom: 1px solid #979797;
-			    border-right: none;
-			}
-			&__btn2 {
-			    width: 20%;
-			    background: #fff;
-			    border: 1px solid #979797;
+	.modalServicios {
+		position: fixed;
+		z-index: 1;
+		padding-top: 100px;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		overflow: auto;
+		background-color: rgb(0,0,0);
+		background-color: rgba(0,0,0,0.4);
+		&__content {
+			background-color: #fefefe;
+			margin: auto;
+			padding: 20px;
+			border: 1px solid #888;
+			width: 60%;
+			&__btn {
+				border-radius: 1px;
+				background-color: #fc5289;
+				color: #fff;
+				padding: .5em 3em;
+				border: none;
+				float: right;
+				margin-top: 2em;
 			}
 		}
-		label {
-			font-weight: bold;
-		}
-	}
-	.content-box-deposito {
-	    display: flex;
-	    align-items: baseline;
-	    margin: 2em 0;
-	    &__left {
-		    display: flex;
-		    height: 100%;
-	        margin-left: 2.5em;
-			&__input {
-			    padding: .5em;
-			    width: 226px;
-    			height: 40px;
-			    border-left: 1px solid #979797;
-			    border-top: 1px solid #979797;
-			    border-bottom: 1px solid #979797;
-			    border-right: none;
-			}
-			&__btn1 {
-			    width: 20%;
-			    background: #fff;
-			    border-left: 1px solid #979797;
-			    border-top: 1px solid #979797;
-			    border-bottom: 1px solid #979797;
-			    border-right: none;
-			}
-			&__btn2 {
-			    width: 20%;
-			    background: #fff;
-			    border: 1px solid #979797;
-			}
-		}
-		label {
-			font-weight: bold;
-		}
-	}
-	.propuesta-m-left-0 {
-		margin-left: 2em;
-	}
-	.propuesta-m-left-1 {
-		margin-left: 5.5em;
-	}
-	.propuesta-m-left-2 {
-		margin-left: 9em;
-	}
-	.btn-send-presupuesto {
-	    width: 208px;
-	    height: 40px;
-	    border-radius: 2px;
-	    background-color: #FC5289;
-	    border: none;
-	    font-family: Poppins;
-	    font-size: 14px;
-	    font-weight: 500;
-	    letter-spacing: -0.1px;
-	    color: #ffffff;
-	    margin-top: 2em;
-	    &:hover {
-	    	background-color: rgba(234, 81, 109, 0.87);
-	    }
-	}
-	.box-opciones {
-		list-style-type: none;
-    	margin: 2em 0;
-    	li {
-    		display: inline;
-    		margin-right: 1em;
-    		a {
-    			padding: 15px;
-			    border: 1px solid #e8536f;
-			    border-radius: 2px;
-			    color: #e8536f;
-			    background-color: #fff;
-			    &:hover {
-			    	background-color: #e8536f;
-			    	color: #fff;
-			    	text-decoration:none;
-			    }
-    		}
-    	}
 	}
 </style>

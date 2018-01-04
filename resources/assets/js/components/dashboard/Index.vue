@@ -7,7 +7,6 @@
                 <div v-if="$store.getters.getUser.tipo_clientes_id > 1" class="dashboard-navbar">
                     <router-link to="/" :class="{active: $route.path == '/'}">Dashboard</router-link>
                     <router-link to="/mensajes" :class="{active: $route.name == 'Mensajes'}">Mensajes</router-link>
-                    <router-link to="/propuestas" :class="{active: $route.name == 'Propuestas'}">Propuestas</router-link>
                     <router-link to="/espacios" :class="{active: $route.name == 'Espacios'}">Espacios</router-link>
                     <router-link to="/favoritos" :class="{active: $route.name == 'Favoritos'}">Favoritos</router-link>
                     <router-link to="/perfil" :class="{active: $route.name == 'Perfil'}">Mi perfil</router-link>

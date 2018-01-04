@@ -400,9 +400,10 @@ div.wt-panel {
 }
 
 .label-publica {
-  color: #333333;
-  float: right;
-  font-weight: bold;
+	color: #333333;
+	float: right;
+	font-weight: bold;
+	text-align: right;
 }
 
 .input-publica {
@@ -421,6 +422,7 @@ div.wt-panel {
   &__left {
     width: 30%;
     padding-right: 3em;
+	text-align: right;
   }
   &__rigth {
     width: 70%;

@@ -56,10 +56,10 @@
                             </div>
                             <div class="box-descripcion__contenido">
                                 <div class="row">
-                                    <div v-for="servicio in espacio.servicios" class="col-xs-6 col-md-4">
-                                        <div class="pull-left">
-                                            <i aria-hidden="true" class="fa fa-check"></i>
-                                            <span>{{servicio.nombre}}</span>
+                                    <div v-for="servicio in espacio.servicios" class="col-xs-6 col-md-4 wt-m-top-1">
+                                        <div class="pull-left content-service">
+                                            <img :src="servicio.icon" :alt="servicio.nombre">
+                                            <p>{{servicio.nombre}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -71,9 +71,9 @@
                             </div>
                             <div class="box-descripcion__contenido">
                                 <div class="row">
-                                    <div v-for="acceso in espacio.access" class="col-xs-6 col-md-4">
-                                        <i aria-hidden="true" class="fa fa-check"></i>
-                                        <span>{{acceso.nombre}}</span>
+                                    <div v-for="acceso in espacio.access" class="col-xs-6 col-md-4 content-service">
+                                        <img :src="acceso.icon" :alt="acceso.nombre">
+                                        <p>{{acceso.nombre}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -175,13 +175,15 @@
                                             <span>Espacio x {{totalDays}} días</span>
                                             <span>$ {{subTotal}}</span>
                                         </div>
-                                        <div class="wt-space-block wt-m-top-1">
-                                            <span>Fee de procesamiento</span>
-                                            <span>$ {{fee}}</span>
-                                        </div>
-                                        <div class="wt-space-block wt-m-top-1">
-                                            <span>Precio estimado</span>
-                                            <strong class="precio-estimado">$ {{total}}</strong>
+                                        <div v-show="showFee">
+                                            <div class="wt-space-block wt-m-top-1">
+                                                <span>Fee de procesamiento</span>
+                                                <span>$ {{fee}}</span>
+                                            </div>
+                                            <div class="wt-space-block wt-m-top-1">
+                                                <span>Precio estimado</span>
+                                                <strong class="precio-estimado">$ {{total}}</strong>
+                                            </div>
                                         </div>
                                         <div v-if="messageError != ''" class="msgAlert">
                                             <span>{{messageError}}</span>
@@ -230,13 +232,15 @@
                                         <span>Espacio x {{totalDays}} días</span>
                                         <span>$ {{subTotal}}</span>
                                     </div>
-                                    <div class="wt-space-block wt-m-top-1">
-                                        <span>Fee de procesamiento</span>
-                                        <span>$ {{fee}}</span>
-                                    </div>
-                                    <div class="wt-space-block wt-m-top-1">
-                                        <span>Precio estimado</span>
-                                        <span class="precio-estimado">$ {{total}}</span>
+                                    <div v-show="showFee">
+                                        <div class="wt-space-block wt-m-top-1">
+                                            <span>Fee de procesamiento</span>
+                                            <span>$ {{fee}}</span>
+                                        </div>
+                                        <div class="wt-space-block wt-m-top-1">
+                                            <span>Precio estimado</span>
+                                            <span class="precio-estimado">$ {{total}}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -373,9 +377,10 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 total: 0,
                 btnSend: true,
                 mensaje: '',
-                terminos: true,
+                terminos: false,
                 messageErrorTitle: false,
-                messageErrorDetalle: ''
+                messageErrorDetalle: '',
+                showFee: false
             }
         },
         mounted() {
@@ -630,7 +635,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
         .espacio-categorias {
             display: flex;
             justify-content: space-around;
-            margin-top: 1em;
+            margin-top: 2em;
             width: 100%;
             &__categoria {
                 display: flex;
@@ -638,7 +643,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                width: 25%;
+                width: 100%;
                 border-bottom: 4px solid #dadada;
                 cursor: pointer;
                 &:hover, &--active {border-bottom: 4px solid #fc5289;}
@@ -647,7 +652,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
         &__header {
             display: flex;
             justify-content: space-between;
-            padding: 1em 2em;;
+            padding: 1.2em 2em;;
             background-color: #545454;
             color: #fff;
             font-size: 12px;
@@ -677,6 +682,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 margin: 0 auto;
             }
             &__table {
+                transition: none;
                 font-family: Ubuntu;
                 font-size: 10px;
                 text-align: center;
@@ -688,10 +694,17 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     text-align: center;
                 }
                 td {
+                    transition: none;
                     background-color: #eeeeee;
                     border: 1px solid #fff;
                     cursor: pointer;
+                    position: relative;
                     &:hover {background-color: rgba(238, 238, 238, 0.5)}
+                    span {
+                        position: absolute;
+                        top: .5em;
+                        left: .5em;
+                    }
                 }
                 .removeDay {
                     background-color: #fff;
@@ -700,6 +713,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     cursor: none;
                 }
                 .all {
+                    transition: none;
                     background-color: #fc5289;
                     color: #fff;
                     border: 1px solid #fff;
@@ -707,14 +721,15 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     &:hover {background-color: rgba(252, 82, 137, 0.8)};
                 }
                 .morning {
+                    transition: none;
                     background: linear-gradient(to bottom, #fc5289 50%, #eeeeee 50%, #eeeeee 99%);
                     color: #fff;
                     border: 1px solid #fff;
                     cursor: pointer;
                 }
                 .night {
+                    transition: none;
                     background: linear-gradient(to bottom, #eeeeee 0%, #eeeeee 50%, #fc5289 50%, #fc5289 100%);
-                    color: #fff;
                     border: 1px solid #fff;
                     cursor: pointer;
                 }
@@ -889,5 +904,13 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
     .close-reserva:focus {
         text-decoration: none;
         cursor: pointer;
+    }
+    .content-service {
+        display: flex;
+        align-items: end;
+        font-size: 12px;
+        img {
+            margin-right: 1em;
+        }
     }
 </style>

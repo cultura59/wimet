@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreatePropuestasDiasTable extends Migration
+class CreatePropuestaDiaTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreatePropuestasDiasTable extends Migration
      */
     public function up()
     {
-        if (!Schema::hasTable('propuestas_dias')) {
-            Schema::create('propuestas_dias', function (Blueprint $table) {
+        if (!Schema::hasTable('propuesta_dia')) {
+            Schema::create('propuesta_dias', function (Blueprint $table) {
                 $table->increments('id');
                 $table->integer('propuesta_id')->unsigned()->index();
                 $table->foreign('propuesta_id')->references('id')->on('propuestas')->onDelete('cascade');
@@ -33,6 +33,6 @@ class CreatePropuestasDiasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('propuestas_dias');
+        Schema::dropIfExists('propuesta_dia');
     }
 }

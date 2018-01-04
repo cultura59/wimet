@@ -46,7 +46,7 @@
     <body>
         <div id="publica-espacio">
             <!-- Header Home -->
-            <wimet-login fixed="false"></wimet-login>
+            <wimet-login fixed="false" shadow="true"></wimet-login>
             <!-- main -->
             <main>
                 <publica-index></publica-index>

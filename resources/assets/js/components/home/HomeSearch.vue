@@ -156,7 +156,7 @@
                     icon="location"
                     zoom="12"
                     gwith="100%"
-                    gheight="650px"
+                    gheight="100%"
                     :gespacios="espacios.data"
                 >
                 </google-maps>
@@ -185,7 +185,7 @@
                     {id: 4, name: 'POP-UPS'}
                 ],
                 categoriaId: this.getParameterByName('categoria'),
-                selectUbicacion: (this.getParameterByName('ubicacion') == '') ? 'Ubicación' : this.getParameterByName('ubicacion'),
+                selectUbicacion: (this.getParameterByName('ubicacion') == '') ? 'ubicacion' : this.getParameterByName('ubicacion'),
                 espacios: [],
                 priceFrom: 0,
                 priceTo: 5000,

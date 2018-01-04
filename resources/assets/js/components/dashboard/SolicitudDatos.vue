@@ -2,7 +2,7 @@
     <div>
         <router-link to="/mensajes" class="left-icon"><img src="/img/ic_left.svg"> ATRAS</router-link>
         <div class="container-evento">
-            <span class="container-evento__title">NUEVA PROPUESTA</span>
+            <span class="container-evento__title">Solicitud de datos</span>
         </div>
         <div class="evento-main">
             <div v-show="espacio.id == undefined || evento.id == undefined" class="wt-center-center">

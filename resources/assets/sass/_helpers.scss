@@ -67,11 +67,12 @@
     border: solid 1px #979797;
     border-radius: 0;
     opacity: 0.87;
-    font-family: Roboto;
     font-size: 12px;
     letter-spacing: -0.1px;
-    text-align: justify;
     color: #212121;
+    -webkit-appearance: none;
+    padding: 1em;
+    margin-right: 1em;
 }
 
 .scroll::-webkit-scrollbar {width: 5px;}

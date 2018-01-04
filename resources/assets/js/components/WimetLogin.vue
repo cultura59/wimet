@@ -1,5 +1,5 @@
 <template>
-	<header class="login-header" :class="{'header-fixed': (fixed == 'true')}">
+	<header class="login-header" :class="{'header-fixed': (fixed == 'true'), 'login-header--shadow': (shadow == 'true')}">
 		<nav class="login-header__navbar">
 			<a href="/"><img src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="158" class="img-responsive"></a>
 			<div class="login-header__navbar__actions">
@@ -12,11 +12,17 @@
 							<img class="header-avatar" :src="$store.getters.getUser.imagesource" :alt="$store.getters.getUser.firstname">
 							<a href="#" id="menu-user" :class="userloged">{{ $store.getters.getUser.firstname }}</a>
 							<ul class="menue-list">
-								<li class="menue-list__item" @click="reloadPage(`/dashboard#/perfil`, $event)">
-									<a href="#" style="color: #333;">Mi perfil</a>
+								<li class="menue-list__item" @click="reloadPage(`/dashboard#/`, $event)">
+									<a href="#" style="color: #333;">Dashboard</a>
+								</li>
+								<li class="menue-list__item" @click="reloadPage(`/dashboard#/mensajes`, $event)">
+									<a href="#" style="color: #333;">Mensajes</a>
 								</li>
 								<li class="menue-list__item" @click="reloadPage(`/dashboard#/favoritos`, $event)">
 									<a href="#" style="color: #333;">Favoritos</a>
+								</li>
+								<li class="menue-list__item" @click="reloadPage(`/dashboard#/perfil`, $event)">
+									<a href="#" style="color: #333;">Mi perfil</a>
 								</li>
 								<li class="menue-list__item active" @click="publicaUrl($event)">
 									<a href="#" style="color: #fc5289;">PUBLICAR TU ESPACIO</a>
@@ -114,7 +120,7 @@
 	import swal from 'sweetalert';
 	export default {
         mixins: [registerLogin],
-		props: ['fixed'],
+		props: ['fixed', 'shadow'],
 		components: {
 			'login-facebook': loginFacebook,
 			'login-google': loginGoogle
@@ -297,7 +303,9 @@
 		color: #333;
 		position: relative;
 		z-index: 1200;
-		box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1) !important;
+		&--shadow {
+			box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1) !important;
+		}
 		&__navbar {
 			height: 100%;
 			display: flex;
@@ -332,6 +340,56 @@
 								color: #FC5289;
 							}
 						}
+					}
+					.menue-list {
+						display: none;
+						flex-direction: column;
+						background: #fff;
+						padding: 1em;
+						border: solid 1px #dadada;
+						list-style: none;
+						padding: 0;
+						margin: 0;
+						top: 100%;
+						right: 1%;
+						position: absolute;
+						cursor: pointer;
+						font-size: 13px;
+						font-weight: 500;
+						letter-spacing: -0.1px;
+						color: #212121;
+						z-index: 1;
+						&__item {
+							border-bottom: solid 1px #dadada;
+							color: #FC5289 !important;
+							transition: none;
+							a{
+								padding: 1em;
+								border: none !important;
+							}
+							.active {
+								color: #FC5289;
+							}
+							&:hover {
+								background-color: #f8f8f8;
+							}
+						}
+						&__last-item {
+							transition: none;
+							a{
+								padding: 1em;
+								border: none !important;
+							}
+							&:hover {
+								background-color: #f8f8f8;
+							}
+						}
+						&:hover {
+							display: flex;
+						}
+					}
+					&:hover .menue-list {
+						display: flex;
 					}
 				}
 			}

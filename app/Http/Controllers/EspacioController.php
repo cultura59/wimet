@@ -176,14 +176,6 @@ class EspacioController extends Controller
                 }
                 $espacio->access()->sync($arrAccess);
             }
-            // Se sincronizan los espacios favoritos
-            if($request->espacios){
-                $arrEspacios = [];
-                foreach ($request->espacios as $esp) {
-                    array_push($arrEspacios, $esp['id']);
-                }
-                $espacio->espacios()->sync($arrEspacios);
-            }
             return $espacio;
         }catch (\Exception $e) {
             return response('Los campos no son correctos ' . $e->getMessage(), 400);
@@ -207,7 +199,7 @@ class EspacioController extends Controller
             $join->on('categoria_espacio.categoria_id', '=', 'prices.categoria_id');
         });
         $query->join('users', 'espacios.user_id', '=', 'users.id');
-        $query->select('espacios.id', 'espacios.name', 'espacios.quanty', 'espacios.portada', 'espacios.staticname', 'prices.price', 'users.imagesource');
+        $query->select('espacios.id', 'espacios.name', 'espacios.quanty', 'espacios.portada', 'espacios.staticname', 'espacios.image360', 'prices.price', 'users.imagesource');
         $query->where([
             ['espacios.id', '=', $id],
             ['categoria_espacio.categoria_id', '=', $categoriaId],
