@@ -55,7 +55,8 @@ class MercadoPagoController extends Controller
                 ),
                 "capture" => false
             );
-            return $mp->post("/v1/payments", $payment_data);
+            $res = $mp->post("/v1/payments", $payment_data);
+            return $res;
         } catch (\Exception $e) {
             return response('Hubo un error al realizar el pago, ' . $e->getMessage(), 500);
         }
