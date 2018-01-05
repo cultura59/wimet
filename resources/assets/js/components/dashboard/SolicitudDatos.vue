@@ -138,7 +138,7 @@
         },
         methods: {
             initMP() {
-                Mercadopago.setPublishableKey("TEST-3944a4da-198f-42be-8737-f8e8e2830d7b");
+                Mercadopago.setPublishableKey("TEST-f7ea7252-3fc4-4441-9efe-52a91055a149");
                 Mercadopago.getIdentificationTypes();
             },
             getEvento() {
