@@ -127,9 +127,7 @@
                 backgroundEspacio: {},
                 fee: 0,
                 payment: {
-                    email: this.$store.getters.getUser.email,
-                    first_name: this.$store.getters.getUser.firstname,
-                    last_name: this.$store.getters.getUser.lastname
+                    email: this.$store.getters.getUser.email
                 }
             }
         },
