@@ -42,39 +42,20 @@ class MercadoPagoController extends Controller
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function sendPayment(Request $request) {
-        DB::beginTransaction();
-        //try {
-        $mp = new MP("TEST-8248736349517024-123008-431710274c1eef4ee4331ae7b658cfcf__LA_LD__-291916384");
-        $payment_data = array(
-            "transaction_amount" => 1800,
-            "token" => $request["token"],
-            "description" => "Seña por alquiler de espacio",
-            "installments" => 1,
-            "payment_method_id" => $request["paymentMethodId"],
-            "payer" => array (
-                "email" => $request["email"],
-                "first_name" => $request["first_name"],
-                "last_name" => $request["last_name"]
-            ),
-            "capture" => false
-        );
-        return $mp->post("/v1/payments", $payment_data);
-
-        // Chequeo si la respuesta de MP fue exitosa
-        if($resMP['response']['status'] == 'autorizado') {
-            $senia = new UserSenias();
-            $senia->user_id = $request['user_id'];
-            $senia->paymentid = $resMP['response']['id'];
-            $senia->vencimiento = $request['vencimiento'];
-            $senia->save();
-            DB::commit();
-            // Retorno el usuario con las senias
-            $user = User::with('senias')
-                ->where('id', '=', $request['user_id'])
-                ->first();
-            return $user;
-        }else {
-            return response('Su seña fue rechazada por la tarjeta', 404);
+        try {
+            return $request->all();
+            $mp = new MP("TEST-8248736349517024-122213-0a87e93a32890c78b05090e7cee77fcc__LD_LA__-291916384");
+            $payment_data = array(
+                "transaction_amount" => 1500,
+                "token" => $request["token"],
+                "description" => "Title of what you are paying for",
+                "installments" => 1,
+                "payment_method_id" => $request["paymentMethodId"],
+                "payer" => array (
+                    "email" => $request["email"]
+                ),
+                "capture" => false
+            );
         }
         /*} catch (\Exception $e) {
             DB::rollback();
