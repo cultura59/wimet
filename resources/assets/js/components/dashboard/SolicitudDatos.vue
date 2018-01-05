@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link to="/mensajes" class="left-icon"><img src="/img/ic_left.svg"> ATRAS</router-link>
+        <router-link to="/mensajes" class="left-icon"><img src="https://res.cloudinary.com/wimet/image/upload/v1515117772/icons/ic_left.svg"> ATRAS</router-link>
         <div class="container-evento">
             <span class="container-evento__title">Solicitud de datos</span>
         </div>

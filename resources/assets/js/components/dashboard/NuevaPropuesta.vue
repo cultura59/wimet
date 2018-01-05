@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<router-link :to="`/mensaje/${$route.params.id}`" class="left-icon"><img src="/img/ic_left.svg"> ATRAS</router-link>
+		<router-link :to="`/mensaje/${$route.params.id}`" class="left-icon"><img src="https://res.cloudinary.com/wimet/image/upload/v1515117772/icons/ic_left.svg"> ATRAS</router-link>
 		<div class="container-propuesta">
 			<span class="container-propuesta__title">PROPUESTA</span>
 		</div>

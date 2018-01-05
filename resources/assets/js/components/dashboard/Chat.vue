@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link to="/mensajes" class="left-icon"><img src="/img/ic_left.svg"> ATRAS</router-link>
+        <router-link to="/mensajes" class="left-icon"><img src="https://res.cloudinary.com/wimet/image/upload/v1515117772/icons/ic_left.svg"> ATRAS</router-link>
         <div class="container-evento">
             <span class="container-evento__title">EVENTO</span>
         </div>
@@ -160,25 +160,7 @@
                 this.$router.push({name: 'nueva-propuesta', params: { eventoId: this.$route.params.id }});
             },
             solicitarPropuesta() {
-                let data = {
-                    evento_id: this.$route.params.id,
-                    user_id: 1,
-                    presupuesto: true,
-                    mensaje: `El usuario ${this.$store.getters.getUser.firstname} a solicitado que le envies un presupuesto.`
-                }
-                this.$http.post('api/mensaje', data)
-                    .then(res => {
-                        if(res.status == 204) {
-                            this.getMensajes();
-                            this.mensajeEnviar = '';
-                            this.$toastr.success(
-                                "Presupuesto solicitado!",
-                                "Dentro de las próximas 48hs el dueño se pondrá en contacto"
-                            );
-                        }else {
-                            this.$toastr.error("Mensaje no enviado!", "Revisa los datos envíados");
-                        }
-                    });
+                this.$router.push({name: 'solicitud', params: { eventoId: this.$route.params.id }});
             },
             sendMensaje(){
                 if(this.showLoading) {
