@@ -126,7 +126,9 @@
                 showLoading: false,
                 backgroundEspacio: {},
                 fee: 0,
-                payment: {}
+                payment: {
+                    email: this.$store.getters.getUser.email
+                }
             }
         },
         mounted() {
