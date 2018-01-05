@@ -78,7 +78,7 @@ class MercadoPagoController extends Controller
             }
         } catch (\Exception $e) {
             DB::rollback();
-            return response('Hubo un error al realizar el pago, ' . $e->getMessage(), 500);
+            return response('Hubo un error al realizar el pago, ' . $e, 500);
         }
     }
 }
