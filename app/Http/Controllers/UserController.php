@@ -112,6 +112,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        DB::beginTransaction();
         try {
             $user = User::find($id);
             if($user == '' || $user == null) {
@@ -144,8 +145,16 @@ class UserController extends Controller
                 }
                 $user->espacios()->sync($arrEspacios);
             }
+
+            if($request->senias) {
+                $nServicio = new PropuestaServicios($request->senias);
+                $nServicio->propuesta_id = $propuesta->id;
+                $nServicio->save();
+            }
+            DB::commit();
             return $user;
         }catch (\Exception $e) {
+            DB::rollback();
             return response('Error al editar el usuario', 500);
         }
     }

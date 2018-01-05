@@ -222,11 +222,14 @@
                     alert("verify filled data");
                 }else{
                     this.payment.token = res.id;
+                    this.payment.user_id = this.$store.getters.getUser.id;
+                    this.payment.vencimiento = this.$moment().add(5, 'days');
                     this.$http.post(`api/sendpayment`, this.payment)
                     .then(res => {
-                        console.log(res);
+                        this.$store.commit('setUser', res.body);
+                        this.$toastr.success("Fue enviado por email los datos del espacio", "Felicitaciones!");
                     }, err => {
-                       console.log(err);
+                        this.$toastr.error(err, "Ups hubo un error!");
                     });
                 }
             },

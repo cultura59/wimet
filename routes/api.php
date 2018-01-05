@@ -15,7 +15,7 @@ use App\User;
 */
 
 Route::get('/usersession', function (Request $request) {
-    return User::with('espacios')
+    return User::with('espacios', 'senias')
             ->where('id', '=', $request->user()->id)
             ->first();
 })->middleware('auth:api');

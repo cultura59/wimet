@@ -8,7 +8,9 @@
 
 namespace App\Http\Controllers;
 
+use App\UserSenias;
 use Illuminate\Http\Request;
+use App\User;
 use MP;
 
 class MercadoPagoController extends Controller
@@ -40,22 +42,42 @@ class MercadoPagoController extends Controller
      * @return array|\Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
      */
     public function sendPayment(Request $request) {
+        DB::beginTransaction();
         try {
             $mp = new MP("TEST-8248736349517024-123008-431710274c1eef4ee4331ae7b658cfcf__LA_LD__-291916384");
             $payment_data = array(
-                "transaction_amount" => 1500,
+                "transaction_amount" => 1800,
                 "token" => $request["token"],
-                "description" => "Title of what you are paying for",
+                "description" => "Seña por alquiler de espacio",
                 "installments" => 1,
                 "payment_method_id" => $request["paymentMethodId"],
                 "payer" => array (
-                    "email" => $request["email"]
+                    "email" => $request["email"],
+                    "first_name" => $request["first_name"],
+                    "last_name" => $request["last_name"]
                 ),
                 "capture" => false
             );
-            return $mp->post("/v1/payments", $payment_data);
-            return response('Se enviaran los datos por email', 200);
+            $resMP = $mp->post("/v1/payments", $payment_data);
+
+            // Chequeo si la respuesta de MP fue exitosa
+            if($resMP['response']['status'] == 'autorizado') {
+                $senia = new UserSenias();
+                $senia->user_id = $request['user_id'];
+                $senia->paymentid = $resMP['response']['id'];
+                $senia->vencimiento = $request['vencimiento'];
+                $senia->save();
+                DB::commit();
+                // Retorno el usuario con las senias
+                $user = User::with('senias')
+                            ->where('id', '=', $request['user_id'])
+                            ->first();
+                return $user;
+            }else {
+                return response('Su seña fue rechazada por la tarjeta', 404);
+            }
         } catch (\Exception $e) {
+            DB::rollback();
             return response('Hubo un error al realizar el pago, ' . $e->getMessage(), 500);
         }
     }
