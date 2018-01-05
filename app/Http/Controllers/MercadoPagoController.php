@@ -8,9 +8,7 @@
 
 namespace App\Http\Controllers;
 
-use App\UserSenias;
 use Illuminate\Http\Request;
-use App\User;
 use MP;
 
 class MercadoPagoController extends Controller
@@ -43,8 +41,7 @@ class MercadoPagoController extends Controller
      */
     public function sendPayment(Request $request) {
         try {
-            return $request->all();
-            $mp = new MP("TEST-8248736349517024-122213-0a87e93a32890c78b05090e7cee77fcc__LD_LA__-291916384");
+            $mp = new MP("TEST-8248736349517024-123008-431710274c1eef4ee4331ae7b658cfcf__LA_LD__-291916384");
             $payment_data = array(
                 "transaction_amount" => 1500,
                 "token" => $request["token"],
@@ -56,10 +53,10 @@ class MercadoPagoController extends Controller
                 ),
                 "capture" => false
             );
+            return $mp->post("/v1/payments", $payment_data);
+            return response('Se enviaran los datos por email', 200);
+        } catch (\Exception $e) {
+            return response('Hubo un error al realizar el pago, ' . $e->getMessage(), 500);
         }
-        /*} catch (\Exception $e) {
-            DB::rollback();
-            return response('Hubo un error al realizar el pago, ' . $e, 500);
-        }*/
     }
 }
