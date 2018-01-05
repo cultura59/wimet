@@ -59,7 +59,7 @@ class MercadoPagoController extends Controller
                 "capture" => false
             );
             $resMP = $mp->post("/v1/payments", $payment_data);
-
+            return $resMP;
             // Chequeo si la respuesta de MP fue exitosa
             if($resMP['response']['status'] == 'autorizado') {
                 $senia = new UserSenias();
