@@ -43,7 +43,7 @@ class MercadoPagoController extends Controller
      */
     public function sendPayment(Request $request) {
         DB::beginTransaction();
-        try {
+        //try {
             $mp = new MP("TEST-8248736349517024-123008-431710274c1eef4ee4331ae7b658cfcf__LA_LD__-291916384");
             $payment_data = array(
                 "transaction_amount" => 1800,
@@ -76,9 +76,9 @@ class MercadoPagoController extends Controller
             }else {
                 return response('Su seña fue rechazada por la tarjeta', 404);
             }
-        } catch (\Exception $e) {
+        /*} catch (\Exception $e) {
             DB::rollback();
             return response('Hubo un error al realizar el pago, ' . $e, 500);
-        }
+        }*/
     }
 }
