@@ -11,7 +11,7 @@
             <template v-if="espacio.id != undefined && evento.id != undefined && mensajes.length > 0">
             <div class="row">
                 <h4 class="text-center">{{evento.nombre_evento}}</h4>
-                <div class="col-md-6">
+                <div class="col-md-8">
                     <div class="alerta">La mayoría de los anfitriones responden en un plazo de 24 hs. Si has elegido esta publicación y estas de acuerdo con sus políticas y precio, demuestra tu interés solicitando el presupuesto formal al anfitrión.</div>
                     <textarea rows="4" class="evento-main__textarea" placeholder="Escribe tu respuesta..." v-model="mensajeEnviar"></textarea>
                     <div class="content-bottons">
@@ -27,7 +27,7 @@
                         </button>
                         <button class="content-bottons__send" @click="sendMensaje()">
                             <span v-show="!showLoading">ENVIAR MENSAJE</span>
-                            <img v-if="showLoading" src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="30px" />
+                            <img v-if="showLoading" src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="20px" />
                         </button>
                     </div>
                     <div class="container-chats">
@@ -55,61 +55,36 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <div class="resumen-detalle">
-                        <div :style="backgroundEspacio"></div>
-                        <div class="resumen-detalle__info">
-                            <div>
-                                <p><strong>ESTADO:</strong> {{evento.estado}}</p>
-                                <p><strong>PRECIO ESTIMADO:</strong> ${{evento.sub_total}}</p>
-                            </div>
-                            <div>
-                                <p><strong>ACTIVIDAD:</strong> {{getCategoria(evento.estilo_espacios_id)}}</p>
-                                <p><strong>INVITADOS:</strong> {{evento.invitados}}</p>
-                            </div>
-                        </div>
-                        <div class="resumen-detalle__fechas">
-                            <hr>
-                            <strong>FECHAS</strong>
+                <div class="col-md-4">
+                    <div class="box-resumen wt-m-top-2">
+                        <img :src="espacio.portada" class="img-responsive">
+                        <div class="box-resumen__body">
+                            <span class="wt-m-bot-1">Estado: {{evento.estado}}</span>
+                            <span class="wt-m-bot-1">Actividad: {{getCategoria(evento.estilo_espacios_id)}}</span>
+                            <span class="wt-m-bot-1">Invitados: {{evento.invitados}}</span>
+                            <span class="wt-m-bot-1">Fechas solicitadas</span>
                             <ul>
                                 <li v-for="dia in dias" :key="dia.id">
-                                    <span>{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}}</span>
-                                    <span v-if="dia.tipo == 'all'"> - todo el día</span>
-                                    <span v-if="dia.tipo == 'morning'"> - mañana-tarde</span>
-                                    <span v-if="dia.tipo == 'night'"> - tarde-noche</span>
+                                    <span v-if="dia.tipo == 'all'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (jornada completa)</span>
+                                    <span v-if="dia.tipo == 'morning'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (media jornada - am)</span>
+                                    <span v-if="dia.tipo == 'night'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (media jornada - pm)</span>
                                 </li>
                             </ul>
-                        </div>
-                    </div>
-                    <h4 class="text-center">Propuestas</h4>
-                    <div v-if="propuestas.length == 0" class="preview-propuestas">
-                        <span class="preview-propuestas_texto">Aún no tienes propuestas</span>
-                    </div>
-                    <table v-if="propuestas.length > 0" class="table">
-                        <thead>
-                            <tr>
-                                <th>Número</th>
-                                <th>Estado</th>
-                                <th>Creación</th>
-                                <th>Vto.</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr v-for="propuesta in propuestas" class="active">
-                                <td>{{propuesta.id}}</td>
-                                <td>{{propuesta.pagos[0].pestado}}</td>
-                                <td>{{$moment(propuesta.created_at).locale('es').format('DD/MM/YYYY')}}</td>
-                                <td>{{propuesta.pagos[0].pvencimiento}}</td>
-                                <td>${{propuesta.sub_total}}</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    <div class="content-anfitrion">
-                        <img v-if="espacio.user.imagesource != undefined" :src="espacio.user.imagesource" :alt="espacio.user.firstname">
-                        <div class="content-anfitrion__detail">
-                            <span>{{espacio.user.firstname}}</span>
-                            <span class="subtitle">Anfitrión</span>
+                            <h4 class="wt-m-top-2">PRECIO</h4>
+                            <div class="box-resumen__precios">
+                                <div class="wt-space-block wt-m-bot-1">
+                                    <span>Total x espacio</span>
+                                    <span>${{evento.sub_total}}</span>
+                                </div>
+                                <div class="wt-space-block wt-m-bot-1">
+                                    <span>Comisión Wimet</span>
+                                    <span>${{fee}}</span>
+                                </div>
+                                <div class="wt-space-block">
+                                    <strong>Recibirás</strong>
+                                    <strong>${{evento.sub_total - fee}}</strong>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -131,7 +106,6 @@
                 propuestas: [],
                 dias: [],
                 showLoading: false,
-                backgroundEspacio: {},
                 fee: 0
             }
         },
@@ -160,6 +134,17 @@
                 this.$router.push({name: 'nueva-propuesta', params: { eventoId: this.$route.params.id }});
             },
             solicitarPropuesta() {
+                for(let i = 0; i < this.$store.getters.getUser.senias.length; i++) {
+
+                    if(
+                        this.$store.getters.getUser.senias[i].vencimiento > this.$moment().format('YYYY-MM-DD hh:mm:ss')
+                        && this.$store.getters.getUser.senias[i].estado === 'pendiente'
+                    ) {
+                        this.$toastr.success("Se enviaron los datos del espacio a su email", "Datos envíados!");
+                        return;
+                    }
+
+                }
                 this.$router.push({name: 'solicitud', params: { eventoId: this.$route.params.id }});
             },
             sendMensaje(){
@@ -180,7 +165,7 @@
                             this.getMensajes();
                             this.mensajeEnviar = '';
                         }else {
-                            this.$toastr.error("Mensaje no enviado!", "Revisa los datos envíados");
+                            this.$toastr.error("Revisa los datos envíados", "Mensaje no enviado!");
                         }
                     });
             },
@@ -188,14 +173,6 @@
                 this.$http.get(`api/espacio/${this.evento.espacio_id}`)
                 .then(res => {
                     this.espacio = res.body;
-                    this.backgroundEspacio = {
-                        backgroundImage: `url(${this.espacio.images[0].name})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        height: '200px',
-                        borderTopLeftRadius: '10px',
-                        borderTopRightRadius: '10px'
-                    }
                 }, err => {
                     console.log(err);
                 });
@@ -258,10 +235,6 @@
         background-color: #ffffff;
         box-shadow: 0 0 68px 0 rgba(0, 0, 0, 0.1);
         color: #333333;
-        h4 {
-            text-align: center;
-            font-weight: bold;
-        }
         .alerta {
             width: 100%;
             padding: 1em;

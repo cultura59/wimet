@@ -346,3 +346,18 @@
     font-weight: 500;
     color: #191919;
 }
+.box-resumen {
+    border: 1px solid #dadada;
+    &__body {
+        padding: 2em;
+        display: flex;
+        flex-direction: column;
+        ul {
+            margin-left: 2em;
+        }
+        &__precios {
+            display: flex;
+            flex-direction: column;
+        }
+    }
+}

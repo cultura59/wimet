@@ -19,6 +19,7 @@ class CreateUserSeniasTable extends Migration
                 ->on('users')->onDelete('cascade');
             $table->integer('paymentid');
             $table->timestamp('vencimiento');
+            $table->enum('estado', array('pendiente', 'aprobado', 'cancelado'))->default('pendiente');
             $table->timestamps();
         });
     }

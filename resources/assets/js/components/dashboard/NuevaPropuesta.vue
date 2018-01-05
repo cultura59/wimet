@@ -160,7 +160,6 @@
                 espacio: {},
                 dias: [],
                 showLoading: false,
-                backgroundEspacio: {},
                 fee: 1800,
 				date: '',
                 lastDay: '',
@@ -303,21 +302,6 @@
 		border: none;
 		float: right;
 		margin-top: 2em;
-	}
-	.box-resumen {
-		border: 1px solid #dadada;
-		&__body {
-			padding: 2em;
-			display: flex;
-			flex-direction: column;
-			ul {
-				margin-left: 2em;
-			}
-			&__precios {
-				display: flex;
-				flex-direction: column;
-			}
-		}
 	}
 	.modalServicios {
 		position: fixed;
