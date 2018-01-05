@@ -221,6 +221,8 @@
                 }else{
                     this.payment.token = res.id;
                     this.payment.user_id = this.$store.getters.getUser.id;
+                    this.payment.firstname = this.$store.getters.getUser.firstname;
+                    this.payment.lastname = this.$store.getters.getUser.lastname;
                     this.payment.vencimiento = this.$moment().add(5, 'days').format('YYYY-MM-DD hh:mm:ss');
                     this.$http.post(`api/sendpayment`, this.payment)
                     .then(res => {

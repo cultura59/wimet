@@ -49,12 +49,13 @@ class MercadoPagoController extends Controller
                 "installments" => 1,
                 "payment_method_id" => $request["paymentMethodId"],
                 "payer" => array (
-                    "email" => $request["email"]
+                    "email" => $request["email"],
+                    "first_name" => $request["firstname"],
+                    "last_name" => $request["lastname"]
                 ),
                 "capture" => false
             );
             return $mp->post("/v1/payments", $payment_data);
-            return response('Se enviaran los datos por email', 200);
         } catch (\Exception $e) {
             return response('Hubo un error al realizar el pago, ' . $e->getMessage(), 500);
         }
