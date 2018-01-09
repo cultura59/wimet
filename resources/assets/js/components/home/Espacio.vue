@@ -34,6 +34,12 @@
                                         </span>
                                         <span class="min-hours">Por jornada</span>
                                     </div>
+                                    <div class="wt-center-column wt-m-lf-3">
+                                        <span class="price">
+                                            <b><i aria-hidden="true" class="fa fa-clock-o"></i></b> ${{priceCategoria.price}}.-
+                                        </span>
+                                        <span class="min-hours">Por media jornada</span>
+                                    </div>
                                 </div>
                                 <span class="min-hours">NOTA: El precio se encuentra sujeto a modificaciones en función de la temporada/ época del año.</span>
                             </div>
@@ -112,7 +118,9 @@
                                 <span>Estilo</span>
                             </div>
                             <div class="box-descripcion__contenido">
-                                <span v-for="caracteristica in espacio.characteristics">{{caracteristica.nombre}} - </span>
+                                <div class="container-tags">
+                                    <span v-for="caracteristica in espacio.characteristics" class="wt-tag">{{caracteristica.nombre}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -220,9 +228,9 @@
                                         <strong>Fechas</strong>
                                         <li v-for="day in selected">
                                             <span>{{$moment(day.date).locale('es').format("DD MMM YYYY")}}</span>
-                                            <span v-if="day.workingDay == 'all'"> (Todo el día)</span>
-                                            <span v-if="day.workingDay == 'morning'"> (mañana-tarde)</span>
-                                            <span v-if="day.workingDay == 'night'"> (tarde-noche)</span>
+                                            <span v-if="day.workingDay == 'all'"> (jornada completa)</span>
+                                            <span v-if="day.workingDay == 'morning'"> (media jornada/am)</span>
+                                            <span v-if="day.workingDay == 'night'"> (media jornada completa/pm)</span>
                                         </li>
                                     </div>
                                 </div>
@@ -271,7 +279,8 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                                 <div class="form-contact">
                                     <div class="form-contact__button">
                                         <img v-show="!btnSend" src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-pig_oxestq.svg" alt="Cargando ..." height="50px" />
-                                        <button v-show="(btnSend && terminos)" class="btn-primary-pig" @click="sendReserva()">Enviar</button>
+                                        <button v-show="btnSend && !terminos" class="btn-primary-pig--disable">Enviar</button>
+                                        <button v-show="btnSend && terminos" class="btn-primary-pig" @click="sendReserva()">Enviar</button>
                                     </div>
                                 </div>
                             </div>
@@ -683,7 +692,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
             }
             &__table {
                 transition: none;
-                font-family: Ubuntu;
+                font-family: Avenir;
                 font-size: 10px;
                 text-align: center;
                 color: #212121;
@@ -912,5 +921,27 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
         img {
             margin-right: 1em;
         }
+    }
+    .container-tags {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-flow: wrap;
+        .wt-tag {
+            padding: .5em;
+            border: 1px solid #dadada;
+            border-radius: 2px;
+            margin: 1em 1em 0 0;
+        }
+    }
+    .btn-primary-pig--disable {
+        width: 108px;
+        height: 40px;
+        background: rgba(252, 82, 137, 0.6);
+        font-weight: 500;
+        letter-spacing: -0.1px;
+        color: white;
+        border: 1px solid rgba(252, 82, 137, 0.6);
+        border-radius: 2px;
     }
 </style>

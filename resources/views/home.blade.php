@@ -52,17 +52,18 @@
             <wimet-login fixed="false" shadow="false"></wimet-login>
             <div class="container">
                 <!-- Title Header -->
-                <section class="texto-header col-md-8">
+                <section class="texto-header">
                     <h2 class="text-header__title">RE-IMAGINA TU <title-home></title-home></h2>
                     <h3 class="text-header__sub-title">Descubre y reserva un espacio creativo para tu próxima actividad</h3>
+                    <div class="wt-m-top-3">
+                    <div class="wt-m-top-3">
+                        <img src="https://res.cloudinary.com/wimet/image/upload/v1515443747/icons/wimet-icon-espacios.svg" class="img-responsive">
+                    </div>
                     <!-- Footer Header -->
                     <section class="header-footer">
                         <search-home></search-home>
                     </section>
                 </section>
-                <div class="col-md-4">
-                    <img src="https://res.cloudinary.com/wimet/image/upload/v1512758094/conversacion_v01-_1_e98com.gif" class="img-responsive">
-                </div>
             </div>
             <!-- main -->
             <main>
@@ -153,7 +154,7 @@
                                         <span>Elija su espacio de trabajo, privado o compartido en coworking, al mejor precio.</span>
                                     </div>
                                 </div>
-                                <img src="https://res.cloudinary.com/wimet/image/upload/v1514991556/ilustraciones/home_encuentra.gif" alt="Encuentra espacios" class="img-responsive">
+                                <img src="https://res.cloudinary.com/wimet/image/upload/v1515447634/ilustraciones/home_encuentra.gif" alt="Encuentra espacios" class="img-responsive">
                             </div>
                             <div class="col-sm-4">
                                 <div class="paso-a-paso">

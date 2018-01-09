@@ -264,7 +264,7 @@
 		margin-top: 3em;
 		align-items: flex-end;
 		&__title {
-			font-family: Ubuntu;
+			font-family: Avenir;
 			font-size: 16px;
 			font-weight: bold;
 			color: #333333;

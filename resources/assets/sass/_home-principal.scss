@@ -401,10 +401,10 @@ html, body {
 .categories {
 	padding: 10px;
 	background-color: $wt-white;
-
+	margin-top: 3em;
 	.content-wt	{
 		@include desktop {
-			padding: 45px 0;
+			padding-bottom: 1em;
 			h2 {
 				font-family: $font-family-sans-serif;
 				font-size: 14px;
@@ -599,7 +599,6 @@ html, body {
 				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 				z-index: 1;
 				.contaniner-categorias {
-					transition: none;
 					color: black;
 					padding: 12px 16px;
 					text-decoration: none;
@@ -625,7 +624,6 @@ html, body {
 				display: flex;
 				flex-direction: column;
 				.contaniner-categorias {
-					transition: none;
 					color: black;
 					padding: 12px 16px;
 					text-decoration: none;
@@ -690,9 +688,8 @@ html, body {
 		}
 	}
 	.header-footer {
-		margin-top: 20px;
 		width: 100%;
-		padding: 16px 0px;
+		box-shadow: 2px 6px 50px 0 rgba(0, 0, 0, 0.1);
 		#search-desktop {
 			width: 100%;
 			display: flex;
@@ -761,12 +758,10 @@ html, body {
 					box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 					z-index: 1;
 					.contaniner-categorias {
-						transition: none;
 						color: black;
 						padding: 1em;
 						text-decoration: none;
 						display: flex;
-						justify-content: space-between;
 						align-items: center;
 						border-bottom: 1px solid #dadada;
 						&:hover {
@@ -812,9 +807,10 @@ html, body {
 		display: none;
 	}
 	.texto-header {
-		width: 100%;
+		width: 78%;
+		margin: 0 auto;
 		height: auto;
-		margin-top: 22vh;
+		margin-top: 5em;
 		.text-header__title {
 			width: 750px;
 			padding: 0;

@@ -76,13 +76,21 @@
                                     <span>Total x espacio</span>
                                     <span>${{evento.sub_total}}</span>
                                 </div>
-                                <div class="wt-space-block wt-m-bot-1">
+                                <div v-if="evento.user_id === $store.getters.getUser.id" class="wt-space-block wt-m-bot-1">
                                     <span>Comisión Wimet</span>
-                                    <span>${{fee}}</span>
+                                    <span>$1800</span>
                                 </div>
-                                <div class="wt-space-block">
+                                <div v-if="evento.user_id === $store.getters.getUser.id" class="wt-space-block">
                                     <strong>Recibirás</strong>
-                                    <strong>${{evento.sub_total - fee}}</strong>
+                                    <strong>${{evento.sub_total - 1800}}</strong>
+                                </div>
+                                <div v-if="evento.cliente_id === $store.getters.getUser.id" class="wt-space-block wt-m-bot-1">
+                                    <span>Seña a favor</span>
+                                    <span>$ -{{getSenia()}}</span>
+                                </div>
+                                <div v-if="evento.cliente_id === $store.getters.getUser.id" class="wt-space-block">
+                                    <strong>Saldo restante</strong>
+                                    <strong>${{evento.sub_total - senia}}</strong>
                                 </div>
                             </div>
                         </div>
@@ -106,7 +114,7 @@
                 propuestas: [],
                 dias: [],
                 showLoading: false,
-                fee: 0
+                senia: 0
             }
         },
         mounted() {
@@ -118,7 +126,6 @@
                 this.$http.get(`api/evento/${this.$route.params.id}`)
                     .then(res => {
                         this.evento = res.body;
-                        this.fee = (parseFloat(this.evento.sub_total) * 5) / 100;
                         this.getDias();
                         this.getEspacio();
                         this.getPropuestas();
@@ -202,6 +209,18 @@
                     case 4:
                         return 'POP-UPS';
                 }
+            },
+            getSenia() {
+                let senias = this.$store.getters.getUser.senias;
+                let now = this.$moment();
+                for(let i = 0; i < senias.length; i++) {
+                    let dif = now.diff(this.$moment(senias[i].vencimiento));
+                    if(dif > 0) {
+                        this.senia = 1800;
+                        return;
+                    }
+                }
+                return;
             }
         }
     }
@@ -223,7 +242,7 @@
         margin-top: 3em;
         align-items: flex-end;
         &__title {
-            font-family: Ubuntu;
+            font-family: Avenir;
             font-size: 16px;
             font-weight: bold;
             color: #333333;
@@ -275,7 +294,7 @@
         .container-chats {
             margin-top: 2em;
             &__cliente {
-                font-family: Ubuntu;
+                font-family: Avenir;
                 font-size: 12px;
                 color: #545454;
                 margin-top: 1em;
@@ -305,7 +324,7 @@
                 }
             }
             &__user {
-                font-family: Ubuntu;
+                font-family: Avenir;
                 font-size: 12px;
                 color: #545454;
                 margin-top: 1em;

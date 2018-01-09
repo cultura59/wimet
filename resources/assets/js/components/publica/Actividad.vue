@@ -83,7 +83,7 @@
                     <input id="all" type="checkbox" v-model="all" style="display: none;">
                     <label for="all" class="wt-publica-label">Establecer misma capacidad, precios y condiciones para todas las categorías.</label>
                 </div>
-                <div class="wt-space-block wt-m-top-3">
+                <div class="wt-space-block wt-m-top-3" @click="back()">
                     <button class="btn-publica-step-default">
                         <img src="https://res.cloudinary.com/wimet/image/upload/v1512746740/ic_keyboard_backspace_black_24px.svg">
                         <span>ATRÁS</span>
@@ -93,10 +93,10 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <img v-show="this.$route.params.name == 'Reunion'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_reunion.svg" class="img-responsive">
-                <img v-show="this.$route.params.name == 'Evento'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_evento.svg" class="img-responsive">
-                <img v-show="this.$route.params.name == 'Produccion'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_produccion.svg" class="img-responsive">
-                <img v-show="this.$route.params.name == 'Retail'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_retail.svg" class="img-responsive">
+                <img v-show="this.$route.params.name == 'Reunion'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_reunion.svg" class="img-responsive" style="width: 80%; float: right">
+                <img v-show="this.$route.params.name == 'Evento'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_evento.svg" class="img-responsive" style="width: 80%; float: right">
+                <img v-show="this.$route.params.name == 'Produccion'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_produccion.svg" class="img-responsive" style="width: 80%; float: right">
+                <img v-show="this.$route.params.name == 'Retail'" src="https://res.cloudinary.com/wimet/image/upload/v1514297897/fotosespacios/wimet_retail.svg" class="img-responsive" style="width: 80%; float: right">
             </div>
         </div>
     </div>
@@ -186,6 +186,9 @@
                         this.btnSend = true;
                         $toastr.error("Ups...", "Hubo un problema al crear su espacio, vuelva a intentarlo");
                     });
+            },
+            back() {
+                this.$router.push({ name: "basico"});
             }
         }
     }

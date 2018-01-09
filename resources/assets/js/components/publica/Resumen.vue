@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <img src="https://res.cloudinary.com/wimet/image/upload/v1512791614/wimet_basico.svg" class="img-responsive">
+                <img src="https://res.cloudinary.com/wimet/image/upload/v1512791614/wimet_basico.svg" class="img-responsive" style="width: 80%; float: right">
             </div>
         </div>
     </div>

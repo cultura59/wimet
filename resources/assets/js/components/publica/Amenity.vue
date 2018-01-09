@@ -53,7 +53,7 @@
                     </div>
                 </div>
                 <div class="wt-space-block wt-m-top-3">
-                    <button class="btn-publica-step-default">
+                    <button class="btn-publica-step-default" @click="back()">
                         <img src="https://res.cloudinary.com/wimet/image/upload/v1512746740/ic_keyboard_backspace_black_24px.svg">
                         <span>ATRÁS</span>
                     </button>
@@ -62,7 +62,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
-                <img src="https://res.cloudinary.com/wimet/image/upload/v1512791710/wimet_amenities.svg" class="img-responsive">
+                <img src="https://res.cloudinary.com/wimet/image/upload/v1512791710/wimet_amenities.svg" class="img-responsive" style="width: 80%; float: right">
             </div>
         </div>
     </div>
@@ -102,6 +102,14 @@
                 });
             },
             updateEspacio() {
+                if(this.espacio.access.length === 0) {
+                    this.$toastr.error("Debe seleccionar al menos un acceso", "Accesos requeridos");
+                    return;
+                }
+                if(this.espacio.servicios.length === 0) {
+                    this.$toastr.error("Debe seleccionar al menos un amenitie", "Amenities requeridos");
+                    return;
+                }
                 this.btnSend = false;
                 this.espacio.step = 4;
                 this.$http.put(`api/espacio/${this.espacio.id}`, this.espacio)
@@ -118,8 +126,12 @@
                         this.$router.push({ name: "disponibilidad"});
                     }, err => {
                         this.btnSend = true;
-                        $toastr.error("Ups...", "Hubo un problema al modificar su espacio, vuelva a intentarlo");
+                        this.$toastr.error("Ups...", "Hubo un problema al modificar su espacio, vuelva a intentarlo");
                     });
+            },
+            back() {
+                let index = this.$store.getters.getEspacio.prices[0];
+                this.$router.push({ name: 'actividad', params: { name: index.categoria.name }});
             }
         }
     }

@@ -2,28 +2,26 @@
 Credit Card
 --------------------*/
 .credit-card-box {
-  width: 400px;
-  height: 280px;
-  &:hover .flip,
-  &.hover .flip {
+  width: 320px;
+  height: 200px;
+  margin-bottom: 2em;
+  float: right;
+  .flip--active {
     transform: rotateY(180deg);
   }
 
-  .front,
-  .back {
-    width: 400px;
-    height: 250px;
+  .front, .back {
+    width: 320px;
+    height: 200px;
     border-radius: 15px;
     backface-visibility: hidden;
     background: linear-gradient(135deg, #bd6772, #53223f);
     position: absolute;
     color: #fff;
-    font-family: Inconsolata;
     top: 0;
     left: 0;
     text-shadow: 0 1px 1px hsla(0, 0, 0, 0.3);
     box-shadow: 0 1px 6px hsla(0, 0, 0, 0.3);
-
     &::before {
       content: '';
       position: absolute;
@@ -43,37 +41,10 @@ Credit Card
     position: relative;
   }
 
-  .logo {
-    position: absolute;
-    top: 9px;
-    right: 20px;
-    width: 60px;
-
-    svg {
-      width: 100%;
-      height: auto;
-      fill: #fff;
-    }
-  }
-
-  .front {
-    z-index: 2;
-    transform: rotateY(0deg);
-  }
-
-  .back {
-    transform: rotateY(180deg);
-
-    .logo {
-      top: 185px;
-    }
-
-  }
-
   .chip {
     position: absolute;
-    width: 60px;
-    height: 45px;
+    width: 50px;
+    height: 30px;
     top: 20px;
     left: 20px;
     background: linear-gradient(135deg, hsl(269,54%,87%) 0%,hsl(200,64%,89%) 44%,hsl(18,55%,94%) 100%);;
@@ -94,6 +65,41 @@ Credit Card
     }
   }
 
+  .logo {
+    position: absolute;
+    top: 9px;
+    right: 20px;
+    width: 50px;
+    svg {
+      width: 100%;
+      height: auto;
+      fill: #fff;
+    }
+  }
+
+  .card-holder, .card-expiration-date {
+    position: absolute;
+    margin: 0 auto;
+    top: 130px;
+    left: 19px;
+    font-size: 16px;
+    text-transform: capitalize;
+  }
+
+  .front {
+    z-index: 2;
+    transform: rotateY(0deg);
+  }
+
+  .back {
+    transform: rotateY(180deg);
+
+    .logo {
+      top: 185px;
+    }
+
+  }
+
   .strip {
     background: linear-gradient(135deg, hsl(0, 0, 25%), hsl(0, 0, 10%));
     position: absolute;
@@ -106,9 +112,9 @@ Credit Card
   .number {
     position: absolute;
     margin: 0 auto;
-    top: 103px;
+    top: 80px;
     left: 19px;
-    font-size: 38px;
+    font-size: 22px;
   }
 
   label {
@@ -120,16 +126,6 @@ Credit Card
     opacity: 0.5;
     display: block;
     margin-bottom: 3px;
-  }
-
-  .card-holder,
-  .card-expiration-date {
-    position: absolute;
-    margin: 0 auto;
-    top: 180px;
-    left: 19px;
-    font-size: 22px;
-    text-transform: capitalize;
   }
 
   .card-expiration-date {

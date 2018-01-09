@@ -80,8 +80,9 @@
         }
     };
 </script>
-<style scoped>
+<style lang="sass" scoped>
     .google-map {
+        transition: none;
         margin: 0 auto;
         background: gray;
     }

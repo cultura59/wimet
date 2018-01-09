@@ -32,7 +32,7 @@
                         </template>
                     </div>
                 </div>
-                <div class="wt-space-block wt-m-top-3">
+                <div class="wt-space-block wt-m-top-3" @click="back()">
                     <button class="btn-publica-step-default">
                         <img src="https://res.cloudinary.com/wimet/image/upload/v1512746740/ic_keyboard_backspace_black_24px.svg">
                         <span>ATRÁS</span>
@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
-                <img src="https://res.cloudinary.com/wimet/image/upload/v1512821482/wimet_fotos.svg" class="img-responsive">
+                <img src="https://res.cloudinary.com/wimet/image/upload/v1512821482/wimet_fotos.svg" class="img-responsive" style="width: 80%; float: right">
             </div>
         </div>
     </div>
@@ -194,6 +194,9 @@
             },
             saveEspacio() {
                 this.$router.push({ name: 'descripcion'});
+            },
+            back() {
+                this.$router.push({ name: "disponibilidad"});
             }
         }
     }

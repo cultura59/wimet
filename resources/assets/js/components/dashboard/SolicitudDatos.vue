@@ -12,10 +12,12 @@
                 <div class="col-md-8">
                     <div class="evento-main__body">
                         <h4>Datos para la autorización</h4>
-                        <p>Solicitaremos una autorización y captura por $1800 en concepto de seña, pero el cobro no se hará efectivo hasta tanto hayas definido el espacio que quieras contratar.</p>
-                        <p>Este importe será descontado de la propuesta final que recibas por parte del anfitrión.</p>
-                        <div class="credit-card-box">
-                            <div class="flip">
+                        <p class="wt-m-top-3">Solicitaremos una autorización y captura por $1800 en concepto de seña, pero el cobro no se hará efectivo hasta tanto hayas definido el espacio que quieras contratar.</p>
+                        <p class="wt-m-bot-3">Este importe será descontado de la propuesta final que recibas por parte del anfitrión.</p>
+                        <div class="wt-space-block">
+                            <img src="https://res.cloudinary.com/wimet/image/upload/v1515327246/mercado-pago-medios-de-pago.png" class="img-promos">
+                            <div class="credit-card-box">
+                            <div class="flip" :class="{'flip--active': flip}">
                                 <div class="front">
                                     <div class="chip"></div>
                                     <div class="logo">
@@ -73,82 +75,84 @@
                                     </div>
                                     <div class="ccv">
                                         <label>CCV</label>
-                                        <div></div>
+                                        <div>{{payment.securityCode}}</div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        </div>
                         <form action="#" id="pay">
-                        <div>
-                            <label for="email">Email</label>
-                            <input
-                                id="email"
-                                data-checkout="email"
-                                v-model="payment.email"
-                                type="email"
-                                placeholder="your email"/>
-                        </div>
-                        <div>
-                            <label for="cardNumber">Credit card number:</label>
-                            <input
-                                type="text"
-                                id="cardNumber"
-                                data-checkout="cardNumber"
-                                @keyup="guessingPaymentMethod($event)"
-                                @change="guessingPaymentMethod($event)"
-                                v-model="payment.cardNumber"
-                                placeholder="4509 9535 6623 3704" />
-                        </div>
-                        <div>
-                            <label for="securityCode">Security code:</label>
-                            <input
-                                type="text"
-                                id="securityCode"
-                                data-checkout="securityCode"
-                                v-model="payment.securityCode"
-                                placeholder="123" />
-                        </div>
-                        <div>
-                            <label for="cardExpirationMonth">Expiration month:</label>
-                            <input
-                                type="text"
-                                id="cardExpirationMonth"
-                                data-checkout="cardExpirationMonth"
-                                v-model="payment.cardExpirationMonth"
-                                placeholder="12" />
-                        </div>
-                        <div>
-                            <label for="cardExpirationYear">Expiration year:</label>
-                            <input
-                                type="text"
-                                id="cardExpirationYear"
-                                data-checkout="cardExpirationYear"
-                                v-model="payment.cardExpirationYear"
-                                placeholder="2015" />
-                        </div>
-                        <div>
-                            <label for="cardholderName">Card holder name:</label>
-                            <input
-                                type="text"
-                                id="cardholderName"
-                                data-checkout="cardholderName"
-                                v-model="payment.cardholderName"
-                                placeholder="APRO" />
-                        </div>
-                        <div>
-                            <label for="docType">Document type:</label>
-                            <select
-                                id="docType"
-                                data-checkout="docType"
-                                v-model="payment.docType">
-                            </select>
-                        </div>
-                        <div>
-                            <label for="docNumber">Document number:</label>
-                            <input type="text" id="docNumber" data-checkout="docNumber" placeholder="12345678" />
-                        </div>
-                        <input type="submit" @click="doPay($event)" value="Enviar datos" />
-                    </form>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="cardNumber">Número de tarjeta:</label>
+                                    <input
+                                        type="text"
+                                        id="cardNumber"
+                                        class="form-control"
+                                        data-checkout="cardNumber"
+                                        @keyup="guessingPaymentMethod($event)"
+                                        @change="guessingPaymentMethod($event)"
+                                        v-model="payment.cardNumber"
+                                        placeholder="4509 9535 6623 3704" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cardholderName">Nombre y Apellido:</label>
+                                    <input
+                                        type="text"
+                                        id="cardholderName"
+                                        class="form-control"
+                                        data-checkout="cardholderName"
+                                        v-model="payment.cardholderName"
+                                        placeholder="APRO" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cardExpirationMonth">Mes de vencimiento:</label>
+                                    <input
+                                        type="text"
+                                        id="cardExpirationMonth"
+                                        class="form-control"
+                                        data-checkout="cardExpirationMonth"
+                                        v-model="payment.cardExpirationMonth"
+                                        placeholder="12" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="cardExpirationYear">Año de vencimiento:</label>
+                                    <input
+                                        type="text"
+                                        id="cardExpirationYear"
+                                        class="form-control"
+                                        data-checkout="cardExpirationYear"
+                                        v-model="payment.cardExpirationYear"
+                                        placeholder="2015" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="docType">Tipo de documento:</label>
+                                    <select
+                                        id="docType"
+                                        class="form-control"
+                                        data-checkout="docType"
+                                        v-model="payment.docType">
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="docNumber">Número de documento:</label>
+                                    <input type="text" id="docNumber" class="form-control" data-checkout="docNumber" placeholder="12345678" />
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="securityCode">Código de seguridad:</label>
+                                    <input
+                                        type="text"
+                                        id="securityCode"
+                                        class="form-control"
+                                        data-checkout="securityCode"
+                                        v-model="payment.securityCode"
+                                        @keyup="flip = true"
+                                        @change="flip = false"
+                                        placeholder="123" />
+                                </div>
+                            </div>
+                            <input class="btn-enviar" type="submit" @click="doPay($event)" value="ENVIAR" />
+                        </form>
                     </div>
                 </div>
                 <div class="col-md-4">
@@ -201,6 +205,7 @@
                 showLoading: false,
                 backgroundEspacio: {},
                 fee: 0,
+                flip: false,
                 payment: {
                     email: this.$store.getters.getUser.email
                 }
@@ -282,12 +287,11 @@
             },
             sdkResponseHandler(status, res) {
                 if (status != 200 && status != 201) {
-                    console.log(status);
-                    console.log(res);
-                    alert("verify filled data");
+                    this.$toastr.error(res, "Ups hubo un error!");
                 }else{
                     this.payment.token = res.id;
                     this.payment.user_id = this.$store.getters.getUser.id;
+                    this.payment.email = this.$store.getters.getUser.email;
                     this.payment.firstname = this.$store.getters.getUser.firstname;
                     this.payment.lastname = this.$store.getters.getUser.lastname;
                     this.payment.vencimiento = this.$moment().add(5, 'days').format('YYYY-MM-DD hh:mm:ss');
@@ -325,7 +329,7 @@
         margin-top: 3em;
         align-items: flex-end;
         &__title {
-            font-family: Ubuntu;
+            font-family: Avenir;
             font-size: 16px;
             font-weight: bold;
             color: #333333;
@@ -371,5 +375,18 @@
                 .subtitle {font-size: 10px;}
             }
         }
+    }
+    .btn-enviar {
+        float: right;
+        padding: .5em 2em;
+        background: #FC5289;
+        color: #fff;
+        border: none;
+    }
+    .img-promos {
+        width: 40%;
+        float: left;
+        display: block;
+        height: auto;
     }
 </style>

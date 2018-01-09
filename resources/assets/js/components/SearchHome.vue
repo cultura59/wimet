@@ -24,7 +24,7 @@
                             <div>
                                 <img :src="cat.icon" :alt="cat.name" class="img-responsive">
                             </div>
-                            <div class="wt-center-column">
+                            <div class="wt-center-column wt-m-lf-2">
                                 <span>{{cat.name}}</span>
                                 <span class="subCategoria">{{showSubCategories(cat.sub_category)}}</span>
                             </div>

@@ -86,7 +86,7 @@
 <style lang="sass" scoped>
 	.publica-navbar {
 		transition: none;
-		font-family: Ubuntu;
+		font-family: Avenir;
 		display: flex;
 		justify-content: baseline;
 		align-items: center;
