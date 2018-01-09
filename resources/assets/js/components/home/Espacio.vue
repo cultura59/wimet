@@ -92,6 +92,7 @@
                                 <div class="wt-center-column">
                                     <span>Cancelación: flexible.</span>
                                     <span>Reembolso completo hasta 15 días antes del evento, excepto los gastos de procesamiento.</span>
+                                    <span>Depósito de garanía: ${{priceCategoria.securitydeposit}}</span>
                                 </div>
                             </div>
                         </div>
@@ -132,18 +133,14 @@
                                     :class="{'espacio-categorias__categoria--active': (priceCategoria.categoria_id == price.categoria.id)}"
                                     @click="selectCategory(price.categoria.id)">
                                     <img :src="price.categoria.icon" :alt="price.categoria.name" class="img-responsive">
-                                    <span>{{price.categoria.name}}</span>
+                                    <span class="wt-m-top-1">{{price.categoria.name}}</span>
                                 </div>
                             </section>
                             <header class="calendar__header">
                                 <div class="calendar__header__price">
                                     <span class="calendar__header__price--default">Desde</span>
                                     <span class="calendar__header__price--active">${{priceCategoria.price}}</span>
-                                    <span>por dia</span>
                                 </div>
-                                 <div>
-                                     <span>{{espacio.quanty}}pax</span>
-                                 </div>
                              </header>
                             <main class="calendar__main">
                                 <div class="select__mount">
@@ -648,7 +645,6 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
             width: 100%;
             &__categoria {
                 display: flex;
-                padding: 0.5em 0;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;

@@ -21,14 +21,14 @@
                     </div>
                 </div>
                 <div class="dropdown-modal">
-                    <span class="dropbtn" @click="setDropdown('btnPrice')">PRECIO/HORA <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
+                    <span class="dropbtn" @click="setDropdown('btnPrice')">PRECIO<img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
                     <div class="dropdown-modal-content__range" v-if="selectDropdown == 'btnPrice'">
-                        <p class="text-center" v-if="">${{priceFrom}} - ${{priceTo}}</p>
+                        <p class="text-center" v-if="">${{priceFrom}} - ${{priceTo}}+</p>
                         <vue-slider
                             @callback="callbackbPrice"
                             :value="[priceFrom, priceTo]"
                             :min="0"
-                            :max="5000"
+                            :max="20000"
                             :width="'100%'"
                             :tooltip="false"
                             :event-type="auto"
@@ -45,12 +45,12 @@
                 <div class="dropdown-modal">
                     <span class="dropbtn" @click="setDropdown('btnQuanty')">ASISTENTES <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
                     <div class="dropdown-modal-content__range" v-if="selectDropdown == 'btnQuanty'">
-                        <p class="text-center">{{quantyFrom}} - {{quantyTo}} asistentes</p>
+                        <p class="text-center">{{quantyFrom}} - {{quantyTo}}+ asistentes</p>
                         <vue-slider
                             @callback="callbackbQuanty"
                             :value="[quantyFrom, quantyTo]"
                             :min="0"
-                            :max="200"
+                            :max="100"
                             :width="'100%'"
                             :tooltip="false"
                             :event-type="auto"
@@ -188,9 +188,9 @@
                 selectUbicacion: (this.getParameterByName('ubicacion') == '') ? 'ubicacion' : this.getParameterByName('ubicacion'),
                 espacios: [],
                 priceFrom: 0,
-                priceTo: 5000,
+                priceTo: 20000,
                 quantyFrom: 0,
-                quantyTo: 200,
+                quantyTo: 100,
                 slideWith: '100%',
                 btnCategoria: false,
                 btnAsistente: false,

@@ -331,10 +331,11 @@
 							text-decoration: none;
 						}
 						.btn-publica-login {
-							border: 2px solid #212121;
+							border: 2px solid #333333;
 							background-color: transparent;
-							color: #212121;
-							padding: .5em;
+							color: #333333;
+							padding: .5em 1em;
+							border-radius: 1px;
 							&:hover {
 								border: 2px solid #FC5289;
 								color: #FC5289;

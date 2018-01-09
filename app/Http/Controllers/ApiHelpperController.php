@@ -94,6 +94,7 @@ class ApiHelpperController extends Controller
                 echo "Procesando precios categorias <br>";
                 foreach ($prices as $price) {
                     $price->cantidad_personas = $espacio->quanty;
+                    $price->securitydeposit = $espacio->securitydeposit;
                     $price->price = ($price->daily / 2);
                     $price->save();
                 }

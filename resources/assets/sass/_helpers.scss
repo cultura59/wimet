@@ -14,6 +14,10 @@
     clear: both;
 }
 
+.wt-mayuscula {
+    text-transform: uppercase;
+}
+
 //------------------ Helppers de formularios ------------------//
 .wt-textarea {
     width: 100%;
@@ -50,7 +54,7 @@
     font-size: 12px;
     letter-spacing: -0.1px;
     text-align: justify;
-    color: #212121;
+    color: #333333;
     padding-left: .5em;
     @include desktop {
         width: 144px;
@@ -69,7 +73,7 @@
     opacity: 0.87;
     font-size: 12px;
     letter-spacing: -0.1px;
-    color: #212121;
+    color: #333333;
     -webkit-appearance: none;
     padding: 1em;
     margin-right: 1em;
@@ -607,10 +611,13 @@ svg.white{
     background-color: transparent;
     border: none;
 }
-.img-hov:hover   {
-    opacity: .8;
-    transition: visibility 0s linear 0.4s,opacity 0.4s linear;
-    cursor: pointer;
+.img-hov {
+    &:hover {
+        opacity: .8;
+        transition: visibility 0s linear 0.4s, opacity 0.4s linear;
+        cursor: pointer;
+    }
+    h3 {font-weight: bold};
 }
 .bg-yellow {
     background: $wt-yellow;

@@ -1,12 +1,12 @@
 <template>
-    <div class="wt-m-top-3">
+    <div class="wt-m-top-5">
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <h1 class="publica-titulo">Cuéntanos con qué amenities y</h1>
                 <h1 class="publica-titulo">caractéristicas cuenta el espacio</h1>
-                <div class="row">
+                <div class="row wt-m-top-3">
                     <div class="col-md-6">
-                        <h3>ESPACIO</h3>
+                        <h5>ESPACIO</h5>
                         <div v-for="acc in accesos">
                             <input :id="`acceso-${acc.id}`" type="checkbox" :value="acc" style="display: none;" v-model="espacio.access">
                             <label :for="`acceso-${acc.id}`" class="wt-publica-label">
@@ -14,7 +14,7 @@
                                 {{acc.nombre}}
                             </label>
                         </div>
-                        <h3>EQUIPAMIENTO</h3>
+                        <h5>EQUIPAMIENTO</h5>
                         <div v-for="equipamiento in amenities">
                             <input
                                 v-if="equipamiento.tipo == 'equipamiento'"
@@ -33,7 +33,7 @@
                         </div>
                     </div>
                     <div class="col-md-6">
-                        <h3>AMENITIES</h3>
+                        <h5>AMENITIES</h5>
                         <div v-for="amenity in amenities">
                             <input
                                 v-if="amenity.tipo == 'amenities'"
@@ -138,5 +138,5 @@
 </script>
 
 <style scoped>
-
+    h5  {color: #333}
 </style>

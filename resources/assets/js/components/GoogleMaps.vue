@@ -70,7 +70,7 @@
                     const position = new google.maps.LatLng(coord.lat, coord.long);
                     const marker = new google.maps.Marker({
                         position,
-                        icon: (this.icon == "radio") ? "/wimet-ic-espacio-marker.png" : "https://res.cloudinary.com/wimet/image/upload/c_scale,w_36/v1501352935/wimet_google_marker__2_ojga13.ico",
+                        icon: (this.icon == "radio") ? "/wimet-ic-espacio-marker.png" : "https://res.cloudinary.com/wimet/image/upload/v1515510980/icons/ico-wimet.png",
                         map: this.map
                     });
                     this.markers.push(marker);

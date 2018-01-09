@@ -96,7 +96,7 @@
                                 </div>
                                 <div class="col-md-3 img-hov">
                                     <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-1000&price=100-100000')}}">
-                                        <h3>Retails</h3>
+                                        <h3>Retail</h3>
                                         <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet_espacio_retail.jpg')}}" alt="Retail" class="img-responsive img-home-principal">
                                     </a>
                                 </div>
@@ -200,10 +200,10 @@
                 <section class="referidos">
                     <div class="container">
                         <div class="referidos__content">
-                            <img src="https://res.cloudinary.com/wimet/image/upload/v1514992053/ilustraciones/wimet_characters.svg" alt=" Programa de referidos" class="img-responsive">
+                            <img src="https://res.cloudinary.com/wimet/image/upload/ilustraciones/home_hi5.svg" alt=" Programa de referidos" class="img-responsive">
                             <div class="referidos__content__textos">
-                                <span>Invita a tus amigos! Regala $500 y recibe $500.</span>
-                                <span class="wt-m-top-3">Comparte tu espiritu de #WimetHunter y dale un acceso a tus amigos a un mundo de posibilidades. Recibirán $500 en créditos se registren y tu obtendrás $500 cuando hayan su primer reserva.</span>
+                                <h3 class="title">Invita a tus amigos! Regala $500 y recibe $500.</h3>
+                                <span class="wt-m-top-1">Comparte tu espiritu de #WimetHunter y dale un acceso a tus amigos a un mundo de posibilidades. Recibirán $500 en créditos se registren y tu obtendrás $500 cuando hayan su primer reserva.</span>
                             </div>
                             <button class="referidos__btn-send">Enviar Invitaciones</button>
                         </div>
@@ -216,10 +216,7 @@
                 <div class="container">
                     <div class="row">
                        <div class="col-xs-12 col-sm-4">
-                        <img class="img-responsive" src="https://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="163">
-                        <p class="main-footer">
-                            Wimet es un marketplace para eventos dedicado a vincular propietarios de espacios creativos con organizadores que buscan brindar una experiencia memorable.
-                        </p>
+                        <img class="img-responsive" src="https://res.cloudinary.com/wimet/image/upload/wimet-logo_frbya5.svg" alt="Wimet" width="163">
                         </div>
                         <div class="col-xs-12 col-sm-2">
                             <p class="col-footer">Empresa</p>
@@ -248,7 +245,7 @@
                                 </li>
                             </ul>
                         </div>
-                        <div class="col-xs-12 col-sm-2">
+                        <div class="col-xs-12 col-sm-4">
                             <p class="col-footer">Contacto</p>
                             <ul>
                                 <li><a href="#">hola@wimet.co</a></li>
@@ -256,20 +253,29 @@
                                 <li><a href="#">Buenos Aires, Argentina</a></li>
                             </ul>
                             <div class="wt-m-top-3 follow">
-                                <a href="https://www.facebook.com/wimet.co/">
-                                    <img src="{{url('img/wimet_icon_facebook.svg')}}" alt="Wimet" class="img-responsive">
-                                </a>
                                 <a href="https://www.instagram.com/wimet.co/">
-                                    <img src="{{url('img/wimet_icon_instagram.svg')}}" alt="Wimet" class="img-responsive">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-instagram.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                                <a href="https://www.facebook.com/wimet.co/">
+                                    <img src="http://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518301/icons/wimet-icon-facebook.svg" alt="Wimet" class="img-responsive">
                                 </a>
                                 <a href="https://www.linkedin.com/company/wimet">
-                                    <img src="{{url('img/wimet_icon_linkedin.svg')}}" alt="Wimet" class="img-responsive">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-linkedin.svg" alt="Wimet" class="img-responsive">
                                 </a>
                                 <a href="https://twitter.com/wimetco">
-                                    <img src="{{url('img/wimet_icon_twitter.svg')}}" alt="Wimet" class="img-responsive">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518302/icons/wimet-icon-twitter.svg" alt="Wimet" class="img-responsive">
                                 </a>
                             </div>
 
+                        </div>
+                    </div>
+                    <div class="terminos-copyright">
+                        <div>
+                            <span>&#169 Wimet SAS. Todos los derechos reservados.<span>
+                        </div>
+                        <div>
+                            <a href="#">Politicas de privacidad</span>
+                            <a href="#" class="wt-m-lf-2">Términos y condiciones</a>
                         </div>
                     </div>
                 </div>

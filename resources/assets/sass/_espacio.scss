@@ -104,14 +104,14 @@
     font-size: 12px;
     letter-spacing: -0.1px;
     text-align: justify;
-    color: #212121;
+    color: #333333;
     label {
       opacity: 0.87;
       font-family: Roboto;
       font-size: 12px;
       letter-spacing: 0px;
       text-align: justify;
-      color: #212121;
+      color: #333333;
       font-weight: 500
     }
     .agregar-fecha {
@@ -200,14 +200,14 @@
     font-size: 12px;
     letter-spacing: -0.1px;
     text-align: justify;
-    color: #212121;
+    color: #333333;
     label {
       opacity: 0.87;
       font-family: Roboto;
       font-size: 12px;
       letter-spacing: -0.1px;
       text-align: justify;
-      color: #212121;
+      color: #333333;
     }
     .agregar-fecha {
       width: 75px;
@@ -249,7 +249,7 @@
     font-style: italic;
     letter-spacing: -0.2px;
     text-align: justify;
-    color: #212121;
+    color: #333333;
   }
   .title-m-top-7 {
     opacity: 0.87;
@@ -257,7 +257,7 @@
     font-style: italic;
     letter-spacing: -0.2px;
     text-align: justify;
-    color: #212121;
+    color: #333333;
     margin-top: 70px;
   }
   .verified {
@@ -277,7 +277,7 @@
   opacity: 0.54;
   font-family: Roboto;
   font-size: 12px;
-  color: #212121;
+  color: #333333;
 }
 .box-descripcion {
   display: flex;
@@ -295,7 +295,7 @@
     width: 12em;
     height: auto;
     font-size: 14px;
-    color: #212121;
+    color: #333333;
     text-transform: uppercase;
     @include desktop {
       border-right: 1px solid #dadada;
@@ -320,7 +320,7 @@
       margin-bottom: 1em;
     }
     .price {
-      color: #212121;
+      color: #333333;
       font-size: 18px;
     }
     .min-hours {
@@ -348,7 +348,7 @@
   }
   text-align: center;
   margin-bottom: 40px;
-  color: #212121;
+  color: #333333;
   &__title {
     opacity: 0.87;
     font-family: NotoSerif;
@@ -372,7 +372,7 @@
     width: 100%;
   }
   margin-bottom: 40px;
-  color: #212121;
+  color: #333333;
   &__title {
     opacity: 0.87;
     font-family: NotoSerif;
@@ -487,14 +487,14 @@
     font-size: 12px;
     letter-spacing: -0.1px;
     text-align: justify;
-    color: #212121;
+    color: #333333;
     label {
       opacity: 0.87;
       font-family: Roboto;
       font-size: 12px;
       letter-spacing: -0.1px;
       text-align: justify;
-      color: #212121;
+      color: #333333;
     }
     .box-contenedor {
       display: flex;

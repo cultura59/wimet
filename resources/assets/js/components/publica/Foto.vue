@@ -1,5 +1,5 @@
 <template>
-    <div class="wt-m-top-3">
+    <div class="wt-m-top-5 wt-m-bot-5">
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <h1 class="publica-titulo">{{$store.getters.getUser.firstname}} es hora de elegir</h1>

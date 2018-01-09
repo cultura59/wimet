@@ -1,10 +1,10 @@
 <template>
-    <div class="wt-m-top-3">
+    <div class="wt-m-top-5">
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <h1 class="publica-titulo">Define la disponibilidad</h1>
                 <h1 class="publica-titulo">de tu espacio</h1>
-                <h4 class="wt-m-top-2">Elige los días que tu espacio podría estar disponible.</h4>
+                <h4 class="wt-m-top-5">Elige los días que tu espacio podría estar disponible.</h4>
                 <div class="container-disponibilidad-btn-default">
                     <button
                             @click="addDisponibilidad('Lunes')"
@@ -293,7 +293,8 @@
             width: 76px;
             height: 40px;
             background-color: #ffffff;
-            border: none;
+            border: 1px solid #dadada;
+            border-radius: 1px;
             &:hover {
                 color: #fc5289;
                 border: solid 1px #fc5289;
