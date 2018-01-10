@@ -490,7 +490,7 @@
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-                                <a class="mcnButton " title="VER CONSULTAS" href="http://www.wimet.co/dashboard/user/{{$cliente->id}}/eventos" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER CONSULTAS</a>
+                                <a class="mcnButton " title="VER CONSULTAS" href="http://www.wimet.co/dashboard#/mensaje/{{$evento->id}}" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER CONSULTAS</a>
                             </td>
                         </tr>
                     </tbody>
@@ -506,7 +506,7 @@
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-                                <a class="mcnButton " title="ENVIAR PRESUPUESTO" href="http://www.wimet.co/dashboard/user/{{$cliente->id}}/evento/{{$evento->id}}/nuevapropuesta" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FC5289;">ENVIAR PRESUPUESTO</a>
+                                <a class="mcnButton " title="ENVIAR PRESUPUESTO" href="http://www.wimet.co/dashboard#/mensaje/evento/{{$evento->id}}/nuevapropuesta" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FC5289;">ENVIAR PRESUPUESTO</a>
                             </td>
                         </tr>
                     </tbody>
