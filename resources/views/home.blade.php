@@ -139,7 +139,7 @@
                                     </div>
                                     <div class="paso-a-paso__right">
                                         <strong class="title">Encuentra el espacio ideal</strong>
-                                        <span>Accede a espacios privados y comerciales únicos</span>
+                                        <span>Descubre espacios privados y comerciales únicos! Desde una galería de arte o una terraza magnífica todo es posible.</span>
                                     </div>
                                 </div>
                                 <img src="https://res.cloudinary.com/wimet/image/upload/ilustraciones/home_contacta.gif" alt="Contacta dueños" class="img-responsive">
@@ -151,7 +151,7 @@
                                     </div>
                                     <div class="paso-a-paso__right">
                                         <strong class="title">Contacta al anfitrión</strong>
-                                        <span>Comunicate con nuestros anfitriones y consulta sobre tu evento</span>
+                                        <span>Puedes conversar directamente con el anfitrión para arreglar todos los detalles de tu evento.</span>
                                     </div>
                                 </div>
                                 <img src="https://res.cloudinary.com/wimet/image/upload/v1515447634/ilustraciones/home_encuentra.gif" alt="Encuentra espacios" class="img-responsive">
@@ -163,7 +163,7 @@
                                     </div>
                                     <div class="paso-a-paso__right">
                                         <strong class="title">Reserva tu lugar</strong>
-                                        <span>Es tan facil como hacer un click, elegir tu medio de pago y cuota.</span>
+                                        <span>Wimet te brinda la seguridad y transparencia que te permitirá reservar online tu espacio ideal</span>
                                     </div>
                                 </div>
                                 <img src="https://res.cloudinary.com/wimet/image/upload/ilustraciones/home_reserva.gif" alt="Reserva tu espacio" class="img-responsive">
