@@ -3,17 +3,18 @@
         <div class="section-main__chield-1">
             <div class="container-filters">
                 <div class="dropdown">
-                    <span class="dropbtn" @click="setDropdown('btnCategoria')">{{selectUbicacion}} <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
+                    <span class="dropbtn wt-mayuscula" @click="setDropdown('btnCategoria')">{{selectUbicacion}} <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
                     <div class="dropdown-content" v-if="selectDropdown == 'btnCategoria'">
                         <a href="#" @click="changeUbicacion($event, 'CABA')">Ciudad de Buenos Aires</a>
                         <a href="#" @click="changeUbicacion($event, 'Buenos Aires')">Gran Buenos Aires</a>
                     </div>
                 </div>
                 <div class="dropdown">
-                    <span class="dropbtn" @click="setDropdown('btnAsistente')">{{showCategoria(categoriaId)}} <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
+                    <span class="dropbtn wt-mayuscula" @click="setDropdown('btnAsistente')">{{showCategoria(categoriaId)}} <img src="/img/ic_keyboard_arrow_down_black_24px.svg"></span>
                     <div class="dropdown-content" v-if="selectDropdown == 'btnAsistente'">
                         <a
                             href="#"
+                            class="wt-mayuscula"
                             v-for="categoria in categorias"
                             :key="categoria.id"
                             @click="changeCategoria($event, categoria.id)">{{categoria.name}}
@@ -178,15 +179,10 @@
         data() {
             return {
                 url: 'api/searchespacios?',
-                categorias: [
-                    {id: 1, name: 'REUNIÓN'},
-                    {id: 2, name: 'EVENTO'},
-                    {id: 3, name: 'PRODUCCIÓN'},
-                    {id: 4, name: 'POP-UPS'}
-                ],
                 categoriaId: this.getParameterByName('categoria'),
                 selectUbicacion: (this.getParameterByName('ubicacion') == '') ? 'ubicacion' : this.getParameterByName('ubicacion'),
                 espacios: [],
+                categorias: [],
                 priceFrom: 0,
                 priceTo: 20000,
                 quantyFrom: 0,
@@ -207,6 +203,7 @@
         },
         mounted() {
             this.getEspacios();
+            this.getCategories();
         },
         methods: {
             getEspacios() {
@@ -361,6 +358,14 @@
             },
             setDropdown(val) {
                 this.selectDropdown = val;
+            },
+            getCategories() {
+                this.$http.get(`/api/categoria`)
+                .then(res => {
+                    this.categorias = res.body;
+                }, err => {
+                    console.log(err);
+                });
             }
         }
     }

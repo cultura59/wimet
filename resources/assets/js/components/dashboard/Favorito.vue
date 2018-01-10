@@ -4,13 +4,16 @@
             <span class="container-mis-espacios__title">MIS FAVORITOS</span>
         </div>
         <div class="espacios-main">
-            <div class="row">
+            <div v-if="$store.getters.getUser.espacios.length > 0" class="row">
                 <div class="col-xs-12 col-md-6" v-for="espacio in $store.getters.getUser.espacios">
                     <espacio-search
                         :espacio-id="espacio.id"
                         :category-id="1">
                     </espacio-search>
                 </div>
+            </div>
+            <div v-if="$store.getters.getUser.espacios.length === 0">
+                <p class="no-favoritos">No tienes espacios favoritos aún...</p>
             </div>
         </div>
     </div>
@@ -46,5 +49,13 @@
         padding: 3em 2em;
         background-color: #ffffff;
         box-shadow: 0 0 68px 0 rgba(0, 0, 0, 0.1);
+        .no-favoritos {
+            height: 150px;
+            border-radius: 10px;
+            background-color: #f8f8f8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
     }
 </style>

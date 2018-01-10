@@ -31,7 +31,7 @@
                                 <img :src="cat.icon" :alt="cat.name" class="img-responsive">
                             </div>
                             <div class="wt-center-column wt-m-lf-2">
-                                <span class="">{{cat.name}}</span>
+                                <span class="wt-mayuscula">{{cat.name}}</span>
                                 <span class="subCategoria">{{showSubCategories(cat.sub_category)}}</span>
                             </div>
                         </div>

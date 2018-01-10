@@ -73,7 +73,26 @@ if(ip !== "") {
 Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
 
 import moment from 'moment';
+import toastr from 'toastr';
+toastr.options = {
+    "closeButton": false,
+    "debug": false,
+    "newestOnTop": false,
+    "progressBar": true,
+    "positionClass": "toast-top-right",
+    "preventDuplicates": false,
+    "onclick": null,
+    "showDuration": "300",
+    "hideDuration": "1000",
+    "timeOut": "4000",
+    "extendedTimeOut": "1000",
+    "showEasing": "swing",
+    "hideEasing": "linear",
+    "showMethod": "fadeIn",
+    "hideMethod": "fadeOut"
+}
 Vue.prototype.$moment = moment;
+Vue.prototype.$toastr = toastr;
 
 const app = new Vue({
     el: '#home-espacio',

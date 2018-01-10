@@ -49,6 +49,7 @@ class MensajeController extends Controller
      */
     public function store(Request $request)
     {
+        DB::beginTransaction();
         try {
             // Obtengo datos del evento
             $evento = Evento::find($request->evento_id);
@@ -72,6 +73,8 @@ class MensajeController extends Controller
                 'categoria' => $categoria
             ];
             if($request->presupuesto) {
+                $evento->estado = 'reservado';
+                $evento->save();
                 Mail::send('emails.solicitud-presupuesto', $datos, function ($message) use ($user) {
                     $message->from('info@wimet.co', 'Wimet');
                     $message->to($user->email)
@@ -94,12 +97,18 @@ class MensajeController extends Controller
                             ->subject('Tienes un nuevo mensaje sobre tu evento');
                     });
                 }
+                if($evento->estado == 'consulta') {
+                    $evento->estado = 'seguimiento';
+                    $evento->save();
+                }
             }
             /* Datos de envio de email (Consulta al dueño */
             $mensaje = new Mensaje($request->all());
             $mensaje->save();
+            DB::commit();
             return response($mensaje, 204);
         }catch(\Exception $e){
+            DB::rollBack();
             return response('Los campos no son correctos, '.$e->getMessage(), 400);
         }
     }
@@ -173,6 +182,7 @@ class MensajeController extends Controller
      * @param $id
      */
     public function sendEmailConsulta($id) {
+        DB::beginTransaction();
         try {
             // Obtengo datos del mensaje
             $mensaje = Mensaje::find($id);
@@ -197,9 +207,10 @@ class MensajeController extends Controller
             // Actualizo el status del mensaje
             $mensaje->status = true;
             $mensaje->save();
-
+            DB::commit();
             return $mensaje;
         }catch (\Exception $e) {
+            DB::rollback();
             return response('Los campos no son correctos, error: ' . $e->getMessage(), 400);
         }
     }

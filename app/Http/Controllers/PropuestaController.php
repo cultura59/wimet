@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Evento;
 use Illuminate\Http\Request;
 use App\Propuesta;
 use App\Espacio;
@@ -42,6 +43,10 @@ class PropuestaController extends Controller
             $propuesta = new Propuesta($request->all());
             $propuesta->estado = 'enviada';
             $propuesta->save();
+
+            $evento = Evento::find($propuesta->evento_id);
+            $evento->estado = "presupuesto";
+            $evento->save();
 
             // Agrego los servicios a la propuesta
             foreach ($request->servicios as $servicio) {

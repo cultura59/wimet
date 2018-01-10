@@ -61,7 +61,7 @@
             <main>
                 @yield('content')
             </main>
-            </div>
+        </div>
         <script type="text/javascript">
             goog_snippet_vars = function() {
                 var w = window;

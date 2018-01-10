@@ -23,7 +23,7 @@
 									<td class="col-md-6">Mi espacio</td>
 									<td colspan="2"></td>
 									<td class="col-md-2">
-										<input type="text" placeholder="$ 10000" class="pull-right" v-model="evento.sub_total" @change="changeSubTotal()">
+										<input type="text" placeholder="$ 10000" class="pull-right text-center" v-model="evento.sub_total" @change="changeSubTotal()">
 									</td>
 								</tr>
 								<tr class="active" v-for="(servicio, index)  in servicios">
@@ -40,7 +40,7 @@
 						</table>
 						<div class="box-servicios">
 							<div>
-								<button class="box-servicios__btn" @click="modalServicios = true">Agregar</button>
+								<button class="box-servicios__btn" @click="modalServicios = true">Agregar servicio</button>
 							</div>
 							<div>
 								<span class="box-servicios__total">Total</span>
@@ -214,8 +214,8 @@
             },
 			changeSubTotal() {
                 this.pagos = [];
-                this.pagos.push({descripcion: 'Reserva', espacio_id: this.evento.espacio_id, total: (this.evento.sub_total / 2), vencimiento: this.$moment().add(5, 'days').format("DD/MM/YYYY"), estado: 'Pendiente'});
-                this.pagos.push({descripcion: 'Saldo', espacio_id: this.evento.espacio_id, total: (this.evento.sub_total / 2), vencimiento: this.lastDay, estado: 'Pendiente'});
+                this.pagos.push({pdescripcion: 'Reserva', espacio_id: this.evento.espacio_id, ptotal: (this.evento.sub_total / 2), pvencimiento: this.$moment().add(5, 'days').format("DD/MM/YYYY"), pestado: 'Pendiente'});
+                this.pagos.push({pdescripcion: 'Saldo', espacio_id: this.evento.espacio_id, ptotal: (this.evento.sub_total / 2), pvencimiento: this.lastDay, pestado: 'Pendiente'});
 				this.total_servicios = this.evento.sub_total;
 			},
             agregarServicio() {

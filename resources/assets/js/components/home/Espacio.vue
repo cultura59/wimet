@@ -133,7 +133,7 @@
                                     :class="{'espacio-categorias__categoria--active': (priceCategoria.categoria_id == price.categoria.id)}"
                                     @click="selectCategory(price.categoria.id)">
                                     <img :src="price.categoria.icon" :alt="price.categoria.name" class="img-responsive">
-                                    <span class="wt-m-top-1">{{price.categoria.name}}</span>
+                                    <span class="wt-m-top-1 wt-mayuscula">{{price.categoria.name}}</span>
                                 </div>
                             </section>
                             <header class="calendar__header">
@@ -194,7 +194,7 @@
                                             <span>{{messageError}}</span>
                                             <span class="cursor-pointer" @click="messageError = ''">x</span>
                                         </div>
-                                        <button class="btn-reserva wt-m-top-2" @click="openModal()">SOLICITUD DE RESERVAN</button>
+                                        <button class="btn-reserva wt-m-top-2" @click="openModal()">SOLICITUD DE RESERVA</button>
                                     </div>
                                 </template>
                                 <div class="datos-duenio">
@@ -263,6 +263,12 @@
                                 </div>
                                 <div class="form-contact">
                                     <div class="form-contact__textarea">
+                                        <label for="title">Cantidad de asistente</label>
+                                        <input v-model="people" id="people" class="textarea-lg" placeholder="50" />
+                                    </div>
+                                </div>
+                                <div class="form-contact">
+                                    <div class="form-contact__textarea">
                                         <label for="mensaje">Mensaje</label>
                                         <textarea v-model="mensaje" id="mensaje" class="textarea-lg" :class="{'error-input': messageErrorDetalle != ''}" rows="7" placeholder="Preséntate, describe la actividad que estas planificando y cuéntale cómo utilizarás el espacio. ¿Necesitarás servicios de catering, técnica o producción?
 Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vamos a necesitar mesas y un servicio de Coffee Break.'"></textarea>
@@ -285,69 +291,75 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     </div>
                 </div>
             </div>
-        <!-- footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-4">
-                        <img class="img-responsive" src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="163">
-                        <p class="main-footer">
-                            Wimet es un marketplace para eventos dedicado a vincular propietarios de espacios creativos con organizadores que buscan brindar una experiencia memorable.
-                        </p>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Empresa</p>
-                        <ul>
-                            <li><a href="http://www.wimet.co/nosotros">Nosotros</a></li>
-                            <li><a href="http://blog.wimet.co">Blog</a></li>
-                            <li><a href="http://www.wimet.co/nosotros">Ayuda</a></li>
-                            <li><a href="http://www.wimet.co/nosotros">Términos y condiciones</a></li>
-                            <li><a href="http://www.wimet.co/nosotros">Políticas de privacidad</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Actividades</p>
-                        <ul>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=1&quanty=0-1000&price=100-10000">Reuniones</a>
-                            </li>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=2&quanty=0-1000&price=100-10000">Eventos</a>
-                            </li>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=3&quanty=0-1000&price=100-10000">Producciones</a>
-                            </li>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=4&quanty=0-1000&price=100-10000">Pop-Ups</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Contacto</p>
-                        <ul>
-                            <li><a href="#">hola@wimet.co</a></li>
-                            <li><a href="#">El Salvador 5218, CABA</a></li>
-                            <li><a href="#">Buenos Aires, Argentina</a></li>
-                        </ul>
-                        <div class="wt-m-top-3 follow">
-                            <a href="https://www.facebook.com/wimet.co/">
-                                <img src="http://www.wimet.co/img/wimet_icon_facebook.svg" alt="Wimet" class="img-responsive">
-                            </a>
-                            <a href="https://www.instagram.com/wimet.co/">
-                                <img src="http://www.wimet.co/img/wimet_icon_instagram.svg" alt="Wimet" class="img-responsive">
-                            </a>
-                            <a href="https://www.linkedin.com/company/wimet">
-                                <img src="http://www.wimet.co/img/wimet_icon_linkedin.svg" alt="Wimet" class="img-responsive">
-                            </a>
-                            <a href="https://twitter.com/wimetco">
-                                <img src="http://www.wimet.co/img/wimet_icon_twitter.svg" alt="Wimet" class="img-responsive">
-                            </a>
+            <!-- footer -->
+            <footer>
+                <div class="container">
+                    <div class="row">
+                       <div class="col-xs-12 col-sm-4">
+                        <img class="img-responsive" src="https://res.cloudinary.com/wimet/image/upload/wimet-logo_frbya5.svg" alt="Wimet" width="163">
                         </div>
+                        <div class="col-xs-12 col-sm-2">
+                            <p class="col-footer">Empresa</p>
+                            <ul>
+                                <li><a href="/nosotros">Nosotros</a></li>
+                                <li><a href="https://blog.wimet.co">Blog</a></li>
+                                <li><a href="/nosotros">Ayuda</a></li>
+                                <li><a href="/nosotros">Términos y condiciones</a></li>
+                                <li><a href="/nosotros">Políticas de privacidad</a></li>
+                            </ul>
+                        </div>
+                         <div class="col-xs-12 col-sm-2">
+                            <p class="col-footer">Actividades</p>
+                            <ul>
+                                <li>
+                                    <a href="/search?ubicacion=&categoria=1&quanty=0-1000&price=100-100000">REUNIONES</a>
+                                </li>
+                                <li>
+                                    <a href="/search?ubicacion=&categoria=2&quanty=0-1000&price=100-100000">EVENTOS</a>
+                                </li>
+                                <li>
+                                    <a href="/search?ubicacion=&categoria=3&quanty=0-1000&price=100-100000">PRODUCCIONES</a>
+                                </li>
+                                <li>
+                                    <a href="/search?ubicacion=&categoria=4&quanty=0-1000&price=100-100000">RETAIL</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <p class="col-footer">Contacto</p>
+                            <ul>
+                                <li><a href="#">hola@wimet.co</a></li>
+                                <li><a href="#">El Salvador 5218, CABA</a></li>
+                                <li><a href="#">Buenos Aires, Argentina</a></li>
+                            </ul>
+                            <div class="wt-m-top-3 follow">
+                                <a href="https://www.instagram.com/wimet.co/">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-instagram.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                                <a href="https://www.facebook.com/wimet.co/">
+                                    <img src="http://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518301/icons/wimet-icon-facebook.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                                <a href="https://www.linkedin.com/company/wimet">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-linkedin.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                                <a href="https://twitter.com/wimetco">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518302/icons/wimet-icon-twitter.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                            </div>
 
+                        </div>
+                    </div>
+                    <div class="terminos-copyright">
+                        <div>
+                            <span>&#169 Wimet SAS. Todos los derechos reservados.</span>
+                        </div>
+                        <div>
+                            <a href="#">Politicas de privacidad</a>
+                            <a href="#" class="wt-m-lf-2">Términos y condiciones</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
     </div>
 </template>
 <script>
@@ -573,7 +585,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
             },
             openModal() {
                 if(!this.authenticated) {
-                    this.messageError = "Debes iniciar sesión para hacer una pregunta";
+                    this.$toastr.warning('Debes iniciar sesión para hacer una pregunta', 'Ups no sabemos quien sos');
                     return;
                 }else {
                     this.modalReserva = true;

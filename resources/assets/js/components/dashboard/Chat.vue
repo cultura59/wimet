@@ -21,11 +21,11 @@
                             class="content-bottons__transparent">¡ENVIAR PRESUPUESTO!
                         </button>
                         <button
-                            v-if="$store.getters.getUser.id == evento.cliente_id"
+                            v-if="$store.getters.getUser.id == evento.cliente_id && mensajeEnviar == ''"
                             @click="solicitarPropuesta()"
-                            class="content-bottons__transparent">¡SOLICITAR PRESUPUESTO!
+                            class="content-bottons__transparent">¡SOLICITAR DATOS!
                         </button>
-                        <button class="content-bottons__send" @click="sendMensaje()">
+                        <button v-show="mensajeEnviar !== ''" class="content-bottons__send" @click="sendMensaje()">
                             <span v-show="!showLoading">ENVIAR MENSAJE</span>
                             <img v-if="showLoading" src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="20px" />
                         </button>
@@ -95,6 +95,27 @@
                             </div>
                         </div>
                     </div>
+                    <div>
+                        <h3 class="dashboard-title text-center wt-m-top-4">Propuestas</h3>
+                        <table class="table text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Número</th>
+                                    <th class="text-center">Creación</th>
+                                    <th class="text-center">Enviada</th>
+                                    <th class="text-center">Importe</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="propuesta in propuestas" @click="redirectPropuesta($event, propuesta.id)" class="cursor-pointer active">
+                                    <td>{{propuesta.id}}</td>
+                                    <td>{{$moment(propuesta.reserva_desde).locale('es').format("MMM DD")}}</td>
+                                    <td>{{$moment(propuesta.created_at).locale('es').format("MMM DD")}}</td>
+                                    <td>${{propuesta.sub_total}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
             </template>
@@ -159,6 +180,7 @@
                     return;
                 }
                 this.showLoading = true;
+                this.$toastr.info("Su mensaje se está enviando, aguarde unos segundos", "Mensaje enviandose...");
                 let data = {
                     evento_id: this.$route.params.id,
                     user_id: this.$store.getters.getUser.id,
@@ -168,6 +190,7 @@
                 this.$http.post('api/mensaje', data)
                     .then(res => {
                         this.showLoading = false;
+                        this.$toastr.success("Su mensaje ha sido enviando", "Mensaje enviado!");
                         if(res.status == 204) {
                             this.getMensajes();
                             this.mensajeEnviar = '';

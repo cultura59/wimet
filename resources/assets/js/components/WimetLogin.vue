@@ -35,10 +35,13 @@
 					</template>
 					<template v-if="!authenticated">
 						<li>
-							<a href="#" @click="openModalLogin()">Ingresar</a>
+							<a href="#" @click="scrollToDiv($event)">Como funciona</a>
 						</li>
 						<li>
 							<a href="#" @click="openModalRegistro()">Registrarme</a>
+						</li>
+						<li>
+							<a href="#" @click="openModalLogin()">Ingresar</a>
 						</li>
 						<li>
 							<button @click="publicaUrl($event)" class="btn-publica-login">
@@ -135,6 +138,10 @@
             this.getUserAuthenticated();
         },
 		methods: {
+            scrollToDiv(e) {
+                e.preventDefault();
+                $('html,body').animate({ scrollTop: $("#como-funciona").offset().top}, 'slow');
+			},
 			openModalLogin() {
 				this.showModalRegistro = false;
 				this.showModalLogin = true;
