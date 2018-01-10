@@ -6,7 +6,7 @@
 				<ul class="login-header__navbar__actions__menue">
 					<template v-if="authenticated">
 						<li>
-							<a href="#" @click="reloadPage(`/dashboard#/mensajes`, $event)" >Mensajes</a>
+							<a href="#" @click="reloadPage(`/dashboard#/mensajes?type=organizador`, $event)" >Mensajes</a>
 						</li>
 						<li>
 							<img class="header-avatar" :src="$store.getters.getUser.imagesource" :alt="$store.getters.getUser.firstname">
@@ -15,7 +15,7 @@
 								<li class="menue-list__item" @click="reloadPage(`/dashboard#/`, $event)">
 									<a href="#" style="color: #333;">Dashboard</a>
 								</li>
-								<li class="menue-list__item" @click="reloadPage(`/dashboard#/mensajes`, $event)">
+								<li class="menue-list__item" @click="reloadPage(`/dashboard#/mensajes?type=organizador`, $event)">
 									<a href="#" style="color: #333;">Mensajes</a>
 								</li>
 								<li class="menue-list__item" @click="reloadPage(`/dashboard#/favoritos`, $event)">

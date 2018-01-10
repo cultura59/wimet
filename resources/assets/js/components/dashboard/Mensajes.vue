@@ -101,6 +101,9 @@
 			}
 		},
 		mounted() {
+            if(this.$route.query.type !== undefined && this.$route.query.type == 'organizador') {
+                this.showMensajesType = 1;
+            }
             this.getMensajes('');
         },
 		methods: {
