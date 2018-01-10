@@ -14,6 +14,10 @@
     clear: both;
 }
 
+.wt-mayuscula {
+    text-transform: uppercase;
+}
+
 //------------------ Helppers de formularios ------------------//
 .wt-textarea {
     width: 100%;
@@ -50,7 +54,7 @@
     font-size: 12px;
     letter-spacing: -0.1px;
     text-align: justify;
-    color: #212121;
+    color: #333333;
     padding-left: .5em;
     @include desktop {
         width: 144px;
@@ -67,11 +71,12 @@
     border: solid 1px #979797;
     border-radius: 0;
     opacity: 0.87;
-    font-family: Roboto;
     font-size: 12px;
     letter-spacing: -0.1px;
-    text-align: justify;
-    color: #212121;
+    color: #333333;
+    -webkit-appearance: none;
+    padding: 1em;
+    margin-right: 1em;
 }
 
 .scroll::-webkit-scrollbar {width: 5px;}
@@ -241,7 +246,6 @@
 
 .wt-custom-select {
     width: 25%;
-    /*width: 250px;*/
     padding: 16px;
     color: #7A7A7A;
     border: 1px solid $wt-grey;
@@ -535,12 +539,12 @@
 }
 
 //---Hover Effects---//
-* {
+/* {
   box-sizing: inherit;
   transition-property: all;
   transition-duration: 1s;
   transition-timing-function: ease;
-}
+}*/
 
 .btn-hov:hover {
   background: transparent;
@@ -595,7 +599,7 @@ svg.white{
 .link-hov {
     color: $wt-white;
     background: transparent;
-    font-family: Ubuntu;
+    font-family: Avenir;
     font-size: 13px;
     letter-spacing: .5px;
     border: none;
@@ -607,10 +611,13 @@ svg.white{
     background-color: transparent;
     border: none;
 }
-.img-hov:hover   {
-    opacity: .8;
-    transition: visibility 0s linear 0.4s,opacity 0.4s linear;
-    cursor: pointer;
+.img-hov {
+    &:hover {
+        opacity: .8;
+        transition: visibility 0s linear 0.4s, opacity 0.4s linear;
+        cursor: pointer;
+    }
+    h3 {font-weight: bold};
 }
 .bg-yellow {
     background: $wt-yellow;

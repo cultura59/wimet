@@ -1,4 +1,4 @@
-require('./bootstrap');
+import Vue from 'vue';
 import Auth from './packages/auth/Auth.js';
 import VueRouter from 'vue-router';
 import {router} from './components/admin/routes';
@@ -7,7 +7,17 @@ Vue.use(Auth);
 Vue.use(VueRouter);
 
 const ip = location.host;
-Vue.http.options.root = `http://${ip}`;
+let protocol = "http";
+
+if (window.location.protocol == "https") {
+    protocol = "https";
+}
+
+if(ip !== "") {
+    Vue.http.options.root = `${protocol}://${ip}`;
+} else {
+    Vue.http.options.root = `${protocol}://localhost:8000`;
+}
 Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
 
 const admin = new Vue({

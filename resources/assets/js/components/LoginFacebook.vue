@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<button v-show="showBtnLoginFacebook" class="container-social__btn btn-facebook" @click="myFacebookLogin()">
-		<img src="/img/facebook_logo.svg" class="icon-facebook" alt="Login Google">
+		<img src="https://res.cloudinary.com/wimet/image/upload/icons/facebook_logo.svg" class="icon-facebook" alt="Login Google">
 			<span>Iniciar sesión con Facebook</span>
 		</button>
 		<button v-show="!showBtnLoginFacebook" class="container-social__btn btn-google">

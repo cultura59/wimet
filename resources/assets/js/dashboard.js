@@ -66,3 +66,4 @@ toastr.options = {
 }
 Vue.prototype.$moment = moment;
 Vue.prototype.$toastr = toastr;
+Vue.prototype.$mercadopago = Mercadopago;

@@ -14,8 +14,90 @@
     <body class="body-dashboard">
         <div id="dashboard">
             <dasboard-index></dasboard-index>
+            <section v-if="$route.name == 'Dashboard'" class="referidos">
+                <div class="container">
+                    <div class="referidos__content">
+                        <img src="https://res.cloudinary.com/wimet/image/upload/ilustraciones/home_hi5.svg" alt=" Programa de referidos" class="img-responsive">
+                        <div class="referidos__content__textos">
+                            <h3 class="title">Invita a tus amigos! Regala $500 y recibe $500.</h3>
+                            <span class="wt-m-top-1">Comparte tu espiritu de #WimetHunter y dale un acceso a tus amigos a un mundo de posibilidades. Recibirán $500 en créditos se registren y tu obtendrás $500 cuando hayan su primer reserva.</span>
+                        </div>
+                        <button class="referidos__btn-send">Enviar Invitaciones</button>
+                    </div>
+                </div>
+            </section>
+            <!-- footer -->
+            <footer>
+                <div class="container">
+                    <div class="row">
+                       <div class="col-xs-12 col-sm-4">
+                        <img class="img-responsive" src="https://res.cloudinary.com/wimet/image/upload/wimet-logo_frbya5.svg" alt="Wimet" width="163">
+                        </div>
+                        <div class="col-xs-12 col-sm-2">
+                            <p class="col-footer">Empresa</p>
+                            <ul>
+                                <li><a href="{{url('/nosotros')}}">Nosotros</a></li>
+                                <li><a href="https://blog.wimet.co">Blog</a></li>
+                                <li><a href="{{url('/nosotros')}}">Ayuda</a></li>
+                                <li><a href="{{url('/nosotros')}}">Términos y condiciones</a></li>
+                                <li><a href="{{url('/nosotros')}}">Políticas de privacidad</a></li>
+                            </ul>
+                        </div>
+                         <div class="col-xs-12 col-sm-2">
+                            <p class="col-footer">Actividades</p>
+                            <ul>
+                                <li>
+                                    <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-1000&price=100-100000')}}">Reuniones</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-1000&price=100-100000')}}">Eventos</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-1000&price=100-100000')}}">Producciones</a>
+                                </li>
+                                <li>
+                                    <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-1000&price=100-100000')}}">Pop-Ups</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <p class="col-footer">Contacto</p>
+                            <ul>
+                                <li><a href="#">hola@wimet.co</a></li>
+                                <li><a href="#">El Salvador 5218, CABA</a></li>
+                                <li><a href="#">Buenos Aires, Argentina</a></li>
+                            </ul>
+                            <div class="wt-m-top-3 follow">
+                                <a href="https://www.instagram.com/wimet.co/">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-instagram.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                                <a href="https://www.facebook.com/wimet.co/">
+                                    <img src="http://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518301/icons/wimet-icon-facebook.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                                <a href="https://www.linkedin.com/company/wimet">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-linkedin.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                                <a href="https://twitter.com/wimetco">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518302/icons/wimet-icon-twitter.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="terminos-copyright">
+                        <div>
+                            <span>&#169 Wimet SAS. Todos los derechos reservados.<span>
+                        </div>
+                        <div>
+                            <a href="#">Politicas de privacidad</span>
+                            <a href="#" class="wt-m-lf-2">Términos y condiciones</a>
+                        </div>
+                    </div>
+                </div>
+            </footer>
         </div>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZUp-A4EcLNbPonxHhbySVWpP9kzZQQUw"></script>
+        <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
         <script src="{{url('/js/dashboard.js')}}"></script>
         <!-- Start of HubSpot Embed Code -->
         <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2880578.js"></script>

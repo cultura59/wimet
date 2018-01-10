@@ -88,23 +88,6 @@
 				</textarea>
 			</div>
 		</template>
-		<div>
-			<h3 class="dashboard-title wt-m-top-4">Propuestas enviadas</h3>
-			<table class="table text-center">
-				<tr>
-					<th class="text-center">Número</th>
-					<th class="text-center">Creación</th>
-					<th class="text-center">Enviada</th>
-					<th class="text-center">Importe</th>
-				</tr>
-				<tr v-for="propuesta in propuestas" @click="redirectPropuesta($event, propuesta.id)" class="cursor-pointer">
-					<td>{{propuesta.id}}</td>
-					<td>{{propuesta.reserva_desde}}</td>
-					<td>{{propuesta.created_at}}</td>
-					<td>${{propuesta.sub_total}}</td>
-				</tr>
-			</table>
-		</div>
 	</div>
 </template>
 <script>

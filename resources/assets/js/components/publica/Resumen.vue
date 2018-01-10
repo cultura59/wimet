@@ -1,5 +1,5 @@
 <template>
-    <div class="wt-m-top-3">
+    <div class="wt-m-top-5 wt-m-bot-5">
         <h1 v-if="$store.getters.getEspacio.step < 6" class="publica-titulo">¡Lo estás haciendo muy bien!</h1>
         <template v-if="$store.getters.getEspacio.step == 6">
             <h1 class="publica-titulo">¡Felicitaciones {{$store.getters.getUser.firstname}}!</h1>
@@ -105,7 +105,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <img src="https://res.cloudinary.com/wimet/image/upload/v1512791614/wimet_basico.svg" class="img-responsive">
+                <img src="https://res.cloudinary.com/wimet/image/upload/v1512791614/wimet_basico.svg" class="img-responsive" style="width: 80%; float: right">
             </div>
         </div>
     </div>

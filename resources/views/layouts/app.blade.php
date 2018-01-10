@@ -56,12 +56,12 @@
     <body>
         <div id="home-espacio">
             <!-- Header Home -->
-            <wimet-login fixed="true"></wimet-login>
+            <wimet-login fixed="true" shadow="true"></wimet-login>
             <!-- main -->
             <main>
                 @yield('content')
             </main>
-            </div>
+        </div>
         <script type="text/javascript">
             goog_snippet_vars = function() {
                 var w = window;

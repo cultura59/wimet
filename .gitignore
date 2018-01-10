@@ -2,6 +2,8 @@
 /public/storage
 /public/fotosespacios
 /vendor
+/storage
+/public/avatars
 /.idea
 Homestead.json
 Homestead.yaml

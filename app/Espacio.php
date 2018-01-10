@@ -35,6 +35,9 @@ class Espacio extends Model
         'step',
         'status'
     ];
+
+    protected $hidden = ['pivot'];
+
 	/**
 	 * @fn user()
 	 * @brief funcion que retorna el usuario asociado al espacio

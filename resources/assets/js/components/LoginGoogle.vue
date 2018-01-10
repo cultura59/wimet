@@ -1,7 +1,7 @@
 <template>
 	<div>
 		<button v-if="showBtnLoginGoogle" id="customBtn" class="container-social__btn btn-google" @click="loginGoogle()">
-			<img src="/img/google_logo.svg" class="icon-social" alt="Login Google">
+			<img src="https://res.cloudinary.com/wimet/image/upload/icons/google_logo.svg" class="icon-social" alt="Login Google">
 			<span>Iniciar sesión con Google</span>
 		</button>
 		<button v-if="!showBtnLoginGoogle" class="container-social__btn btn-google">

@@ -112,6 +112,7 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
+        DB::beginTransaction();
         try {
             $user = User::find($id);
             if($user == '' || $user == null) {
@@ -136,8 +137,24 @@ class UserController extends Controller
             $user->industry = ($request->industry) ? $request->industry : "";
             $user->personaldescription = ($request->personaldescription) ? $request->personaldescription : "";
             $user->save();
+            // Se sincronizan los espacios favoritos
+            if($request->espacios){
+                $arrEspacios = [];
+                foreach ($request->espacios as $esp) {
+                    array_push($arrEspacios, $esp['id']);
+                }
+                $user->espacios()->sync($arrEspacios);
+            }
+
+            if($request->senias) {
+                $nServicio = new PropuestaServicios($request->senias);
+                $nServicio->propuesta_id = $propuesta->id;
+                $nServicio->save();
+            }
+            DB::commit();
             return $user;
         }catch (\Exception $e) {
+            DB::rollback();
             return response('Error al editar el usuario', 500);
         }
     }

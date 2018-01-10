@@ -4,7 +4,10 @@
     		<div class="content-dropbtn-select">
                 <div class="dropdown">
                     <button class="dropbtn-left" @click="showSelectUbicacion()">
-                        <span>{{ubicacion}}</span>
+                        <div class="wt-center-center">
+                            <span class="slash-search"></span>
+                            <span class="wt-mayuscula">{{ubicacion}}</span>
+                        </div>
                         <i class="fa fa-sort-desc" aria-hidden="true"></i>
                     </button>
                     <div v-if="stUbicacion" class="dropdown__content-left">
@@ -16,7 +19,10 @@
             <div class="content-dropbtn-select">
                 <div class="dropdown">
                     <button class="dropbtn-right" @click="showSelectCategoria()">
-                        <span>{{(categoria == '') ? 'QUÉ ESTÁS PLANIFICANDO?' : categoria.name}}</span>
+                        <div class="wt-center-center">
+                            <span class="slash-search"></span>
+                            <span class="wt-mayuscula">{{(categoria == '') ? 'QUÉ ESTÁS PLANIFICANDO?' : categoria.name}}</span>
+                        </div>
                         <i class="fa fa-sort-desc" aria-hidden="true"></i>
                     </button>
                     <div v-if="stCategoria" class="dropdown__content">
@@ -24,8 +30,8 @@
                             <div>
                                 <img :src="cat.icon" :alt="cat.name" class="img-responsive">
                             </div>
-                            <div class="wt-center-column">
-                                <span>{{cat.name}}</span>
+                            <div class="wt-center-column wt-m-lf-2">
+                                <span class="wt-mayuscula">{{cat.name}}</span>
                                 <span class="subCategoria">{{showSubCategories(cat.sub_category)}}</span>
                             </div>
                         </div>
@@ -117,7 +123,7 @@
         	searchEspacios () {
         		let url = `/search`;
 
-                if(this.ubicacion !== 'Ubicación') {
+                if(this.ubicacion !== 'UBICACIÓN') {
                     url += `?ubicacion=${this.ubicacion}`;
                 }else{
                     this.stUbicacion = true;

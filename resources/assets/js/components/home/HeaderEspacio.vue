@@ -35,6 +35,16 @@
         },
         mounted() {
             this.getImagenesEspacio();
+            document.onkeydown = (e) => {
+                switch (e.keyCode) {
+                    case 37:
+                        this.plusSlides(-1);
+                        break;
+                    case 39:
+                        this.plusSlides(1);
+                        break;
+                }
+            };
         },
         ready() {
             this.showSlides(this.slideIndex);

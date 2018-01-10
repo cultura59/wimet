@@ -2,11 +2,16 @@
 
 namespace App\Http\Controllers;
 
+use App\Evento;
 use Illuminate\Http\Request;
 use App\Propuesta;
 use App\Espacio;
 use App\Mensaje;
 use App\User;
+use App\PropuestaServicios;
+use App\PropuestaPagos;
+use App\PropuestaDias;
+use DB;
 
 class PropuestaController extends Controller
 {
@@ -18,7 +23,7 @@ class PropuestaController extends Controller
     public function index(Request $request)
     {
         try {
-            $propuestas = Propuesta::where('evento_id', $request->eventoId)->get();
+            $propuestas = Propuesta::with('pagos')->where('evento_id', $request->eventoId)->get();
             return $propuestas;
         }catch(\Exception $e){
             return response('No se encontraron propuestas asociadas al evento, ' . $e->getMessage(), 400);
@@ -33,15 +38,34 @@ class PropuestaController extends Controller
      */
     public function store(Request $request)
     {
+        DB::beginTransaction();
         try {
             $propuesta = new Propuesta($request->all());
             $propuesta->estado = 'enviada';
             $propuesta->save();
-            
-            $espacio = Espacio::where('id', $propuesta->espacio_id)->with('images')->first();
-            $user = User::find($propuesta->user_id);
-            $cliente = User::find($propuesta->cliente_id);
 
+            $evento = Evento::find($propuesta->evento_id);
+            $evento->estado = "presupuesto";
+            $evento->save();
+
+            // Agrego los servicios a la propuesta
+            foreach ($request->servicios as $servicio) {
+                $nServicio = new PropuestaServicios($servicio);
+                $nServicio->propuesta_id = $propuesta->id;
+                $nServicio->save();
+            }
+            // Agrego los pagos a la propuesta
+            foreach ($request->pagos as $pago) {
+                $nPago = new PropuestaPagos($pago);
+                $nPago->propuesta_id = $propuesta->id;
+                $nPago->save();
+            }
+            // Agrego los pagos a la propuesta
+            foreach ($request->dias as $dia) {
+                $nPago = new PropuestaDias($dia);
+                $nPago->propuesta_id = $propuesta->id;
+                $nPago->save();
+            }
             $mensaje = new Mensaje();
             $mensaje->user_id = 1; 
             $mensaje->evento_id = $propuesta->evento_id; 
@@ -64,9 +88,10 @@ class PropuestaController extends Controller
                     ->subject('Tienes un nuevo mensaje sobre tu evento');
             });
             Datos de envio de email (presupuesto al organizador) */
-            
+            DB::commit();
             return response($propuesta, 204); 
         }catch(\Exception $e){
+            DB::rollback();
             return response('Los campos no son correctos, '.$e->getMessage(), 400);
         }
     }

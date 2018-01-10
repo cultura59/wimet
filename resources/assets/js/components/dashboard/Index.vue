@@ -6,8 +6,12 @@
             <main>
                 <div v-if="$store.getters.getUser.tipo_clientes_id > 1" class="dashboard-navbar">
                     <router-link to="/" :class="{active: $route.path == '/'}">Dashboard</router-link>
-                    <router-link to="/mensajes" :class="{active: $route.name == 'Mensajes'}">Mensajes</router-link>
-                    <router-link to="/propuestas" :class="{active: $route.name == 'Propuestas'}">Propuestas</router-link>
+                    <router-link to="/mensajes" :class="{active:
+                        $route.name == 'Mensajes' ||
+                        $route.name == 'Mensaje' ||
+                        $route.name == 'nueva-propuesta'||
+                        $route.name == 'solicitud'
+                    }">Mensajes</router-link>
                     <router-link to="/espacios" :class="{active: $route.name == 'Espacios'}">Espacios</router-link>
                     <router-link to="/favoritos" :class="{active: $route.name == 'Favoritos'}">Favoritos</router-link>
                     <router-link to="/perfil" :class="{active: $route.name == 'Perfil'}">Mi perfil</router-link>
@@ -44,69 +48,6 @@
                 </div>
             </div>
         </template>
-        <!-- footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-4">
-                        <img class="img-responsive" src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="163">
-                        <p class="main-footer">
-                            Wimet es un marketplace para eventos dedicado a vincular propietarios de espacios creativos con organizadores que buscan brindar una experiencia memorable.
-                        </p>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Empresa</p>
-                        <ul>
-                            <li><a href="http://www.wimet.co/nosotros">Nosotros</a></li>
-                            <li><a href="http://blog.wimet.co">Blog</a></li>
-                            <li><a href="http://www.wimet.co/nosotros">Ayuda</a></li>
-                            <li><a href="http://www.wimet.co/nosotros">Términos y condiciones</a></li>
-                            <li><a href="http://www.wimet.co/nosotros">Políticas de privacidad</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Actividades</p>
-                        <ul>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=1&quanty=0-1000&price=100-10000">Reuniones</a>
-                            </li>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=2&quanty=0-1000&price=100-10000">Eventos</a>
-                            </li>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=3&quanty=0-1000&price=100-10000">Producciones</a>
-                            </li>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=4&quanty=0-1000&price=100-10000">Pop-Ups</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Contacto</p>
-                        <ul>
-                            <li><a href="#">hola@wimet.co</a></li>
-                            <li><a href="#">El Salvador 5218, CABA</a></li>
-                            <li><a href="#">Buenos Aires, Argentina</a></li>
-                        </ul>
-                        <div class="wt-m-top-3 follow">
-                            <a href="https://www.facebook.com/wimet.co/">
-                                <img src="http://www.wimet.co/img/wimet_icon_facebook.svg" alt="Wimet" class="img-responsive">
-                            </a>
-                            <a href="https://www.instagram.com/wimet.co/">
-                                <img src="http://www.wimet.co/img/wimet_icon_instagram.svg" alt="Wimet" class="img-responsive">
-                            </a>
-                            <a href="https://www.linkedin.com/company/wimet">
-                                <img src="http://www.wimet.co/img/wimet_icon_linkedin.svg" alt="Wimet" class="img-responsive">
-                            </a>
-                            <a href="https://twitter.com/wimetco">
-                                <img src="http://www.wimet.co/img/wimet_icon_twitter.svg" alt="Wimet" class="img-responsive">
-                            </a>
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </footer>
     </div>
 </template>
 <script>
@@ -136,7 +77,7 @@
 <style lang="sass" scoped>
     .dashboard-navbar {
         transition: none;
-        font-family: Ubuntu;
+        font-family: Avenir;
         display: flex;
         justify-content: baseline;
         align-items: center;

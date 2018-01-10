@@ -19,8 +19,12 @@
 				</div>
 			</div>
 		</div>
-		<a v-if="!loadingData" :href="url" target="_blank">
-			<img @click="addWhishlist($event, espacio.id)" src="/img/corazon_unactive.svg" class="img-whishlist">
+		<a v-if="!loadingData" :href="url" target="_blank" class="link-espacio">
+			<img v-if="espacio.image360 !== null" src="https://res.cloudinary.com/wimet/image/upload/tag_virtual.svg" class="img-3d" alt="wimet-imagen-3d">
+			<img
+				@click="addWhishlist($event, espacio.id)"
+				:src="(inArray(espacio.id)) ? '/img/corazon_active.svg' : '/img/corazon_unactive.svg'"
+				class="img-whishlist">
 			<img :src="espacio.portada" :tile="espacio.name" class="img-responsive img-espacio">
 			<div class="card-footer-search">
 				<div>
@@ -34,7 +38,7 @@
 					</div>
 				</div>
 				<div>
-					<p>$ {{espacio.price}} /hr</p>
+					<p>$ {{espacio.price}} /media jornada</p>
 					<span>
 						<img class="icon-people" src="/img/wimet_ic_group_black_24px.svg" alt=""> {{espacio.quanty}}
 					</span>
@@ -70,15 +74,85 @@
 	                console.log(err);
 	            });
 	        },
+			inArray(id) {
+			    if(this.$store.getters.getUser === null) {
+			        return false;
+				}
+			    if(this.$store.getters.getUser.espacios === undefined) {
+			        return false;
+				}
+				for(let i = 0; i < this.$store.getters.getUser.espacios.length; i++) {
+				    if(this.$store.getters.getUser.espacios[i].id === id) {
+				        return true;
+					}
+				}
+				return false;
+			},
             addWhishlist(e, id) {
 			    e.preventDefault();
-			    console.log(id);
-			    return;
-			}
+			    if(this.$store.getters.getUser.id === undefined) {
+                    this.$toastr.error('Debes iniciar sesión para poder agregar favoritos', 'Ups, no estas logueado!');
+				}
+                let agregar = true;
+                for(let i = 0; i < this.$store.getters.getUser.espacios.length;i++) {
+                    if(this.$store.getters.getUser.espacios[i].id == id) {
+                        this.$store.getters.getUser.espacios.splice(i, 1);
+                        agregar = false;
+                    }
+				}
+				if(agregar) {
+                    this.$store.getters.getUser.espacios.push({id: id});
+				}
+				this.updateUser();
+			},
+            updateUser() {
+                this.$http.put(`api/user/${this.$store.getters.getUser.id}`, this.$store.getters.getUser)
+				.then(res => {
+				}, err => {
+					this.$toastr.error(err, 'Ups, hubo un error!');
+				});
+            },
 		}
 	}
 </script>
 <style lang="sass" scoped>
+	.link-espacio {
+		text-decoration: none;
+		color: #636b6f;
+		display: flex;
+		flex-direction: column;
+		position: relative;
+		.img-whishlist {
+			position: absolute;
+			right: 1em;
+			top: 1em;
+			box-shadow: none;
+		}
+		.card-footer-search {
+			display: flex;
+			flex-direction: column;
+			width: 100%;
+			height: 75px;
+			.star-row{
+				width: 5em !important;
+			}
+			div:first-child {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				padding: 0.5em 1em 0em 1em;
+			}
+			div:last-child {
+				width: 100%;
+				display: flex;
+				justify-content: space-between;
+				align-items: baseline;
+				padding: 0em 1em 0.5em 1em;
+			}
+		}
+	}
+
 	.timeline-wrapper {
 		padding: 1em;
 	}
@@ -207,5 +281,12 @@
 	.background-masker.content-third-end {
 		left: 300px;
 		top: 88px;
+	}
+	.img-3d {
+		width: 90px;
+		position: absolute;
+		top: 1em;
+		left: -1em;
+		box-shadow: none !important;
 	}
 </style>

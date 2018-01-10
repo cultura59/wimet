@@ -34,6 +34,12 @@
                                         </span>
                                         <span class="min-hours">Por jornada</span>
                                     </div>
+                                    <div class="wt-center-column wt-m-lf-3">
+                                        <span class="price">
+                                            <b><i aria-hidden="true" class="fa fa-clock-o"></i></b> ${{priceCategoria.price}}.-
+                                        </span>
+                                        <span class="min-hours">Por media jornada</span>
+                                    </div>
                                 </div>
                                 <span class="min-hours">NOTA: El precio se encuentra sujeto a modificaciones en función de la temporada/ época del año.</span>
                             </div>
@@ -56,10 +62,10 @@
                             </div>
                             <div class="box-descripcion__contenido">
                                 <div class="row">
-                                    <div v-for="servicio in espacio.servicios" class="col-xs-6 col-md-4">
-                                        <div class="pull-left">
-                                            <i aria-hidden="true" class="fa fa-check"></i>
-                                            <span>{{servicio.nombre}}</span>
+                                    <div v-for="servicio in espacio.servicios" class="col-xs-6 col-md-4 wt-m-top-1">
+                                        <div class="pull-left content-service">
+                                            <img :src="servicio.icon" :alt="servicio.nombre">
+                                            <p>{{servicio.nombre}}</p>
                                         </div>
                                     </div>
                                 </div>
@@ -71,9 +77,9 @@
                             </div>
                             <div class="box-descripcion__contenido">
                                 <div class="row">
-                                    <div v-for="acceso in espacio.access" class="col-xs-6 col-md-4">
-                                        <i aria-hidden="true" class="fa fa-check"></i>
-                                        <span>{{acceso.nombre}}</span>
+                                    <div v-for="acceso in espacio.access" class="col-xs-6 col-md-4 content-service">
+                                        <img :src="acceso.icon" :alt="acceso.nombre">
+                                        <p>{{acceso.nombre}}</p>
                                     </div>
                                 </div>
                             </div>
@@ -86,6 +92,7 @@
                                 <div class="wt-center-column">
                                     <span>Cancelación: flexible.</span>
                                     <span>Reembolso completo hasta 15 días antes del evento, excepto los gastos de procesamiento.</span>
+                                    <span>Depósito de garanía: ${{priceCategoria.securitydeposit}}</span>
                                 </div>
                             </div>
                         </div>
@@ -112,7 +119,9 @@
                                 <span>Estilo</span>
                             </div>
                             <div class="box-descripcion__contenido">
-                                <span v-for="caracteristica in espacio.characteristics">{{caracteristica.nombre}} - </span>
+                                <div class="container-tags">
+                                    <span v-for="caracteristica in espacio.characteristics" class="wt-tag">{{caracteristica.nombre}}</span>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -124,18 +133,14 @@
                                     :class="{'espacio-categorias__categoria--active': (priceCategoria.categoria_id == price.categoria.id)}"
                                     @click="selectCategory(price.categoria.id)">
                                     <img :src="price.categoria.icon" :alt="price.categoria.name" class="img-responsive">
-                                    <span>{{price.categoria.name}}</span>
+                                    <span class="wt-m-top-1 wt-mayuscula">{{price.categoria.name}}</span>
                                 </div>
                             </section>
                             <header class="calendar__header">
                                 <div class="calendar__header__price">
                                     <span class="calendar__header__price--default">Desde</span>
                                     <span class="calendar__header__price--active">${{priceCategoria.price}}</span>
-                                    <span>por dia</span>
                                 </div>
-                                 <div>
-                                     <span>{{espacio.quanty}}pax</span>
-                                 </div>
                              </header>
                             <main class="calendar__main">
                                 <div class="select__mount">
@@ -175,19 +180,21 @@
                                             <span>Espacio x {{totalDays}} días</span>
                                             <span>$ {{subTotal}}</span>
                                         </div>
-                                        <div class="wt-space-block wt-m-top-1">
-                                            <span>Fee de procesamiento</span>
-                                            <span>$ {{fee}}</span>
-                                        </div>
-                                        <div class="wt-space-block wt-m-top-1">
-                                            <span>Precio estimado</span>
-                                            <strong class="precio-estimado">$ {{total}}</strong>
+                                        <div v-show="showFee">
+                                            <div class="wt-space-block wt-m-top-1">
+                                                <span>Fee de procesamiento</span>
+                                                <span>$ {{fee}}</span>
+                                            </div>
+                                            <div class="wt-space-block wt-m-top-1">
+                                                <span>Precio estimado</span>
+                                                <strong class="precio-estimado">$ {{total}}</strong>
+                                            </div>
                                         </div>
                                         <div v-if="messageError != ''" class="msgAlert">
                                             <span>{{messageError}}</span>
                                             <span class="cursor-pointer" @click="messageError = ''">x</span>
                                         </div>
-                                        <button class="btn-reserva wt-m-top-2" @click="openModal()">SOLICITUD DE RESERVAN</button>
+                                        <button class="btn-reserva wt-m-top-2" @click="openModal()">SOLICITUD DE RESERVA</button>
                                     </div>
                                 </template>
                                 <div class="datos-duenio">
@@ -218,9 +225,9 @@
                                         <strong>Fechas</strong>
                                         <li v-for="day in selected">
                                             <span>{{$moment(day.date).locale('es').format("DD MMM YYYY")}}</span>
-                                            <span v-if="day.workingDay == 'all'"> (Todo el día)</span>
-                                            <span v-if="day.workingDay == 'morning'"> (mañana-tarde)</span>
-                                            <span v-if="day.workingDay == 'night'"> (tarde-noche)</span>
+                                            <span v-if="day.workingDay == 'all'"> (jornada completa)</span>
+                                            <span v-if="day.workingDay == 'morning'"> (media jornada/am)</span>
+                                            <span v-if="day.workingDay == 'night'"> (media jornada completa/pm)</span>
                                         </li>
                                     </div>
                                 </div>
@@ -230,13 +237,15 @@
                                         <span>Espacio x {{totalDays}} días</span>
                                         <span>$ {{subTotal}}</span>
                                     </div>
-                                    <div class="wt-space-block wt-m-top-1">
-                                        <span>Fee de procesamiento</span>
-                                        <span>$ {{fee}}</span>
-                                    </div>
-                                    <div class="wt-space-block wt-m-top-1">
-                                        <span>Precio estimado</span>
-                                        <span class="precio-estimado">$ {{total}}</span>
+                                    <div v-show="showFee">
+                                        <div class="wt-space-block wt-m-top-1">
+                                            <span>Fee de procesamiento</span>
+                                            <span>$ {{fee}}</span>
+                                        </div>
+                                        <div class="wt-space-block wt-m-top-1">
+                                            <span>Precio estimado</span>
+                                            <span class="precio-estimado">$ {{total}}</span>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -254,6 +263,12 @@
                                 </div>
                                 <div class="form-contact">
                                     <div class="form-contact__textarea">
+                                        <label for="title">Cantidad de asistente</label>
+                                        <input v-model="people" id="people" class="textarea-lg" placeholder="50" />
+                                    </div>
+                                </div>
+                                <div class="form-contact">
+                                    <div class="form-contact__textarea">
                                         <label for="mensaje">Mensaje</label>
                                         <textarea v-model="mensaje" id="mensaje" class="textarea-lg" :class="{'error-input': messageErrorDetalle != ''}" rows="7" placeholder="Preséntate, describe la actividad que estas planificando y cuéntale cómo utilizarás el espacio. ¿Necesitarás servicios de catering, técnica o producción?
 Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. Vamos a necesitar mesas y un servicio de Coffee Break.'"></textarea>
@@ -267,7 +282,8 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                                 <div class="form-contact">
                                     <div class="form-contact__button">
                                         <img v-show="!btnSend" src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-pig_oxestq.svg" alt="Cargando ..." height="50px" />
-                                        <button v-show="(btnSend && terminos)" class="btn-primary-pig" @click="sendReserva()">Enviar</button>
+                                        <button v-show="btnSend && !terminos" class="btn-primary-pig--disable">Enviar</button>
+                                        <button v-show="btnSend && terminos" class="btn-primary-pig" @click="sendReserva()">Enviar</button>
                                     </div>
                                 </div>
                             </div>
@@ -275,69 +291,75 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     </div>
                 </div>
             </div>
-        <!-- footer -->
-        <footer>
-            <div class="container">
-                <div class="row">
-                    <div class="col-xs-12 col-sm-4">
-                        <img class="img-responsive" src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="163">
-                        <p class="main-footer">
-                            Wimet es un marketplace para eventos dedicado a vincular propietarios de espacios creativos con organizadores que buscan brindar una experiencia memorable.
-                        </p>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Empresa</p>
-                        <ul>
-                            <li><a href="http://www.wimet.co/nosotros">Nosotros</a></li>
-                            <li><a href="http://blog.wimet.co">Blog</a></li>
-                            <li><a href="http://www.wimet.co/nosotros">Ayuda</a></li>
-                            <li><a href="http://www.wimet.co/nosotros">Términos y condiciones</a></li>
-                            <li><a href="http://www.wimet.co/nosotros">Políticas de privacidad</a></li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Actividades</p>
-                        <ul>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=1&quanty=0-1000&price=100-10000">Reuniones</a>
-                            </li>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=2&quanty=0-1000&price=100-10000">Eventos</a>
-                            </li>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=3&quanty=0-1000&price=100-10000">Producciones</a>
-                            </li>
-                            <li>
-                                <a href="/search?ubicacion=&categoria=4&quanty=0-1000&price=100-10000">Pop-Ups</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="col-xs-12 col-sm-2">
-                        <p class="col-footer">Contacto</p>
-                        <ul>
-                            <li><a href="#">hola@wimet.co</a></li>
-                            <li><a href="#">El Salvador 5218, CABA</a></li>
-                            <li><a href="#">Buenos Aires, Argentina</a></li>
-                        </ul>
-                        <div class="wt-m-top-3 follow">
-                            <a href="https://www.facebook.com/wimet.co/">
-                                <img src="http://www.wimet.co/img/wimet_icon_facebook.svg" alt="Wimet" class="img-responsive">
-                            </a>
-                            <a href="https://www.instagram.com/wimet.co/">
-                                <img src="http://www.wimet.co/img/wimet_icon_instagram.svg" alt="Wimet" class="img-responsive">
-                            </a>
-                            <a href="https://www.linkedin.com/company/wimet">
-                                <img src="http://www.wimet.co/img/wimet_icon_linkedin.svg" alt="Wimet" class="img-responsive">
-                            </a>
-                            <a href="https://twitter.com/wimetco">
-                                <img src="http://www.wimet.co/img/wimet_icon_twitter.svg" alt="Wimet" class="img-responsive">
-                            </a>
+            <!-- footer -->
+            <footer>
+                <div class="container">
+                    <div class="row">
+                       <div class="col-xs-12 col-sm-4">
+                        <img class="img-responsive" src="https://res.cloudinary.com/wimet/image/upload/wimet-logo_frbya5.svg" alt="Wimet" width="163">
                         </div>
+                        <div class="col-xs-12 col-sm-2">
+                            <p class="col-footer">Empresa</p>
+                            <ul>
+                                <li><a href="/nosotros">Nosotros</a></li>
+                                <li><a href="https://blog.wimet.co">Blog</a></li>
+                                <li><a href="/nosotros">Ayuda</a></li>
+                                <li><a href="/nosotros">Términos y condiciones</a></li>
+                                <li><a href="/nosotros">Políticas de privacidad</a></li>
+                            </ul>
+                        </div>
+                         <div class="col-xs-12 col-sm-2">
+                            <p class="col-footer">Actividades</p>
+                            <ul>
+                                <li>
+                                    <a href="/search?ubicacion=&categoria=1&quanty=0-1000&price=100-100000">REUNIONES</a>
+                                </li>
+                                <li>
+                                    <a href="/search?ubicacion=&categoria=2&quanty=0-1000&price=100-100000">EVENTOS</a>
+                                </li>
+                                <li>
+                                    <a href="/search?ubicacion=&categoria=3&quanty=0-1000&price=100-100000">PRODUCCIONES</a>
+                                </li>
+                                <li>
+                                    <a href="/search?ubicacion=&categoria=4&quanty=0-1000&price=100-100000">RETAIL</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="col-xs-12 col-sm-4">
+                            <p class="col-footer">Contacto</p>
+                            <ul>
+                                <li><a href="#">hola@wimet.co</a></li>
+                                <li><a href="#">El Salvador 5218, CABA</a></li>
+                                <li><a href="#">Buenos Aires, Argentina</a></li>
+                            </ul>
+                            <div class="wt-m-top-3 follow">
+                                <a href="https://www.instagram.com/wimet.co/">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-instagram.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                                <a href="https://www.facebook.com/wimet.co/">
+                                    <img src="http://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518301/icons/wimet-icon-facebook.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                                <a href="https://www.linkedin.com/company/wimet">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-linkedin.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                                <a href="https://twitter.com/wimetco">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518302/icons/wimet-icon-twitter.svg" alt="Wimet" class="img-responsive">
+                                </a>
+                            </div>
 
+                        </div>
+                    </div>
+                    <div class="terminos-copyright">
+                        <div>
+                            <span>&#169 Wimet SAS. Todos los derechos reservados.</span>
+                        </div>
+                        <div>
+                            <a href="#">Politicas de privacidad</a>
+                            <a href="#" class="wt-m-lf-2">Términos y condiciones</a>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </footer>
+            </footer>
     </div>
 </template>
 <script>
@@ -373,9 +395,10 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 total: 0,
                 btnSend: true,
                 mensaje: '',
-                terminos: true,
+                terminos: false,
                 messageErrorTitle: false,
-                messageErrorDetalle: ''
+                messageErrorDetalle: '',
+                showFee: false
             }
         },
         mounted() {
@@ -562,7 +585,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
             },
             openModal() {
                 if(!this.authenticated) {
-                    this.messageError = "Debes iniciar sesión para hacer una pregunta";
+                    this.$toastr.warning('Debes iniciar sesión para hacer una pregunta', 'Ups no sabemos quien sos');
                     return;
                 }else {
                     this.modalReserva = true;
@@ -630,15 +653,14 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
         .espacio-categorias {
             display: flex;
             justify-content: space-around;
-            margin-top: 1em;
+            margin-top: 2em;
             width: 100%;
             &__categoria {
                 display: flex;
-                padding: 0.5em 0;
                 flex-direction: column;
                 justify-content: center;
                 align-items: center;
-                width: 25%;
+                width: 100%;
                 border-bottom: 4px solid #dadada;
                 cursor: pointer;
                 &:hover, &--active {border-bottom: 4px solid #fc5289;}
@@ -647,7 +669,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
         &__header {
             display: flex;
             justify-content: space-between;
-            padding: 1em 2em;;
+            padding: 1.2em 2em;;
             background-color: #545454;
             color: #fff;
             font-size: 12px;
@@ -677,7 +699,8 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 margin: 0 auto;
             }
             &__table {
-                font-family: Ubuntu;
+                transition: none;
+                font-family: Avenir;
                 font-size: 10px;
                 text-align: center;
                 color: #212121;
@@ -688,10 +711,17 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     text-align: center;
                 }
                 td {
+                    transition: none;
                     background-color: #eeeeee;
                     border: 1px solid #fff;
                     cursor: pointer;
+                    position: relative;
                     &:hover {background-color: rgba(238, 238, 238, 0.5)}
+                    span {
+                        position: absolute;
+                        top: .5em;
+                        left: .5em;
+                    }
                 }
                 .removeDay {
                     background-color: #fff;
@@ -700,6 +730,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     cursor: none;
                 }
                 .all {
+                    transition: none;
                     background-color: #fc5289;
                     color: #fff;
                     border: 1px solid #fff;
@@ -707,14 +738,15 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     &:hover {background-color: rgba(252, 82, 137, 0.8)};
                 }
                 .morning {
+                    transition: none;
                     background: linear-gradient(to bottom, #fc5289 50%, #eeeeee 50%, #eeeeee 99%);
                     color: #fff;
                     border: 1px solid #fff;
                     cursor: pointer;
                 }
                 .night {
+                    transition: none;
                     background: linear-gradient(to bottom, #eeeeee 0%, #eeeeee 50%, #fc5289 50%, #fc5289 100%);
-                    color: #fff;
                     border: 1px solid #fff;
                     cursor: pointer;
                 }
@@ -889,5 +921,35 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
     .close-reserva:focus {
         text-decoration: none;
         cursor: pointer;
+    }
+    .content-service {
+        display: flex;
+        align-items: end;
+        font-size: 12px;
+        img {
+            margin-right: 1em;
+        }
+    }
+    .container-tags {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        flex-flow: wrap;
+        .wt-tag {
+            padding: .5em;
+            border: 1px solid #dadada;
+            border-radius: 2px;
+            margin: 1em 1em 0 0;
+        }
+    }
+    .btn-primary-pig--disable {
+        width: 108px;
+        height: 40px;
+        background: rgba(252, 82, 137, 0.6);
+        font-weight: 500;
+        letter-spacing: -0.1px;
+        color: white;
+        border: 1px solid rgba(252, 82, 137, 0.6);
+        border-radius: 2px;
     }
 </style>

@@ -12,9 +12,9 @@
                         class="box-expacio"
                         v-for="espacio in espacios"
                     >
-                        <img v-if="espacio.status == true" class="tag" src="img/tag_publicado.svg">
-                        <img v-if="espacio.step == 7" class="tag" src="img/tag_revision.svg">
-                        <img v-if="espacio.status == false && espacio.step != 7" class="tag" src="img/tag_incompleto.svg">
+                        <img v-if="espacio.status == true" class="tag" src="https://res.cloudinary.com/wimet/image/upload/tag_publicado.svg">
+                        <img v-if="espacio.step == 7" class="tag" src="https://res.cloudinary.com/wimet/image/upload/tag_revision.svg">
+                        <img v-if="espacio.status == false && espacio.step != 7" class="tag" src="https://res.cloudinary.com/wimet/image/upload/tag_incompleto.svg">
                         <div
                             v-if="espacio.images.length > 0"
                             class="image-espacio"
@@ -114,7 +114,7 @@
         margin-top: 4em;
         align-items: flex-end;
         &__title {
-            font-family: Ubuntu;
+            font-family: Avenir;
             font-size: 16px;
             font-weight: bold;
             color: #333333;
@@ -182,7 +182,7 @@
             }
         }
         &__btn {
-            font-family: Ubuntu;
+            font-family: Avenir;
             font-size: 12px;
             width: 140px;
             padding: 1em;

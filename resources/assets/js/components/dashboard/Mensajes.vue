@@ -60,7 +60,7 @@
 							</div>
 						</router-link>
 					</div>
-					<div v-if="(mensajes.length == 0)">
+					<div v-if="(mensajes.length == 0)" class="no-hay-mensajes">
 						<p>No hay consultas aún...</p>
 					</div>
 				</div>
@@ -101,6 +101,9 @@
 			}
 		},
 		mounted() {
+            if(this.$route.query.type !== undefined && this.$route.query.type == 'organizador') {
+                this.showMensajesType = 1;
+            }
             this.getMensajes('');
         },
 		methods: {
@@ -139,7 +142,7 @@
 		margin-top: 4em;
 		align-items: center;
 		&__title {
-			font-family: Ubuntu;
+			font-family: Avenir;
 			font-size: 16px;
 			font-weight: bold;
 			color: #333333;
@@ -191,7 +194,7 @@
 				padding: 10px;
 				cursor: pointer;
 				a{
-					font-family: Ubuntu;
+					font-family: Avenir;
 					font-size: 12px;
 					color: #333333;
 				}
@@ -214,4 +217,12 @@
 		color: #e2385a;
 	}
 	b, strong {color: #333333}
+	.no-hay-mensajes {
+		height: 150px;
+		border-radius: 10px;
+		background-color: #f8f8f8;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+	}
 </style>

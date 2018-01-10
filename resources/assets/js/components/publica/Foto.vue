@@ -1,5 +1,5 @@
 <template>
-    <div class="wt-m-top-3">
+    <div class="wt-m-top-5 wt-m-bot-5">
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <h1 class="publica-titulo">{{$store.getters.getUser.firstname}} es hora de elegir</h1>
@@ -14,24 +14,25 @@
                 <div v-show="$store.getters.getEspacio.portada !== '' && $store.getters.getEspacio.portada !== null" class="row wt-m-top-3">
                     <div class="col-md-12">
                         <div class="img-box-preview-large" :style="imgPortada">
-                            <img src="/img/icon_remove_img.svg" class="btn-remove-img" @click="deletePortada()">
+                            <img src="https://res.cloudinary.com/wimet/image/upload/icons/icon_remove_img.svg" class="btn-remove-img" @click="deletePortada()">
                         </div>
                     </div>
-                    <div v-for="n in 9" class="col-md-4">
+                    <div v-for="n in 9" class="col-md-4 wt-m-top-3">
                         <template v-if="!findeImage(n)">
-                            <div class="img-box-preview wt-m-top-1 wt-center-center">
+                            <div class="img-box-preview">
                                 <input type="file" :id="`img_${n}`" style="display: none" @change="saveImage(n)">
-                                <label :for="`img_${n}`"><img src="/img/icon_add_img.svg" class="btn-add-img"></label>
+                                <label :for="`img_${n}`"><img src="https://res.cloudinary.com/wimet/image/upload/v1515007800/icons/icon_add_img.svg" class="btn-add-img"></label>
+                                <span>{{n}}</span>
                             </div>
                         </template>
                         <template v-if="findeImage(n)">
                             <div class="img-box-preview wt-m-top-1" :style="`position: relative; background-size: cover; background-image: url(${returnImage(n)})`">
-                                <img src="/img/icon_remove_img.svg" class="btn-remove-img" @click="deleteImagen(n)">
+                                <img src="https://res.cloudinary.com/wimet/image/upload/icons/icon_remove_img.svg" class="btn-remove-img" @click="deleteImagen(n)">
                             </div>
                         </template>
                     </div>
                 </div>
-                <div class="wt-space-block wt-m-top-3">
+                <div class="wt-space-block wt-m-top-3" @click="back()">
                     <button class="btn-publica-step-default">
                         <img src="https://res.cloudinary.com/wimet/image/upload/v1512746740/ic_keyboard_backspace_black_24px.svg">
                         <span>ATRÁS</span>
@@ -40,7 +41,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
-                <img src="https://res.cloudinary.com/wimet/image/upload/v1512821482/wimet_fotos.svg" class="img-responsive">
+                <img src="https://res.cloudinary.com/wimet/image/upload/v1512821482/wimet_fotos.svg" class="img-responsive" style="width: 80%; float: right">
             </div>
         </div>
     </div>
@@ -193,6 +194,9 @@
             },
             saveEspacio() {
                 this.$router.push({ name: 'descripcion'});
+            },
+            back() {
+                this.$router.push({ name: "disponibilidad"});
             }
         }
     }
@@ -220,13 +224,19 @@
     .img-box-preview {
         width: 100%;
         height: 91px;
-        border: solid 1px #979797;
+        background: #f8f8f8;
+        box-shadow: 2px 2px 10px 0px #e6e6e6;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        align-items: center;
+        padding: 1em;
     }
     .img-box-preview-large {
         width: 100%;
         height: 230px;
-        border: solid 1px #979797;
         position: relative;
+        box-shadow: 2px 2px 10px 0px #e6e6e6;
     }
     .btn-add-img {
         cursor: pointer;

@@ -1,10 +1,10 @@
 <template>
-    <div class="wt-m-top-3">
+    <div class="wt-m-top-5">
         <div class="row">
             <div class="col-xs-12 col-md-6">
                 <h1 class="publica-titulo">Define la disponibilidad</h1>
                 <h1 class="publica-titulo">de tu espacio</h1>
-                <h4 class="wt-m-top-2">Elige los días que tu espacio podría estar disponible.</h4>
+                <h4 class="wt-m-top-5">Elige los días que tu espacio podría estar disponible.</h4>
                 <div class="container-disponibilidad-btn-default">
                     <button
                             @click="addDisponibilidad('Lunes')"
@@ -97,7 +97,7 @@
                         </template>
                     </div>
                 </div>
-                <div class="wt-space-block wt-m-top-3">
+                <div class="wt-space-block wt-m-top-3" @click="back()">
                     <button class="btn-publica-step-default">
                         <img src="https://res.cloudinary.com/wimet/image/upload/v1512746740/ic_keyboard_backspace_black_24px.svg">
                         <span>ATRÁS</span>
@@ -107,7 +107,7 @@
                 </div>
             </div>
             <div class="col-xs-12 col-md-6">
-                <img src="https://res.cloudinary.com/wimet/image/upload/v1512792368/wimet_disponibilidad.svg" class="img-responsive">
+                <img src="https://res.cloudinary.com/wimet/image/upload/v1512792368/wimet_disponibilidad.svg" class="img-responsive" style="width: 80%; float: right">
             </div>
         </div>
     </div>
@@ -252,6 +252,10 @@
             },
             saveDisponibilidad(e){
                 e.preventDefault();
+                if(this.agrupadorDias.length === 0) {
+                    this.$toastr.error('Campos requeridos!', 'Debe seleccionar algún dia y horarios de disponibilidad');
+                    return;
+                }
                 this.btnSend = false;
                 this.$http.post(`/api/disponibilidad`, this.agrupadorDias)
                 .then(res => {
@@ -271,6 +275,9 @@
                     this.btnSend = true;
                     $toastr.error("Ups...", "Hubo un problema al modificar su espacio, vuelva a intentarlo");
                 });
+            },
+            back() {
+                this.$router.push({ name: "amenities"});
             }
         }
     }
@@ -279,40 +286,44 @@
 <style lang="sass" scoped>
     .container-disponibilidad-btn-default {
         margin: 2em 0;
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
         button {
             width: 76px;
             height: 40px;
             background-color: #ffffff;
-            border: none;
+            border: 1px solid #dadada;
+            border-radius: 1px;
             &:hover {
-                color: rgba(226, 56, 90, 1);
-                border: solid 1px rgba(226, 56, 90, 1);
+                color: #fc5289;
+                border: solid 1px #fc5289;
                 border-radius: 2px;
                 transition: none;
+            }
         }
-    }
         .btn-disponibilidad--active {
             width: 76px;
             height: 40px;
-            background-color: rgba(226, 56, 90, 1);
+            background-color: #fc5289;
             color: #ffffff;
             border: none;
             border-radius: 2px;
             &:hover {
-                background-color: rgba(226, 56, 90, 0.87);
+                background-color: #fc5289;
                 color: #ffffff;
                 transition: none;
+            }
         }
     }
+    .disponibilidad-tiempos {
+        width: 23%;
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 2em;
     }
-        .disponibilidad-tiempos {
-            width: 23%;
-                display: flex;
-                justify-content: space-between;
-                margin-bottom: 2em;
-    }
-        .tipo-disponibilidad-box {
-            display: flex;
-            margin-bottom: 2em;
+    .tipo-disponibilidad-box {
+        display: flex;
+        margin-bottom: 2em;
     }
 </style>

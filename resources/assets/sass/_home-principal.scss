@@ -401,16 +401,16 @@ html, body {
 .categories {
 	padding: 10px;
 	background-color: $wt-white;
-
+	margin-top: 3em;
 	.content-wt	{
 		@include desktop {
-			padding: 45px 0;
+			padding-bottom: 1em;
 			h2 {
 				font-family: $font-family-sans-serif;
 				font-size: 14px;
 				letter-spacing: -0.1px;
 				text-align: left;
-				color: #212121;
+				color: #333333;
 			}
 		}
 	}
@@ -438,10 +438,14 @@ html, body {
 	}
 }
 
+.title-black {
+	color: #333333;
+	font-weight: bold;
+}
+
 .how-work {
 	padding: 45px 20px;
 	color:#333;
-	background-color: $wt-background-claro;
 	h2 {
 	    font-size: 24px;
 	    font-weight: 600;
@@ -474,6 +478,57 @@ html, body {
 		    color: #333333;
 		    font-size: 14px;
 		}
+	}
+	.paso-a-paso {
+		display: flex;
+	    justify-content: center;
+	    margin-bottom: 2em;
+	    &__left {
+	    	padding: 0 1em;
+	    	h1 {margin: 0}
+	    }
+	    &__right {
+    	    padding: 0 1em;
+		    border-left: 1px solid #dadada;
+		    display: flex;
+		    flex-direction: column;
+		    .title {
+	    	    margin-bottom: 1em;
+    			font-size: 20px;
+		    }
+	    }
+	}
+}
+
+.referidos {
+	height: 250px;
+    background-color: rgba(43, 62, 87, 0.9);
+    margin-top: 5em;
+    &__content {
+	    display: flex;
+	    justify-content: space-around;
+	    align-items: center;
+	    img {
+		    margin-top: -3em;
+		    margin-right: 3em;
+		}
+		&__textos {
+		    display: flex;
+		    flex-direction: column;
+		    margin-right: 3em;
+		    color: #fff;
+			.title {
+				margin: 0;
+			}
+		}
+	}
+	&__btn-send {
+	    padding: 1em;
+	    width: 30%;
+	    background: transparent;
+	    border: 1px solid #fff;
+	    border-radius: 2px;
+	    color: #fff;
 	}
 }
 
@@ -546,7 +601,6 @@ html, body {
 				box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
 				z-index: 1;
 				.contaniner-categorias {
-					transition: none;
 					color: black;
 					padding: 12px 16px;
 					text-decoration: none;
@@ -572,7 +626,6 @@ html, body {
 				display: flex;
 				flex-direction: column;
 				.contaniner-categorias {
-					transition: none;
 					color: black;
 					padding: 12px 16px;
 					text-decoration: none;
@@ -599,7 +652,6 @@ html, body {
 			.text-header__sub-title {
 				font-weight: 400;
 				padding: 0px;
-				font-family: $font-family-sans-serif, sans-serif;
 				font-size: 14px;
 				letter-spacing: 1px;
 			}
@@ -609,10 +661,8 @@ html, body {
 			height: auto;
 			margin-top: 5vh;
 			.text-header__sub-title {
-				font-weight:
-								400;
+				font-weight: 400;
 				padding: 0px;
-				font-family: $font-family-sans-serif, sans-serif;
 				font-size: 14px;
 				letter-spacing: 0.5px;
 			}
@@ -623,15 +673,36 @@ html, body {
 	.categorias-mobile {
 		display: none;
 	}
+	.categorias-desktop {
+		a {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			position: relative;
+			h3 {
+				position: absolute;
+				color: #fff;
+				margin: 0;
+			}
+		}
+	}
 	.header-footer {
-		margin-top: 20px;
 		width: 100%;
-		padding: 16px 0px;
+		box-shadow: 2px 6px 50px rgba(51, 51, 51, 0.15);
 		#search-desktop {
 			width: 100%;
 			display: flex;
 			height: 70px;
-			.content-dropbtn-select {width: 45%;}
+			box-shadow: 2px 6px 50px rgba(51, 51, 51, 0.15);
+			.content-dropbtn-select {
+				width: 45%;
+				.slash-search {
+					width: 1em;
+					height: 1px;
+					margin-right: 1em;
+					border: 1px solid #333;
+				}
+			}
 			.content-dropbtn-btn {
 				width: 20%;
 				padding: 10px;
@@ -648,7 +719,7 @@ html, body {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				color: #212121;
+				color: #333333;
 				cursor: pointer;
 				text-align: left;
 				padding: 6px 12px;
@@ -656,7 +727,7 @@ html, body {
 				background-color: $wt-white;
 				border: solid 1px #dadada;
 				i {
-					color: #212121 !important;
+					color: #333333 !important;
 				}
 			}
 			.dropbtn-right {
@@ -665,7 +736,7 @@ html, body {
 				display: flex;
 				justify-content: space-between;
 				align-items: center;
-				color: #212121;
+				color: #333333;
 				cursor: pointer;
 				text-align: left;
 				padding: 6px 12px;
@@ -677,7 +748,7 @@ html, body {
 				border-top: 1px solid #dadada;
 				border-bottom: 1px solid #dadada;
 				i {
-					color: #212121 !important;
+					color: #333333 !important;
 				}
 			}
 			.dropdown {
@@ -695,12 +766,10 @@ html, body {
 					box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 					z-index: 1;
 					.contaniner-categorias {
-						transition: none;
 						color: black;
 						padding: 1em;
 						text-decoration: none;
 						display: flex;
-						justify-content: space-between;
 						align-items: center;
 						border-bottom: 1px solid #dadada;
 						&:hover {
@@ -746,20 +815,20 @@ html, body {
 		display: none;
 	}
 	.texto-header {
-		width: 100%;
+		width: 78%;
+		margin: 0 auto;
 		height: auto;
-		margin-top: 22vh;
+		margin-top: 6.5em;
 		.text-header__title {
 			width: 750px;
 			padding: 0;
 			font-family: $font-family-sans-serif;
 			font-size: 48px;
-			font-weight: bold;
+			font-weight: 900;
 			letter-spacing: -0.3px;
-			color: #212121;
+			color: #333333;
 		}
 		.text-header__sub-title {
-			font-family: NotoSerif;
 			font-size: 16px;
 			font-style: italic;
 			letter-spacing: -0.1px;
@@ -776,7 +845,7 @@ html, body {
 footer {
 	background-color: #f8f8f8;
 	color: #666666;
-	padding: 40px;
+	padding-top: 5em;
 	.main-footer	{
 		font-size: 14px; 
 		margin-top: 2rem;
@@ -795,7 +864,7 @@ footer {
 		list-style: none;
 		padding: 0;
 		li {
-			padding-bottom: 5px;
+			padding-bottom: 8px;
 			a, a:hover {
 				text-decoration: none;
 			    font-size: 14px;
@@ -803,17 +872,32 @@ footer {
 			}
 		}
 	}
-	
+
+	a {
+		color: #666666;
+		text-decoration:none;
+	}
 	
 	.border-redes {
 		border-right: 1px solid $wt-text-principal;
 	}
 	.follow {
+		display: flex;
+		justify-content: space-between;
+		width: 50%;
 		img {
 			float: left;
 			margin-right: 10px;
-			width: 30px;
+			width: 20px;
+			height: 20px;
 		}
+	}
+	.terminos-copyright {
+		display: flex;
+		justify-content: space-between;
+		margin-top: 2em;
+		padding: 2em 0;
+		border-top: 1px solid #dadada;
 	}
 }
 

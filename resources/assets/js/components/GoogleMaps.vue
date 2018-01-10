@@ -55,12 +55,13 @@
                 this.map = new google.maps.Map(element, {
                     center: new google.maps.LatLng(mapCentre.lat, mapCentre.long),
                     zoom: parseInt(this.zoom),
+                    maxZoom: 15,
                     disableDefaultUI: false,
                     scrollwheel: false,
                     navigationControl: false,
-                    mapTypeControl: true,
+                    mapTypeControl: false,
                     scaleControl: false,
-                    draggable: false,
+                    draggable: true,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });
                 this.map.mapTypes.set('sylver', this.styledMapType);
@@ -69,7 +70,7 @@
                     const position = new google.maps.LatLng(coord.lat, coord.long);
                     const marker = new google.maps.Marker({
                         position,
-                        icon: (this.icon == "radio") ? "/wimet-ic-espacio-marker.png" : "https://res.cloudinary.com/wimet/image/upload/c_scale,w_36/v1501352935/wimet_google_marker__2_ojga13.ico",
+                        icon: (this.icon == "radio") ? "/wimet-ic-espacio-marker.png" : "https://res.cloudinary.com/wimet/image/upload/v1515510980/icons/ico-wimet.png",
                         map: this.map
                     });
                     this.markers.push(marker);
@@ -79,8 +80,9 @@
         }
     };
 </script>
-<style scoped>
+<style lang="sass" scoped>
     .google-map {
+        transition: none;
         margin: 0 auto;
         background: gray;
     }

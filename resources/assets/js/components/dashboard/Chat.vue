@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link to="/mensajes" class="left-icon"><img src="/img/ic_left.svg"> ATRAS</router-link>
+        <router-link to="/mensajes" class="left-icon"><img src="https://res.cloudinary.com/wimet/image/upload/v1515117772/icons/ic_left.svg"> ATRAS</router-link>
         <div class="container-evento">
             <span class="container-evento__title">EVENTO</span>
         </div>
@@ -10,8 +10,8 @@
             </div>
             <template v-if="espacio.id != undefined && evento.id != undefined && mensajes.length > 0">
             <div class="row">
-                <div class="col-md-6">
-                    <h4>{{evento.nombre_evento}}</h4>
+                <h4 class="text-center">{{evento.nombre_evento}}</h4>
+                <div class="col-md-8">
                     <div class="alerta">La mayoría de los anfitriones responden en un plazo de 24 hs. Si has elegido esta publicación y estas de acuerdo con sus políticas y precio, demuestra tu interés solicitando el presupuesto formal al anfitrión.</div>
                     <textarea rows="4" class="evento-main__textarea" placeholder="Escribe tu respuesta..." v-model="mensajeEnviar"></textarea>
                     <div class="content-bottons">
@@ -21,13 +21,13 @@
                             class="content-bottons__transparent">¡ENVIAR PRESUPUESTO!
                         </button>
                         <button
-                            v-if="$store.getters.getUser.id == evento.cliente_id"
+                            v-if="$store.getters.getUser.id == evento.cliente_id && mensajeEnviar == ''"
                             @click="solicitarPropuesta()"
-                            class="content-bottons__transparent">¡SOLICITAR PRESUPUESTO!
+                            class="content-bottons__transparent">¡SOLICITAR DATOS!
                         </button>
-                        <button class="content-bottons__send" @click="sendMensaje()">
+                        <button v-show="mensajeEnviar !== ''" class="content-bottons__send" @click="sendMensaje()">
                             <span v-show="!showLoading">ENVIAR MENSAJE</span>
-                            <img v-if="showLoading" src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="30px" />
+                            <img v-if="showLoading" src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="20px" />
                         </button>
                     </div>
                     <div class="container-chats">
@@ -55,43 +55,66 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md-6">
-                    <h4>Resumen</h4>
-                    <div class="resumen-detalle">
-                        <div :style="backgroundEspacio"></div>
-                        <div class="resumen-detalle__info">
-                            <div>
-                                <p><strong>ESTADO:</strong> {{evento.estado}}</p>
-                                <p><strong>PRECIO ESTIMADO:</strong> ${{evento.sub_total}}</p>
-                            </div>
-                            <div>
-                                <p><strong>ACTIVIDAD:</strong> {{getCategoria(evento.estilo_espacios_id)}}</p>
-                                <p><strong>INVITADOS:</strong> {{evento.invitados}}</p>
-                            </div>
-                        </div>
-                        <div class="resumen-detalle__fechas">
-                            <hr>
-                            <strong>FECHAS</strong>
+                <div class="col-md-4">
+                    <div class="box-resumen wt-m-top-2">
+                        <img :src="espacio.portada" class="img-responsive">
+                        <div class="box-resumen__body">
+                            <span class="wt-m-bot-1">Estado: {{evento.estado}}</span>
+                            <span class="wt-m-bot-1">Actividad: {{getCategoria(evento.estilo_espacios_id)}}</span>
+                            <span class="wt-m-bot-1">Invitados: {{evento.invitados}}</span>
+                            <span class="wt-m-bot-1">Fechas solicitadas</span>
                             <ul>
                                 <li v-for="dia in dias" :key="dia.id">
-                                    <span>{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}}</span>
-                                    <span v-if="dia.tipo == 'all'"> - todo el día</span>
-                                    <span v-if="dia.tipo == 'morning'"> - mañana-tarde</span>
-                                    <span v-if="dia.tipo == 'night'"> - tarde-noche</span>
+                                    <span v-if="dia.tipo == 'all'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (jornada completa)</span>
+                                    <span v-if="dia.tipo == 'morning'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (media jornada - am)</span>
+                                    <span v-if="dia.tipo == 'night'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (media jornada - pm)</span>
                                 </li>
                             </ul>
+                            <h4 class="wt-m-top-2">PRECIO</h4>
+                            <div class="box-resumen__precios">
+                                <div class="wt-space-block wt-m-bot-1">
+                                    <span>Total x espacio</span>
+                                    <span>${{evento.sub_total}}</span>
+                                </div>
+                                <div v-if="evento.user_id === $store.getters.getUser.id" class="wt-space-block wt-m-bot-1">
+                                    <span>Comisión Wimet</span>
+                                    <span>$1800</span>
+                                </div>
+                                <div v-if="evento.user_id === $store.getters.getUser.id" class="wt-space-block">
+                                    <strong>Recibirás</strong>
+                                    <strong>${{evento.sub_total - 1800}}</strong>
+                                </div>
+                                <div v-if="evento.cliente_id === $store.getters.getUser.id" class="wt-space-block wt-m-bot-1">
+                                    <span>Seña a favor</span>
+                                    <span>$ -{{getSenia()}}</span>
+                                </div>
+                                <div v-if="evento.cliente_id === $store.getters.getUser.id" class="wt-space-block">
+                                    <strong>Saldo restante</strong>
+                                    <strong>${{evento.sub_total - senia}}</strong>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <h4 class="text-center">Propuestas</h4>
-                    <div v-if="propuestas.length == 0" class="preview-propuestas">
-                        <span class="preview-propuestas_texto">Aún no tienes propuestas</span>
-                    </div>
-                    <div class="content-anfitrion">
-                        <img v-if="espacio.user.imagesource != undefined" :src="espacio.user.imagesource" :alt="espacio.user.firstname">
-                        <div class="content-anfitrion__detail">
-                            <span>{{espacio.user.firstname}}</span>
-                            <span class="subtitle">Anfitrión</span>
-                        </div>
+                    <div>
+                        <h3 class="dashboard-title text-center wt-m-top-4">Propuestas</h3>
+                        <table class="table text-center">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">Número</th>
+                                    <th class="text-center">Creación</th>
+                                    <th class="text-center">Enviada</th>
+                                    <th class="text-center">Importe</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr v-for="propuesta in propuestas" @click="redirectPropuesta($event, propuesta.id)" class="cursor-pointer active">
+                                    <td>{{propuesta.id}}</td>
+                                    <td>{{$moment(propuesta.reserva_desde).locale('es').format("MMM DD")}}</td>
+                                    <td>{{$moment(propuesta.created_at).locale('es').format("MMM DD")}}</td>
+                                    <td>${{propuesta.sub_total}}</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     </div>
                 </div>
             </div>
@@ -112,8 +135,7 @@
                 propuestas: [],
                 dias: [],
                 showLoading: false,
-                backgroundEspacio: {},
-                fee: 0
+                senia: 0
             }
         },
         mounted() {
@@ -125,9 +147,9 @@
                 this.$http.get(`api/evento/${this.$route.params.id}`)
                     .then(res => {
                         this.evento = res.body;
-                        this.fee = (parseFloat(this.evento.sub_total) * 5) / 100;
                         this.getDias();
                         this.getEspacio();
+                        this.getPropuestas();
                     });
             },
             getMensajes() {
@@ -136,33 +158,29 @@
                         this.mensajes = res.body;
                     });
             },
-            enviarPropuesta() {},
+            enviarPropuesta() {
+                this.$router.push({name: 'nueva-propuesta', params: { eventoId: this.$route.params.id }});
+            },
             solicitarPropuesta() {
-                let data = {
-                    evento_id: this.$route.params.id,
-                    user_id: 1,
-                    presupuesto: true,
-                    mensaje: `El usuario ${this.$store.getters.getUser.firstname} a solicitado que le envies un presupuesto.`
+                for(let i = 0; i < this.$store.getters.getUser.senias.length; i++) {
+
+                    if(
+                        this.$store.getters.getUser.senias[i].vencimiento > this.$moment().format('YYYY-MM-DD hh:mm:ss')
+                        && this.$store.getters.getUser.senias[i].estado === 'pendiente'
+                    ) {
+                        this.$toastr.success("Se enviaron los datos del espacio a su email", "Datos envíados!");
+                        return;
+                    }
+
                 }
-                this.$http.post('api/mensaje', data)
-                    .then(res => {
-                        if(res.status == 204) {
-                            this.getMensajes();
-                            this.mensajeEnviar = '';
-                            this.$toastr.success(
-                                "Presupuesto solicitado!",
-                                "Dentro de las próximas 48hs el dueño se pondrá en contacto"
-                            );
-                        }else {
-                            this.$toastr.error("Mensaje no enviado!", "Revisa los datos envíados");
-                        }
-                    });
+                this.$router.push({name: 'solicitud', params: { eventoId: this.$route.params.id }});
             },
             sendMensaje(){
                 if(this.showLoading) {
                     return;
                 }
                 this.showLoading = true;
+                this.$toastr.info("Su mensaje se está enviando, aguarde unos segundos", "Mensaje enviandose...");
                 let data = {
                     evento_id: this.$route.params.id,
                     user_id: this.$store.getters.getUser.id,
@@ -172,11 +190,12 @@
                 this.$http.post('api/mensaje', data)
                     .then(res => {
                         this.showLoading = false;
+                        this.$toastr.success("Su mensaje ha sido enviando", "Mensaje enviado!");
                         if(res.status == 204) {
                             this.getMensajes();
                             this.mensajeEnviar = '';
                         }else {
-                            this.$toastr.error("Mensaje no enviado!", "Revisa los datos envíados");
+                            this.$toastr.error("Revisa los datos envíados", "Mensaje no enviado!");
                         }
                     });
             },
@@ -184,14 +203,6 @@
                 this.$http.get(`api/espacio/${this.evento.espacio_id}`)
                 .then(res => {
                     this.espacio = res.body;
-                    this.backgroundEspacio = {
-                        backgroundImage: `url(${this.espacio.images[0].name})`,
-                        backgroundSize: 'cover',
-                        backgroundPosition: 'center',
-                        height: '200px',
-                        borderTopLeftRadius: '10px',
-                        borderTopRightRadius: '10px'
-                    }
                 }, err => {
                     console.log(err);
                 });
@@ -221,6 +232,18 @@
                     case 4:
                         return 'POP-UPS';
                 }
+            },
+            getSenia() {
+                let senias = this.$store.getters.getUser.senias;
+                let now = this.$moment();
+                for(let i = 0; i < senias.length; i++) {
+                    let dif = now.diff(this.$moment(senias[i].vencimiento));
+                    if(dif > 0) {
+                        this.senia = 1800;
+                        return;
+                    }
+                }
+                return;
             }
         }
     }
@@ -242,7 +265,7 @@
         margin-top: 3em;
         align-items: flex-end;
         &__title {
-            font-family: Ubuntu;
+            font-family: Avenir;
             font-size: 16px;
             font-weight: bold;
             color: #333333;
@@ -254,10 +277,6 @@
         background-color: #ffffff;
         box-shadow: 0 0 68px 0 rgba(0, 0, 0, 0.1);
         color: #333333;
-        h4 {
-            text-align: center;
-            font-weight: bold;
-        }
         .alerta {
             width: 100%;
             padding: 1em;
@@ -298,7 +317,7 @@
         .container-chats {
             margin-top: 2em;
             &__cliente {
-                font-family: Ubuntu;
+                font-family: Avenir;
                 font-size: 12px;
                 color: #545454;
                 margin-top: 1em;
@@ -328,7 +347,7 @@
                 }
             }
             &__user {
-                font-family: Ubuntu;
+                font-family: Avenir;
                 font-size: 12px;
                 color: #545454;
                 margin-top: 1em;

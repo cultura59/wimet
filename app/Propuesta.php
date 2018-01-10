@@ -35,7 +35,15 @@ class Propuesta extends Model
      * @fn getPropuestasDias()
      * @brief funcion que retorna todos los dias asociados a la propuesta
      */
-    public function getPropuestasDias() {
-        $this->hasMany('App\PropuestasDias');
+    public function dias() {
+        return $this->hasMany('App\PropuestaDias');
     }
+
+    public function servicios() {
+    	return $this->hasMany('App\PropuestaServicios');
+	}
+
+	public function pagos() {
+        return $this->hasMany('App\PropuestaPagos');
+	}
 }
