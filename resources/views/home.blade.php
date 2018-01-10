@@ -139,7 +139,7 @@
                                     </div>
                                     <div class="paso-a-paso__right">
                                         <strong class="title">Encuentra el espacio ideal</strong>
-                                        <span>Elija su espacio de trabajo, privado o compartido en coworking, al mejor precio.</span>
+                                        <span>Accede a espacios privados y comerciales únicos</span>
                                     </div>
                                 </div>
                                 <img src="https://res.cloudinary.com/wimet/image/upload/ilustraciones/home_contacta.gif" alt="Contacta dueños" class="img-responsive">
@@ -151,7 +151,7 @@
                                     </div>
                                     <div class="paso-a-paso__right">
                                         <strong class="title">Contacta al anfitrión</strong>
-                                        <span>Elija su espacio de trabajo, privado o compartido en coworking, al mejor precio.</span>
+                                        <span>Comunicate con nuestros anfitriones y consulta sobre tu evento</span>
                                     </div>
                                 </div>
                                 <img src="https://res.cloudinary.com/wimet/image/upload/v1515447634/ilustraciones/home_encuentra.gif" alt="Encuentra espacios" class="img-responsive">
@@ -163,7 +163,7 @@
                                     </div>
                                     <div class="paso-a-paso__right">
                                         <strong class="title">Reserva tu lugar</strong>
-                                        <span>Elija su espacio de trabajo, privado o compartido en coworking, al mejor precio.</span>
+                                        <span>Es tan facil como hacer un click, elegir tu medio de pago y cuota.</span>
                                     </div>
                                 </div>
                                 <img src="https://res.cloudinary.com/wimet/image/upload/ilustraciones/home_reserva.gif" alt="Reserva tu espacio" class="img-responsive">
