@@ -17,7 +17,7 @@ class MercadoPagoController extends Controller
 {
     public function responseMP(Request $request)
     {
-        $mp = new MP("TEST-6273864499490098-112209-7476f9ba56d020f90a5a9ae647dd9fc5__LD_LA__-51885178");
+        $mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
 
         $request = array(
             "uri" => "/oauth/token",
@@ -43,7 +43,7 @@ class MercadoPagoController extends Controller
      */
     public function sendPayment(Request $request) {
         try {
-            $mp = new MP("TEST-8248736349517024-123008-431710274c1eef4ee4331ae7b658cfcf__LA_LD__-291916384");
+            $mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
             $payment_data = array(
                 "transaction_amount" => 1500,
                 "token" => $request["token"],
