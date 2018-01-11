@@ -139,7 +139,7 @@
                 this.$store.getters.getEspacio.prices[this.indexCat].cancellationflexibility = val;
             },
             calMediaJornada() {
-                this.$store.getters.getEspacio.prices[this.indexCat].price = (this.$store.getters.getEspacio.prices[this.indexCat].daily * 60)/100;
+                this.$store.getters.getEspacio.prices[this.indexCat].price = (this.$store.getters.getEspacio.prices[this.indexCat].daily * 50)/100;
             },
             savePrice() {
                 this.btnSend = false;
@@ -219,14 +219,14 @@
             padding: 1em;
             display: flex;
             flex-direction: column;
-            border-bottom: 1px solid #dadada;
+            border-bottom: 1px solid #f8f8f8;
             cursor: pointer;
             &__title {
                 color: #212121;
                 font-weight: bold;
             }
             &--active {
-                background-color: #dadada;
+                background-color: #f8f8f8;
             }
         }
     }
