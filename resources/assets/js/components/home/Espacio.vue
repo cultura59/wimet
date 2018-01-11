@@ -263,7 +263,7 @@
                                 </div>
                                 <div class="form-contact">
                                     <div class="form-contact__textarea">
-                                        <label for="title">Cantidad de asistente</label>
+                                        <label for="title">Cantidad de asistentes</label>
                                         <input v-model="people" id="people" class="textarea-lg" placeholder="50" />
                                     </div>
                                 </div>
