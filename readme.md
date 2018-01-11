@@ -9,3 +9,4 @@
 - Cambiar link de los emails a los eventos #22
 - Publica precio sugerido 1/2 jornada #24
 - Publica boton guardar fotos #23
+- MENSAJE - Corregir cantidad de asistentes #28
