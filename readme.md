@@ -6,4 +6,4 @@
 - v2.0.0
 
 ### Features
-- xvy
+- Cambiar link de los emails a los eventos #22
