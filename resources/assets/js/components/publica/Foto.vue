@@ -32,8 +32,8 @@
                         </template>
                     </div>
                 </div>
-                <div class="wt-space-block wt-m-top-3" @click="back()">
-                    <button class="btn-publica-step-default">
+                <div class="wt-space-block wt-m-top-3">
+                    <button class="btn-publica-step-default" @click="back()">
                         <img src="https://res.cloudinary.com/wimet/image/upload/v1512746740/ic_keyboard_backspace_black_24px.svg">
                         <span>ATRÁS</span>
                     </button>
