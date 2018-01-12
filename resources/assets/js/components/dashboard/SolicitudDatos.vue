@@ -256,7 +256,7 @@
                     case 3:
                         return 'PRODUCCIÓN';
                     case 4:
-                        return 'POP-UPS';
+                        return 'RETAIL';
                 }
             },
             guessingPaymentMethod(event) {
