@@ -10,7 +10,6 @@
                     </div>
                     <div class="publica-box__rigth">
                         <input class="input-publica" type="text" placeholder="Máximo de asistentes" v-model="$store.getters.getEspacio.prices[indexCat].cantidad_personas">
-                        <span class="hover-menssage">Máximo asistentes</span>
                     </div>
                 </div>
                 <div class="publica-box">
