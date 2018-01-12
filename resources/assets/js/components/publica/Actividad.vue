@@ -230,4 +230,13 @@
             }
         }
     }
+
+    .hover-menssage {
+        position: absolute;
+        right: -8em;
+        padding: 1em;
+        border-radius: 1px;
+        border: 1px solid #dadada;
+        box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
+    }
 </style>

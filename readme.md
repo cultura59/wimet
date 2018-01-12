@@ -11,3 +11,4 @@
 - Publica boton guardar fotos #23
 - MENSAJE - Corregir cantidad de asistentes #28
 - PUBLICA - Tipo de usos permitidos #30
+- Hotfix v2.0.1 #32

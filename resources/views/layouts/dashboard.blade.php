@@ -68,16 +68,16 @@
                                 <li><a href="#">Buenos Aires, Argentina</a></li>
                             </ul>
                             <div class="wt-m-top-3 follow">
-                                <a href="https://www.instagram.com/wimet.co/">
+                                <a href="https://www.instagram.com/wimet.co/" target="_blanck">
                                     <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-instagram.svg" alt="Wimet" class="img-responsive">
                                 </a>
-                                <a href="https://www.facebook.com/wimet.co/">
+                                <a href="https://www.facebook.com/wimet.co/" target="_blanck">
                                     <img src="http://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518301/icons/wimet-icon-facebook.svg" alt="Wimet" class="img-responsive">
                                 </a>
-                                <a href="https://www.linkedin.com/company/wimet">
+                                <a href="https://www.linkedin.com/company/wimet" target="_blanck">
                                     <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-linkedin.svg" alt="Wimet" class="img-responsive">
                                 </a>
-                                <a href="https://twitter.com/wimetco">
+                                <a href="https://twitter.com/wimetco" target="_blanck">
                                     <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518302/icons/wimet-icon-twitter.svg" alt="Wimet" class="img-responsive">
                                 </a>
                             </div>

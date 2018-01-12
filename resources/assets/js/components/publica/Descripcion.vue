@@ -21,7 +21,7 @@
                         <label class="label-publica">DESCRIPCIÓN</label>
                     </div>
                     <div class="col-xs-12 col-md-9">
-                        <textarea rows="10" class="input-publica" v-model="$store.getters.getEspacio.description" placeholder="Algun texto"></textarea>
+                        <textarea rows="10" class="input-publica" v-model="$store.getters.getEspacio.description" :placeholder="descripcionHolder"></textarea>
                     </div>
                 </div>
                 <div class="row wt-m-top-3">
@@ -29,7 +29,7 @@
                         <label class="label-publica">REGLAMENTO INTERNO</label>
                     </div>
                     <div class="col-xs-12 col-md-9">
-                        <textarea rows="10" class="input-publica" v-model="$store.getters.getEspacio.rule" placeholder="algun texto"></textarea>
+                        <textarea rows="10" class="input-publica" v-model="$store.getters.getEspacio.rule" :placeholder="reglamentoHolder""></textarea>
                     </div>
                 </div>
                 <div class="wt-space-block wt-m-top-3">
@@ -53,7 +53,22 @@
         name: "descripcion",
         data() {
             return {
-                btnSend: true
+                btnSend: true,
+                descripcionHolder: `Trata de describir tu espacio tal como te gustaría leer una descripción de un lugar que no conoces.
+- Características principales
+- Qué usos están permitidos
+- Que áreas de tu espacio pueden utilizar
+- Que ambientes tienen restricción de acceso
+- Variaciones de precio de acuerdo a día de la semana / temporada
+- Precios especiales por reservas de varias.`,
+                reglamentoHolder: `- Los horarios acordados deben ser respetados.
+- No se permiten menores de 18 años.
+- Está prohibida la venta de alcohol
+- No se permiten fiestas o música fuerte.
+- No pueden ingresar Caterings externos.
+- Solo está permitido fumar en el exterior.
+- Ocúpese de respetar y de no dañar el espacio, el mobiliario y el equipamiento. Cualquier pérdida o daño podría suponer una deducción sobre el depósito de seguridad.
+- Avisar al anfitrión si surgen cambios de acuerdo a lo pactado.`
             }
         },
         methods: {
