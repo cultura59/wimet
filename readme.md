@@ -10,3 +10,4 @@
 - Publica precio sugerido 1/2 jornada #24
 - Publica boton guardar fotos #23
 - MENSAJE - Corregir cantidad de asistentes #28
+- PUBLICA - Tipo de usos permitidos #30
