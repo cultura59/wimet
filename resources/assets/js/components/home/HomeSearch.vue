@@ -73,7 +73,7 @@
             </div>
             <div class="search-data">
                 <div class="row" :class="{'box-opaco': opacacidad}">
-                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6" v-for="(espacio, key) in espacios.data" :key="espacio.id">
+                    <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6 col-xl-4" v-for="(espacio, key) in espacios.data" :key="espacio.id">
                         <espacio-search
                             :espacio-id="espacio.id"
                             :category-id="categoriaId">
