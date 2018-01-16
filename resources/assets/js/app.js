@@ -67,7 +67,7 @@ if (window.location.protocol == "https") {
 if(ip !== "") {
     Vue.http.options.root = `${protocol}://${ip}`;
 } else {
-    Vue.http.options.root = `${protocol}://localhost:8000`;
+    Vue.http.options.root = `${protocol}://wimet.co`;
 }
 
 Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;

@@ -77,7 +77,13 @@
 								</tr>
 							</tbody>
 						</table>
-						<button class="send-propuesta" @click="crearPropuesta()">ENVIAR</button>
+						<div class="wt-space-block">
+							<button class="btn-transparent-black">Condiciones de  contratación</button>
+							<div>
+								<button class="btn-transparent-black">Vista previa</button>
+								<button class="send-propuesta" @click="crearPropuesta()">ENVIAR</button>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -140,6 +146,18 @@
 				<button class="modalServicios__content__btn" @click="agregarServicio()">AGREGAR</button>
 			</div>
 		</div>
+		<div v-show="modalTerminos" class="modalServicios">
+			<div class="modalServicios__content">
+				<span class="close" @click="modalServicios = false">&times;</span>
+				<div class="row wt-m-top-3">
+					<div class="wt-center-column col-md-6">
+						<label for="descripcion">Descripción</label>
+						<textarea name="" id="" cols="30" rows="10"></textarea>
+					</div>
+				</div>
+				<button class="modalServicios__content__btn" @click="agregarServicio()">AGREGAR</button>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -164,7 +182,8 @@
 				date: '',
                 lastDay: '',
 				total_servicios: 0,
-                modalServicios: false
+                modalServicios: false,
+                modalTerminos: false
 			}
 		},
         mounted() {
@@ -300,7 +319,13 @@
 		color: #fff;
 		padding: .5em 3em;
 		border: none;
-		float: right;
+		margin-top: 2em;
+	}
+	.btn-transparent-black {
+		border-radius: 1px;
+		background-color: transparent;
+		padding: .5em 3em;
+		border: 1px solid #333;
 		margin-top: 2em;
 	}
 	.modalServicios {

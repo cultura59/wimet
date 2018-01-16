@@ -31,10 +31,15 @@ window.fbAsyncInit = () => {
 }(document, 'script', 'facebook-jssdk'));
 
 const ip = location.host;
+let protocol = "http";
+
+if (window.location.protocol == "https") {
+    protocol = "https";
+}
 if(ip !== "") {
-    Vue.http.options.root = `http://${ip}`;
+    Vue.http.options.root = `${protocol}://${ip}`;
 } else {
-    Vue.http.options.root = `http://localhost:8000`;
+    Vue.http.options.root = `${protocol}://wimet.co`;
 }
 
 Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;

@@ -8,11 +8,11 @@
                     <div class="col-md-8">
                         <div class="center-title">
                             <h3 class="title">{{espacio.name}}</h3>
-                            <img src="http://www.wimet.co/img/wimet_ic_verified_user_black_24px.svg" alt="Espacio verificado" class="verified">
+                            <img src="https://www.wimet.co/img/wimet_ic_verified_user_black_24px.svg" alt="Espacio verificado" class="verified">
                         </div>
                         <div class="direccion"><span>{{espacio.city}}, {{espacio.state}}</span></div>
                         <div class="contenedor-invitados">
-                            <img src="http://www.wimet.co/img/wimet_ic_group_black_24px.svg" class="icon-people"> 120 Máx
+                            <img src="https://www.wimet.co/img/wimet_ic_group_black_24px.svg" class="icon-people"> 120 Máx
                         </div>
                         <div class="box-descripcion">
                             <div class="box-descripcion__titulo">
@@ -337,7 +337,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                                     <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-instagram.svg" alt="Wimet" class="img-responsive">
                                 </a>
                                 <a href="https://www.facebook.com/wimet.co/">
-                                    <img src="http://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518301/icons/wimet-icon-facebook.svg" alt="Wimet" class="img-responsive">
+                                    <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/v1515518301/icons/wimet-icon-facebook.svg" alt="Wimet" class="img-responsive">
                                 </a>
                                 <a href="https://www.linkedin.com/company/wimet">
                                     <img src="https://res.cloudinary.com/wimet/image/upload/c_scale,h_30,w_30/icons/wimet-icon-linkedin.svg" alt="Wimet" class="img-responsive">
