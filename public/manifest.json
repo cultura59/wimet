@@ -8,12 +8,12 @@
   "theme_color": "#FC5289",
   "icons": [
     {
-      "src": "http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo-white_z3tlgh.svg",
+      "src": "https://res.cloudinary.com/wimet/image/upload/icons/logo-wimet.png",
       "sizes": "192x192",
       "type": "image/svg"
     },
     {
-      "src": "http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo-white_z3tlgh.svg",
+      "src": "https://res.cloudinary.com/wimet/image/upload/icons/logo-wimet.png",
       "sizes": "512x512",
       "type": "image/svg"
     }
