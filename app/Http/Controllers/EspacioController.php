@@ -25,32 +25,39 @@ class EspacioController extends Controller
      */
     public function index(Request $request)
     {
-        $query = Espacio::with(
-            'prices',
-            'user',
-            'categorias',
-            'servicios',
-            'estilosEspacio',
-            'rules',
-            'images',
-            'characteristics',
-            'access'
-        );
-        $query->orderBy('id', 'DESC');
-        // Filtro por status
-        if($request->has('status')) {
-            $query->where('status', '=', $request->input('status'));
+        try {
+            $query = Espacio::with(
+                'prices',
+                'user',
+                'categorias',
+                'servicios',
+                'estilosEspacio',
+                'rules',
+                'images',
+                'characteristics',
+                'access'
+            );
+            $query->orderBy('id', 'DESC');
+            // Filtro por status
+            if ($request->has('status')) {
+                $query->where('status', '=', $request->input('status'));
+            }
+            // Filtro por step
+            if ($request->has('step')) {
+                $query->where('step', '=', $request->input('step'));
+            }
+            if ($request->has('user')) {
+                $user = User::find($request->input('user'));
+                if (!$user->isAdmin) {
+                    $query->where('user_id', '=', $request->input('user'));
+                }
+            }
+            $querystringArray = $request->only(['status', 'step', 'page']);
+            $espacios = $query->paginate(10)->appends($querystringArray);
+            return $espacios;
+        }catch (\Exception $e) {
+            return response('Su usuario no tiene permisos para ver esta pantalla', 500);
         }
-        // Filtro por step
-        if($request->has('step')) {
-            $query->where('step', '=', $request->input('step'));
-        }
-        if($request->has('user')){
-            $query->where('user_id', '=', $request->input('user'));
-        }
-        $querystringArray = $request->only(['status','step','page']);
-        $espacios = $query->paginate(20)->appends($querystringArray);
-        return $espacios;
     }
 
     /**

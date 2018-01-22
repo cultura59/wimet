@@ -6,6 +6,10 @@
             <p class="wt-m-top-1">Tu espacio será publicado en Wimet.co una vez aprobado por nuestro equipo.</p>
             <button class="btn-complete" @click="aprobacion()">ENVIAR PARA APROBACIÓN</button>
         </template>
+        <template v-if="$store.getters.getUser.isAdmin === 1 && $store.getters.getEspacio.step === 7">
+            <h1 class="publica-titulo">{{$store.getters.getEspacio.name}} pendiente de aprobación</h1>
+            <button class="btn-primary-pig-lg wt-m-top-2" @click="publicaEspacio()">Publicar espacio</button>
+        </template>
         <div class="row">
             <div class="wt-m-top-2 col-xs-12 col-md-6">
                 <div class="box-container">
@@ -141,6 +145,18 @@
                 } else {
                     this.$router.push({name: url, params: { name: val }});
                 }
+            },
+            publicaEspacio() {
+                this.$store.getters.getEspacio.status = 1;
+                this.$store.getters.getEspacio.step = 8;
+                this.$http.put(`api/espacio/${this.$store.getters.getEspacio.id}`, this.$store.getters.getEspacio)
+                .then(res => {
+                    this.getEspacio(this.$store.getters.getEspacio.id);
+                    this.$toastr.success("El espacio fue publicado correctamente", 'Exito!!!');
+                    location.href = "/dashboard#/espacios";
+                }, err => {
+                    this.$toastr.error(err, 'Ups hubo un error');
+                });
             }
         }
     }

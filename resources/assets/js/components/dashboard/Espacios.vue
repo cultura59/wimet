@@ -5,12 +5,39 @@
             <a href="#" @click="newEspacio($event)" class="container-mis-espacios__btn">NUEVO ESPACIO</a>
         </div>
         <div class="espacios-main">
+            <div v-if="$store.getters.getUser.isAdmin === 1" class="container-admin">
+                <div>
+                    <label>Total:</label>
+                    <span>{{espacios.total}}</span>
+                </div>
+                <div>
+                    <label>Estado</label>
+                    <select v-model="filEstado" @change="getEspacioBycheck()">
+                        <option value="">Todos</option>
+                        <option value="0">No publicado</option>
+                        <option value="1">Publicado</option>
+                    </select>
+                </div>
+                <div>
+                    <label>Paso de publicación</label>
+                    <select v-model="filStep" @change="getEspacioByStep()">
+                        <option value="">Todos</option>
+                        <option value="1">Datos básicos</option>
+                        <option value="2">Actividades</option>
+                        <option value="3">Amenities</option>
+                        <option value="4">Disponibilidad</option>
+                        <option value="5">Fotos</option>
+                        <option value="6">Descripción</option>
+                        <option value="7">Pendiente aprobación</option>
+                    </select>
+                </div>
+            </div>
             <div>
                 <div v-if="!loadingData">
                     <div
-                        v-if="espacios.length > 0"
+                        v-if="espacios.data.length > 0"
                         class="box-expacio"
-                        v-for="espacio in espacios"
+                        v-for="espacio in espacios.data"
                     >
                         <img v-if="espacio.status == true" class="tag" src="https://res.cloudinary.com/wimet/image/upload/tag_publicado.svg">
                         <img v-if="espacio.step == 7" class="tag" src="https://res.cloudinary.com/wimet/image/upload/tag_revision.svg">
@@ -43,7 +70,7 @@
                             </div>
                         </div>
                     </div>
-                    <p v-if="espacios.length == 0">No posee espacios aún...</p>
+                    <p v-if="espacios.data.length == 0">No posee espacios aún...</p>
                 </div>
                 <div v-if="loadingData">
                     <div class="white-widget grey-bg author-area">
@@ -65,16 +92,27 @@
                     </div>
                 </div>
             </div>
+            <div class="wt-center-around wt-m-top-3">
+                <div>
+                    <span v-if="espacios.prev_page_url !== null" @click="getPagination(true)" class="pointer">Atrás</span>
+                </div>
+                <div>
+                    <span v-if="espacios.next_page_url !== null" @click="getPagination(false)" class="pointer">Siguiente</span>
+                </div>
+            </div>
         </div>
     </div>
 </template>
 <script>
     export default {
+        name: "Espacios",
         data() {
             return {
                 espacios: [],
                 estado: 1,
-                loadingData: true
+                loadingData: true,
+                filEstado: "",
+                filStep: ""
             }
         },
         mounted() {
@@ -85,10 +123,11 @@
                 this.loadingData = true;
                 this.$http.get(`api/espacio?user=${this.$store.getters.getUser.id}`)
                 .then(res => {
-                    this.espacios = res.body.data;
+                    this.espacios = res.body;
                     this.loadingData = false;
                 }, err => {
-                    console.log(err);
+                    this.loadingData = false;
+                    this.$toastr.error(err, "Ups hubo un error!!!");
                 });
             },
             getEspacio(e, espacio) {
@@ -101,6 +140,51 @@
                 e.preventDefault();
                 this.$store.commit('setEspacio', {});
                 location.href = '/publica/espacio';
+            },
+            getPagination(val) {
+                this.loadingData = true;
+                let url;
+                if(val) {
+                    url = this.espacios.prev_page_url;
+                }else {
+                    url = this.espacios.next_page_url;
+                }
+                this.$http.get(url)
+                .then(res => {
+                    this.espacios = res.body;
+                    this.loadingData = false;
+                }, err => {
+                    this.loadingData = false;
+                    this.$toastr.error(err, "Ups hubo un error!!!");
+                });
+            },
+            getEspacioBycheck() {
+                if(this.filEstado == "") {
+                    this.getEspacios();
+                }
+                this.loadingData = true;
+                this.$http.get(`api/espacio?user=${this.$store.getters.getUser.id}&status=${this.filEstado}`)
+                .then(res => {
+                    this.espacios = res.body;
+                    this.loadingData = false;
+                }, err => {
+                    this.loadingData = false;
+                    this.$toastr.error(err, "Ups hubo un error!!!");
+                });
+            },
+            getEspacioByStep() {
+                if(this.filStep == "") {
+                    this.getEspacios();
+                }
+                this.loadingData = true;
+                this.$http.get(`api/espacio?user=${this.$store.getters.getUser.id}&step=${this.filStep}&status=0`)
+                    .then(res => {
+                        this.espacios = res.body;
+                        this.loadingData = false;
+                    }, err => {
+                        this.loadingData = false;
+                        this.$toastr.error(err, "Ups hubo un error!!!");
+                    });
             }
         }
     }
@@ -193,5 +277,14 @@
             background-color: #ffffff;
             box-shadow: 0 2px 14px 0 rgba(0, 0, 0, 0.1);
         }
+    }
+    .pointer {
+        cursor: pointer;
+        color: #FC5289;
+    }
+    .container-admin {
+        display: flex;
+        justify-content: space-around;
+        margin-bottom: 2em;
     }
 </style>

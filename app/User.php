@@ -40,7 +40,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-        'pivot', 'password', 'remember_token', 'isAdmin',
+        'pivot', 'password', 'remember_token'
     ];
 
     /**
