@@ -46,7 +46,7 @@
 							<div class="col-md-2">
 								<div class="wt-center-column">
 									<strong>{{mensaje.firstname}}</strong>
-									<span class="firstUpper">{{$moment(mensaje.created_at).locale('es').format("MMM DD")}}</span>
+									<span class="firstUpper">{{$moment(mensaje.created_at).locale('es').format("DD MMM YYYY")}}</span>
 								</div>
 							</div>
 							<div class="col-md-5">

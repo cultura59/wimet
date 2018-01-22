@@ -132,6 +132,7 @@ class EventoController extends Controller
 
         //Query de mensajes
         $queryMensjes = DB::table('mensajes');
+        $queryMensjes->select('mensajes.*', 'users.imagesource', 'users.firstname', 'espacios.name');
         $queryMensjes->join('users', 'mensajes.user_id', '=', 'users.id');
         $queryMensjes->join('eventos', 'mensajes.evento_id', '=', 'eventos.id');
         $queryMensjes->join('espacios', 'eventos.espacio_id', '=', 'espacios.id');
