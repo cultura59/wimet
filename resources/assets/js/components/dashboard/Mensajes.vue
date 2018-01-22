@@ -36,7 +36,7 @@
 					</div>
 					<div
 						v-if="(eventoselect !== '')"
-						v-for="(mensaje, key) in mensajes"
+						v-for="(mensaje, key) in mensajes.data"
 						class="cursor-pointer mensaje row"
 					>
 						<router-link :to="`/mensaje/${mensaje.evento_id}`">
@@ -84,6 +84,14 @@
 					</div>
 				</div>
 			</div>
+			<div class="wt-center-around wt-m-top-3">
+				<div>
+					<span v-if="mensajes.prev_page_url !== null" @click="getPagination(true)" class="pointer">Atrás</span>
+				</div>
+				<div>
+					<span v-if="mensajes.next_page_url !== null" @click="getPagination(false)" class="pointer">Siguiente</span>
+				</div>
+			</div>
 		</div>
 	</div>
 </template>
@@ -118,7 +126,7 @@
 				this.$http.get(url)
 				.then(res => {
 					this.mensajes = res.body;
-					this.eventoselect = this.mensajes[0];
+					this.eventoselect = this.mensajes.data[0];
 					this.loadingData = false;
 				});
 			},
@@ -129,6 +137,20 @@
 				e.preventDefault();
 				this.showMensajesType = type;
 				this.getMensajes('');
+			},
+            getPagination(val) {
+			    let url;
+			    if(val) {
+			        url = this.mensajes.prev_page_url;
+				}else {
+                    url = this.mensajes.next_page_url;
+				}
+                this.$http.get(url)
+				.then(res => {
+					this.mensajes = res.body;
+					this.eventoselect = this.mensajes.data[0];
+					this.loadingData = false;
+				});
 			}
 		}
 	}
@@ -224,5 +246,9 @@
 		display: flex;
 		justify-content: center;
 		align-items: center;
+	}
+	.pointer {
+		cursor: pointer;
+		color: #FC5289;
 	}
 </style>
