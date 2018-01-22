@@ -48,7 +48,7 @@ class UserController extends Controller
             $user->imagesource = ($request->imagesource) ? $request->imagesource : null;
             $user->password =  bcrypt($request->password);
             $user->tipo_clientes_id = 1;
-            $user->imagesource = ($request->imagesource) ? $request->imagesource : "/img/wimet_ic_avatar_black_big.svg";
+            $user->imagesource = ($request->imagesource) ? $request->imagesource : "https://res.cloudinary.com/wimet/image/upload/ilustraciones/wimet_ic_avatar_black_big.svg";
             $user->isAdmin = 0;
             $user->status = ($request->status == false || $request->status == null) ? false : true;
             $user->save();
@@ -136,6 +136,7 @@ class UserController extends Controller
             $user->businessName = ($request->businessName) ? $request->businessName : "";
             $user->industry = ($request->industry) ? $request->industry : "";
             $user->personaldescription = ($request->personaldescription) ? $request->personaldescription : "";
+            $user->descuentos = ($request->descuentos) ? $request->descuentos : $user->descuentos;
             $user->save();
             // Se sincronizan los espacios favoritos
             if($request->espacios){
@@ -144,12 +145,6 @@ class UserController extends Controller
                     array_push($arrEspacios, $esp['id']);
                 }
                 $user->espacios()->sync($arrEspacios);
-            }
-
-            if($request->senias) {
-                $nServicio = new PropuestaServicios($request->senias);
-                $nServicio->propuesta_id = $propuesta->id;
-                $nServicio->save();
             }
             DB::commit();
             return $user;
@@ -430,5 +425,9 @@ class UserController extends Controller
         }catch (\Exception $e) {
             return reponse('No se pudo modificar el avatar', 500);
         }
+    }
+
+    public function addSenia(Request $request) {
+
     }
 }

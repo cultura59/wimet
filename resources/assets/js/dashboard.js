@@ -44,12 +44,6 @@ if(ip !== "") {
 
 Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
 
-const app = new Vue({
-    el: '#dashboard',
-    router,
-    store
-});
-
 import moment from 'moment';
 import toastr from 'toastr';
 toastr.options = {
@@ -69,6 +63,13 @@ toastr.options = {
     "showMethod": "fadeIn",
     "hideMethod": "fadeOut"
 }
+
 Vue.prototype.$moment = moment;
 Vue.prototype.$toastr = toastr;
 Vue.prototype.$mercadopago = Mercadopago;
+
+const app = new Vue({
+    el: '#dashboard',
+    router,
+    store
+});

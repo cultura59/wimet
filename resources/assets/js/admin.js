@@ -1,24 +1,19 @@
-import Vue from 'vue';
+import Vue from 'vue'
+import VueResource from 'vue-resource'
 import Auth from './packages/auth/Auth.js';
 import VueRouter from 'vue-router';
 import {router} from './components/admin/routes';
 
 Vue.use(Auth);
 Vue.use(VueRouter);
+Vue.use(VueResource);
 
 const ip = location.host;
-let protocol = "http";
+Vue.http.options.root = `http://${ip}`;
 
-if (window.location.protocol == "https") {
-    protocol = "https";
-}
+import moment from 'moment';
 
-if(ip !== "") {
-    Vue.http.options.root = `${protocol}://${ip}`;
-} else {
-    Vue.http.options.root = `${protocol}://localhost:8000`;
-}
-Vue.http.headers.common['Authorization'] = `Bearer ${Vue.auth.getToken()}`;
+Vue.prototype.$moment = moment;
 
 const admin = new Vue({
 	data: {
@@ -37,7 +32,3 @@ const admin = new Vue({
 	},
     router
 }).$mount('#adminApp');
-
-import moment from 'moment';
-
-Vue.prototype.$moment = moment;

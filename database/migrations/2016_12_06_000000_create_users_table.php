@@ -31,6 +31,7 @@ class CreateUsersTable extends Migration
               $table->text('databank')->nullable();
               $table->integer('tipo_clientes_id')->unsigned()->default(1);
               $table->foreign('tipo_clientes_id')->references('id')->on('tipo_clientes');
+              $table->integer('descuentos')->default(0);
               $table->boolean('isAdmin')->default(false);
               $table->boolean('status')->default(false);
               $table->rememberToken();

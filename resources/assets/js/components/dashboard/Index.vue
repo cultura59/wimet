@@ -12,6 +12,7 @@
                         $route.name == 'nueva-propuesta'||
                         $route.name == 'solicitud'
                     }">Mensajes</router-link>
+                    <router-link to="/propuestas" :class="{active: $route.name == 'Propuestas' || $route.name == 'Custom'}">Propuestas</router-link>
                     <router-link to="/espacios" :class="{active: $route.name == 'Espacios'}">Espacios</router-link>
                     <router-link to="/favoritos" :class="{active: $route.name == 'Favoritos'}">Favoritos</router-link>
                     <router-link to="/perfil" :class="{active: $route.name == 'Perfil'}">Mi perfil</router-link>

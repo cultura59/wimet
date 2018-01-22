@@ -136,7 +136,7 @@
 				});
 			},
 			getPropuestas() {
-				this.$http.get(`api/propuesta/${this.eventoId}`)
+				this.$http.get(`api/propuesta?evento_id=${this.eventoId}`)
 				.then(res => {
 					this.propuestas = res.body;
 					if(this.propuestas.length == 0) {

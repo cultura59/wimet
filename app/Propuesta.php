@@ -46,4 +46,8 @@ class Propuesta extends Model
 	public function pagos() {
         return $this->hasMany('App\PropuestaPagos');
 	}
+
+	public function espacio() {
+    	return $this->belongsTo('App\Espacio');
+	}
 }

@@ -30,7 +30,8 @@ class User extends Authenticatable
         'personaldescription',
         'city',
         'urlfacebook',
-        'urllinkedin'
+        'urllinkedin',
+        'descuentos'
     ];
 
     /**
