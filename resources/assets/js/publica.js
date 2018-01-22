@@ -34,7 +34,7 @@ window.fbAsyncInit = () => {
 const ip = location.host;
 let protocol = "http";
 
-if (window.location.protocol == "https") {
+if (window.location.protocol == "https:") {
     protocol = "https";
 }
 

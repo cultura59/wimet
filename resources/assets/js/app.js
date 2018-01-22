@@ -63,7 +63,6 @@ let protocol = "http";
 if (window.location.protocol == "https:") {
     protocol = "https";
 }
-console.log(window.location.protocol);
 if(ip !== "") {
     Vue.http.options.root = `${protocol}://${ip}`;
 } else {

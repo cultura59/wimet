@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Mensaje;
+use App\User;
 use Illuminate\Http\Request;
 use App\Evento;
 use App\EventosDias;
@@ -109,6 +110,7 @@ class EventoController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function getMensajes(Request $request, $id, $type) {
+        $user = User::find($id);
         // Se chequea si el que pide los mensajes es anfitrion u organizador
         if($type == 1) {
             $whereType = 'eventos.cliente_id';
@@ -121,7 +123,12 @@ class EventoController extends Controller
         if ($request->has('estado')) {
             $queryEventos->where('eventos.estado', $request->input('estado'));
         }
-        $eventosIds = $queryEventos->where($whereType, $id)->get();
+
+        // Chequeo si el usuario es admin ignoro los filtros
+        if(!$user->isAdmin) {
+            $queryEventos->where($whereType, $id);
+        }
+        $eventosIds = $queryEventos->get();
 
         //Query de mensajes
         $queryMensjes = DB::table('mensajes');

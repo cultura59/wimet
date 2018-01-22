@@ -30,6 +30,13 @@ class Propuesta extends Model
 							'condiciones',
 							'iva'
 						];
+    /**
+     * @fn evento()
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function evento() {
+        return $this->belongsTo('App\Evento');
+    }
 
     /**
      * @fn getPropuestasDias()
@@ -39,14 +46,26 @@ class Propuesta extends Model
         return $this->hasMany('App\PropuestaDias');
     }
 
+    /**
+     * @fn servicios()
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function servicios() {
     	return $this->hasMany('App\PropuestaServicios');
 	}
 
+    /**
+     * @fn pagos()
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
 	public function pagos() {
         return $this->hasMany('App\PropuestaPagos');
 	}
 
+    /**
+     * @fn espacio()
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
 	public function espacio() {
     	return $this->belongsTo('App\Espacio');
 	}

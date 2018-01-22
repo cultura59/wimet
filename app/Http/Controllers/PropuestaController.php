@@ -119,10 +119,11 @@ class PropuestaController extends Controller
     public function show($id)
     {
         try {
-            $propuestas = Propuesta::where('evento_id', $id)->get();
-            return $propuestas;
+            $query = Propuesta::with('evento', 'dias', 'pagos', 'servicios', 'espacio');
+            $query->where('id', '=', $id);
+            return $query->first();
         }catch(\Exception $e){
-            return response('No se encontran propuestas asociadas al evento id: ' . $id, 400);
+            return response('No se encontró la propuesta asociadas al id: ' . $id . ', error: ' . $e->getMessage(), 400);
         }
     }
 

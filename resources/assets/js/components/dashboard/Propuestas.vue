@@ -108,7 +108,7 @@
                 this.getPropuestas('');
             },
             verPropuesta(id) {
-                console.log(id);
+                this.$router.push({name: 'Propuesta', params: { id: id }});
             }
         }
     }
