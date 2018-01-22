@@ -1,7 +1,7 @@
 <template>
 	<header class="login-header" :class="{'header-fixed': (fixed == 'true'), 'login-header--shadow': (shadow == 'true')}">
 		<nav class="login-header__navbar">
-			<a href="/"><img src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="158" class="img-responsive"></a>
+			<a href="/"><img src="https://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="158" class="img-responsive"></a>
 			<div class="login-header__navbar__actions">
 				<ul class="login-header__navbar__actions__menue">
 					<template v-if="authenticated">

@@ -29,7 +29,7 @@
 			<template v-if="!logued">
 				<div class="container">
 					<div>
-						<img src="http://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet">
+						<img src="https://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet">
 					</div>
 					<div class="row">
 						<div class="input-field col s12">
