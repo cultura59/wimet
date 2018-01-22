@@ -60,7 +60,7 @@
 							</div>
 						</router-link>
 					</div>
-					<div v-if="(mensajes.length == 0)" class="no-hay-mensajes">
+					<div v-if="(mensajes.data.length == 0)" class="no-hay-mensajes">
 						<p>No hay consultas aún...</p>
 					</div>
 				</div>

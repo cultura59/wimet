@@ -463,7 +463,7 @@
                             <td class="mcnImageContent" valign="top" style="padding-right: 0px; padding-left: 0px; padding-top: 0; padding-bottom: 0; text-align:center;">
                                 
                                     
-                                        <img align="center" alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->images[0]->name}}" width="600" style="max-width:1920px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
+                                        <img align="center" alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->portada}}" width="600" style="max-width:1920px; padding-bottom: 0; display: inline !important; vertical-align: bottom;" class="mcnImage">
 
 
                             </td>

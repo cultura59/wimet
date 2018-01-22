@@ -261,10 +261,19 @@
                                         <span v-if="messageErrorTitle" style="color:red;font-size:12px;">Campo requerido</span>
                                     </div>
                                 </div>
-                                <div class="form-contact">
-                                    <div class="form-contact__textarea">
-                                        <label for="title">Cantidad de asistentes</label>
-                                        <input v-model="people" id="people" class="textarea-lg" placeholder="50" />
+                                <div class="row">
+                                    <div class="col-md-6 form-contact">
+                                        <div class="form-contact__textarea">
+                                            <label for="people">Cantidad de asistentes</label>
+                                            <input v-model="people" id="people" class="textarea-lg" placeholder="50" />
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6 form-contact">
+                                        <div class="form-contact__textarea">
+                                            <label for="telefono">Teléfono de contacto</label>
+                                            <input v-model="$store.getters.getUser.phone" id="telefono" class="textarea-lg" placeholder="+541134441100" />
+                                            <span v-if="messageErrorTel" style="color:red;font-size:12px;">Campo requerido</span>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="form-contact">
@@ -376,6 +385,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
         ],
         data() {
             return {
+                title: '',
                 modalReserva: false,
                 authenticated: this.$auth.isAuthenticated(),
                 espacio: {},
@@ -397,6 +407,7 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                 mensaje: '',
                 terminos: false,
                 messageErrorTitle: false,
+                messageErrorTel: false,
                 messageErrorDetalle: '',
                 showFee: false
             }
@@ -601,6 +612,11 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     this.btnSend = true;
                     return;
                 }
+                if(this.$store.getters.getUser.phone == '') {
+                    this.messageErrorTel = true;
+                    this.btnSend = true;
+                    return;
+                }
                 if(this.mensaje == '') {
                     this.messageErrorDetalle = "Campo requerido";
                     this.btnSend = true;
@@ -611,7 +627,6 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     this.btnSend = true;
                     return;
                 }
-
                 let body = {
                     'title': this.title,
                     'clientId': this.$store.getters.getUser.id,
@@ -624,15 +639,16 @@ Ej.: 'Hola, mi nombre es Paco y quiero organizar un Workshop para 30 personas. V
                     'fee': this.fee,
                     'subTotal': this.subTotal,
                     'total': this.total,
+                    'telefono': this.$store.getters.getUser.phone,
                     'dias': this.selected
                 }
                 this.$http.post(`api/sendreserva`, body)
-                    .then(res => {
-                        window.location.href = `/thankyou/${res.body.id}`;
-                    }, err => {
-                        this.btnSend = true;
-                        swal(err.message);
-                    });
+                .then(res => {
+                    window.location.href = `/thankyou/${res.body.id}`;
+                }, err => {
+                    this.btnSend = true;
+                    swal(err.message);
+                });
             }
         }
     }

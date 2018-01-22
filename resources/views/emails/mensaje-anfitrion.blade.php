@@ -493,7 +493,7 @@
 
 
 
-                                                                            <img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->images[0]->name}}" width="176" style="max-width:1920px;" class="mcnImage">
+                                                                            <img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->portada}}" width="176" style="max-width:1920px;" class="mcnImage">
 
 
 

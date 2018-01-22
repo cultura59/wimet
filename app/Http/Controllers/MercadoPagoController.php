@@ -45,7 +45,7 @@ class MercadoPagoController extends Controller
         try {
             $mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
             $payment_data = array(
-                "transaction_amount" => 1500,
+                "transaction_amount" => 1800,
                 "token" => $request["token"],
                 "description" => "Title of what you are paying for",
                 "installments" => 1,

@@ -63,6 +63,7 @@
                             <span class="wt-m-bot-1">Actividad: {{getCategoria(evento.estilo_espacios_id)}}</span>
                             <span class="wt-m-bot-1">Invitados: {{evento.invitados}}</span>
                             <span class="wt-m-bot-1">Fechas solicitadas</span>
+                            <span v-if="$store.getters.getUser.isAdmin" class="wt-m-bot-1">Teléfono de contacto: {{evento.telefono}}</span>
                             <ul>
                                 <li v-for="dia in dias" :key="dia.id">
                                     <span v-if="dia.tipo == 'all'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (jornada completa)</span>

@@ -240,6 +240,7 @@ class HomeController extends Controller
             $evento->total_horas = $request->totalHoras;
             $evento->descripcion_consulta = $request->mensaje;
             $evento->estado = 'consulta';
+            $evento->telefono = $request->telefono;
             $evento->save();
             $days = [];
             foreach ($request->dias as $dia) {
@@ -329,4 +330,3 @@ class HomeController extends Controller
         dd($request->all());
     }
 }
-

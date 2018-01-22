@@ -31,6 +31,10 @@
                         <option value="7">Pendiente aprobación</option>
                     </select>
                 </div>
+                <div>
+                    <label>Buscar por nombre</label>
+                    <input type="text" v-model="byNombre">
+                </div>
             </div>
             <div>
                 <div v-if="!loadingData">
@@ -112,7 +116,8 @@
                 estado: 1,
                 loadingData: true,
                 filEstado: "",
-                filStep: ""
+                filStep: "",
+                byNombre: ""
             }
         },
         mounted() {
