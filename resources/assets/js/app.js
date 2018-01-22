@@ -60,10 +60,10 @@ window.fbAsyncInit = () => {
 const ip = location.host;
 let protocol = "http";
 
-if (window.location.protocol == "https") {
+if (window.location.protocol == "https:") {
     protocol = "https";
 }
-
+console.log(window.location.protocol);
 if(ip !== "") {
     Vue.http.options.root = `${protocol}://${ip}`;
 } else {
