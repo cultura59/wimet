@@ -11,6 +11,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use MP;
 use DB;
+use Mail;
 use App\User;
 use App\UserSenias;
 use App\Mail\SendSenia;
