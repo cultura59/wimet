@@ -445,7 +445,7 @@
             <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnCaptionRightImageContentContainer">
                 <tbody><tr>
                     <td class="mcnCaptionRightImageContent" valign="top">
-                        <img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->portada}}" width="176" style="max-width:1920px;" class="mcnImage">
+                        <img alt="" src="{{$espacio->portada}}" width="176" style="max-width:1920px;" class="mcnImage">
                     </td>
                 </tr>
             </tbody></table>

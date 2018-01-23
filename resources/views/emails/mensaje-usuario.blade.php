@@ -433,7 +433,7 @@
 												<tbody>
 												<tr>
 													<td class="mcnImageCardBottomImageContent" align="left" valign="top" style="padding-top:0px; padding-right:0px; padding-bottom:0; padding-left:0px;">
-														<img alt="" src="https://res.cloudinary.com/wimet/image/upload/q_60/{{$espacio->portada}}" width="564" style="max-width:1920px;" class="mcnImage">
+														<img alt="" src="{{$espacio->portada}}" width="564" style="max-width:1920px;" class="mcnImage">
 													</td>
 												</tr>
 												<tr>
