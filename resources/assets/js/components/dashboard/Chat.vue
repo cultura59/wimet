@@ -21,11 +21,11 @@
                             class="content-bottons__transparent">¡ENVIAR PRESUPUESTO!
                         </button>
                         <button
-                            v-if="$store.getters.getUser.id == evento.cliente_id && mensajeEnviar == ''"
+                            v-if="$store.getters.getUser.id == evento.cliente_id"
                             @click="solicitarPropuesta()"
                             class="content-bottons__transparent">¡SOLICITAR DATOS!
                         </button>
-                        <button v-show="mensajeEnviar !== ''" class="content-bottons__send" @click="sendMensaje()">
+                        <button class="content-bottons__send" @click="sendMensaje()">
                             <span v-show="!showLoading">ENVIAR MENSAJE</span>
                             <img v-if="showLoading" src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="20px" />
                         </button>

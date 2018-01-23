@@ -47,7 +47,7 @@ class MercadoPagoController extends Controller
             $payment_data = array(
                 "transaction_amount" => 1800,
                 "token" => $request["token"],
-                "description" => "Title of what you are paying for",
+                "description" => "Correspondiente a seña del espacio " . $request['espacio']["name"],
                 "installments" => 1,
                 "payment_method_id" => $request["paymentMethodId"],
                 "payer" => array (
@@ -58,17 +58,25 @@ class MercadoPagoController extends Controller
                 "capture" => false
             );
             $res = $mp->post("/v1/payments", $payment_data);
-	    if($res['response']['status'] == 'authorized') {
-		$senia = new UserSenias();
-		$senia->user_id = $request['user_id'];
-		$senia->paymentid = $res['response']['id'];
-		$senia->vencimiento = $request['vencimiento'];
-		$senia->save();
-		$user = User::with('senias')->where('id', $request['user_id'])->first();
-		return $user;
-	    }else {
-        	return $res['response'];
-	    }
+            if($res['response']['status'] == 'authorized') {
+                $senia = new UserSenias();
+                $senia->user_id = $request['user_id'];
+                $senia->paymentid = $res['response']['id'];
+                $senia->vencimiento = $request['vencimiento'];
+                $senia->save();
+                $user = User::with('senias')->where('id', $request['user_id'])->first();
+                $duenio = User::find($request['espacio']["user_id"]);
+
+                $emails = ['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'];
+                // Email al organizador (Datos del espacio)
+                Mail::to($user->email)
+                    ->bcc($emails)
+                    ->queue(new ConsultaAnfitrion($duenio, $request['espacio'], $user));
+
+                return $user;
+            }else {
+                return $res['response'];
+            }
         } catch (\Exception $e) {
             return response('Hubo un error al realizar el pago, ' . $e->getMessage(), 500);
         }
