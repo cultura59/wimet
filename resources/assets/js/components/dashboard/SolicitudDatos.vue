@@ -287,8 +287,7 @@
             },
             sdkResponseHandler(status, res) {
                 if (status != 200 && status != 201) {
-                    console.log(res);
-                    this.$toastr.error(res, "Ups hubo un error!");
+                    this.$toastr.error(res.message, "Ups hubo un error!");
                 }else{
                     this.payment.token = res.id;
                     this.payment.user_id = this.$store.getters.getUser.id;
@@ -302,8 +301,7 @@
                         this.$store.commit('setUser', res.body);
                         this.$toastr.success("Fue enviado por email los datos del espacio", "Felicitaciones!");
                     }, error => {
-                        console.log(error);
-                        this.$toastr.error(error, "Ups hubo un error!");
+                        this.$toastr.error(error.body, "Ups hubo un error!");
                     });
                 }
             },
