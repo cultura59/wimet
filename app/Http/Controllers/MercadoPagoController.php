@@ -47,7 +47,8 @@ class MercadoPagoController extends Controller
      */
     public function sendPayment(Request $request) {
         DB::begintransaction();
-        try {
+        //try {
+            //$mp = new MP("TEST-8248736349517024-123008-431710274c1eef4ee4331ae7b658cfcf__LA_LD__-291916384");
             $mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
             $payment_data = array(
                 "transaction_amount" => 1800,
@@ -98,12 +99,12 @@ class MercadoPagoController extends Controller
                     DB::commit();
                     return $user;
                 case 'rejected':
-                    DB::callback();
+                    DB::rollback();
                     return response('El pago fue rechazado. Su tarjeta fue rechazada, intente pagar nuevamente.', 404);
             }
-        } catch (\Exception $e) {
-            DB::callback();
-            return response('Hubo un error al realizar el pago, ' . $e->getMessage(), 500);
-        }
+        /*} catch (\Exception $e) {
+            DB::rollback();
+            return response('Hubo un error al realizar el pago, ' . $e, 500);
+        }*/
     }
 }

@@ -220,6 +220,7 @@
         },
         methods: {
             initMP() {
+                //Mercadopago.setPublishableKey("TEST-f7ea7252-3fc4-4441-9efe-52a91055a149");
                 Mercadopago.setPublishableKey("APP_USR-0f9211c7-a1f9-45d8-b694-c865f48d5637");
                 Mercadopago.getIdentificationTypes();
             },

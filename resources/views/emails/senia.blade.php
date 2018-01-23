@@ -442,10 +442,10 @@ h4{
     <table align="left" border="0" cellpadding="0" cellspacing="0" style="max-width:100%; min-width:100%;" width="100%" class="mcnTextContentContainer">
     <tbody><tr>
 
-    <td valign="top" class="mcnTextContent" style="padding: 0px 18px 9px; font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; line-height: 150%; text-align: left;">
+    <td valign="top" class="mcnTextContent" style="padding: 0px 18px 9px; font-family: Roboto, ;Helvetica Neue;, Helvetica, Arial, sans-serif; line-height: 150%; text-align: left;">
 
-    <h1 style="text-align: left;"><span style="color:#333333"><span style="font-size:32px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">¡Felicitaciones {{$user-&gt;firstname}}</span></span>!</span></h1>
-<span style="color:#666666"><span style="font-size:14px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Tienes una autorización&nbsp;de reserva confirmada que podrás utilizar en cualquiera de los espacios disponibles ¡Es hora de solicitar una propuesta final para tu evento!&nbsp;<br>
+    <h1 style="text-align: left;"><span style="color:#333333"><span style="font-size:32px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">¡Felicitaciones {{$cliente->firstname}}</span></span>!</span></h1>
+<span style="color:#666666"><span style="font-size:14px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Tienes una autorización de reserva confirmada que podrás utilizar en cualquiera de los espacios disponibles ¡Es hora de solicitar una propuesta final para tu evento!<br>
 <br>
 Para hacer uso de la seña debes completar el proceso de reserva a través de Wimet. Esto te brinda seguridad para ti y para el anfitrión.<br>
 <br>
@@ -463,37 +463,27 @@ Si deseas coordinar una visita al espacio, puedes coordinar con el anfitrión:</
 <tbody class="mcnCaptionBlockOuter">
     <tr>
     <td class="mcnCaptionBlockInner" valign="top" style="padding:9px;">
-
-
-
-
     <table border="0" cellpadding="0" cellspacing="0" class="mcnCaptionRightContentOuter" width="100%">
     <tbody><tr>
     <td valign="top" class="mcnCaptionRightContentInner" style="padding:0 9px ;">
     <table align="left" border="0" cellpadding="0" cellspacing="0" class="mcnCaptionRightImageContentContainer" width="264">
     <tbody><tr>
     <td class="mcnCaptionRightImageContent" align="center" valign="top">
-
-
-
-    <img alt="" src="https://gallery.mailchimp.com/1149ced625fabf6f0c97d836c/images/a1487141-7b17-4dbd-824d-f7775b75e2a4.jpg" width="264" style="max-width:1920px;" class="mcnImage">
-
-
-
+        <img alt="" src="{{$espacio->portada}}" width="264" style="max-width:1920px;" class="mcnImage">
     </td>
     </tr>
     </tbody></table>
 <table class="mcnCaptionRightTextContentContainer" align="right" border="0" cellpadding="0" cellspacing="0" width="264">
     <tbody><tr>
     <td valign="top" class="mcnTextContent" style="line-height: 150%;">
-    <div style="color: #333333;"><span style="font-size:14px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">ANFITRION: {{$duenio-&gt;firstname} {{$duenio-&gt;lastname}}</span></span></div>
+    <div style="color: #333333;"><span style="font-size:14px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">ANFITRION: {{$duenio->firstname}} {{$duenio->lastname}}</span></span></div>
 
-<div style="color: #333333;text-align: left;"><span style="font-size:14px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">TELEFONO:&nbsp;{{$duenio-&gt;phone}}</span></span></div>
+<div style="color: #333333;text-align: left;"><span style="font-size:14px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">TELEFONO:{{$duenio->phone}}</span></span></div>
 
-<div style="color: #333333;text-align: left;"><span style="color:#333333"><span style="font-size:14px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">EMAIL: {{</span></span></span><span style="font-size:14px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">$duenio-&gt;email</span></span><span style="color:#333333"><span style="font-size:14px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">}}<br>
-    DIRECCION: {{$espacio-&gt;adress}}</span></span></span><br>
+<div style="color: #333333;text-align: left;"><span style="color:#333333"><span style="font-size:14px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">EMAIL: {{$duenio->email}}<br>
+    DIRECCION: {{$espacio->adress}}</span></span></span><br>
     <br>
-    <span style="font-size:18px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">{{$espacio-&gt;name}}</span></span></div>
+    <span style="font-size:18px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">{{$espacio->name}}</span></span></div>
 
     </td>
     </tr>
@@ -501,10 +491,6 @@ Si deseas coordinar una visita al espacio, puedes coordinar con el anfitrión:</
     </td>
     </tr>
     </tbody></table>
-
-
-
-
     </td>
     </tr>
     </tbody>
@@ -530,8 +516,8 @@ Si deseas coordinar una visita al espacio, puedes coordinar con el anfitrión:</
         <table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonContentContainer" style="border-collapse: separate !important;border-radius: 1px;background-color: #FC5289;">
         <tbody>
         <tr>
-        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-        <a class="mcnButton " title="VER MENSAJES" href="http://" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER MENSAJES</a>
+        <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, ;Helvetica Neue;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
+        <a class="mcnButton " title="VER MENSAJES" href="https://wimet.co/dashboard#/mensajes" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER MENSAJES</a>
     </td>
     </tr>
     </tbody>
@@ -568,15 +554,15 @@ Si deseas coordinar una visita al espacio, puedes coordinar con el anfitrión:</
 
         <h1 class="null" style="text-align: left;"><span style="font-size:24px"><span style="color:#333333"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">Preguntas frecuentes</span></span></span></h1>
     <span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333"><span style="font-size:16px">¿Puedo rechazar solicitudes de reserva?</span></span><br>
-    <span style="font-size:14px"><a href="https://wimet.zendesk.com/hc/es/articles/115000892254--Puedo-rechazar-solicitudes-de-reserva-" target="_blank" title="Ver más"><span style="color:#FC5289">ver más...</span></a><span style="color:#FC5289">&nbsp;</span></span><br>
+    <span style="font-size:14px"><a href="https://wimet.zendesk.com/hc/es/articles/115000892254--Puedo-rechazar-solicitudes-de-reserva-" target="_blank" title="Ver más"><span style="color:#FC5289">ver más...</span></a></span><br>
     <br>
-    <span style="color:#333333"><span style="font-size:16px">¿Qué debe tener mi publicación para ser exitoso?&nbsp;</span></span><br>
+    <span style="color:#333333"><span style="font-size:16px">¿Qué debe tener mi publicación para ser exitoso?</span></span><br>
     <a href="https://wimet.zendesk.com/hc/es/articles/115000892154--Qu%C3%A9-debe-tener-una-publicaci%C3%B3n-para-ser-exitosa-" target="_blank" title="Ver más"><span style="color:#FC5289"><span style="font-size:14px">ver más...</span></span></a><br>
     <br>
-    <span style="color:#333333"><span style="font-size:16px">¿Wimet cobra alguna comisión?&nbsp;</span></span><br>
-    <span style="font-size:14px"><a href="https://wimet.zendesk.com/hc/es/articles/115000660614--Publicar-un-espacio-en-Wimet-implica-alg%C3%BAn-costo-" target="_blank" title="Ver más"><span style="color:#FC5289">ver más...</span></a><span style="color:#FC5289">&nbsp;</span></span><br>
+    <span style="color:#333333"><span style="font-size:16px">¿Wimet cobra alguna comisión?</span></span><br>
+    <span style="font-size:14px"><a href="https://wimet.zendesk.com/hc/es/articles/115000660614--Publicar-un-espacio-en-Wimet-implica-alg%C3%BAn-costo-" target="_blank" title="Ver más"><span style="color:#FC5289">ver más...</span></a><span style="color:#FC5289"></span></span><br>
     <br>
-    <span style="color:#333333"><span style="font-size:16px">Encuentra más respuestas en nuestro </span></span><a href="https://wimet.zendesk.com/hc/es" target="_blank" title="Centro de ayuda"><span style="color:#FC5289"><span style="font-size:16px">Centro de ayuda</span></span></a><span style="color:#FC5289"><span style="font-size:16px">&nbsp;</span></span></span>
+    <span style="color:#333333"><span style="font-size:16px">Encuentra más respuestas en nuestro </span></span><a href="https://wimet.zendesk.com/hc/es" target="_blank" title="Centro de ayuda"><span style="color:#FC5289"><span style="font-size:16px">Centro de ayuda</span></span></a><span style="color:#FC5289"><span style="font-size:16px"></span></span></span>
     </td>
     </tr>
     </tbody></table>
@@ -613,7 +599,7 @@ Si deseas coordinar una visita al espacio, puedes coordinar con el anfitrión:</
 
         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
-        <div style="text-align: center;"><span style="font-size:12px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">¿Necesitas ayuda con el alquiler de tu&nbsp;espacio?<br>
+        <div style="text-align: center;"><span style="font-size:12px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif">¿Necesitas ayuda con el alquiler de tu espacio?<br>
     Nuestros equipo está aquí para ayudarte en <a href="mailto:soporte@wimet.co?subject=Ayuda%20para%20el%20alquiler%20de%20un%20espacio" target="_blank"><span style="color:#FC5289">soporte@wimet.co</span></a></span></span></div>
 
     </td>
