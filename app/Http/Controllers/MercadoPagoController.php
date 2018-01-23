@@ -75,7 +75,7 @@ class MercadoPagoController extends Controller
 
                 return $user;
             }else {
-                return $res['response'];
+                return response($res['response'], 404);
             }
         } catch (\Exception $e) {
             return response('Hubo un error al realizar el pago, ' . $e->getMessage(), 500);
