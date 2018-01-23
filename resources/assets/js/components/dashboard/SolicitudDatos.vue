@@ -300,8 +300,8 @@
                     .then(res => {
                         this.$store.commit('setUser', res.body);
                         this.$toastr.success("Fue enviado por email los datos del espacio", "Felicitaciones!");
-                    }, err => {
-                        this.$toastr.error(err, "Ups hubo un error!");
+                    }, error => {
+                        this.$toastr.error(error, "Ups hubo un error!");
                     });
                 }
             },
