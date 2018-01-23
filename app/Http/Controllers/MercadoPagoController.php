@@ -75,6 +75,22 @@ class MercadoPagoController extends Controller
                         ->queue(new ConsultaAnfitrion($duenio, $request['espacio'], $user));
 
                     return $user;
+                case 'in_process':
+                    $senia = new UserSenias();
+                    $senia->user_id = $request['user_id'];
+                    $senia->paymentid = $res['response']['id'];
+                    $senia->vencimiento = $request['vencimiento'];
+                    $senia->save();
+                    $user = User::with('senias')->where('id', $request['user_id'])->first();
+                    $duenio = User::find($request['espacio']["user_id"]);
+
+                    $emails = ['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'];
+                    // Email al organizador (Datos del espacio)
+                    Mail::to($user->email)
+                        ->bcc($emails)
+                        ->queue(new ConsultaAnfitrion($duenio, $request['espacio'], $user));
+
+                    return $user;
                 case 'rejected':
                     return response('El pago fue rechazado. Su tarjeta fue rechazada, intente pagar nuevamente.', 404);
             }
