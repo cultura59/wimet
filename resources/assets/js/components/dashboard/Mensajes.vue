@@ -141,9 +141,9 @@
             getPagination(val) {
 			    let url;
 			    if(val) {
-			        url = this.mensajes.prev_page_url;
+			        url = this.mensajes.prev_page_url.replace('http:', window.location.protocol);
 				}else {
-                    url = this.mensajes.next_page_url;
+                    url = this.mensajes.next_page_url.replace('http:', window.location.protocol);
 				}
                 this.$http.get(url)
 				.then(res => {
