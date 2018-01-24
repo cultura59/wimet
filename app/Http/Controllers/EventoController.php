@@ -137,8 +137,8 @@ class EventoController extends Controller
         $queryMensjes->join('eventos', 'mensajes.evento_id', '=', 'eventos.id');
         $queryMensjes->join('espacios', 'eventos.espacio_id', '=', 'espacios.id');
         $queryMensjes->whereIn('evento_id', $eventosIds);
-        $queryMensjes->orderBy('mensajes.id', 'desc');
         $queryMensjes->groupBy('evento_id');
+        $queryMensjes->orderBy('mensajes.id', 'desc');
         $mensajes = $queryMensjes->paginate(15);
         return $mensajes;
     }
