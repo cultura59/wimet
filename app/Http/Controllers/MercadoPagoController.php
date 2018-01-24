@@ -47,7 +47,7 @@ class MercadoPagoController extends Controller
      */
     public function sendPayment(Request $request) {
         DB::begintransaction();
-        //try {
+        try {
             //$mp = new MP("TEST-8248736349517024-123008-431710274c1eef4ee4331ae7b658cfcf__LA_LD__-291916384");
             $mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
             $payment_data = array(
@@ -74,6 +74,10 @@ class MercadoPagoController extends Controller
                     $user = User::with('senias')->where('id', $request['user_id'])->first();
                     $espacio = Espacio::find($request['espacio_id']);
                     $duenio = User::find($espacio->user_id);
+
+                    // Habilito la consulta para 3 espacios
+                    $user->descuentos = 3;
+                    $user->save();
 
                     $emails = ['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'];
                     // Email al organizador (Datos del espacio)
@@ -102,9 +106,35 @@ class MercadoPagoController extends Controller
                     DB::rollback();
                     return response('El pago fue rechazado. Su tarjeta fue rechazada, intente pagar nuevamente.', 404);
             }
-        /*} catch (\Exception $e) {
+        } catch (\Exception $e) {
             DB::rollback();
             return response('Hubo un error al realizar el pago, ' . $e, 500);
-        }*/
+        }
+    }
+
+    /**
+     * @fn sendData()
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function sendData(Request $request) {
+        DB::begintransaction();
+        try {
+            $user = User::with('senias')->find($request['user_id']);
+            $espacio = Espacio::find($request['espacio_id']);
+            $duenio = User::find($espacio->user_id);
+            $emails = ['federico@wimet.co', 'alejandro@wimet.co', 'adrian@wimet.co'];
+            $user->descuentos = $user->descuentos - 1;
+            $user->save();
+            // Email al organizador (Datos del espacio)
+            Mail::to($user->email)
+                ->bcc($emails)
+                ->queue(new SendSenia($duenio, $espacio, $user));
+            DB::commit();
+            return $user;
+        }catch (\Exception $e) {
+            DB::rollback();
+            return response("No se pudo envíar los datos del espacio, vuelva a intentarlo", 500);
+        }
     }
 }

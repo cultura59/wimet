@@ -163,18 +163,35 @@
                 this.$router.push({name: 'nueva-propuesta', params: { eventoId: this.$route.params.id }});
             },
             solicitarPropuesta() {
+                this.$toastr.info("Se estan revisandos sus datos para envíar los datos, aguarde unos segundos", "Procesando solicitud");
+                let aux = false;
                 for(let i = 0; i < this.$store.getters.getUser.senias.length; i++) {
 
                     if(
                         this.$store.getters.getUser.senias[i].vencimiento > this.$moment().format('YYYY-MM-DD hh:mm:ss')
                         && this.$store.getters.getUser.senias[i].estado === 'pendiente'
+                        && this.$store.getters.getUser.descuentos > 0
                     ) {
-                        this.$toastr.success("Se enviaron los datos del espacio a su email", "Datos envíados!");
-                        return;
+                        aux = true;
+                        let data = {
+                          user_id: this.$store.getters.getUser.id,
+                          espacio_id: this.espacio.id
+                        };
+                        this.$http.post('api/sendata', data)
+                        .then(res => {
+                            this.$toastr.success("Se enviaron los datos del espacio a su email", "Datos envíados!");
+                            this.$store.commit('setUser', res.body);
+                        }, err => {
+                            this.$toastr.error(err, "Ups hubo un error!");
+                        });
                     }
 
                 }
-                this.$router.push({name: 'solicitud', params: { eventoId: this.$route.params.id }});
+                if(aux) {
+                    this.$router.push({name: 'Mensajes'});
+                }else {
+                    this.$router.push({name: 'solicitud', params: {eventoId: this.$route.params.id}});
+                }
             },
             sendMensaje(){
                 if(this.showLoading) {
