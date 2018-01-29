@@ -74,7 +74,7 @@
 							<button class="btn-transparent-black" @click="modalTerminos = true">Condiciones de  contratación</button>
 							<div>
 								<button class="btn-transparent-black" @click="modalVistaPrevia = true">Vista previa</button>
-								<button class="send-propuesta" @click="crearPropuesta()">GUARDAR</button>
+								<button class="send-propuesta" @click="crearPropuesta()">ENVIAR</button>
 							</div>
 						</div>
 					</div>
@@ -159,7 +159,7 @@
 				<div class="wt-space-block">
 					<strong class="title">PRESUPUESTO</strong>
 					<div>
-						<button class="send-propuesta" @click="crearPropuesta()">GUARDAR</button>
+						<button class="send-propuesta" @click="crearPropuesta()">ENVIAR</button>
 						<span class="close" @click="modalVistaPrevia = false">&times;</span>
 					</div>
 				</div>
@@ -286,6 +286,7 @@
                 this.$http.get(`api/espacio/${this.evento.espacio_id}`)
 				.then(res => {
 					this.espacio = res.body;
+					this.evento.condiciones = this.espacio.rule;
 				}, err => {
 					console.log(err);
 				});
