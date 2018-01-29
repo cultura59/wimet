@@ -277,7 +277,11 @@
 					this.evento = res.body;
 					this.servicios = [];
 					this.total_servicios = this.evento.sub_total;
-					this.fee = parseFloat((this.evento.sub_total * 15) / 100);
+					if(this.evento.sub_total > 1200) {
+                        this.fee = 1800;
+                    } else {
+                        this.fee = 900;
+					}
 					this.getDias();
 					this.getEspacio();
 				});
