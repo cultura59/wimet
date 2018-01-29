@@ -258,7 +258,7 @@
                 espacio: {},
                 dias: [],
                 showLoading: false,
-                fee: 1800,
+                fee: 0,
 				date: '',
                 lastDay: '',
 				total_servicios: 0,
@@ -277,6 +277,7 @@
 					this.evento = res.body;
 					this.servicios = [];
 					this.total_servicios = this.evento.sub_total;
+					this.fee = parseFloat((this.evento.sub_total * 15) / 100);
 					this.getDias();
 					this.getEspacio();
 				});
