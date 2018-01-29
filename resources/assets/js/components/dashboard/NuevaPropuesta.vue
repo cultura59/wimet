@@ -277,7 +277,7 @@
 					this.evento = res.body;
 					this.servicios = [];
 					this.total_servicios = this.evento.sub_total;
-					if(this.evento.sub_total > 1200) {
+					if(this.evento.sub_total > 12000) {
                         this.fee = 1800;
                     } else {
                         this.fee = 900;
