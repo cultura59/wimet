@@ -151,7 +151,7 @@
 						<textarea v-model="evento.condiciones" cols="30" rows="10"></textarea>
 					</div>
 				</div>
-				<button class="modalServicios__content__btn" @click="modalTerminos = false">AGREGAR</button>
+				<button class="modalServicios__content__btn" @click="modalTerminos = false">GUARDAR</button>
 			</div>
 		</div>
 		<div v-show="modalVistaPrevia" class="modalServicios">
