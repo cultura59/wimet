@@ -113,6 +113,15 @@ class MensajeController extends Controller
             $mensaje = new Mensaje($request->all());
             $mensaje->status = false;
             $mensaje->save();
+            // Chequeo si el mensaje enviado no infringe las reglas de mensajes de wimet
+            if (strpos($mensaje->mensaje, '###############') !== false || strpos($mensaje->mensaje, '*****@*****.***') !== false) {
+                $mensajeAlert = new Mensaje();
+                $mensajeAlert->evento_id = $mensaje->evento_id;
+                $mensajeAlert->user_id = 1;
+                $mensajeAlert->mensaje = 'Recuerda que para solicitar los datos del espacio debes presionar el botón "SOLICITAR DATOS"';
+                $mensajeAlert->status = true;
+                $mensajeAlert->save();
+            }
             DB::commit();
             return response($mensaje, 204);
         }catch(\Exception $e){
