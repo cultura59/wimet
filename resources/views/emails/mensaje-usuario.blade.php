@@ -442,9 +442,6 @@
 															<br>
 															<span style="font-size:24px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><em><span style="color:#333333">{{$espacio->name}}</span></em></span></span>
 														</div>
-														<div style="text-align: left;">
-															<span style="font-size:20px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333">{{$evento->reserva_desde}} a {{$evento->reserva_hasta}}</span></span></span>
-														</div>
 													</td>
 												</tr>
 												</tbody>
@@ -497,7 +494,7 @@
 												<tbody>
 												<tr>
 													<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-														<a class="mcnButton " title="RESPONDER MENSAJE" href="http://www.wimet.co/dashboard/user/{{$usuario->id}}/evento/{{$evento->id}}/chats" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">RESPONDER MENSAJE</a>
+														<a class="mcnButton " title="RESPONDER MENSAJE" href="http://www.wimet.co/dashboard#/mensaje/{{$evento->id}}" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">RESPONDER MENSAJE</a>
 													</td>
 												</tr>
 												</tbody>
@@ -514,7 +511,7 @@
 												<tbody>
 												<tr>
 													<td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-														<a class="mcnButton " title="SOLICITAR PRESUPUESTO" href="http://www.wimet.co/dashboard/user/{{$usuario->id}}/evento/{{$evento->id}}/chats" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FC5289;">SOLICITAR PRESUPUESTO</a>
+														<a class="mcnButton " title="SOLICITAR PRESUPUESTO" href="https://www.wimet.co/dashboard#/mensaje/{{$evento->id}}" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FC5289;">SOLICITAR PRESUPUESTO</a>
 													</td>
 												</tr>
 												</tbody>

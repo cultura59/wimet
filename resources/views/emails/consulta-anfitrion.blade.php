@@ -453,7 +453,6 @@
                 <tbody><tr>
                     <td valign="top" class="mcnTextContent">
                         <span style="font-size:24px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><em><span style="color:#333333">{{$espacio->name}}</span></em></span></span><br>
-<span style="font-size:20px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333">{{$evento->reserva_desde}} - {{$evento->reserva_hasta}}</span></span></span>
                     </td>
                 </tr>
             </tbody></table>

@@ -21,7 +21,7 @@ class MensajeController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index($id)
+    public function index(Request $request)
     {
         try {
             $mensajes = DB::table('mensajes')
@@ -29,12 +29,14 @@ class MensajeController extends Controller
                             ->select(
                                 'users.firstname',
                                 'users.imagesource',
+                                'mensajes.id',
                                 'mensajes.mensaje',
+                                'mensajes.status',
                                 'mensajes.created_at'
                             )
-                            ->where('evento_id', $id)
+                            ->where('evento_id', $request->eventoId)
                             ->orderBy('mensajes.id', 'desc')
-                            ->get();
+                            ->paginate(15);
             return $mensajes;
         }catch(\Exception $e){
             return response('Los campos no son correctos', 400);
@@ -82,7 +84,12 @@ class MensajeController extends Controller
                         ->subject('Tienes una nueva solicitud de un presupuesto');
                 });
             }else {
-                if ($request->user_id != $espacio->user_id) {
+                Mail::send('emails.mensaje-anfitrion', $datos, function ($message) use ($user) {
+                    $message->from('info@wimet.co', 'Wimet');
+                    $message->to(['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'])
+                    ->subject('Tienes un nuevo mensaje sobre un evento');
+                });
+                /*if ($request->user_id != $espacio->user_id) {
                     Mail::send('emails.mensaje-anfitrion', $datos, function ($message) use ($user) {
                         $message->from('info@wimet.co', 'Wimet');
                         $message->to($user->email)
@@ -100,10 +107,11 @@ class MensajeController extends Controller
                 if($evento->estado == 'consulta') {
                     $evento->estado = 'seguimiento';
                     $evento->save();
-                }
+                }*/
             }
             /* Datos de envio de email (Consulta al dueño */
             $mensaje = new Mensaje($request->all());
+            $mensaje->status = false;
             $mensaje->save();
             DB::commit();
             return response($mensaje, 204);

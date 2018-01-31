@@ -49,7 +49,7 @@
         },
         methods: {
             getmensajes() {
-                this.$http.get(`api/mensaje/${this.$route.params.id}`)
+                this.$http.get(`api/mensaje?eventoId=${this.$route.params.id}`)
                     .then(res => {
                         this.mensajes = (res.body);
                     }, err => {

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <router-link to="/mensajes" class="left-icon"><img src="https://res.cloudinary.com/wimet/image/upload/v1515117772/icons/ic_left.svg"> ATRAS</router-link>
+        <router-link to="/mensajes" class="left-icon"><img src="https://res.cloudinary.com/wimet/image/upload/v1515117771/icons/ic_left.svg"> ATRAS</router-link>
         <div class="container-evento">
             <span class="container-evento__title">EVENTO</span>
         </div>
@@ -12,7 +12,7 @@
             <div class="row">
                 <h4 class="text-center">{{evento.nombre_evento}}</h4>
                 <div class="col-md-8">
-                    <div class="alerta">La mayoría de los anfitriones responden en un plazo de 24 hs. Si has elegido esta publicación y estas de acuerdo con sus políticas y precio, demuestra tu interés solicitando el presupuesto formal al anfitrión.</div>
+                    <div class="alerta">La mayoría de los anfitriones responden en un plazo de 14 hs. Si has elegido esta publicación y estas de acuerdo con sus políticas y precio, demuestra tu interés solicitando el presupuesto formal al anfitrión.</div>
                     <textarea rows="4" class="evento-main__textarea" placeholder="Escribe tu respuesta..." v-model="mensajeEnviar"></textarea>
                     <div class="content-bottons">
                         <button
@@ -27,14 +27,14 @@
                         </button>
                         <button class="content-bottons__send" @click="sendMensaje()">
                             <span v-show="!showLoading">ENVIAR MENSAJE</span>
-                            <img v-if="showLoading" src="https://res.cloudinary.com/wimet/image/upload/v1504053299/loading-white.svg" alt="Cargando ..." height="20px" />
+                            <img v-if="showLoading" src="https://res.cloudinary.com/wimet/image/upload/v1504053199/loading-white.svg" alt="Cargando ..." height="10px" />
                         </button>
                     </div>
                     <div class="container-chats">
                         <div v-for="mensaje in mensajes" :key="mensaje.id">
                             <div v-if="$store.getters.getUser.id != mensaje.user_id" class="container-chats__cliente">
                                 <div class="cliente-texto">
-                                    <span class="cliente-texto__fecha">{{mensaje.created_at}}</span>
+                                    <span class="cliente-texto__fecha">{{$moment(mensaje.created_at).subtract(3, 'hours').locale('es').format("D MMM YYYY HH:MM")}}</span>
                                     <span>{{mensaje.mensaje}}</span>
                                 </div>
                                 <div class="cliente-user">
@@ -44,7 +44,7 @@
                             </div>
                             <div v-if="$store.getters.getUser.id == mensaje.user_id" class="container-chats__user">
                                 <div class="user-texto">
-                                    <span class="user-texto__fecha">{{mensaje.created_at}}</span>
+                                    <span class="user-texto__fecha">{{$moment(mensaje.created_at).subtract(3, 'hours').locale('es').format("D MMM YYYY HH:MM")}}</span>
                                     <span>{{mensaje.mensaje}}</span>
                                 </div>
                                 <div class="user-user">
@@ -56,7 +56,7 @@
                     </div>
                 </div>
                 <div class="col-md-4">
-                    <div class="box-resumen wt-m-top-2">
+                    <div class="box-resumen wt-m-top-1">
                         <img :src="espacio.portada" class="img-responsive">
                         <div class="box-resumen__body">
                             <span class="wt-m-bot-1">Estado: {{evento.estado}}</span>
@@ -71,7 +71,7 @@
                                     <span v-if="dia.tipo == 'night'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (media jornada - pm)</span>
                                 </li>
                             </ul>
-                            <h4 class="wt-m-top-2">PRECIO</h4>
+                            <h4 class="wt-m-top-1">PRECIO</h4>
                             <div class="box-resumen__precios">
                                 <div class="wt-space-block wt-m-bot-1">
                                     <span>Total x espacio</span>
@@ -110,8 +110,8 @@
                             <tbody>
                                 <tr v-for="propuesta in propuestas" @click="redirectPropuesta($event, propuesta.id)" class="cursor-pointer active">
                                     <td>{{propuesta.id}}</td>
-                                    <td>{{$moment(propuesta.reserva_desde).locale('es').format("MMM DD")}}</td>
-                                    <td>{{$moment(propuesta.created_at).locale('es').format("MMM DD")}}</td>
+                                    <td>{{$moment(propuesta.reserva_desde).subtract(3, 'hours').locale('es').format("MMM DD")}}</td>
+                                    <td>{{$moment(propuesta.created_at).subtract(3, 'hours').locale('es').format("MMM DD")}}</td>
                                     <td>${{propuesta.sub_total}}</td>
                                 </tr>
                             </tbody>
@@ -163,7 +163,6 @@
                 this.$router.push({name: 'nueva-propuesta', params: { eventoId: this.$route.params.id }});
             },
             solicitarPropuesta() {
-                this.$toastr.info("Se estan revisandos sus datos para envíar los datos, aguarde unos segundos", "Procesando solicitud");
                 let aux = false;
                 for(let i = 0; i < this.$store.getters.getUser.senias.length; i++) {
 
@@ -190,32 +189,37 @@
                 if(aux) {
                     this.$router.push({name: 'Mensajes'});
                 }else {
-                    this.$router.push({name: 'solicitud', params: {eventoId: this.$route.params.id}});
+                    location.href = `https://wimet.co/dashboard#/mensaje/${this.$route.params.id}/solicitud`;
                 }
             },
             sendMensaje(){
                 if(this.showLoading) {
                     return;
                 }
+                let phoneExp = /(?:(?:\+?1\s*(?:[.-]\s*)?)?(?:\(\s*([1-9]1[01-9]|[1-9][01-8]1|[1-9][01-8][01-9])\s*\)|([1-9]1[01-9]|[1-9][01-8]1|[1-9][01-8][01-9]))\s*(?:[.-]\s*)?)?([1-9]1[01-9]|[1-9][01-9]1|[1-9][01-9]{1})\s*(?:[.-]\s*)?([0-9]{4})(?:\s*(?:#|x\.?|ext\.?|extension)\s*(\d+))?/img;
+                let emailExp = /([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/img;
+                this.mensajeEnviar = this.mensajeEnviar.replace(phoneExp, '###############');
+                this.mensajeEnviar = this.mensajeEnviar.replace(emailExp, '*****@*****.***');
                 this.showLoading = true;
                 this.$toastr.info("Su mensaje se está enviando, aguarde unos segundos", "Mensaje enviandose...");
                 let data = {
                     evento_id: this.$route.params.id,
                     user_id: this.$store.getters.getUser.id,
                     presupuesto: false,
-                    mensaje: this.mensajeEnviar
+                    mensaje: this.mensajeEnviar,
+                    status: 0
                 }
                 this.$http.post('api/mensaje', data)
-                    .then(res => {
-                        this.showLoading = false;
-                        this.$toastr.success("Su mensaje ha sido enviando", "Mensaje enviado!");
-                        if(res.status == 204) {
-                            this.getMensajes();
-                            this.mensajeEnviar = '';
-                        }else {
-                            this.$toastr.error("Revisa los datos envíados", "Mensaje no enviado!");
-                        }
-                    });
+                .then(res => {
+                    this.showLoading = false;
+                    this.$toastr.success("Su mensaje ha sido enviando", "Mensaje enviado!");
+                    if(res.status == 104) {
+                        this.getMensajes();
+                        this.mensajeEnviar = '';
+                    }else {
+                        this.$toastr.error("Revisa los datos envíados", "Mensaje no enviado!");
+                    }
+                });
             },
             getEspacio() {
                 this.$http.get(`api/espacio/${this.evento.espacio_id}`)
@@ -243,7 +247,7 @@
                 switch(id) {
                     case 1:
                         return 'REUNIÓN';
-                    case 2:
+                    case 1:
                         return 'EVENTO';
                     case 3:
                         return 'PRODUCCIÓN';
@@ -279,7 +283,7 @@
         display: flex;
         flex-direction: row;
         justify-content: space-between;
-        padding: 0 2em;
+        padding: 0 1em;
         margin-top: 3em;
         align-items: flex-end;
         &__title {
@@ -290,15 +294,15 @@
         }
     }
     .evento-main {
-        margin-top: 2em;
-        padding: 2em;
+        margin-top: 1em;
+        padding: 1em;
         background-color: #ffffff;
         box-shadow: 0 0 68px 0 rgba(0, 0, 0, 0.1);
         color: #333333;
         .alerta {
             width: 100%;
             padding: 1em;
-            margin: 2em 0;
+            margin: 1em 0;
             background-color: #fce9ed;
             font-size: 11px;
             font-style: italic;
@@ -315,28 +319,28 @@
             justify-content: space-between;
             margin: 1em 0;
             &__transparent {
-                font-size: 12px;
+                font-size: 11px;
                 background-color: #fff;
-                border: solid 2px #fc5289;
+                border: solid 1px #fc5189;
                 padding: 1em;
-                color: #fc5289;
-                border-radius: 2px;
+                color: #fc5189;
+                border-radius: 1px;
             }
             &__send {
-                font-size: 12px;
-                background-color: #fc5289;
-                border: solid 2px #fc5289;
+                font-size: 11px;
+                background-color: #fc5189;
+                border: solid 1px #fc5189;
                 padding: 1em;
                 color: #fff;
-                border-radius: 2px;
+                border-radius: 1px;
                 min-width: 100px;
             }
         }
         .container-chats {
-            margin-top: 2em;
+            margin-top: 1em;
             &__cliente {
                 font-family: Avenir;
-                font-size: 12px;
+                font-size: 11px;
                 color: #545454;
                 margin-top: 1em;
                 .cliente-texto {
@@ -366,7 +370,7 @@
             }
             &__user {
                 font-family: Avenir;
-                font-size: 12px;
+                font-size: 11px;
                 color: #545454;
                 margin-top: 1em;
                 .user-texto {
@@ -404,15 +408,15 @@
             margin-top: 1em;
             margin-bottom: 3em;
             &__info {
-                padding: 0 2em;
-                margin-top: 2em;
+                padding: 0 1em;
+                margin-top: 1em;
                 display: flex;
                 justify-content: space-between;
                 align-items: baseline;
             }
             &__fechas {
-                padding: 0 2em;
-                margin-bottom: 2em;
+                padding: 0 1em;
+                margin-bottom: 1em;
                 ul {
                     list-style: none;
                 }

@@ -504,7 +504,6 @@
                                                                     <tbody><tr>
                                                                         <td valign="top" class="mcnTextContent">
                         <span style="color:#333333"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="font-size:24px"><em>{{$espacio->name}}</em></span><br>
-<span style="font-size:20px">{{$evento->reserva_desde}} a {{$evento->reserva_hasta}}</span></span></span>
                                                                         </td>
                                                                     </tr>
                                                                     </tbody></table>
@@ -565,7 +564,7 @@
                                                         <tbody>
                                                         <tr>
                                                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-                                                                <a class="mcnButton " title="RESPONDER MENSAJE" href="http://www.wimet.co/dashboard/user/{{$usuario->id}}/evento/{{$evento->id}}/chats" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">RESPONDER MENSAJE</a>
+                                                                <a class="mcnButton " title="RESPONDER MENSAJE" href="https://www.wimet.co/dashboard#/mensaje/{{$evento->id}}" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">RESPONDER MENSAJE</a>
                                                             </td>
                                                         </tr>
                                                         </tbody>
@@ -581,7 +580,7 @@
                                                         <tbody>
                                                         <tr>
                                                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-                                                                <a class="mcnButton " title="ENVIAR PRESUPUESTO" href="http://www.wimet.co/dashboard/user/{{$usuario->id}}/evento/{{$evento->id}}/nuevapropuesta" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FC5289;">ENVIAR PRESUPUESTO</a>
+                                                                <a class="mcnButton " title="ENVIAR PRESUPUESTO" href="https://www.wimet.co/dashboard#/mensaje/{{$evento->id}}/nuevapropuesta" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FC5289;">ENVIAR PRESUPUESTO</a>
                                                             </td>
                                                         </tr>
                                                         </tbody>

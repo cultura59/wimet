@@ -481,8 +481,6 @@
                         <td valign="top" class="mcnTextContent" style="padding-top:0; padding-right:18px; padding-bottom:9px; padding-left:18px;">
 
                             <p><span style="font-size:24px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><em><span style="color:#333333">{{$espacio->name}}</span></em></span></span><br>
-<span style="font-size:20px"><span style="font-family:roboto,helvetica neue,helvetica,arial,sans-serif"><span style="color:#333333">{{$evento->reserva_desde}} - {{$evento->reserva_hasta}}</span></span></span></p>
-
                         </td>
                     </tr>
                 </tbody></table>
@@ -515,7 +513,7 @@
                     <tbody>
                         <tr>
                             <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Roboto, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; padding: 13px;">
-                                <a class="mcnButton " title="VER CONSULTAS" href="http://www.wimet.co/dashboard#/mensaje/{{$evento->id}}" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER CONSULTAS</a>
+                                <a class="mcnButton " title="VER CONSULTAS" href="https://www.wimet.co/dashboard#/mensaje/{{$evento->id}}" target="_self" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">VER CONSULTAS</a>
                             </td>
                         </tr>
                     </tbody>
