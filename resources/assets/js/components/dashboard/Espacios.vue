@@ -65,7 +65,7 @@
                                 <strong v-if="estado == 0" class="pendiente-aprobacion">Pendiente de aprobación...</strong>
                             </div>
                             <div class="wt-center-column">
-                                <a v-if="espacio.status == false" href="#" @click="getEspacio($event, espacio)">
+                                <a v-if="espacio.status == false || $store.getters.getUser.isAdmin == true" href="#" @click="getEspacio($event, espacio)">
                                     <button class="espacios-main__btn">EDITAR</button>
                                 </a>
                                 <a :href="`/categoria/1/espacio/${espacio.staticname}`" target="_blank" class="wt-m-top-1">

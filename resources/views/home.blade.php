@@ -77,25 +77,25 @@
                             <!-- container images primary-->
                             <div class="row">
                                 <div class="col-md-3 img-hov">
-                                    <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-1000&price=100-100000')}}">
+                                    <a href="/search?ubicacion=&categoria=1&quanty=0-1000&price=100-100000">
                                         <h3>REUNIONES</h3>
                                         <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet_espacio_reunion.jpg')}}" alt="Retail" class="img-responsive img-home-principal">
                                     </a>
                                 </div>
                                 <div class="col-md-3 img-hov">
-                                    <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-1000&price=100-100000')}}">
+                                    <a href="/search?ubicacion=&categoria=2&quanty=0-1000&price=100-100000">
                                         <h3>EVENTOS</h3>
                                         <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet_espacio_evento.jpg')}}" alt="Retail" class="img-responsive img-home-principal">
                                     </a>
                                 </div>
                                 <div class="col-md-3 img-hov">
-                                    <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-1000&price=100-100000')}}">
+                                    <a href="/search?ubicacion=&categoria=3&quanty=0-1000&price=100-100000">
                                         <h3>PRODUCCIONES</h3>
                                         <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet_espacio_produccion.jpg')}}" alt="Retail" class="img-responsive img-home-principal">
                                     </a>
                                 </div>
                                 <div class="col-md-3 img-hov">
-                                    <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-1000&price=100-100000')}}">
+                                    <a href="/search?ubicacion=&categoria=4&quanty=0-1000&price=100-100000">
                                         <h3>RETAIL</h3>
                                         <img src="{{url('https://res.cloudinary.com/wimet/image/upload/wimet_espacio_retail.jpg')}}" alt="Retail" class="img-responsive img-home-principal">
                                     </a>
@@ -104,22 +104,22 @@
                         </div>
                         <div class="row categorias-mobile">
                             <div class="col-xs-12 wt-m-top-1">
-                                <a href="{{url('/search?ubicacion=&categoria=1&quanty=0-1000&price=100-100000')}}">
+                                <a href="/search?ubicacion=&categoria=1&quanty=0-1000&price=100-100000">
                                     <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-mobile1.svg')}}" alt="Reuniones" class="img-responsive img-home-principal">
                                 </a>
                             </div>
                             <div class="col-xs-12 wt-m-top-1">
-                                <a href="{{url('/search?ubicacion=&categoria=2&quanty=0-1000&price=100-100000')}}">
+                                <a href="/search?ubicacion=&categoria=2&quanty=0-1000&price=100-100000">
                                     <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-mobile2.svg')}}" alt="Eventos" class="img-responsive img-home-principal">
                                 </a>
                             </div>
                             <div class="col-xs-12 wt-m-top-1">
-                                <a href="{{url('/search?ubicacion=&categoria=3&quanty=0-1000&price=100-100000')}}">
+                                <a href="/search?ubicacion=&categoria=3&quanty=0-1000&price=100-100000">
                                     <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-mobile3.svg')}}" alt="Producciones" class="img-responsive img-home-principal">
                                 </a>
                             </div>
                             <div class="col-xs-12 wt-m-top-1">
-                                <a href="{{url('/search?ubicacion=&categoria=4&quanty=0-1000&price=100-100000')}}">
+                                <a href="/search?ubicacion=&categoria=4&quanty=0-1000&price=100-100000">
                                     <img src="{{url('https://res.cloudinary.com/wimet/image/upload/q_60/wimet-espacios-creativos-reunion-evento-produccion-popup-mobile4.svg')}}" alt="Retail" class="img-responsive img-home-principal">
                                 </a>
                             </div>
