@@ -4,7 +4,7 @@ import dashboardMensajes from './Mensajes.vue';
 import dashboardMensaje from './Chat.vue';
 import dashboardPropuestas from './Propuestas.vue';
 import dashboardPropuestaCustom from './PropuestaCustom.vue';
-import dashboardPropuesta from './Propuesta.vue';
+import dashboardPropuesta from './Propuesta2.vue';
 import dashboardEspacios from './Espacios.vue';
 import dashboardFavoritos from './Favorito.vue';
 import dashboardPerfil from './Perfil.vue';

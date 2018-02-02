@@ -169,7 +169,7 @@
                 e.preventDefault();
                 this.$http.delete(`api/propuestaservicios/${this.propuesta.servicios[id].id}`)
                 .then(res => {
-                    this.propuesta.total = this.propuesta.total - this.propuesta.servicios[id].stotal;
+                    this.propuesta.total = this.propuestas.total - this.propuesta.servicios[id].stotal;
                     this.propuesta.servicios.splice(id, 1);
                 }, err => {
                     this.$toastr.error(err, "Ups, hubo un problema");

@@ -79,7 +79,7 @@
                                 </div>
                                 <div v-if="evento.user_id === $store.getters.getUser.id" class="wt-space-block wt-m-bot-1">
                                     <span>Comisión Wimet</span>
-                                    <span>$1800</span>
+                                    <span>${{evento.fee}}</span>
                                 </div>
                                 <div v-if="evento.user_id === $store.getters.getUser.id" class="wt-space-block">
                                     <strong>Recibirás</strong>
@@ -148,6 +148,7 @@
                 this.$http.get(`api/evento/${this.$route.params.id}`)
                     .then(res => {
                         this.evento = res.body;
+                        this.evento.fee = (this.evento.sub_total * 15)/100;
                         this.getDias();
                         this.getEspacio();
                         this.getPropuestas();
