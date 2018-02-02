@@ -82,3 +82,9 @@
         <!-- End of HubSpot Embed Code -->
     </body>
 </html>
+
+- Diseñar bases de datos robustas y escalables.
+- Crear sistemas con autenticación y control de accesos.
+- Diseñar APIS Rest que interactuaran con tu frontend.
+- Crear servicios SAAS que serán consumidos por terceros.
+- Desarrollar código de buena calidad y con buenas practicas de programación.

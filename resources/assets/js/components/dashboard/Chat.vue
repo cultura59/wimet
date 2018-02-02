@@ -213,12 +213,8 @@
                 .then(res => {
                     this.showLoading = false;
                     this.$toastr.success("Su mensaje ha sido enviando", "Mensaje enviado!");
-                    if(res.status == 104) {
-                        this.getMensajes();
-                        this.mensajeEnviar = '';
-                    }else {
-                        this.$toastr.error("Revisa los datos envíados", "Mensaje no enviado!");
-                    }
+                    this.getMensajes();
+                    this.mensajeEnviar = '';
                 });
             },
             getEspacio() {
@@ -266,6 +262,10 @@
                     }
                 }
                 return;
+            },
+            redirectPropuesta(e, id) {
+                e.preventDefault();
+                this.$router.push({name: 'Propuesta', params: { id: id }});
             }
         }
     }

@@ -9,7 +9,7 @@
                 <div class="col-md-6">
                     <img :src="espacio.portada" alt="espacio.nombre" class="img-responsive">
                 </div>
-                <div class="col-md-6 wt-center-column">
+                <div class="col-md-4 wt-center-column">
                     <span class="wt-m-bot-1"><strong>Estado:</strong> {{evento.estado}}</span>
                     <span class="wt-m-bot-1"><strong>Actividad:</strong> {{getCategoria(evento.estilo_espacios_id)}}</span>
                     <span class="wt-m-bot-1"><strong>Invitados:</strong> {{evento.invitados}}</span>
@@ -22,6 +22,12 @@
                         </li>
                     </ul>
                 </div>
+                <div class="col-md-2 wt-center-column" v-show="$store.getters.getUser.id == evento.user_id">
+                    <button class="btn-primary-pig">ACEPTAR</button>
+                    <button class="btn-primary-pig wt-m-top-1">CANCELAR</button>
+                    <button v-if="!modifica" class="btn-primary-pig wt-m-top-1" @click="modifica = true">MODIFICAR</button>
+                    <button v-if="modifica" class="btn-primary-pig wt-m-top-1">GUARDAR</button>
+                </div>
             </div>
             <h3>Detalles de la propuesta</h3>
             <table class="table">
@@ -33,19 +39,41 @@
                     <th class="col-md-2 text-center">Total</th>
                 </tr>
                 </thead>
-                <tbody>
-                <tr class="active">
-                    <td class="col-md-6">Mi espacio</td>
-                    <td class="col-md-2 text-center">-</td>
-                    <td class="col-md-2 text-center">-</td>
-                    <td class="col-md-2 text-center">${{evento.sub_total}}</td>
-                </tr>
-                <tr class="active" v-for="(servicio, index)  in propuesta.servicios">
-                    <td class="col-md-6">{{servicio.sdescripcion}}</td>
-                    <td class="col-md-2 text-center">${{servicio.simporte}}</td>
-                    <td class="col-md-2 text-center">{{servicio.scantidad}}</td>
-                    <td class="col-md-2 text-center">${{servicio.stotal}}</td>
-                </tr>
+                <tbody v-show="!modifica">
+                    <tr class="active">
+                        <td class="col-md-6">Mi espacio</td>
+                        <td class="col-md-2 text-center">-</td>
+                        <td class="col-md-2 text-center">-</td>
+                        <td class="col-md-2 text-center">${{evento.sub_total}}</td>
+                    </tr>
+                    <tr class="active" v-for="(servicio, index)  in propuesta.servicios">
+                        <td class="col-md-6">{{servicio.sdescripcion}}</td>
+                        <td class="col-md-2 text-center">${{servicio.simporte}}</td>
+                        <td class="col-md-2 text-center">{{servicio.scantidad}}</td>
+                        <td class="col-md-2 text-center">${{servicio.stotal}}</td>
+                    </tr>
+                </tbody>
+                <tbody v-show="modifica">
+                    <tr class="active">
+                        <td class="col-md-4">Mi espacio</td>
+                        <td class="col-md-2 text-center">-</td>
+                        <td class="col-md-2 text-center">-</td>
+                        <td v-show="modifica" class="col-md-2 text-center">
+                            <input type="text" v-model="evento.sub_total" @change="changeSubTotal()">
+                        </td>
+                        <td class="col-md-2 text-center">-</td>
+                    </tr>
+                    <tr class="active" v-for="(servicio, index)  in propuesta.servicios" :key="servicio.id">
+                        <td class="col-md-4"><input type="text" v-model="servicio.sdescripcion"></td>
+                        <td class="col-md-2 text-center"><input type="text" v-model="servicio.simporte"></td>
+                        <td class="col-md-2 text-center"><input type="text" v-model="servicio.scantidad"></td>
+                        <td class="col-md-2 text-center"><input type="text" v-model="servicio.stotal"></td>
+                        <td class="col-md-2">
+                            <a href="#" class="pull-right" @click="deleteServicio($event, index)">
+                                <img src="https://res.cloudinary.com/wimet/image/upload/icons/icon_remove_img_black.svg" class="btn-remove-img">
+                            </a>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="box-detalle-total">
@@ -67,7 +95,7 @@
                     <td>{{pago.pdescripcion}}</td>
                     <td class="text-center">-</td>
                     <td class="text-center">{{pago.pestado}}</td>
-                    <td class="text-center">{{pago.pvencimiento}}</td>
+                    <td class="text-center">{{$moment(pago.pvencimiento).format("DD/MM/YYYY")}}</td>
                     <td class="text-center">$ {{pago.ptotal}}</td>
                 </tr>
                 </tbody>
@@ -88,7 +116,8 @@
                 propuesta: {},
                 espacio: {},
                 evento: {},
-                totalPago: 0
+                totalPago: 0,
+                modifica: false
             }
         },
         mounted() {
@@ -101,6 +130,7 @@
                     this.propuesta = res.body;
                     this.evento = res.body.evento;
                     this.espacio = res.body.espacio;
+                    this.lastDay = this.$moment(this.propuesta.dias[this.propuesta.dias.length - 1].fecha).subtract(3, 'days').format("YYYY-MM-DD");
                     this.getTotal();
                 }, err => {
                     console.log(err);
@@ -122,6 +152,28 @@
                 for(let i = 0; i < this.propuesta.pagos.length; i++) {
                     this.totalPago = this.totalPago + parseInt(this.propuesta.pagos[i].ptotal);
                 }
+            },
+            changeSubTotal() {
+                this.propuesta.pagos = [];
+                this.propuesta.pagos.push({pdescripcion: 'Reserva', espacio_id: this.evento.espacio_id, ptotal: (this.evento.sub_total / 2), pvencimiento: this.$moment().add(5, 'days').format("YYYY-MM-DD"), pestado: 'Pendiente'});
+                this.propuesta.pagos.push({pdescripcion: 'Saldo', espacio_id: this.evento.espacio_id, ptotal: (this.evento.sub_total / 2), pvencimiento: this.lastDay, pestado: 'Pendiente'});
+            },
+            agregarServicio() {
+                this.newServicio.stotal = (this.newServicio.simporte * this.newServicio.scantidad);
+                this.total_servicios = this.total_servicios + this.newServicio.stotal;
+                this.propuestas.servicios.push(this.newServicio);
+                this.newServicio = {sdescripcion: '', simporte: 0, scantidad: 0, stotal: 0};
+                this.modalServicios = false;
+            },
+            deleteServicio(e, id) {
+                e.preventDefault();
+                this.$http.delete(`api/propuestaservicios/${this.propuesta.servicios[id].id}`)
+                .then(res => {
+                    this.propuesta.total = this.propuesta.total - this.propuesta.servicios[id].stotal;
+                    this.propuesta.servicios.splice(id, 1);
+                }, err => {
+                    this.$toastr.error(err, "Ups, hubo un problema");
+                });
             }
         }
     }

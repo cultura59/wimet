@@ -84,12 +84,12 @@ class MensajeController extends Controller
                         ->subject('Tienes una nueva solicitud de un presupuesto');
                 });
             }else {
-                Mail::send('emails.mensaje-anfitrion', $datos, function ($message) use ($user) {
+                /*Mail::send('emails.mensaje-anfitrion', $datos, function ($message) use ($user) {
                     $message->from('info@wimet.co', 'Wimet');
                     $message->to(['federico@wimet.co', 'alejandro@wimet.co','adrian@wimet.co'])
                     ->subject('Tienes un nuevo mensaje sobre un evento');
-                });
-                /*if ($request->user_id != $espacio->user_id) {
+                });*/
+                if ($request->user_id != $espacio->user_id) {
                     Mail::send('emails.mensaje-anfitrion', $datos, function ($message) use ($user) {
                         $message->from('info@wimet.co', 'Wimet');
                         $message->to($user->email)
@@ -107,7 +107,7 @@ class MensajeController extends Controller
                 if($evento->estado == 'consulta') {
                     $evento->estado = 'seguimiento';
                     $evento->save();
-                }*/
+                }
             }
             /* Datos de envio de email (Consulta al dueño */
             $mensaje = new Mensaje($request->all());

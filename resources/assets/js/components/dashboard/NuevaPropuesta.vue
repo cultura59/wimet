@@ -44,7 +44,7 @@
 							</div>
 							<div>
 								<span class="box-servicios__total">Total</span>
-								<span>$ {{total_servicios}}</span>
+								<span>$ {{evento.total}}</span>
 							</div>
 						</div>
 					</div>
@@ -226,7 +226,7 @@
 							<td>{{pago.pdescripcion}}</td>
 							<td class="text-center">-</td>
 							<td class="text-center">{{pago.pestado}}</td>
-							<td class="text-center">{{pago.pvencimiento}}</td>
+							<td class="text-center">{{$moment(pago.pvencimiento).format("DD/MM/YYYY")}}</td>
 							<td class="text-center">$ {{pago.ptotal}}</td>
 						</tr>
 						</tbody>
@@ -276,7 +276,7 @@
 				.then(res => {
 					this.evento = res.body;
 					this.servicios = [];
-					this.total_servicios = this.evento.sub_total;
+					this.evento.total = this.evento.sub_total;
 					if(this.evento.sub_total > 12000) {
                         this.fee = 1800;
                     } else {
@@ -299,9 +299,9 @@
                 this.$http.get(`api/eventosdias/${this.$route.params.id}`)
                     .then(res => {
                         this.dias = res.body;
-                        this.lastDay = this.$moment(this.dias[this.dias.length - 1].fecha).subtract(3, 'days').format("DD/MM/YYYY");
+                        this.lastDay = this.$moment(this.dias[this.dias.length - 1].fecha).subtract(3, 'days').format("YYYY-MM-DD");
                         this.pagos = [
-                            {pdescripcion: 'Reserva', espacio_id: this.evento.espacio_id, ptotal: (this.evento.sub_total / 2), pvencimiento: this.$moment().add(5, 'days').format("DD/MM/YYYY"), pestado: 'Pendiente'},
+                            {pdescripcion: 'Reserva', espacio_id: this.evento.espacio_id, ptotal: (this.evento.sub_total / 2), pvencimiento: this.$moment().add(5, 'days').format("YYYY-MM-DD"), pestado: 'Pendiente'},
                             {pdescripcion: 'Saldo', espacio_id: this.evento.espacio_id, ptotal: (this.evento.sub_total / 2), pvencimiento: this.lastDay, pestado: 'Pendiente'}
                         ];
                     });
@@ -320,26 +320,30 @@
             },
 			changeSubTotal() {
                 this.pagos = [];
-                this.pagos.push({pdescripcion: 'Reserva', espacio_id: this.evento.espacio_id, ptotal: (this.evento.sub_total / 2), pvencimiento: this.$moment().add(5, 'days').format("DD/MM/YYYY"), pestado: 'Pendiente'});
-                this.pagos.push({pdescripcion: 'Saldo', espacio_id: this.evento.espacio_id, ptotal: (this.evento.sub_total / 2), pvencimiento: this.lastDay, pestado: 'Pendiente'});
-				this.total_servicios = this.evento.sub_total;
+                this.pagos.push({pdescripcion: 'Reserva', espacio_id: this.evento.espacio_id, ptotal: (this.evento.total / 2), pvencimiento: this.$moment().add(5, 'days').format("YYYY-MM-DD"), pestado: 'Pendiente'});
+                this.pagos.push({pdescripcion: 'Saldo', espacio_id: this.evento.espacio_id, ptotal: (this.evento.total / 2), pvencimiento: this.lastDay, pestado: 'Pendiente'});
+                this.evento.total = this.evento.sub_total;
 			},
             agregarServicio() {
                 this.newServicio.stotal = (this.newServicio.simporte * this.newServicio.scantidad);
-                this.total_servicios = this.total_servicios + this.newServicio.stotal;
+                this.evento.total = parseInt(this.evento.total) + this.newServicio.stotal;
                 this.servicios.push(this.newServicio);
                 this.newServicio = {sdescripcion: '', simporte: 0, scantidad: 0, stotal: 0};
+                this.pagos = [];
+                this.pagos.push({pdescripcion: 'Reserva', espacio_id: this.evento.espacio_id, ptotal: (this.evento.total / 2), pvencimiento: this.$moment().add(5, 'days').format("YYYY-MM-DD"), pestado: 'Pendiente'});
+                this.pagos.push({pdescripcion: 'Saldo', espacio_id: this.evento.espacio_id, ptotal: (this.evento.total / 2), pvencimiento: this.lastDay, pestado: 'Pendiente'});
                 this.modalServicios = false;
 			},
 			deleteServicio(e, index) {
                 e.preventDefault();
-                this.total_servicios = this.total_servicios - this.servicios[index].stotal;
+                this.evento.total = this.evento.total - this.servicios[index].stotal;
                 this.servicios.splice(index, 1);
 			},
 			crearPropuesta() {
                 let propuesta = this.evento;
                 propuesta.evento_id = this.evento.id;
                 delete propuesta['id'];
+                propuesta.total = this.evento.total;
                 propuesta.servicios = this.servicios;
                 propuesta.pagos = this.pagos;
                 propuesta.dias = this.dias;

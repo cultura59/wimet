@@ -297,6 +297,7 @@
                     this.payment.lastname = this.$store.getters.getUser.lastname;
                     this.payment.vencimiento = this.$moment().add(5, 'days').format('YYYY-MM-DD hh:mm:ss');
                     this.payment.espacio_id = this.espacio.id;
+                    this.payment.evento_id = this.evento.id;
                     this.$http.post(`api/sendpayment`, this.payment)
                     .then(res => {
                         this.$store.commit('setUser', res.body);
