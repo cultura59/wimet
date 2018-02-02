@@ -83,7 +83,7 @@
                                 </div>
                                 <div v-if="evento.user_id === $store.getters.getUser.id" class="wt-space-block">
                                     <strong>Recibirás</strong>
-                                    <strong>${{evento.sub_total - 1800}}</strong>
+                                    <strong>${{evento.sub_total - evento.fee}}</strong>
                                 </div>
                                 <div v-if="evento.cliente_id === $store.getters.getUser.id" class="wt-space-block wt-m-bot-1">
                                     <span>Seña a favor</span>
