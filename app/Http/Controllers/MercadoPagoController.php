@@ -144,6 +144,22 @@ class MercadoPagoController extends Controller
      * @return array
      */
     public function callbackMP(Request $request) {
-        return $request->all();
+        $mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
+
+        $request = array(
+            "uri" => "/oauth/token",
+            "data" => array(
+                "client_secret" => $mp->get_access_token(),
+                "grant_type" => "authorization_code",
+                "code" => $request->code,
+                "redirect_uri" => "https://wimet.co/callbackMP"
+            ),
+            "headers" => array(
+                "content-type" => "application/x-www-form-urlencoded"
+            ),
+            "authenticate" => false
+        );
+
+        return $mp->post($request);
     }
 }
