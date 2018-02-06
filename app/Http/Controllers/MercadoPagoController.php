@@ -137,4 +137,13 @@ class MercadoPagoController extends Controller
             return response("No se pudo envíar los datos del espacio, vuelva a intentarlo", 500);
         }
     }
+
+    /**
+     * @fn callbackMP()
+     * @param Request $request
+     * @return array
+     */
+    public function callbackMP(Request $request) {
+        return $request->all();
+    }
 }
