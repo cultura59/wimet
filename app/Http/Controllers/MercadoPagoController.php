@@ -169,6 +169,7 @@ class MercadoPagoController extends Controller
             $user->public_key = $res["public_key"];
             $user->refresh_token = $res["refresh_token"];
             $user->save();
+            return $user;
         }
     }
 }
