@@ -145,7 +145,8 @@ class MercadoPagoController extends Controller
      */
     public function callbackMP(Request $request) {
         $mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
-        return $request->user_id;
+
+        // Mando la info a mercado pago para obtener los datos del usuario
         $request = array(
             "uri" => "/oauth/token",
             "data" => array(
@@ -159,7 +160,15 @@ class MercadoPagoController extends Controller
             ),
             "authenticate" => false
         );
+        $res = $mp->post($request);
 
-        return $mp->post($request);
+        // Actualizacion de token del usuario
+        if($request->has('user_id')) {
+            $user = User::find($request->user_id);
+            $user->access_token = $res["access_token"];
+            $user->public_key = $res["public_key"];
+            $user->refresh_token = $res["refresh_token"];
+            $user->save();
+        }
     }
 }
