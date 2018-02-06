@@ -130,3 +130,7 @@ Route::group(['prefix' => 'admin'], function (){
     Route::get('/', 'AdminController@dashboard');
     Route::get('getinfo', 'AdminController@admindash');
 });
+
+//Mercado Pago
+
+Route::get('callbackMP', 'MercadoPagoController@callbackMP');
