@@ -160,6 +160,17 @@ class MercadoPagoController extends Controller
             "authenticate" => false
         );
 
-        return $mp->post($request);
+        $res = $mp->post($request);
+
+        // Actualizacion de token del usuario
+        if($request->has('user_id')) {
+            $user = User::find($request->user_id);
+            return $res;
+            $user->access_token = $res["access_token"];
+            $user->public_key = $res["public_key"];
+            $user->refresh_token = $res["refresh_token"];
+            $user->save();
+            return $user;
+        }
     }
 }
