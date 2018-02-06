@@ -152,7 +152,7 @@ class MercadoPagoController extends Controller
                 "client_secret" => $mp->get_access_token(),
                 "grant_type" => "authorization_code",
                 "code" => $request->code,
-                "redirect_uri" => "https://wimet.co/callbackMP"
+                "redirect_uri" => $request->fullUrl()
             ),
             "headers" => array(
                 "content-type" => "application/x-www-form-urlencoded"
