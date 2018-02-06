@@ -145,7 +145,7 @@ class MercadoPagoController extends Controller
      */
     public function callbackMP(Request $request) {
         $mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
-
+        echo $request->user_id;
         $request = array(
             "uri" => "/oauth/token",
             "data" => array(
