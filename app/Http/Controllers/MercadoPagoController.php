@@ -163,7 +163,7 @@ class MercadoPagoController extends Controller
         $res = $mp->post($requestMP);
 
         // Actualizacion de token del usuario
-        if($request->has('user_id')) {
+        if($request->has('userid')) {
             $user = User::find($request->user_id);
             return $res;
             $user->access_token = $res["access_token"];
