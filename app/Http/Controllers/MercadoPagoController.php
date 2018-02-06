@@ -152,7 +152,7 @@ class MercadoPagoController extends Controller
                 "client_secret" => $mp->get_access_token(),
                 "grant_type" => "authorization_code",
                 "code" => $request->code,
-                "redirect_uri" => $request->fullUrl()
+                "redirect_uri" => $request->url() . "?userid=" .  $request->userid
             ),
             "headers" => array(
                 "content-type" => "application/x-www-form-urlencoded"
