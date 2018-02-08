@@ -206,7 +206,7 @@ class MercadoPagoController extends Controller
             $mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
             $payment_data = array(
                 "transaction_amount" => "",
-                "token" => $duenio->access_token,
+                "token" => "APP_USR-8248736349517024-020618-9e52eb3249458ccac0c5991e44ab53e3__LB_LC__-291916384", //$duenio->access_token,
                 "description" => "Correspondiente al pago por el espacio " . $request['espacio']["name"],
                 "installments" => 1,
                 "payment_method_id" => $request["paymentMethodId"],
