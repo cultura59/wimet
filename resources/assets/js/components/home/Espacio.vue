@@ -12,7 +12,7 @@
                         </div>
                         <div class="direccion"><span>{{espacio.city}}, {{espacio.state}}</span></div>
                         <div class="contenedor-invitados">
-                            <img src="https://res.cloudinary.com/wimet/image/upload/icons/wimet_ic_group_black_24px.svg" class="icon-people"> 120 Máx
+                            <img src="https://res.cloudinary.com/wimet/image/upload/icons/wimet_ic_group_black_24px.svg" class="icon-people"> {{priceCategoria.cantidad_personas}} Máx
                         </div>
                         <div class="box-descripcion">
                             <div class="box-descripcion__titulo">

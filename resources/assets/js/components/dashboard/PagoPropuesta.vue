@@ -1,14 +1,14 @@
 <template>
     <div>
-        <router-link :to="`/mensaje/${$route.params.id}`" class="left-icon"><img src="https://res.cloudinary.com/wimet/image/upload/v1515117772/icons/ic_left.svg"> ATRAS</router-link>
+        <router-link :to="`/propuesta/${$route.params.id}`" class="left-icon"><img src="https://res.cloudinary.com/wimet/image/upload/v1515117772/icons/ic_left.svg"> ATRAS</router-link>
         <div class="container-evento">
-            <span class="container-evento__title">Solicitud de datos</span>
+            <span class="container-evento__title">Pago de la propuesta</span>
         </div>
         <div class="evento-main">
-            <div v-show="espacio.id == undefined || evento.id == undefined" class="wt-center-center">
+            <div v-show="propuesta.espacio.id == undefined || propuesta.id == undefined" class="wt-center-center">
                 <img src="https://res.cloudinary.com/wimet/image/upload/fotosespacios/logo_wimet.gif" width="50%">
             </div>
-            <div v-show="espacio.id != undefined && evento.id != undefined" class="row">
+            <div v-show="propuesta.espacio.id != undefined && propuesta.id != undefined" class="row">
                 <div class="col-md-8">
                     <div class="evento-main__body">
                         <h4>Datos para la autorización</h4>
@@ -151,21 +151,21 @@
                                         placeholder="123" />
                                 </div>
                             </div>
-                            <input class="btn-enviar" type="submit" @click="doPay($event)" value="ENVIAR" />
+                            <input class="btn-enviar" type="submit" @click="doPay($event)" value="Pagar" />
                         </form>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <h4>Resumen</h4>
                     <div class="box-resumen">
-                        <img :src="espacio.portada" class="img-responsive">
+                        <img :src="propuesta.espacio.portada" class="img-responsive">
                         <div class="box-resumen__body">
-                            <span class="wt-m-bot-1">Estado: {{evento.estado}}</span>
-                            <span class="wt-m-bot-1">Actividad: {{getCategoria(evento.estilo_espacios_id)}}</span>
-                            <span class="wt-m-bot-1">Invitados: {{evento.invitados}}</span>
+                            <span class="wt-m-bot-1">Estado: {{propuesta.estado}}</span>
+                            <span class="wt-m-bot-1">Actividad: {{getCategoria(propuesta.evento.estilo_espacios_id)}}</span>
+                            <span class="wt-m-bot-1">Invitados: {{propuesta.invitados}}</span>
                             <span class="wt-m-bot-1">Fechas solicitadas</span>
                             <ul>
-                                <li v-for="dia in dias" :key="dia.id">
+                                <li v-for="dia in propuesta.dias" :key="dia.id">
                                     <span v-if="dia.tipo == 'all'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (jornada completa)</span>
                                     <span v-if="dia.tipo == 'morning'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (media jornada - am)</span>
                                     <span v-if="dia.tipo == 'night'">{{$moment(dia.fecha).locale('es').format("D MMM YYYY")}} (media jornada - pm)</span>
@@ -175,7 +175,7 @@
                             <div class="box-resumen__precios">
                                 <div class="wt-space-block wt-m-bot-1">
                                     <span>Total x espacio</span>
-                                    <span>${{evento.sub_total}}</span>
+                                    <span>${{propuesta.sub_total}}</span>
                                 </div>
                                 <div class="wt-space-block wt-m-bot-1">
                                     <span>Comisión Wimet</span>
@@ -183,7 +183,7 @@
                                 </div>
                                 <div class="wt-space-block">
                                     <strong>Recibirás</strong>
-                                    <strong>${{evento.sub_total - fee}}</strong>
+                                    <strong>${{propuesta.sub_total - fee}}</strong>
                                 </div>
                             </div>
                         </div>
@@ -196,11 +196,10 @@
 
 <script>
     export default {
-        name: "solicitud",
+        name: "PagoPropuesta",
         data() {
             return {
-                evento: {},
-                espacio: {},
+                propuesta: {},
                 dias: [],
                 showLoading: false,
                 backgroundEspacio: {},
@@ -213,7 +212,7 @@
         },
         mounted() {
             this.initMP();
-            this.getEvento();
+            this.getPropuesta();
         },
         ready() {
             this.initMP();
@@ -224,24 +223,15 @@
                 Mercadopago.setPublishableKey("APP_USR-0f9211c7-a1f9-45d8-b694-c865f48d5637");
                 Mercadopago.getIdentificationTypes();
             },
-            getEvento() {
-                this.$http.get(`api/evento/${this.$route.params.id}`)
+            getPropuesta() {
+                this.$http.get(`api/propuesta/${this.$route.params.id}`)
                     .then(res => {
-                        this.evento = res.body;
+                        this.propuesta = res.body;
                         this.fee = (parseFloat(this.evento.sub_total) * 5) / 100;
                         this.getDias();
-                        this.getEspacio();
                     });
             },
             enviarPropuesta() {},
-            getEspacio() {
-                this.$http.get(`api/espacio/${this.evento.espacio_id}`)
-                .then(res => {
-                    this.espacio = res.body;
-                }, err => {
-                    console.log(err);
-                });
-            },
             getDias() {
                 this.$http.get(`api/eventosdias/${this.$route.params.id}`)
                     .then(res => {
@@ -291,17 +281,15 @@
                     this.$toastr.error(res.message, "Ups hubo un error!");
                 }else{
                     this.payment.token = res.id;
-                    this.payment.user_id = this.$store.getters.getUser.id;
+                    this.payment.duenio = this.propuesta.user_id;
+                    this.payment.propuestaid = this.propuesta.id;
+                    this.payment.espacio = this.espacio;
                     this.payment.email = this.$store.getters.getUser.email;
                     this.payment.firstname = this.$store.getters.getUser.firstname;
                     this.payment.lastname = this.$store.getters.getUser.lastname;
-                    this.payment.vencimiento = this.$moment().add(5, 'days').format('YYYY-MM-DD hh:mm:ss');
-                    this.payment.espacio_id = this.espacio.id;
-                    this.payment.evento_id = this.evento.id;
-                    this.$http.post(`api/sendpayment`, this.payment)
+                    this.$http.post(`api/paypayment`, this.payment)
                     .then(res => {
-                        this.$store.commit('setUser', res.body);
-                        this.$toastr.success("Fue enviado por email los datos del espacio", "Felicitaciones!");
+                        this.$toastr.success("El pago fue realizado correctamente", "Felicitaciones!");
                     }, error => {
                         this.$toastr.error(error.body, "Ups hubo un error!");
                     });

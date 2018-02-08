@@ -8,6 +8,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Propuesta;
 use Illuminate\Http\Request;
 use MP;
 use DB;
@@ -152,7 +153,7 @@ class MercadoPagoController extends Controller
                 "client_secret" => $mp->get_access_token(),
                 "grant_type" => "authorization_code",
                 "code" => $request->code,
-                "redirect_uri" => $request->url() . "?userid=" .  $request->userid
+                "redirect_uri" => $request->url()
             ),
             "headers" => array(
                 "content-type" => "application/x-www-form-urlencoded"
@@ -160,7 +161,7 @@ class MercadoPagoController extends Controller
             "authenticate" => false
         );
 
-        $res = $mp->post($requestMP);
+        return $mp->post($requestMP);
 
         // Actualizacion de token del usuario
         if($request->has('userid')) {
@@ -171,6 +172,57 @@ class MercadoPagoController extends Controller
             $user->refresh_token = $res["refresh_token"];
             $user->save();
             return $user;
+        }
+    }
+
+    /**
+     * @fn payPayment()
+     * @param Request $request
+     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
+     */
+    public function payPayment(Request $request) {
+        DB::begintransaction();
+        try {
+            $duenio = User::find($request['duenio']);
+            $propuesta = Propuesta::find($request['propuestaid']);
+            dd($propuesta);
+            $pagos = $propuesta->with('pagos')->get();
+            $comision = ($propuesta->sub_total * 15) / 100;
+
+            if($duenio == null) {
+                return response('Hubo un error al intentar cobrar el pago', 404);
+            }
+
+            // Calculo la comision de wimet en base a la seña
+            if($pagos[0]['pdescripcion'] == 'senia') {
+                $pagoWimet = $comision - $pagos[0]['ptotal'];
+                if($pagoWimet < 0) {
+                    $pagoWimet = 0;
+                }
+            }else {
+                $pagoWimet = $comision;
+            }
+
+            //$mp = new MP("TEST-8248736349517024-123008-431710274c1eef4ee4331ae7b658cfcf__LA_LD__-291916384");
+            $mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
+            $payment_data = array(
+                "transaction_amount" => "",
+                "token" => $duenio->access_token,
+                "description" => "Correspondiente al pago por el espacio " . $request['espacio']["name"],
+                "installments" => 1,
+                "payment_method_id" => $request["paymentMethodId"],
+                "payer" => array (
+                    "email" => $request["email"],
+                    "first_name" => $request["firstname"],
+                    "last_name" => $request["lastname"]
+                ),
+                "application_fee" => $pagoWimet
+            );
+            $res = $mp->post("/v1/payments", $payment_data);
+            return $res;
+        } catch (\Exception $e) {
+            DB::rollback();
+            return response('Hubo un error al realizar el pago, ' . $e, 500);
         }
     }
 }
