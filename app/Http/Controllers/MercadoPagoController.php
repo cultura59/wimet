@@ -153,7 +153,7 @@ class MercadoPagoController extends Controller
                 "client_secret" => $mp->get_access_token(),
                 "grant_type" => "authorization_code",
                 "code" => $request->code,
-                "redirect_uri" => $request->url()
+                "redirect_uri" => "https://wimet.co/callbackMP?userid=".$request->userid
             ),
             "headers" => array(
                 "content-type" => "application/x-www-form-urlencoded"
@@ -161,17 +161,16 @@ class MercadoPagoController extends Controller
             "authenticate" => false
         );
 
-        return $mp->post($requestMP);
+        $res = $mp->post($requestMP);
 
         // Actualizacion de token del usuario
         if($request->has('userid')) {
-            $user = User::find($request->user_id);
-            return $res;
-            $user->access_token = $res["access_token"];
-            $user->public_key = $res["public_key"];
-            $user->refresh_token = $res["refresh_token"];
+            $user = User::find($request->userid);
+            $user->access_token = $res["response"]["access_token"];
+            $user->public_key = $res["response"]["public_key"];
+            $user->refresh_token = $res["response"]["refresh_token"];
             $user->save();
-            return $user;
+            return redirect('https://wimet.co/dashboard#/perfil');
         }
     }
 
