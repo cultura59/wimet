@@ -99,9 +99,9 @@
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBZUp-A4EcLNbPonxHhbySVWpP9kzZQQUw"></script>
         <script src="https://secure.mlstatic.com/sdk/javascript/v1/mercadopago.js"></script>
         <script async defer src="/js/dashboard.js"></script>
-        <!-- Start of HubSpot Embed Code -->
+        <!-- Start of HubSpot Embed Code
         <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2880578.js"></script>
-        <!-- End of HubSpot Embed Code -->
+        End of HubSpot Embed Code -->
         <script>
             (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
                 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
@@ -111,13 +111,11 @@
             ga('create', 'UA-77438674-1', 'auto');
             ga('send', 'pageview');
         </script>
-        <!--
         <script>
         window.intercomSettings = {
             app_id: "p30rgvxn"
         };
         </script>
         <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/p30rgvxn';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
-        -->
     </body>
 </html>
