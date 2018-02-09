@@ -205,16 +205,16 @@ class MercadoPagoController extends Controller
             //$mp = new MP("TEST-8248736349517024-123008-431710274c1eef4ee4331ae7b658cfcf__LA_LD__-291916384");
             $mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
             $payment_data = array(
-                "transaction_amount" => "",
+                "transaction_amount" => $propuesta->total,
                 "token" => "APP_USR-8248736349517024-020618-9e52eb3249458ccac0c5991e44ab53e3__LB_LC__-291916384", //$duenio->access_token,
                 "description" => "Correspondiente al pago por el espacio " . $request['espacio']["name"],
                 "installments" => 1,
-                "payment_method_id" => $request["paymentMethodId"],
                 "payer" => array (
                     "email" => $request["email"],
                     "first_name" => $request["firstname"],
                     "last_name" => $request["lastname"]
                 ),
+                "payment_method_id" => $request["paymentMethodId"],
                 "application_fee" => $pagoWimet
             );
             return $mp->post("/v1/payments", $payment_data);
