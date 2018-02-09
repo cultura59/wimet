@@ -299,6 +299,7 @@
                     this.payment.evento_id = this.evento.id;
                     this.$http.post(`api/paypayment`, this.payment)
                         .then(res => {
+                            console.log(res);
                             this.$toastr.success("El pago fue realizado correctamente", "Felicitaciones!");
                         }, error => {
                             this.$toastr.error(error.body, "Ups hubo un error!");

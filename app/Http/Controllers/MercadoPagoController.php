@@ -217,8 +217,7 @@ class MercadoPagoController extends Controller
                 ),
                 "application_fee" => $pagoWimet
             );
-            $res = $mp->post("/v1/payments", $payment_data);
-            return $res;
+            return $mp->post("/v1/payments", $payment_data);
         } catch (\Exception $e) {
             DB::rollback();
             return response('Hubo un error al realizar el pago, ' . $e, 500);
