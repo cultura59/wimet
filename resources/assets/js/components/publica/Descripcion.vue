@@ -53,23 +53,31 @@
         name: "descripcion",
         data() {
             return {
-                btnSend: true,
-                descripcionHolder: `Trata de describir tu espacio tal como te gustaría leer una descripción de un lugar que no conoces.
+                btnSend: true
+            }
+        },
+        mounted() {
+            let espacio = this.$store.getters.getEspacio;
+            if(espacio.description == undefined || espacio.description == "") {
+                espacio.description = `Trata de describir tu espacio tal como te gustaría leer una descripción de un lugar que no conoces.
 - Características principales
 - Qué usos están permitidos
 - Que áreas de tu espacio pueden utilizar
 - Que ambientes tienen restricción de acceso
 - Variaciones de precio de acuerdo a día de la semana / temporada
-- Precios especiales por reservas de varias.`,
-                reglamentoHolder: `- Los horarios acordados deben ser respetados.
+- Precios especiales por reservas de varias.`;
+            }
+            if(espacio.rule == undefined || espacio.description == "") {
+                espacio.rule = `- Los horarios acordados deben ser respetados.
 - No se permiten menores de 18 años.
 - Está prohibida la venta de alcohol
 - No se permiten fiestas o música fuerte.
 - No pueden ingresar Caterings externos.
 - Solo está permitido fumar en el exterior.
 - Ocúpese de respetar y de no dañar el espacio, el mobiliario y el equipamiento. Cualquier pérdida o daño podría suponer una deducción sobre el depósito de seguridad.
-- Avisar al anfitrión si surgen cambios de acuerdo a lo pactado.`
+- Avisar al anfitrión si surgen cambios de acuerdo a lo pactado.`;
             }
+            this.$store.commit('setEspacio', espacio);
         },
         methods: {
             updateEspacio() {

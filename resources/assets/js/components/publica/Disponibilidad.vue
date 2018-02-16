@@ -173,7 +173,7 @@
                 inicio: '',
                 fin: '',
                 agrupadorDias: [],
-                tipoDisponibilidad: 'customizado'
+                tipoDisponibilidad: ''
             }
         },
         mounted() {

@@ -38,7 +38,7 @@
 					</div>
 				</div>
 				<div>
-					<p>$ {{espacio.price}} /media jornada</p>
+					<p>$ {{espacio.price}} {{(espacio.country == 'Argentina') ? 'ARS' : 'CLP'}} / media jornada</p>
 					<span>
 						<img class="icon-people" src="/img/wimet_ic_group_black_24px.svg" alt=""> {{espacio.quanty}}
 					</span>

@@ -22,7 +22,6 @@
                                 <input
                                     class="publica-price__box__input"
                                     type="text"
-                                    placeholder="$1000"
                                     v-model="$store.getters.getEspacio.prices[indexCat].daily"
                                     @change="calMediaJornada()">
                                 <label class="label-publica">por día</label>
@@ -30,7 +29,6 @@
                             <div class="publica-price__box">
                                 <input
                                     class="publica-price__box__input"
-                                    type="text" placeholder="$6000"
                                     v-model="$store.getters.getEspacio.prices[indexCat].price">
                                 <label class="label-publica">por 1/2 día</label>
                             </div>
@@ -79,10 +77,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="publica-box">
-                    <input id="all" type="checkbox" v-model="all" style="display: none;">
-                    <label for="all" class="wt-publica-label">Establecer misma capacidad, precios y condiciones para todas las categorías.</label>
-                </div>
                 <div class="wt-space-block wt-m-top-3" @click="back()">
                     <button class="btn-publica-step-default">
                         <img src="https://res.cloudinary.com/wimet/image/upload/v1512746740/ic_keyboard_backspace_black_24px.svg">
@@ -110,7 +104,7 @@
                 btnSend: true,
                 espacio: this.$store.getters.getEspacio,
                 price: {},
-                all: true,
+                all: false,
                 indexCat: '',
                 showBox: false
             }
@@ -238,5 +232,8 @@
         border-radius: 1px;
         border: 1px solid #dadada;
         box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
+    }
+    input::placeholder {
+        color: #dadada;
     }
 </style>

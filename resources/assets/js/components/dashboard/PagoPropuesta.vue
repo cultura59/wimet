@@ -297,6 +297,7 @@
                     this.payment.vencimiento = this.$moment().add(5, 'days').format('YYYY-MM-DD hh:mm:ss');
                     this.payment.espacio = this.espacio;
                     this.payment.evento_id = this.evento.id;
+                    this.payment.propuestaid = this.propuesta.id;
                     this.$http.post(`api/paypayment`, this.payment)
                         .then(res => {
                             console.log(res);

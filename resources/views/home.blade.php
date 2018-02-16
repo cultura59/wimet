@@ -49,7 +49,7 @@
     <body>
         <div id="home-espacio">
             <!-- Header Home -->
-            <wimet-login fixed="false" shadow="false"></wimet-login>
+            <wimet-login fixed="false" shadow="false" transparent="false"></wimet-login>
             <div class="container">
                 <!-- Title Header -->
                 <section class="texto-header">

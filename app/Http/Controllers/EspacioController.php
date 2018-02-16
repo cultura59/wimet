@@ -206,7 +206,7 @@ class EspacioController extends Controller
             $join->on('categoria_espacio.categoria_id', '=', 'prices.categoria_id');
         });
         $query->join('users', 'espacios.user_id', '=', 'users.id');
-        $query->select('espacios.id', 'espacios.name', 'espacios.quanty', 'espacios.portada', 'espacios.staticname', 'espacios.image360', 'prices.price', 'users.imagesource');
+        $query->select('espacios.id', 'espacios.name', 'espacios.quanty', 'espacios.portada', 'espacios.staticname', 'espacios.image360', 'espacios.country', 'prices.price', 'users.imagesource');
         $query->where([
             ['espacios.id', '=', $id],
             ['categoria_espacio.categoria_id', '=', $categoriaId],

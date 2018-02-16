@@ -1,64 +1,6 @@
 <template>
 	<div>
 		<button :class="typeBtn" @click="publicaUrl()">¡COMIENZA AHORA!</button>
-		<div v-if="showModalLogin" class="login-modal" @click="closeModalEvent($event)">
-			<div class="login-modal__content">
-				<h3>¡Te estábamos esperando!</h3>
-				<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
-				<span class="close-modal" @click="closeModals()">×</span>
-				<div class="container-social">
-					<login-facebook urlredirect="1"></login-facebook>
-					<button class="container-social__btn btn-google">
-						<img src="img/google_logo.svg" class="icon-social" alt="Login Google">
-						<span>Iniciar sesión con Google</span>
-					</button>
-				</div>
-				<div class="login-modal-title">
-					<span class="text-center">Inicia sesión con tu email</span>
-				</div>
-				<div class="container-login">
-					<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
-					<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" @keyup.enter="login()"/>
-					<button class="container-login__login" @click="login()">Iniciar sesión</button>
-				</div>
-				<div class="container-footer">
-					<span class="container-footer__pregunta">¿No tienes cuenta?</span>
-					<span class="container-footer__registro" @click="openModalRegistro()">Registrate</span>
-				</div>
-			</div>
-		</div>
-		<div v-if="showModalRegistro" class="login-modal" @click="closeModalEvent($event)">
-			<div class="login-modal__content">
-				<h3>¡Crea tu cuenta y comienza a explorar!</h3>
-				<div v-if="msgError != ''" class="alert alert-danger" role="alert">{{msgError}}</div>
-				<span class="close-modal" @click="closeModals()">×</span>
-				<div class="container-social">
-					<login-facebook urlredirect="1"></login-facebook>
-					<button class="container-social__btn btn-google">
-						<img src="img/google_logo.svg" class="icon-social" alt="Registrar Google">
-						<span>Iniciar sesión con Google</span>
-					</button>
-				</div>
-				<div class="login-modal-title">
-					<span class="text-center">Regístrate con tu email</span>
-				</div>
-				<div class="container-login">
-					<input type="text" class="container-login__email" placeholder="Nombre" v-model="firstname" />
-					<input type="text" class="container-login__email" placeholder="Apellido" v-model="lastname" />
-					<input type="email" class="container-login__email" placeholder="Email" v-model="email" />
-					<input type="password" class="container-login__email" placeholder="Contraseña" v-model="password" />
-					<button class="container-login__login" @click="registrar()">Regístrate</button>
-					<div class="container-terminos">
-						<input type="checkbox" id="teminos" v-model="teminos" style="display:none">
-						<label for="teminos" class="container-terminos__texto">Acepto los términos y condiciones.</label>
-					</div>
-				</div>
-				<div class="container-footer">
-					<span class="container-footer__pregunta">¿Ya tienes cuenta?</span>
-					<span class="container-footer__registro" @click="openModalLogin()">Inicia sesión</span>
-				</div>
-			</div>
-		</div>
 	</div>
 </template>
 <script>
@@ -89,88 +31,6 @@
             this.getUserAuthenticated();
         },
 		methods: {
-			openModalLogin() {
-				this.showModalRegistro = false;
-				this.showModalLogin = true;
-			},
-			openModalRegistro() {
-				this.showModalLogin = false;
-				this.showModalRegistro = true;
-			},
-			closeModals() {
-				this.showModalLogin = false;
-				this.showModalRegistro = false;
-			},
-			closeModalEvent(event) {
-				var specifiedElement = document.querySelector(".login-modal__content");
-				var isClickInside = specifiedElement.contains(event.target);
-				
-				if (!isClickInside) {
-					this.showModalLogin = false;
-					this.showModalRegistro = false;
-				}
-			},
-			registrar() {
-				if(!this.teminos) {
-					this.msgError = 'Debe aceptar los terminos y condiciones';
-					setInterval(() => {
-						this.msgError = '';
-					}, 3000);
-					return;
-				}
-                let data = {
-                    firstname: this.firstname,
-                    lastname: this.lastname,
-                    email: this.email,
-                    password: this.password,
-                    imagesource: this.imagesource,
-                    status: false
-                }
-                this.$http.post('api/user', data)
-				.then(res => {
-					if(res.status == 200) {
-						this.showModalRegistro = false;
-						swal('Cuenta registrada!', 'Se ha enviado un email a su correo', 'success');
-					}else {
-						this.showBtnLogin = true;
-						swal('Ups, algo salio mal', res.message, 'error');
-					}
-				});
-			},
-			login() {
-				let data = {
-					client_id: 2,
-					client_secret: 'XjZ3yp33zTrPdF0vWPLPH1sQ62swzzbBVvAnJa0A',
-					grant_type: 'password',
-					username: this.email,
-					password: this.password
-				}
-				//this.showModalLogin = false;
-				this.$http.post('oauth/token', data)
-				.then(res => {
-					if(res.status == 200) {
-						this.$auth.setToken(res.body.access_token, res.body.expires_in + Date.now());
-						this.showModalLogin = false;
-						setTimeout(() => {
-                            this.getUserAuthenticated();
-						}, 1000);
-					}
-				}, err => {
-					this.msgError = `El email ${this.email} no existe, registralo :)`;
-					setInterval(() => {
-						this.msgError = '';
-					}, 3000);
-				});
-			},
-			logout(event) {
-				event.preventDefault();
-				this.$auth.destroyToken();
-				FB.getLoginStatus((resStatusFb) => {
-					resStatusFb.status === 'connected';
-					FB.logout();
-				});
-				location.href = '/';
-			},
 			getUserAuthenticated() {
 				let vm = this;
 				if(this.$auth.isAuthenticated()) {
@@ -199,7 +59,7 @@
                     this.$store.commit('setEspacio', {});
                     location.href = `/publica/espacio`;
 				}else {
-					this.openModalLogin();
+					this.$root.showModalRegistro = true;
 				}
 			}
 		}
@@ -225,7 +85,6 @@
 		    position: relative;
 		    h3 {
 				opacity: 0.87;
-				font-family: Poppins;
 				font-size: 18px;
 				font-weight: 500;
 				letter-spacing: -0.1px;
@@ -237,7 +96,6 @@
 		    	justify-content: center;
 		    	align-items: center;
 		    	padding: 1em;
-		    	font-family: Roboto;
 				font-size: 13px;
 				font-weight: 500;
 				letter-spacing: -0.2px;
@@ -311,7 +169,6 @@
 				    justify-content: center;
 				    margin-top: 1em;
 				    &__texto {
-					    font-family: Roboto;
 					    font-size: 13px;
 					    font-weight: 500;
 					    letter-spacing: -0.2px;
@@ -330,7 +187,6 @@
 			    align-items: center;
 			    padding: 1em 0;
 			    &__pregunta {
-				    font-family: Roboto;
 					font-size: 14px;
 					font-weight: 500;
 					letter-spacing: -0.2px;

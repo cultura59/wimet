@@ -13,6 +13,7 @@
                     <div v-if="stUbicacion" class="dropdown__content-left">
                         <span class="contaniner-categorias" @click="selectUbicacion('CABA')">Ciudad de Buenos Aires</span>
                         <span class="contaniner-categorias" @click="selectUbicacion('Buenos Aires')">Gran Buenos Aires</span>
+                        <span class="contaniner-categorias" @click="selectUbicacion('Región Metropolitana')">Santiago de Chile</span>
                     </div>
                 </div>
             </div>

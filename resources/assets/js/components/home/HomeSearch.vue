@@ -7,6 +7,7 @@
                     <div class="dropdown-content" v-if="selectDropdown == 'btnCategoria'">
                         <a href="#" @click="changeUbicacion($event, 'CABA')">Ciudad de Buenos Aires</a>
                         <a href="#" @click="changeUbicacion($event, 'Buenos Aires')">Gran Buenos Aires</a>
+                        <a href="#" @click="changeUbicacion($event, 'Región Metropolitana')">Santiago de Chile</a>
                     </div>
                 </div>
                 <div class="dropdown">

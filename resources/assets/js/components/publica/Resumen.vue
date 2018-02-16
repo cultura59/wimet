@@ -1,7 +1,7 @@
 <template>
     <div class="wt-m-top-5 wt-m-bot-5">
         <h1 v-if="$store.getters.getEspacio.step < 6" class="publica-titulo">¡Lo estás haciendo muy bien!</h1>
-        <template v-if="$store.getters.getEspacio.step == 6">
+        <template v-if="$store.getters.getEspacio.step == 6 ">
             <h1 class="publica-titulo">¡Felicitaciones {{$store.getters.getUser.firstname}}!</h1>
             <p class="wt-m-top-1">Tu espacio será publicado en Wimet.co una vez aprobado por nuestro equipo.</p>
             <button class="btn-complete" @click="aprobacion()">ENVIAR PARA APROBACIÓN</button>

@@ -56,7 +56,7 @@
     <body>
         <div id="home-espacio">
             <!-- Header Home -->
-            <wimet-login fixed="true" shadow="true"></wimet-login>
+            <wimet-login fixed="true" shadow="true" transparent="false"></wimet-login>
             <!-- main -->
             <main>
                 @yield('content')

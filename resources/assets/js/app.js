@@ -95,5 +95,11 @@ Vue.prototype.$toastr = toastr;
 
 const app = new Vue({
     el: '#home-espacio',
-    store
+    store,
+    data(){
+        return {
+            showModalLogin: false,
+            showModalRegistro: false
+        }
+    }
 });
