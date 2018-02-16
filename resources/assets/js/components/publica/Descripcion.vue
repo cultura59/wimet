@@ -4,7 +4,7 @@
             <div class="col-xs-12 col-md-6">
                 <h1 class="publica-titulo">A un paso de convertirte</h1>
                 <h1 class="publica-titulo">en anfitrión</h1>
-                <div class="row wt-m-top-3">
+                <div class="row wt-m-top-3 title">
                     <div class="col-xs-12 col-md-3">
                         <label class="label-publica">TÍTULO</label>
                     </div>
@@ -15,22 +15,32 @@
                             placeholder="Ej.: Galería artística y cultural en Palermo"
                             v-model="$store.getters.getEspacio.name">
                     </div>
+                    <span class="titleAlert">
+                        Debe ser claro, descriptivo y tentador. <br>
+                        Ejemplos: <br>
+                        “Showroom en loft industrial” <br>
+                        “Local comercial minimalista en Recoleta” <br>
+                        "Espacio al aire libre para cocktails“<br>
+                        “Galpón industrial minimalista”<br>
+                    </span>
                 </div>
-                <div class="row wt-m-top-3">
+                <div class="row wt-m-top-3 description">
                     <div class="col-xs-12 col-md-3">
                         <label class="label-publica">DESCRIPCIÓN</label>
                     </div>
                     <div class="col-xs-12 col-md-9">
                         <textarea rows="10" class="input-publica" v-model="$store.getters.getEspacio.description" :placeholder="descripcionHolder"></textarea>
                     </div>
+                    <span class="descriptionAlert">Es importante que seas descriptivo para lograr que un organizador cuente con todo lo que tiene tu espacio para ofrecer. De esta manera recibirás consultas mejor calificadas y los organizadores se encontraran con el espacio que pueden estar necesitando.</span>
                 </div>
-                <div class="row wt-m-top-3">
+                <div class="row wt-m-top-3 rules">
                     <div class="col-xs-12 col-md-3">
                         <label class="label-publica">REGLAMENTO INTERNO</label>
                     </div>
                     <div class="col-xs-12 col-md-9">
                         <textarea rows="10" class="input-publica" v-model="$store.getters.getEspacio.rule" :placeholder="reglamentoHolder""></textarea>
                     </div>
+                    <span class="rulesAlert">Aquí tienen algunas opciones pero puedes editarlas. Estas reglas serán visibles como "condiciones de contratación" en cada propuesta que envíes desde nuestra plataforma.  Recuerda que está fuera de nuestros términos y condiciones agregar datos comerciales o de contacto.</span>
                 </div>
                 <div class="wt-space-block wt-m-top-3">
                     <button class="btn-publica-step-default" @click="back()">
@@ -116,6 +126,59 @@
     }
 </script>
 
-<style scoped>
-
+<style lang="sass" scoped>
+    .titleAlert {
+        display: none;
+        width: 70%;
+        position: absolute;
+        right: -30em;
+        padding: 1em;
+        border-radius: 1px;
+        border: 1px solid #dadada;
+        box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
+        z-index: 1;
+        background: #fff;
+    }
+    .title {
+        position: relative;
+        &:hover .titleAlert {
+            display: block;
+        }
+    }
+    .descriptionAlert {
+        display: none;
+        width: 70%;
+        position: absolute;
+        right: -30em;
+        padding: 1em;
+        border-radius: 1px;
+        border: 1px solid #dadada;
+        box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
+        z-index: 1;
+        background: #fff;
+    }
+    .description {
+        position: relative;
+        &:hover .descriptionAlert {
+            display: block;
+        }
+    }
+    .rulesAlert {
+        display: none;
+        width: 70%;
+        position: absolute;
+        right: -30em;
+        padding: 1em;
+        border-radius: 1px;
+        border: 1px solid #dadada;
+        box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
+        z-index: 1;
+        background: #fff;
+    }
+    .rules {
+        position: relative;
+        &:hover .rulesAlert {
+            display: block;
+        }
+    }
 </style>
