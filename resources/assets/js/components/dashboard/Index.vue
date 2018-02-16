@@ -5,7 +5,7 @@
             <wimet-login fixed="false"></wimet-login>
             <main>
                 <div v-if="$store.getters.getUser.tipo_clientes_id > 1" class="dashboard-navbar">
-                    <router-link to="/" :class="{active: $route.path == '/'}">Dashboard</router-link>
+                    <router-link to="/" :class="{active: $route.path == '/'}">Escritorio</router-link>
                     <router-link to="/mensajes" :class="{active:
                         $route.name == 'Mensajes' ||
                         $route.name == 'Mensaje' ||

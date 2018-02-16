@@ -16,7 +16,7 @@
 							<a href="#" id="menu-user" :class="userloged">{{ $store.getters.getUser.firstname }}</a>
 							<ul class="menue-list">
 								<li class="menue-list__item" @click="reloadPage(`/dashboard#/`, $event)">
-									<a href="#" style="color: #333;">Dashboard</a>
+									<a href="#" style="color: #333;">Escritorio</a>
 								</li>
 								<li class="menue-list__item" @click="reloadPage(`/dashboard#/mensajes?type=organizador`, $event)">
 									<a href="#" style="color: #333;">Mensajes</a>
