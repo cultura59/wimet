@@ -27,8 +27,11 @@
 								<li class="menue-list__item" @click="reloadPage(`/dashboard#/perfil`, $event)">
 									<a href="#" style="color: #333;">Mi perfil</a>
 								</li>
-								<li class="menue-list__item active" @click="publicaUrl($event)">
+								<li v-if="$store.getters.getUser.espacios.length == 0 || $store.getters.getUser.espacios == undefined" class="menue-list__item active" @click="publicaUrl($event)">
 									<a href="#" style="color: #fc5289;">PUBLICAR TU ESPACIO</a>
+								</li>
+								<li v-if="$store.getters.getUser.espacios.length > 0" class="menue-list__item" @click="reloadPage(`/dashboard#/espacios`, $event)">
+									<a href="#" style="color: #333;">Mis espacios</a>
 								</li>
 								<li class="menue-list__last-item" @click="logout($event)">
 									<a href="#" style="color: #333;">Salir</a>
@@ -365,6 +368,7 @@
 						letter-spacing: -0.1px;
 						color: #212121;
 						z-index: 1;
+						width: 14em;
 						&__item {
 							border-bottom: solid 1px #dadada;
 							color: #FC5289 !important;
