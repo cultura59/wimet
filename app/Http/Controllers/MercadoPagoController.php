@@ -182,7 +182,7 @@ class MercadoPagoController extends Controller
     public function payPayment(Request $request) {
         DB::begintransaction();
         try {
-            $duenio = User::find($request['duenio']);
+            $duenio = User::find($request['espacio']['user_id']);
             $propuesta = Propuesta::find($request['propuestaid']);
             $pagos = $propuesta->with('pagos')->get();
             $comision = ($propuesta->sub_total * 15) / 100;
