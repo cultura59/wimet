@@ -730,7 +730,7 @@ class EspacioController extends Controller
             $query->whereHas('priceByCategory',
                 function($subQuery) {
                     //Chequeo si existe el filtro por price
-                    if($request->has('price')){
+                    if(\Request::has('price')){
                         $precios = explode("-", \Request::input('price'));
                         if($precios[1] == "5000") {
                             $subQuery->where('price', '>=', $precios[0]);
@@ -739,7 +739,7 @@ class EspacioController extends Controller
                         }
                     }
                     //Chequeo si existe el filtro por quanty
-                    if($request->has('quanty')) {
+                    if(\Request::has('quanty')) {
                         $quanties = explode("-", \Request::input('quanty'));
                         if($quanties[1] == '5000') {
                             $subQuery->where('quanty', '>=', $quanties[0]);
