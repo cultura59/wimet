@@ -136,7 +136,19 @@ class PropuestaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        DB::begintransaction();
+        try {
+            $propuesta = Propuesta::find($id);
+            if(!$propuesta) {
+                return response('No se encontro la propuesta buscada', 404);
+            }
+            $propuesta->update($request->all());
+            DB::commit();
+            return $propuesta;
+        }catch (\Exception $e) {
+            DB::rollback();
+            return response('No se pudo modificar el prosupuesto', 500);
+        }
     }
 
     /**

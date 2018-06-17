@@ -28,7 +28,9 @@ class Propuesta extends Model
 							'total',
 							'estado',
 							'condiciones',
-							'iva'
+							'iva',
+							'aprueba_cliente',
+							'aprueba_duenio'
 						];
     /**
      * @fn evento()

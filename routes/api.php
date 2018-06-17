@@ -47,6 +47,7 @@ Route::get('repare', 'ApiHelpperController@repareDataBase');
 Route::get('mpresponse', 'MercadoPagoController@responseMP');
 Route::post('sendpayment', 'MercadoPagoController@sendPayment');
 Route::post('sendata', 'MercadoPagoController@sendData');
+Route::post('paypayment', 'MercadoPagoController@payPayment');
 
 Route::post('saveportada/{id}', 'EspacioController@savePortada');
 Route::post('saveimage/{id}', 'EspacioController@saveImages');

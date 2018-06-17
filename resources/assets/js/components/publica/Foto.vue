@@ -5,10 +5,10 @@
                 <h1 class="publica-titulo">{{$store.getters.getUser.firstname}} es hora de elegir</h1>
                 <h1 class="publica-titulo">tus mejores fotos</h1>
                 <form v-show="$store.getters.getEspacio.portada == '' || $store.getters.getEspacio.portada == null" class="wt-m-top-3">
-                    <input type="file" id="box-images" style="display: none;" name="portada">
+                    <input type="file" id="box-images" style="display: none;" name="portada" @change="savePortada()">
                     <label id="fake-input" for="box-images" class="box-images">
                         <img class="box-images__image" src="https://res.cloudinary.com/wimet/image/upload/v1512822338/icon-nube.svg">
-                        <span class="box-images__text">haga clic para cargar o arrastra tu foto de portada aquí</span>
+                        <span class="box-images__text">Haga click para cargar tu foto de portada aquí</span>
                     </label>
                 </form>
                 <div v-show="$store.getters.getEspacio.portada !== '' && $store.getters.getEspacio.portada !== null" class="row wt-m-top-3">
@@ -54,9 +54,6 @@
                 imgPortada: {}
             }
         },
-        mounted(){
-            this.init();
-        },
         created() {
             if(this.$store.getters.getEspacio.portada !== '' || this.$store.getters.getEspacio.portada !== undefined)
             {
@@ -67,34 +64,25 @@
             }
         },
         methods: {
-            init() {
-                let target = document.getElementById("fake-input");
+            savePortada() {
                 let formData = new FormData();
-                // Action dragover
-                target.addEventListener("dragover", (event) => {
-                    event.preventDefault();
-                }, false);
-                // Action dragdrop
-                target.addEventListener("drop", (event) => {
-                    event.preventDefault();
-                    let file = event.dataTransfer.files[0];
-                    //Check the file type
-                    if (!file.type.match('image.*')) {
-                        this.$toastr.error(`El archivo debe ser una imagen`, 'Ups hubo un error');
-                        return;
-                    }
-                    //Check the file type
-                    if (file.size >= 2000000) {
-                        this.$toastr.error(`El archivo debe pesar menos de 2MB`, 'Ups hubo un error');
-                        return;
-                    }
-                    // Add the file to the request.
-                    formData.append('type', 'file');
-                    formData.append('portada', file);
-                    this.savePortada(formData);
-                }, false);
-            },
-            savePortada(form) {
+                let image = document.getElementById("box-images");
+                console.log(image);
+                let file = image.files[0];
+                //Check the file type
+                if (!file.type.match('image.*')) {
+                    this.$toastr.error(`El archivo debe ser una imagen`, 'Ups hubo un error');
+                    return;
+                }
+                //Check the file type
+                if (file.size >= 2000000) {
+                    this.$toastr.error(`El archivo debe pesar menos de 2MB`, 'Ups hubo un error');
+                    return;
+                }
+                // Add the file to the request.
+                formData.append('type', 'file');
+                formData.append('portada', file);
+
                 this.$toastr.info('Aguarde unos segundos', 'Cargando imagen...');
                 fetch(`/api/saveportada/${this.$store.getters.getEspacio.id}`, {
                     method: 'post',
@@ -102,7 +90,7 @@
                         Accept: 'application/json',
                         Authorization: `Bearer ${this.$auth.getToken()}`
                     },
-                    body: form
+                    body: formData
                 })
                 .then((res) => {
                     this.$toastr.success(`El archivo fue cargado correctamente`, 'Portada cargada');

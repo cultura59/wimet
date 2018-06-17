@@ -12,7 +12,7 @@
                         <input class="input-publica" type="text" placeholder="Máximo de asistentes" v-model="$store.getters.getEspacio.prices[indexCat].cantidad_personas">
                     </div>
                 </div>
-                <div class="publica-box">
+                <div class="publica-box phone">
                     <div class="publica-box__left">
                         <label class="label-publica">PRECIO</label>
                     </div>
@@ -22,7 +22,6 @@
                                 <input
                                     class="publica-price__box__input"
                                     type="text"
-                                    placeholder="$1000"
                                     v-model="$store.getters.getEspacio.prices[indexCat].daily"
                                     @change="calMediaJornada()">
                                 <label class="label-publica">por día</label>
@@ -30,14 +29,14 @@
                             <div class="publica-price__box">
                                 <input
                                     class="publica-price__box__input"
-                                    type="text" placeholder="$6000"
                                     v-model="$store.getters.getEspacio.prices[indexCat].price">
                                 <label class="label-publica">por 1/2 día</label>
                             </div>
+                            <span class="phoneAlert">La tarifas por jornada generalmente son valores estimados para que los organizadores pueden reservar tu espacio durante 10 horas aproximadamente. El valor final puede ser editado según corresponda en cada propuesta que envíes.</span>
                         </div>
                     </div>
                 </div>
-                <div class="publica-box">
+                <div class="publica-box deposit">
                     <div class="publica-box__left">
                         <label class="label-publica">DEPÓSITO DE SEGURIDAD</label>
                     </div>
@@ -48,6 +47,7 @@
                             placeholder="$6000"
                             v-model="$store.getters.getEspacio.prices[indexCat].securitydeposit">
                     </div>
+                    <span class="depositAlert">El valor de deposito es una referencia para que el organizador sepa que puedes requerirle este importe u otro según lo acordado entre las partes.</span>
                 </div>
                 <div class="publica-box">
                     <div class="publica-box__left">
@@ -79,10 +79,6 @@
                         </div>
                     </div>
                 </div>
-                <div class="publica-box">
-                    <input id="all" type="checkbox" v-model="all" style="display: none;">
-                    <label for="all" class="wt-publica-label">Establecer misma capacidad, precios y condiciones para todas las categorías.</label>
-                </div>
                 <div class="wt-space-block wt-m-top-3" @click="back()">
                     <button class="btn-publica-step-default">
                         <img src="https://res.cloudinary.com/wimet/image/upload/v1512746740/ic_keyboard_backspace_black_24px.svg">
@@ -110,7 +106,7 @@
                 btnSend: true,
                 espacio: this.$store.getters.getEspacio,
                 price: {},
-                all: true,
+                all: false,
                 indexCat: '',
                 showBox: false
             }
@@ -231,12 +227,42 @@
         }
     }
 
-    .hover-menssage {
+    .phoneAlert {
+        display: none;
+        width: 70%;
         position: absolute;
-        right: -8em;
+        right: -30em;
+        padding: 1em;
+        border-radius: 1px;
+        top: 10em;
+        border: 1px solid #dadada;
+        box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
+        z-index: 1;
+        background: #fff;
+    }
+    .phone:hover .phoneAlert {
+        display: block;
+    }
+
+    .depositAlert {
+        display: none;
+        width: 70%;
+        position: absolute;
+        right: -30em;
         padding: 1em;
         border-radius: 1px;
         border: 1px solid #dadada;
         box-shadow: 0 0 9px 0 rgba(0, 0, 0, 0.25);
+        z-index: 1;
+        background: #fff;
+    }
+    .deposit {
+        position: relative;
+        &:hover .depositAlert {
+            display: block;
+        }
+    }
+    input::placeholder {
+        color: #dadada;
     }
 </style>

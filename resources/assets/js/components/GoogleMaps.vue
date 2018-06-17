@@ -61,6 +61,10 @@
                     navigationControl: false,
                     mapTypeControl: false,
                     scaleControl: false,
+                    zoomControl: true,
+                    zoomControlOptions: {
+                        position: google.maps.ControlPosition.LEFT
+                    },
                     draggable: true,
                     mapTypeId: google.maps.MapTypeId.ROADMAP
                 });

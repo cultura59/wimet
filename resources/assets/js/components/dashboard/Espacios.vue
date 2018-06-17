@@ -253,7 +253,7 @@
                 &:hover, &:focus {
                     transition: none;
                     text-decoration: none;
-                    border-bottom: 2px solid #d17f87;
+                    border-bottom: 2px solid #fc5289;
                     padding-bottom: .5em;
                 }
             }
@@ -263,9 +263,9 @@
                 font-weight: 500;
                 letter-spacing: -0.1px;
                 text-align: justify;
-                color: #d17f87;
+                color: #fc5289;
                 text-decoration: none;
-                border-bottom: 2px solid #d17f87;
+                border-bottom: 2px solid #fc5289;
                 margin-right: 1em;
                 padding-bottom: .5em;
             }

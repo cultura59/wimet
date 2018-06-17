@@ -49,7 +49,7 @@
     <body>
         <div id="home-espacio">
             <!-- Header Home -->
-            <wimet-login fixed="false" shadow="false"></wimet-login>
+            <wimet-login fixed="false" shadow="false" transparent="false"></wimet-login>
             <div class="container">
                 <!-- Title Header -->
                 <section class="texto-header">
@@ -293,8 +293,15 @@
         <script async defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
         <script async defer src="https://apis.google.com/js/api:client.js"></script>
         <script async defer src="/js/app.js"></script>
-        <!-- Start of HubSpot Embed Code -->
+        <!-- Start of HubSpot Embed Code
         <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2880578.js"></script>
-        <!-- End of HubSpot Embed Code -->
+        End of HubSpot Embed Code -->
+
+        <script>
+        window.intercomSettings = {
+            app_id: "p30rgvxn"
+        };
+        </script>
+        <script>(function(){var w=window;var ic=w.Intercom;if(typeof ic==="function"){ic('reattach_activator');ic('update',intercomSettings);}else{var d=document;var i=function(){i.c(arguments)};i.q=[];i.c=function(args){i.q.push(args)};w.Intercom=i;function l(){var s=d.createElement('script');s.type='text/javascript';s.async=true;s.src='https://widget.intercom.io/widget/p30rgvxn';var x=d.getElementsByTagName('script')[0];x.parentNode.insertBefore(s,x);}if(w.attachEvent){w.attachEvent('onload',l);}else{w.addEventListener('load',l,false);}}})()</script>
     </body>
 </html>

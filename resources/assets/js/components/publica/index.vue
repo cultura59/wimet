@@ -101,21 +101,21 @@
 			&:hover, &:focus {
 				transition: none;
 				text-decoration: none;
-				border-bottom: 2px solid #d17f87;
+				border-bottom: 2px solid #fc5289;
 			}
 		}
 		.active {
 			transition: none;
-			color: #d17f87;
+			color: #fc5289;
 			margin: 10px 30px 0px 15px;
 			padding-bottom: 10px;
 			transition: none;
 			text-decoration: none;
-			border-bottom: 2px solid #d17f87;
+			border-bottom: 2px solid #fc5289;
 			&:hover, &:focus {
 				transition: none;
 				text-decoration: none;
-				border-bottom: 2px solid #d17f87;
+				border-bottom: 2px solid #fc5289;
 			}
 		}
 	}

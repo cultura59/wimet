@@ -77,22 +77,6 @@
                                     <span>Total x espacio</span>
                                     <span>${{evento.sub_total}}</span>
                                 </div>
-                                <div v-if="evento.user_id === $store.getters.getUser.id" class="wt-space-block wt-m-bot-1">
-                                    <span>Comisión Wimet</span>
-                                    <span>${{evento.fee}}</span>
-                                </div>
-                                <div v-if="evento.user_id === $store.getters.getUser.id" class="wt-space-block">
-                                    <strong>Recibirás</strong>
-                                    <strong>${{evento.sub_total - evento.fee}}</strong>
-                                </div>
-                                <div v-if="evento.cliente_id === $store.getters.getUser.id" class="wt-space-block wt-m-bot-1">
-                                    <span>Seña a favor</span>
-                                    <span>$ -{{getSenia()}}</span>
-                                </div>
-                                <div v-if="evento.cliente_id === $store.getters.getUser.id" class="wt-space-block">
-                                    <strong>Saldo restante</strong>
-                                    <strong>${{evento.sub_total - senia}}</strong>
-                                </div>
                             </div>
                         </div>
                     </div>
@@ -305,7 +289,7 @@
             padding: 1em;
             margin: 1em 0;
             background-color: #fce9ed;
-            font-size: 11px;
+            font-size: 14px;
             font-style: italic;
             color: #545454;
         }
@@ -320,7 +304,7 @@
             justify-content: space-between;
             margin: 1em 0;
             &__transparent {
-                font-size: 11px;
+                font-size: 14px;
                 background-color: #fff;
                 border: solid 1px #fc5189;
                 padding: 1em;
@@ -328,7 +312,7 @@
                 border-radius: 1px;
             }
             &__send {
-                font-size: 11px;
+                font-size: 14px;
                 background-color: #fc5189;
                 border: solid 1px #fc5189;
                 padding: 1em;
@@ -341,7 +325,7 @@
             margin-top: 1em;
             &__cliente {
                 font-family: Avenir;
-                font-size: 11px;
+                font-size: 14px;
                 color: #545454;
                 margin-top: 1em;
                 .cliente-texto {
@@ -371,7 +355,7 @@
             }
             &__user {
                 font-family: Avenir;
-                font-size: 11px;
+                font-size: 14px;
                 color: #545454;
                 margin-top: 1em;
                 .user-texto {

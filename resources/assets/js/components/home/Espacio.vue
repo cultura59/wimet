@@ -12,7 +12,7 @@
                         </div>
                         <div class="direccion"><span>{{espacio.city}}, {{espacio.state}}</span></div>
                         <div class="contenedor-invitados">
-                            <img src="https://res.cloudinary.com/wimet/image/upload/icons/wimet_ic_group_black_24px.svg" class="icon-people"> 120 Máx
+                            <img src="https://res.cloudinary.com/wimet/image/upload/icons/wimet_ic_group_black_24px.svg" class="icon-people"> {{priceCategoria.cantidad_personas}} Máx
                         </div>
                         <div class="box-descripcion">
                             <div class="box-descripcion__titulo">
@@ -30,13 +30,13 @@
                                 <div class="container-prices">
                                     <div class="wt-center-column">
                                         <span class="price">
-                                            <b><i aria-hidden="true" class="fa fa-clock-o"></i></b> ${{priceCategoria.daily}}.-
+                                            <b><i aria-hidden="true" class="fa fa-clock-o"></i></b> ${{priceCategoria.daily}}.- {{(espacio.country == 'Argentina') ? 'ARS' : 'CLP'}}
                                         </span>
                                         <span class="min-hours">Por jornada</span>
                                     </div>
                                     <div class="wt-center-column wt-m-lf-3">
                                         <span class="price">
-                                            <b><i aria-hidden="true" class="fa fa-clock-o"></i></b> ${{priceCategoria.price}}.-
+                                            <b><i aria-hidden="true" class="fa fa-clock-o"></i></b> ${{priceCategoria.price}}.- {{(espacio.country == 'Argentina') ? 'ARS' : 'CLP'}}
                                         </span>
                                         <span class="min-hours">Por media jornada</span>
                                     </div>
@@ -93,6 +93,7 @@
                                     <span>Cancelación: flexible.</span>
                                     <span>Reembolso completo hasta 15 días antes del evento, excepto los gastos de procesamiento.</span>
                                     <span>Depósito de garanía: ${{priceCategoria.securitydeposit}}</span>
+                                    <p>{{espacio.rule}}</p>
                                 </div>
                             </div>
                         </div>
@@ -139,7 +140,7 @@
                             <header class="calendar__header">
                                 <div class="calendar__header__price">
                                     <span class="calendar__header__price--default">Desde</span>
-                                    <span class="calendar__header__price--active">${{priceCategoria.price}}</span>
+                                    <span class="calendar__header__price--active">${{priceCategoria.price}} {{(espacio.country == 'Argentina') ? 'ARS' : 'CLP'}}</span>
                                 </div>
                              </header>
                             <main class="calendar__main">
@@ -178,7 +179,7 @@
                                         <strong>PRECIO</strong>
                                         <div class="wt-space-block wt-m-top-1">
                                             <span>Espacio x {{totalDays}} días</span>
-                                            <span>$ {{subTotal}}</span>
+                                            <span>$ {{subTotal}} {{(espacio.country == 'Argentina') ? 'ARS' : 'CLP'}}</span>
                                         </div>
                                         <div v-show="showFee">
                                             <div class="wt-space-block wt-m-top-1">

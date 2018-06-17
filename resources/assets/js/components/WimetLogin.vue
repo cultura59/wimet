@@ -1,7 +1,10 @@
 <template>
-	<header class="login-header" :class="{'header-fixed': (fixed == 'true'), 'login-header--shadow': (shadow == 'true')}">
+	<header class="login-header" :class="{'header-transparent': (transparent == 'true'), 'header-fixed': (fixed == 'true'), 'login-header--shadow': (shadow == 'true')}">
 		<nav class="login-header__navbar">
-			<a href="/"><img src="https://res.cloudinary.com/wimet/image/upload/v1503064340/wimet-logo_frbya5.svg" alt="Wimet" width="158" class="img-responsive"></a>
+			<a href="/">
+				<img v-if="transparent !== 'true'" src="https://res.cloudinary.com/wimet/image/upload/wimet-logo_frbya5.svg" alt="Wimet" width="158" class="img-responsive">
+				<img v-if="transparent === 'true'" src="https://res.cloudinary.com/wimet/image/upload/wimet-logo-redwhite_scy9a1.svg" alt="Wimet" width="158" class="img-responsive">
+			</a>
 			<div class="login-header__navbar__actions">
 				<ul class="login-header__navbar__actions__menue">
 					<template v-if="authenticated">
@@ -13,7 +16,7 @@
 							<a href="#" id="menu-user" :class="userloged">{{ $store.getters.getUser.firstname }}</a>
 							<ul class="menue-list">
 								<li class="menue-list__item" @click="reloadPage(`/dashboard#/`, $event)">
-									<a href="#" style="color: #333;">Dashboard</a>
+									<a href="#" style="color: #333;">Escritorio</a>
 								</li>
 								<li class="menue-list__item" @click="reloadPage(`/dashboard#/mensajes?type=organizador`, $event)">
 									<a href="#" style="color: #333;">Mensajes</a>
@@ -24,8 +27,11 @@
 								<li class="menue-list__item" @click="reloadPage(`/dashboard#/perfil`, $event)">
 									<a href="#" style="color: #333;">Mi perfil</a>
 								</li>
-								<li class="menue-list__item active" @click="publicaUrl($event)">
+								<li v-if="$store.getters.getUser.espacios.length == 0 || $store.getters.getUser.espacios == undefined" class="menue-list__item active" @click="publicaUrl($event)">
 									<a href="#" style="color: #fc5289;">PUBLICAR TU ESPACIO</a>
+								</li>
+								<li v-if="$store.getters.getUser.espacios.length > 0" class="menue-list__item" @click="reloadPage(`/dashboard#/espacios`, $event)">
+									<a href="#" style="color: #333;">Mis espacios</a>
 								</li>
 								<li class="menue-list__last-item" @click="logout($event)">
 									<a href="#" style="color: #333;">Salir</a>
@@ -50,7 +56,7 @@
 						</li>
 					</template>
 				</ul>
-				<template v-if="showModalLogin">
+				<template v-if="$root.showModalLogin">
 					<div class="login-modal" @click="closeModalEvent($event)">
 						<div class="login-modal__content">
 							<h3>¡Te estábamos esperando!</h3>
@@ -78,7 +84,7 @@
 						</div>
 					</div>
 				</template>
-				<template v-if="showModalRegistro">
+				<template v-if="$root.showModalRegistro">
 					<div class="login-modal" @click="closeModalEvent($event)">
 						<div class="login-modal__content">
 							<h3>¡Crea tu cuenta y comienza a explorar!</h3>
@@ -120,10 +126,9 @@
 	import loginFacebook from './loginFacebook.vue';
 	import loginGoogle from './loginGoogle.vue';
 	import {registerLogin} from '../mixins/registerLogin';
-	import swal from 'sweetalert';
 	export default {
         mixins: [registerLogin],
-		props: ['fixed', 'shadow'],
+		props: ['fixed', 'shadow', 'transparent'],
 		components: {
 			'login-facebook': loginFacebook,
 			'login-google': loginGoogle
@@ -143,24 +148,24 @@
                 $('html,body').animate({ scrollTop: $("#como-funciona").offset().top}, 'slow');
 			},
 			openModalLogin() {
-				this.showModalRegistro = false;
-				this.showModalLogin = true;
+				this.$root.showModalRegistro = false;
+				this.$root.showModalLogin = true;
 			},
 			openModalRegistro() {
-				this.showModalLogin = false;
-				this.showModalRegistro = true;
+				this.$root.showModalLogin = false;
+				this.$root.showModalRegistro = true;
 			},
 			closeModals() {
-				this.showModalLogin = false;
-				this.showModalRegistro = false;
+				this.$root.showModalLogin = false;
+				this.$root.showModalRegistro = false;
 			},
 			closeModalEvent(event) {
 				var specifiedElement = document.querySelector(".login-modal__content");
 				var isClickInside = specifiedElement.contains(event.target);
 				
 				if (!isClickInside) {
-					this.showModalLogin = false;
-					this.showModalRegistro = false;
+					this.$root.showModalLogin = false;
+					this.$root.showModalRegistro = false;
 				}
 			},
 			reloadPage(url, event) {
@@ -197,7 +202,6 @@
 		    position: relative;
 		    h3 {
 				opacity: 0.87;
-				font-family: Poppins;
 				font-size: 18px;
 				font-weight: 500;
 				letter-spacing: -0.1px;
@@ -209,7 +213,6 @@
 		    	justify-content: center;
 		    	align-items: center;
 		    	padding: 1em;
-		    	font-family: Roboto;
 				font-size: 13px;
 				font-weight: 500;
 				letter-spacing: -0.2px;
@@ -256,7 +259,6 @@
 				    justify-content: center;
 				    margin-top: 1em;
 				    &__texto {
-					    font-family: Roboto;
 					    font-size: 13px;
 					    font-weight: 500;
 					    letter-spacing: -0.2px;
@@ -272,7 +274,6 @@
 			    align-items: center;
 			    padding: 1em 0;
 			    &__pregunta {
-				    font-family: Roboto;
 					font-size: 14px;
 					font-weight: 500;
 					letter-spacing: -0.2px;
@@ -367,6 +368,7 @@
 						letter-spacing: -0.1px;
 						color: #212121;
 						z-index: 1;
+						width: 14em;
 						&__item {
 							border-bottom: solid 1px #dadada;
 							color: #FC5289 !important;
@@ -405,5 +407,15 @@
 	}
 	.header-fixed {
 		position: fixed;
+	}
+	.header-transparent {
+		background-color: transparent !important;
+		a {
+			color: #FFFFFF;
+		}
+		.btn-publica-login {
+			border: 2px solid #FFFFFF !important;
+			color: #FFFFFF !important;
+		}
 	}
 </style>

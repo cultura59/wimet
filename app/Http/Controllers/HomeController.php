@@ -48,10 +48,8 @@ class HomeController extends Controller
      */
     public function search(Request $request) {   
         $querystringArray = \Request::only(['ubicacion','categoria','price','quanty']);
-        $quanties = explode("-", \Request::input('quanty'));
         if(\Request::input('ubicacion') == "") {
             $espacios = Espacio::select('id', 'name', 'description', 'long', 'lat')
-                ->whereBetween('quanty', [$quanties[0], $quanties[1]])
                 ->whereHas('categorias',
                     function($query) {
                         $query->where('id', \Request::input('categoria'));
@@ -61,6 +59,8 @@ class HomeController extends Controller
                     function($query) {
                         $precios = explode("-", \Request::input('price'));
                         $query->whereBetween('price', [$precios[0], $precios[1]]);
+                        $quanties = explode("-", \Request::input('quanty'));
+                        $query->whereBetween('cantidad_personas', [$quanties[0], $quanties[1]]);
                     }
                 )
                 ->with('images', 'priceByCategory')
@@ -70,7 +70,6 @@ class HomeController extends Controller
         } else {
             $espacios = Espacio::select('id', 'name', 'description', 'long', 'lat')
                 ->with('images')
-                ->whereBetween('quanty', [$quanties[0], $quanties[1]])
                 ->whereHas('categorias', 
                     function($query) {
                         $query->where('id', \Request::input('categoria'));
@@ -80,6 +79,8 @@ class HomeController extends Controller
                     function($query) {
                         $precios = explode("-", \Request::input('price'));
                         $query->whereBetween('price', [$precios[0], $precios[1]]);
+                        $quanties = explode("-", \Request::input('quanty'));
+                        $query->whereBetween('cantidad_personas', [$quanties[0], $quanties[1]]);
                     }
                 )
                 ->where('status', true)

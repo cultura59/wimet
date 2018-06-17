@@ -10,6 +10,7 @@ import dashboardFavoritos from './Favorito.vue';
 import dashboardPerfil from './Perfil.vue';
 import dashboardSolicitudDatos from './SolicitudDatos.vue';
 import dashboardNuevaPropuesta from './NuevaPropuesta.vue';
+import dashboardPagoPropuesta from './PagoPropuesta.vue';
 
 const routes = [
     { path: '/', name: 'Dashboard', component: dashboardIndex },
@@ -19,6 +20,7 @@ const routes = [
     { path: '/propuesta/:id', name: 'Propuesta', component: dashboardPropuesta},
     { path: '/mensaje/:id', name: 'Mensaje', component: dashboardMensaje},
     { path: '/mensaje/:id/solicitud', name: 'solicitud', component: dashboardSolicitudDatos},
+    { path: '/mensaje/pago/:id', name: 'pagopropuesta', component: dashboardPagoPropuesta},
     { path: '/mensaje/:id/nuevapropuesta', name: 'nueva-propuesta', component: dashboardNuevaPropuesta},
     { path: '/espacios', name: 'Espacios', component: dashboardEspacios},
     { path: '/favoritos', name: 'Favoritos', component: dashboardFavoritos},

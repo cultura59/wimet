@@ -29,8 +29,8 @@ class PropuestaServiciosController extends Controller
     public function store(Request $request) {
         DB::beginTransaction();
         try {
-            $servicio = new PropuestaServicios();
-            $servicio->save($request->all());
+            $servicio = new PropuestaServicios($request->all());
+            $servicio->save();
             DB::commit();
             return $servicio;
         }catch (\Exception $e) {
