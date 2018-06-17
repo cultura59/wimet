@@ -172,55 +172,7 @@ class MercadoPagoController extends Controller
             $user->refresh_token = $res["response"]["refresh_token"];
             $user->save();
             return redirect('https://wimet.co/dashboard#/perfil');
-        }
-    }
 
-    /**
-     * @fn payPayment()
-     * @param Request $request
-     * @return \Illuminate\Contracts\Routing\ResponseFactory|\Symfony\Component\HttpFoundation\Response
-     */
-    public function payPayment(Request $request) {
-        DB::begintransaction();
-        try {
-            $duenio = User::find($request['espacio']['user_id']);
-            $propuesta = Propuesta::find($request['propuestaid']);
-            $pagos = $propuesta->with('pagos')->get();
-            $comision = ($propuesta->sub_total * 15) / 100;
-
-            if($duenio == null) {
-                return response('Hubo un error al intentar cobrar el pago', 404);
-            }
-
-            // Calculo la comision de wimet en base a la seña
-            if($pagos[0]['pdescripcion'] == 'senia') {
-                $pagoWimet = $comision - $pagos[0]['ptotal'];
-                if($pagoWimet < 0) {
-                    $pagoWimet = 0;
-                }
-            }else {
-                $pagoWimet = $comision;
-            }
-
-            $mp = new MP("TEST-8248736349517024-123008-431710274c1eef4ee4331ae7b658cfcf__LA_LD__-291916384");
-            //$mp = new MP("APP_USR-8248736349517024-123008-d168bc42d44c9358b71e900e44e54b20__LA_LD__-291916384");
-            $payment_data = array(
-                "transaction_amount" => $propuesta->total,
-                "token" => "TEST-8248736349517024-021615-81eb8bc9262f4de93481104360bb3072__LC_LD__-291916384", //$duenio->access_token,
-                "description" => "Correspondiente al pago por el espacio " . $request['espacio']["name"],
-                "installments" => 1,
-                "payer" => array (
-                    "email" => $request["email"],
-                    "first_name" => $request["firstname"],
-                    "last_name" => $request["lastname"]
-                ),
-                "payment_method_id" => $request["paymentMethodId"],
-                "application_fee" => $pagoWimet
-            );
-            return $mp->post("/v1/payments", $payment_data);
-        } catch (\Exception $e) {
-            DB::rollback();
-            return response('Hubo un error al realizar el pago, ' . $e, 500);
         }
     }
 }
