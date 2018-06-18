@@ -9,7 +9,16 @@ Vue.use(VueRouter);
 Vue.use(VueResource);
 
 const ip = location.host;
-Vue.http.options.root = `http://${ip}`;
+let protocol = "http";
+
+if (window.location.protocol == "https:") {
+    protocol = "https";
+}
+if(ip !== "") {
+    Vue.http.options.root = `${protocol}://${ip}`;
+} else {
+    Vue.http.options.root = `${protocol}://wimet.co`;
+}
 
 import moment from 'moment';
 
