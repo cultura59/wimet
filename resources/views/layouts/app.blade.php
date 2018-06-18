@@ -86,7 +86,7 @@
             }
         </script>
         <script type="text/javascript" src="//www.googleadservices.com/pagead/conversion_async.js"></script>
-        <script async defer src="/js/app.js"></script>
+        <script async defer src="https://wimet.co/app.js"></script>
         @stack('scripts')
         <!-- Start of HubSpot Embed Code
         <script type="text/javascript" id="hs-script-loader" async defer src="//js.hs-scripts.com/2880578.js"></script>
