@@ -192,6 +192,6 @@
 /*]]>*/</script>
 <!-- End of wimet Zendesk Widget script -->
         <script async="" defer="" src="https://apis.google.com/js/api:client.js" gapi_processed="true"></script>
-        <script src="{{url('/js/app.js')}}"></script>
+        <script src="/js/app.js"></script>
     </body>
 </html>
