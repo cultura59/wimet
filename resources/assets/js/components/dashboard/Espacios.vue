@@ -154,6 +154,7 @@
                 }else {
                     url = this.espacios.next_page_url;
                 }
+                url = url.replace('http://127.0.0.1:3000', "https://wimet.co");
                 this.$http.get(url)
                 .then(res => {
                     this.espacios = res.body;
