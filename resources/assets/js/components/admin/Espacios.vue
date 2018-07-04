@@ -184,11 +184,13 @@
             },
             backEspacio(e) {
                 e.preventDefault();
-                this.runUrl(this.espacios.prev_page_url);
+                let url = this.espacios.prev_page_url.replace('http://127.0.0.1:3000', "https://wimet.co");
+                this.runUrl(url);
             },
             nextEspacio(e) {
                 e.preventDefault();
-                this.runUrl(this.espacios.next_page_url);
+                let url = this.espacios.next_page_url.replace('http://127.0.0.1:3000', "https://wimet.co");
+                this.runUrl(url);
             },
             runUrl(url) {
                 fetch(url, {method: 'GET', headers: {'Authorization': `Bearer ${this.$auth.getToken()}`}})

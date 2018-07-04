@@ -36,7 +36,6 @@
                         <div class="col-xs-12 col-sm-2">
                             <p class="col-footer">Empresa</p>
                             <ul>
-                                <li><a href="{{url('/nosotros')}}">Nosotros</a></li>
                                 <li><a href="https://blog.wimet.co">Blog</a></li>
                                 <li><a href="{{url('/nosotros')}}">Ayuda</a></li>
                                 <li><a href="{{url('/nosotros')}}">Términos y condiciones</a></li>
